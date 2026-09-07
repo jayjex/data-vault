@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MCP Server for Claude Desktop: Install dataset-mcp, Config JSON, Real Outputs | Data Vault</title>
+<meta name="description" content="How to connect an MCP server to Claude Desktop with dataset-mcp: copy the config JSON, restart Claude, and query 149,673 rows of NFL, rent, Airbnb, and bounty data. Verified outputs from a live session.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/mcp-claude-desktop.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="MCP Server for Claude Desktop: Install dataset-mcp, Config JSON, Real Outputs">
+<meta property="og:description" content="Connect an MCP server to Claude Desktop with dataset-mcp: copy the config JSON, restart Claude, and query 149,673 rows of real data. Verified outputs from a live session.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/mcp-claude-desktop.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "MCP Server for Claude Desktop: Install dataset-mcp, Config JSON, Real Outputs", "description": "How to connect an MCP server to Claude Desktop with dataset-mcp: copy the config JSON, restart Claude, and query 149,673 rows of NFL, rent, Airbnb, and bounty data. Verified outputs from a live session.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/mcp-claude-desktop.html", "about": {"@type": "Thing", "name": "MCP server setup for Claude Desktop"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "MCP server for Claude Desktop", "item": "https://jayjex.github.io/data-vault/guides/mcp-claude-desktop.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I add an MCP server to Claude Desktop?", "acceptedAnswer": {"@type": "Answer", "text": "Edit claude_desktop_config.json (on macOS: ~/Library/Application Support/Claude/, on Windows: %APPDATA%\\Claude\\), add an entry under mcpServers with a command and args, save, and fully quit Claude Desktop from the tray or system tray before reopening it. Claude Desktop then starts the server over stdio and lists its tools."}}, {"@type": "Question", "name": "Why does dataset-mcp fail to start in Claude Desktop with an EALLOWGIT error?", "acceptedAnswer": {"@type": "Answer", "text": "npm 12 refuses git-based installs by default, and the install form github:jayjex/dataset-mcp is git-based. Add --allow-git=all to the npx args in claude_desktop_config.json, or set allow-git=github.com once in ~/.npmrc. npm 10 and 11 need no flag."}}, {"@type": "Question", "name": "What data can Claude Desktop query through dataset-mcp?", "acceptedAnswer": {"@type": "Answer", "text": "Five datasets totalling 149,673 rows: 7,548 NFL games with closing spreads and moneylines (1999-2026), 51,895 HUD Fair Market Rent rows by ZIP for FY2026, 90,169 Airbnb listings across six US cities, Superteam Earn bounty cards, and sample Playwright scraping scripts. The full files download once into a local cache and are verified against SHA-256 hashes on every load."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>MCP server for Claude Desktop: connect dataset-mcp</h1>
+  <p class="byline">Published 2026-09-10. Install steps and config tested against <a href="https://github.com/jayjex/dataset-mcp" rel="noopener">dataset-mcp</a> v1.1.0; the outputs below were captured live on the same day.</p>
+
+  <section aria-label="What this setup does">
+    <h2>What this setup does</h2>
+    <p>dataset-mcp is an MCP server that plugs into Claude Desktop. Once it is connected, you can ask Claude for Texas rent numbers, 2025 NFL closing lines, or NYC Airbnb price stats, and Claude calls the server's tools instead of guessing from training data. The server answers from real files: 149,673 rows across five datasets (NFL games, HUD Fair Market Rents, Airbnb listings, Superteam Earn bounties, and scraping scripts).</p>
+    <p>There is nothing to configure on the data side and no API key. The first query of a file downloads it from a public GitHub release into <code>~/.cache/dataset-mcp/</code>, and every later load re-verifies the file's SHA-256 before answering.</p>
+  </section>
+
+  <section aria-label="Install the server">
+    <h2>Install the server</h2>
+    <p>Claude Desktop starts the server for you, so the only manual step is a one-time sanity check that npx can fetch and run it. You need Node.js 18 or newer.</p>
+<pre><span class="cm"># run it once to sanity-check (npm 12+ needs the allow-git flag)</span>
+npx --allow-git=all -y github:jayjex/dataset-mcp</pre>
+    <p>The process starts and waits on stdin, which is correct; Ctrl-C out of it. On npm 10 or 11 the plain form works: <code>npx -y github:jayjex/dataset-mcp</code>. If npx prints <code>EALLOWGIT</code>, that is npm 12 refusing git-based installs, covered again in the config below.</p>
+  </section>
+
+  <section aria-label="Claude Desktop config">
+    <h2>Add the MCP server to claude_desktop_config.json</h2>
+    <p>Claude Desktop reads its MCP servers from <code>claude_desktop_config.json</code>. On macOS the file lives at <code>~/Library/Application Support/Claude/claude_desktop_config.json</code>; on Windows at <code>%APPDATA%\Claude\claude_desktop_config.json</code>. Open it (create it if it does not exist) and add dataset-mcp under <code>mcpServers</code>. This is the config from the README, verbatim:</p>
+<pre>{
+  "mcpServers": {
+    "dataset-mcp": {
+      "command": "npx",
+      "args": ["-y", "github:jayjex/dataset-mcp"]
+    }
+  }
+}</pre>
+    <p>On npm 12, use the flag-carrying form instead:</p>
+<pre>{
+  "mcpServers": {
+    "dataset-mcp": {
+      "command": "npx",
+      "args": ["--allow-git=all", "-y", "github:jayjex/dataset-mcp"]
+    }
+  }
+}</pre>
+    <p>Setting <code>allow-git=github.com</code> once in <code>~/.npmrc</code> removes the need for the flag in both places.</p>
+    <p>Then fully quit Claude Desktop (macOS: Cmd-Q, not just closing the window; Windows: right-click the tray icon and quit) and reopen it. Claude Desktop launches every server in the config over stdio at startup. To confirm the connection, start a new chat and open the tools menu (the search-and-tools icon below the input box): dataset-mcp should appear with its five tools, and each tool should show no error state.</p>
+    <p>If you edit the config later, quit and reopen Claude Desktop again. The file is only read at startup.</p>
+  </section>
+
+  <section aria-label="What to ask">
+    <h2>What Claude can query once it is connected</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="dataset-mcp tools"><table><thead><tr><th scope="col">Tool</th><th scope="col">What it returns</th></tr></thead><tbody>
+      <tr><td><code>list_datasets()</code></td><td>every dataset with row counts, full-query availability, and release sizes</td></tr>
+      <tr><td><code>get_dataset_info(slug)</code></td><td>file list with rows, bytes, SHA-256, attribution, license, and query tips</td></tr>
+      <tr><td><code>get_sample(slug, format)</code></td><td>about 22 preview rows per dataset, JSON or CSV</td></tr>
+      <tr><td><code>query_dataset(slug, {...})</code></td><td>filter and paginate the full file: <code>where</code> clauses with <code>=</code>, <code>contains</code>, <code>gt</code>, <code>lt</code>, column picking, up to 100 rows per call, <code>next_offset</code> paging</td></tr>
+      <tr><td><code>get_stats(slug, {...})</code></td><td>row count, non-empty and unique counts, numeric min/max/mean, top-N frequencies</td></tr>
+    </tbody></table></div>
+    <p>You never call these by hand. Ask in plain language ("what is the average 2-bedroom fair market rent in Texas ZIPs?") and Claude Desktop picks the tool, builds the filter, and reads the rows back into the answer.</p>
+  </section>
+
+  <section aria-label="Verified outputs">
+    <h2>Verified outputs from a live session</h2>
+    <p>These outputs come from driving dataset-mcp v1.1.0 over raw JSON-RPC stdio on 2026-09-10, the same transport Claude Desktop uses. JSON is abridged to the fields that matter; the counts and values are unchanged.</p>
+
+    <h3>Texas 2-bedroom rents, 51,895-row ZIP table</h3>
+<pre>query_dataset("hud-fmr-2026",
+  { where: [{ column: "state", op: "=", value: "TX" }],
+    columns: ["zip", "area_name", "state", "fmr_2br"], limit: 5 })
+
+total_rows_in_file: 51895 | total_matched: 3247 | next_offset: 5
+sha256: 04ffb4597f37de264a2e3c91d39462b44539f650bd7f30b2938ca73971fbe975
+  {"zip": "76437", "area_name": "Abilene, TX MSA", "state": "TX", "fmr_2br": "1090"}
+  {"zip": "76443", "area_name": "Abilene, TX MSA", "state": "TX", "fmr_2br": "1090"}
+  {"zip": "76464", "area_name": "Abilene, TX MSA", "state": "TX", "fmr_2br": "1090"}
+  {"zip": "76469", "area_name": "Abilene, TX MSA", "state": "TX", "fmr_2br": "1090"}
+  {"zip": "79501", "area_name": "Abilene, TX MSA", "state": "TX", "fmr_2br": "1140"}</pre>
+
+    <h3>Every 2025 NFL game with closing lines</h3>
+<pre>query_dataset("nfl-games",
+  { where: [{ column: "season", op: "=", value: 2025 }],
+    columns: ["game_id","gameday","away_team","away_score","home_team",
+              "home_score","spread_line","total_line"], limit: 3 })
+
+total_rows_in_file: 7548 | total_matched: 285 | next_offset: 3
+  {"game_id": "2025_01_DAL_PHI", "gameday": "2025-09-04", "away_team": "DAL",
+   "away_score": "20", "home_team": "PHI", "home_score": "24",
+   "spread_line": "8.5", "total_line": "47.5"}
+  {"game_id": "2025_01_KC_LAC", "gameday": "2025-09-05", "away_team": "KC",
+   "away_score": "21", "home_team": "LAC", "home_score": "27",
+   "spread_line": "-3", "total_line": "47.5"}
+  {"game_id": "2025_01_TB_ATL", "gameday": "2025-09-07", "away_team": "TB",
+   "away_score": "23", "home_team": "ATL", "home_score": "20",
+   "spread_line": "-1.5", "total_line": "47.5"}</pre>
+
+    <h3>NYC Airbnb price distribution</h3>
+<pre>get_stats("airbnb-six-cities", { file: "airbnb-new-york-city.csv", column: "price" })
+
+rows: 30234 | non_empty: 20331 | empty: 9903 | unique_count: 12114
+numeric: min 4.58 | max 31210.79 | mean 267.35
+top values: 59.11 x62, 61.01 x45, 209.00 x32, 279.00 x30, 165.93 x28</pre>
+
+    <h3>Superteam Earn bounties over $5,000</h3>
+<pre>query_dataset("earn-bounties",
+  { where: [{ column: "rewardAmount", op: "gt", value: 5000 }],
+    columns: ["title", "rewardAmount", "token"], limit: 10 })
+
+total_rows_in_file: 51 | total_matched: 6 | next_offset: null
+  {"title": "Create Content for Breakpoint 2026", "rewardAmount": 8000, "token": "USDG"}
+  {"title": "Solana Summit Serbia Content Bounty: $10,000 for the best summit content",
+   "rewardAmount": 10000, "token": "USDG"}
+  ... (6 rows: each listing appears once per API page, so 2 unique listings x 3 pages)</pre>
+    <p>Timing from the same session: after the files were cached, the NFL query ran in 306 ms. A cold first call adds the one-time download of the file (the 3.6 MB NYC file took about 1.5 s including parse). Claude Desktop typically shows the tool call and its arguments in the transcript, so you can check the filter it built.</p>
+  </section>
+
+  <section aria-label="Troubleshooting">
+    <h2>Troubleshooting</h2>
+    <p><strong>EALLOWGIT on startup.</strong> npm 12 refuses git-based installs and the server is fetched as <code>github:jayjex/dataset-mcp</code>. Either switch the args to the <code>--allow-git=all</code> form shown above or put <code>allow-git=github.com</code> in <code>~/.npmrc</code>.</p>
+    <p><strong>The server does not appear in the tools menu.</strong> Check that the JSON parses (a stray comma breaks the whole file), that the entry is nested under <code>mcpServers</code>, and that you fully quit and reopened Claude Desktop rather than closing the window.</p>
+    <p><strong>A tool returns a network error.</strong> The server reads from <code>jayjex.github.io</code>, <code>raw.githubusercontent.com</code>, and <code>github.com</code>; make sure those are reachable from your machine. Nothing else needs to be open.</p>
+    <p><strong>Suspicious numbers.</strong> Unlikely to come from a stale cache: every cached file is re-verified against the manifest SHA-256 on load, and a mismatch triggers one fresh download instead of serving wrong rows.</p>
+  </section>
+
+  <section aria-label="Full packs">
+    <h2>Get the full pack</h2>
+    <p>Querying covers exploration well, but a real project usually wants the raw CSVs in its own pipeline: pinned snapshots, spreadsheets, scripts that run without a chat client. The complete packs behind these datasets are available as one-off downloads:</p>
+    <p><a class="btn" href="https://www.getly.store/store/mtmw06l2" rel="noopener">Get the full pack</a></p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Full packs"><table><thead><tr><th scope="col">Pack</th><th scope="col">Rows</th><th scope="col">What you get</th></tr></thead><tbody>
+      <tr><td><a href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h" rel="noopener">NFL games and betting lines 1999-2026</a></td><td>7,548</td><td>full CSV zip: scores, spreads, totals, moneylines</td></tr>
+      <tr><td><a href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">HUD Fair Market Rents FY2026</a></td><td>51,895</td><td>ZIP, county, and state tables with a data dictionary</td></tr>
+      <tr><td><a href="https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtpkvxdf" rel="noopener">Airbnb listings, 6 US cities</a></td><td>90,169</td><td>per-city CSVs, 2026 snapshots</td></tr>
+      <tr><td><a href="https://www.getly.store/product/superteam-earn-28-live-listings-dataset-186-reverse-engineered-api-routes-mtmy11ny" rel="noopener">Superteam Earn listings and API routes</a></td><td>51 cards</td><td>cards file plus 186+ reverse-engineered API routes</td></tr>
+    </tbody></table></div>
+    <p>Details and sample files are on each product page, and the <a href="../agents/mcp-dataset-server.html">dataset-mcp server page</a> documents the tool API in depth. For the data behind the examples above, see the <a href="hud-rent-data-explained.html">HUD rent data guide</a> and the <a href="nfl-games-data-guide.html">NFL games data guide</a>.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>How do I add an MCP server to Claude Desktop?</h3>
+    <p>Edit <code>claude_desktop_config.json</code> (on macOS: <code>~/Library/Application Support/Claude/</code>, on Windows: <code>%APPDATA%\Claude\</code>), add an entry under <code>mcpServers</code> with a <code>command</code> and <code>args</code>, save, and fully quit Claude Desktop from the tray or the Cmd-Q menu before reopening it. Claude Desktop then starts the server over stdio and lists its tools in the chat's tools menu.</p>
+    <h3>Why does dataset-mcp fail to start in Claude Desktop with an EALLOWGIT error?</h3>
+    <p>npm 12 refuses git-based installs by default, and the install form <code>github:jayjex/dataset-mcp</code> is git-based. Add <code>--allow-git=all</code> to the npx args in <code>claude_desktop_config.json</code>, or set <code>allow-git=github.com</code> once in <code>~/.npmrc</code>. npm 10 and 11 need no flag.</p>
+    <h3>What data can Claude Desktop query through dataset-mcp?</h3>
+    <p>Five datasets totalling 149,673 rows: 7,548 NFL games with closing spreads and moneylines (1999-2026), 51,895 HUD Fair Market Rent rows by ZIP for FY2026, 90,169 Airbnb listings across six US cities, Superteam Earn bounty cards, and sample Playwright scraping scripts. The full files download once into a local cache and are verified against SHA-256 hashes on every load.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

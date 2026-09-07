@@ -85,7 +85,7 @@
     <p>A worked example from the sample: the listing "Close to UT Austin + Rooftop Pool" shows <code>availability_365</code> of 157 on 2026-06-22. Say a re-scrape 30 days later shows 167. That is (157 &minus; 167) + 30 = 20 booked nights in the window, about two-thirds of the 30 days. If the re-scrape instead showed 150, the diff would be 37, which exceeds the window and gets clamped or flagged, because availability fell by more than the shift can absorb.</p>
     <p>Three things to know before running this:</p>
     <ul>
-      <li><strong>It needs the same city twice.</strong> The 6-city pack ships one snapshot per city, six dates between 2026-06-22 and 2026-08-10. To diff, pair it with a second capture of the same city, from Inside Airbnb's archive or your own scraper, and match on listing <code>id</code>.</li>
+      <li><strong>It needs the same city twice.</strong> The 6-city pack ships one snapshot per city, six dates between 2026-06-22 and 2026-08-10. To diff, pair it with a second capture of the same city, from Inside Airbnb's archive or <a href="airbnb-data-scraper.html">your own scraper</a>, and match on listing <code>id</code>.</li>
       <li><strong>It is a proxy, not a ledger.</strong> Cancellations, price-driven calendar changes, and far-tail blocks all land in the same number. Published validations of this method put its error well above what a real booking ledger would show.</li>
       <li><strong>It still beats the alternatives available publicly.</strong> Reviews-based models rest on an assumed booking-per-review rate; the diff at least observes something that actually changed between two dates.</li>
     </ul>
@@ -104,6 +104,7 @@
   <section aria-label="More from the catalog">
     <h2>More from the catalog</h2>
     <ul>
+      <li><a href="airbnb-data-scraper.html">Airbnb scraper</a>: why scraping Airbnb fails and breaks, and the legal snapshot alternatives</li>
       <li><a href="airbnb-data-in-powerbi.html">Airbnb data in Power BI</a>: load a city CSV into Power BI Desktop free, Power Query type fixes and the locale gotcha</li>
       <li><a href="airbnb-occupancy-data.html">Airbnb occupancy data</a>: what a listings snapshot can and cannot tell you about occupancy, and the proxies that work</li>
       <li><a href="airbnb-data-by-city.html">Airbnb data by city</a>: rows, snapshot dates, and room mix for all six markets</li>

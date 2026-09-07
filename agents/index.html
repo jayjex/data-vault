@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent access: catalog.json &amp; sample endpoints | Data Vault</title>
+<meta name="description" content="Machine-readable dataset catalog, JSON sample endpoints, and curl examples for agents, MCP clients, and scripts.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/agents/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Agent access: catalog.json &amp; sample endpoints | Data Vault">
+<meta property="og:description" content="Machine-readable dataset catalog, JSON sample endpoints, and curl examples for agents, MCP clients, and scripts.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/agents/">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Data Vault agent access", "url": "https://jayjex.github.io/data-vault/agents/", "description": "Machine-readable dataset catalog, JSON sample endpoints, and curl examples for agents, MCP clients, and scripts.", "publisher": {"@type": "Organization", "name": "Matchbook Labs"}}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="./">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>For agents and scripts</h1>
+  <p class="lead">This catalog is plain files on a static host. No API keys, no auth, no JavaScript required. Fetch <code>catalog.json</code>, read a sample to learn the schema, done.</p>
+
+  <section aria-label="Start here">
+    <h2>Start here</h2>
+<pre><span class="cm"># the whole catalog, machine-readable</span>
+curl -s https://jayjex.github.io/data-vault/catalog.json | jq '.datasets[] | {slug, niche, rows: .stats.rows}'
+
+<span class="cm"># schema + first rows of one pack</span>
+curl -s https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.json | jq '.columns, .records[0]'</pre>
+  </section>
+
+  <section aria-label="Endpoints">
+    <h2>Endpoints</h2>
+    <div class="table-wrap"><table class="ep">
+      <thead><tr><th scope="col">Path</th><th scope="col">Returns</th></tr></thead>
+      <tbody>
+        <tr><td>/catalog.json</td><td>index of every dataset: slugs, niches, stats, sample URLs, full-data links</td></tr>
+        <tr><td>/data/&lt;slug&gt;/sample.json</td><td>{slug, name, columns[], row_count, records[]}, first 10-25 records</td></tr>
+        <tr><td>/data/&lt;slug&gt;/sample.csv</td><td>same rows as CSV</td></tr>
+        <tr><td>/data/&lt;slug&gt;/&hellip;</td><td>extra summary tables per dataset (tiny, complete)</td></tr>
+        <tr><td>/llms.txt</td><td>plain-text catalog for LLM crawlers</td></tr>
+        <tr><td>/sitemap.xml</td><td>all pages</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section aria-label="Python example">
+    <h2>Worked example</h2>
+<pre><span class="cm"># python3, stdlib only</span>
+import json, urllib.request
+
+cat = json.load(urllib.request.urlopen("https://jayjex.github.io/data-vault/catalog.json"))
+for d in cat["datasets"]:
+    print(d["slug"], d["stats"]["rows"])
+
+sample = json.load(urllib.request.urlopen(cat["datasets"][0]["sample"]["json"]))
+print(sample["columns"])        <span class="cm"># schema</span>
+print(sample["records"][0])     <span class="cm"># first row</span></pre>
+  </section>
+
+  <section aria-label="Full data">
+    <h2>Full data</h2>
+    <p>Samples are free. Full packs are sold through Getly; every entry in <code>catalog.json</code> carries the link under <code>full_data</code>. Checkout and delivery run on Getly's side. The HUD pack is still coming, so its entry points at the store page instead.</p>
+  </section>
+
+  <section aria-label="Attribution">
+    <h2>Attribution</h2>
+    <p>Samples are CC BY 4.0 unless the dataset page says otherwise. Republish them with credit: "Data Vault (jayjex.github.io/data-vault), CC BY 4.0", plus the upstream source noted per dataset (nflverse, HUD, Inside Airbnb, superteam.fun).</p>
+  </section>
+
+  <section aria-label="MCP note">
+    <h2>MCP</h2>
+    <p>The repo is MCP-ready by convention: <code>catalog.json</code> works as the discovery document and every <code>sample.json</code> maps cleanly to a read-only resource. A dedicated MCP server is planned as phase 2; until then an MCP client can map catalog entries to resources directly.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

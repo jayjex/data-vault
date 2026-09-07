@@ -1,0 +1,53 @@
+{
+ "slug": "scraper-pack",
+ "name": "Web Scraping Script Pack",
+ "runtime": {
+  "language": "Node.js 18+",
+  "framework": "Playwright",
+  "browser": "chromium (one-time npx playwright install chromium)"
+ },
+ "script_count": 10,
+ "scripts": [
+  {
+   "file": "01-paginated-table-to-csv.js",
+   "pattern": "Walks ?page=N or Next-button pagination, saves table rows to CSV"
+  },
+  {
+   "file": "02-infinite-scroll-collector.js",
+   "pattern": "Scrolls a feed to the end, dedupes, saves JSON"
+  },
+  {
+   "file": "03-login-scrape-storagestate.js",
+   "pattern": "Logs in once, saves the session, reuses it on later runs"
+  },
+  {
+   "file": "04-price-stock-monitor.js",
+   "pattern": "Diff-based product monitor, POSTs a Slack/Discord webhook on change"
+  },
+  {
+   "file": "05-bulk-form-submitter.js",
+   "pattern": "CSV rows in, one form submission per row, results report"
+  },
+  {
+   "file": "06-job-board-scraper.js",
+   "pattern": "Board/listing pages to JSON with cross-run dedupe"
+  },
+  {
+   "file": "07-sitemap-crawler.js",
+   "pattern": "Expands sitemap indexes, honors robots.txt and crawl-delay, writes JSONL"
+  },
+  {
+   "file": "08-screenshot-diff-bot.js",
+   "pattern": "sha256 change detection with archived previous shots"
+  },
+  {
+   "file": "09-api-poller-jsonl.js",
+   "pattern": "Polls a JSON endpoint, appends new records to JSONL"
+  },
+  {
+   "file": "10-retry-fetch-wrapper.js",
+   "pattern": "Exponential backoff, jitter, UA rotation, Retry-After aware"
+  }
+ ],
+ "notes": "Each file is self-contained with a how-to-run comment at the top and selector constants marked EDIT. Scripts 03 and 05 are for sites you own or have written permission to use."
+}

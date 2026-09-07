@@ -1,0 +1,186 @@
+{
+ "name": "Data Vault",
+ "url": "https://jayjex.github.io/data-vault/",
+ "last_built": "2026-09-07",
+ "description": "Sample-first data catalog by Matchbook Labs. Free CSV/JSON samples for every dataset; full packs sold via Getly.",
+ "agent_docs": "https://jayjex.github.io/data-vault/agents/",
+ "for_agents": "Fetch this file, pick a dataset, fetch its sample.json to learn the schema. Full data is linked per dataset.",
+ "datasets": [
+  {
+   "slug": "nfl-games",
+   "name": "NFL Games & Betting Lines 1999-2026",
+   "niche": "sports",
+   "tags": [
+    "sports",
+    "betting",
+    "nfl"
+   ],
+   "description": "7,548 NFL games with scores, closing spreads, totals, moneylines, odds, rest days, QBs, coaches, and stadium weather.",
+   "stats": {
+    "rows": 7548,
+    "tables": 3,
+    "columns": 46,
+    "updated": "2026-09-06"
+   },
+   "sample": {
+    "csv": "https://jayjex.github.io/data-vault/data/nfl-games/sample.csv",
+    "json": "https://jayjex.github.io/data-vault/data/nfl-games/sample.json",
+    "rows": 22,
+    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+   },
+   "extra_files": [
+    {
+     "name": "season-summaries.csv",
+     "url": "https://jayjex.github.io/data-vault/data/nfl-games/season-summaries.csv",
+     "rows": 27,
+     "note": "complete aggregate table, 27 rows"
+    }
+   ],
+   "full_data": {
+    "status": "available",
+    "price_usd": 29,
+    "url": "https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h"
+   },
+   "license": "CC BY 4.0 (game data from nflverse, CC BY 4.0)",
+   "page": "https://jayjex.github.io/data-vault/datasets/nfl-games.html"
+  },
+  {
+   "slug": "hud-fmr-2026",
+   "name": "HUD Fair Market Rents FY2026",
+   "niche": "gov-data",
+   "tags": [
+    "gov-data",
+    "real-estate",
+    "rent"
+   ],
+   "description": "FY2026 fair market rents for 51,895 ZIP codes, 3,229 counties, and 52 states. Five bedroom sizes per row.",
+   "stats": {
+    "rows": 51895,
+    "tables": 3,
+    "columns": 11,
+    "updated": "FY2026"
+   },
+   "sample": {
+    "csv": "https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.csv",
+    "json": "https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.json",
+    "rows": 22,
+    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+   },
+   "extra_files": [
+    {
+     "name": "state-summary.csv",
+     "url": "https://jayjex.github.io/data-vault/data/hud-fmr-2026/state-summary.csv",
+     "rows": 52,
+     "note": "complete aggregate table, 52 rows"
+    }
+   ],
+   "full_data": {
+    "status": "coming",
+    "store_url": "https://www.getly.store/store/mtmw06l2"
+   },
+   "license": "Public domain (US government data)",
+   "page": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"
+  },
+  {
+   "slug": "airbnb-six-cities",
+   "name": "Airbnb Listings, 6 US Cities",
+   "niche": "real-estate",
+   "tags": [
+    "real-estate",
+    "airbnb",
+    "str"
+   ],
+   "description": "90,169 Airbnb listings across Austin, Nashville, Denver, New York City, Las Vegas, and San Diego in one normalized schema.",
+   "stats": {
+    "rows": 90169,
+    "tables": 8,
+    "columns": 12,
+    "updated": "2026-08-10"
+   },
+   "sample": {
+    "csv": "https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.csv",
+    "json": "https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.json",
+    "rows": 20,
+    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+   },
+   "extra_files": [
+    {
+     "name": "cities-index.csv",
+     "url": "https://jayjex.github.io/data-vault/data/airbnb-six-cities/cities-index.csv",
+     "rows": 6,
+     "note": "complete per-city index, 6 rows"
+    }
+   ],
+   "full_data": {
+    "status": "available",
+    "price_usd": 39,
+    "url": "https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtpkvxdf"
+   },
+   "license": "CC BY 4.0 (listing data from Inside Airbnb, CC BY 4.0)",
+   "page": "https://jayjex.github.io/data-vault/datasets/airbnb-six-cities.html"
+  },
+  {
+   "slug": "earn-bounties",
+   "name": "Superteam Earn Live Listings",
+   "niche": "ai-agents",
+   "tags": [
+    "ai-agents",
+    "crypto",
+    "bounties"
+   ],
+   "description": "28 open Superteam Earn listings with full description HTML, the raw cards dump, and 186+ reverse-engineered API routes.",
+   "stats": {
+    "rows": 28,
+    "tables": 3,
+    "columns": 15,
+    "updated": "2026-09-04"
+   },
+   "sample": {
+    "csv": "https://jayjex.github.io/data-vault/data/earn-bounties/sample.csv",
+    "json": "https://jayjex.github.io/data-vault/data/earn-bounties/sample.json",
+    "rows": 10,
+    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+   },
+   "extra_files": [],
+   "full_data": {
+    "status": "available",
+    "price_usd": 49,
+    "url": "https://www.getly.store/product/superteam-earn-28-live-listings-dataset-186-reverse-engineered-api-routes-mtmy11ny"
+   },
+   "license": "Personal + commercial use, no resale of files as-is",
+   "page": "https://jayjex.github.io/data-vault/datasets/earn-bounties.html"
+  },
+  {
+   "slug": "scraper-pack",
+   "name": "Web Scraping Script Pack",
+   "niche": "dev-tools",
+   "tags": [
+    "dev-tools",
+    "playwright",
+    "scraping"
+   ],
+   "description": "Ten self-contained Playwright scripts for pagination, infinite scroll, login sessions, price monitors, sitemap crawling, and retries.",
+   "stats": {
+    "rows": 10,
+    "tables": 1,
+    "columns": 0,
+    "updated": "2026-09-07",
+    "unit": "scripts"
+   },
+   "sample": {
+    "csv": "https://jayjex.github.io/data-vault/data/scraper-pack/sample.csv",
+    "json": "https://jayjex.github.io/data-vault/data/scraper-pack/sample.json",
+    "rows": 10,
+    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+   },
+   "extra_files": [],
+   "full_data": {
+    "status": "available",
+    "price_usd": 15,
+    "url": "https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtn8em7k"
+   },
+   "license": "Personal + commercial use, no redistribution",
+   "page": "https://jayjex.github.io/data-vault/datasets/scraper-pack.html"
+  }
+ ]
+}

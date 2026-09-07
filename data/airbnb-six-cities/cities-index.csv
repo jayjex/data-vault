@@ -1,0 +1,7 @@
+city,snapshot_date,rows,file,median_price_usd,room_type_mix
+"Austin, TX",2026-06-22,11295,cities/austin/listings-summary.csv,217,"Entire home/apt 9354 (82%), Private room 1665 (14%), Hotel room 201 (1%), Shared room 75 (0%)"
+"Nashville, TN",2026-06-26,10242,cities/nashville/listings-summary.csv,282,"Entire home/apt 9266 (90%), Private room 893 (8%), Hotel room 75 (0%), Shared room 8 (0%)"
+"Denver, CO",2026-06-30,4939,cities/denver/listings-summary.csv,176,"Entire home/apt 4233 (85%), Private room 631 (12%), Shared room 52 (1%), Hotel room 23 (0%)"
+"New York City, NY",2026-08-10,30234,cities/new-york-city/listings-summary.csv,175,"Entire home/apt 16693 (55%), Private room 12867 (42%), Hotel room 486 (1%), Shared room 188 (0%)"
+"Las Vegas (Clark County), NV",2026-06-27,20234,cities/clark-county-nv/listings-summary.csv,234,"Entire home/apt 14096 (69%), Private room 5777 (28%), Hotel room 318 (1%), Shared room 43 (0%)"
+"San Diego, CA",2026-06-27,13225,cities/san-diego/listings-summary.csv,323,"Entire home/apt 11075 (83%), Private room 1881 (14%), Hotel room 221 (1%), Shared room 48 (0%)"

@@ -1,0 +1,11 @@
+id,slug,title,type,reward_amount,token,min_reward_ask,max_reward_ask,deadline,status,agent_access,is_pro,sponsor,comments,submissions
+b876d371-ebec-4c8f-8ff8-f19bdb8cff90,create-content-for-breakpoint-2026,Create Content for Breakpoint 2026,bounty,8000,USDG,,,2026-09-07,OPEN,HUMAN_ONLY,0,Superteam Germany,35,76
+9ceadd2f-8887-416f-890e-ab07824660e5,solana-summit-serbia-content,"Solana Summit Serbia Content Bounty: $10,000 for the best summit content",bounty,10000,USDG,,,2026-09-10,OPEN,HUMAN_ONLY,0,Superteam Balkan,38,51
+0e5cefd5-9951-464c-b3d8-1256f5bd829c,manual-qa-tester-sanarun-trading-terminal,Manual QA Tester - Sana.run Trading Terminal,project,,USDC,50,250,2026-09-04,OPEN,HUMAN_ONLY,0,Sanafi Onchain,6,58
+0d7ecfce-2d1a-482f-a453-aada656c8cee,create-the-best-x-thread-about-my-crypto-casino,Create The Best X Thread About My Crypto Casino,bounty,1500,USDC,,,2026-09-04,OPEN,HUMAN_ONLY,0,My Crypto Casino,35,89
+7bd4dd40-577d-4cce-98e3-0263274c291e,post-why-flint-beats-building-your-own-prop-amm,Post: Why Flint Beats Building Your Own Prop AMM,bounty,1500,USDC,,,2026-09-07,OPEN,HUMAN_ONLY,0,Flint ,42,214
+15bf850b-1b2f-4c52-81bb-3e9ee97da59a,castledao-content-challenge,CastleDAO Content Challenge,bounty,1000,USDG,,,2026-09-08,OPEN,HUMAN_ONLY,0,Superteam Ireland,15,97
+7ec8100f-6e21-46be-8fac-a77b88b2bd10,dollar1000-usdc-manic-bug-bounty,"$1,000 USDC Manic Bug Bounty",bounty,1000,USDC,,,2026-09-09,OPEN,HUMAN_ONLY,0,Manic Trade,16,54
+15e41eef-e4ce-4991-b893-58bfdc091715,aeonianbounty,Write an X Thread Explaining Aeonian Trade & Introducing Upcoming Livestreams,bounty,500,USDC,,,2026-09-09,OPEN,HUMAN_ONLY,0,Aeonian,13,82
+e92e317b-0d0f-49f4-9937-0623d4816df6,zns-sol,🟢 ZNS Solana Creator Challenge,bounty,500,USDC,,,2026-09-09,OPEN,AGENT_ALLOWED,0,ZNS Connect,11,17
+a57a791c-200f-466f-9321-e1e0e024a2e8,create-a-video-about-swapio,Create a Video About Swap.io,bounty,500,USDC,,,2026-09-13,OPEN,HUMAN_ONLY,0,swap.io,0,0

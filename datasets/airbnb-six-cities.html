@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Airbnb Listings in 6 US Cities, 90,169 rows (CSV) | Data Vault</title>
+<meta name="description" content="90,169 Airbnb listings across Austin, Nashville, Denver, NYC, Las Vegas, and San Diego in one schema. Free 20-row sample, CC BY 4.0.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/datasets/airbnb-six-cities.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Airbnb Listings in 6 US Cities, 90,169 rows (CSV) | Data Vault">
+<meta property="og:description" content="90,169 Airbnb listings across Austin, Nashville, Denver, NYC, Las Vegas, and San Diego in one schema. Free 20-row sample, CC BY 4.0.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/datasets/airbnb-six-cities.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "Airbnb Listings, 6 US Cities", "description": "90,169 Airbnb listings across Austin, Nashville, Denver, New York City, Las Vegas, and San Diego in one normalized schema.", "url": "https://jayjex.github.io/data-vault/datasets/airbnb-six-cities.html", "keywords": ["real-estate", "airbnb", "str"], "creator": {"@type": "Organization", "name": "Matchbook Labs"}, "isAccessibleForFree": true, "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.csv"}, {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.json"}], "offers": {"@type": "Offer", "price": "39.00", "priceCurrency": "USD", "url": "https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtpkvxdf"}}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Airbnb Listings, 6 US Cities</h1>
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>90,169</b> rows</span><span class="stat"><b>8</b> tables</span><span class="stat">2026-08-10</span><span class="stat"><b>$39</b> full pack</span></div>
+  <section aria-label="About this dataset">
+    <p>Six US short-term-rental markets in one normalized schema, 12 columns per listing: price, room type, neighborhood, location (blurred to about 11 meters), minimum nights, availability for the next 365 days, review count and rate, and last review date. Austin, Nashville, Denver, New York City, Las Vegas (Clark County), and San Diego, snapshot dates June through August 2026.</p>
+    <p>cities-index.csv gives one row per city with row counts, median nightly price, and room-type mix, so you can compare markets before opening the big files. New York City alone contributes 30,234 rows; Austin's median sits at $217 a night.</p>
+    <p>Built from Inside Airbnb summary data. Host names and exact coordinates stripped, prices cleaned from the source text, one row per listing per city.</p>
+    <p>Source: Inside Airbnb, CC BY 4.0. Snapshots: Austin 2026-06-22, Nashville 2026-06-26, Denver 2026-06-30, Las Vegas 2026-06-27, San Diego 2026-06-27, New York City 2026-08-10.</p>
+    <p class="byline">Samples and full pack: data from Inside Airbnb, CC BY 4.0.</p>
+  </section>
+  <section aria-label="Sample preview">
+    <h2>Sample preview</h2>
+    <p class="table-note">First 20 rows (Austin). All 12 columns shown.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Sample data table"><table><thead><tr><th scope="col">id</th><th scope="col">name</th><th scope="col">neighbourhood</th><th scope="col">latitude</th><th scope="col">longitude</th><th scope="col">room_type</th><th scope="col">price</th><th scope="col">minimum_nights</th><th scope="col">availability_365</th><th scope="col">number_of_reviews</th><th scope="col">reviews_per_month</th><th scope="col">last_review</th></tr></thead><tbody><tr><td>934859141300145599</td><td>An Exquisite Rooftop Studio</td><td>78757</td><td>30.3636</td><td>-97.7262</td><td>Entire home/apt</td><td>61.00</td><td>3</td><td>364</td><td>0</td><td></td><td></td></tr><tr><td>944156894640610027</td><td>Tarrytown bungalow</td><td>78703</td><td>30.2988</td><td>-97.7803</td><td>Private room</td><td>149.00</td><td>1</td><td>360</td><td>4</td><td>0.12</td><td>2025-10-18</td></tr><tr><td>1634902892490996951</td><td>Central East Gem near running trail</td><td>78702</td><td>30.2518</td><td>-97.7284</td><td>Entire home/apt</td><td>505.00</td><td>2</td><td>365</td><td>0</td><td></td><td></td></tr><tr><td>1308737991593278409</td><td>Empire</td><td>78704</td><td>30.2321</td><td>-97.7904</td><td>Entire home/apt</td><td>593.00</td><td>1</td><td>339</td><td>41</td><td>2.39</td><td>2026-06-20</td></tr><tr><td>574582741829434703</td><td>Galaxy by AvantStay | Luxury Amenities in Austin</td><td>78701</td><td>30.2554</td><td>-97.7383</td><td>Entire home/apt</td><td>278.67</td><td>2</td><td>357</td><td>31</td><td>0.60</td><td>2026-05-15</td></tr><tr><td>1228303755231142321</td><td>East Side Green Home</td><td>78702</td><td>30.2713</td><td>-97.7005</td><td>Entire home/apt</td><td>571.00</td><td>2</td><td>270</td><td>1</td><td>0.05</td><td>2024-10-13</td></tr><tr><td>1629102399632790498</td><td>Sweet suite in Westgate - garden views</td><td>78745</td><td>30.2251</td><td>-97.7921</td><td>Entire home/apt</td><td>51.01</td><td>30</td><td>348</td><td>0</td><td></td><td></td></tr><tr><td>745531245085063603</td><td>Book Now for Graduation/Memorial Day! |15 minSoCo</td><td>78744</td><td>30.1913</td><td>-97.7370</td><td>Entire home/apt</td><td>300.70</td><td>1</td><td>10</td><td>75</td><td>1.71</td><td>2026-06-14</td></tr><tr><td>889831767371295908</td><td>ATX Historic Gem | Near DT | 3 Suites for 10</td><td>78701</td><td>30.2776</td><td>-97.7470</td><td>Entire home/apt</td><td>330.50</td><td>2</td><td>300</td><td>4</td><td>0.13</td><td>2026-03-18</td></tr><tr><td>1159629773941508075</td><td>Travis heights 3/2 condo! 1 King, 1 full, 1 full</td><td>78704</td><td>30.2508</td><td>-97.7443</td><td>Entire home/apt</td><td>227.50</td><td>2</td><td>17</td><td>10</td><td>0.41</td><td>2025-10-19</td></tr><tr><td>48867583</td><td>Close to UT Austin + Rooftop Pool. Bar. Dining.</td><td>78701</td><td>30.2687</td><td>-97.7376</td><td>Private room</td><td>208.00</td><td>1</td><td>157</td><td>1382</td><td>21.75</td><td>2026-06-20</td></tr><tr><td>642763279007300879</td><td>Private East Austin guest suite w pool access</td><td>78724</td><td>30.2775</td><td>-97.6332</td><td>Entire home/apt</td><td>114.50</td><td>2</td><td>355</td><td>88</td><td>1.80</td><td>2026-05-17</td></tr><tr><td>700669261299122407</td><td>Luxury condo w/Balcony, Rooftop Pool, Rainey St</td><td>78701</td><td>30.2565</td><td>-97.7388</td><td>Entire home/apt</td><td>212.50</td><td>2</td><td>61</td><td>149</td><td>3.23</td><td>2026-06-21</td></tr><tr><td>1690760048869752293</td><td>Skyline in Hyde ~Two Rooftop Terraces~ Pool+Spa</td><td>78751</td><td>30.3051</td><td>-97.7198</td><td>Entire home/apt</td><td>1036.29</td><td>1</td><td>354</td><td>1</td><td>1.00</td><td>2026-05-24</td></tr><tr><td>1585158603372219595</td><td>Modern Private Room &amp; Bath | 10 Min to Airport</td><td>78724</td><td>30.2779</td><td>-97.6342</td><td>Private room</td><td>74.18</td><td>1</td><td>168</td><td>8</td><td>1.88</td><td>2026-06-19</td></tr><tr><td>874172056663233580</td><td>Heated Rooftop Pool | Free Parking! | Skyline View</td><td>78701</td><td>30.2565</td><td>-97.7388</td><td>Entire home/apt</td><td>264.92</td><td>1</td><td>362</td><td>197</td><td>5.13</td><td>2026-05-25</td></tr><tr><td>1561640752414299136</td><td>Steps From Campus &amp; Red River Spots</td><td>78705</td><td>30.2929</td><td>-97.7252</td><td>Private room</td><td>36.03</td><td>30</td><td>89</td><td>0</td><td></td><td></td></tr><tr><td>52444720</td><td>EZ Camp7 at CampEZ in SxSouth Austin TX</td><td>78745</td><td>30.2103</td><td>-97.7716</td><td>Entire home/apt</td><td>27.50</td><td>2</td><td>90</td><td>33</td><td>0.58</td><td>2025-05-05</td></tr><tr><td>711100790609865421</td><td>Stylish Scandinavian house, 10min from downtown!</td><td>78704</td><td>30.2311</td><td>-97.7730</td><td>Entire home/apt</td><td>1230.67</td><td>3</td><td>263</td><td>1</td><td>0.02</td><td>2022-10-23</td></tr><tr><td>1455784153994389864</td><td>Casita Cactus | Near Q2 &amp; Domain | WiFi + Pool</td><td>78727</td><td>30.4327</td><td>-97.7482</td><td>Entire home/apt</td><td>149.00</td><td>2</td><td>117</td><td>3</td><td>0.31</td><td>2026-05-18</td></tr></tbody></table></div>
+  </section>
+  <section aria-label="Sample files">
+    <h2>Sample files</h2>
+    <ul class="files">
+      <li><a href="../data/airbnb-six-cities/sample.csv" download>sample.csv</a><span class="sz">20 rows, Austin · 2.6 KB</span></li>
+      <li><a href="../data/airbnb-six-cities/sample.json" download>sample.json</a><span class="sz">20 records · 7.7 KB</span></li>
+      <li><a href="../data/airbnb-six-cities/cities-index.csv" download>cities-index.csv</a><span class="sz">6 rows, complete per-city index · 1.1 KB</span></li>
+    </ul>
+  </section>
+  <section aria-label="Get the data">
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/airbnb-six-cities/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtpkvxdf" rel="noopener">Get full data, $39</a>
+    </div>
+    <p class="btn-note">Full pack: 90,169 rows across 6 cities, per-city CSVs, data dictionary, methodology, source checksums. Checkout and download run through Getly.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

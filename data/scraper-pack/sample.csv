@@ -1,0 +1,11 @@
+file,pattern
+01-paginated-table-to-csv.js,"Walks ?page=N or Next-button pagination, saves table rows to CSV"
+02-infinite-scroll-collector.js,"Scrolls a feed to the end, dedupes, saves JSON"
+03-login-scrape-storagestate.js,"Logs in once, saves the session, reuses it on later runs"
+04-price-stock-monitor.js,"Diff-based product monitor, POSTs a Slack/Discord webhook on change"
+05-bulk-form-submitter.js,"CSV rows in, one form submission per row, results report"
+06-job-board-scraper.js,Board/listing pages to JSON with cross-run dedupe
+07-sitemap-crawler.js,"Expands sitemap indexes, honors robots.txt and crawl-delay, writes JSONL"
+08-screenshot-diff-bot.js,sha256 change detection with archived previous shots
+09-api-poller-jsonl.js,"Polls a JSON endpoint, appends new records to JSONL"
+10-retry-fetch-wrapper.js,"Exponential backoff, jitter, UA rotation, Retry-After aware"

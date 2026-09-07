@@ -1,0 +1,53 @@
+state,state_name,zip_count,fmr_2br_median,fmr_2br_min_zip,fmr_2br_max_zip,highest_county,highest_county_fmr_2br,lowest_county,lowest_county_fmr_2br
+AK,Alaska,275,1510,970,2450,Aleutians West Census Area,2191,Kusilvak Census Area,973
+AL,Alabama,1037,980,780,1970,Baldwin County,1345,Barbour County,776
+AR,Arkansas,990,920,880,2020,Washington County,1347,Ashley County,880
+AZ,Arizona,553,1610,1050,2760,Coconino County,1921,Santa Cruz County,1129
+CA,California,2606,2635,1070,5230,Santa Cruz County,4214,Modoc County,1108
+CO,Colorado,771,1620,970,3090,Summit County,2467,Baca County,973
+CT,Connecticut,434,1895,1230,3770,Western Connecticut Planning Region,2511,Northeastern Connecticut Planning Region,1601
+DC,District of Columbia,488,2200,1130,3370,District of Columbia,2246,District of Columbia,2246
+DE,Delaware,46,1470,1260,2100,New Castle County,1810,Sussex County,1399
+FL,Florida,1555,1800,970,3650,Monroe County,2504,Calhoun County,973
+GA,Georgia,1416,1130,970,2730,Walton County,1820,Appling County,973
+HI,Hawaii,127,2550,1870,3960,Honolulu County,2642,Hawaii County,2076
+IA,Iowa,1719,970,920,1710,Pottawattamie County,1368,Allamakee County,919
+ID,Idaho,406,1210,970,2240,Owyhee County,1655,Adams County,973
+IL,Illinois,1938,1030,920,2670,Kendall County,2050,Bond County,916
+IN,Indiana,1373,1070,960,2200,Shelby County,1473,Adams County,956
+KS,Kansas,1096,920,880,1650,Kearny County,1426,Allen County,877
+KY,Kentucky,1320,950,870,1910,Pendleton County,1353,Adair County,866
+LA,Louisiana,854,1030,830,2000,St. Tammany Parish,1331,Allen Parish,834
+MA,Massachusetts,770,2485,1350,4410,Nantucket County,3138,Berkshire County,1709
+MD,Maryland,389,1770,970,3000,Prince George's County,2246,Allegany County,973
+ME,Maine,551,1500,970,3200,Cumberland County,2130,Aroostook County,1224
+MI,Michigan,1554,1140,970,2300,Washtenaw County,1656,Alcona County,973
+MN,Minnesota,1398,1070,970,2560,Wright County,1709,Aitkin County,973
+MO,Missouri,1906,960,890,2040,Ray County,1358,Adair County,888
+MS,Mississippi,847,960,840,1930,Rankin County,1288,Adams County,842
+MT,Montana,562,1370,980,2480,Gallatin County,2154,Phillips County,973
+NC,North Carolina,1449,1190,930,2680,Madison County,1835,Ashe County,925
+ND,North Dakota,718,970,870,1640,Divide County,1534,Adams County,873
+NE,Nebraska,1094,1010,960,2050,Washington County,1368,Adams County,961
+NH,New Hampshire,311,1930,1100,3410,Rockingham County,2220,Coos County,1287
+NJ,New Jersey,643,2360,1230,4140,Hudson County,2763,Cumberland County,1673
+NM,New Mexico,503,1080,970,2200,Los Alamos County,1740,Colfax County,973
+NV,Nevada,259,1620,980,2770,Washoe County,1870,Pershing County,985
+NY,New York,2397,1430,970,4370,Westchester County,2910,Chenango County,973
+OH,Ohio,1883,1070,970,2150,Union County,1433,Adams County,973
+OK,Oklahoma,1087,980,940,1870,Oklahoma County,1244,Adair County,937
+OR,Oregon,574,1600,970,2780,Yamhill County,1922,Harney County,1008
+PA,Pennsylvania,2575,1220,970,2720,Philadelphia County,1810,Bedford County,973
+PR,Puerto Rico,219,600,480,990,Yabucoa Municipio,663,Arroyo Municipio,475
+RI,Rhode Island,117,1830,1460,2840,Newport County,2021,Bristol County,1729
+SC,South Carolina,629,1170,900,2680,Beaufort County,1816,Abbeville County,902
+SD,South Dakota,663,980,930,1770,Pennington County,1336,Aurora County,929
+TN,Tennessee,1201,1090,930,2600,Wilson County,1730,Benton County,925
+TX,Texas,3247,1190,970,2900,Rockwall County,1931,Bailey County,973
+UT,Utah,368,1320,970,2780,Summit County,2185,Emery County,973
+VA,Virginia,1212,1225,910,2480,Stafford County,2246,Alleghany County,914
+VT,Vermont,368,1410,990,2450,Grand Isle County,2140,Essex County,1007
+WA,Washington,761,1580,970,3750,Snohomish County,2501,Ferry County,973
+WI,Wisconsin,1251,1080,970,2100,St. Croix County,1709,Adams County,973
+WV,West Virginia,1156,950,870,1580,Hampshire County,1573,Barbour County,869
+WY,Wyoming,229,1020,960,1740,Teton County,1653,Albany County,963

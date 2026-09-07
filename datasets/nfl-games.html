@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NFL Games &amp; Betting Lines 1999–2026, 7,548 games (CSV) | Data Vault</title>
+<meta name="description" content="Every NFL game since 1999 with scores, closing spreads, totals, moneylines, odds, and stadium weather. 7,548 rows, 3 tables, free 22-row sample.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/datasets/nfl-games.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="NFL Games &amp; Betting Lines 1999–2026, 7,548 games (CSV) | Data Vault">
+<meta property="og:description" content="Every NFL game since 1999 with scores, closing spreads, totals, moneylines, odds, and stadium weather. 7,548 rows, 3 tables, free 22-row sample.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/datasets/nfl-games.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "NFL Games & Betting Lines 1999-2026", "description": "7,548 NFL games with scores, closing spreads, totals, moneylines, odds, rest days, QBs, coaches, and stadium weather.", "url": "https://jayjex.github.io/data-vault/datasets/nfl-games.html", "keywords": ["sports", "betting", "nfl"], "creator": {"@type": "Organization", "name": "Matchbook Labs"}, "isAccessibleForFree": true, "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/nfl-games/sample.csv"}, {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://jayjex.github.io/data-vault/data/nfl-games/sample.json"}], "offers": {"@type": "Offer", "price": "29.00", "priceCurrency": "USD", "url": "https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h"}}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>NFL Games &amp; Betting Lines 1999-2026</h1>
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>7,548</b> rows</span><span class="stat"><b>3</b> tables</span><span class="stat">2026-09-06</span><span class="stat"><b>$29</b> full pack</span></div>
+  <section aria-label="About this dataset">
+    <p>One row per game, 46 columns, 7,548 games from the 1999 season through the full 2026 schedule. Scores, closing spreads and totals, moneylines with odds, rest days, starting QBs, coaches, referees, stadium, roof, surface, and weather. Loads straight into pandas, Excel, or R.</p>
+    <p>Three tables ship in the pack. games.csv has the game rows. team-records-by-season.csv has 861 rows of W/L/T, points for and against, ATS record, and over/under record per team per season. season-summaries.csv has 27 rows of scoring averages, home win rate, and favorite cover rate per season. The data dictionary spells out the spread sign convention (spread_line is relative to the home team, positive means home favored) and how pushes are handled.</p>
+    <p>Backtest a staking plan against 27 seasons of closing lines, prototype spread or total models with a clean train/test split across eras, or run historical queries like home-field advantage by decade. Spreads go back to 1999 (7,388 games), moneylines and odds to 2006 (5,407 games).</p>
+    <p>Source: nflverse, CC BY 4.0. Snapshot taken 2026-09-06. The 2026 season appears as 272 scheduled games with no scores yet, so results run through the 2025 season. Team names are factual data; no logos or league marks included.</p>
+    <p class="byline">Samples CC BY 4.0. Full pack: game data from nflverse, CC BY 4.0.</p>
+  </section>
+  <section aria-label="Sample preview">
+    <h2>Sample preview</h2>
+    <p class="table-note">First 22 rows, 14 of 46 columns. Full schema in the sample download.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Sample data table"><table><thead><tr><th scope="col">season</th><th scope="col">week</th><th scope="col">gameday</th><th scope="col">away_team</th><th scope="col">away_score</th><th scope="col">home_team</th><th scope="col">home_score</th><th scope="col">spread_line</th><th scope="col">total_line</th><th scope="col">away_moneyline</th><th scope="col">home_moneyline</th><th scope="col">roof</th><th scope="col">temp</th><th scope="col">stadium</th></tr></thead><tbody><tr><td>1999</td><td>1</td><td>1999-09-12</td><td>MIN</td><td>17</td><td>ATL</td><td>14</td><td>-4</td><td>49</td><td></td><td></td><td>dome</td><td></td><td>Georgia Dome</td></tr><tr><td>1999</td><td>1</td><td>1999-09-12</td><td>KC</td><td>17</td><td>CHI</td><td>20</td><td>-3</td><td>38</td><td></td><td></td><td>outdoors</td><td>80</td><td>Soldier Field</td></tr><tr><td>1999</td><td>1</td><td>1999-09-12</td><td>PIT</td><td>43</td><td>CLE</td><td>0</td><td>-6</td><td>37</td><td></td><td></td><td>outdoors</td><td>78</td><td>Cleveland Browns Stadium</td></tr><tr><td>1999</td><td>1</td><td>1999-09-12</td><td>OAK</td><td>24</td><td>GB</td><td>28</td><td>9</td><td>43</td><td></td><td></td><td>outdoors</td><td>67</td><td>Lambeau Field</td></tr><tr><td>1999</td><td>1</td><td>1999-09-12</td><td>BUF</td><td>14</td><td>IND</td><td>31</td><td>-3</td><td>45.5</td><td></td><td></td><td>dome</td><td></td><td>RCA Dome</td></tr><tr><td>1999</td><td>1</td><td>1999-09-12</td><td>SF</td><td>3</td><td>JAX</td><td>41</td><td>5.5</td><td>49</td><td></td><td></td><td>outdoors</td><td>76</td><td>Alltel Stadium</td></tr><tr><td>1999</td><td>1</td><td>1999-09-12</td><td>CAR</td><td>10</td><td>NO</td><td>19</td><td>3.5</td><td>38</td><td></td><td></td><td>dome</td><td></td><td>Louisiana Superdome</td></tr><tr><td>1999</td><td>1</td><td>1999-09-12</td><td>NE</td><td>30</td><td>NYJ</td><td>28</td><td>7</td><td>44.5</td><td></td><td></td><td>outdoors</td><td>73</td><td>Giants Stadium</td></tr><tr><td>1999</td><td>1</td><td>1999-09-12</td><td>ARI</td><td>25</td><td>PHI</td><td>24</td><td>-3</td><td>37</td><td></td><td></td><td>outdoors</td><td>75</td><td>Veterans Stadium</td></tr><tr><td>1999</td><td>1</td><td>1999-09-12</td><td>DET</td><td>28</td><td>SEA</td><td>20</td><td>9.5</td><td>42</td><td></td><td></td><td>dome</td><td></td><td>Seattle Kingdome</td></tr><tr><td>1999</td><td>1</td><td>1999-09-12</td><td>BAL</td><td>10</td><td>STL</td><td>27</td><td>0</td><td>39</td><td></td><td></td><td>dome</td><td></td><td>TWA Dome</td></tr><tr><td>1999</td><td>1</td><td>1999-09-12</td><td>NYG</td><td>17</td><td>TB</td><td>13</td><td>5.5</td><td>37.5</td><td></td><td></td><td>outdoors</td><td>88</td><td>Raymond James Stadium</td></tr><tr><td>1999</td><td>1</td><td>1999-09-12</td><td>CIN</td><td>35</td><td>TEN</td><td>36</td><td>9</td><td>42</td><td></td><td></td><td>outdoors</td><td>84</td><td>Adelphia Coliseum</td></tr><tr><td>1999</td><td>1</td><td>1999-09-12</td><td>DAL</td><td>41</td><td>WAS</td><td>35</td><td>2.5</td><td>42</td><td></td><td></td><td>outdoors</td><td>71</td><td>Jack Kent Cooke Stadium</td></tr><tr><td>1999</td><td>1</td><td>1999-09-13</td><td>MIA</td><td>38</td><td>DEN</td><td>21</td><td>6</td><td>43</td><td></td><td></td><td>outdoors</td><td>60</td><td>Mile High Stadium</td></tr><tr><td>1999</td><td>2</td><td>1999-09-19</td><td>PIT</td><td>23</td><td>BAL</td><td>20</td><td>-2.5</td><td>38</td><td></td><td></td><td>outdoors</td><td>74</td><td>PSINet Stadium</td></tr><tr><td>1999</td><td>2</td><td>1999-09-19</td><td>NYJ</td><td>3</td><td>BUF</td><td>17</td><td>4</td><td>42</td><td></td><td></td><td>outdoors</td><td>68</td><td>Ralph Wilson Stadium</td></tr><tr><td>1999</td><td>2</td><td>1999-09-19</td><td>JAX</td><td>22</td><td>CAR</td><td>20</td><td>-9.5</td><td>44</td><td></td><td></td><td>outdoors</td><td>74</td><td>Ericsson Stadium</td></tr><tr><td>1999</td><td>2</td><td>1999-09-19</td><td>SEA</td><td>14</td><td>CHI</td><td>13</td><td>-3.5</td><td>39</td><td></td><td></td><td>outdoors</td><td>76</td><td>Soldier Field</td></tr><tr><td>1999</td><td>2</td><td>1999-09-19</td><td>SD</td><td>34</td><td>CIN</td><td>7</td><td>1</td><td>40.5</td><td></td><td></td><td>outdoors</td><td>79</td><td>Cinergy Field</td></tr><tr><td>1999</td><td>2</td><td>1999-09-19</td><td>GB</td><td>15</td><td>DET</td><td>23</td><td>-6.5</td><td>43</td><td></td><td></td><td>dome</td><td></td><td>Pontiac Silverdome</td></tr><tr><td>1999</td><td>2</td><td>1999-09-19</td><td>DEN</td><td>10</td><td>KC</td><td>26</td><td>-3.5</td><td>40.5</td><td></td><td></td><td>outdoors</td><td>69</td><td>Arrowhead Stadium</td></tr></tbody></table></div>
+  </section>
+  <section aria-label="Sample files">
+    <h2>Sample files</h2>
+    <ul class="files">
+      <li><a href="../data/nfl-games/sample.csv" download>sample.csv</a><span class="sz">22 rows · 6.1 KB</span></li>
+      <li><a href="../data/nfl-games/sample.json" download>sample.json</a><span class="sz">22 records · 24.8 KB</span></li>
+      <li><a href="../data/nfl-games/season-summaries.csv" download>season-summaries.csv</a><span class="sz">27 rows, complete aggregate table · 2.1 KB</span></li>
+    </ul>
+  </section>
+  <section aria-label="Get the data">
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/nfl-games/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h" rel="noopener">Get full data, $29</a>
+    </div>
+    <p class="btn-note">Full pack: 3 CSVs (7,548 + 861 + 27 rows), data dictionary, source checksums. Checkout and download run through Getly.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

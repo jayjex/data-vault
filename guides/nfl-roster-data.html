@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NFL Roster Data: Free Sources, ID Schemes, and a Live ESPN API Example | Data Vault</title>
+<meta name="description" content="Where to get NFL roster and player-level data free: nflverse weekly roster CSVs (2002-2026, 36 columns), nfl_data_py's import_weekly_rosters, and the ESPN site API. Includes a live KC roster fetch, the full athlete schema, and how the ID schemes differ.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/nfl-roster-data.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="NFL Roster Data: Free Sources, ID Schemes, and a Live ESPN API Example">
+<meta property="og:description" content="nflverse weekly rosters, nfl_data_py, and the ESPN site API for NFL player-level data. Live KC roster fetch with the real JSON, schema walkthrough, and the ID gap between rosters and game data.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/nfl-roster-data.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "NFL Roster Data: Free Sources, ID Schemes, and a Live ESPN API Example", "description": "Where NFL roster and player-level data lives for free: nflverse weekly roster CSVs with 36 columns, nfl_data_py's import_weekly_rosters, and the ESPN site API, with a live Kansas City roster fetch and an honest look at the ID gap between rosters and game-level data.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/nfl-roster-data.html", "about": {"@type": "Dataset", "name": "NFL Games & Betting Lines 1999-2026", "url": "https://jayjex.github.io/data-vault/datasets/nfl-games.html"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "NFL roster data", "item": "https://jayjex.github.io/data-vault/guides/nfl-roster-data.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+{"@type": "Question", "name": "Is there a free NFL roster CSV?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The nflverse-data project publishes weekly rosters as one CSV per season, 2002 through 2026, at github.com/nflverse/nflverse-data/releases/tag/weekly_rosters. The 2026 file is 2,954 data rows and 36 columns, with jersey number, status, position, and nine provider IDs per player including gsis_id and espn_id. In Python, nfl_data_py's import_weekly_rosters(years) pulls the same files as DataFrames. The ESPN site API also returns rosters as JSON, no key required."}},
+{"@type": "Question", "name": "Does the Data Vault NFL pack include player-level data?", "acceptedAnswer": {"@type": "Answer", "text": "No. The NFL Games & Betting Lines pack is game-level only: 7,548 rows in games.csv, one per game with team scores, spreads, totals, and weather. The only player fields are starting QB name and ID for each side. There are no roster rows, depth chart rows, or per-player stat lines in the pack. For player-level data, use nflverse's weekly rosters and weekly stat files, or the ESPN site API."}},
+{"@type": "Question", "name": "How do I match roster players to game-level data?", "acceptedAnswer": {"@type": "Answer", "text": "Through the ID columns, and the two schemes do not overlap: roster files carry gsis_id (the NFL's Game Statistics & Information System ID, used by nflverse play-by-play and weekly stats) and espn_id (which equals the numeric athlete ID in ESPN's API). We verified the espn_id match on the 2026 Chiefs: 56 of the 60 non-blank espn_id values in nflverse's roster file appear among the 76 athlete IDs in the live ESPN roster response. Game files carry a gsis game ID and an espn game ID, which are different keys again, so game-to-player joins happen through the gsis_id in play-by-play data, not through the roster file alone."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../datasets/nfl-games.html">NFL dataset</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>NFL roster data: free sources, ID schemes, and a live ESPN API example</h1>
+  <p class="byline">Player-level sources, tested 2026-09-07 · for the game-level table this site sells around, start with the <a href="nfl-games-data-guide.html">games.csv column guide</a> · pricing lives on the dataset pages, not here.</p>
+
+  <section aria-label="Quick answer">
+    <p>NFL roster data means one row per player per team per week: jersey number, position, status (active, practice squad, injured reserve), physical measurements, and the IDs that tie a player to other datasets. Three free sources cover it. The <a href="https://github.com/nflverse/nflverse-data/releases/tag/weekly_rosters" rel="noopener">nflverse weekly rosters release</a> ships one CSV per season, 2002 through 2026, with 36 columns and nine provider IDs per player. <a href="https://github.com/cooperdff/nfl_data_py" rel="noopener">nfl_data_py</a> wraps those files in one call, <code>import_weekly_rosters(years)</code>. The ESPN site API returns the same rosters as JSON at <code>site.api.espn.com</code>, no key, which makes it the quickest way to check today's 53-man sheet.</p>
+    <p>An honest note on scope before the details: the dataset this site documents, the <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026</a> pack, is game-level only. Its 7,548 rows are one per game, and the only player fields are the two starting quarterback names and IDs. There are no roster rows or per-player stats in it, and this page does not pretend otherwise. The three sources below are where player-level data actually lives, and the last section shows how far you can get joining them to game data, including where the join breaks.</p>
+  </section>
+
+  <section aria-label="The three free sources">
+    <h2>The three free sources, compared</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Roster source comparison"><table>
+      <thead><tr><th scope="col">Source</th><th scope="col">What you get</th><th scope="col">Format</th><th scope="col">Player IDs carried</th></tr></thead>
+      <tbody>
+        <tr><td>nflverse weekly rosters</td><td>One CSV per season, 2002-2026, weekly snapshots per team; 2026 file has 2,954 rows and 36 columns</td><td>CSV, parquet, rds, qs</td><td>gsis_id, espn_id, sportradar_id, yahoo_id, rotowire_id, pff_id, pfr_id, fantasy_data_id, sleeper_id</td></tr>
+        <tr><td>nfl_data_py</td><td>The same release files as pandas DataFrames: <code>import_weekly_rosters(years)</code>, seasonal variant, plus <code>import_ids()</code> crosswalk</td><td>Python</td><td>whatever the underlying files carry</td></tr>
+        <tr><td>ESPN site API</td><td>Current roster per team as JSON, grouped by unit; no historical depth, refreshed as teams change</td><td>JSON over HTTP</td><td>one athlete ID per player, which equals nflverse's espn_id (shown below)</td></tr>
+      </tbody>
+    </table></div>
+    <p>The nflverse release is the one to build on: it is versioned per season, carries the <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a> license, and the nine provider ID columns make it the crosswalk between data vendors. A sample row from the 2026 file, verbatim (leading URL-quote in the headshot column unmodified):</p>
+    <pre>2026,KC,TE,TE,87,ACT,Travis Kelce,Travis,Kelce,1989-10-05,77,260,Cincinnati,00-0030506,15847,c3859e06-5f23-4302-a71b-04820a899d5f,26686,8783,7844,KelcTr00,15048,1466,13,"https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dpxovcfku6ud2aohgf6a",,1,REG,A01,Travis,KEL012458,40011,32004b45-4c01-2458-b7b6-3a14cdb414dd,2013,2013,KC,63</pre>
+    <p>Read against the header (<code>season,team,position,depth_chart_position,jersey_number,status,full_name,first_name,last_name,birth_date,height,weight,college,gsis_id,espn_id,...</code>): Kelce, tight end, #87, active, born 1989, 6'5" (77 inches) and 260 lbs, Cincinnati, gsis_id <code>00-0030506</code>, espn_id <code>15847</code>, 13 years experience, drafted by KC in 2013, draft slot 63.</p>
+    <p>In Python, skip the manual download:</p>
+    <pre>import nfl_data_py as nfl
+rosters = nfl.import_weekly_rosters([2026])
+# 2,954 rows x 36 columns, same schema as the CSV above
+kc = rosters[rosters["team"] == "KC"]
+len(kc)   # 92 rows: 76 current players + weekly status snapshots</pre>
+  </section>
+
+  <section aria-label="ESPN teams endpoint">
+    <h2>Step 1: the ESPN teams endpoint</h2>
+    <p>The ESPN site API needs no key and no signup. The teams endpoint is the directory: <code>https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams</code>. Fetched 2026-09-07, it returned HTTP 200 with 32 team objects under <code>sports[0].leagues[0].teams</code>, each wrapped in a <code>team</code> key. Here are the first two entries with only the long <code>links</code> and <code>logos</code> arrays cut for space; everything shown is verbatim:</p>
+    <pre>{
+  "sports": [
+    {
+      "name": "football",
+      "leagues": [
+        {
+          "id": "28",
+          "name": "National Football League",
+          "abbreviation": "NFL",
+          "teams": [
+            {
+              "team": {
+                "abbreviation": "ARI",
+                "alternateColor": "ffffff",
+                "color": "a40227",
+                "displayName": "Arizona Cardinals",
+                "id": "22",
+                "isActive": true,
+                "isAllStar": false,
+                "location": "Arizona",
+                "name": "Cardinals",
+                "nickname": "Cardinals",
+                "shortDisplayName": "Cardinals",
+                "slug": "arizona-cardinals",
+                "uid": "s:20~l:28~t:22"
+              }
+            },
+            {
+              "team": {
+                "abbreviation": "ATL",
+                "displayName": "Atlanta Falcons",
+                "id": "1",
+                "isActive": true,
+                "location": "Atlanta",
+                "name": "Falcons",
+                "uid": "s:20~l:28~t:1"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}</pre>
+    <p>The two fields that matter for what follows: <code>id</code>, the team ID used in every deeper ESPN endpoint, and <code>abbreviation</code>. KC carries id <code>12</code>. The abbreviation also works directly in the roster URL, so you never have to look the ID up.</p>
+  </section>
+
+  <section aria-label="ESPN roster endpoint demo">
+    <h2>Step 2: one team's roster, fetched live</h2>
+    <p>The roster endpoint is <code>https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/KC/roster</code>. Fetched 2026-09-07 at 13:15 UTC: HTTP 200, 347 KB of JSON, current <code>season.year: 2026</code>. The top level holds five keys:</p>
+    <pre>{
+  "timestamp": "2026-09-07T13:15:12Z",
+  "status": "success",
+  "season": {"year": 2026, "displayName": "2026", "type": 2, "name": "Regular Season"},
+  "athletes": [ ...6 group objects... ],
+  "coach": [ ...one object per coach... ],
+  "team": { "id": "12", "abbreviation": "KC", "displayName": "Kansas City Chiefs", ... }
+}</pre>
+    <p><code>athletes</code> is a list of position groups, not a flat list. Each group has a <code>position</code> label and an <code>items</code> array. The fetched counts: offense 27, defense 24, specialTeam 3, injuredReserveOrOut 6, suspended 0, practiceSquad 16. That is 76 players in one response.</p>
+    <p>One full athlete object from the offense group, verbatim except for three arrays cut for space (<code>links</code> held 10 ESPN URL objects, <code>college.logos</code> two image entries, <code>teams</code> one season ref); nothing else is changed:</p>
+    <pre>{
+  "id": "4912218",
+  "uid": "s:20~l:28~a:4912218",
+  "guid": "0fdecc73-7b90-3cca-8bfc-a5d585ca037f",
+  "alternateIds": {
+    "sdr": "4912218"
+  },
+  "firstName": "Cyrus",
+  "lastName": "Allen",
+  "fullName": "Cyrus Allen",
+  "displayName": "Cyrus Allen",
+  "shortName": "C. Allen",
+  "weight": 180.0,
+  "displayWeight": "180 lbs",
+  "height": 71.0,
+  "displayHeight": "5' 11\"",
+  "age": 23,
+  "dateOfBirth": "2003-02-11T08:00Z",
+  "birthPlace": {
+    "city": "New Orleans",
+    "state": "LA",
+    "country": "USA"
+  },
+  "college": {
+    "id": "2132",
+    "mascot": "Bearcats",
+    "name": "Cincinnati",
+    "shortName": "Cincinnati",
+    "abbrev": "CIN"
+  },
+  "slug": "cyrus-allen",
+  "headshot": {
+    "href": "https://a.espncdn.com/i/headshots/nfl/players/full/4912218.png",
+    "alt": "Cyrus Allen"
+  },
+  "jersey": "13",
+  "position": {
+    "id": "1",
+    "name": "Wide Receiver",
+    "displayName": "Wide Receiver",
+    "abbreviation": "WR",
+    "leaf": true,
+    "parent": {
+      "id": "70",
+      "name": "Offense",
+      "displayName": "Offense",
+      "abbreviation": "OFF",
+      "leaf": false
+    }
+  },
+  "experience": {
+    "years": 0
+  },
+  "status": {
+    "id": "1",
+    "name": "Active",
+    "type": "active",
+    "abbreviation": "Active"
+  }
+}</pre>
+    <p>Schema notes worth knowing before you write a parser. <code>id</code> is the athlete ID and the only key that lines up with other datasets; it arrives as a string. <code>height</code> and <code>weight</code> are numbers (inches, pounds) while the <code>display*</code> twins are strings formatted for humans; parse the numeric ones. <code>jersey</code> is a string, so sort it as one. <code>position.parent</code> gives the unit (offense, defense, special teams) so you do not need the group structure to bucket players. <code>status.type</code> distinguishes active from practice squad and injured reserve. And the cut <code>links</code> array includes a per-player game-log URL, which is where ESPN exposes player week-by-week stats if you need them from the same API family.</p>
+    <p>Compared to the nflverse CSV, the ESPN response is thinner on IDs (one, not nine), thinner on history (current week only, no 2002-2025 archive), and thicker on presentation fields (headshots, slugs, display strings). Use it for current-state checks and quick scripts; use nflverse for anything you will re-run next season.</p>
+  </section>
+
+  <section aria-label="Joining rosters to game data">
+    <h2>Joining roster data to game-level data, honestly</h2>
+    <p>Player-level and game-level data use different ID schemes, and a join only works where a file carries both. Here is the map:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="ID scheme map"><table>
+      <thead><tr><th scope="col">ID column</th><th scope="col">Lives in</th><th scope="col">Matches</th></tr></thead>
+      <tbody>
+        <tr><td>gsis_id</td><td>nflverse roster files, play-by-play, weekly and seasonal player stats</td><td>the standard join key across all nflverse player-level files</td></tr>
+        <tr><td>espn_id</td><td>nflverse roster files</td><td>the numeric athlete <code>id</code> in the ESPN API (verified below)</td></tr>
+        <tr><td>gsis (game)</td><td>games.csv <code>gsis</code> column</td><td>a game ID, unrelated to player gsis_ids despite the similar name</td></tr>
+        <tr><td>espn (game)</td><td>games.csv <code>espn</code> column</td><td>a game ID, not an athlete ID</td></tr>
+      </tbody>
+    </table></div>
+    <p>The espn_id claim is testable, so we tested it. nflverse's 2026 weekly roster file holds 92 Chiefs rows with 60 distinct non-blank espn_id values; the live ESPN roster response returned 76 athlete IDs. The two sets overlap on 56 players (Travis Kelce 15847, Chris Jones 3044859, Harrison Butker 3055899, and so on, names matching on every overlap). The 4 misses are roster churn between snapshots, not an ID mismatch: new signings not yet in ESPN's group lists and vice versa. So the join rate on a matched-day snapshot is 56 of 60, and the general rule is that <code>nflverse.espn_id == ESPN athlete.id</code>.</p>
+    <p>What no join gives you, because the underlying rows do not exist in a game-level file: per-player usage inside a specific game. The <a href="nfl-data-by-team.html">team-season table</a> counts team results; its only player references are the two starting QB IDs per game (<code>away_qb_id</code>, <code>home_qb_id</code>, which are gsis_ids and join cleanly to the roster's gsis_id column). To attach player stats to a game you need nflverse's play-by-play or weekly stat files, keyed on gsis_id, with the roster file as the bridge that maps gsis_ids to names and the ESPN API for current-week cross-checks. That is a three-file join, all free, and the honest state of the art without a commercial feed.</p>
+  </section>
+
+  <section aria-label="Where to go next">
+    <h2>Read next</h2>
+    <p>To run the game-level side of these joins in Python, the <a href="nfl-dataset-python.html">NFL dataset pandas guide</a> loads the same games.csv with read_csv and shows the QB-ID columns in place. The <a href="nfl-data-by-team.html">stats-by-team guide</a> documents the 861-row team-season table the roster IDs would attach to. For the wider picture of what is free versus packaged, the <a href="nfl-data-alternative.html">nflverse alternative comparison</a> lays out both routes, and the <a href="espn-api-python.html">ESPN API Python guide</a> covers the request patterns behind the endpoints used here.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>NFL roster data questions</h2>
+    <h3>Is there a free NFL roster CSV?</h3>
+    <p>Yes. The nflverse-data project publishes weekly rosters as one CSV per season, 2002 through 2026, at <a href="https://github.com/nflverse/nflverse-data/releases/tag/weekly_rosters" rel="noopener">github.com/nflverse/nflverse-data/releases/tag/weekly_rosters</a>. The 2026 file is 2,954 data rows and 36 columns, with jersey number, status, position, and nine provider IDs per player including gsis_id and espn_id. In Python, nfl_data_py's <code>import_weekly_rosters(years)</code> pulls the same files as DataFrames. The ESPN site API also returns rosters as JSON, no key required.</p>
+    <h3>Does the Data Vault NFL pack include player-level data?</h3>
+    <p>No. The <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines pack</a> is game-level only: 7,548 rows in games.csv, one per game with team scores, spreads, totals, and weather. The only player fields are starting QB name and ID for each side. There are no roster rows, depth chart rows, or per-player stat lines in the pack. For player-level data, use nflverse's weekly rosters and stat files, or the ESPN site API.</p>
+    <h3>How do I match roster players to game-level data?</h3>
+    <p>Through the ID columns, and the two schemes do not overlap: roster files carry gsis_id (the NFL's Game Statistics &amp; Information System ID, used across nflverse play-by-play and weekly stats) and espn_id (which equals the numeric athlete ID in ESPN's API). We verified the espn_id match on the 2026 Chiefs: 56 of the 60 non-blank espn_id values in nflverse's roster file appear among the 76 athlete IDs in the live ESPN roster response. Game files carry a gsis game ID and an espn game ID, which are different keys again, so game-to-player joins run through gsis_id in play-by-play data, not through the roster file alone.</p>
+  </section>
+
+  <section aria-label="Attribution">
+    <h2>Sources and licenses</h2>
+    <p>Roster CSV facts come from the nflverse-data project's weekly rosters release, file <code>roster_weekly_2026.csv</code>, downloaded 2026-09-07, released under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>; credit it as "Data from nflverse, CC BY 4.0". The ESPN responses shown were fetched live from site.api.espn.com on 2026-09-07; that API is undocumented and unofficial, so treat its availability as a bonus rather than a guarantee, and check terms before republishing its content at scale. Player names, positions, and measurements are factual data; no logos or league marks appear on this page. This page describes data only and offers no betting advice, picks, or predictions.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

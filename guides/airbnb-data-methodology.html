@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Airbnb Data Methodology: How Snapshot Datasets Are Built | Data Vault</title>
+<meta name="description" content="How Inside Airbnb snapshot data is collected: periodic scrapes, what availability_365 and the review columns record, the limits of one-day captures, and the two-snapshot diff used as a bookings proxy.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/airbnb-data-methodology.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Airbnb Data Methodology: How Snapshot Datasets Are Built">
+<meta property="og:description" content="How Inside Airbnb snapshot data is collected: periodic scrapes, what availability_365 and the review columns record, the limits of one-day captures, and the two-snapshot diff used as a bookings proxy.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/airbnb-data-methodology.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Airbnb Data Methodology: How Snapshot Datasets Are Built", "description": "How Inside Airbnb snapshot data is collected: periodic scrapes, what availability_365 and the review columns record, the limits of one-day captures, and the two-snapshot diff used as a bookings proxy.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/airbnb-data-methodology.html", "about": {"@type": "Dataset", "name": "Airbnb Listings, 6 US Cities", "url": "https://jayjex.github.io/data-vault/datasets/airbnb-six-cities.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How does Inside Airbnb collect its data?", "acceptedAnswer": {"@type": "Answer", "text": "Inside Airbnb runs periodic scrapes of Airbnb's public listing pages, one run per city per collection cycle. Each run captures one row per visible listing at that moment, cleans the fields, and publishes the result as per-city files under CC BY 4.0. A snapshot is one run's output: the market as seen on the scrape date, not a continuous feed."}}, {"@type": "Question", "name": "What does availability_365 record in a snapshot?", "acceptedAnswer": {"@type": "Answer", "text": "The number of nights the listing shows as bookable in the 365 days after the snapshot date. In the 20-row Austin sample from the 2026-06-22 snapshot, values run from 10 to 365 with a median of 285, and half the listings show 300 or more open nights. It is one counter per listing: no per-night detail and no label for why a night is closed."}}, {"@type": "Question", "name": "How do you estimate bookings from two snapshots?", "acceptedAnswer": {"@type": "Answer", "text": "Scrape the same city twice, d days apart, and diff availability_365 per listing ID. Booked nights in that window are roughly (availability at the first snapshot minus availability at the second) plus d, clamped to between 0 and d. It is a proxy with real error bars: host blocks, cancellations, and nights pulled from the far end of the calendar all shift the diff, so treat results as ranges."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Airbnb data methodology: how snapshot datasets are built</h1>
+  <p class="byline">Published 2026-09-10. Source: Inside Airbnb, CC BY 4.0. Data Vault is not affiliated with Airbnb or Inside Airbnb.</p>
+
+  <section aria-label="What this page covers">
+    <p>Every figure in a scraped Airbnb dataset traces back to one decision: someone ran a scraper on a given day and saved what the site showed. This page walks through that pipeline. It covers how Inside Airbnb collects its snapshots, what the availability and review columns actually record, where a one-day capture breaks down, and how researchers squeeze bookings estimates out of two snapshots of the same city. All numbers below come from the files shipped with the <a href="../datasets/airbnb-six-cities.html">Airbnb Listings, 6 US Cities</a> pack and its free sample.</p>
+  </section>
+
+  <section aria-label="How the data is collected">
+    <h2>How a snapshot gets made</h2>
+    <p>Inside Airbnb runs scrapes on a periodic schedule, one collection per city per cycle. A run walks the public listing pages, captures one row per visible listing, and writes the result to per-city files published under CC BY 4.0. Three properties of that process shape everything downstream:</p>
+    <ul>
+      <li><strong>One date per run.</strong> Every row in a city file was true on the same day. The file is a photo of the market, not a video.</li>
+      <li><strong>Only public pages.</strong> A scraper sees what a visitor sees: listing descriptions, nightly calendars going forward, and review history. It never sees bookings, revenue, or host calendars after they changed.</li>
+      <li><strong>Privacy scrubbing built in.</strong> Summary files blur coordinates by about 11 meters and drop host names, which is what makes the data safe to redistribute.</li>
+    </ul>
+    <p>The 6-city pack takes those per-city snapshot files and normalizes them into one shared 12-column schema. The six cities were captured between 2026-06-22 (Austin) and 2026-08-10 (New York City), a 49-day spread. <a href="airbnb-data-by-city.html">Airbnb data by city</a> lists the exact date and row count per city.</p>
+  </section>
+
+  <section aria-label="The columns that carry time">
+    <h2>The columns that carry time</h2>
+    <p>Four of the twelve columns record anything about activity over time: <code>availability_365</code>, <code>number_of_reviews</code>, <code>reviews_per_month</code>, and <code>last_review</code>. <code>availability_365</code> counts the nights a listing shows as bookable in the 365 days after the snapshot date. The three review fields are cumulative: total reviews, reviews per month averaged over the listing's lifetime, and the most recent review date.</p>
+    <p>Here is what those values look like in practice, computed from the free 20-row Austin sample (snapshot 2026-06-22):</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="availability_365 statistics from the 20-row Austin sample"><table>
+      <thead><tr><th scope="col">Statistic</th><th scope="col">Value</th></tr></thead>
+      <tbody>
+        <tr><td>Listings in sample</td><td>20</td></tr>
+        <tr><td>Median availability_365</td><td>285 nights</td></tr>
+        <tr><td>Mean availability_365</td><td>237.3 nights</td></tr>
+        <tr><td>Range</td><td>10 to 365 nights</td></tr>
+        <tr><td>Listings at 300+ nights</td><td>10 of 20 (50%)</td></tr>
+        <tr><td>Listings at 30 nights or fewer</td><td>2 of 20 (10%)</td></tr>
+        <tr><td>Listings fully open (365)</td><td>1 of 20 (5%)</td></tr>
+        <tr><td>Listings fully closed (0)</td><td>0 of 20</td></tr>
+      </tbody>
+    </table></div>
+    <p>Half the sample shows 300 or more open nights, which is what an open calendar with light bookings looks like. The tail below 30 nights is where bookings, host blocks, and regulation pile up, and the snapshot cannot tell them apart. Run the same computation on any city file and you get that market's supply-tightness profile for its scrape date.</p>
+  </section>
+
+  <section aria-label="Snapshot limitations">
+    <h2>Where a snapshot breaks down</h2>
+    <p>A one-day capture carries four limits worth planning around:</p>
+    <ul>
+      <li><strong>Staleness.</strong> Listings change daily. A file from 2026-06-22 describes a market that no longer exists in exactly that form, and the gap grows with every week after the scrape.</li>
+      <li><strong>Seasonal bias.</strong> The six cities here were scraped between late June and mid-August, the peak season for US short-term rentals. Availability counts from a July snapshot read differently than the same market scraped in February. Cross-city comparisons should account for the 49-day spread between the earliest and latest capture.</li>
+      <li><strong>Churn.</strong> The snapshot sees only listings live that day. Listings created after the scrape and listings delisted before it are invisible, so row counts measure the market's surface on one date, not its total population.</li>
+      <li><strong>Unlabeled closed nights.</strong> A closed night can be a booking, a host block, a regulatory hold, or a stale listing. <code>availability_365</code> gives you the count, never the reason. <a href="airbnb-occupancy-data.html">Airbnb occupancy data</a> covers what that means for occupancy estimates in detail.</li>
+    </ul>
+  </section>
+
+  <section aria-label="Two-snapshot diff method">
+    <h2>The two-snapshot diff: a bookings proxy</h2>
+    <p>Scrape the same city twice, d days apart, and diff <code>availability_365</code> per listing ID. The two windows overlap for 365&minus;d days, so most of the difference comes from what changed inside d days of the first scrape. Booked nights in that window come out as:</p>
+    <pre><code>booked_nights &asymp; (A1 &minus; A2) + d</code></pre>
+    <p>where A1 is <code>availability_365</code> at the first snapshot and A2 at the second. The logic: shifting the window forward by d days would add roughly d open nights if nothing was booked, so whatever ate into that shift is consumption. Clamp the result to between 0 and d, then read the edges: A2 below A1 means more nights disappeared than the window shift explains, which signals heavy bookings or host blocks. A2 above A1 plus d means the host pulled nights from the far end of the calendar.</p>
+    <p>A worked example from the sample: the listing "Close to UT Austin + Rooftop Pool" shows <code>availability_365</code> of 157 on 2026-06-22. Say a re-scrape 30 days later shows 167. That is (157 &minus; 167) + 30 = 20 booked nights in the window, about two-thirds of the 30 days. If the re-scrape instead showed 150, the diff would be 37, which exceeds the window and gets clamped or flagged, because availability fell by more than the shift can absorb.</p>
+    <p>Three things to know before running this:</p>
+    <ul>
+      <li><strong>It needs the same city twice.</strong> The 6-city pack ships one snapshot per city, six dates between 2026-06-22 and 2026-08-10. To diff, pair it with a second capture of the same city, from Inside Airbnb's archive or your own scraper, and match on listing <code>id</code>.</li>
+      <li><strong>It is a proxy, not a ledger.</strong> Cancellations, price-driven calendar changes, and far-tail blocks all land in the same number. Published validations of this method put its error well above what a real booking ledger would show.</li>
+      <li><strong>It still beats the alternatives available publicly.</strong> Reviews-based models rest on an assumed booking-per-review rate; the diff at least observes something that actually changed between two dates.</li>
+    </ul>
+    <p>The <a href="../data/airbnb-six-cities/sample.csv">free sample CSV</a> carries the full 12-column schema if you want to prototype the diff logic on real rows before pulling larger files.</p>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the snapshot data</h2>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/airbnb-six-cities/sample.csv" download>Download free sample (CSV)</a>
+      <a class="btn" href="../datasets/airbnb-six-cities.html">Airbnb Listings, 6 US Cities</a>
+    </div>
+    <p class="btn-note">90,169 rows across 6 city files, one snapshot date each, plus cities-index.csv, a data dictionary, and source checksums. Data from Inside Airbnb, CC BY 4.0.</p>
+  </section>
+
+  <section aria-label="More from the catalog">
+    <h2>More from the catalog</h2>
+    <ul>
+      <li><a href="airbnb-occupancy-data.html">Airbnb occupancy data</a>: what a listings snapshot can and cannot tell you about occupancy, and the proxies that work</li>
+      <li><a href="airbnb-data-by-city.html">Airbnb data by city</a>: rows, snapshot dates, and room mix for all six markets</li>
+      <li><a href="inside-airbnb-alternative.html">Inside Airbnb alternative</a>: what the 6-city pack adds over the raw per-city files</li>
+      <li><a href="airbnb-data-guide.html">Airbnb data download guide</a>: the 12 columns explained, with MCP query examples</li>
+      <li><a href="../agents/">For agents</a>: endpoint docs and worked examples</li>
+    </ul>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>How does Inside Airbnb collect its data?</h3>
+    <p>Inside Airbnb runs periodic scrapes of Airbnb's public listing pages, one run per city per collection cycle. Each run captures one row per visible listing at that moment, cleans the fields, and publishes the result as per-city files under CC BY 4.0. A snapshot is one run's output: the market as seen on the scrape date, not a continuous feed.</p>
+    <h3>What does availability_365 record in a snapshot?</h3>
+    <p>The number of nights the listing shows as bookable in the 365 days after the snapshot date. In the 20-row Austin sample from the 2026-06-22 snapshot, values run from 10 to 365 with a median of 285, and half the listings show 300 or more open nights. It is one counter per listing: no per-night detail and no label for why a night is closed.</p>
+    <h3>How do you estimate bookings from two snapshots?</h3>
+    <p>Scrape the same city twice, d days apart, and diff availability_365 per listing ID. Booked nights in that window are roughly (availability at the first snapshot minus availability at the second) plus d, clamped to between 0 and d. It is a proxy with real error bars: host blocks, cancellations, and nights pulled from the far end of the calendar all shift the diff, so treat results as ranges.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

@@ -94,6 +94,7 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - [Airbnb Dataset Sample: Free CSV Data Download (20 Rows, 12 Columns)](https://jayjex.github.io/data-vault/guides/airbnb-data-sample.html): free sample rows
 - [Airbnb Rental Analysis: Screen 6 US Markets With One Dataset](https://jayjex.github.io/data-vault/guides/airbnb-investment-analysis.html): screening workflow with real queries
 - [Inside Airbnb Alternative: 6 Cities, One Schema, 90,169 Rows](https://jayjex.github.io/data-vault/guides/inside-airbnb-alternative.html): normalized schema vs per-city dumps
+- [Airbnb Data Methodology: How Snapshot Datasets Are Built](https://jayjex.github.io/data-vault/guides/airbnb-data-methodology.html): collection pipeline, snapshot limits, two-snapshot bookings proxy
 - [Superteam Earn Data: the Solana Bounties Dataset and Its API Map](https://jayjex.github.io/data-vault/guides/solana-bounties-data-guide.html): bounty schema and 186+ API routes
 - [Solana Grants List: Mapping the Ecosystem's Funding Programs from Public Data](https://jayjex.github.io/data-vault/guides/solana-grants-data.html): research method, 51-row snapshot splits, 6 AGENT_ALLOWED rows, grants-vs-bounty framing
 - [Solana Bounty Tracker Data: Web3 Bounty Listings Without an Official API](https://jayjex.github.io/data-vault/guides/web3-bounty-data.html): harvesting bounty listings

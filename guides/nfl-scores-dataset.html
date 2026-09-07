@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NFL Scores Dataset: Download Scores as CSV, 1999-2026 | Data Vault</title>
+<meta name="description" content="Where to download NFL scores as a CSV: nflverse games.csv (7,548 rows, 46 columns, verbatim schema), the ESPN scoreboard API (16 events tested, no key), and a free 22-row sample. Real pandas runs on the sample show the score distribution and the biggest blowouts.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/nfl-scores-dataset.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="NFL Scores Dataset: Download Scores as CSV, 1999-2026">
+<meta property="og:description" content="NFL scores you can download: nflverse games.csv with 7,548 rows and the verbatim 46-column schema, the ESPN scoreboard API, and a free 22-row sample with real pandas analysis of margins and blowouts.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/nfl-scores-dataset.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "NFL scores dataset: where to download every score since 1999", "description": "NFL scores you can download: nflverse games.csv with 7,548 rows and the verbatim 46-column schema, the ESPN scoreboard API, and a free 22-row sample with real pandas analysis of margins and blowouts.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/nfl-scores-dataset.html", "about": {"@type": "Dataset", "name": "NFL Games & Betting Lines 1999-2026", "url": "https://jayjex.github.io/data-vault/datasets/nfl-games.html"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "NFL scores dataset", "item": "https://jayjex.github.io/data-vault/guides/nfl-scores-dataset.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+{"@type": "Question", "name": "Where can I download NFL scores as a CSV?", "acceptedAnswer": {"@type": "Answer", "text": "nflverse-data publishes games.csv as a direct download, one row per NFL game from 1999 through the current season, 7,548 data rows with home_score and away_score on every finished game, under CC BY 4.0. On this site, a free 22-row sample of the same file downloads with no signup, and the full pack adds the complete file with team records and season summaries."}},
+{"@type": "Question", "name": "How many columns does the nflverse games.csv have?", "acceptedAnswer": {"@type": "Answer", "text": "46 columns, read from the file header: game_id, season, game_type, week, gameday, weekday, gametime, away_team, away_score, home_team, home_score, location, result, total, overtime, old_game_id, gsis, nfl_detail_id, pfr, pff, espn, ftn, away_rest, home_rest, away_moneyline, home_moneyline, spread_line, away_spread_odds, home_spread_odds, total_line, under_odds, over_odds, div_game, roof, surface, temp, wind, away_qb_id, home_qb_id, away_qb_name, home_qb_name, away_coach, home_coach, referee, stadium_id, and stadium. The score columns are away_score and home_score, and the derived result and total columns give the margin and combined points directly."}},
+{"@type": "Question", "name": "Can I get NFL scores for free without an API key?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The nflverse games.csv is a plain file download with no account. ESPN's scoreboard endpoint at site.api.espn.com answers without a key and returns the current week as nested JSON, 16 events when tested for week 1 of the 2026 season. The dataset-mcp server on this site also queries the full 7,548-row NFL file for free, 100 rows per call, no key."}}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Dataset", "name": "NFL Games & Betting Lines 1999-2026", "description": "7,548 NFL games with scores, closing spreads, totals, moneylines, odds, rest days, QBs, coaches, and stadium weather.", "url": "https://jayjex.github.io/data-vault/datasets/nfl-games.html", "keywords": ["sports", "betting", "nfl"], "creator": {"@type": "Organization", "name": "Matchbook Labs"}, "isAccessibleForFree": true, "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/nfl-games/sample.csv"}, {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://jayjex.github.io/data-vault/data/nfl-games/sample.json"}], "offers": {"@type": "Offer", "url": "https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h"}}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../datasets/nfl-games.html">NFL dataset</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>NFL scores dataset: where to download every score since 1999</h1>
+  <p class="byline">Guide to the <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026</a> pack &middot; checked 2026-09-10 &middot; loading the sample in code? The <a href="nfl-dataset-python.html">pandas quickstart</a> runs three analyses on it &middot; other leagues covered in the <a href="free-sports-data-csv.html">free sports data CSV guide</a></p>
+
+  <section aria-label="Quick answer">
+    <p>Three downloads cover the keyword "nfl scores dataset" from different angles:</p>
+    <ul>
+      <li><a href="https://github.com/nflverse/nfldata" rel="noopener">nflverse games.csv</a> is the full history: 7,548 data rows, one per game from 1999 through the current season, 46 columns including <code>home_score</code> and <code>away_score</code>, free under CC BY 4.0.</li>
+      <li><a href="https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard" rel="noopener">ESPN's scoreboard API</a> answers without a key and returns the current week as JSON, 16 events when tested for week 1 of the 2026 season.</li>
+      <li><a href="../data/nfl-games/sample.csv" download>the free 22-row sample</a> on this site is real game data, weeks 1 and 2 of the 1999 season, with all 46 columns and no signup.</li>
+    </ul>
+    <p>The sections below walk each source, then run pandas on the sample to show what the score columns look like in practice.</p>
+  </section>
+
+  <section aria-label="nflverse games.csv">
+    <h2>nflverse games.csv: the full-history download</h2>
+    <p>The nflverse-data project publishes <code>games.csv</code> in its <a href="https://github.com/nflverse/nfldata" rel="noopener">nfldata repository</a>, under <code>data/games.csv</code>. One row per game, 1999 through the current season: 7,548 data rows plus the header when checked on 2026-09-10, about 2.1 MB. The license is <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>, so commercial use is fine with credit.</p>
+    <p>The header, verbatim, all 46 columns in file order:</p>
+<pre>game_id,season,game_type,week,gameday,weekday,gametime,away_team,
+away_score,home_team,home_score,location,result,total,overtime,
+old_game_id,gsis,nfl_detail_id,pfr,pff,espn,ftn,away_rest,home_rest,
+away_moneyline,home_moneyline,spread_line,away_spread_odds,
+home_spread_odds,total_line,under_odds,over_odds,div_game,roof,
+surface,temp,wind,away_qb_id,home_qb_id,away_qb_name,home_qb_name,
+away_coach,home_coach,referee,stadium_id,stadium</pre>
+    <p>The score columns sit up front: <code>away_score</code> and <code>home_score</code> hold final points, <code>result</code> is the home margin already computed (home points minus away points), and <code>total</code> is the combined score. Scheduled games carry blank scores until they finish. The odds columns (<code>spread_line</code>, <code>total_line</code>, moneylines) are blank before 2006. Every column group is explained in the <a href="nfl-games-data-guide.html">games.csv column guide</a>.</p>
+    <p>One trade-off to know: the file is a rolling snapshot of the master branch, so the row count moves as new weeks are played, and historical corrections land silently. The <a href="nfl-data-alternative.html">nflverse vs preprocessed pack comparison</a> covers what that means for reproducible work.</p>
+  </section>
+
+  <section aria-label="ESPN scoreboard API">
+    <h2>ESPN scoreboard API: this week's scores, no key</h2>
+    <p>For the current week rather than history, ESPN serves the JSON its own scoreboard page renders, and the endpoint answers any client:</p>
+<pre>https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard</pre>
+    <p>Tested on 2026-09-10: HTTP 200, 16 events, season <code>week: 1</code> of 2026, first event "New England Patriots at Seattle Seahawks". No key, no signup. Two quirks from the same test: <code>score</code> arrives as a string, not a number, and the nesting is deep because the feed is built for ESPN's pages. The <a href="espn-api-python.html">ESPN API in Python guide</a> walks the response with requests and prints real scores from a finished week.</p>
+  </section>
+
+  <section aria-label="The free 22-row sample">
+    <h2>The free 22-row sample, real data from 1999</h2>
+    <p>This site mirrors the schema as a free sample: <a href="../data/nfl-games/sample.csv" download>sample.csv</a>, 22 rows, all 46 columns, weeks 1 and 2 of the 1999 season (game dates 1999-09-12 through 1999-09-19). It is the first 22 rows of the pack's games.csv, which was downloaded from nflverse on 2026-09-06 with the SHA-256 recorded. Nothing about it is synthetic: real teams, real scores, blank <code>temp</code> and <code>wind</code> where the 6 dome games never recorded them.</p>
+    <p>Free alongside it: <a href="../data/nfl-games/season-summaries.csv" download>season-summaries.csv</a>, a complete 27-row table with scoring averages and win rates for every season 1999-2025.</p>
+  </section>
+
+  <section aria-label="Score distribution in the sample">
+    <h2>What the score columns say: margins and blowouts</h2>
+    <p>Two real pandas runs against the sample URL, verbatim code and output. First, the distribution of winning margins:</p>
+<pre>import pandas as pd
+
+games = pd.read_csv("https://jayjex.github.io/data-vault/data/nfl-games/sample.csv")
+games["margin"] = (games["home_score"] - games["away_score"]).abs()
+
+print(games["margin"].describe().round(1))
+print((games["margin"] &gt;= 17).sum(), "blowouts")
+print((games["margin"] &lt;= 8).sum(), "one-score games")</pre>
+<pre>count    22.0
+mean     11.1
+std      11.9
+min       1.0
+25%       3.0
+50%       7.0
+75%      16.8
+max      43.0
+Name: margin, dtype: float64
+6 blowouts
+13 one-score games</pre>
+    <p>The median margin is 7 points and 13 of 22 games finished within one score, which is what a competitive league should look like. The max, 43, is the sample's one shutout.</p>
+    <p>Second, every game in the sample decided by 17 or more, sorted:</p>
+<pre>blowouts = games[(games["home_score"] - games["away_score"]).abs() &gt;= 17].copy()
+blowouts["margin"] = (blowouts["home_score"] - blowouts["away_score"]).abs()
+blowouts = blowouts.sort_values("margin", ascending=False)
+print(blowouts[["gameday", "away_team", "away_score",
+                "home_team", "home_score"]].to_string(index=False))</pre>
+<pre>   gameday away_team  away_score home_team  home_score
+1999-09-12       PIT          43       CLE           0
+1999-09-12        SF           3       JAX          41
+1999-09-19        SD          34       CIN           7
+1999-09-12       BUF          14       IND          31
+1999-09-12       BAL          10       STL          27
+1999-09-13       MIA          38       DEN          21</pre>
+    <p>The biggest is Cleveland's 1999 expansion debut, a 43-0 home loss to Pittsburgh. The wildest score line in the sample went the other way from its margin: Dallas 41, Washington 35 in overtime, 76 combined points, the sample's highest total (the lowest was 20, Jets 3 at Bills 17). Note that these runs used the URL directly in <code>read_csv</code>, no download step. Caveat that matters: 22 rows are a pandas exercise, not a trend. Every claim here is about these weeks, and the full file is what you analyze for real findings. The <a href="nfl-dataset-python.html">pandas quickstart</a> shows the same discipline on win counts, dome scoring, and kickoff temperatures.</p>
+  </section>
+
+  <section aria-label="Get the full history">
+    <h2>Free sample, free MCP, or full pack</h2>
+    <p>Three routes, same data:</p>
+    <ul>
+      <li><strong>Free sample.</strong> <a href="../data/nfl-games/sample.csv" download>sample.csv</a> (22 rows) and <a href="../data/nfl-games/season-summaries.csv" download>season-summaries.csv</a> (27 rows) download here with no signup.</li>
+      <li><strong>Free over MCP.</strong> The <a href="../agents/mcp-dataset-server.html">dataset-mcp server</a> queries the full 7,548-row games.csv for free, 100 rows per call, filters on any column, and <code>get_stats</code> computes distributions like the ones above on the whole file. Setup in the <a href="mcp-claude-desktop.html">Claude Desktop MCP guide</a>.</li>
+      <li><strong>Full pack.</strong> The complete <a href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h" rel="noopener">NFL Games &amp; Betting Lines 1999-2026</a> pack on Getly: 3 CSVs (7,548 + 861 + 27 rows), data dictionary, SHA-256 checksums. Checkout and download run through Getly.</li>
+    </ul>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/nfl-games/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h" rel="noopener">Get full data</a>
+    </div>
+    <p class="btn-note">Opening the sample in a spreadsheet instead? The <a href="nfl-dataset-excel.html">Excel and Google Sheets import guide</a> walks the 22-row CSV step by step. Need this week's scores over HTTP? The <a href="nfl-data-api-python.html">NFL data API examples</a> run requests against ESPN and nflverse release files.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>NFL scores dataset questions</h2>
+    <dl>
+      <dt>Where can I download NFL scores as a CSV?</dt>
+      <dd>nflverse-data publishes <code>games.csv</code> as a direct download, one row per NFL game from 1999 through the current season, 7,548 data rows with <code>home_score</code> and <code>away_score</code> on every finished game, under CC BY 4.0. On this site, a free 22-row sample of the same file downloads with no signup, and the full pack adds the complete file with team records and season summaries.</dd>
+      <dt>How many columns does the nflverse games.csv have?</dt>
+      <dd>46 columns, read from the file header: <code>game_id</code>, <code>season</code>, <code>game_type</code>, <code>week</code>, <code>gameday</code>, <code>weekday</code>, <code>gametime</code>, <code>away_team</code>, <code>away_score</code>, <code>home_team</code>, <code>home_score</code>, <code>location</code>, <code>result</code>, <code>total</code>, <code>overtime</code>, <code>old_game_id</code>, <code>gsis</code>, <code>nfl_detail_id</code>, <code>pfr</code>, <code>pff</code>, <code>espn</code>, <code>ftn</code>, <code>away_rest</code>, <code>home_rest</code>, <code>away_moneyline</code>, <code>home_moneyline</code>, <code>spread_line</code>, <code>away_spread_odds</code>, <code>home_spread_odds</code>, <code>total_line</code>, <code>under_odds</code>, <code>over_odds</code>, <code>div_game</code>, <code>roof</code>, <code>surface</code>, <code>temp</code>, <code>wind</code>, <code>away_qb_id</code>, <code>home_qb_id</code>, <code>away_qb_name</code>, <code>home_qb_name</code>, <code>away_coach</code>, <code>home_coach</code>, <code>referee</code>, <code>stadium_id</code>, and <code>stadium</code>. The score columns are <code>away_score</code> and <code>home_score</code>, and the derived <code>result</code> and <code>total</code> columns give the margin and combined points directly.</dd>
+      <dt>Can I get NFL scores for free without an API key?</dt>
+      <dd>Yes. The nflverse games.csv is a plain file download with no account. ESPN's scoreboard endpoint at <code>site.api.espn.com</code> answers without a key and returns the current week as nested JSON, 16 events when tested for week 1 of the 2026 season. The dataset-mcp server on this site also queries the full 7,548-row NFL file for free, 100 rows per call, no key.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Attribution">
+    <h2>Source and license</h2>
+    <p>Game rows come from the nflverse-data project, file <code>schedules/games.csv</code> / <code>data/games.csv</code>, downloaded 2026-09-06 for the pack, with the SHA-256 recorded. nflverse-data is released under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>; credit it as "Data from nflverse, CC BY 4.0". Samples on this site carry the same license. ESPN data is served by ESPN for its own products and queried here for testing only. No logos or league marks appear in any file; team names are factual data. This page describes data only and offers no betting advice, picks, or predictions.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

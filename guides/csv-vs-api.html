@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSV vs API for Data: Which One You Need, With a Decision Table | Data Vault</title>
+<meta name="description" content="When a CSV download is enough and when a query layer wins. A decision table for analysts and builders, with a real example: 3,247 filtered rows pulled via MCP from a 51,895-row file.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/csv-vs-api.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="CSV vs API for Data: Which One You Need, With a Decision Table">
+<meta property="og:description" content="When a CSV download is enough and when a query layer wins. A decision table for analysts and builders, with a real MCP query example.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/csv-vs-api.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "CSV vs API for Data: Which One You Need, With a Decision Table", "description": "When a CSV download is enough and when a query layer wins. A decision table for analysts and builders, with a real example: 3,247 filtered rows pulled via MCP from a 51,895-row file.", "datePublished": "2026-09-09", "dateModified": "2026-09-09", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/csv-vs-api.html", "about": {"@type": "Thing", "name": "CSV download vs API access for datasets"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "CSV vs API for data", "item": "https://jayjex.github.io/data-vault/guides/csv-vs-api.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is a CSV download an API?", "acceptedAnswer": {"@type": "Answer", "text": "No. A CSV is a file format: one snapshot of rows and columns you download once and open anywhere. An API is a service that answers questions over the network, every call, against data that can change between calls. The same dataset can exist as both."}}, {"@type": "Question", "name": "When is downloading a CSV better than using an API?", "acceptedAnswer": {"@type": "Answer", "text": "When the work is one-time or offline: a single analysis in a spreadsheet or notebook, a dataset you need to keep working without network access, a snapshot you want pinned so numbers cannot shift under you, or a file you will pass to someone else who has no setup for calling APIs. If you would query the data once, download it."}}, {"@type": "Question", "name": "Can I use both CSV and API access on the same dataset?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, and it is the practical setup for most data work. On Data Vault, every paid pack ships as a CSV zip you keep offline, and the free dataset-mcp server queries those same datasets with filters and paging, so you can grab the full file when you need everything and call the query layer when you need a slice."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>CSV download vs API access: which one your data task needs</h1>
+  <p class="byline">Published 2026-09-09. Includes real output from the <a href="https://github.com/jayjex/dataset-mcp" rel="noopener">dataset-mcp</a> server, September 2026, v1.1.0.</p>
+
+  <section aria-label="The decision in one table">
+    <h2>The decision in one table</h2>
+    <p>People frame CSV download vs API access as a technology argument. It is a workflow question. Count how many times you will touch the data, and whether the answer changes between touches.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="CSV vs API decision table"><table><thead><tr><th scope="col">Your situation</th><th scope="col">Better fit</th><th scope="col">Why</th></tr></thead><tbody>
+      <tr><td>One-time analysis in Excel, Sheets, or a notebook</td><td>CSV download</td><td>You open the file and start. No auth, no rate limits, no client code.</td></tr>
+      <tr><td>Work happens offline or on a plane</td><td>CSV download</td><td>The whole dataset sits on your disk. Queries need the network up.</td></tr>
+      <tr><td>You need a pinned snapshot for citations or audits</td><td>CSV download</td><td>A file never silently changes. An API can return different numbers tomorrow.</td></tr>
+      <tr><td>You will hand the data to someone else</td><td>CSV download</td><td>Anyone can open a CSV. The recipient may have no way to call your API.</td></tr>
+      <tr><td>Same filter, run every day or every hour</td><td>API or query layer</td><td>One call replaces re-downloading and re-filtering the whole file each time.</td></tr>
+      <tr><td>You need a small slice of a huge file</td><td>API or query layer</td><td>Filter server-side and pull 50 rows instead of 500 MB.</td></tr>
+      <tr><td>An app, script, or AI agent reads the data</td><td>API or query layer</td><td>Code wants a question-and-answer loop, not a file to parse upfront.</td></tr>
+      <tr><td>Data updates and your output must track it</td><td>API or query layer</td><td>Each call sees the current version. A downloaded CSV ages the day you save it.</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section aria-label="When a CSV download is enough">
+    <h2>When a CSV download is enough</h2>
+    <p>A CSV is a plain text table: one header row, then rows of comma-separated values. Every spreadsheet, every stats package, every language reads it. That portability is the whole case.</p>
+    <p>Download wins when the job is bounded. You are computing rent benchmarks for one metro, backtesting a sports model against a season that already happened, or cleaning columns once and saving the result. The dataset is a fixed input. Pulling it through an API in 100-row pages would add auth handling, pagination code, and retry logic to a task that needs none of that.</p>
+    <p>A downloaded file is also a pinned snapshot. If your report cites the numbers, a file with a checksum proves which numbers you used. Against a live API, you would have to log every response to get the same guarantee.</p>
+    <p>The cost shows up at scale. To filter, you scan the whole file on your machine. To refresh, you re-download. And a 500 MB CSV in a repo is a problem for git, for email, and for anyone on a slow connection.</p>
+  </section>
+
+  <section aria-label="When a query layer or API wins">
+    <h2>When a query layer or API wins</h2>
+    <p>An API flips the direction. Instead of moving the whole dataset to your machine, you send a question and the service answers. The general pattern (REST endpoints, an SQL connection, or an MCP tool server) matters less than the shape: ask, get rows back.</p>
+    <p>Three situations pay for that round trip. First, repeat filtering: pulling yesterday's transactions every morning is one call, not a fresh 50,000-row download. Second, size mismatch: when you need 200 rows out of a million, transferring and parsing the million is waste you pay in time and RAM. Third, programmatic consumers: an app backend, a cron job, or an AI agent wants to ask for exactly what it needs at the moment it needs it, with no prior copy to keep in sync.</p>
+    <p>AI agents are the newest member of that group. An agent with a query tool can look up a value mid-task, decide it needs another slice, and ask again. Handing the same agent a CSV means guessing at the start what it will need later.</p>
+    <p>The tradeoffs: you depend on the service being up, you write more code for the first call, and responses can change without notice unless the provider versions and documents them.</p>
+  </section>
+
+  <section aria-label="A real example with both">
+    <h2>A real example: same dataset, both paths</h2>
+    <p>The HUD fair market rent pack on this site ships as a 51,895-row ZIP-level CSV (plus county and state files) in the <a href="../datasets/hud-fmr-2026.html">paid pack</a>. The same dataset also answers queries over MCP, free, through <a href="https://github.com/jayjex/dataset-mcp" rel="noopener">dataset-mcp</a>.</p>
+    <p>The API path, filtering for Texas 2-bedroom rents:</p>
+    <pre><code>query_dataset(
+  "hud-fmr-2026",
+  {
+    "where": [{ "column": "state", "op": "=", "value": "TX" }],
+    "columns": ["zip", "area_name", "fmr_2br"],
+    "limit": 5
+  }
+)</code></pre>
+    <p>The filter matched 3,247 of 51,895 rows and returned the first 5 in 367ms on a cold call, 265ms from cache after that. Six percent of the file crossed the wire, in a form an agent can use directly.</p>
+    <p>The CSV path earns its keep on a different task. Computing a county-level rent summary for all 50 states means reading every row anyway, so the full zip is the right buy: download once, work offline, keep the file as the cited version.</p>
+  </section>
+
+  <section aria-label="Using both together">
+    <h2>You do not have to pick a side</h2>
+    <p>Most data workflows end up using both, and the setup here is built that way. The <a href="../datasets/">catalog</a> ships full packs as CSV zips you keep offline, pinned and checksummed. The free <a href="../agents/mcp-dataset-server.html">MCP dataset server</a> runs the query layer over those same datasets, with filters, column selection, paging, and a <code>get_stats</code> tool, no download needed to try it.</p>
+    <p>A working pattern: explore a dataset with MCP queries until you know it is the right one, then buy the pack once you want the full file, offline copy, and dictionary. Or the reverse: bought the pack, but your agent still queries through MCP so it does not have to hold the file in context.</p>
+    <p>Ready to try the query side? The <a href="../agents/">For agents</a> page covers setup, and the <a href="hud-rent-data-explained.html">HUD rent data guide</a> walks a full worked example.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>Is a CSV download an API?</h3>
+    <p>No. A CSV is a file format: one snapshot of rows and columns you download once and open anywhere. An API is a service that answers questions over the network, every call, against data that can change between calls. The same dataset can exist as both.</p>
+    <h3>When is downloading a CSV better than using an API?</h3>
+    <p>When the work is one-time or offline: a single analysis in a spreadsheet or notebook, a dataset you need without network access, a snapshot pinned so numbers cannot shift under you, or a file you will pass to someone with no setup for calling APIs. If you would query the data once, download it.</p>
+    <h3>Can I use both CSV and API access on the same dataset?</h3>
+    <p>Yes, and it is the practical setup for most data work. On Data Vault, every paid pack ships as a CSV zip you keep offline, and the free dataset-mcp server queries those same datasets with filters and paging. Grab the full file when you need everything, call the query layer when you need a slice.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

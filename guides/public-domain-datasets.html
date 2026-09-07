@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Public Domain Datasets: Licenses, Commercial Use, Credit Lines | Data Vault</title>
+<meta name="description" content="Which datasets are public domain and which need attribution: HUD rent data is US government public domain, nflverse and Inside Airbnb are CC BY 4.0. License table, commercial use, and the exact credit lines, verified against the source files.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/public-domain-datasets.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Public Domain Datasets: Licenses, Commercial Use, Credit Lines">
+<meta property="og:description" content="HUD rent data is public domain, nflverse and Inside Airbnb are CC BY 4.0. License table, commercial use, and the exact credit lines, verified against the source files.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/public-domain-datasets.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Public Domain Datasets: Licenses, Commercial Use, Credit Lines", "description": "Which datasets are public domain and which need attribution: HUD rent data is US government public domain, nflverse and Inside Airbnb are CC BY 4.0. License table, commercial use, and the exact credit lines, verified against the source files.", "datePublished": "2026-09-09", "dateModified": "2026-09-09", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/public-domain-datasets.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}, "mentions": [{"@type": "Dataset", "name": "NFL Games & Betting Lines 1999-2026", "url": "https://jayjex.github.io/data-vault/datasets/nfl-games.html"}, {"@type": "Dataset", "name": "Airbnb Listings, 6 US Cities", "url": "https://jayjex.github.io/data-vault/datasets/airbnb-six-cities.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Public domain datasets", "item": "https://jayjex.github.io/data-vault/guides/public-domain-datasets.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can I use public domain datasets commercially?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Public domain means no copyright conditions: no credit line, no permission step, no restriction on commercial work. HUD's FY2026 Fair Market Rent data is US government data, so you can ship the rows in a paid product or a client deliverable as they are. CC BY 4.0 sources like nflverse and Inside Airbnb also allow commercial use, with one condition: keep the credit line."}}, {"@type": "Question", "name": "Do I have to credit public domain data?", "acceptedAnswer": {"@type": "Answer", "text": "No license requires credit for public domain data. We still note the HUD source on our pack pages because provenance makes data easier to trust. The CC BY 4.0 packs are different: crediting nflverse with 'Data from nflverse, CC BY 4.0' and Inside Airbnb with 'Data by Inside Airbnb, InsideAirbnb.com, CC BY 4.0' is part of the license terms."}}, {"@type": "Question", "name": "Can I redistribute public domain datasets?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Public domain rows can be republished, bundled into a product, or shared as-is with no permission step. Redistribution under CC BY 4.0 also works as long as the credit line travels with the data. Our own packs, like the Superteam Earn listings and the scraper scripts, carry pack licenses instead: personal and commercial use allowed, reselling the files as-is not allowed."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Public domain datasets: what you can copy, sell, and redistribute</h1>
+  <p class="byline">Published 2026-09-09. Every license fact below is checked against the source files and the ATTRIBUTION.txt notes that ship with our packs, dated 2026-09-06 or the snapshot dates given.</p>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>Public domain datasets are the ones with no license conditions: no credit line, no permission step, no restriction on commercial work. US government data is the biggest example, and our <a href="../datasets/hud-fmr-2026.html">HUD Fair Market Rents FY2026 pack</a> is built entirely from it. The other common case is CC BY 4.0, which allows everything public domain allows except one thing: the credit line has to stay. nflverse and Inside Airbnb publish under that license. This page maps both cases across the packs we sell, with the exact credit strings, so you know where you stand before you build on the rows.</p>
+    <p>Why this matters: downloading a file is easy, finding out halfway through a project that you cannot ship it is expensive. The fix takes five minutes of reading before the first import.</p>
+  </section>
+
+  <section aria-label="Three checks before you reuse a dataset">
+    <h2>Three checks before you reuse a dataset</h2>
+    <p><b>Redistribution rights.</b> Can you copy the rows into a product, a repo, or a client deliverable? A license that allows personal analysis but not redistribution rules out most commercial uses. This is the check that decides whether the dataset can ship at all.</p>
+    <p><b>The exact credit string.</b> If the license requires attribution, it usually specifies what the credit should say. Vague credit like "source: internet" does not satisfy a CC BY notice. Both strings we ship are quoted verbatim in the table below, so you can paste them into a README or footer as-is.</p>
+    <p><b>What the license does not cover.</b> Licenses cover data, not trademarks or personal data. Our NFL pack carries the note that team names are factual data but logos and league marks are excluded. Our Airbnb pack excludes host names, IDs, and exact addresses by design, and rounds coordinates to 4 decimal places. A clean data license never wipes those limits.</p>
+  </section>
+
+  <section aria-label="Public domain vs CC BY 4.0 vs CC0">
+    <h2>Public domain, CC BY 4.0, and CC0 in practice</h2>
+    <p><b>Public domain.</b> Works of the US federal government, including HUD's published rent data, carry no copyright. You can copy the rows, sell products built on them, and republish them without asking anyone and without a credit line. Adding a source note is still good practice because it tells the next person where the numbers came from.</p>
+    <p><b>CC BY 4.0.</b> Use for any purpose, including commercial, on one condition: attribution. The license text at <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">creativecommons.org</a> sets the format; in practice a credit line with the source name and license, kept wherever the data appears, does the job. Derivative tables computed from the source carry the same license, which is why our derived NFL and Airbnb tables inherit it.</p>
+    <p><b>CC0.</b> A license that dedicates a work to the public domain, common in open data projects. Our <a href="free-sports-data-csv.html">free sports data review</a> verified openfootball's soccer results as CC0: no credit required, commercial use fine.</p>
+  </section>
+
+  <section aria-label="License table for the packs">
+    <h2>The packs, license by license</h2>
+    <p>One row per pack. The CC BY strings come from the ATTRIBUTION.txt included with each purchase, quoted exactly as the sources require them.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Dataset license table"><table><thead><tr><th scope="col">Dataset</th><th scope="col">Source</th><th scope="col">License</th><th scope="col">Commercial use</th><th scope="col">Credit required</th><th scope="col">Credit line</th></tr></thead><tbody>
+      <tr><td><a href="../datasets/hud-fmr-2026.html">HUD Fair Market Rents FY2026</a></td><td>US Department of Housing and Urban Development</td><td>Public domain (US government data)</td><td>Yes, no conditions</td><td>No</td><td>none required; we note the source anyway</td></tr>
+      <tr><td><a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026</a></td><td>nflverse</td><td>CC BY 4.0</td><td>Yes, with credit</td><td>Yes</td><td>"Data from nflverse, CC BY 4.0"</td></tr>
+      <tr><td><a href="../datasets/airbnb-six-cities.html">Airbnb Listings, 6 US Cities</a></td><td>Inside Airbnb</td><td>CC BY 4.0</td><td>Yes, with credit</td><td>Yes</td><td>"Data by Inside Airbnb, InsideAirbnb.com, CC BY 4.0"</td></tr>
+      <tr><td><a href="../datasets/earn-bounties.html">Superteam Earn Live Listings</a></td><td>Collected from the live Earn API</td><td>Pack license</td><td>Personal and commercial use</td><td>No</td><td>reselling the files as-is not allowed</td></tr>
+      <tr><td><a href="../datasets/scraper-pack.html">Web Scraping Script Pack</a></td><td>Our own Playwright templates</td><td>Pack license</td><td>Personal and commercial use</td><td>No</td><td>no redistribution as-is</td></tr>
+      <tr><td><a href="../datasets/printable-engineering-bundle.html">Printable Engineering Bundle</a></td><td>Our own templates</td><td>Pack license</td><td>Personal and commercial use</td><td>No</td><td>no reselling the pack as-is or with minor changes</td></tr>
+    </tbody></table></div>
+    <p>Read the table as two groups. The top three rows are datasets collected from third-party sources, so their licenses come from those sources. The bottom three are packs we produced ourselves, sold under per-purchase licenses that allow use in your own projects but not reselling the files as the product.</p>
+  </section>
+
+  <section aria-label="What the credit line looks like">
+    <h2>What the credit line looks like in practice</h2>
+    <p>For the <a href="../datasets/nfl-games.html">NFL pack</a>, republishing the data requires this line: "Data from nflverse, CC BY 4.0". For the <a href="../datasets/airbnb-six-cities.html">Airbnb pack</a>: "Data by Inside Airbnb, InsideAirbnb.com, CC BY 4.0". A README, a footer, or a dataset page all work as the place, as long as the line stays with the data.</p>
+    <p>The HUD pack needs nothing. If you want the provenance note anyway, our pages say: Source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release. US government data, public domain.</p>
+    <p>One more practical point: the ATTRIBUTION.txt in each pack lists the source URLs and download dates, so a credit line can link back to the original release if you want to go beyond the minimum. Our <a href="how-we-sell-public-data.html">pipeline write-up</a> shows where the license check sits in that process.</p>
+  </section>
+
+  <section aria-label="Scope note">
+    <h2>Where to read the full terms</h2>
+    <p>This page describes the licenses the way the sources state them. It is general information, not legal advice. The full text lives in three places: the CC BY 4.0 legal code at <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">creativecommons.org</a>, the terms published with each HUD release on huduser.gov, and the pack licenses in the ATTRIBUTION.txt that ships with every purchase.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>License questions</h2>
+    <dl>
+      <dt>Can I use public domain datasets commercially?</dt>
+      <dd>Yes. Public domain means no copyright conditions: no credit line, no permission step, no restriction on commercial work. HUD's FY2026 Fair Market Rent data is US government data, so you can ship the rows in a paid product or a client deliverable as they are. CC BY 4.0 sources like nflverse and Inside Airbnb also allow commercial use, with one condition: keep the credit line.</dd>
+      <dt>Do I have to credit public domain data?</dt>
+      <dd>No license requires credit for public domain data. We still note the HUD source on our pack pages because provenance makes data easier to trust. The CC BY 4.0 packs are different: crediting nflverse with "Data from nflverse, CC BY 4.0" and Inside Airbnb with "Data by Inside Airbnb, InsideAirbnb.com, CC BY 4.0" is part of the license terms.</dd>
+      <dt>Can I redistribute public domain datasets?</dt>
+      <dd>Yes. Public domain rows can be republished, bundled into a product, or shared as-is with no permission step. Redistribution under CC BY 4.0 also works as long as the credit line travels with the data. Our own packs, like the Superteam Earn listings and the scraper scripts, carry pack licenses instead: personal and commercial use allowed, reselling the files as-is not allowed.</dd>
+    </dl>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

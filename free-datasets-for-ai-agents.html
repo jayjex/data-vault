@@ -46,7 +46,7 @@
 <span class="cm"># 3,247 Texas rows matched, returns zip, area_name, fmr_0br..fmr_4br</span></pre>
     <p><strong>Plain HTTP.</strong> Every dataset exposes a sample endpoint an agent can fetch directly. <code>sample.json</code> returns the schema and the first rows, <code>sample.csv</code> returns the same rows as CSV:</p>
 <pre>curl -s https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.json | jq '.columns, .records[0]'</pre>
-    <p>The machine-readable index of all five lives in <a href="catalog.json">catalog.json</a>, and <a href="agents/">the agent docs</a> cover the endpoints, a Python example, and the MCP config for Claude Desktop. Want more than the endpoints? The <a href="agents/free-agent-tools.html">free tools for AI agents</a> roundup adds the registry and docs links we check ourselves.</p>
+    <p>The machine-readable index of all five lives in <a href="catalog.json">catalog.json</a>, and <a href="agents/">the agent docs</a> cover the endpoints, a Python example, and the MCP config for Claude Desktop. Deciding between grabbing the file and querying it? <a href="guides/csv-vs-api.html">CSV vs API for data</a> gives the decision table. Want more than the endpoints? The <a href="agents/free-agent-tools.html">free tools for AI agents</a> roundup adds the registry and docs links we check ourselves.</p>
   </section>
 
   <section aria-label="Dataset list">

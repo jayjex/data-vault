@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD FMR vs CPI Rent: Two Rent Numbers That Answer Different Questions | Data Vault</title>
+<meta name="description" content="CPI rent data vs HUD FMR: the CPI rent index rose 2.9 percent over the 12 months ending July 2026, while the FY2026 FMR median sits at 1,150 dollars. What each number measures, why CPI rent lags the market by 9 to 12 months, and when to use each.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fmr-vs-cpi-rent.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="HUD FMR vs CPI Rent: Two Rent Numbers That Answer Different Questions">
+<meta property="og:description" content="CPI rent data vs HUD FMR: the CPI rent index rose 2.9 percent over the 12 months ending July 2026, while the FY2026 FMR median sits at 1,150 dollars. What each number measures, why CPI rent lags the market by 9 to 12 months, and when to use each.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fmr-vs-cpi-rent.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "HUD FMR vs CPI Rent: Two Rent Numbers That Answer Different Questions", "description": "CPI rent data vs HUD FMR: the CPI rent index rose 2.9 percent over the 12 months ending July 2026, while the FY2026 FMR median sits at 1,150 dollars. What each number measures, why CPI rent lags the market by 9 to 12 months, and when to use each.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fmr-vs-cpi-rent.html", "about": [{"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}, {"@type": "Dataset", "name": "BLS Consumer Price Index, Rent of Primary Residence (CUSR0000SEHA)", "url": "https://data.bls.gov/timeseries/CUSR0000SEHA"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the CPI rent index and where does the 2.9 percent figure come from?", "acceptedAnswer": {"@type": "Answer", "text": "The rent of primary residence index, series CUSR0000SEHA in the Consumer Price Index for All Urban Consumers, tracks what tenants pay in contract rent over time on a 1982-84=100 base. The Bureau of Labor Statistics computes it from its Housing Survey, which collects rents from about 6,000 housing units a month across 75 urban areas, with each sampled unit priced once every six months. In the CPI news release for July 2026, published on August 12, 2026, the index rose 2.9 percent over the 12 months ending July 2026, with a seasonally adjusted monthly increase of 0.3 percent. The same figures appear in the release tables on bls.gov; the public BLS API endpoint applies bot protection and rate limits, so the published release is the dependable citation."}}, {"@type": "Question", "name": "Why does CPI rent lag asking rents by 9 to 12 months?", "acceptedAnswer": {"@type": "Answer", "text": "The CPI rent index is built almost entirely from existing leases. BLS prices each sampled unit once every six months, most tenants sit on 12-month leases, and renewals carry over prior rent levels, so the index at any date blends rents from leases signed across the past year or more. A shift in the asking-rent market takes roughly four quarters to pass through into the measured index, which is the commonly cited 9-to-12-month lag. Asking-rent indexes such as Zillow's ZORI move first, which is why the two series diverge for several quarters whenever the market turns."}}, {"@type": "Question", "name": "Should I use CPI rent or the FMR to escalate a lease or set a benchmark?", "acceptedAnswer": {"@type": "Answer", "text": "Use CPI rent to escalate or deflate: it is a monthly percent-change series with a consistent methodology, so a lease escalation clause, a real-terms comparison, or an inflation adjustment runs on it cleanly. Use the FMR when you need a current dollar level for a specific market or ZIP, which is the case for Housing Choice Voucher payment standards set between 90 and 110 percent of the FMR, and for affordability work. The two do not substitute: one answers how fast rents are growing, the other answers what the benchmark level is in this market."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>HUD FMR vs CPI rent: two rent numbers that answer different questions</h1>
+  <p class="byline">Published 2026-09-10. Sources: BLS Consumer Price Index news release for July 2026, USDL-26-1378, published 2026-08-12, bls.gov, public domain; HUD FY2026 Fair Market Rent release, huduser.gov, public domain. Data Vault is not affiliated with HUD or the Bureau of Labor Statistics. This page covers data and measurement; it is not housing or legal advice.</p>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>One number measures how fast rents are growing. The other measures where the rent benchmark sits in dollars. The CPI rent index, series CUSR0000SEHA, is a percent-change series: in the BLS release for July 2026 it rose 2.9 percent over the 12 months ending July 2026. The HUD Fair Market Rent is a dollar level: the FY2026 national 2BR median runs 1,150 dollars across the 51,895 ZIP rows in the file. Units, timing, and survey design all differ, so the two numbers never line up row for row and are not meant to.</p>
+    <p>The timing gap is the part that trips people up. CPI rent is measured monthly but reflects existing leases, so a market shift takes about 9 to 12 months to show up in the index. The FMR updates once a fiscal year from a multi-year ACS file, so it is fresher in coverage but stale in vintage by the time it ships. If you need to know what rents did last month in your market, neither number gives it to you directly.</p>
+    <p>Sibling comparisons on this site cover the other two angles: the census median in <a href="hud-fmr-vs-census-rent.html">HUD FMR vs census rent</a> and asking rents in <a href="fmr-vs-rent-actuals.html">FMR vs actual rent</a>. The index on this page is the third: rent as inflation statisticians measure it.</p>
+  </section>
+
+  <section aria-label="What each number measures">
+    <h2>What each number measures</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="CPI rent index vs HUD FMR comparison"><table><thead><tr><th scope="col"></th><th scope="col">CPI rent of primary residence (CUSR0000SEHA)</th><th scope="col">HUD FMR (FY2026)</th></tr></thead><tbody>
+      <tr><td>Who publishes it</td><td>Bureau of Labor Statistics, monthly</td><td>HUD, once each fiscal year</td></tr>
+      <tr><td>What it reports</td><td>Percent change in tenant-paid rent over time, index level on a 1982-84=100 base</td><td>Dollar level: 40th percentile gross rent for a market area and bedroom count</td></tr>
+      <tr><td>Rent basis</td><td>Contract rent, including any utilities the lease bundles; utilities billed separately are excluded</td><td>Gross rent: contract rent plus a utility allowance</td></tr>
+      <tr><td>Lease coverage</td><td>Existing leases, renewals included; each sampled unit priced once every six months</td><td>Tuned toward recent movers; units first occupied as new construction in the last two years excluded</td></tr>
+      <tr><td>Survey base</td><td>BLS Housing Survey: about 6,000 housing units a month across 75 urban areas</td><td>American Community Survey multi-year file, re-priced to the fiscal year with an inflation adjustment</td></tr>
+      <tr><td>Geography</td><td>US city average plus regional and 23 selected metro indexes</td><td>Every HUD Metro FMR Area, and ZIP-level SAFMRs where designated</td></tr>
+      <tr><td>Primary use</td><td>Inflation measurement, lease escalators, real-terms comparisons</td><td>Voucher payment standards, program eligibility, per-market rent benchmarks</td></tr>
+    </tbody></table></div>
+    <p>Two details in that table cause most of the confusion. First, the rent bases differ: CPI rent is contract rent, while the FMR includes a utility allowance, so the FMR sits higher on the same unit before anything else. Second, the survey bases differ: BLS re-interviews a rotating panel of tenants on their existing leases, while HUD draws from the ACS, which asks about housing costs across all renter households and then tunes toward recent movers.</p>
+  </section>
+
+  <section aria-label="The latest numbers">
+    <h2>The latest numbers, side by side</h2>
+    <p>The BLS release for July 2026 went out on August 12, 2026. Rent of primary residence rose 2.9 percent over the 12 months ending July 2026, unadjusted, and 0.3 percent in July on a seasonally adjusted basis. Shelter, the broader CPI category that also carries owners' equivalent rent and lodging, rose 3.2 percent over the year. All items rose 3.4 percent.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="CPI July 2026 rent-related percent changes"><table><thead><tr><th scope="col">CPI-U series</th><th scope="col">12 months ending Jul 2026</th><th scope="col">Jul 2026 monthly, seasonally adjusted</th></tr></thead><tbody>
+      <tr><td>Rent of primary residence</td><td>+2.9 percent</td><td>+0.3 percent</td></tr>
+      <tr><td>Shelter</td><td>+3.2 percent</td><td>+0.1 percent</td></tr>
+      <tr><td>Owners' equivalent rent of residences</td><td>+3.2 percent</td><td>+0.3 percent</td></tr>
+      <tr><td>All items</td><td>+3.4 percent</td><td>+0.1 percent</td></tr>
+    </tbody></table></div>
+    <p>The FMR side reports a level, not a change: 1,150 dollars for the national 2BR median in FY2026. The two columns answer different questions, so converting between them is the only way to use both at once. As an illustration of the arithmetic, a market sitting at the 1,150-dollar 2BR median that rents grew at the CPI rent pace of 2.9 percent adds about 33 dollars over a year. That is an illustration of the multiplication, nothing more: the CPI rate is a national average of existing-lease growth, while the FMR level is a 40th-percentile gross-rent figure with its own vintage and adjustment factor, and HUD re-prices the ACS file with its own documented inflation adjustment rather than by applying the CPI rent number.</p>
+    <p>One practical note on pulling the series itself. The public API endpoint at api.bls.gov serves CUSR0000SEHA as JSON, and the same figures publish in the news release tables on bls.gov. The public endpoint applies bot protection and rate limits, so for a citable number the release tables are the dependable route: every figure on this page comes from the July 2026 release, USDL-26-1378, published August 12, 2026. The next CPI release, for August 2026, is scheduled for September 11, 2026.</p>
+  </section>
+
+  <section aria-label="Why CPI rent lags the market">
+    <h2>Why CPI rent lags the market by 9 to 12 months</h2>
+    <p><b>The index is built from existing leases.</b> BLS prices each sampled housing unit once every six months, on a rotation, and asks what the tenant currently pays. Most tenants are mid-lease when the interviewer arrives, and their rent reflects the lease they signed months earlier. At any release date the index blends rents from leases signed across the past year or more, so market-wide asking-rent moves pass through slowly. The commonly cited pass-through runs about 9 to 12 months.</p>
+    <p><b>Renewals freeze the past into the present.</b> A landlord repricing an empty unit to the market affects the index only when that unit re-enters the sample with a new lease, or when other sampled tenants face the same repricing at renewal. In a fast market, the gap between what new listings ask and what existing tenants pay widens, and the CPI rent index sits closer to the second number by construction.</p>
+    <p><b>The FMR has the opposite problem.</b> Its ACS base picks up recent movers quickly, but the file is multi-year and HUD freezes it for a fiscal year with an inflation adjustment. A mid-year market turn lands in neither number on time: CPI rent has not collected it yet, and the FMR has already shipped. Asking-rent indexes, which reprice continuously, move first whenever the market turns; <a href="hud-fmr-vs-zillow-rent.html">HUD FMR vs Zillow rent data</a> shows how far ZORI runs ahead of annual benchmarks, 1,962 against the 1,150 FMR median at the national level.</p>
+  </section>
+
+  <section aria-label="When to use which">
+    <h2>When to use CPI rent data and when to use the FMR</h2>
+    <p><b>Use CPI rent for growth rates and escalations.</b> A lease escalation clause, a real-terms adjustment, or any claim about how fast rents are rising belongs on a percent-change series with a consistent monthly methodology. CPI rent offers a history back to the early 1980s and a published, citable release every month.</p>
+    <p><b>Use the FMR for dollar levels by market.</b> Voucher payment standards sit between 90 and 110 percent of the FMR, and the FMR is the only one of the two that exists per market and per bedroom count. For affordability math or a benchmark in a specific ZIP, the index gives you a national growth rate and nothing local; <a href="hud-payment-standard.html">HUD payment standard</a> walks the program arithmetic.</p>
+    <p><b>Use both to put dollars on an inflation story.</b> Take the CPI rent percent change for the headline, then apply it to the FMR level for the market you care about, and label the result as an estimate. A national growth rate on a 40th-percentile level bounds the answer loosely; the boundary is still tighter than quoting either number alone.</p>
+    <p><b>Do not quote one as the other.</b> "Rents rose 2.9 percent" is a national existing-lease average over a lagging window. "The FMR is 1,150" is a 40th-percentile gross-rent level from an ACS file re-priced to the fiscal year. Mixing the claims in one sentence is the most common error in rent-inflation reporting.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>CPI rent vs FMR questions</h2>
+    <dl>
+      <dt>What is the CPI rent index and where does the 2.9 percent figure come from?</dt>
+      <dd>The rent of primary residence index, series CUSR0000SEHA in the Consumer Price Index for All Urban Consumers, tracks what tenants pay in contract rent over time on a 1982-84=100 base. The Bureau of Labor Statistics computes it from its Housing Survey, which collects rents from about 6,000 housing units a month across 75 urban areas, with each sampled unit priced once every six months. In the CPI news release for July 2026, published on August 12, 2026, the index rose 2.9 percent over the 12 months ending July 2026, with a seasonally adjusted monthly increase of 0.3 percent. The same figures appear in the release tables on bls.gov; the public BLS API endpoint applies bot protection and rate limits, so the published release is the dependable citation.</dd>
+      <dt>Why does CPI rent lag asking rents by 9 to 12 months?</dt>
+      <dd>The CPI rent index is built almost entirely from existing leases. BLS prices each sampled unit once every six months, most tenants sit on 12-month leases, and renewals carry over prior rent levels, so the index at any date blends rents from leases signed across the past year or more. A shift in the asking-rent market takes roughly four quarters to pass through into the measured index, which is the commonly cited 9-to-12-month lag. Asking-rent indexes such as Zillow's ZORI move first, which is why the two series diverge for several quarters whenever the market turns.</dd>
+      <dt>Should I use CPI rent or the FMR to escalate a lease or set a benchmark?</dt>
+      <dd>Use CPI rent to escalate or deflate: it is a monthly percent-change series with a consistent methodology, so a lease escalation clause, a real-terms comparison, or an inflation adjustment runs on it cleanly. Use the FMR when you need a current dollar level for a specific market or ZIP, which is the case for Housing Choice Voucher payment standards set between 90 and 110 percent of the FMR, and for affordability work. The two do not substitute: one answers how fast rents are growing, the other answers what the benchmark level is in this market.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <p>The CPI figures on this page are free on bls.gov: the Consumer Price Index news release and detailed tables publish monthly, and the CUSR0000SEHA series is downloadable without a key from the series page. The FMR side of the comparison downloads free as a 22-row sample to check the schema; the full HUD pack carries all three CSVs (51,895 + 3,229 + 52 rows), the data dictionary, and source checksums.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>Download FMR sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">Get full FMR data</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. FMR source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release, huduser.gov. US government data, public domain. CPI source: US Bureau of Labor Statistics, Consumer Price Index news release for July 2026 (USDL-26-1378, published 2026-08-12) and series CUSR0000SEHA, bls.gov. US government data, public domain. Data Vault is not affiliated with HUD or BLS.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open Data API: Free Sample Endpoints and an MCP Query Layer | Data Vault</title>
+<meta name="description" content="Free open data API access with no key and no signup: raw JSON and CSV endpoints for 6 datasets on GitHub Pages, plus the dataset-mcp server that filters and pages the full files.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/open-data-api-alternative.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Open Data API: Free Sample Endpoints and an MCP Query Layer">
+<meta property="og:description" content="Free open data API access with no key: raw JSON and CSV endpoints for 6 datasets, plus the dataset-mcp server that filters and pages the full files.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/open-data-api-alternative.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Open Data API: Free Sample Endpoints and an MCP Query Layer", "description": "Free open data API access with no key and no signup: raw JSON and CSV endpoints for 6 datasets on GitHub Pages, plus the dataset-mcp server that filters and pages the full files.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/open-data-api-alternative.html", "about": {"@type": "Thing", "name": "open data API access"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Open data API", "item": "https://jayjex.github.io/data-vault/guides/open-data-api-alternative.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is there a free open data API that needs no key?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The sample endpoints on this page are plain GET requests against static files on GitHub Pages, so there is no account, token, or key to manage. The dataset-mcp server adds filtered queries and also needs no key, because it runs on your own machine."}}, {"@type": "Question", "name": "Can an AI agent call these open data endpoints?", "acceptedAnswer": {"@type": "Answer", "text": "Two ways. Raw HTTP: fetch the sample URLs or catalog.json with any HTTP client and parse the JSON or CSV. Native: wire dataset-mcp into Claude Desktop, pi, or another MCP client, and the agent sees list_datasets, get_sample, query_dataset, and get_stats as callable tools with published input schemas."}}, {"@type": "Question", "name": "How is this different from a hosted open data API?", "acceptedAnswer": {"@type": "Answer", "text": "A hosted API runs on someone else's server, with rate limits, tokens, and uptime you do not control. Here the files are static on GitHub Pages and the query layer runs locally, so nothing needs a signup and no quota applies. The trade is scope: static endpoints return whole sample files, and filtering happens through MCP or in your own code."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Open data API: free endpoints plus an MCP query layer</h1>
+  <p class="byline">Published 2026-09-10. Every endpoint below returned HTTP 200 when tested with curl in September 2026.</p>
+
+  <section aria-label="Free open data endpoints">
+    <h2>Free open data endpoints, no key required</h2>
+    <p>An open data API has to clear two checks before anything else: you can call it without registering, and it returns machine-readable rows. The endpoints on this site pass both. They are plain HTTPS GET requests against static files on GitHub Pages, so there is no key, no token, no rate-limit signup, and no client library to install. Point curl, fetch, or a browser at a URL and the data comes back.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Free open data endpoint table"><table><thead><tr><th scope="col">Endpoint</th><th scope="col">Returns</th><th scope="col">Size</th></tr></thead><tbody>
+      <tr><td><a href="https://jayjex.github.io/data-vault/catalog.json">/catalog.json</a></td><td>JSON catalog: slugs, niches, row counts, sample and download URLs for every dataset</td><td>6 entries</td></tr>
+      <tr><td><a href="https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.json">/data/hud-fmr-2026/sample.json</a></td><td>ZIP-level fair market rents, 10 columns from <code>zip</code> to <code>fmr_4br</code></td><td>22 records</td></tr>
+      <tr><td><a href="https://jayjex.github.io/data-vault/data/nfl-games/sample.csv">/data/nfl-games/sample.csv</a></td><td>game-level NFL results with scores and betting lines, 46 columns</td><td>22 rows</td></tr>
+      <tr><td><a href="https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.csv">/data/airbnb-six-cities/sample.csv</a></td><td>listing rows with price, room type, coordinates, 12 columns</td><td>20 rows</td></tr>
+      <tr><td><a href="https://jayjex.github.io/data-vault/data/earn-bounties/sample.json">/data/earn-bounties/sample.json</a></td><td>Superteam Earn bounty cards with reward and deadline fields, 15 columns</td><td>10 records</td></tr>
+      <tr><td><a href="https://jayjex.github.io/data-vault/data/scraper-pack/sample.json">/data/scraper-pack/sample.json</a></td><td>scraping script manifest rows, 2 columns</td><td>10 records</td></tr>
+    </tbody></table></div>
+    <p>Each sample file is a slice of a dataset we maintain and license. The <code>catalog.json</code> response tells you what exists and links everything else, so one request is enough to write an integration against the whole site.</p>
+  </section>
+
+  <section aria-label="Call an endpoint with curl">
+    <h2>Call one with curl</h2>
+    <p>List every dataset slug in the catalog:</p>
+    <pre><code>curl -s https://jayjex.github.io/data-vault/catalog.json | jq -r '.datasets[].slug'</code></pre>
+    <p>That prints <code>nfl-games</code>, <code>hud-fmr-2026</code>, <code>airbnb-six-cities</code>, <code>earn-bounties</code>, <code>scraper-pack</code>, and <code>printable-engineering-bundle</code>. A sample request looks like this:</p>
+    <pre><code>curl -s https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.json</code></pre>
+    <p>The response is one JSON object with <code>slug</code>, <code>name</code>, <code>columns</code>, <code>row_count</code>, and <code>records</code>, so the shape stays predictable across packs. CSV responses open straight in pandas, Sheets, or a database loader. Nothing in the response needs auth handling or a retry wrapper.</p>
+  </section>
+
+  <section aria-label="What static endpoints cannot do">
+    <h2>What static endpoints cannot do</h2>
+    <p>A static file answers one request the same way every time. There is no server-side filter, no pagination, and no aggregate endpoint. The samples are also small on purpose: about 22 rows per pack, cut from full files that hold 51,895 HUD rent rows, 7,548 NFL games, and 90,169 Airbnb listings. That size is right for schema checks, test fixtures, and demos, and too small for analysis.</p>
+    <p>When a project outgrows the samples, the full files ship as CSV zips in the <a href="../datasets/hud-fmr-2026.html">dataset packs</a>, and the same data answers filtered queries through the MCP server below.</p>
+  </section>
+
+  <section aria-label="MCP as the API layer">
+    <h2>MCP as the API layer</h2>
+    <p>For agents, the query side runs through <a href="https://github.com/jayjex/dataset-mcp" rel="noopener">dataset-mcp</a>, an MIT-licensed server that runs locally over stdio and needs no key. It exposes five tools: <code>list_datasets</code>, <code>get_dataset_info</code>, <code>get_sample</code>, <code>query_dataset</code>, and <code>get_stats</code>. The <code>query_dataset</code> tool takes <code>where</code> clauses with <code>=</code>, <code>contains</code>, <code>gt</code>, and <code>lt</code>, picks columns, and pages 100 rows per call through <code>next_offset</code>.</p>
+    <pre><code># one-time sanity check (npm 12+ needs the allow-git flag, npm 10/11 run the plain form)
+npx --allow-git=all -y github:jayjex/dataset-mcp</code></pre>
+    <p>A real call against the HUD pack, filtering Texas two-bedroom rents:</p>
+    <pre><code>query_dataset("hud-fmr-2026", {
+  "where": [{ "column": "state", "op": "=", "value": "TX" }],
+  "columns": ["zip", "area_name", "fmr_2br"],
+  "limit": 5
+})</code></pre>
+    <p>That filter matched 3,247 of 51,895 rows and returned the first 5 in 367ms on a cold call, 265ms from cache after. The install line, client configs, and more captured sessions are in the <a href="../agents/mcp-dataset-server.html">MCP dataset server docs</a>, and the <a href="csv-vs-api.html">CSV vs API decision guide</a> covers when a full download beats queries.</p>
+    <p>Compared with a hosted REST API, MCP moves discovery into the protocol: the client asks the server for tool schemas at startup, so an agent can assemble calls on its own. Humans doing one-off lookups can stay with curl and the endpoints above.</p>
+  </section>
+
+  <section aria-label="Get the full pack">
+    <h2>Get the full pack</h2>
+    <p>The free endpoints cover previews, and the MCP query layer covers filtering. Full packs ship as CSV zips with data dictionaries, source checksums, and per-dataset licenses, built for offline analysis and commercial work.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../tools/sample-data-downloads.html">Browse free samples</a>
+      <a class="btn" href="https://www.getly.store/store/mtmw06l2" rel="noopener">Get the full pack</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Sources: US Department of Housing and Urban Development (huduser.gov), nflverse, Inside Airbnb, superteam.fun. License terms attach per dataset and ship with every pack.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>Is there a free open data API that needs no key?</h3>
+    <p>Yes. The sample endpoints on this page are plain GET requests against static files on GitHub Pages, so there is no account, token, or key to manage. The dataset-mcp server adds filtered queries and also needs no key, because it runs on your own machine.</p>
+    <h3>Can an AI agent call these open data endpoints?</h3>
+    <p>Two ways. Raw HTTP: fetch the sample URLs or catalog.json with any HTTP client and parse the JSON or CSV. Native: wire dataset-mcp into Claude Desktop, pi, or another MCP client, and the agent sees list_datasets, get_sample, query_dataset, and get_stats as callable tools with published input schemas.</p>
+    <h3>How is this different from a hosted open data API?</h3>
+    <p>A hosted API runs on someone else's server, with rate limits, tokens, and uptime you do not control. Here the files are static on GitHub Pages and the query layer runs locally, so nothing needs a signup and no quota applies. The trade is scope: static endpoints return whole sample files, and filtering happens through MCP or in your own code.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

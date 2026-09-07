@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD FMR for Landlords: Section 8 Rent Limits and Voucher Budgets, FY2026 | Data Vault</title>
+<meta name="description" content="What HUD fair market rent means for landlords: how the voucher budget is built from the FMR, how to check your ZIP's FMR in the FY2026 CSV, SAFMR vs metro FMR spreads, and why a Section 8 tenant may not be able to cover rent above the payment standard.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fmr-for-landlords.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="HUD FMR for Landlords: Section 8 Rent Limits and Voucher Budgets, FY2026">
+<meta property="og:description" content="How the voucher budget is built from the FMR, how to check your ZIP's FMR in the FY2026 CSV, SAFMR vs metro FMR spreads, and why a Section 8 tenant may not be able to cover rent above the payment standard.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fmr-for-landlords.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "HUD FMR for Landlords: Section 8 Rent Limits and Voucher Budgets, FY2026", "description": "How the voucher budget is built from the FMR, how to check your ZIP's FMR in the FY2026 CSV, SAFMR vs metro FMR spreads, and why a Section 8 tenant may not be able to cover rent above the payment standard.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fmr-for-landlords.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does HUD set my rent if I accept Section 8 tenants?", "acceptedAnswer": {"@type": "Answer", "text": "No. You set the asking rent and screen the tenant like any other applicant. What HUD sets is the fair market rent, and what the housing agency sets is the payment standard, between 90% and 110% of that FMR. Those two numbers decide how much of your rent the subsidy covers, not what you are allowed to ask. The agency also runs a rent reasonableness check against comparable unassisted units before it approves the lease."}}, {"@type": "Question", "name": "Should I charge the FMR to a voucher tenant?", "acceptedAnswer": {"@type": "Answer", "text": "The FMR is a benchmark, not a price target. The number that matters for the subsidy math is the payment standard, which sits between 90% and 110% of the FMR. Rent at or under the payment standard is covered by the subsidy plus the tenant's regular share. Rent above the payment standard is still possible, but the extra comes out of the tenant's pocket, and at move-in the tenant's total share is capped at 40% of their adjusted monthly income. Pricing near the payment standard keeps the largest pool of voucher tenants able to sign the lease."}}, {"@type": "Question", "name": "Which FMR applies to my unit, the metro FMR or the ZIP-level one?", "acceptedAnswer": {"@type": "Answer", "text": "Look up your ZIP in HUD's FY2026 ZIP-level file. In designated metros, HUD sets Small Area FMRs at the ZIP level, and agencies there may set the payment standard by ZIP. In the Abilene, TX sample, ZIP 79562 carries a 2-bedroom FMR of 1,900 while most rows in the same metro sit at 1,090. If your ZIP's row repeats the metro-wide values, your area has no designated SAFMR and the metro FMR is the number the payment standard band is measured from."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>HUD FMR for landlords: what the fair market rent means when your tenant has a voucher</h1>
+  <p class="byline">FY2026 edition, published 2026-09-10. Data source: HUD, public domain. Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <section aria-label="Why the FMR matters to landlords">
+    <h2>Why the FMR matters to landlords</h2>
+    <p>If you rent only to tenants paying out of their own paychecks, the FMR is background noise: a government rent statistic with no line in your ledger. The moment a Section 8 applicant walks in, the same number becomes part of your revenue math. A Housing Choice Voucher household receives a subsidy from its local public housing agency (PHA), and the size of that subsidy is set from the FMR in your area, not from your asking rent.</p>
+    <p>The chain runs like this. HUD publishes the fair market rent for your area each fiscal year. The agency picks a payment standard between 90% and 110% of that FMR for each bedroom size. The tenant pays roughly 30% of their adjusted income toward rent, and the voucher covers the rest of the rent up to the payment standard. So the combined budget your unit competes for, tenant share plus subsidy, is built on two numbers you do not control: HUD's FMR and the agency's payment standard. How the agency picks its point inside the band is explained in <a href="hud-payment-standard.html">HUD payment standard: the 90%-110% band</a>.</p>
+    <p>Accepting vouchers is a landlord's own call. The upside is a subsidy stream paid on time by an agency and a tenant pool that stays large precisely because their budget tracks the local FMR. The catch is that their budget has a ceiling tied to that FMR, and the next sections are about where that ceiling sits and what happens above it.</p>
+  </section>
+
+  <section aria-label="Check the FMR for your ZIP">
+    <h2>Check the FMR for your ZIP</h2>
+    <p>HUD publishes a ZIP-level file every fiscal year. The <a href="../datasets/hud-fmr-2026.html">HUD FMR FY2026 pack</a> carries it as fmr-by-zip-2026.csv, 51,895 rows, one per ZIP, with monthly FMRs for 0BR through 4BR. Filtering it on the zip column answers the question a landlord actually has: what is the voucher budget near this address? The <a href="hud-fmr-by-zip.html">FMR by ZIP guide</a> covers the full column list and the MCP query route; a spreadsheet filter gets you the same row.</p>
+    <p>One real row from the file, ZIP 79562 in Abilene, TX, returned verbatim:</p>
+    <pre><code>79562,METRO10180M10180,metro,"Abilene, TX MSA",TX,1500,1520,1900,2460,2960</code></pre>
+    <p>Same row in columns, monthly dollars:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="FMR for ZIP 79562"><table><thead><tr><th scope="col">zip</th><th scope="col">area_name</th><th scope="col">fmr_0br</th><th scope="col">fmr_1br</th><th scope="col">fmr_2br</th><th scope="col">fmr_3br</th><th scope="col">fmr_4br</th></tr></thead><tbody>
+      <tr><td>79562</td><td>Abilene, TX MSA</td><td>1500</td><td>1520</td><td>1900</td><td>2460</td><td>2960</td></tr>
+    </tbody></table></div>
+    <p>A landlord with a 2-bedroom unit in 79562 now knows the FY2026 FMR at the center of the voucher math is 1,900 a month. Whether the local payment standard runs at 90% or 110% of that figure decides whether the combined budget lands between 1,710 and 2,090. Every other ZIP works the same way: one filter, one row, five numbers. The free 22-row <a href="../data/hud-fmr-2026/sample.csv" download>sample CSV</a> shows the schema before anyone buys the full file.</p>
+  </section>
+
+  <section aria-label="SAFMR vs metro FMR for landlords">
+    <h2>SAFMR vs metro FMR: the spread is the money</h2>
+    <p>ZIP rows in the file fall into two groups. Some repeat their metro-wide values, meaning the area has no designated Small Area FMR (SAFMR) and one FMR covers the whole metro. Others carry their own ZIP-level number. The designation mechanics live in <a href="hud-fmr-small-areas.html">HUD small area FMR</a>; for a landlord, what matters is how far the two can drift apart inside one metro.</p>
+    <p>Back to Abilene. Most rows in the metro, such as ZIP 79504, sit at a 2-bedroom FMR of 1,090. ZIP 79562 sits at 1,900. Same metro, same HUD area code, 810 dollars apart on the benchmark that feeds the voucher budget. A landlord holding identical units across that line faces two different tenant budgets for the same product. In SAFMR metros, agencies can set the payment standard by ZIP, so the unit in the high-FMR ZIP can be served at its own level rather than the metro's; in a metro-wide system, the unit in the expensive ZIP gets measured against a benchmark built mostly from cheaper ZIPs elsewhere.</p>
+    <p>Check which group your ZIP falls in before you price anything against a voucher. If your row equals its metro's base values, the metro FMR is your benchmark. If it stands alone, your ZIP's own number is the one to work from. How far your ZIP sits from its metro base is one filter away in the CSV.</p>
+  </section>
+
+  <section aria-label="The payment standard band">
+    <h2>The 90%-110% band, from a landlord's seat</h2>
+    <p>Take your FMR and multiply by 0.90 and 1.10. Those two values are the floor and ceiling of the payment standard band, and the agency's payment standard lives somewhere inside unless HUD approved an exception. The subsidy math runs off the payment standard, so the band is the realistic range of what the voucher portion can reach. The full arithmetic sits in <a href="hud-payment-standard.html">the payment standard guide</a>, and the <a href="hud-fair-market-rent-calculator.html">FMR calculator guide</a> runs the numbers for any area.</p>
+    <p>Why should a landlord care where in the band the agency set its number? Because it changes the size of the check. An agency near the 110% ceiling gives voucher tenants a budget 20% above an agency near the 90% floor, off the same FMR. That decision belongs to the PHA, it is published in the agency's schedule, and it moves without HUD republishing anything. Knowing the band tells you the range; the agency's schedule tells you the point.</p>
+  </section>
+
+  <section aria-label="Why a tenant may not cover over-FMR rent">
+    <h2>Why the tenant may not be able to cover rent above the FMR</h2>
+    <p>Say your asking rent lands above the payment standard. The lease can still work on paper: the voucher pays the payment standard minus the tenant's share, and the tenant pays the rest out of pocket. Here is the part that kills deals: voucher households qualify because their income is low, and the tenant's regular share is already set at roughly 30% of adjusted income. The extra on top of the payment standard competes against a grocery budget, not a second income stream.</p>
+    <p>Federal rules add a hard stop at move-in. At lease-up, the tenant's total share, base share plus any extra above the payment standard, cannot exceed 40% of their adjusted monthly income. A family with a small adjusted income burns through that headroom fast, so a rent far above the payment standard fails not because the agency disapproves of you but because the arithmetic leaves the tenant with an impossible out-of-pocket number.</p>
+    <p>For pricing, that reads as follows. Rent at or under the payment standard: the largest possible voucher tenant pool, because nobody has to stretch. Rent somewhat above: workable for families with enough income headroom, unworkable for the rest, and worth checking the 40% math before counting on it. Rent far above the payment standard in a metro-wide system, like a unit benchmarked at 79562's 1,900 while the metro payment standard tracks 1,090, is a narrow sale even when the unit deserves it. This page documents the data; the PHA and its rent reasonableness check decide the specific lease.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FMR for landlords: questions</h2>
+    <dl>
+      <dt>Does HUD set my rent if I accept Section 8 tenants?</dt>
+      <dd>No. You set the asking rent and screen the tenant like any other applicant. What HUD sets is the fair market rent, and what the housing agency sets is the payment standard, between 90% and 110% of that FMR. Those two numbers decide how much of your rent the subsidy covers, not what you are allowed to ask. The agency also runs a rent reasonableness check against comparable unassisted units before it approves the lease.</dd>
+      <dt>Should I charge the FMR to a voucher tenant?</dt>
+      <dd>The FMR is a benchmark, not a price target. The number that matters for the subsidy math is the payment standard, which sits between 90% and 110% of the FMR. Rent at or under the payment standard is covered by the subsidy plus the tenant's regular share. Rent above the payment standard is still possible, but the extra comes out of the tenant's pocket, and at move-in the tenant's total share is capped at 40% of their adjusted monthly income. Pricing near the payment standard keeps the largest pool of voucher tenants able to sign the lease.</dd>
+      <dt>Which FMR applies to my unit, the metro FMR or the ZIP-level one?</dt>
+      <dd>Look up your ZIP in HUD's FY2026 ZIP-level file. In designated metros, HUD sets Small Area FMRs at the ZIP level, and agencies there may set the payment standard by ZIP. In the Abilene, TX sample, ZIP 79562 carries a 2-bedroom FMR of 1,900 while most rows in the same metro sit at 1,090. If your ZIP's row repeats the metro-wide values, your area has no designated SAFMR and the metro FMR is the number the payment standard band is measured from.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <p>The free 22-row sample shows the schema. The full pack carries all 51,895 ZIP rows plus the county rollup (3,229 rows), state summary (52 rows), the data dictionary, and source checksums.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">Get the full dataset</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release, huduser.gov. US government data, public domain. Data Vault is not affiliated with HUD.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

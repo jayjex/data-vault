@@ -38,7 +38,6 @@
    ],
    "full_data": {
     "status": "available",
-    "price_usd": 29,
     "url": "https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h"
    },
    "license": "CC BY 4.0 (game data from nflverse, CC BY 4.0)",
@@ -76,7 +75,6 @@
    ],
    "full_data": {
     "status": "available",
-    "price_usd": 24,
     "url": "https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm"
    },
    "license": "Public domain (US government data)",
@@ -114,7 +112,6 @@
    ],
    "full_data": {
     "status": "available",
-    "price_usd": 39,
     "url": "https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtpkvxdf"
    },
    "license": "CC BY 4.0 (listing data from Inside Airbnb, CC BY 4.0)",
@@ -145,7 +142,6 @@
    "extra_files": [],
    "full_data": {
     "status": "available",
-    "price_usd": 49,
     "url": "https://www.getly.store/product/superteam-earn-28-live-listings-dataset-186-reverse-engineered-api-routes-mtmy11ny"
    },
    "license": "Personal + commercial use, no resale of files as-is",
@@ -177,7 +173,6 @@
    "extra_files": [],
    "full_data": {
     "status": "available",
-    "price_usd": 15,
     "url": "https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtn8em7k"
    },
    "license": "Personal + commercial use, no redistribution",
@@ -213,9 +208,8 @@
    },
    "full_data": {
     "status": "available",
-    "price_usd": 9,
     "url": "https://www.getly.store/store/matchbook-labs-mtmw06l2",
-    "note": "One-time $9. Direct product link added after the Getly publish lands (gate: canonical URL 200 first)."
+    "note": "One-time purchase. Direct product link added after the Getly publish lands (gate: canonical URL 200 first)."
    },
    "license": "Personal and commercial use. No reselling the pack as-is or with minor changes.",
    "page": "https://jayjex.github.io/data-vault/datasets/printable-engineering-bundle.html"

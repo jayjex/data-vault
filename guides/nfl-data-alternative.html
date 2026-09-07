@@ -20,7 +20,7 @@
 </script>
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
-{"@type": "Question", "name": "Is NFL historical game data free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. nflverse publishes game results, schedules, and betting lines under CC BY 4.0 at no cost. The Data Vault pack adds preprocessing on top of those same rows; its 22-row sample CSV and the full 27-row season-summaries.csv are also free downloads, and MCP queries against the full file cost nothing. The complete pack is a one-time $29."}},
+{"@type": "Question", "name": "Is NFL historical game data free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. nflverse publishes game results, schedules, and betting lines under CC BY 4.0 at no cost. The Data Vault pack adds preprocessing on top of those same rows; its 22-row sample CSV and the full 27-row season-summaries.csv are also free downloads, and MCP queries against the full file cost nothing. The complete pack is a one-time purchase."}},
 {"@type": "Question", "name": "What license applies to NFL data from nflverse and this pack?", "acceptedAnswer": {"@type": "Answer", "text": "CC BY 4.0. nflverse-data is released under Creative Commons Attribution 4.0, and the derived tables in the pack carry the same terms. If you publish work built on the data, credit it as: Data from nflverse, CC BY 4.0."}},
 {"@type": "Question", "name": "Can I see a sample of the data before buying?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. A 22-row games sample with 14 of the 46 columns and the complete season-summaries.csv (27 rows, one per season 1999-2025) download free with no signup. The dataset-mcp server also queries the full 7,548-row file for free, 100 rows per call."}}]}
 </script>
@@ -43,7 +43,7 @@
   <p class="byline">Comparison of <a href="https://github.com/nflverse/nflverse-data" rel="noopener">nflverse-data</a> and the <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026</a> pack · snapshot 2026-09-06 · browsing for other sports? Read <a href="free-sports-data-csv.html">free sports data CSV: verified sources and licenses</a>.</p>
 
   <section aria-label="Quick answer">
-    <p>For free NFL historical data, start with nflverse. The project publishes every game since 1999 as CSV under CC BY 4.0, and it costs nothing to download or use with attribution. The pack on this site is built from those same rows, so the games, scores, and lines are identical. What you pay $29 for is the work between download and analysis: spread and moneyline columns documented and normalized, two derived tables (861 team-season records, 27 season summaries), a data dictionary, and MCP query access against the full file.</p>
+    <p>For free NFL historical data, start with nflverse. The project publishes every game since 1999 as CSV under CC BY 4.0, and it costs nothing to download or use with attribution. The pack on this site is built from those same rows, so the games, scores, and lines are identical. What you pay for is the work between download and analysis: spread and moneyline columns documented and normalized, two derived tables (861 team-season records, 27 season summaries), a data dictionary, and MCP query access against the full file.</p>
     <p>If you already run an R or Python pipeline against nflverse releases, you likely need none of that. The honest comparison is below, including a section on <a href="#enough">when raw nflverse is enough</a>.</p>
   </section>
 
@@ -57,7 +57,7 @@
         <tr><td>License</td><td>CC BY 4.0, free including commercial use with attribution</td></tr>
         <tr><td>Game coverage</td><td>1999 through the current season, one row per game</td></tr>
         <tr><td>Access</td><td>Direct CSV download, or the nflreadr R package</td></tr>
-        <tr><td>Cost</td><td>$0</td></tr>
+        <tr><td>Cost</td><td>Free</td></tr>
       </tbody>
     </table></div>
     <p>Data Vault's games.csv is that file, downloaded 2026-09-06 with the SHA-256 recorded in the pack. The row count, columns, and values match the source.</p>
@@ -76,7 +76,7 @@
   </section>
 
   <section aria-label="What the pack adds">
-    <h2>What the $29 pack adds to the same rows</h2>
+    <h2>What the paid pack adds to the same rows</h2>
     <p>The <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026</a> pack ships 3 CSVs, 7,548 + 861 + 27 rows, from the 1999 season through the full 2026 schedule:</p>
     <div class="table-wrap" tabindex="0" role="region" aria-label="Pack contents"><table>
       <thead><tr><th scope="col">File</th><th scope="col">Rows</th><th scope="col">What it saves you</th></tr></thead>
@@ -98,7 +98,7 @@
     <p>Filter operators are <code>=</code>, <code>contains</code>, <code>gt</code>, and <code>lt</code>, with <code>offset</code> for paging. This layer is free and runs against the full 7,548-row file, so you can evaluate the schema before paying for anything.</p>
     <div class="btnrow">
       <a class="btn-ghost btn" href="../data/nfl-games/sample.csv" download>Download sample (CSV)</a>
-      <a class="btn" href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h" rel="noopener">Get full pack, $29</a>
+      <a class="btn" href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h" rel="noopener">Get full pack</a>
     </div>
     <p class="btn-note">Checkout and download run through Getly. The 22-row sample and the full season-summaries.csv are free downloads here and on the <a href="nfl-games-data-guide.html">games.csv column guide</a>.</p>
   </section>
@@ -108,7 +108,7 @@
     <div class="table-wrap" tabindex="0" role="region" aria-label="Comparison table"><table>
       <thead><tr><th scope="col"></th><th scope="col">nflverse raw</th><th scope="col">Data Vault pack</th></tr></thead>
       <tbody>
-        <tr><td>Cost</td><td>$0</td><td>$0 sample and MCP queries; $29 full pack, one-time</td></tr>
+        <tr><td>Cost</td><td>Free</td><td>Free sample and MCP queries; full pack priced on its Getly product page</td></tr>
         <tr><td>License</td><td>CC BY 4.0</td><td>CC BY 4.0 (source rows and derived tables)</td></tr>
         <tr><td>Game rows</td><td>1999-2026, one per game</td><td>Same 7,548 rows, checksummed copy</td></tr>
         <tr><td>Lines</td><td>spread and total from 1999, odds from 2006</td><td>Same values, sign convention and push rules documented</td></tr>
@@ -130,7 +130,7 @@
       <li>You are building a pipeline that refreshes itself. Point it at the nflverse releases and let GitHub Actions do the updating.</li>
       <li>You need to redistribute the data inside your own product. CC BY 4.0 covers that with attribution either way, but taking rows straight from the source keeps the provenance chain shortest.</li>
     </ul>
-    <p>The pack fits the other case: you want the 27 seasons in one CSV with the aggregates already computed and documented, and you would rather pay $29 once than write and maintain the derivation scripts.</p>
+    <p>The pack fits the other case: you want the 27 seasons in one CSV with the aggregates already computed and documented, and you would rather pay once than write and maintain the derivation scripts.</p>
   </section>
 
   <section aria-label="Attribution">
@@ -147,7 +147,7 @@
   <section aria-label="Frequently asked questions">
     <h2>FAQ</h2>
     <h3>Is NFL historical game data free?</h3>
-    <p>Yes. nflverse publishes game results, schedules, and betting lines under CC BY 4.0 at no cost. The Data Vault pack adds preprocessing on top of those same rows; its 22-row sample CSV and the full 27-row season-summaries.csv are also free downloads, and MCP queries against the full file cost nothing. The complete pack is a one-time $29.</p>
+    <p>Yes. nflverse publishes game results, schedules, and betting lines under CC BY 4.0 at no cost. The Data Vault pack adds preprocessing on top of those same rows; its 22-row sample CSV and the full 27-row season-summaries.csv are also free downloads, and MCP queries against the full file cost nothing. The complete pack is a one-time purchase.</p>
     <h3>What license applies to NFL data from nflverse and this pack?</h3>
     <p>CC BY 4.0. nflverse-data is released under Creative Commons Attribution 4.0, and the derived tables in the pack carry the same terms. If you publish work built on the data, credit it as: "Data from nflverse, CC BY 4.0".</p>
     <h3>Can I see a sample of the data before buying?</h3>

@@ -12,7 +12,7 @@
 <meta property="og:description" content="dataset-mcp is an MCP server for datasets: list, sample, query, and summarize 149,673 rows of NFL, HUD rent, Airbnb, and bounty data over the Model Context Protocol. One npx install, no API key.">
 <meta property="og:url" content="https://jayjex.github.io/data-vault/agents/mcp-dataset-server.html">
 <meta name="twitter:card" content="summary">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"dataset-mcp","applicationCategory":"DeveloperApplication","operatingSystem":"Cross-platform, Node.js 18+","softwareVersion":"1.1.0","url":"https://jayjex.github.io/data-vault/agents/mcp-dataset-server.html","downloadUrl":"https://github.com/jayjex/dataset-mcp","codeRepository":"https://github.com/jayjex/dataset-mcp","description":"An MCP server for datasets: five tools (list_datasets, get_dataset_info, get_sample, query_dataset, get_stats) over 149,673 rows of NFL games, HUD fair market rents, Airbnb listings, and Superteam Earn bounties. Full released files are queryable and cached locally with SHA-256 verification.","featureList":["list_datasets","get_dataset_info","get_sample","query_dataset","get_stats"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"license":"https://opensource.org/licenses/MIT","publisher":{"@type":"Organization","name":"Matchbook Labs"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"dataset-mcp","applicationCategory":"DeveloperApplication","operatingSystem":"Cross-platform, Node.js 18+","softwareVersion":"1.1.0","url":"https://jayjex.github.io/data-vault/agents/mcp-dataset-server.html","downloadUrl":"https://github.com/jayjex/dataset-mcp","codeRepository":"https://github.com/jayjex/dataset-mcp","description":"An MCP server for datasets: five tools (list_datasets, get_dataset_info, get_sample, query_dataset, get_stats) over 149,673 rows of NFL games, HUD fair market rents, Airbnb listings, and Superteam Earn bounties. Full released files are queryable and cached locally with SHA-256 verification.","featureList":["list_datasets","get_dataset_info","get_sample","query_dataset","get_stats"],"offers":{"@type":"Offer","availability":"https://schema.org/InStock"},"license":"https://opensource.org/licenses/MIT","publisher":{"@type":"Organization","name":"Matchbook Labs"}}</script>
 <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
@@ -34,7 +34,7 @@
     <span><b>5</b> tools</span>
     <span><b>149,673</b> rows queryable</span>
     <span><b>19 MB</b> full release</span>
-    <span>server <b>$0</b></span>
+    <span>server <b>free</b></span>
   </div>
 
   <section aria-label="Tools">
@@ -85,11 +85,11 @@ args = ["--allow-git=all", "-y", "github:jayjex/dataset-mcp"]</pre>
 <pre>query_dataset("hud-fmr-2026", { where: [{ column: "state", op: "=", value: "TX" }], limit: 5 })
 
 total_matched: 3247 | next_offset: 5 | sha: 04ffb4597f37
-  76437  Abilene, TX MSA   2br=$1090
-  76443  Abilene, TX MSA   2br=$1090
-  76464  Abilene, TX MSA   2br=$1090
-  76469  Abilene, TX MSA   2br=$1090
-  79501  Abilene, TX MSA   2br=$1140</pre>
+  76437  Abilene, TX MSA   2br=1090
+  76443  Abilene, TX MSA   2br=1090
+  76464  Abilene, TX MSA   2br=1090
+  76469  Abilene, TX MSA   2br=1090
+  79501  Abilene, TX MSA   2br=1140</pre>
 
     <h3>Every 2025 NFL game with closing lines</h3>
 <pre>query_dataset("nfl-games", { where: [{ column: "season", op: "=", value: 2025 }], limit: 5 })
@@ -135,11 +135,11 @@ top: 59.11 x62, 61.01 x45, 209.00 x32, 279.00 x30, 165.93 x28</pre>
     <div class="table-wrap"><table class="ep">
       <thead><tr><th scope="col">Pack</th><th scope="col">Rows</th><th scope="col">Price</th></tr></thead>
       <tbody>
-        <tr><td><a href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h" rel="noopener">NFL games and betting lines 1999-2026</a></td><td>7,548</td><td>$29</td></tr>
-        <tr><td><a href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">HUD Fair Market Rents FY2026</a></td><td>51,895</td><td>$24</td></tr>
-        <tr><td><a href="https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtpkvxdf" rel="noopener">Airbnb listings, 6 US cities</a></td><td>90,169</td><td>$39</td></tr>
-        <tr><td><a href="https://www.getly.store/product/superteam-earn-28-live-listings-dataset-186-reverse-engineered-api-routes-mtmy11ny" rel="noopener">Superteam Earn listings and API routes</a></td><td>51 cards</td><td>$49</td></tr>
-        <tr><td><a href="https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtn8em7k" rel="noopener">Playwright scraping script pack</a></td><td>10 scripts</td><td>$15</td></tr>
+        <tr><td><a href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h" rel="noopener">NFL games and betting lines 1999-2026</a></td><td>7,548</td><td>on product page</td></tr>
+        <tr><td><a href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">HUD Fair Market Rents FY2026</a></td><td>51,895</td><td>on product page</td></tr>
+        <tr><td><a href="https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtpkvxdf" rel="noopener">Airbnb listings, 6 US cities</a></td><td>90,169</td><td>on product page</td></tr>
+        <tr><td><a href="https://www.getly.store/product/superteam-earn-28-live-listings-dataset-186-reverse-engineered-api-routes-mtmy11ny" rel="noopener">Superteam Earn listings and API routes</a></td><td>51 cards</td><td>on product page</td></tr>
+        <tr><td><a href="https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtn8em7k" rel="noopener">Playwright scraping script pack</a></td><td>10 scripts</td><td>on product page</td></tr>
       </tbody>
     </table></div>
     <p>Every pack also previews free over plain HTTP: see <a href="../free-datasets-for-ai-agents.html">free datasets for AI agents</a> and the <a href="./">agent endpoint docs</a>.</p>

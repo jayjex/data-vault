@@ -18,41 +18,41 @@ MCP full query: query_dataset(slug, {where, columns, limit, offset}) filters and
 - Sample JSON: https://jayjex.github.io/data-vault/data/nfl-games/sample.json
 - Sample CSV: https://jayjex.github.io/data-vault/data/nfl-games/sample.csv
 - Page: https://jayjex.github.io/data-vault/datasets/nfl-games.html
-- Full data: [Get full data, $29](https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h)
+- Full data: [Get full data](https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h)
 
 ### HUD Fair Market Rents FY2026 (hud-fmr-2026)
 FY2026 fair market rents for 51,895 ZIP codes, 3,229 counties, and 52 states. Five bedroom sizes per row. Niche: gov-data. Stats: {"rows": 51895, "tables": 3, "columns": 11, "updated": "FY2026"}.
 - Sample JSON: https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.json
 - Sample CSV: https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.csv
 - Page: https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html
-- Full data: [Get full data, $24](https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm)
+- Full data: [Get full data](https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm)
 
 ### Airbnb Listings, 6 US Cities (airbnb-six-cities)
 90,169 Airbnb listings across Austin, Nashville, Denver, New York City, Las Vegas, and San Diego in one normalized schema. Niche: real-estate. Stats: {"rows": 90169, "tables": 8, "columns": 12, "updated": "2026-08-10"}.
 - Sample JSON: https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.json
 - Sample CSV: https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.csv
 - Page: https://jayjex.github.io/data-vault/datasets/airbnb-six-cities.html
-- Full data: [Get full data, $39](https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtpkvxdf)
+- Full data: [Get full data](https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtpkvxdf)
 
 ### Superteam Earn Live Listings (earn-bounties)
 28 open Superteam Earn listings with full description HTML, the raw cards dump, and 186+ reverse-engineered API routes. Niche: ai-agents. Stats: {"rows": 28, "tables": 3, "columns": 15, "updated": "2026-09-04"}.
 - Sample JSON: https://jayjex.github.io/data-vault/data/earn-bounties/sample.json
 - Sample CSV: https://jayjex.github.io/data-vault/data/earn-bounties/sample.csv
 - Page: https://jayjex.github.io/data-vault/datasets/earn-bounties.html
-- Full data: [Get full data, $49](https://www.getly.store/product/superteam-earn-28-live-listings-dataset-186-reverse-engineered-api-routes-mtmy11ny)
+- Full data: [Get full data](https://www.getly.store/product/superteam-earn-28-live-listings-dataset-186-reverse-engineered-api-routes-mtmy11ny)
 
 ### Web Scraping Script Pack (scraper-pack)
 Ten self-contained Playwright scripts for pagination, infinite scroll, login sessions, price monitors, sitemap crawling, and retries. Niche: dev-tools. Stats: {"rows": 10, "tables": 1, "columns": 0, "updated": "2026-09-07", "unit": "scripts"}.
 - Sample JSON: https://jayjex.github.io/data-vault/data/scraper-pack/sample.json
 - Sample CSV: https://jayjex.github.io/data-vault/data/scraper-pack/sample.csv
 - Page: https://jayjex.github.io/data-vault/datasets/scraper-pack.html
-- Full data: [Get full data, $15](https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtn8em7k)
+- Full data: [Get full data](https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtn8em7k)
 
 ### Printable Engineering Bundle (printable-engineering-bundle)
 Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (A4 + US Letter PDFs with answer keys, mazes, dot-to-dots) and 5 Web3 KPI spreadsheet templates (portfolio, airdrop, DeFi yield, bounty income, trading journal) with live formulas. Niche: printables. Stats: {"worksheets_pages": 120, "spreadsheets": 5, "paper_sizes": 2, "updated": "2026-09-06"}.
 - Page: https://jayjex.github.io/data-vault/datasets/printable-engineering-bundle.html
 - Free printables index: https://jayjex.github.io/data-vault/free-printables-index.html
-- Full bundle: [Get the bundle, $9](https://www.getly.store/store/matchbook-labs-mtmw06l2)
+- Full bundle: [Get the bundle](https://www.getly.store/store/matchbook-labs-mtmw06l2)
 
 ## Access rules
 - Fetch catalog.json and every sample endpoint freely. No API keys, no auth.

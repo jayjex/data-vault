@@ -8,12 +8,12 @@ Every pack previews on the page: real rows, documented schema, no email wall. Sc
 
 | slug | name | rows | niche | sample | full data |
 |---|---|---|---|---|---|
-| `nfl-games` | NFL Games & Betting Lines 1999–2026 | 7,548 rows | sports | [CSV](data/nfl-games/sample.csv) / [JSON](data/nfl-games/sample.json) | [$29](https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h) |
+| `nfl-games` | NFL Games & Betting Lines 1999–2026 | 7,548 rows | sports | [CSV](data/nfl-games/sample.csv) / [JSON](data/nfl-games/sample.json) | [Getly](https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h) |
 | `hud-fmr-2026` | HUD Fair Market Rents FY2026 | 51,895 rows | gov-data | [CSV](data/hud-fmr-2026/sample.csv) / [JSON](data/hud-fmr-2026/sample.json) | [coming](https://www.getly.store/store/mtmw06l2) |
-| `airbnb-six-cities` | Airbnb Listings, 6 US Cities | 90,169 rows | real-estate | [CSV](data/airbnb-six-cities/sample.csv) / [JSON](data/airbnb-six-cities/sample.json) | [$39](https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtpkvxdf) |
-| `earn-bounties` | Superteam Earn Live Listings | 28 listings | ai-agents | [CSV](data/earn-bounties/sample.csv) / [JSON](data/earn-bounties/sample.json) | [$49](https://www.getly.store/product/superteam-earn-28-live-listings-dataset-186-reverse-engineered-api-routes-mtmy11ny) |
-| `scraper-pack` | Web Scraping Script Pack | 10 scripts | dev-tools | [JSON](data/scraper-pack/sample.json) | [$15](https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtn8em7k) |
-| `printable-engineering-bundle` | Printable Engineering Bundle | 120 pages + 5 sheets | printables | [index](free-printables-index.html) | [$9](https://www.getly.store/store/matchbook-labs-mtmw06l2) |
+| `airbnb-six-cities` | Airbnb Listings, 6 US Cities | 90,169 rows | real-estate | [CSV](data/airbnb-six-cities/sample.csv) / [JSON](data/airbnb-six-cities/sample.json) | [Getly](https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtpkvxdf) |
+| `earn-bounties` | Superteam Earn Live Listings | 28 listings | ai-agents | [CSV](data/earn-bounties/sample.csv) / [JSON](data/earn-bounties/sample.json) | [Getly](https://www.getly.store/product/superteam-earn-28-live-listings-dataset-186-reverse-engineered-api-routes-mtmy11ny) |
+| `scraper-pack` | Web Scraping Script Pack | 10 scripts | dev-tools | [JSON](data/scraper-pack/sample.json) | [Getly](https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtn8em7k) |
+| `printable-engineering-bundle` | Printable Engineering Bundle | 120 pages + 5 sheets | printables | [index](free-printables-index.html) | [Getly](https://www.getly.store/store/matchbook-labs-mtmw06l2) |
 
 Full datasets are **not** in this repo. The repo carries samples only (first 10–25 rows per table, plus small complete aggregate tables). Total data volume: under 100 KB.
 

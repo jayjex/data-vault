@@ -40,7 +40,7 @@
   {
    "id": "9ceadd2f-8887-416f-890e-ab07824660e5",
    "slug": "solana-summit-serbia-content",
-   "title": "Solana Summit Serbia Content Bounty: $10,000 for the best summit content",
+   "title": "Solana Summit Serbia Content Bounty: 10,000 for the best summit content",
    "type": "bounty",
    "reward_amount": 10000,
    "token": "USDG",
@@ -125,7 +125,7 @@
   {
    "id": "7ec8100f-6e21-46be-8fac-a77b88b2bd10",
    "slug": "dollar1000-usdc-manic-bug-bounty",
-   "title": "$1,000 USDC Manic Bug Bounty",
+   "title": "1,000 USDC Manic Bug Bounty",
    "type": "bounty",
    "reward_amount": 1000,
    "token": "USDC",

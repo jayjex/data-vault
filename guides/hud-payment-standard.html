@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD Payment Standard: The 90%-110% Band Around the FMR, FY2026 | Data Vault</title>
+<meta name="description" content="The payment standard is the voucher number your public housing agency sets between 90% and 110% of the FMR. FY2026 two-bedroom band table for six ZIPs, computed from the HUD FMR file, plus how it differs from the FMR itself.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-payment-standard.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="HUD Payment Standard: The 90%-110% Band Around the FMR, FY2026">
+<meta property="og:description" content="The payment standard is the voucher number your public housing agency sets between 90% and 110% of the FMR. FY2026 two-bedroom band table for six ZIPs, plus how it differs from the FMR itself.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-payment-standard.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "HUD Payment Standard: The 90%-110% Band Around the FMR, FY2026", "description": "The payment standard is the voucher number your public housing agency sets between 90% and 110% of the FMR. FY2026 two-bedroom band table for six ZIPs, computed from the HUD FMR file, plus how it differs from the FMR itself.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-payment-standard.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the HUD payment standard?", "acceptedAnswer": {"@type": "Answer", "text": "The payment standard is the number a public housing agency sets for each bedroom size in its voucher program, and federal rules place it between 90% and 110% of HUD's fair market rent for the area. HUD defines the band; the agency picks the point inside it. For example, the FY2026 two-bedroom FMR for ZIP 85001 in Phoenix is 1,840 dollars, so the band runs from 1,656 to 2,024 dollars, and the Phoenix agency's payment standard is one number inside that range."}}, {"@type": "Question", "name": "How is the payment standard different from fair market rent?", "acceptedAnswer": {"@type": "Answer", "text": "The FMR is HUD's number: a 40th percentile gross rent estimate, shelter rent plus utilities, published for every area and identical for anyone reading the same file. The payment standard is the agency's number: each PHA picks one point between 90% and 110% of that FMR for each bedroom size, so two agencies in the same metro can legally run different payment standards off the same FMR. The FMR is the benchmark the band is measured from; the payment standard is the figure the subsidy math actually uses."}}, {"@type": "Question", "name": "How do I find my PHA's payment standard?", "acceptedAnswer": {"@type": "Answer", "text": "Ask the agency itself: payment standards live in the PHA's administrative plan and its published schedule, and the agency can tell you the exact figure for each bedroom size. This page gives you the band the number has to sit in. Take your area's FY2026 FMR from the HUD file, multiply by 0.90 and 1.10, and your PHA's payment standard is somewhere between those two values unless HUD approved an exception."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>HUD payment standard: the 90%-110% band a housing agency sets around the FMR</h1>
+  <p class="byline">FY2026 edition, published 2026-09-10. Data source: HUD, public domain. Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <section aria-label="What the payment standard is">
+    <h2>What the payment standard is</h2>
+    <p>A payment standard is the number a public housing agency (PHA) sets for each bedroom size in its Housing Choice Voucher program. Federal rules put it in a band around the area's fair market rent: no lower than 90% of the FMR, no higher than 110%, unless HUD approves an exception. HUD defines the band and publishes the FMR at its center; the agency picks the point inside it and the subsidy math runs off that point.</p>
+    <p>Both numbers describe the same market, but they are made by different hands. The FMR is federal: HUD estimates it each fiscal year from American Community Survey data as the 40th percentile gross rent, shelter rent plus utilities, for standard-quality units. The payment standard is local: one figure per bedroom size, picked by the agency that administers your voucher, published in the agency's schedule. If you have searched for "HUD payment standard" hoping for one national table, the reason there isn't one is that the final number belongs to roughly 3,000 agencies, not to HUD.</p>
+  </section>
+
+  <section aria-label="FMR vs payment standard">
+    <h2>FMR vs payment standard</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="FMR compared with payment standard"><table><thead><tr><th scope="col"> </th><th scope="col">FMR</th><th scope="col">Payment standard</th></tr></thead><tbody>
+      <tr><td>Who sets it</td><td>HUD, each fiscal year</td><td>Each PHA, within the federal band</td></tr>
+      <tr><td>What it measures</td><td>40th percentile gross rent (shelter rent + utilities) for standard-quality units</td><td>The subsidy basis for a unit of each bedroom size</td></tr>
+      <tr><td>Scope</td><td>One value per metro, county, or ZIP (SAFMR) area</td><td>One value per bedroom size per agency</td></tr>
+      <tr><td>Same metro, two agencies</td><td>Identical for everyone reading the file</td><td>Can differ, legally, inside the 90%-110% band</td></tr>
+      <tr><td>Where it is published</td><td>huduser.gov, the annual FMR files</td><td>The PHA's administrative plan and schedule</td></tr>
+    </tbody></table></div>
+    <p>The band rule is what connects them. Once you know an area's FMR, you know the payment standard has to sit between two values unless HUD approved an exception:</p>
+    <pre><code>payment standard low  = FMR × 0.90
+payment standard high = FMR × 1.10</code></pre>
+    <p>The full arithmetic, with more worked rows, is in <a href="hud-fair-market-rent-calculator.html">the fair market rent calculator guide</a>, which treats this as a calculation. This page treats it as a concept and shows the band for six areas below.</p>
+  </section>
+
+  <section aria-label="The payment standard band for six ZIPs">
+    <h2>The band, FY2026: six ZIPs, two bedrooms</h2>
+    <p>Six areas from the FY2026 ZIP file, chosen to span big metros, small metros, and one nonmetro county. The FMR column is HUD's published 2-bedroom figure; the low and high columns are that figure times 0.90 and 1.10, the floor and ceiling of the payment standard band. Monthly dollars:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Payment standard band for six ZIP codes, FY2026"><table><thead><tr><th scope="col">ZIP</th><th scope="col">Area</th><th scope="col">FMR 2BR</th><th scope="col">Band low (90%)</th><th scope="col">Band high (110%)</th></tr></thead><tbody>
+      <tr><td>10001</td><td>New York, NY HUD Metro FMR Area</td><td>4,370</td><td>3,933</td><td>4,807</td></tr>
+      <tr><td>60601</td><td>Chicago-Joliet-Naperville, IL HUD Metro FMR Area</td><td>2,670</td><td>2,403</td><td>2,937</td></tr>
+      <tr><td>33101</td><td>Miami-Miami Beach-Kendall, FL HUD Metro FMR Area</td><td>2,440</td><td>2,196</td><td>2,684</td></tr>
+      <tr><td>85001</td><td>Phoenix-Mesa-Chandler, AZ MSA</td><td>1,840</td><td>1,656</td><td>2,024</td></tr>
+      <tr><td>99501</td><td>Anchorage, AK HUD Metro FMR Area</td><td>1,510</td><td>1,359</td><td>1,661</td></tr>
+      <tr><td>59901</td><td>Flathead County, MT (nonmetro)</td><td>1,630</td><td>1,467</td><td>1,793</td></tr>
+    </tbody></table></div>
+    <p>Read these as a range, not six recommendations. The table shows where the band sits for each ZIP; the payment standard itself is one point inside the range, chosen by the local agency. ZIP 59901 is Flathead County, Montana, a nonmetro area, which is why its HUD area code starts with NCNTY rather than METRO in the file. New York's 2-bedroom band spans 874 dollars from floor to ceiling, so picking a point inside it is a real decision for the agency, not a rounding exercise.</p>
+    <p>The FMR figures come straight from the <a href="../datasets/hud-fmr-2026.html">HUD FMR pack</a>, which covers 51,895 ZIPs. Multiply any row's FMR by 0.90 and 1.10 to get that area's band.</p>
+  </section>
+
+  <section aria-label="Why payment standards differ between agencies">
+    <h2>Same FMR, different payment standards</h2>
+    <p>Two agencies drawing on the same metro FMR can publish different payment standards, and both stay inside the rules as long as each lands between 90% and 110%. One agency may sit near the floor to stretch its budget across more households; another may sit near the ceiling so families can reach more units in a tight market. Neither number is wrong, which is why no national table can answer "what is the payment standard here" without knowing which agency runs your voucher.</p>
+    <p>HUD can approve payment standards outside the band, usually above 110% in markets where the FMR lags rents. That is the exception path, and the agency's own schedule is the only source for whether it applies to you. The band table above tells you the default range; the PHA's administrative plan tells you where inside it, or past it, the agency actually set the number.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>Payment standard questions</h2>
+    <dl>
+      <dt>What is the HUD payment standard?</dt>
+      <dd>The payment standard is the number a public housing agency sets for each bedroom size in its voucher program, and federal rules place it between 90% and 110% of HUD's fair market rent for the area. HUD defines the band; the agency picks the point inside it. For example, the FY2026 two-bedroom FMR for ZIP 85001 in Phoenix is 1,840 dollars, so the band runs from 1,656 to 2,024 dollars, and the Phoenix agency's payment standard is one number inside that range.</dd>
+      <dt>How is the payment standard different from fair market rent?</dt>
+      <dd>The FMR is HUD's number: a 40th percentile gross rent estimate, shelter rent plus utilities, published for every area and identical for anyone reading the same file. The payment standard is the agency's number: each PHA picks one point between 90% and 110% of that FMR for each bedroom size, so two agencies in the same metro can legally run different payment standards off the same FMR. The FMR is the benchmark the band is measured from; the payment standard is the figure the subsidy math actually uses.</dd>
+      <dt>How do I find my PHA's payment standard?</dt>
+      <dd>Ask the agency itself: payment standards live in the PHA's administrative plan and its published schedule, and the agency can tell you the exact figure for each bedroom size. This page gives you the band the number has to sit in. Take your area's FY2026 FMR from the HUD file, multiply by 0.90 and 1.10, and your PHA's payment standard is somewhere between those two values unless HUD approved an exception.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <p>Start with the free 22-row sample to check the schema, then take the full pack: all three CSVs (51,895 ZIP rows, 3,229 county rollups, 52 state rows), the data dictionary, and source checksums.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">Get the full dataset</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release, huduser.gov. US government data, public domain. Data Vault is not affiliated with HUD.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

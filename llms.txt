@@ -64,6 +64,7 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 
 - [NFL Games Dataset CSV: 7,548 Games with Betting Lines (1999-2026)](https://jayjex.github.io/data-vault/guides/nfl-games-data-guide.html): column guide for the games table, betting-line glossary
 - [NFL Stadium Weather: How Roof and Weather Show Up in Game Data](https://jayjex.github.io/data-vault/guides/nfl-stadium-weather.html): roof/temp/wind columns, dome vs outdoor scoring on the 22-row sample, hottest kickoffs
+- [NFL Spread History CSV: ATS Cover Data for Every Game Since 1999](https://jayjex.github.io/data-vault/guides/nfl-spreads-history.html): spread_line sign convention, cover ATS arithmetic, 27-season cover table from season-summaries.csv
 - [Free Sports Data CSV: Verified Sources, Licenses, and a 7,548-Game NFL Dataset](https://jayjex.github.io/data-vault/guides/free-sports-data-csv.html): licensed sources for sports CSVs
 - [NFL Data in Excel or Google Sheets: Import the CSV, Step by Step](https://jayjex.github.io/data-vault/guides/nfl-dataset-excel.html): spreadsheet import walkthrough
 - [NFL Data in Python: Load the Games CSV with pandas](https://jayjex.github.io/data-vault/guides/nfl-dataset-python.html): pandas quickstart on the 22-row sample

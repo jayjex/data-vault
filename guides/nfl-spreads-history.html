@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NFL Spread History CSV: ATS Cover Data for Every Game Since 1999 | Data Vault</title>
+<meta name="description" content="NFL spread history as a CSV: what the spread_line column means, how ATS covers work, and 27 seasons of cover rates counted from 7,276 played games (1999-2025) in the free games sample and the full pack.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/nfl-spreads-history.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="NFL Spread History CSV: ATS Cover Data for Every Game Since 1999">
+<meta property="og:description" content="What the spread_line column means, how ATS covers work, and 27 seasons of cover rates counted from 7,276 played games in the NFL games CSV.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/nfl-spreads-history.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "NFL spread history CSV: ATS cover data for every game since 1999", "description": "What the spread_line column means, how ATS covers work, and 27 seasons of cover rates counted from 7,276 played games in the NFL games CSV.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/nfl-spreads-history.html", "about": {"@type": "Dataset", "name": "NFL Games & Betting Lines 1999-2026", "url": "https://jayjex.github.io/data-vault/datasets/nfl-games.html"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "NFL spread history CSV", "item": "https://jayjex.github.io/data-vault/guides/nfl-spreads-history.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What does a negative spread_line mean in the NFL games CSV?", "acceptedAnswer": {"@type": "Answer", "text": "spread_line is the closing point spread for the HOME team, and the sign carries the direction. Negative means the away team is favored: -4 says the visiting team should win by about 4. Positive means the home team is favored: 3 says the home team should win by about 3. Zero is a pick'em. In the full file, 4,731 of 7,276 played games (65.0%) have a positive spread_line, 2,514 (34.6%) negative, and 31 (0.4%) exactly zero."}}, {"@type": "Question", "name": "How do you calculate which team covered the spread from the CSV rows?", "acceptedAnswer": {"@type": "Answer", "text": "Compare the home team's scoring margin to the line. result is already home_score minus away_score, so home margin minus spread_line decides it: if result - spread_line is positive the home team covered, negative the away team covered, exactly zero is a push. Example from the free sample: KC @ CHI, 1999 week 1, has spread_line -3 (KC favored by 3) and result 3 (Chicago won 20-17). 3 - (-3) = 6, positive, so the home underdog covered. The same arithmetic on 7,276 rows reproduces the ats_wins / ats_losses / ats_pushes columns in the pack's team-records-by-season.csv exactly."}}, {"@type": "Question", "name": "Do NFL favorites cover the spread more often than underdogs?", "acceptedAnswer": {"@type": "Answer", "text": "Across the 7,276 played games from 1999 through 2025 that carry a closing line, road and home underdogs covered 3,608 times (50.9% of the 7,081 decided games) and favorites covered 3,473 times (49.0%). Per season, the underdog won the cover count in 19 of 27 seasons. That is how a spread works: the line prices the favorite in, so covering is close to a coin flip, and past cover rates describe the sample rather than predict the next game."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../datasets/nfl-games.html">NFL dataset</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>NFL spread history CSV: 27 seasons of closing lines and ATS covers</h1>
+  <p class="byline">Guide to the <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026</a> pack &middot; column definitions in the <a href="nfl-games-data-guide.html">games.csv column guide</a> &middot; weather columns covered in the <a href="nfl-stadium-weather.html">stadium weather guide</a>. Counted from the game rows themselves; nothing on this page is betting advice.</p>
+
+  <section aria-label="What the spread column holds">
+    <h2>What the spread_line column holds</h2>
+    <p>Every NFL game since 1999 in the games CSV carries a <code>spread_line</code>: the closing point spread for the <b>home team</b>. The sign carries the direction. A positive number says the home team is favored and must win by more than that number. A negative number says the away team is favored, and the magnitude is the expected home defeat. Zero is a pick'em. The convention comes straight from the nflverse source feed the pack is built on, and it matches the <code>result</code> column, which is already <code>home_score - away_score</code>.</p>
+    <p>Two rows from the free 22-row sample, the first two games of the 1999 season:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Sample spread rows"><table><thead><tr><th scope="col">game_id</th><th scope="col">matchup</th><th scope="col">result</th><th scope="col">spread_line</th><th scope="col">reading</th></tr></thead><tbody>
+      <tr><td>1999_01_MIN_ATL</td><td>MIN @ ATL</td><td>-3 (17-14 ATL)</td><td>-4</td><td>Minnesota favored by 4; Atlanta lost by 3 and covered</td></tr>
+      <tr><td>1999_01_KC_CHI</td><td>KC @ CHI</td><td>3 (20-17 CHI)</td><td>-3</td><td>Kansas City favored by 3; Chicago won outright and covered</td></tr>
+    </tbody></table></div>
+    <p>Over the full file, the home side is favored far more often, as home field would suggest: 4,731 of the 7,276 played games with a line (65.0%) have a positive spread_line, 2,514 (34.6%) are negative, and 31 (0.4%) are pick'ems. The line exists on every played game in the file, plus 112 of the 272 scheduled 2026 rows that already carry early numbers.</p>
+  </section>
+
+  <section aria-label="Cover ATS definition">
+    <h2>What "cover ATS" means, in arithmetic</h2>
+    <p>Covering the spread (ATS) is a score-keeping idea, not a prediction. A team covers when it beats the line, and the CSV makes that a one-line formula because <code>result</code> and <code>spread_line</code> share the home-team sign convention:</p>
+    <pre><code>home_margin_vs_line = result - spread_line
+# &gt; 0: home team covered
+# &lt; 0: away team covered
+# == 0: push (only possible on integer lines)</code></pre>
+    <p>Check it against the two sample rows. MIN @ ATL: result -3, spread_line -4, so -3 - (-4) = +1. The home team lost but covered, because losing by 3 is better than the 4 the line demanded. KC @ CHI: 3 - (-3) = +6, home underdog covers by six. The pack's derived table, team-records-by-season.csv, runs exactly this arithmetic on every row and sums it per team per season into <code>ats_wins</code>, <code>ats_losses</code>, and <code>ats_pushes</code> columns, so a query like "Kansas City's 2023 ATS record" is a filter, not a research project: 16-5-0.</p>
+  </section>
+
+  <section aria-label="Spread history table">
+    <h2>The spread history itself, season by season</h2>
+    <p>The pack's second derived file, season-summaries.csv, rolls the cover counts up per season. These are its ATS columns, copied from the shipped file. Cover percentages exclude pushes.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Season spread history table"><table><thead><tr><th scope="col">Season</th><th scope="col">Games</th><th scope="col">Favorite cover %</th><th scope="col">Underdog cover %</th><th scope="col">Pushes</th></tr></thead><tbody>
+      <tr><td>1999</td><td>259</td><td>47.0</td><td>53.0</td><td>10</td></tr>
+      <tr><td>2000</td><td>259</td><td>47.6</td><td>52.4</td><td>7</td></tr>
+      <tr><td>2001</td><td>259</td><td>46.6</td><td>53.4</td><td>12</td></tr>
+      <tr><td>2002</td><td>267</td><td>44.3</td><td>55.7</td><td>5</td></tr>
+      <tr><td>2003</td><td>267</td><td>49.6</td><td>50.4</td><td>9</td></tr>
+      <tr><td>2004</td><td>267</td><td>50.2</td><td>49.8</td><td>6</td></tr>
+      <tr><td>2005</td><td>267</td><td>58.8</td><td>41.2</td><td>10</td></tr>
+      <tr><td>2006</td><td>267</td><td>43.6</td><td>56.4</td><td>8</td></tr>
+      <tr><td>2007</td><td>267</td><td>50.8</td><td>49.2</td><td>5</td></tr>
+      <tr><td>2008</td><td>267</td><td>49.0</td><td>51.0</td><td>6</td></tr>
+      <tr><td>2009</td><td>267</td><td>48.6</td><td>51.4</td><td>8</td></tr>
+      <tr><td>2010</td><td>267</td><td>49.2</td><td>50.8</td><td>5</td></tr>
+      <tr><td>2011</td><td>267</td><td>48.8</td><td>51.2</td><td>11</td></tr>
+      <tr><td>2012</td><td>267</td><td>48.1</td><td>51.9</td><td>5</td></tr>
+      <tr><td>2013</td><td>267</td><td>53.5</td><td>46.5</td><td>7</td></tr>
+      <tr><td>2014</td><td>267</td><td>47.9</td><td>52.1</td><td>6</td></tr>
+      <tr><td>2015</td><td>267</td><td>45.9</td><td>54.1</td><td>10</td></tr>
+      <tr><td>2016</td><td>267</td><td>52.3</td><td>47.7</td><td>5</td></tr>
+      <tr><td>2017</td><td>267</td><td>51.7</td><td>48.3</td><td>8</td></tr>
+      <tr><td>2018</td><td>267</td><td>45.7</td><td>54.3</td><td>9</td></tr>
+      <tr><td>2019</td><td>267</td><td>46.7</td><td>53.3</td><td>10</td></tr>
+      <tr><td>2020</td><td>269</td><td>44.2</td><td>55.8</td><td>0</td></tr>
+      <tr><td>2021</td><td>285</td><td>46.6</td><td>53.4</td><td>4</td></tr>
+      <tr><td>2022</td><td>284</td><td>45.3</td><td>54.7</td><td>10</td></tr>
+      <tr><td>2023</td><td>285</td><td>52.0</td><td>48.0</td><td>14</td></tr>
+      <tr><td>2024</td><td>285</td><td>52.7</td><td>47.3</td><td>4</td></tr>
+      <tr><td>2025</td><td>285</td><td>48.6</td><td>51.4</td><td>1</td></tr>
+    </tbody></table></div>
+    <p>Read as history, the table says the market keeps itself honest. Underdogs covered more often than favorites in 19 of the 27 seasons. The extreme favorite year, 2005 at 58.8%, sits next to the extreme underdog year, 2020 at 55.8% for dogs, and neither side ran away over any long stretch. Roll the same rows up by decade from games.csv and the pattern flattens further: home teams covered 51.0% in the 249 decided games of 1999, 48.7% in the 2000s (2,578 decided), 48.7% in the 2010s (2,594), and 49.9% in the 2020s so far (1,660 through 2025).</p>
+  </section>
+
+  <section aria-label="Pushes and big lines">
+    <h2>Pushes, half-points, and the deepest lines ever closed</h2>
+    <p>A push happens when the winning margin lands exactly on an integer spread. It has occurred 195 times in 7,276 spread games, 2.7%, and the half-point lines that sportsbooks quote make it rare by design: a .5 anywhere in spread_line makes the game structurally push-proof. 2017 is the extreme case, 267 games and zero pushes, while 2023 had 14.</p>
+    <p>The deepest closing lines in the file show the other side of cover math. The five largest favorites since 1999:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Largest favorites table"><table><thead><tr><th scope="col">game_id</th><th scope="col">Favorite</th><th scope="col">spread_line</th><th scope="col">Result</th><th scope="col">Cover</th></tr></thead><tbody>
+      <tr><td>2013_06_JAX_DEN</td><td>DEN by 27</td><td>-27</td><td>Denver by 16</td><td>Jacksonville</td></tr>
+      <tr><td>2007_12_PHI_NE</td><td>NE by 24</td><td>-24</td><td>New England by 3</td><td>Philadelphia</td></tr>
+      <tr><td>2007_16_MIA_NE</td><td>NE by 22</td><td>-22</td><td>New England by 21</td><td>Miami</td></tr>
+      <tr><td>2019_03_MIA_DAL</td><td>DAL by 22</td><td>-22</td><td>Dallas by 25</td><td>Dallas</td></tr>
+      <tr><td>2007_15_NYJ_NE</td><td>NE by 20.5</td><td>-20.5</td><td>New England by 10</td><td>NY Jets</td></tr>
+    </tbody></table></div>
+    <p>Favorites went 1-4 against the number in the five deepest spots. That is the pattern the season table already showed, in its sharpest form: the line prices the blowout in, so the favorite must not just win but win by more than the market already expects.</p>
+  </section>
+
+  <section aria-label="Limits of the data">
+    <h2>What this dataset cannot tell you</h2>
+    <p>The file records closing lines and final scores. It contains no opening lines, no in-game movement, no player injuries, and no probability of any future outcome. Cover rates describe what happened in 7,276 completed games; they are a research baseline for questions like "how often did double-digit favorites cover in dome games" or "which seasons had the most pushes", both answerable with a filter and a group-by. Nothing here predicts the next game, and none of it is a recommendation to place one.</p>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the spread history as CSV</h2>
+    <p>The free 22-row sample carries the same 46 columns, including spread_line, so the formula above runs on it as-is. The full pack is the 7,548-row games.csv (7,276 played with lines), team-records-by-season.csv with the ATS sums per team per season, season-summaries.csv, a data dictionary, and SHA-256 checksums. Prefer a notebook? The <a href="nfl-dataset-python.html">pandas quickstart</a> loads the sample in two lines, the <a href="nfl-dataset-excel.html">Excel and Google Sheets guide</a> covers the spreadsheet route, and the <a href="agents/mcp-vs-api.html">MCP vs API guide</a> shows how to let an agent filter the full file for you.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/nfl-games/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h" rel="noopener">Get full data</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. The sample and season-summaries download free here, no signup. Source: nflverse game and betting data, CC BY 4.0.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>NFL spread history CSV questions</h2>
+    <div class="faq">
+      <h3>What does a negative spread_line mean?</h3>
+      <p>The away team is favored. spread_line is the closing spread for the home team, so -4 reads "the visitor should win by about 4". Positive means the home team is favored, zero is a pick'em. In the played games since 1999: 65.0% positive, 34.6% negative, 0.4% zero.</p>
+      <h3>How is a cover ATS calculated from the rows?</h3>
+      <p>result - spread_line, with the sign deciding it. Positive means the home team covered, negative the away team, zero a push. Running that over all rows reproduces the ats_wins, ats_losses, and ats_pushes columns in team-records-by-season.csv exactly, which is the check worth running on any spread history CSV you download from anywhere.</p>
+      <h3>Do favorites or underdogs cover more often?</h3>
+      <p>Underdogs, slightly: 50.9% of the 7,081 decided games since 1999, against 49.0% for favorites, with 2.7% pushes. The season table above shows underdogs taking 19 of 27 seasons. That near-even split is what an efficient line produces, and it says nothing about any single future game.</p>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

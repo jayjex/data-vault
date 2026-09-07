@@ -82,6 +82,7 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - [Free NFL Historical Data: nflverse Raw vs a Preprocessed CSV Pack](https://jayjex.github.io/data-vault/guides/nfl-data-alternative.html): raw releases vs preprocessed trade-offs
 - [Open Data API: Free Sample Endpoints and an MCP Query Layer](https://jayjex.github.io/data-vault/guides/open-data-api-alternative.html): no-key endpoints plus query_dataset
 - [Public Data APIs: 12 Free Endpoints We Tested Live](https://jayjex.github.io/data-vault/guides/public-data-apis-list.html): curl-tested government, sports, weather, crypto APIs with real outputs
+- [Open Data: A Short History and Why Analysts Should Care](https://jayjex.github.io/data-vault/guides/open-data-movement.html): three-test definition (open license, free, machine-readable), 2007 Sebastopol principles to data.gov 2009, tested Census/HUD/nflverse/Inside Airbnb examples
 - [FRED API Tutorial: Pull Fed Economic Data in Python, With or Without a Key](https://jayjex.github.io/data-vault/guides/fred-api-tutorial.html): fredgraph.csv keyless CSV, free REST key, pandas and parquet workflow with verbatim outputs
 - [HUD Fair Market Rent Data by ZIP Code, Explained (FY2026 CSV)](https://jayjex.github.io/data-vault/guides/hud-rent-data-explained.html): schema walkthrough of the HUD pack
 - [HUD FMR by ZIP Code: Fair Market Rent by ZIP, FY2026](https://jayjex.github.io/data-vault/guides/hud-fmr-by-zip.html): single-ZIP lookup methods

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open Data: A Short History and Why Analysts Should Care | Data Vault</title>
+<meta name="description" content="Open data is data published under an open license, free of charge, in machine-readable form. A short history of the open data movement, tested examples from government and community projects, and why analysts build on it.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/open-data-movement.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Open Data: A Short History and Why Analysts Should Care">
+<meta property="og:description" content="Open data is data published under an open license, free of charge, in machine-readable form. A short history of the movement, tested examples, and why analysts build on it.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/open-data-movement.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Open Data: A Short History and Why Analysts Should Care", "description": "Open data is data published under an open license, free of charge, in machine-readable form. A short history of the open data movement, tested examples from government and community projects, and why analysts build on it.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/open-data-movement.html", "about": {"@type": "Thing", "name": "open data"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the open data movement?", "acceptedAnswer": {"@type": "Answer", "text": "The open data movement pushes governments and organizations to publish datasets under open licenses, at no charge, in machine-readable formats. Landmarks: the eight principles of open government data drafted at a meeting in Sebastopol, California in December 2007, and the May 2009 launch of data.gov. The model now extends past government: community projects such as nflverse (sports) and Inside Airbnb (housing research) release data under CC BY 4.0."}}, {"@type": "Question", "name": "Is open data free for commercial use?", "acceptedAnswer": {"@type": "Answer", "text": "When the license is truly open, yes. CC BY 4.0 allows commercial use with a credit line, and CC0 or public domain allow it with no conditions at all. Examples from the upstream sources on this site: nflverse and Inside Airbnb data are CC BY 4.0, HUD Fair Market Rent data is US government public domain. Always check the license line, because a non-commercial or research-only clause fails the open test even when the download is free."}}, {"@type": "Question", "name": "Where can an analyst find good open data?", "acceptedAnswer": {"@type": "Answer", "text": "Start with agency bulk downloads and catalogs. The Census Bureau discovery API at api.census.gov/data.json returned metadata for 1,803 datasets with no key when we tested it on 2026-09-10, HUD publishes Fair Market Rent tables on huduser.gov, and data.gov indexes federal releases. Community projects cover sports (nflverse, CC BY 4.0) and housing research (Inside Airbnb, CC BY 4.0). When the raw material is too raw to work with, cleaned packs with free samples sit one step down the ladder."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Open data: a short history and why analysts should care</h1>
+  <p class="byline">Published 2026-09-10. Checked the same day from our own box: <code>api.census.gov/data.json</code> returned 1,803 dataset entries with HTTP 200, and the opengovdata.org principles page and Wikipedia summaries behind the history facts were fetched live. Untested claims are named as such.</p>
+
+  <section aria-label="What open data means">
+    <h2>What "open data" means, in three tests</h2>
+    <p>A dataset is open when it passes three checks. All three, or it is not open data:</p>
+    <p><strong>1. Open license.</strong> Anyone may use, reuse, and redistribute the data for any purpose, commercial use included. The only condition an open license can attach is attribution (CC BY), or nothing at all (CC0, public domain). A clause that reads "non-commercial only" or "research use only" fails this check, no matter how free the download looks.</p>
+    <p><strong>2. Free.</strong> Nothing stands between you and the file. No payment, and per the movement's own principles, no registration either: the <a href="https://opengovdata.org/" rel="noopener">eight principles of open government data</a> call data non-discriminatory when it is "available to anyone, with no requirement of registration."</p>
+    <p><strong>3. Machine-readable.</strong> A program can parse it. CSV, JSON, XML, bulk download files. A table inside a PDF fails this check even when the license is perfect: someone has to re-type the numbers, and re-typed numbers rot.</p>
+    <p>Drop any one and the label breaks. A CC0-licensed PDF is free but not machine-readable. A keywalled API with flawless docs is readable but not open. Open data means license, price, and format all clear at once.</p>
+  </section>
+
+  <section aria-label="History of the open data movement">
+    <h2>From FOIA to data.gov: a short history</h2>
+    <p><strong>1966: the right to ask.</strong> The US Freedom of Information Act gave citizens the right to request federal agency records, with nine exemptions. It settled the legal question and left the practical one unsolved: responses arrived on paper, weeks later, formatted for human eyes.</p>
+    <p><strong>December 2007: the principles.</strong> On December 7-8, 2007, thirty open government advocates met in Sebastopol, California and wrote the eight principles of open government data: complete, primary, timely, accessible, machine processable, non-discriminatory, open, and permanent. Two of those (non-discriminatory, open) are the license and price tests from above; two more (machine processable, accessible) are the format test. The 2007 list reads today like a review checklist for any data release.</p>
+    <p><strong>May 2009: the portal.</strong> The US federal government launched <a href="https://data.gov" rel="noopener">data.gov</a> in late May 2009 under federal CIO Vivek Kundra, as a repository of machine-readable Executive Branch datasets. The idea spread: agencies began running their own bulk download and API programs, and other governments built their own catalogs.</p>
+    <p><strong>Now: beyond government.</strong> The same model runs outside capitals. Communities of volunteers and research organizations publish under Creative Commons licenses, and the release formats (bulk CSV first, APIs on top) follow the 2007 principles more closely than most agency sites do.</p>
+  </section>
+
+  <section aria-label="Government open data example">
+    <h2>Government open data, tested</h2>
+    <p>The biggest single discovery win in our testing: the Census Bureau's catalog. One keyless GET returns metadata for every dataset the Bureau publishes through its discovery API:</p>
+<pre>GET https://api.census.gov/data.json
+# HTTP 200, 2026-09-10
+# {"dataset": [...]} &rarr; 1,803 dataset entries
+</pre>
+    <p>That 1,803-entry catalog was verified in our <a href="public-data-apis-list.html">public data APIs test</a> and re-verified for this page. The same run found the limits of keyless government data: Census ACS and decennial data endpoints now redirect keyless queries to a <em>Missing Key</em> page. Open and keyless are different promises, and even one agency can make both.</p>
+    <p>data.gov sits one layer above all of this: an index over what agencies publish, with the actual files on agency servers. Two agency sources we use directly:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Government open data sources"><table><thead><tr><th scope="col">Source</th><th scope="col">License</th><th scope="col">Format</th><th scope="col">What we did with it</th></tr></thead><tbody>
+      <tr><td>Census Bureau discovery API</td><td>US government data</td><td>JSON catalog</td><td>Live-tested keyless: 1,803 dataset entries, 200</td></tr>
+      <tr><td>HUD Fair Market Rents (huduser.gov)</td><td>Public domain</td><td>XLS/CSV downloads</td><td>Cleaned into the FY2026 pack, 51,895 ZIP rows</td></tr>
+    </tbody></table></div>
+    <p>HUD publishes each fiscal year's rent tables as downloads on huduser.gov. The downloads pass all three tests: public domain license, no charge, spreadsheet formats. They still arrive as one file per geography with columns needing a data dictionary, which is why our <a href="hud-rent-data-explained.html">HUD rent data guide</a> walks the schema.</p>
+  </section>
+
+  <section aria-label="Open sports data example">
+    <h2>Open sports data: nflverse</h2>
+    <p>nflverse is a community project that publishes NFL data as weekly CSV releases under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>. Commercial use included, the whole condition being a credit line. No government mandate, no law forcing it open; volunteers maintain it because open play-by-play-adjacent data makes better analysis possible for everyone.</p>
+    <p>Our NFL games pack derives from nflverse releases, so it inherits the same license: <em>"CC BY 4.0 (game data from nflverse, CC BY 4.0)"</em>, stated on the <a href="../datasets/nfl-games.html">dataset page</a> and in <a href="../catalog.json">catalog.json</a>. Team names are factual data, so no league marks ride along. The derived-tables-inherit-upstream-license rule is worth remembering whenever you build on open sports data: the license follows the data, not the website it came from.</p>
+  </section>
+
+  <section aria-label="Open research data example">
+    <h2>Open research data: Inside Airbnb</h2>
+    <p>Inside Airbnb publishes per-city listing snapshots for research, CC BY 4.0. Each city is its own file with its own snapshot date, which is exactly how open research data tends to arrive: licensed generously, packaged for the original researcher, not for you.</p>
+    <p>Six US cities with snapshots taken between 2026-06-22 and 2026-08-10 went into our Airbnb pack: 90,169 listings merged into one schema, host names and exact coordinates stripped, prices cleaned from source text. Same inherited license on the derived table, plus the academic convention of a citable DOI on Zenodo. Open research data carries the same license model as the sports and government examples; the difference is that citation expectations sit on top of it.</p>
+  </section>
+
+  <section aria-label="Why open data matters for analysts">
+    <h2>Why analysts should care</h2>
+    <p><strong>Legal head start.</strong> Commercial use is allowed under CC BY for the price of one attribution line. There is no per-seat license to negotiate, no legal review of a terms page, no invoice-to-budget question.</p>
+    <p><strong>No scraping tax.</strong> Machine-readable releases beat HTML scraping on every axis: stable columns instead of brittle selectors, bulk files instead of paged requests, documented schemas instead of reverse-engineered ones. We keep a full comparison in <a href="scraping-vs-dataset.html">scraping vs datasets</a>.</p>
+    <p><strong>Open data is raw material.</strong> This is the part that decides whether an open-data project ships or dies. The license and the format tests get you the file for free; nothing in the movement guarantees the file is clean. Types need fixing (leading-zero ZIPs), nulls need policy (blank means "no data", not zero), snapshots need dating (Inside Airbnb cities were captured on six different days), and tables need joining before any analysis runs. That work is the value an analyst adds, and it is the value a cleaned dataset sells. Raw material in, cleaned tables out.</p>
+    <p><strong>Reproducibility.</strong> Open licenses mean your pipeline can reference the same public file your readers can fetch. A portfolio project built on public-domain HUD tables or CC BY nflverse data can be checked end to end by anyone, which is not true of work built on scraped or licensed-closed data.</p>
+  </section>
+
+  <section aria-label="How Data Vault uses the same model">
+    <h2>How this site runs on the same model</h2>
+    <p>Data Vault is downstream of open data on three of its main lines, and the pricing model follows the license model:</p>
+    <ul>
+      <li><strong>Samples stay open.</strong> Every dataset ships a free <code>sample.csv</code> and <code>sample.json</code>, CC BY 4.0 where the upstream is open (nflverse, Inside Airbnb), public domain for HUD. The <a href="what-is-a-csv-sample.html">CSV sample guide</a> covers what the samples do and do not prove.</li>
+      <li><strong>Attribution flows upstream.</strong> Each entry in <a href="../catalog.json">catalog.json</a> carries the source license verbatim. Derived tables inherit it; we do not re-license what arrived open.</li>
+      <li><strong>Cleaning is the product.</strong> The full packs sell the cleaning work: one schema across cities, a data dictionary per table, dated snapshots. The open layer (samples, free <a href="open-data-api-alternative.html">open data API endpoints</a>) proves the quality before anyone pays.</li>
+    </ul>
+    <p>The reasoning in full, including why we publish samples at all, is in <a href="how-we-sell-public-data.html">how we sell public data</a>. That argument only works because open data exists upstream: <a href="open-data-movement.html">what open data is and where it came from</a> covers the license, price, and format tests every upstream source here passes.</p>
+  </section>
+
+  <section aria-label="Where to go next">
+    <h2>Where to go next</h2>
+    <p>For the tested-endpoint view of open data online, the <a href="public-data-apis-list.html">public data APIs list</a> documents twelve keyless endpoints with verbatim output, and <a href="public-domain-datasets.html">public domain datasets</a> compares the license terms in detail. When a raw open file meets your import code, <a href="what-is-a-csv-sample.html">what a CSV sample is</a> explains how to judge the file before you commit, and <a href="csv-vs-api.html">CSV vs API</a> settles the bulk-download-versus-endpoint question.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../tools/sample-data-downloads.html">Browse free samples</a>
+      <a class="btn" href="https://www.getly.store/store/mtmw06l2" rel="noopener">Get the full pack</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Upstream open-data sources carry their own licenses (CC BY 4.0, public domain); the license lines on each dataset page state what applies.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>What is the open data movement?</h3>
+    <p>The open data movement pushes governments and organizations to publish datasets under open licenses, at no charge, in machine-readable formats. Landmarks: the eight principles of open government data drafted at a meeting in Sebastopol, California in December 2007, and the May 2009 launch of data.gov. The model now extends past government: community projects such as nflverse (sports) and Inside Airbnb (housing research) release data under CC BY 4.0.</p>
+    <h3>Is open data free for commercial use?</h3>
+    <p>When the license is truly open, yes. CC BY 4.0 allows commercial use with a credit line, and CC0 or public domain allow it with no conditions at all. Examples from the upstream sources on this site: nflverse and Inside Airbnb data are CC BY 4.0, HUD Fair Market Rent data is US government public domain. Always check the license line, because a non-commercial or research-only clause fails the open test even when the download is free.</p>
+    <h3>Where can an analyst find good open data?</h3>
+    <p>Start with agency bulk downloads and catalogs. The Census Bureau discovery API at api.census.gov/data.json returned metadata for 1,803 datasets with no key when we tested it on 2026-09-10, HUD publishes Fair Market Rent tables on huduser.gov, and data.gov indexes federal releases. Community projects cover sports (nflverse, CC BY 4.0) and housing research (Inside Airbnb, CC BY 4.0). When the raw material is too raw to work with, cleaned packs with free samples sit one step down the ladder.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

@@ -114,6 +114,7 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 
 - [Free Printables Index: 223 printable trackers, planners and worksheets](https://jayjex.github.io/data-vault/free-printables-index.html)
 - [Free Printable Packs by Use Case: budget, moving, study and worksheets](https://jayjex.github.io/data-vault/printable-index-roundup.html)
+- [Free Printables vs Paid Packs: When Free Is Enough and When a Bundle Wins](https://jayjex.github.io/data-vault/printables/free-printables-vs-paid.html): one-print rule for choosing
 - [Free Printable PDF Templates: 223 Tracker Sheets, Planners and Worksheets by Category](https://jayjex.github.io/data-vault/printables/free-printable-templates.html)
 
 ## Access rules

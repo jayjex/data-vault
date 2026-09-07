@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MCP vs API: What the Difference Actually Is, With a Dataset Example | Data Vault</title>
+<meta name="description" content="MCP vs REST API: the layer difference explained with a real job done both ways. curl a 2.1 MB CSV and filter it yourself, or configure dataset-mcp once and call query_dataset. Real outputs, config snippets.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/agents/mcp-vs-api.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="MCP vs API: What the Difference Actually Is, With a Dataset Example">
+<meta property="og:description" content="The layer difference between MCP and a REST API, shown with one data job done both ways: curl against a raw CSV, then query_dataset over MCP.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/agents/mcp-vs-api.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "MCP vs API: what the difference actually is, with a dataset example", "description": "The layer difference between MCP and a REST API, shown with one data job done both ways: curl against a raw CSV, then query_dataset over MCP.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/agents/mcp-vs-api.html", "about": {"@type": "SoftwareApplication", "name": "dataset-mcp", "url": "https://github.com/jayjex/dataset-mcp"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "MCP vs API", "item": "https://jayjex.github.io/data-vault/agents/mcp-vs-api.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is MCP a replacement for REST APIs?", "acceptedAnswer": {"@type": "Answer", "text": "No. MCP sits one layer above the transport. A REST API moves bytes between machines over HTTP; an MCP server describes tools (names, parameters, result shapes) so an agent can discover and call them. Most MCP servers, dataset-mcp included, call plain HTTP endpoints themselves behind the tool layer. The question is who is on the consuming side: code you wrote reads a REST API, an agent reads a tool catalog."}}, {"@type": "Question", "name": "When should I skip MCP and call the API directly?", "acceptedAnswer": {"@type": "Answer", "text": "When no agent is involved. A cron job, a CI pipeline, or a script you already wrote should talk to the endpoint directly: fewer moving parts, no model in the loop, and one download beats paging. The same choice applies inside MCP: dataset-mcp returns at most 100 rows per query_dataset call with next_offset paging, while a single curl of the nflverse games CSV moves all 7,548 rows at once. Code wants the bulk path; agents want the tool path."}}, {"@type": "Question", "name": "What does dataset-mcp expose, and how big is it?", "acceptedAnswer": {"@type": "Answer", "text": "Five tools: list_datasets, get_dataset_info, get_sample, query_dataset, and get_stats. Behind them sit four datasets (NFL games 1999-2026, HUD Fair Market Rents FY2026, Airbnb listings for six cities, Superteam Earn bounties) totaling 153,866 rows across 15 data files, served from a SHA-256-pinned local cache. Install is one line: npx -y github:jayjex/dataset-mcp. Use npx --allow-git=all -y github:jayjex/dataset-mcp on npm 12+, which refuses git-based installs by default."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../guides/mcp-claude-desktop.html">MCP setup</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>MCP vs API: one is transport, the other is a tool layer</h1>
+  <p class="byline">Worked example run 2026-09-10 against dataset-mcp v1.1.0 and the live nflverse CSV. Every output on this page is verbatim from those runs. Install details for the server live on the <a href="mcp-dataset-server.html">dataset-mcp page</a>, the Claude Desktop walkthrough in the <a href="mcp-claude-desktop.html">MCP setup guide</a>.</p>
+
+  <section aria-label="The layer difference">
+    <h2>The short answer: they sit on different layers</h2>
+    <p>A REST API moves data. You send an HTTP request to an endpoint, it returns JSON or CSV, and everything about that exchange (auth, rate limits, schemas, error shapes) is arranged between your code and the server. The API neither knows nor cares whether a human, a script, or an agent is reading the response.</p>
+    <p>MCP (Model Context Protocol) is a layer on top of that world. An MCP server exposes <b>tools</b>: named functions with declared parameters and result shapes, listed in a catalog the agent can read. The agent picks a tool, fills in the arguments, and gets back structured text it can reason over. Under the hood the server is free to be a thin wrapper over one or several plain HTTP APIs. That is exactly what <a href="https://github.com/jayjex/dataset-mcp" rel="noopener">dataset-mcp</a> is: five tools over CSV and JSON files that ship as ordinary HTTPS downloads.</p>
+    <p>So "MCP vs API" is a layer question, and the useful version is: who does the calling? Code you wrote calls APIs directly. Agents call tools. The rest of this page runs one real job through both layers so the trade-offs are visible instead of abstract.</p>
+  </section>
+
+  <section aria-label="The job">
+    <h2>The job: every 2025 NFL game, with its closing spread</h2>
+    <p>Concretely: pull the 2025 season out of NFL game data and show each game's closing spread. Both paths end with the same 285 rows. They differ in what you set up and what you maintain.</p>
+
+    <h3>Path one: curl against the raw CSV</h3>
+    <p>The nflverse project publishes game data as a flat CSV on GitHub:</p>
+    <pre><code>curl -sL -o games.csv \
+  https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv
+# 200 OK, 2,177,168 bytes, 7,549 lines (header + 7,548 games), 46 columns
+
+# 2025 rows with a final score, column 11 = home_score:
+awk -F, 'NR>1 &amp;&amp; $2==2025 &amp;&amp; $11!=""' games.csv | wc -l
+# 285</code></pre>
+    <p>You get all 7,548 games in one shot, 2.1 MB, no key, no rate limit. The costs sit elsewhere: you locate the URL yourself, read the schema yourself, and the filtering logic is column-position awk (or a pandas script) that breaks silently if the publisher inserts a column. Repeat for a second source and you write it all again, because every API defines its own auth, pagination, and field names.</p>
+
+    <h3>Path two: query_dataset over MCP</h3>
+    <p>Install the server once (config below), and the agent sees five tools. Then the same job is one call:</p>
+    <pre><code>query_dataset("nfl-games", {
+  where: [{ column: "season", op: "=", value: 2025 }],
+  columns: ["game_id", "spread_line", "result"],
+  limit: 3
+})</code></pre>
+    <p>Verbatim output from the 2026-09-10 run:</p>
+    <pre><code>{
+  "slug": "nfl-games",
+  "file": "nfl-games.csv",
+  "total_rows_in_file": 7548,
+  "total_matched": 285,
+  "returned": 3,
+  "next_offset": 3,
+  "rows": [
+    { "game_id": "2025_01_DAL_PHI", "spread_line": "8.5", "result": "4" },
+    { "game_id": "2025_01_KC_LAC",  "spread_line": "-3",  "result": "6" },
+    { "game_id": "2025_01_TB_ATL",  "spread_line": "-1.5","result": "-3" }
+  ]
+}</code></pre>
+    <p>Nothing about NFL schemas was written into the agent: the tool call was assembled from the tool description plus <code>get_dataset_info("nfl-games")</code>, which returns the column list and query tips. The server handled the download, verified the file against its manifest SHA-256, cached it in <code>~/.cache/dataset-mcp/</code>, and answered from memory. The same five tools also reach HUD rents (51,895 ZIP rows), Airbnb listings in six cities (90,169 rows), and Superteam Earn bounties: 153,866 rows across 15 data files behind one interface, with no per-source glue code.</p>
+  </section>
+
+  <section aria-label="Comparison table">
+    <h2>The same job, side by side</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="MCP vs API comparison"><table><thead><tr><th scope="col">Dimension</th><th scope="col">curl + code (REST)</th><th scope="col">dataset-mcp (tool layer)</th></tr></thead><tbody>
+      <tr><td>Setup</td><td>Zero install; find the endpoint and read its schema</td><td>One config block, then the agent discovers tools on its own</td></tr>
+      <tr><td>Per-source cost</td><td>New auth, pagination, and parsing per endpoint</td><td>Same five tools across every dataset in the catalog</td></tr>
+      <tr><td>Result size</td><td>Unbounded; the full 2.1 MB file in one response</td><td>100 rows per call, paged via next_offset</td></tr>
+      <tr><td>Typing</td><td>Whatever the publisher returns; positions shift</td><td>Declared params: where, columns, limit, offset, format</td></tr>
+      <tr><td>Summaries</td><td>You write the group-by</td><td>get_stats returns counts, min/max/mean, top values</td></tr>
+      <tr><td>Best consumer</td><td>Your script, notebook, or pipeline</td><td>An agent working in a loop</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section aria-label="When each wins">
+    <h2>When a plain API wins</h2>
+    <ul>
+      <li>No agent is involved. A scheduled job or a one-off analysis should call the endpoint directly; fewer layers, fewer failure modes, and the 2.1 MB bulk download beats paging 100 rows at a time.</li>
+      <li>You need tight control: streaming, custom retries, sub-second latency, or response fields the tool layer never exposes.</li>
+      <li>The integration is long-lived and single-purpose. One endpoint, one consumer, stable schema: the API contract is the product.</li>
+    </ul>
+    <h2>When the MCP layer wins</h2>
+    <ul>
+      <li>An agent is in the loop. The tool catalog is the discovery mechanism: the agent finds <code>query_dataset</code> itself and learns the parameters from the tool schema, with no prompt engineering per dataset.</li>
+      <li>Many sources, one interface. NFL, HUD, Airbnb, and Earn data answer to the same five tools instead of four bespoke integrations.</li>
+      <li>You want correctness rails: typed where clauses, hash-pinned caches, and a summary tool, so the agent filters data instead of pasting it into context and hoping.</li>
+      <li>The schema may change underneath you. The server author absorbs that once, and every agent using the tool keeps working.</li>
+    </ul>
+  </section>
+
+  <section aria-label="Config">
+    <h2>The config, from the dataset-mcp README</h2>
+    <p>Claude Desktop (<code>claude_desktop_config.json</code>):</p>
+    <pre><code>{
+  "mcpServers": {
+    "dataset-mcp": {
+      "command": "npx",
+      "args": ["-y", "github:jayjex/dataset-mcp"]
+    }
+  }
+}</code></pre>
+    <p>pi, Codex, and other TOML-based agents:</p>
+    <pre><code>[mcp_servers.dataset-mcp]
+command = "npx"
+args = ["-y", "github:jayjex/dataset-mcp"]</code></pre>
+    <p>npm 12 refuses git-based installs by default (EALLOWGIT). Pass the flag through npx, or set <code>allow-git=github.com</code> in <code>~/.npmrc</code>. npm 10 and 11 need no flag:</p>
+    <pre><code>{
+  "mcpServers": {
+    "dataset-mcp": {
+      "command": "npx",
+      "args": ["--allow-git=all", "-y", "github:jayjex/dataset-mcp"]
+    }
+  }
+}</code></pre>
+    <p>After the restart, ask the agent <code>list_datasets</code> as a smoke test. Five tools should come back, including query_dataset and get_stats. A broader server comparison, including other free picks, is in the <a href="mcp-tools-for-claude.html">MCP tools for Claude guide</a>, and the full tool reference is on the <a href="mcp-dataset-server.html">dataset-mcp page</a>.</p>
+  </section>
+
+  <section aria-label="Try it">
+    <h2>Try both layers yourself</h2>
+    <p>The curl path needs nothing but the URL above. The MCP path needs the config block and about a minute of restart time. Free sample rows for every dataset are downloadable straight from this site (start at the <a href="../free-datasets-for-ai-agents.html">free datasets index</a> or the <a href="../datasets/nfl-games.html">NFL dataset page</a>) if you want to see the schemas before installing anything.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="https://github.com/jayjex/dataset-mcp" rel="noopener">dataset-mcp on GitHub</a>
+      <a class="btn" href="mcp-dataset-server.html">Tool reference</a>
+    </div>
+    <p class="btn-note">Query access through dataset-mcp is free. Related reading: <a href="../guides/csv-vs-api.html">CSV vs API</a> for the data-format side of the same question.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>MCP vs API questions</h2>
+    <div class="faq">
+      <h3>Is MCP a replacement for REST APIs?</h3>
+      <p>No. MCP is a layer above the transport. A REST API moves bytes between machines; an MCP server describes callable tools so an agent can discover and use them. Most MCP servers call REST APIs behind the scenes, dataset-mcp included. Code reads APIs; agents read tool catalogs.</p>
+      <h3>When should I skip MCP and call the API directly?</h3>
+      <p>When no agent is involved. Pipelines and scripts should hit the endpoint directly, and bulk jobs should take the bulk path: one 2.1 MB download versus paging 100 rows at a time. MCP earns its keep when an agent is the consumer and tool discovery plus typed parameters remove the glue code.</p>
+      <h3>What does dataset-mcp expose?</h3>
+      <p>Five tools (list_datasets, get_dataset_info, get_sample, query_dataset, get_stats) over four datasets and 153,866 rows: NFL games 1999-2026, HUD FMR FY2026, Airbnb six-city listings, and Superteam Earn bounties. Install is one npx line; use --allow-git=all on npm 12+.</p>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

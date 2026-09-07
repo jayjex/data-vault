@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What Is a Data Dictionary? Structure and Real CSV Examples | Data Vault</title>
+<meta name="description" content="A data dictionary documents every column in a dataset: name, type, meaning, allowed values, and source. See real dictionary entries from NFL and HUD rent CSV packs, free to read and download.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/data-dictionary-explained.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="What Is a Data Dictionary? Structure and Real CSV Examples">
+<meta property="og:description" content="A data dictionary documents every column in a dataset: name, type, meaning, allowed values, and source. Real entries from NFL and HUD rent CSV packs.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/data-dictionary-explained.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "What Is a Data Dictionary? Structure and Real CSV Examples", "description": "A data dictionary documents every column in a dataset: name, type, meaning, allowed values, and source. See real dictionary entries from NFL and HUD rent CSV packs, free to read and download.", "datePublished": "2026-09-09", "dateModified": "2026-09-09", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/data-dictionary-explained.html", "about": {"@type": "Dataset", "name": "NFL Games & Betting Lines 1999-2026", "url": "https://jayjex.github.io/data-vault/datasets/nfl-games.html"}, "mentions": [{"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "What is a data dictionary", "item": "https://jayjex.github.io/data-vault/guides/data-dictionary-explained.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is a data dictionary in simple terms?", "acceptedAnswer": {"@type": "Answer", "text": "A data dictionary is a reference table that explains every column in a dataset: the exact column name as it appears in the file, the type of value it holds, what the value means in plain language, which values are allowed or what an empty cell means, and where the data came from. Anyone picking up the CSV later can read the dictionary instead of guessing."}}, {"@type": "Question", "name": "What should a data dictionary include?", "acceptedAnswer": {"@type": "Answer", "text": "At minimum: one row per column, with the column name, a data type or format, a plain-language description, allowed values or units plus the empty-cell rule, and the upstream source. Dictionaries for published datasets add row counts per file, the download date, and license or attribution terms."}}, {"@type": "Question", "name": "Is a data dictionary the same thing as a schema?", "acceptedAnswer": {"@type": "Answer", "text": "They overlap but are not interchangeable. A schema defines the structure a database enforces: tables, column types, keys, constraints. A data dictionary is documentation for humans: it covers what each value means, its units, which codes map to which labels, and why cells are empty. A dataset can follow a valid schema and still need a dictionary, because the schema never explains that spread_line is a closing point spread for the home team."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>What is a data dictionary?</h1>
+  <p class="byline">Published 2026-09-09. Examples taken from the dictionaries that ship with our NFL games and HUD rent CSV packs.</p>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>A data dictionary is a reference table that explains every column in a dataset: the exact column name as it appears in the file, the type of value it holds, what the value means in plain language, which values are allowed or what an empty cell means, and where the data came from. Anyone picking up the CSV later reads the dictionary instead of guessing.</p>
+    <p>Our NFL games file is a good test case. It has 7,548 rows and 46 columns, with headers like <code>spread_line</code>, <code>roof</code>, and <code>gsis</code>. The headers alone tell you little. Is <code>spread_line</code> for the home team or the away team? Is <code>temp</code> Fahrenheit or Celsius? Why are 272 rows missing scores? The dictionary answers all three in one line each, which is the whole job.</p>
+  </section>
+
+  <section aria-label="The five fields that matter">
+    <h2>What goes in a data dictionary: the five fields that matter</h2>
+    <p>Dictionaries range from one-line spreadsheets to full data catalogs. Five fields carry most of the value, and every dictionary we ship has all five:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Five fields of a data dictionary"><table><thead><tr><th scope="col">Field</th><th scope="col">What it answers</th><th scope="col">Example from our NFL file</th></tr></thead><tbody>
+      <tr><td>Column name</td><td>The exact header in the file, byte for byte</td><td><code>game_type</code></td></tr>
+      <tr><td>Data type</td><td>How to parse and store the value</td><td>string code; <code>gameday</code> is a date, <code>YYYY-MM-DD</code></td></tr>
+      <tr><td>Description</td><td>What the value means in plain language</td><td><code>REG</code> regular season, <code>WC</code> wild card, <code>DIV</code> divisional, <code>CON</code> conference championship, <code>SB</code> Super Bowl</td></tr>
+      <tr><td>Allowed values</td><td>Legal values, units, and the empty-cell rule</td><td><code>overtime</code> is <code>1</code> or <code>0</code>; <code>away_score</code> is empty until the game is played</td></tr>
+      <tr><td>Source</td><td>Where the value came from and when</td><td>nflverse-data project, <code>schedules/games.csv</code>, downloaded 2026-09-06, CC BY 4.0</td></tr>
+    </tbody></table></div>
+    <p>Allowed values deserves extra weight. A column that looks numeric can hold codes (<code>-4</code> in <code>spread_line</code> means the away team is favored by 4), and a column that looks empty can mean "no data collected that season" rather than "zero". A dictionary that states those two things prevents most downstream mistakes.</p>
+  </section>
+
+  <section aria-label="Why a dataset without a dictionary is hard to use">
+    <h2>Why a CSV without a dictionary is hard to use</h2>
+    <p>Column names are the only thing a bare CSV gives you, and they answer less than they seem to. Working with undocumented files, you run into the same four problems every time:</p>
+    <p><b>Codes without a legend.</b> Our <code>roof</code> column holds <code>outdoors</code>, <code>dome</code>, <code>closed</code>, and <code>open</code>. Without the dictionary entry, you cannot tell that <code>closed</code> means a retractable roof shut and <code>open</code> means a retractable roof pulled back. The same file spells Washington <code>WAS</code> through 2021 and <code>WSH</code> from 2022; that note lives in the dictionary, not the data.</p>
+    <p><b>Empty cells with three different meanings.</b> In the NFL file, empty <code>away_score</code> means the game has not been played (all 272 such rows are future 2026 games), empty <code>gametime</code> means kickoff times were not tracked in early seasons, and empty <code>temp</code> means a dome or an unrecorded reading. Treating all three as zero corrupts any average you compute.</p>
+    <p><b>Derived columns with no formula.</b> <code>result</code> is <code>home_score - away_score</code> and <code>total</code> is their sum. Nothing in the header says so. A dictionary records the formula once instead of leaving each analyst to reverse-engineer it.</p>
+    <p><b>Missing provenance.</b> Six months later, nobody remembers whether the moneylines came from the source file or were merged in from somewhere else. Our dictionary notes that <code>away_moneyline</code> and <code>home_moneyline</code> exist only from 2006 onward, straight from the source. Source and download date are the fields you are most grateful for after a project goes cold.</p>
+  </section>
+
+  <section aria-label="A real data dictionary: NFL games">
+    <h2>A real data dictionary: NFL games.csv</h2>
+    <p>This is an excerpt from the dictionary that ships with the <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026 pack</a>. The full file covers all 46 columns of <code>games.csv</code> plus two derived tables; the free sample shows 14 of them.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="NFL data dictionary excerpt"><table><thead><tr><th scope="col">Column</th><th scope="col">Meaning</th></tr></thead><tbody>
+      <tr><td>game_id</td><td>nflverse game ID, format <code>season_week_AWAY_HOME</code>, e.g. <code>2024_01_BAL_KC</code></td></tr>
+      <tr><td>game_type</td><td><code>REG</code> regular season, <code>WC</code> wild card, <code>DIV</code> divisional, <code>CON</code> conference championship, <code>SB</code> Super Bowl</td></tr>
+      <tr><td>gameday</td><td>Kickoff date, <code>YYYY-MM-DD</code></td></tr>
+      <tr><td>overtime</td><td><code>1</code> if the game went to overtime, <code>0</code> otherwise</td></tr>
+      <tr><td>spread_line</td><td>Closing point spread for the HOME team. Positive = home favored; <code>-4</code> means the away team is favored by 4. Available 1999 onward, 7,388 of 7,548 rows</td></tr>
+      <tr><td>roof</td><td><code>outdoors</code>, <code>dome</code>, <code>closed</code> (retractable closed), <code>open</code> (retractable open)</td></tr>
+      <tr><td>temp</td><td>Temperature in Fahrenheit at kickoff. Empty for domes and many older outdoor games</td></tr>
+    </tbody></table></div>
+    <p>Attribution: game rows come from the nflverse-data project, file <code>schedules/games.csv</code>, released under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>. The dictionary text documents our pack's files and keeps that source line. Column-by-column coverage continues in the <a href="nfl-games-data-guide.html">games.csv column guide</a>, and the complete dictionary is a free download in the <a href="https://github.com/jayjex/dataset-mcp/releases/tag/data-v1" rel="noopener">data-v1 release</a> as <code>nfl-data-dictionary.md</code>.</p>
+  </section>
+
+  <section aria-label="A real data dictionary: HUD rent file">
+    <h2>A real data dictionary: the HUD rent ZIP file</h2>
+    <p>Second excerpt, from the <a href="../datasets/hud-fmr-2026.html">HUD Fair Market Rents FY2026 pack</a>. The ZIP-level file has one row per ZIP code and ten columns; here are six.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="HUD data dictionary excerpt"><table><thead><tr><th scope="col">Column</th><th scope="col">Meaning</th></tr></thead><tbody>
+      <tr><td>zip</td><td>5-digit ZIP code</td></tr>
+      <tr><td>hud_area_code</td><td>HUD area identifier. Starts with METRO (metro FMR area) or NCNTY (nonmetro county area)</td></tr>
+      <tr><td>metro</td><td>metro or nonmetro, derived from hud_area_code</td></tr>
+      <tr><td>area_name</td><td>HUD Fair Market Rent Area Name, e.g. "New York, NY HUD Metro FMR Area"</td></tr>
+      <tr><td>state</td><td>2-letter state or territory code, derived from the area name</td></tr>
+      <tr><td>fmr_2br</td><td>FY2026 FMR, monthly USD, 2-bedroom unit</td></tr>
+    </tbody></table></div>
+    <p>Attribution: FMR values come from HUD's FY2026 Small Area FMR file on huduser.gov, US government data, public domain. The dictionary adds the pack-specific rules, like which ZIPs share a metro-wide value and why some areas fall back to state minimums. The full version is <code>hud-data-dictionary.md</code> in the <a href="https://github.com/jayjex/dataset-mcp/releases/tag/data-v1" rel="noopener">data-v1 release</a>, and the <a href="hud-rent-data-explained.html">HUD rent data guide</a> walks the file end to end.</p>
+  </section>
+
+  <section aria-label="Getting a full dictionary">
+    <h2>Where the full dictionaries live</h2>
+    <p>Every pack on this site ships its complete data dictionary, and three of them are free to download without checkout, straight from the <a href="https://github.com/jayjex/dataset-mcp/releases/tag/data-v1" rel="noopener">data-v1 release</a>:</p>
+    <ul>
+      <li><code>nfl-data-dictionary.md</code>, for <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026</a> (46-column games.csv plus two derived tables; <a href="../data/nfl-games/sample.csv" download>free 22-row sample</a>)</li>
+      <li><code>hud-data-dictionary.md</code>, for <a href="../datasets/hud-fmr-2026.html">HUD Fair Market Rents FY2026</a> (51,895-row ZIP file plus county and state tables; <a href="../data/hud-fmr-2026/sample.csv" download>free sample</a>)</li>
+      <li><code>airbnb-data-dictionary.md</code>, for <a href="../datasets/airbnb-six-cities.html">Airbnb listings in six cities</a></li>
+    </ul>
+    <p>The full packs add the complete CSVs and source checksums alongside the dictionary, through the same store checkout as the samples: $29 for the NFL pack, $24 for the HUD pack. If you are documenting your own dataset instead, the five-field table above is the whole template: one row per column, name, type, description, allowed values, source.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>Data dictionary questions</h2>
+    <dl>
+      <dt>What is a data dictionary in simple terms?</dt>
+      <dd>A data dictionary is a reference table that explains every column in a dataset: the exact column name as it appears in the file, the type of value it holds, what the value means in plain language, which values are allowed or what an empty cell means, and where the data came from. Anyone picking up the CSV later can read the dictionary instead of guessing.</dd>
+      <dt>What should a data dictionary include?</dt>
+      <dd>At minimum: one row per column, with the column name, a data type or format, a plain-language description, allowed values or units plus the empty-cell rule, and the upstream source. Dictionaries for published datasets add row counts per file, the download date, and license or attribution terms.</dd>
+      <dt>Is a data dictionary the same thing as a schema?</dt>
+      <dd>They overlap but are not interchangeable. A schema defines the structure a database enforces: tables, column types, keys, constraints. A data dictionary is documentation for humans: it covers what each value means, its units, which codes map to which labels, and why cells are empty. A dataset can follow a valid schema and still need a dictionary, because the schema never explains that spread_line is a closing point spread for the home team.</dd>
+    </dl>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

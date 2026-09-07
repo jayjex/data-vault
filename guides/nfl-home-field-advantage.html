@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NFL Home Field Advantage: Real Numbers From 7,548 Games (1999-2026) | Data Vault</title>
+<meta name="description" content="Home field advantage in the NFL, counted from 7,182 home-site games: a 56.5% home win rate since 1999, the era-by-era decline from 58.2% to 55.0%, dome vs outdoor splits, and how the closing spread prices it. Every number computed from the games CSV.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/nfl-home-field-advantage.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="NFL Home Field Advantage: Real Numbers From 7,548 Games (1999-2026)">
+<meta property="og:description" content="The NFL home win rate is 56.5% over 7,182 home-site games since 1999, and it has slid from 58.2% to 55.0% across three eras. Dome vs outdoor, top dome teams, and spread cover rates, all counted from the games CSV.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/nfl-home-field-advantage.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "NFL home field advantage: real numbers from 7,548 games (1999-2026)", "description": "The NFL home win rate is 56.5% over 7,182 home-site games since 1999, and it has slid from 58.2% to 55.0% across three eras. Dome vs outdoor, top dome teams, and spread cover rates, all counted from the games CSV.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/nfl-home-field-advantage.html", "about": {"@type": "Dataset", "name": "NFL Games & Betting Lines 1999-2026", "url": "https://jayjex.github.io/data-vault/datasets/nfl-games.html"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "NFL home field advantage by the numbers", "item": "https://jayjex.github.io/data-vault/guides/nfl-home-field-advantage.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the NFL home win rate all-time?", "acceptedAnswer": {"@type": "Answer", "text": "Counted from the games CSV, home-site NFL teams went 4,056-3,112-14 across the 7,182 played games from 1999 through 2026 where one side was the designated home team, a .565 win rate, 56.5%. Home teams also outscored visitors 23.32 to 20.93 points per game on average, a gap of 2.39 points. Neutral-site games (94, mostly Super Bowls and internationals) are excluded from these counts."}}, {"@type": "Question", "name": "Is home field advantage in the NFL shrinking?", "acceptedAnswer": {"@type": "Answer", "text": "The file says yes. Home teams won 58.2% of 1,836 home-site games from 1999 to 2005, 56.9% of 2,642 from 2006 to 2015, and 55.0% of 2,704 from 2016 through 2026. The average home margin fell in step, from 2.98 points to 2.43 to 1.96. The sharpest single-year dip was 2020, when empty stadiums cut the home win rate to 50.2% (133-131-1), the closest any season came to a losing record at home in 27 seasons; no full season in the file has one."}}, {"@type": "Question", "name": "Do dome teams win more at home?", "acceptedAnswer": {"@type": "Answer", "text": "Barely, league-wide. Home teams won 56.8% of 1,180 dome games against 56.7% of 5,266 outdoor games since 1999, a difference of a tenth of a point. Per team the splits swing much wider: Minnesota won 65.2% of its dome home games, Indianapolis 73.4%, while Detroit went 47.5% (105-116) in its dome and Las Vegas 41.2% (21-30) since 2020. The roof matters less than the franchise; the top-5 dome table above shows each team's dome and outdoor rates side by side."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../datasets/nfl-games.html">NFL dataset</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>NFL home field advantage by the numbers: 27 seasons, 7,182 home games</h1>
+  <p class="byline">Counted from the <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026</a> pack, file <code>games.csv</code>, 7,548 rows &middot; per-team season records behind every split: the <a href="nfl-data-by-team.html">NFL stats by team guide</a> &middot; where the raw file comes from and what else it carries: <a href="nfl-data-apis.html">NFL data APIs compared</a>. Nothing on this page is betting advice.</p>
+
+  <section aria-label="What was counted">
+    <h2>What we counted, and what got excluded</h2>
+    <p>Home field advantage has an exact definition in a game file: the extra win probability and scoring margin that shows up when one side is the designated home team. The pack's <code>games.csv</code> holds 7,548 NFL games from the 1999 season through the 2026 schedule. Of those, 7,276 have final scores. The <code>location</code> column marks 94 of the played games as neutral-site, Super Bowls and international series among them, where the "home" label is an accounting fiction, so they drop out. That leaves <b>7,182 home-site games</b>, and every number below is a count over those rows.</p>
+    <p>The headline: home teams went <b>4,056-3,112-14</b>, a <b>56.5% win rate</b>. They also outscored visitors 23.32 to 20.93 points per game on average. That 2.39-point scoring gap is the raw material the betting market turns into a line, which we check later in the page.</p>
+  </section>
+
+  <section aria-label="Era decline">
+    <h2>The nfl home win rate, era by era</h2>
+    <p>Split the same 7,182 rows into three eras and the decline is steady, not a one-off:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Era home win rate table"><table><thead><tr><th scope="col">Era</th><th scope="col">Home-site games</th><th scope="col">Home record (W-L-T)</th><th scope="col">Home win %</th><th scope="col">Avg home margin</th></tr></thead><tbody>
+      <tr><td>1999-2005</td><td>1,836</td><td>1,068-767-1</td><td>58.2%</td><td>+2.98 pts</td></tr>
+      <tr><td>2006-2015</td><td>2,642</td><td>1,502-1,136-4</td><td>56.9%</td><td>+2.43 pts</td></tr>
+      <tr><td>2016-2026</td><td>2,704</td><td>1,486-1,209-9</td><td>55.0%</td><td>+1.96 pts</td></tr>
+      <tr><td>All, 1999-2026</td><td>7,182</td><td>4,056-3,112-14</td><td>56.5%</td><td>+2.39 pts</td></tr>
+    </tbody></table></div>
+    <p>Two things stand out in the third era. Cut it finer and 2016-2019 still ran at 56.9% (596-447-4 in 1,047 games), right on the previous era. Then 2020 happened: with stadiums empty or near-empty, home teams went 133-131-1, <b>50.2%</b>, which is the closest any season in the file has come to a losing record at home. Crowd noise was doing real work. The rate recovered only partway after crowds returned, 54.4% across 2021-2026 (757-631-4 in 1,392 games), and the last four seasons sit at 57.0%, 56.6%, 53.6%, and 53.4% from 2022 through 2025.</p>
+    <p>One more constant worth knowing: across all 27 seasons in the file, no full season ended with home teams under .500. Even 2020 finished one game over. The advantage shrank from 58.2% toward 55.0%, but it has never flipped sign over a whole year in this dataset.</p>
+  </section>
+
+  <section aria-label="Dome vs outdoor">
+    <h2>Dome vs outdoor: the gap that isn't there</h2>
+    <p>Roof type is a column in the file (<code>roof</code>: dome, outdoors, open, closed), so the stadium-advantage question gets a direct count:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Roof type home win rate table"><table><thead><tr><th scope="col">Roof</th><th scope="col">Home-site games</th><th scope="col">Home record</th><th scope="col">Home win %</th></tr></thead><tbody>
+      <tr><td>Dome</td><td>1,180</td><td>670-510-0</td><td>56.8%</td></tr>
+      <tr><td>Outdoors</td><td>5,266</td><td>2,987-2,269-10</td><td>56.7%</td></tr>
+      <tr><td>Open (retractable, open)</td><td>128</td><td>70-58-0</td><td>54.7%</td></tr>
+      <tr><td>Closed (retractable, closed)</td><td>608</td><td>329-275-4</td><td>54.1%</td></tr>
+    </tbody></table></div>
+    <p>Dome teams win at home at almost exactly the same rate as outdoor teams, 56.8% vs 56.7%. The weather-free environment buys a home crowd and a familiar surface, and the numbers say that nets out to a tenth of a point. Dome advantage did slide across eras like the league-wide number did, 60.1% in 1999-2005, 54.6% in 2006-2015, 56.1% in 2016-2026, so the dome edge of the early 2000s is mostly gone.</p>
+    <p>Which teams actually drive the dome averages? The five franchises with the most dome home games in the file, with their rate outside whenever they played one:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Top dome teams table"><table><thead><tr><th scope="col">Team</th><th scope="col">Dome home games</th><th scope="col">Dome record</th><th scope="col">Dome win %</th><th scope="col">Outdoor/open home</th><th scope="col">Outdoor win %</th></tr></thead><tbody>
+      <tr><td>NO (Saints)</td><td>221</td><td>126-95-0</td><td>57.0%</td><td>5</td><td>0.0% (0-5)</td></tr>
+      <tr><td>DET (Lions)</td><td>221</td><td>105-116-0</td><td>47.5%</td><td>0</td><td>&mdash;</td></tr>
+      <tr><td>MIN (Vikings)</td><td>204</td><td>133-71-0</td><td>65.2%</td><td>18</td><td>61.1%</td></tr>
+      <tr><td>ATL (Falcons)</td><td>149</td><td>86-63-0</td><td>57.7%</td><td>18</td><td>50.0%</td></tr>
+      <tr><td>STL (Rams)</td><td>140</td><td>75-65-0</td><td>53.6%</td><td>0</td><td>&mdash;</td></tr>
+    </tbody></table></div>
+    <p>New Orleans' five outdoor "home" games are the displaced 2005 season after Katrina (Giants Stadium, LSU's Tiger Stadium) plus one-off internationals and returns (Wembley 2008, TIAA Bank Field 2021, Tottenham 2022), so that 0-5 says more about the hurricane than the roof. The interesting rows are the other ends: Detroit is the only high-volume dome franchise under .500 at home in the file, 105-116 over 221 dome games, 47.5%, while Minnesota's dome rate, 65.2%, is the strongest of the five.</p>
+    <p>A few single-stadium teams worth a look from the same count: Indianapolis won 73.4% of 79 dome home games (and 64.7% of 34 outdoor ones in its RCA Dome-adjacent years), Las Vegas went 21-30 in its dome since 2020, 41.2%, the weakest home rate of any dome tenant, and Seattle won 66.5% of 224 outdoor home games but only 55.6% of the 9 it has played under the reopened roof since 2022. Want these per-team numbers as rows instead of prose? <code>team-records-by-season.csv</code> in the pack carries every franchise's full home/away split per season; the <a href="nfl-data-by-team.html">stats by team guide</a> shows how to query it.</p>
+  </section>
+
+  <section aria-label="Spread cover rates">
+    <h2>What the closing spread thinks of all this</h2>
+    <p>The file carries <code>spread_line</code>, the closing point spread with the home team's sign convention, on all 7,182 home-site games. The market prices home field in outright: home teams were favored in 4,692 of them (65.3%), visitors in 2,459, with 31 pick'ems, and the average line was +2.30 for the home side. That number tracks the 2.39-point scoring gap from the first section almost exactly. Bookmakers charge for the jersey.</p>
+    <p>Did the edge pay? Cover rate says no, on average:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Home cover rate table"><table><thead><tr><th scope="col">Split</th><th scope="col">Games</th><th scope="col">Home covered</th><th scope="col">Away covered</th><th scope="col">Push</th></tr></thead><tbody>
+      <tr><td>All home-site games</td><td>7,182</td><td>3,427 (47.7%)</td><td>3,561 (49.6%)</td><td>194 (2.7%)</td></tr>
+      <tr><td>Home team favored</td><td>4,692</td><td>2,203 (48.3%)</td><td>2,362 (51.7%)*</td><td>127</td></tr>
+      <tr><td>Home team underdog</td><td>2,459</td><td>1,224 (50.5%)</td><td>1,199 (49.5%)*</td><td>67</td></tr>
+    </tbody></table></div>
+    <p class="table-note">*Percentages within decided games; pushes excluded. The 194 pushes here and the 195 in the <a href="nfl-spreads-history.html">spread history guide</a> differ by one because that count includes a neutral-site push.</p>
+    <p>Read together: the win rate is real, 56.5%, and the market knows it, yet home teams covered the number only 47.7% of the time. The line eats the advantage. Home underdogs actually covered slightly more often than home favorites, 50.5% vs 48.3%, the same near-coin-flip the spread history page finds league-wide. That is the honest summary of nfl home win rate data against the number: good for winning games, not for beating an efficient price.</p>
+  </section>
+
+  <section aria-label="Limits of the data">
+    <h2>What these counts cannot tell you</h2>
+    <p>The file records final scores, locations, roofs, and closing lines. It has no attendance figures, no injury reports, no travel data, and no probability of any future result. The 2020 collapse to 50.2% is consistent with crowd effects, but the data cannot separate crowd from travel from randomness on its own. Era splits describe completed games; they are a baseline for research questions like "did the dome edge really vanish after 2005" or "which franchises beat the league home rate most often", both one filter away. Nothing here predicts the next kickoff, and none of it is a recommendation to bet one.</p>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the games CSV behind these numbers</h2>
+    <p>The free 22-row sample carries the same 46 columns, including <code>location</code>, <code>roof</code>, and <code>spread_line</code>, so every formula on this page runs on it as-is. The full pack is the 7,548-row games.csv, team-records-by-season.csv with the per-team splits, season-summaries.csv, a data dictionary, and SHA-256 checksums. To pull the raw file straight from the source releases instead, the <a href="nfl-data-apis.html">NFL data APIs comparison</a> tests the free routes live, auth, rate limits, and history depth included. Prefer a notebook? The <a href="nfl-dataset-python.html">pandas quickstart</a> loads the sample in two lines.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/nfl-games/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h" rel="noopener">Get full data</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. The sample and season-summaries download free here, no signup. Source: nflverse game and betting data, CC BY 4.0.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>Home field advantage questions</h2>
+    <div class="faq">
+      <h3>What is the NFL home win rate all-time?</h3>
+      <p>Counted from the games CSV, home-site NFL teams went 4,056-3,112-14 across the 7,182 played games from 1999 through 2026 where one side was the designated home team, a .565 win rate, 56.5%. Home teams also outscored visitors 23.32 to 20.93 points per game on average, a gap of 2.39 points. Neutral-site games (94, mostly Super Bowls and internationals) are excluded from these counts.</p>
+      <h3>Is home field advantage in the NFL shrinking?</h3>
+      <p>The file says yes. Home teams won 58.2% of 1,836 home-site games from 1999 to 2005, 56.9% of 2,642 from 2006 to 2015, and 55.0% of 2,704 from 2016 through 2026. The average home margin fell in step, from 2.98 points to 2.43 to 1.96. The sharpest single-year dip was 2020, when empty stadiums cut the home win rate to 50.2% (133-131-1), the closest any season came to a losing record at home in 27 seasons; no full season in the file has one.</p>
+      <h3>Do dome teams win more at home?</h3>
+      <p>Barely, league-wide. Home teams won 56.8% of 1,180 dome games against 56.7% of 5,266 outdoor games since 1999, a difference of a tenth of a point. Per team the splits swing much wider: Minnesota won 65.2% of its dome home games, Indianapolis 73.4%, while Detroit went 47.5% (105-116) in its dome and Las Vegas 41.2% (21-30) since 2020. The roof matters less than the franchise; the top-5 dome table above shows each team's dome and outdoor rates side by side.</p>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

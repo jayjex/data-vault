@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JSON API Tutorial: Read API Data in Python With Real Output | Data Vault</title>
+<meta name="description" content="A practical JSON API tutorial for data analysts: parse nested responses with requests or urllib, walk arrays and objects, paginate, and handle both HTTP errors and JSON error bodies. Every example ran live with verbatim output.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/json-api-tutorial.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="JSON API Tutorial: Read API Data in Python With Real Output">
+<meta property="og:description" content="Parse nested JSON responses with requests or urllib, paginate through a World Bank endpoint, and handle both error shapes: HTTP 400 and a JSON error body inside HTTP 200. Every example ran live.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/json-api-tutorial.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "JSON API Tutorial: Read API Data in Python With Real Output", "description": "A practical JSON API tutorial for data analysts: parse nested responses with requests or urllib, walk arrays and objects, paginate, and handle both HTTP errors and JSON error bodies. Every example ran live with verbatim output.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/json-api-tutorial.html", "about": {"@type": "Thing", "name": "Reading JSON from public data APIs"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I read JSON from an API in Python?", "acceptedAnswer": {"@type": "Answer", "text": "Call requests.get(URL) and call .json() on the response: r = requests.get(\"https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard\") followed by data = r.json() returns a Python dict built from the response body. Check r.status_code and r.headers[\"content-type\"] first, because .json() raises a JSONDecodeError when the body is HTML or empty. The stdlib alternative is json.load(urlopen(URL)) from urllib.request, which needs no install."}}, {"@type": "Question", "name": "What if the API returns HTTP 200 but no data?", "acceptedAnswer": {"@type": "Answer", "text": "Some APIs report failures inside a 200 body. The BLS Public Data API v2 answered our request for series LNS14000000 with HTTP 200 and the body {\"status\":\"REQUEST_NOT_PROCESSED\",\"message\":[\"daily threshold ... reached\"],\"Results\":{}} once the keyless daily quota ran out. So after r.json(), check the status field the API documents, not just the HTTP code. A defensive check like raising when body.get(\"status\") != \"REQUEST_SUCCEEDED\" catches the silent failure."}}, {"@type": "Question", "name": "How do I fetch all pages from a JSON API?", "acceptedAnswer": {"@type": "Answer", "text": "Most paginated JSON APIs put page counts in the response. The World Bank API returns a two-element top-level array: element 0 is metadata with page, pages, per_page, and total, and element 1 is the row array. Loop page = 1 through meta[\"pages\"], request each page, and extend a results list with the rows until you have all meta[\"total\"] of them."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>JSON API tutorial: read JSON from a public API in Python</h1>
+  <p class="byline">Published 2026-09-10. Every request below ran live from our box on 2026-09-07 (Python 3.14, requests 2.32.5, jq 1.8.1), and every output block is pasted verbatim from that run.</p>
+
+  <section aria-label="What an API hands you">
+    <h2>The shape you get back</h2>
+    <p>A JSON API answers an HTTP request with a body of JSON text: objects in <code>{}</code>, arrays in <code>[]</code>, strings, numbers, booleans, and nulls. Python turns that into dicts, lists, and scalars with one call. Here is the ESPN NFL scoreboard endpoint, a real keyless API we also list in our <a href="public-data-apis-list.html">public data APIs list</a>:</p>
+    <pre>import requests
+
+r = requests.get("https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard")
+print(r.status_code, r.headers["content-type"])
+data = r.json()
+print(type(data).__name__, list(data))
+print(len(data["events"]))</pre>
+    <pre>200 application/json;charset=UTF-8
+dict ['leagues', 'season', 'week', 'events', 'provider']
+16</pre>
+    <p>Three things to check before you trust <code>r.json()</code>: the status code, the content type, and the body. <code>.json()</code> raises <code>json.decoder.JSONDecodeError</code> when the body is HTML or empty, which is exactly what some providers return when they throttle you or lose a path. The two checks above cost one line each and turn a confusing traceback into a clear message.</p>
+    <p>No requests installed? The stdlib covers the same ground:</p>
+    <pre>import json
+from urllib.request import urlopen
+
+with urlopen("https://api.open-meteo.com/v1/forecast?latitude=40.71&amp;longitude=-74.01&amp;current=temperature_2m") as resp:
+    data = json.load(resp)
+print(data["current"])</pre>
+    <pre>{'time': '2026-09-07T15:00', 'interval': 900, 'temperature_2m': 22.4}</pre>
+    <p><code>urlopen</code> raises <code>HTTPError</code> on 4xx and 5xx instead of handing you the response, so the error path differs slightly. We use requests in the rest of this tutorial because its error handling reads better.</p>
+  </section>
+
+  <section aria-label="Walking nested structures">
+    <h2>Walking the nesting: arrays of objects</h2>
+    <p>Real APIs nest. The ESPN response puts each game in an object inside the <code>events</code> array, and each game's teams in another array under <code>competitions</code>. Index and loop the way you would any Python structure:</p>
+    <pre>game = data["events"][0]
+print(game["name"], game["date"])
+for c in game["competitions"][0]["competitors"]:
+    print(c["homeAway"], c["team"]["displayName"], c["score"])</pre>
+    <pre>New England Patriots at Seattle Seahawks 2026-09-10T00:20Z
+home Seattle Seahawks 0
+away New England Patriots 0</pre>
+    <p>Two habits save hours here. First, print <code>list(data)</code> and <code>list(game)</code> to see the keys a level actually has; guessing key names from memory is how <code>KeyError</code> happens. Second, watch for scalars that arrive as strings: ESPN ships scores as strings ("0"), BLS ships values as strings, and the Open-Meteo response above ships numbers. Cast after you inspect, and check for null (<code>None</code>) while you are at it, because pregame scores and missing observations both arrive as null in many APIs.</p>
+  </section>
+
+  <section aria-label="Pagination">
+    <h2>Pagination: when one response is not all of it</h2>
+    <p>Big endpoints page their answers. The World Bank indicator API returns a top-level two-element array, which surprises people expecting an object at the root: element 0 holds page metadata, element 1 holds the rows.</p>
+    <pre>import requests
+
+meta, rows = requests.get(
+    "https://api.worldbank.org/v2/country/all/indicator/SP.POP.TOTL",
+    params={"format": "json", "page": 1, "per_page": 5},
+).json()
+print(meta["page"], "of", meta["pages"], "|", meta["total"], "rows")
+for row in rows:
+    print(row["country"]["value"], row["date"], f"{row['value']:,}")</pre>
+    <pre>1 of 3498 | 17490 rows
+Africa Eastern and Southern 2025 788,844,284
+Africa Eastern and Southern 2024 769,280,888
+Africa Eastern and Southern 2023 750,491,370
+Africa Eastern and Southern 2022 731,821,393
+Africa Eastern and Southern 2021 713,090,928</pre>
+    <p>The loop writes itself from the metadata: request <code>page=1</code>, read <code>meta["pages"]</code>, then walk <code>page = 2 ... pages</code>, extending a list with each page's rows until you have <code>meta["total"]</code>. Keep <code>per_page</code> honest too; a request for page 4000 of nothing returns an error, not an empty list, on some providers. APIs differ in where the counts live (a <code>meta</code> key, a <code>Link</code> header, a <code>next</code> URL in the body), so read them off the first response before coding the loop.</p>
+  </section>
+
+  <section aria-label="Two error shapes">
+    <h2>Two ways an API says no</h2>
+    <p>Errors arrive in two shapes and you need code for both. The first is a real HTTP error status with a JSON body explaining itself. Ask Open-Meteo for a misspelled variable and it answers 400 with a reason:</p>
+    <pre>import requests
+
+r = requests.get(
+    "https://api.open-meteo.com/v1/forecast",
+    params={"latitude": 40.71, "longitude": -74.01, "current": "temperatures_2m"},
+)
+print(r.status_code)
+print(r.json())</pre>
+    <pre>400
+{'error': True, 'reason': "Data corrupted at path ''. Cannot initialize SurfacePressureAndHeightVariable&lt;VariableAndPreviousDay, VariableOrSpread&lt;ForecastPressureVariable&gt;, ForecastHeightVariable&gt; from invalid String value temperatures_2m."}</pre>
+    <pre>r.raise_for_status()</pre>
+    <pre>requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://api.open-meteo.com/v1/forecast?latitude=40.71&amp;longitu...</pre>
+    <p>Call <code>r.raise_for_status()</code> right after every GET and wrong URLs, typos, and auth failures crash your script with the URL in the message instead of silently parsing garbage.</p>
+    <p>The second shape is nastier: HTTP 200 with the error inside the body. On 2026-09-07, after the keyless daily quota ran out, the BLS Public Data API v2 answered a request for unemployment series LNS14000000 like this (status code first, then body):</p>
+    <pre>import requests
+
+r = requests.get("https://api.bls.gov/publicAPI/v2/timeseries/data/LNS14000000")
+print(r.status_code, r.json()["status"])</pre>
+    <pre>200 REQUEST_NOT_PROCESSED</pre>
+    <pre>{"status":"REQUEST_NOT_PROCESSED","responseTime":0,"message":["Request could not be serviced, as the daily threshold for total number of requests allocated to the user with registration key  has been reached."],"Results":{}}</pre>
+    <p>Status code 200, error message in <code>message[]</code>, empty <code>Results</code>. <code>raise_for_status()</code> sees nothing wrong. The fix is checking the status field each API documents. For BLS:</p>
+    <pre>body = r.json()
+if body.get("status") != "REQUEST_SUCCEEDED":
+    raise SystemExit(f"BLS error: {body['message'][0][:80]}")</pre>
+    <pre>BLS error: Request could not be serviced, as the daily threshold for total number of reques...</pre>
+    <p>That check is why the same endpoint appears with live data in our <a href="public-data-apis-list.html">API list from 2026-09-09</a> and as an error here a day later. Quotas expire, bodies lie, and the code that survives checks both layers.</p>
+  </section>
+
+  <section aria-label="Concatenated arrays gotcha">
+    <h2>The file that breaks json.loads: concatenated arrays</h2>
+    <p>One trap from our own pipeline. Building the Superteam Earn dataset, the source API dumped each page as a JSON array, and the raw snapshot ended up as several arrays back to back in one file: 51 card objects that were 17 unique listings across 3 pages. Feed that file to <code>json.loads</code> and it stops after the first array:</p>
+    <pre>import json
+
+raw = '[{"id": 1}, {"id": 2}] [{"id": 3}]'
+json.loads(raw)</pre>
+    <pre>json.decoder.JSONDecodeError: Extra data: line 1 column 24 (char 23)</pre>
+    <p>The error message even names the position where the second document starts. Concatenated arrays look like JSONL (newline-delimited JSON) at a glance, but JSONL is one object per line and parses line by line; concatenated arrays have no separator at all. <code>JSONDecoder.raw_decode</code> handles both, because it parses one document and reports where it stopped:</p>
+    <pre>decoder = json.JSONDecoder()
+arrays = []
+pos = 0
+while pos &lt; len(raw):
+    while pos &lt; len(raw) and raw[pos].isspace():
+        pos += 1
+    obj, pos = decoder.raw_decode(raw, pos)
+    arrays.append(obj)
+print(len(arrays), [len(a) for a in arrays])</pre>
+    <pre>2 [2, 1]</pre>
+    <p>Merge the pages after parsing (<code>rows = [r for a in arrays for r in a]</code>), then dedupe on the record id, because paginated APIs happily hand you the same listing twice across page boundaries. Our 51 cards collapsed to 17 unique listings on that dedupe.</p>
+  </section>
+
+  <section aria-label="curl and jq">
+    <h2>Quick look with curl piped to jq</h2>
+    <p>Before writing Python, eyeball the response. curl fetches, jq formats and queries, and the pipe answers structural questions in seconds:</p>
+    <pre>curl -s "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard" | jq '.events[0].name'
+curl -s "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard" | jq '.events | length'</pre>
+    <pre>"New England Patriots at Seattle Seahawks"
+16</pre>
+    <p><code>jq keys</code> lists the top-level keys, <code>jq '.events[0]'</code> prints the first game in full, and <code>jq '.events | map(.name)'</code> lists all 16 matchups. Once the path is confirmed in jq, the same path works in Python as <code>data["events"][0]["name"]</code>. For one-off pulls this is the whole script; for anything scheduled, move it into requests so you get status checks and retries.</p>
+  </section>
+
+  <section aria-label="Related resources">
+    <h2>Where to go next</h2>
+    <p>Deciding between endpoints like these and a plain file download is its own question; the <a href="csv-vs-api.html">CSV vs API guide</a> lays out the decision table, with a real query on a 51,895-row dataset. The <a href="public-data-apis-list.html">public data APIs list</a> has twelve more keyless endpoints, each curl-tested with the output recorded. For a deeper Python walkthrough of one of them, the <a href="espn-api-python.html">ESPN API in Python</a> guide drills into schedules, standings, and team data on the same endpoint family. And when the API serves numbers you will analyze in pandas, <a href="python-read-csv-tutorial.html">reading CSV in Python</a> covers the file side of the same workflow.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../tools/sample-data-downloads.html">Browse free samples</a>
+      <a class="btn" href="https://www.getly.store/store/mtmw06l2" rel="noopener">Get the full pack</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Third-party APIs carry their own terms and rate limits; check each provider's docs before commercial use.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>How do I read JSON from an API in Python?</h3>
+    <p>Call requests.get(URL) and call .json() on the response: r = requests.get("https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard") followed by data = r.json() returns a Python dict built from the response body. Check r.status_code and r.headers["content-type"] first, because .json() raises a JSONDecodeError when the body is HTML or empty. The stdlib alternative is json.load(urlopen(URL)) from urllib.request, which needs no install.</p>
+    <h3>What if the API returns HTTP 200 but no data?</h3>
+    <p>Some APIs report failures inside a 200 body. The BLS Public Data API v2 answered our request for series LNS14000000 with HTTP 200 and the body {"status":"REQUEST_NOT_PROCESSED","message":["daily threshold ... reached"],"Results":{}} once the keyless daily quota ran out. So after r.json(), check the status field the API documents, not just the HTTP code. A defensive check like raising when body.get("status") != "REQUEST_SUCCEEDED" catches the silent failure.</p>
+    <h3>How do I fetch all pages from a JSON API?</h3>
+    <p>Most paginated JSON APIs put page counts in the response. The World Bank API returns a two-element top-level array: element 0 is metadata with page, pages, per_page, and total, and element 1 is the row array. Loop page = 1 through meta["pages"], request each page, and extend a results list with the rows until you have all meta["total"] of them.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

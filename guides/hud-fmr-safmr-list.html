@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD SAFMR List: ZIP-Level FMR Lookup, FY2026 | Data Vault</title>
+<meta name="description" content="A practical HUD SAFMR lookup: why metro averages miss real ZIPs, the five widest ZIP-vs-metro gaps in the FY2026 file with the query output verbatim, ten metros with heavy ZIP-level variation, and how to read the values.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fmr-safmr-list.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="HUD SAFMR List: ZIP-Level FMR Lookup, FY2026">
+<meta property="og:description" content="A practical HUD SAFMR lookup: why metro averages miss real ZIPs, the five widest ZIP-vs-metro gaps in the FY2026 file, ten metros with heavy ZIP-level variation, and how to read the values.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fmr-safmr-list.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "HUD SAFMR List: ZIP-Level FMR Lookup, FY2026", "description": "A practical HUD SAFMR lookup: why metro averages miss real ZIPs, the five widest ZIP-vs-metro gaps in the FY2026 file with the query output verbatim, ten metros with heavy ZIP-level variation, and how to read the values.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fmr-safmr-list.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Where can I find the list of HUD SAFMR ZIP codes?", "acceptedAnswer": {"@type": "Answer", "text": "HUD publishes the designated metro areas with each fiscal year's FMR release, and the ZIP-level SAFMR tables on huduser.gov. The FY2026 ZIP file in the Data Vault pack covers all 51,895 ZIP rows with the columns you need to filter them: zip, hud_area_code, metro, area_name, state, and fmr_0br through fmr_4br. It carries no SAFMR flag column, so ZIP-level variation against the metro base is the signal to confirm against HUD's tables."}}, {"@type": "Question", "name": "How do I find the ZIPs whose FMR is furthest from their metro average?", "acceptedAnswer": {"@type": "Answer", "text": "Group the ZIP file by hud_area_code, take each group's most common fmr_2br value as the metro base, and subtract it from every ZIP row in the group. Run on the FY2026 file, the widest 2BR gap is ZIP 06752 in the Northwest Hills Planning Region, CT: 3,770 against a 1,490 base, +2,280, which is 153 percent above the base. Next come 94404 in San Francisco at +2,020 and 94505 in Stockton-Lodi at +1,920."}}, {"@type": "Question", "name": "Does every ZIP code have a SAFMR?", "acceptedAnswer": {"@type": "Answer", "text": "The FY2026 ZIP file carries a value for every one of its 51,895 ZIP rows, and ZIP values vary inside nearly every metro: 36,429 rows differ from their area's most-repeated 2BR value. Carrying a ZIP value and being a designated SAFMR are different things. HUD's annual notice decides where agencies must use ZIP-level numbers, and in the rest of the country the metro FMR governs. Confirm any ZIP against HUD's SAFMR tables before relying on it."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>HUD SAFMR list: the ZIP-level lookup that beats the metro average</h1>
+  <p class="byline">FY2026 edition, published 2026-09-10. Data source: HUD, public domain. Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>A HUD SAFMR lookup starts with one comparison: the ZIP's own fair market rent against the metro-wide number the ZIP would otherwise carry. HUD's Small Area FMRs exist because that metro-wide number is wrong for both ends of a spread-out market. This page runs the comparison on the real FY2026 file, shows the five widest ZIP-vs-metro gaps with the query output verbatim, and lists the ten metros with the most ZIP-level variation. The concept and the designation mechanics sit in <a href="hud-fmr-small-areas.html">HUD small area FMR, explained</a>; this page is the lookup itself.</p>
+  </section>
+
+  <section aria-label="Why the metro average is not real in some ZIPs">
+    <h2>Why the metro average is not real in some ZIPs</h2>
+    <p>A metro FMR averages every neighborhood in the market. In a ZIP where rents run far from that average, the metro number describes a place the renter does not live. Two FY2026 rows show both directions of the miss:</p>
+    <p>In San Diego, the metro base 2BR value is 3,000. ZIP 92004 (Borrego Springs) carries 1,460. The metro number overstates that ZIP by 1,540 a month, more than double what the data says the market asks there.</p>
+    <p>In the Northwest Hills Planning Region, Connecticut, the most common 2BR value across its 42 ZIP rows is 1,490. ZIP 06752 carries 3,770. A family priced from the base value would face a number 2,280 below the ZIP's own figure.</p>
+    <p>Same file, same columns, opposite failures. Voucher math built on the metro-wide value either locks a family out of a ZIP that costs more, or sets a standard so far above local rents that landlords in cheaper ZIPs face the wrong benchmark. The small-area version of this story, with the Abilene, TX example worked ZIP by ZIP, is in <a href="hud-fmr-small-areas.html">HUD small area FMR</a>.</p>
+  </section>
+
+  <section aria-label="The five widest gaps in the FY2026 file">
+    <h2>The five widest ZIP-vs-metro gaps in the FY2026 file</h2>
+    <p>The <a href="../datasets/hud-fmr-2026.html">HUD FMR FY2026 pack</a> ships all 51,895 ZIP rows in fmr-by-zip-2026.csv. Each row carries a hud_area_code, and within one area code most rows repeat a common value; that most-repeated value is the metro base the ZIP-level numbers diverge from. The comparison query, run on the real file with pandas 3.0.5:</p>
+    <pre><code>import pandas as pd
+df = pd.read_csv("fmr-by-zip-2026.csv", dtype={"zip": str})
+base = df.groupby("hud_area_code")["fmr_2br"].agg(
+    lambda s: s.mode().iloc[0]).rename("base_2br")
+d = df.join(base, on="hud_area_code")
+d["gap"] = d["fmr_2br"] - d["base_2br"]
+print(d.sort_values("gap", ascending=False).head(5))</code></pre>
+    <p>Output, verbatim, top five rows:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Five widest ZIP vs metro base 2BR gaps, FY2026"><table><thead><tr><th scope="col">zip</th><th scope="col">area_name</th><th scope="col">state</th><th scope="col">fmr_2br</th><th scope="col">metro base</th><th scope="col">gap</th><th scope="col">vs base</th></tr></thead><tbody>
+      <tr><td>06752</td><td>Northwest Hills Planning Region, CT</td><td>CT</td><td>3,770</td><td>1,490</td><td>+2,280</td><td>+153.0%</td></tr>
+      <tr><td>94404</td><td>San Francisco, CA HUD Metro FMR Area</td><td>CA</td><td>5,010</td><td>2,990</td><td>+2,020</td><td>+67.6%</td></tr>
+      <tr><td>94505</td><td>Stockton-Lodi, CA MSA</td><td>CA</td><td>3,660</td><td>1,740</td><td>+1,920</td><td>+110.3%</td></tr>
+      <tr><td>02109</td><td>Boston-Cambridge-Quincy, MA-NH HUD Metro FMR Area</td><td>MA</td><td>4,410</td><td>2,560</td><td>+1,850</td><td>+72.3%</td></tr>
+      <tr><td>02110</td><td>Boston-Cambridge-Quincy, MA-NH HUD Metro FMR Area</td><td>MA</td><td>4,410</td><td>2,560</td><td>+1,850</td><td>+72.3%</td></tr>
+    </tbody></table></div>
+    <p>The Boston gap is a tie: 02109 and 02110 sit in the table, and 02114, 02199, and 01731 share the same 4,410 against the same 2,560 base. All five rows are ZIPs where the metro-wide value sits far below what the ZIP's own rents support, which is the direction that locks voucher families out of a neighborhood.</p>
+    <p>The reverse direction misses too. The deepest negative gap in the file is ZIP 92004 in San Diego again: 1,460 against a 3,000 base, −1,540, half the base value. In the other direction, both numbers are wrong for somebody.</p>
+    <p>One honesty note on the method. The base here is each area's most-repeated 2BR value, the number ZIPs without their own individualized figure carry. In metros where HUD has set ZIP-level values for nearly every ZIP, like San Francisco where only 16 of 113 rows carry the base, the mode is the most common ZIP value rather than a metro-wide average. The comparison still ranks the divergence; treat the base as an operational benchmark, not an official HUD publication. Single-ZIP examples from the same file, including the Abilene row for ZIP 79508, are in <a href="hud-fmr-by-zip.html">HUD FMR by ZIP code</a>.</p>
+  </section>
+
+  <section aria-label="Ten metros with heavy ZIP-level variation">
+    <h2>Ten metros with the heaviest ZIP-level variation</h2>
+    <p>The pack has no SAFMR designation column. What the CSV structure does support: count, per hud_area_code, the ZIP rows that differ from their metro base in at least one bedroom column. Ranking that count surfaces the metros where ZIP-level values do the most work. Top ten in the FY2026 file:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Ten metros with most ZIP rows diverging from metro base, FY2026"><table><thead><tr><th scope="col">#</th><th scope="col">Metro FMR area</th><th scope="col">ZIP rows off base</th></tr></thead><tbody>
+      <tr><td>1</td><td>Philadelphia-Camden-Wilmington, PA-NJ-DE-MD MSA</td><td>473</td></tr>
+      <tr><td>2</td><td>Washington-Arlington-Alexandria, DC-VA-MD HUD Metro FMR Area</td><td>410</td></tr>
+      <tr><td>3</td><td>Pittsburgh, PA HUD Metro FMR Area</td><td>393</td></tr>
+      <tr><td>4</td><td>Chicago-Joliet-Naperville, IL HUD Metro FMR Area</td><td>328</td></tr>
+      <tr><td>5</td><td>New York, NY HUD Metro FMR Area</td><td>326</td></tr>
+      <tr><td>6</td><td>Los Angeles-Long Beach-Glendale, CA HUD Metro FMR Area</td><td>298</td></tr>
+      <tr><td>7</td><td>Atlanta-Sandy Springs-Roswell, GA MSA</td><td>272</td></tr>
+      <tr><td>8</td><td>Houston-The Woodlands-Sugar Land, TX HUD Metro FMR Area</td><td>237</td></tr>
+      <tr><td>9</td><td>Detroit-Warren-Livonia, MI HUD Metro FMR Area</td><td>230</td></tr>
+      <tr><td>10</td><td>St. Louis, MO-IL HUD Metro FMR Area</td><td>219</td></tr>
+    </tbody></table></div>
+    <p>Divergence from the base is the CSV's verifiable signal, and the official designation lives elsewhere: HUD's annual notice, published with the FMR release and mirrored in the <a href="https://www.huduser.gov/portal/datasets/fmr/smallarea/index.html" rel="noopener">SAFMR tables on huduser.gov</a>. The two line up in practice. Across the whole file, 43,747 of 51,895 ZIP rows differ from their metro base in at least one bedroom column, and 36,429 differ in 2BR, so variation shows up nearly everywhere while the ten metros above concentrate it at scale.</p>
+  </section>
+
+  <section aria-label="How to read the values">
+    <h2>How to read the values</h2>
+    <p>Each ZIP row carries ten columns: <b>zip</b>, <b>hud_area_code</b>, <b>metro</b>, <b>area_name</b>, <b>state</b>, and <b>fmr_0br</b> through <b>fmr_4br</b>. The five fmr values are monthly dollars, rounded as HUD published them, for standard-quality units with utilities included. fmr_2br is the number most voucher conversations turn on; the 0BR through 1BR and 3BR through 4BR values scale the same comparison to other household sizes.</p>
+    <p>Reading a lookup in three steps:</p>
+    <ul>
+      <li>Find the ZIP row by filtering on the zip column. That row's fmr values are the ZIP-level figures, and where a designated SAFMR applies, they are the benchmark.</li>
+      <li>Find the base: within the same hud_area_code, the value most rows repeat. The gap between the ZIP row and the base is the ZIP-vs-metro spread this page ranked.</li>
+      <li>Check the sign. A ZIP above its base means the metro number understates local rents; a ZIP below means it overstates them. Both matter, in different directions, for payment standards and for any rent benchmark keyed to HUD numbers.</li>
+    </ul>
+    <p>Column types and first-row examples for every field sit in the <a href="hud-fmr-data-dictionary.html">HUD FMR data dictionary</a>, and the designation rules deciding when the ZIP value governs are in <a href="hud-fmr-small-areas.html">HUD small area FMR, explained</a>.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>SAFMR list questions</h2>
+    <dl>
+      <dt>Where can I find the list of HUD SAFMR ZIP codes?</dt>
+      <dd>HUD publishes the designated metro areas with each fiscal year's FMR release, and the ZIP-level SAFMR tables on huduser.gov. The FY2026 ZIP file in the Data Vault pack covers all 51,895 ZIP rows with the columns you need to filter them: zip, hud_area_code, metro, area_name, state, and fmr_0br through fmr_4br. It carries no SAFMR flag column, so ZIP-level variation against the metro base is the signal to confirm against HUD's tables.</dd>
+      <dt>How do I find the ZIPs whose FMR is furthest from their metro average?</dt>
+      <dd>Group the ZIP file by hud_area_code, take each group's most common fmr_2br value as the metro base, and subtract it from every ZIP row in the group. Run on the FY2026 file, the widest 2BR gap is ZIP 06752 in the Northwest Hills Planning Region, CT: 3,770 against a 1,490 base, +2,280, which is 153 percent above the base. Next come 94404 in San Francisco at +2,020 and 94505 in Stockton-Lodi at +1,920.</dd>
+      <dt>Does every ZIP code have a SAFMR?</dt>
+      <dd>The FY2026 ZIP file carries a value for every one of its 51,895 ZIP rows, and ZIP values vary inside nearly every metro: 36,429 rows differ from their area's most-repeated 2BR value. Carrying a ZIP value and being a designated SAFMR are different things. HUD's annual notice decides where agencies must use ZIP-level numbers, and in the rest of the country the metro FMR governs. Confirm any ZIP against HUD's SAFMR tables before relying on it.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <p>The free 22-row sample shows the schema. The full pack carries all 51,895 ZIP rows plus the <a href="hud-fmr-by-county.html">county rollup (3,229 rows)</a>, state summary (52 rows), the data dictionary, and source checksums, so the gap query above runs on the complete file.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">Get the full dataset</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release, huduser.gov. US government data, public domain. Data Vault is not affiliated with HUD.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

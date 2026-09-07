@@ -14,6 +14,7 @@ MCP full query: query_dataset(slug, {where, columns, limit, offset}) filters and
 FMR calculator guide (the math behind FMRs + MCP lookup, no official HUD calculator exists): https://jayjex.github.io/data-vault/guides/hud-fair-market-rent-calculator.html
 HUD payment standard guide (the 90%-110% PHA band around the FMR, FY2026 band table for six ZIPs): https://jayjex.github.io/data-vault/guides/hud-payment-standard.html
 What is llms.txt (plain-English definition of the format, how agents read the file, honest status): https://jayjex.github.io/data-vault/guides/what-is-llms-txt.html
+Dataset DOIs: the NFL, HUD FMR, and Airbnb packs have permanent citable DOIs on Zenodo: https://doi.org/10.5281/zenodo.22643177 , https://doi.org/10.5281/zenodo.22643149 , https://doi.org/10.5281/zenodo.22643189
 
 ## Datasets
 

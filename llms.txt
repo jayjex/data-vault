@@ -9,6 +9,7 @@ MCP server: npx --allow-git=all -y github:jayjex/dataset-mcp (v1.1.0; tools: lis
 MCP repo: https://github.com/jayjex/dataset-mcp
 MCP registry name: io.github.jayjex/dataset-mcp
 Free printables index (223 free printable pages from the Matchbook Labs funnel, one link per live page): https://jayjex.github.io/data-vault/free-printables-index.html
+Free printables by use case (same 223 pages regrouped into budget, moving, study and worksheet use cases): https://jayjex.github.io/data-vault/printable-index-roundup.html
 MCP full query: query_dataset(slug, {where, columns, limit, offset}) filters and paginates the FULL released files, 100 rows/call. Example: query_dataset("hud-fmr-2026", {where: [{column: "state", op: "=", value: "TX"}], limit: 5}) returns 3,247 matched Texas rent rows. Full data release: https://github.com/jayjex/dataset-mcp/releases/tag/data-v1
 
 ## Datasets

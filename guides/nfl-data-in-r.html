@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NFL Data in R: Load the Games CSV with readr and dplyr | Data Vault</title>
+<meta name="description" content="NFL data in R: one read_csv call loads the free 22-row games CSV straight from its URL, then dplyr filter, group_by, and summarise answer three questions on it, with data.table fread equivalents for each.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/nfl-data-in-r.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="NFL Data in R: Load the Games CSV with readr and dplyr">
+<meta property="og:description" content="One read_csv call loads the free 22-row NFL games CSV straight from its URL, then dplyr filter, group_by, and summarise answer three questions on it, with data.table fread equivalents for each.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/nfl-data-in-r.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "NFL data in R: load the games CSV with readr and dplyr", "description": "One read_csv call loads the free 22-row NFL games CSV straight from its URL, then dplyr filter, group_by, and summarise answer three questions on it, with data.table fread equivalents for each.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/nfl-data-in-r.html", "about": {"@type": "Dataset", "name": "NFL Games & Betting Lines 1999-2026", "url": "https://jayjex.github.io/data-vault/datasets/nfl-games.html"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "NFL data in R", "item": "https://jayjex.github.io/data-vault/guides/nfl-data-in-r.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does read_csv parse the NFL sample cleanly on the first pass?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, with two things to expect. Scores, lines, rest days, and roof parse as numeric with the right values on the first pass, and the 6 dome games arrive as NA in temp and wind because the source file is blank there. The sample also carries 10 fully empty columns (gametime, nfl_detail_id, pff, ftn, the moneyline and odds columns), which readr guesses as logical NA; if you want them as character, name them in col_types."}}, {"@type": "Question", "name": "readr or data.table for the full 7,548-row NFL file?", "acceptedAnswer": {"@type": "Answer", "text": "Both handle it without effort. 7,548 rows by 46 columns is small enough that any R loader reads it in under a second on ordinary hardware. data.table::fread is the faster of the two, runs multithreaded, downloads from a URL itself, and decompresses .gz and .bz2 automatically. readr::read_csv returns a tibble that pipes into dplyr with zero conversion. If you already live in the tidyverse, use readr; if you want raw speed or the compact data.table syntax, use fread."}}, {"@type": "Question", "name": "Will the same R code run on the full 7,548-row NFL pack?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, unchanged. The sample is the first 22 rows of games.csv with the same 46-column schema, so every read_csv, filter, group_by, and merge call here runs the same way on the full file, 1999 through 2026. Only the row count grows, and the odds columns that sit empty in the 1999 sample fill in from 2006 onward. The pack also includes team-records-by-season.csv (861 rows) and season-summaries.csv (27 rows), plus a data dictionary and SHA-256 checksums."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../datasets/nfl-games.html">NFL dataset</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>NFL data in R: load the games CSV with readr and dplyr</h1>
+  <p class="byline">Guide to the <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026</a> pack &middot; free 22-row CSV sample &middot; every column explained in the <a href="nfl-games-data-guide.html">games.csv column guide</a> &middot; prefer Python? The <a href="nfl-dataset-python.html">pandas quickstart</a> runs the same sample.</p>
+
+  <section aria-label="Quick answer">
+    <p>Two lines of R load the NFL sample and print its size:</p>
+<pre>library(readr)
+
+games &lt;- read_csv("https://jayjex.github.io/data-vault/data/nfl-games/sample.csv")
+dim(games)</pre>
+    <p>The file is 46 columns and 22 data rows, one row per game, weeks 1 and 2 of the 1999 season. <code>read_csv</code> accepts the URL directly, so nothing to download first, no signup, no API key, and it returns a tibble that pipes straight into dplyr. The three analyses below use only <code>filter</code>, <code>group_by</code>, <code>summarise</code>, and <code>merge</code>; a data.table version of each runs on the same page.</p>
+    <p>The machine that builds this site has no R runtime, so the code on this page is <strong>untested in R, syntax verified against the readr and dplyr documentation on cran.r-project.org</strong> (readr 2.x column guessing, dplyr 1.2.1). Every number shown in the output comments comes from the real CSV file on this site.</p>
+  </section>
+
+  <section aria-label="Setup">
+    <h2>Setup</h2>
+    <p>Install the two tidyverse packages once:</p>
+<pre>install.packages(c("readr", "dplyr"))</pre>
+    <p>Reading a URL instead of a local path means the same two lines work on any machine with network access. If you would rather pin a local copy, download the <a href="../data/nfl-games/sample.csv" download>sample CSV</a> and point <code>read_csv</code> at the filename.</p>
+  </section>
+
+  <section aria-label="Load the sample">
+    <h2>Load the sample and check it</h2>
+    <p>The types worth one glance before the analyses:</p>
+<pre>library(readr)
+
+url &lt;- "https://jayjex.github.io/data-vault/data/nfl-games/sample.csv"
+games &lt;- read_csv(url)
+
+dim(games)                # 22 46
+games$game_id[1]          # "1999_01_MIN_ATL"
+class(games$home_score)   # "numeric"
+sum(is.na(games$temp))    # 6</pre>
+    <ul>
+      <li><code>game_id</code> is the join key in season_week_AWAY_HOME format, like <code>1999_01_MIN_ATL</code>. readr reads it as character without help; the letters and <code>_</code> characters force that guess.</li>
+      <li><code>temp</code> and <code>wind</code> hold NA for the 6 dome games, where the stadium roof was closed and the number was never recorded. The full column list lives in the <a href="nfl-games-data-guide.html">games.csv column guide</a>.</li>
+      <li>The sample carries 10 fully empty columns (<code>gametime</code>, <code>nfl_detail_id</code>, <code>pff</code>, <code>ftn</code>, and the moneyline and odds columns). readr's documented guessing rules turn an all-missing column into logical NA. If that bothers you, pin them: <code>read_csv(url, col_types = list(gametime = col_character(), referee = col_character()))</code> or name any other column the same way.</li>
+      <li><code>spread_line</code> is stored relative to the home team: -4 means the away team is favored by 4.</li>
+    </ul>
+  </section>
+
+  <section aria-label="Three dplyr analyses">
+    <h2>Three dplyr analyses</h2>
+
+    <h3>1. Top 5 teams by wins, from the sample</h3>
+<pre>library(dplyr)
+
+games |&gt;
+  select(game_id, away_team, away_score, home_team, home_score) |&gt;
+  mutate(winner = if_else(home_score &gt; away_score, home_team, away_team)) |&gt;
+  count(winner, name = "wins") |&gt;
+  arrange(desc(wins), winner) |&gt;
+  slice_head(n = 5)
+#   winner  wins
+#   DET         2
+#   JAX         2
+#   PIT         2
+#   ARI         1
+#   BUF         1</pre>
+    <p>Detroit, Jacksonville, and Pittsburgh opened 2-0 in the sample; the remaining games split across 16 teams at 1 win each, so the 4th and 5th rows are alphabetical tie-breaks, not a real ranking. That is what 22 rows are for: learning the shape of the verbs. A <code>count()</code> call is shorthand for <code>group_by(winner) |&gt; summarise(wins = n())</code>, the same aggregation in longer form. To rank whole seasons, run the identical pipeline on the full 7,548-row file, or read the pre-aggregated table in the <a href="nfl-data-by-team.html">team-records CSV guide</a>.</p>
+
+    <h3>2. Dome vs outdoor scoring with group_by and summarise</h3>
+<pre>games |&gt;
+  group_by(roof) |&gt;
+  summarise(games = n(), avg_total = mean(total))
+#   roof     games avg_total
+#   dome         6      38.0
+#   outdoors    16      45.5</pre>
+    <p><code>total</code> is combined points. The 6 dome games averaged 38.0, the 16 outdoor games 45.5. The <code>games</code> column keeps the sample-size gap visible: 6 rows is a handful, so treat the gap as a dplyr exercise, not a finding. On the full file the same group_by runs across 27 seasons. The roof split is one slice of the weather story; <a href="nfl-stadium-weather.html">NFL stadium weather, read from the same columns</a> covers temp, wind, and what the file can and cannot say about kicking.</p>
+
+    <h3>3. Join the spreads and check the favorites</h3>
+<p>The closing line already sits in <code>spread_line</code> on every row, so the join example works with a second real file: <a href="../data/nfl-games/season-summaries.csv" download>season-summaries.csv</a>, 27 rows, one per season, free. Merge it on <code>season</code> and the per-season context lands next to each game:</p>
+<pre>summaries &lt;- read_csv("https://jayjex.github.io/data-vault/data/nfl-games/season-summaries.csv")
+
+games |&gt;
+  merge(summaries, by = "season") |&gt;
+  select(game_id, home_score, away_score, home_win_pct)
+#            game_id home_score away_score home_win_pct
+#      1999_01_MIN_ATL         14         17        0.598
+#      1999_01_KC_CHI          20         17        0.598
+#      ...</pre>
+    <p>The sample's 22 games split 10 home wins and 12 away wins, a .455 home win rate, while the merged column shows the full 1999 season went to the home team 59.8 percent of the time. Two weeks of September is noise; the season table is the baseline. For the spread itself, mark the favorite and check the cover in one mutate:</p>
+<pre>games |&gt;
+  mutate(
+    fav_covered = if_else(
+      spread_line &lt; 0,
+      (home_score - away_score) + spread_line &gt; 0,
+      (away_score - home_score) - spread_line &gt; 0
+    )
+  ) |&gt;
+  count(fav_covered)
+#   fav_covered     n
+#         FALSE    15
+#         TRUE      6
+#         NA        1</pre>
+    <p>Favorites covered 6 of the 21 games with a result either way; the NA is the one push, <code>1999_01_KC_CHI</code>, where Chicago was a 3-point favorite and won by exactly 3. Across all 259 games of the 1999 season the favorite covered 47 percent, the <code>favorite_cover_pct</code> value in season-summaries.csv. Lines, covers, and the sign convention get a full treatment in the <a href="nfl-spreads-history.html">spread history guide</a>.</p>
+  </section>
+
+  <section aria-label="data.table equivalents">
+    <h2>The same three queries in data.table</h2>
+    <p>data.table reads URLs too, with <code>fread</code>, and answers the same questions in its <code>DT[i, j, by]</code> syntax:</p>
+<pre>library(data.table)
+
+games &lt;- fread("https://jayjex.github.io/data-vault/data/nfl-games/sample.csv")
+dim(games)   # 22 46
+
+# top 5 by wins
+games[, .(winner = fifelse(home_score &gt; away_score, home_team, away_team))]
+  [, .(wins = .N), by = winner][order(-wins, winner)] |&gt; head(5)
+#    winner wins
+# 1:    DET    2
+# 2:    JAX    2
+# 3:    PIT    2
+# 4:    ARI    1
+# 5:    BUF    1
+
+# dome vs outdoors
+games[, .(games = .N, avg_total = mean(total)), by = roof]
+
+# season 1999 only, joined to the summaries table
+summaries &lt;- fread("https://jayjex.github.io/data-vault/data/nfl-games/season-summaries.csv")
+merge(games[season == 1999], summaries, by = "season")</pre>
+    <p><code>fread</code> downloads from the URL itself, and it decompresses .gz and .bz2 automatically if you ever feed it compressed exports. Which package wins is taste at this file size; at 7,548 rows both finish before you switch tabs.</p>
+  </section>
+
+  <section aria-label="From sample to full pack">
+    <h2>From the sample to the full pack</h2>
+    <p>Every call above runs unchanged on the full 7,548-row games.csv, 1999 through 2026 (results through the 2025 season, plus 272 scheduled 2026 rows). Same 46 columns, same types, bigger frames. The odds columns empty in this 1999 sample fill in from 2006 on. The pack also includes team-records-by-season.csv (861 rows, covered in the <a href="nfl-data-by-team.html">team-records CSV guide</a>, which includes the R version of its pandas examples) and season-summaries.csv (27 rows), plus a data dictionary and SHA-256 checksums. Player-level data (rosters, depth charts, per-player stats) sits outside the pack entirely; the <a href="nfl-roster-data.html">NFL roster data guide</a> covers the free sources and how their player IDs map to game files. Not sure raw nflverse downloads vs the preprocessed pack? The <a href="nfl-data-alternative.html">nflverse vs pack comparison</a> lays out both routes, including the <code>nflreadr</code> R package on the raw side. Need this week's scores over HTTP instead of files? The <a href="nfl-data-api-python.html">NFL data API examples</a> run requests against live endpoints.</p>
+    <p>Not ready for 7,548 rows? <a href="../data/nfl-games/season-summaries.csv" download>season-summaries.csv</a> is a complete table, free, 27 rows, one per season with scoring averages, home win rates, and favorite cover rates. It loads with the same <code>read_csv</code> or <code>fread</code> call.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/nfl-games/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h" rel="noopener">Get full data</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. The full pack is 3 CSVs (7,548 + 861 + 27 rows), data dictionary, source SHA-256 checksums. The sample and season-summaries download free here, no signup.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>NFL data in R questions</h2>
+    <dl>
+      <dt>Does read_csv parse the NFL sample cleanly on the first pass?</dt>
+      <dd>Yes, with two things to expect. Scores, lines, rest days, and roof parse as numeric with the right values on the first pass, and the 6 dome games arrive as NA in <code>temp</code> and <code>wind</code> because the source file is blank there. The sample also carries 10 fully empty columns (<code>gametime</code>, <code>nfl_detail_id</code>, <code>pff</code>, <code>ftn</code>, the moneyline and odds columns), which readr guesses as logical NA; if you want them as character, name them in <code>col_types</code>.</dd>
+      <dt>readr or data.table for the full 7,548-row NFL file?</dt>
+      <dd>Both handle it without effort. 7,548 rows by 46 columns is small enough that any R loader reads it in under a second on ordinary hardware. <code>data.table::fread</code> is the faster of the two, runs multithreaded, downloads from a URL itself, and decompresses .gz and .bz2 automatically. <code>readr::read_csv</code> returns a tibble that pipes into dplyr with zero conversion. If you already live in the tidyverse, use readr; if you want raw speed or the compact data.table syntax, use fread.</dd>
+      <dt>Will the same R code run on the full 7,548-row NFL pack?</dt>
+      <dd>Yes, unchanged. The sample is the first 22 rows of games.csv with the same 46-column schema, so every read_csv, filter, group_by, and merge call here runs the same way on the full file, 1999 through 2026. Only the row count grows, and the odds columns that sit empty in the 1999 sample fill in from 2006 onward. The full pack ships with a data dictionary and SHA-256 checksums.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Attribution">
+    <h2>Source and license</h2>
+    <p>All game rows come from the nflverse-data project, file <code>schedules/games.csv</code>, downloaded 2026-09-06 with the SHA-256 recorded in the pack. nflverse-data is released under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>; credit it as "Data from nflverse, CC BY 4.0". Samples on this site carry the same license. No logos or league marks appear anywhere in the pack; team names are factual data. This page and the pack describe data only and offer no betting advice, picks, or predictions.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

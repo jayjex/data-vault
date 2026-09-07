@@ -131,6 +131,22 @@ top_2025 = df[df.season == 2025].sort_values("point_diff", ascending=False).head
 best_ats = df[df.season &gt;= 2010].nlargest(10, "ats_win_pct")[
     ["season", "team", "wins", "losses", "ats_wins", "ats_losses", "ats_win_pct"]]</pre>
 
+    <h3>In R, on the full CSV</h3>
+    <p>Same table, tidyverse style. The R quickstart (<a href="nfl-data-in-r.html">NFL data in R</a>) covers the loading details; with the pack CSV on disk:</p>
+    <pre>library(readr)
+library(dplyr)
+
+df &lt;- read_csv("team-records-by-season.csv")
+
+# every KC season since 2015
+kc &lt;- df |&gt; filter(team == "KC", season &gt;= 2015)
+
+# best single-season cover rates since 2010
+df |&gt;
+  filter(season &gt;= 2010) |&gt;
+  slice_max(ats_win_pct, n = 10) |&gt;
+  select(season, team, wins, losses, ats_wins, ats_losses, ats_win_pct)</pre>
+
     <h3>In Excel or Google Sheets</h3>
     <p>Open the CSV, click any cell, Data &rarr; Create a filter. Set team = KC to get the 27 season rows, or season = 2025 to get all 32 teams from one season. Sort by points_against ascending for best defenses, or by ats_win_pct for the year's biggest overperformers against closing lines.</p>
   </section>

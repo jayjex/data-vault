@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD FMR Florida: Fair Market Rent Data for Florida, FY2026 | Data Vault</title>
+<meta name="description" content="HUD fair market rent data for Florida: 1,555 ZIP rows in the FY2026 file, metro examples for Tampa, Orlando, Miami and Jacksonville with real 2BR ranges, a state=FL MCP query, and why Florida rents sit above the national median. Free sample, full pack.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fmr-florida.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="HUD FMR Florida: Fair Market Rent Data for Florida, FY2026">
+<meta property="og:description" content="HUD fair market rent data for Florida: 1,555 ZIP rows in the FY2026 file, metro examples for Tampa, Orlando, Miami and Jacksonville with real 2BR ranges, a state=FL MCP query, and why Florida rents sit above the national median.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fmr-florida.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "HUD FMR Florida: Fair Market Rent Data for Florida, FY2026", "description": "HUD fair market rent data for Florida: 1,555 ZIP rows in the FY2026 file, metro examples for Tampa, Orlando, Miami and Jacksonville with real 2BR ranges, a state=FL MCP query, and why Florida rents sit above the national median.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fmr-florida.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How many Florida rows are in the HUD FMR data?", "acceptedAnswer": {"@type": "Answer", "text": "The FY2026 ZIP file holds 1,555 Florida rows out of 51,895 total, one row per Florida ZIP code, about 3 percent of the file. The county file adds 67 Florida county rows, one per county, and the 52-row state summary carries one Florida row with the state median, the highest county, and the lowest county."}}, {"@type": "Question", "name": "Why are Florida FMRs higher than the national median?", "acceptedAnswer": {"@type": "Answer", "text": "In FY2026 the state-wide 2BR median across the 1,555 Florida ZIP rows is 1,800 dollars, 650 above the national median of 1,150 across all 51,895 ZIP rows. The South Florida metros drive the top of the range: Miami ZIPs start at 1,890 for a 2BR and reach 3,650, the highest value in the file. Middle-market metros like Tampa and Orlando span 1,080 to 2,970 and 1,330 to 2,760, while Panhandle nonmetro counties sit near the floor."}}, {"@type": "Question", "name": "What is the cheapest and most expensive 2BR FMR in Florida for FY2026?", "acceptedAnswer": {"@type": "Answer", "text": "Florida ZIP-level 2BR FMRs run from 970 dollars at the low end to 3,650 at the high end, the widest spread of any single state pull from this file. The state summary names Monroe County as the highest-rent county at a 2BR of 2,504 and Calhoun County as the lowest at 973. The state-wide median across the 1,555 Florida ZIP rows is 1,800."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>HUD FMR Florida: fair market rent data for Florida, FY2026</h1>
+  <p class="byline">FY2026 edition, published 2026-09-10. Data source: HUD, public domain. Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <section aria-label="Florida in the FY2026 FMR files">
+    <h2>Florida in the FY2026 FMR files</h2>
+    <p>Filtering the <a href="../datasets/hud-fmr-2026.html">HUD FMR FY2026 pack</a> on <code>state = FL</code> matches 1,555 of the 51,895 ZIP rows, about 3 percent of the file. The county file adds 67 Florida county rows, one per county, and the 52-row state summary carries one Florida row. Together the three files give you the state at three levels: ZIP, county, and one-line summary.</p>
+    <p>Florida is a metro-heavy state. Of the 1,555 ZIP rows, 1,391 sit in metro FMR areas and 164 in nonmetro counties. Across 52 distinct HUD areas, 30 are metros that publish ZIP-level Small Area FMRs and 22 are nonmetro counties that carry a county-level value, so nonmetro ZIPs repeat their county number while metro ZIPs vary inside the metro.</p>
+  </section>
+
+  <section aria-label="Florida metros in the file">
+    <h2>Florida metros, examples from the FY2026 CSV</h2>
+    <p>The big metros carry most of the row count, and each one spans a wide 2BR range because ZIP-level values replace the old metro-wide single number. Every figure below comes straight from fmr-by-zip-2026.csv:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Florida metro FMR areas by ZIP count and 2BR spread"><table><thead><tr><th scope="col">HUD area</th><th scope="col">ZIP rows</th><th scope="col">2BR range</th></tr></thead><tbody>
+      <tr><td>Tampa-St. Petersburg-Clearwater</td><td>208</td><td>1,080 to 2,970</td></tr>
+      <tr><td>Orlando-Kissimmee-Sanford</td><td>154</td><td>1,330 to 2,760</td></tr>
+      <tr><td>Miami-Miami Beach-Kendall</td><td>121</td><td>1,890 to 3,650</td></tr>
+      <tr><td>Fort Lauderdale</td><td>87</td><td>1,800 to 3,500</td></tr>
+      <tr><td>Jacksonville</td><td>82</td><td>1,080 to 2,490</td></tr>
+      <tr><td>West Palm Beach-Boca Raton</td><td>74</td><td>1,050 to 3,380</td></tr>
+      <tr><td>North Port-Bradenton-Sarasota</td><td>63</td><td>1,370 to 2,940</td></tr>
+      <tr><td>Lakeland-Winter Haven</td><td>58</td><td>1,210 to 2,970</td></tr>
+    </tbody></table></div>
+    <p>Miami prices apart from everything else in the state. Its cheapest ZIP starts at 1,890 for a 2BR, above the Florida median of 1,800, and its ceiling of 3,650 is the highest 2BR value anywhere in the 51,895-row file. Fort Lauderdale is close behind with a 1,800 floor. Jacksonville prices like a middle-market metro despite its size: 82 ZIPs running 1,080 to 2,490, a floor shared with Tampa. The metro-level geography behind this table is covered in <a href="hud-metro-list.html">HUD metro area list</a>, which ranks all 649 FY2026 areas by ZIP count.</p>
+  </section>
+
+  <section aria-label="Query the file for Florida">
+    <h2>Query the file for Florida</h2>
+    <p>Filtering on the state column is the fastest way in. In a spreadsheet, filter the state column for FL. For scripts and agents, the <a href="https://github.com/jayjex/dataset-mcp" rel="noopener">dataset-mcp</a> server takes a where clause, setup on the <a href="../agents/">For agents</a> page. This query runs against the full ZIP file:</p>
+    <pre><code>query_dataset(
+  "hud-fmr-2026",
+  {
+    "where": [{ "column": "state", "op": "=", "value": "FL" }],
+    "columns": ["zip", "area_name", "fmr_2br"],
+    "limit": 5
+  }
+)</code></pre>
+    <p>Output from a September 2026 test run, matching 1,555 Florida ZIP rows:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Query result table"><table><thead><tr><th scope="col">zip</th><th scope="col">area_name</th><th scope="col">fmr_2br</th></tr></thead><tbody>
+      <tr><td>33901</td><td>Cape Coral-Fort Myers, FL MSA</td><td>1740</td></tr>
+      <tr><td>33902</td><td>Cape Coral-Fort Myers, FL MSA</td><td>1960</td></tr>
+      <tr><td>33903</td><td>Cape Coral-Fort Myers, FL MSA</td><td>1660</td></tr>
+      <tr><td>33904</td><td>Cape Coral-Fort Myers, FL MSA</td><td>2020</td></tr>
+      <tr><td>33905</td><td>Cape Coral-Fort Myers, FL MSA</td><td>1910</td></tr>
+    </tbody></table></div>
+    <p>Results start in Cape Coral because rows return in file order, not alphabetical order. A filter on both state and metro narrows it to one metro, for example Miami, and the <a href="csv-vs-api.html">CSV vs API decision guide</a> covers when querying beats downloading the whole file.</p>
+  </section>
+
+  <section aria-label="Florida at a glance">
+    <h2>Florida at a glance, from the state summary row</h2>
+    <p>The state summary file condenses Florida to one row. In FY2026 the state-wide 2BR median across Florida ZIPs is 1,800, the cheapest ZIP values out at 970, and the priciest ZIP reaches 3,650. Set next to the national median of 1,150 across all 51,895 ZIP rows, Florida runs 650 dollars hotter, and the gap comes from the top: the South Florida metros price at two to three times the Panhandle floor. The summary also names the extremes at the county level: Monroe County holds the highest 2BR in the state at 2,504, and Calhoun County the lowest at 973. The full 52-row file, Florida included, is available as a <a href="../data/hud-fmr-2026/state-summary.csv" download>free CSV download</a>, so you can put Florida next to the other 51 states without paying anything.</p>
+    <p>For the row-by-row work behind these numbers, <a href="hud-fmr-by-zip.html">HUD FMR by ZIP code</a> walks one ZIP lookup end to end and <a href="hud-fmr-by-county.html">HUD FMR by county</a> explains the county rollup, including why some counties report both a median and a max. For the other big-state pull, <a href="hud-fmr-texas.html">HUD FMR for Texas</a> counts 3,247 ZIP rows and prices the whole state below the Florida median.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>HUD FMR Florida questions</h2>
+    <dl>
+      <dt>How many Florida rows are in the HUD FMR data?</dt>
+      <dd>The FY2026 ZIP file holds 1,555 Florida rows out of 51,895 total, one row per Florida ZIP code, about 3 percent of the file. The county file adds 67 Florida county rows, one per county, and the 52-row state summary carries one Florida row with the state median, the highest county, and the lowest county.</dd>
+      <dt>Why are Florida FMRs higher than the national median?</dt>
+      <dd>In FY2026 the state-wide 2BR median across the 1,555 Florida ZIP rows is 1,800 dollars, 650 above the national median of 1,150 across all 51,895 ZIP rows. The South Florida metros drive the top of the range: Miami ZIPs start at 1,890 for a 2BR and reach 3,650, the highest value in the file. Middle-market metros like Tampa and Orlando span 1,080 to 2,970 and 1,330 to 2,760, while Panhandle nonmetro counties sit near the floor.</dd>
+      <dt>What is the cheapest and most expensive 2BR FMR in Florida for FY2026?</dt>
+      <dd>Florida ZIP-level 2BR FMRs run from 970 dollars at the low end to 3,650 at the high end, the widest spread of any single state pull from this file. The state summary names Monroe County as the highest-rent county at a 2BR of 2,504 and Calhoun County as the lowest at 973. The state-wide median across the 1,555 Florida ZIP rows is 1,800.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the dataset">
+    <h2>Get the full dataset</h2>
+    <p>The free 22-row sample shows the schema. The full pack carries all 1,555 Florida ZIP rows inside the 51,895-row ZIP file, the county file (3,229 rows), the state summary (52 rows), the data dictionary, and source checksums.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">Get the full dataset</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release, huduser.gov. US government data, public domain.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

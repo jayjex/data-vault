@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FMR vs Actual Rent: What Each Number Measures and Why They Differ | Data Vault</title>
+<meta name="description" content="FMR vs actual rent: HUD's FMR is a 40th percentile gross rent estimate; actual rents are asking prices. Sample rows from Abilene and Austin show how far the numbers sit apart and why.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/fmr-vs-rent-actuals.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="FMR vs Actual Rent: What Each Number Measures and Why They Differ">
+<meta property="og:description" content="FMR vs actual rent: HUD's FMR is a 40th percentile gross rent estimate; actual rents are asking prices. Sample rows from Abilene and Austin show how far the numbers sit apart and why.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/fmr-vs-rent-actuals.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "FMR vs Actual Rent: What Each Number Measures and Why They Differ", "description": "FMR vs actual rent: HUD's FMR is a 40th percentile gross rent estimate; actual rents are asking prices. Sample rows from Abilene and Austin show how far the numbers sit apart and why.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/fmr-vs-rent-actuals.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Why is actual rent higher than the FMR?", "acceptedAnswer": {"@type": "Answer", "text": "The FMR sits at the 40th percentile of gross rents by design, so more than half of the standard units in a market rent above it before any market movement. Actual asking rents also respond to vacancy and demand changes during the year, while FMRs update once a fiscal year from survey data collected before the release. ZIP-level variation adds more spread on top of the metro baseline."}}, {"@type": "Question", "name": "Is the FMR a monthly number or a nightly rate?", "acceptedAnswer": {"@type": "Answer", "text": "The FMR is a monthly gross rent estimate: shelter rent plus utilities for standard-quality units. Listing sites show monthly asking rents for annual leases. Nightly short-term rates, like the Airbnb prices in the Data Vault samples, measure a different market with a different basis, and multiplying a nightly rate by 30 does not produce a number comparable to the FMR."}}, {"@type": "Question", "name": "How do I check actual rents against the FMR for one ZIP code?", "acceptedAnswer": {"@type": "Answer", "text": "Use the ZIP-level FMR row, not the metro-wide value, and match the bedroom size. Compare against monthly asking rents for the same unit type, and remember the FMR is a 40th percentile estimate that includes utilities. In the FY2026 ZIP file, 2-bedroom FMRs across the 22 Abilene, TX sample ZIPs run from 1090 to 1900, so the ZIP you pick changes the benchmark by as much as 74 percent."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>FMR vs actual rent: why the two numbers differ</h1>
+  <p class="byline">Published 2026-09-10. Data source: HUD, public domain, plus the free Data Vault sample files. Data Vault is not affiliated with HUD. This page covers data and measurement; it is not housing or legal advice.</p>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>Fair market rent is an estimate. HUD computes it as the 40th percentile of gross rents, shelter rent plus utilities, for standard-quality units in each market area. Actual rent is what a listing asks and what a tenant ends up paying, unit by unit. The two numbers were never built to match, and most of the gap between them comes from four things: the percentile position, the gross rent basis, the timing of the estimate, and the geography it covers.</p>
+    <p>When someone compares a market's rents to the FMR and finds a gap, that gap is expected. The useful question is how to measure the gap honestly, and that starts with knowing what each number is.</p>
+  </section>
+
+  <section aria-label="What each number measures">
+    <h2>What each number measures</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="FMR vs actual rent comparison"><table><thead><tr><th scope="col"></th><th scope="col">HUD FMR</th><th scope="col">Actual rent</th></tr></thead><tbody>
+      <tr><td>What it is</td><td>40th percentile gross rent estimate, published once a fiscal year</td><td>Asking or contracted rent for a specific unit, at a point in time</td></tr>
+      <tr><td>Rent basis</td><td>Shelter rent plus utilities, monthly</td><td>Usually shelter rent only; short-term listings price per night</td></tr>
+      <tr><td>Unit quality</td><td>Modest, standard-quality units; excludes luxury and new construction outliers</td><td>Whatever the market lists, from studios to new high-rises</td></tr>
+      <tr><td>Geography</td><td>HUD Metro FMR Area or, under SAFMRs, ZIP code</td><td>The one ZIP and building the listing sits in</td></tr>
+      <tr><td>Timing</td><td>Updated each fall for the fiscal year, built from survey and rent data collected earlier</td><td>Changes with every new listing, lease, and concession</td></tr>
+      <tr><td>Primary use</td><td>Payment standards for the Housing Choice Voucher program, research benchmarks</td><td>Transactions: what a renter pays or a landlord collects</td></tr>
+    </tbody></table></div>
+    <p>Column-by-column detail on the FMR side is in <a href="hud-rent-data-explained.html">HUD fair market rent data, explained</a>.</p>
+  </section>
+
+  <section aria-label="Where the gap comes from">
+    <h2>Where the gap between FMR and actual rent comes from</h2>
+    <p><b>The percentile is set below the middle of the market.</b> A 40th percentile estimate means 40 percent of standard units rent for less than the FMR and 60 percent rent for more. Half the market clears the FMR before any other factor enters. If you benchmark a random listing against the FMR, odds favor the listing sitting higher.</p>
+    <p><b>The basis differs.</b> The FMR covers shelter rent plus utilities. Most listing prices show shelter rent alone, and some exclude utilities paid separately. A listing at the same dollar amount as the FMR is often cheaper in real terms than the FMR implies, which flips the direction of a naive comparison.</p>
+    <p><b>The timing differs.</b> HUD builds each year's FMRs from rent data collected before the fiscal year starts, and the numbers hold for twelve months. Rents in fast markets move between releases, so a mid-year listing can sit well above an estimate drawn from earlier survey waves.</p>
+    <p><b>The geography differs.</b> A metro FMR is one number for an entire market area. Rents inside that area vary ZIP by ZIP, and the ZIP-level rows in the FY2026 file show it: the same metro carries different FMR values across ZIPs where HUD has set SAFMRs. One number cannot represent all of them.</p>
+  </section>
+
+  <section aria-label="What the sample rows show">
+    <h2>What the sample rows show</h2>
+    <p>The free <a href="../datasets/hud-fmr-2026.html">HUD FMR FY2026 sample</a> covers 22 ZIPs in one metro, Abilene, TX. All 22 rows share the metro label, and the 2-bedroom FMR across them still takes nine distinct values. The modal ZIP carries 1090; the highest ZIP, 79562, carries 1900, which is 74 percent above the floor.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Abilene 2-bedroom FMR spread"><table><thead><tr><th scope="col">zip</th><th scope="col">fmr_2br</th><th scope="col">Note</th></tr></thead><tbody>
+      <tr><td>76437</td><td>1090</td><td>At the metro baseline</td></tr>
+      <tr><td>79504</td><td>1090</td><td>Modal value, 12 of 22 sample ZIPs</td></tr>
+      <tr><td>79508</td><td>1240</td><td>14 percent above baseline</td></tr>
+      <tr><td>79536</td><td>1460</td><td>34 percent above baseline</td></tr>
+      <tr><td>79562</td><td>1900</td><td>74 percent above baseline</td></tr>
+    </tbody></table></div>
+    <p>Twelve of the 22 ZIPs sit at 1090 and the rest spread upward, which drags the simple mean to about 1177, well above the value most ZIPs carry. Averages hide where the market mass sits; the distribution shows it.</p>
+    <p>The free <a href="../datasets/airbnb-six-cities.html">Airbnb six-cities sample</a> makes the same point from the listings side. Its 20 Austin rows price from 27.50 to 1230.67 per night, with a median of 220 and a mean of 321.05. The mean runs 46 percent above the median because a handful of high-rate listings pull it. The full Austin file, 11,295 listings, medians at 217, and the six-city set runs 90,169 rows with city medians from 175 to 323 per night.</p>
+    <p>One warning belongs next to any FMR vs actual rent comparison that uses short-term listings: a nightly rate and a monthly FMR measure different markets. Nightly prices carry furnishing, cleaning, and vacancy risk that annual leases do not, and multiplying a nightly rate by 30 does not turn it into a rent comparable to the FMR. If you want to benchmark the FMR, use monthly asking rents for annual leases.</p>
+  </section>
+
+  <section aria-label="How to compare the two numbers">
+    <h2>How to compare FMR to actual rent without fooling yourself</h2>
+    <p>Match the bedroom size first. FMR values come in five sizes, 0BR through 4BR, and a 2-bedroom listing against a 1-bedroom FMR produces a fake gap. The ZIP-level columns fmr_0br through fmr_4br keep this simple; <a href="hud-fmr-by-zip.html">HUD FMR by ZIP code</a> walks a worked lookup.</p>
+    <p>Match the geography second. Where HUD has set a SAFMR, the ZIP value replaces the metro value, and the difference between them can be large. The <a href="safmr-vs-fmr.html">SAFMR vs FMR</a> guide shows the same Abilene metro carrying three different 2-bedroom values across ZIPs.</p>
+    <p>Match the basis third. The FMR includes utilities. If the listing rent excludes them, add an estimate of monthly utilities before comparing, or note that the comparison overstates the gap. Only when the basis is monthly, the bedroom size matches, the ZIP matches, and utilities are accounted for does the comparison measure the market instead of the method.</p>
+    <p>For bulk work, the <a href="fmr-lookup-alternatives.html">FMR lookup guide</a> covers when one-at-a-time lookups stop working and the full 51,895-row ZIP file takes over.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FMR vs actual rent questions</h2>
+    <dl>
+      <dt>Why is actual rent higher than the FMR?</dt>
+      <dd>The FMR sits at the 40th percentile of gross rents by design, so more than half of the standard units in a market rent above it before any market movement. Actual asking rents also respond to vacancy and demand changes during the year, while FMRs update once a fiscal year from survey data collected before the release. ZIP-level variation adds more spread on top of the metro baseline.</dd>
+      <dt>Is the FMR a monthly number or a nightly rate?</dt>
+      <dd>The FMR is a monthly gross rent estimate: shelter rent plus utilities for standard-quality units. Listing sites show monthly asking rents for annual leases. Nightly short-term rates, like the Airbnb prices in the Data Vault samples, measure a different market with a different basis, and multiplying a nightly rate by 30 does not produce a number comparable to the FMR.</dd>
+      <dt>How do I check actual rents against the FMR for one ZIP code?</dt>
+      <dd>Use the ZIP-level FMR row, not the metro-wide value, and match the bedroom size. Compare against monthly asking rents for the same unit type, and remember the FMR is a 40th percentile estimate that includes utilities. In the FY2026 ZIP file, 2-bedroom FMRs across the 22 Abilene, TX sample ZIPs run from 1090 to 1900, so the ZIP you pick changes the benchmark by as much as 74 percent.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <p>Both sample files behind the numbers on this page download free: the 22-row HUD FMR sample and the 20-row Airbnb Austin sample. The full HUD pack carries all three CSVs (51,895 + 3,229 + 52 rows), the data dictionary, and source checksums.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>Download FMR sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">Get full FMR data</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. FMR source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release, huduser.gov. US government data, public domain. Data Vault is not affiliated with HUD.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

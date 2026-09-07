@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reddit Historical Data: What Still Works for Research After Pushshift | Data Vault</title>
+<meta name="description" content="The official Reddit .json endpoints 403 from server IPs and Pushshift has been closed since 2023. Tested September 2026: the Arctic Shift API as the live research fallback, with real query output.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/reddit-historical-data.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Reddit Historical Data: What Still Works for Research After Pushshift">
+<meta property="og:description" content="Reddit .json 403s from server IPs and Pushshift is closed. The Arctic Shift API is the live research fallback, tested September 2026 with real output.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/reddit-historical-data.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Reddit Historical Data: What Still Works for Research After Pushshift", "description": "The official Reddit .json endpoints 403 from server IPs and Pushshift has been closed since 2023. Tested September 2026: the Arctic Shift API as the live research fallback, with real query output.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/reddit-historical-data.html", "about": {"@type": "Thing", "name": "Reddit historical data for research"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Reddit historical data for research", "item": "https://jayjex.github.io/data-vault/guides/reddit-historical-data.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is Pushshift still available?", "acceptedAnswer": {"@type": "Answer", "text": "No public access, and it has been that way since 2023. Reddit disabled Pushshift moderator access in spring 2023 and closed the remaining routes that year. The search UI and ingestion are gone. The Arctic Shift API covers the same need for research: full-history search over posts and comments, free, no key."}}, {"@type": "Question", "name": "Can I get Reddit data through the official API?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, for current data. The free OAuth tier allows 100 requests per minute, and the plain .json endpoints work from a normal browser connection. Two limits matter for research: there is no deep history, listings paginate only about 1,000 items back, and the plain .json endpoints often return 403 or a block page when called from datacenter IPs. Bulk historical collection needs an archive instead."}}, {"@type": "Question", "name": "What is the Arctic Shift API?", "acceptedAnswer": {"@type": "Answer", "text": "A public Reddit archive and free API at arctic-shift.photon-reddit.com, built on the same idea as Pushshift. It serves full post and comment objects as JSON over GET endpoints with no key: search by subreddit, date, title, and more, or fetch specific IDs. It rate limits aggressively and returns 422 Timeout, slow down errors when you hammer it, so harvests run best in spaced stages."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Reddit historical data for research: what still works after Pushshift</h1>
+  <p class="byline">Published 2026-09-10. Every API call shown here was run live from our research box in September 2026, and the outputs are pasted as they came back.</p>
+
+  <section aria-label="The state of Reddit data sources">
+    <h2>The state of Reddit data sources, September 2026</h2>
+    <p>Anyone doing research on Reddit runs into the same wall within the first hour: the official endpoints block or rate limit bulk access, and the tool everyone built on for fifteen years is gone. Here is the field as it stands now.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Reddit data sources status table"><table><thead><tr><th scope="col">Source</th><th scope="col">Status for research</th><th scope="col">What you get</th></tr></thead><tbody>
+      <tr><td><code>www.reddit.com/&lt;sub&gt;.json</code></td><td>Works from a residential connection, blocked or rate limited at scale</td><td>Current listings only, about 1,000 items deep, no historical window</td></tr>
+      <tr><td>Official API (OAuth)</td><td>Live, free tier at 100 requests per minute</td><td>Current posts and comments, real-time. No deep history</td></tr>
+      <tr><td>Pushshift</td><td>Closed to the public since 2023</td><td>Was the standard: full-history dumps and search. Search UI and ingestion are gone</td></tr>
+      <tr><td>Arctic Shift API</td><td>Live and tested for this guide; no key needed</td><td>Full-history search over posts and comments, JSON, GET only</td></tr>
+      <tr><td>PullPush</td><td>Community Pushshift rewrite, uptime varies</td><td>Similar search endpoints, worth checking when Arctic Shift is throttling you</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section aria-label="What happened in 2023">
+    <h2>What happened in 2023, in four dates</h2>
+    <p>The reason Reddit historical data got hard is one policy shift, and the dates explain why so many guides online are now dead ends.</p>
+    <p><b>Spring 2023.</b> Reddit restricted Pushshift, the volunteer archive that had mirrored every post and comment since 2015 and powered most academic research and mod tooling. Moderator access went first, then the public routes closed behind it.</p>
+    <p><b>April 18, 2023.</b> Reddit announced paid API pricing: $0.24 per 1,000 calls, with a free tier capped at 100 requests per minute. The price was aimed at third-party apps, and no researcher could afford it as a bulk-collection budget either.</p>
+    <p><b>June 30, 2023.</b> Apollo, Reddit is Fun, and most third-party clients shut down under the new pricing. That was the day casual bulk access to Reddit data effectively ended.</p>
+    <p><b>August 2023.</b> A community project began stitching the last available Pushshift dumps back together and posting monthly archives, which is the lineage the archive below grew out of. Everything since has been volunteer-run, which is why checking a source is still alive matters before you build on it.</p>
+  </section>
+
+  <section aria-label="What the official .json endpoints actually do">
+    <h2>What the official .json endpoints actually do</h2>
+    <p>The trick everyone knows is appending <code>.json</code> to any Reddit URL. It still works from a laptop on a home connection, and for a one-off look at a subreddit it is the fastest path. For research it fails in three predictable ways, all of which we hit from our box this month.</p>
+    <p><b>Datacenter IPs get blocked.</b> From our research box on September 7, 2026, <code>old.reddit.com/r/SideProject/new.json</code> returned 403 before serving content, and <code>www.reddit.com/r/SideProject/new.json</code> returned an HTML block page: no data in the body at all, just a spinner animation and a script challenge. Reddit fronts these endpoints with bot protection, and a server IP with no cookie history trips it on the first request.</p>
+    <p><b>Rate limits tighten under load.</b> From residential connections, pacing matters more than politeness. In our own runs, requests spaced 570-580 seconds apart still triggered RATELIMIT cooldowns of 16-21 seconds on the third through fifth calls in a burst. The ceiling drops exactly when your collection gets ambitious.</p>
+    <p><b>There is no past.</b> Listings paginate roughly 1,000 items back per sort order. For a subreddit with any traffic, last month is already out of reach. Anything older than that needs an archive, and for research windows measured in years, the official endpoints were never the answer.</p>
+  </section>
+
+  <section aria-label="Arctic Shift, the live fallback">
+    <h2>Arctic Shift: the research fallback that is still up</h2>
+    <p>Arctic Shift is a volunteer archive project (<a href="https://github.com/ArthurHeitmann/arctic_shift" rel="noopener">github.com/ArthurHeitmann/arctic_shift</a>) that keeps collecting Reddit posts and comments into monthly dumps and serves them through a free API at <code>arctic-shift.photon-reddit.com</code>. No account, no key, GET requests only. It fills the hole Pushshift left, with two honest caveats: it rate limits hard, and it depends on one project staying funded and hosted.</p>
+    <p>Three real queries, run September 7, 2026, trimmed for display. First, search posts by subreddit and title keyword:</p>
+    <pre><code>GET https://arctic-shift.photon-reddit.com/api/posts/search?subreddit=datasets&amp;limit=2&amp;title=dataset</code></pre>
+    <pre><code>HTTP 200
+{"data":[{
+  "author":"AdkoSokdA",
+  "created_utc":1788703259,
+  "id":"1w8wzyu",
+  "link_flair_text":"resource",
+  "num_comments":0,
+  "permalink":"/r/datasets/comments/1w8wzyu/the_biggest_open_football_dataset_430_000/",
+  "score":1,
+  "selftext":"Hello!\n\nThis dataset I have created last year has been downloaded over **20 000 tim...",
+  "title":"The biggest open football dataset (430,000...",
+  "subreddit":"datasets"
+}]}</code></pre>
+    <p>The objects are full Reddit post objects: body text, flair, timestamps, comment counts. The same post fetched by ID shows one archive-specific field, <code>_meta.retrieved_2nd_on</code>, the date the archive re-crawled the record:</p>
+    <pre><code>GET https://arctic-shift.photon-reddit.com/api/posts/ids?ids=1tfpcpd</code></pre>
+    <pre><code>HTTP 200
+{"data":[{
+  "author":"Careful_Sand_7838",
+  "created_utc":1779023958,
+  "_meta":{"retrieved_2nd_on":1779153591},
+  "subreddit":"datasets",
+  "title":"I made the largest public gender-labeled Japanese..."
+}]}</code></pre>
+    <p>And to prove the archive covers the Pushshift era itself, search the subreddit where its users went. These are posts from August 2026, still asking where Pushshift went:</p>
+    <pre><code>GET https://arctic-shift.photon-reddit.com/api/posts/search?subreddit=pushshift&amp;limit=3</code></pre>
+    <pre><code>HTTP 200
+[{"id":"1vvf24z","created_utc":1787411752,
+  "title":"Is PushShift unable to search user history if we disable comment/post visibility?..."},
+ {"id":"1vk5xjj","created_utc":1786321613,
+  "title":"What's the active samac.io equivalent for modern pushshift?"},
+ {"id":"1vhniup","created_utc":1786067897,
+  "title":"pushshift not processing forms"}]</code></pre>
+    <p>The rate limit is the one operational fact to plan around. Hammer the API and it answers with HTTP 422 and the body <code>Timeout, slow down</code>. Our harvest runs in stages about 2 hours apart to stay inside the ceiling. For a bounded study, that pacing is fine; for a live dashboard, this is the wrong source.</p>
+  </section>
+
+  <section aria-label="A real harvest with numbers">
+    <h2>What a real harvest looks like, numbers included</h2>
+    <p>To size the effort before you start: one of our own research pulls, September 2026, used the method above across 14 subreddits (SideProject, Entrepreneur, EntrepreneurRideAlong, smallbusiness, SaaS, microsaas, webdev, datasets, DataHoarder, LocalLLaMA, SillyTavernAI, indiehackers, digitalproducts, Passive_Income), with a window from March 2025 to September 2026 and title keywords like <i>made $</i>, <i>MRR</i>, <i>sold</i>, <i>first sale</i>, <i>revenue</i>, <i>dataset</i>, and <i>template</i>.</p>
+    <p>The funnel: 5,523 unique posts pulled from the archive, 1,243 after keyword and quality filtering, 133 complete stories worth analysis. Most of the loss is deleted content, which stays deleted in any archive: a post removed by its author shows up as <code>[removed]</code> with the body gone. Upvote and comment counts are snapshots from harvest time, so cite them as of the retrieval date.</p>
+    <p>Total wall-clock time was spread over staged runs, not a single sitting. That is the honest cost of a free volunteer archive: the data is deep, the pipe is narrow.</p>
+  </section>
+
+  <section aria-label="Framing the data in your work">
+    <h2>How to frame it in your own work</h2>
+    <p>Treat these archives as what they are: public research collections maintained by volunteers, cited by name and retrieval date like any dataset. In a paper or report, name the archive, the endpoint or dump, and the date you pulled the rows. Keep the raw JSON as your snapshot, because live scores and edited bodies will drift away from what you analyzed. And if your export becomes a dataset others will touch, document its columns the way you would for any CSV; <a href="data-dictionary-explained.html">a data dictionary</a> is a one-hour job that saves every downstream user the guessing. Deciding between keeping the export as a file versus wiring a query layer over it is the same tradeoff as any other source: <a href="csv-vs-api.html">the CSV vs API decision table</a> covers it.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>Is Pushshift still available?</h3>
+    <p>No public access, and it has been that way since 2023. Reddit disabled Pushshift moderator access in spring 2023 and closed the remaining routes that year. The search UI and ingestion are gone. The Arctic Shift API covers the same need for research: full-history search over posts and comments, free, no key.</p>
+    <h3>Can I get Reddit data through the official API?</h3>
+    <p>Yes, for current data. The free OAuth tier allows 100 requests per minute, and the plain <code>.json</code> endpoints work from a normal browser connection. Two limits matter for research: there is no deep history, listings paginate only about 1,000 items back, and the plain <code>.json</code> endpoints often return 403 or a block page when called from datacenter IPs. Bulk historical collection needs an archive instead.</p>
+    <h3>What is the Arctic Shift API?</h3>
+    <p>A public Reddit archive and free API at arctic-shift.photon-reddit.com, built on the same idea as Pushshift. It serves full post and comment objects as JSON over GET endpoints with no key: search by subreddit, date, title, and more, or fetch specific IDs. It rate limits aggressively and returns 422 <code>Timeout, slow down</code> errors when you hammer it, so harvests run best in spaced stages.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

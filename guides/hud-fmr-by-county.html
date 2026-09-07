@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD FMR by County: Fair Market Rent by County, FY2026 | Data Vault</title>
+<meta name="description" content="HUD fair market rent by county: the FY2026 CSV holds 3,229 county rows with median and max FMRs for 0BR through 4BR. Real MCP query for Harris County, TX, column guide, free sample, full dataset.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fmr-by-county.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="HUD FMR by County: Fair Market Rent by County, FY2026">
+<meta property="og:description" content="HUD fair market rent by county: the FY2026 CSV holds 3,229 county rows with median and max FMRs for 0BR through 4BR. Real MCP query for Harris County, TX, column guide, free sample.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fmr-by-county.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "HUD FMR by County: Fair Market Rent by County, FY2026", "description": "HUD fair market rent by county: the FY2026 CSV holds 3,229 county rows with median and max FMRs for 0BR through 4BR. Real MCP query for Harris County, TX, column guide, free sample, full dataset.", "datePublished": "2026-09-07", "dateModified": "2026-09-07", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-county.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How many counties are in the HUD FMR data?", "acceptedAnswer": {"@type": "Answer", "text": "The FY2026 county file covers 3,229 counties and county equivalents across 56 state and territory codes, one row per county. Each row carries median and max FMR values for five bedroom sizes (0BR through 4BR) in monthly dollars."}}, {"@type": "Question", "name": "Why does the county file have both a median and a max column?", "acceptedAnswer": {"@type": "Answer", "text": "For 3,162 counties, median and max are the same number because the county maps to a single HUD area, so area_rows equals 1. The other 67 counties span more than one HUD area, and the rollup reports the median and the max of those area FMRs. Bristol County, MA, for example, aggregates 20 area rows with a 2BR median of 1,729 and a max of 2,550."}}, {"@type": "Question", "name": "What is the difference between FMR by county and FMR by ZIP?", "acceptedAnswer": {"@type": "Answer", "text": "The county file follows HUD's traditional geography: one row per county with the FMRs of the HUD areas inside it. The ZIP file follows HUD's Small Area FMR publication: 51,895 rows, one per ZIP, where designated metros get ZIP-level values. If you need one number for a whole county, use the county file. If you need the ZIP-level variation inside a metro, use the ZIP file."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>HUD FMR by county: fair market rent lookup for FY2026</h1>
+  <p class="byline">FY2026 edition, published 2026-09-07. Data source: HUD, public domain. Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <section aria-label="What FMR by county means">
+    <h2>What FMR by county means</h2>
+    <p>Fair Market Rent is HUD's estimate of the 40th percentile gross rent, shelter rent plus utilities, for standard-quality units in a market. HUD has always published FMRs on an area basis, and the county sits at the center of that geography: every HUD Fair Market Rent Area is either a metro area or a county, and the county-level file reports the FMRs of the areas inside each county. When someone searches for fair market rent by county, that file is the direct answer. The percentile math and the payment-standard rules behind it live in <a href="hud-rent-data-explained.html">HUD fair market rent data, explained</a>.</p>
+    <p>For FY2026, the county table covers 3,229 counties and county equivalents across 56 state and territory codes. Every row carries median and max FMR values for five bedroom sizes, 0BR through 4BR, in monthly dollars rounded exactly as HUD published them.</p>
+  </section>
+
+  <section aria-label="Inside the FY2026 county file">
+    <h2>Inside the FY2026 county file</h2>
+    <p>The county table in the <a href="../datasets/hud-fmr-2026.html">HUD FMR FY2026 pack</a> is fmr-by-county-2026.csv, 3,229 rows, one per county, built from HUD's FY26 county FMR file. Fifteen columns:</p>
+    <ul>
+      <li><b>state</b>, 2-letter code, and <b>state_name</b>, the full name</li>
+      <li><b>county</b>, the county name from HUD's file, suffix included, so rows read "Harris County", "Harrisonburg city", "Aleutians East Borough"</li>
+      <li><b>metro</b>, metro if the county contains a metro FMR area, else nonmetro</li>
+      <li><b>fmr_0br_median</b> and <b>fmr_0br_max</b> through <b>fmr_4br_median</b> and <b>fmr_4br_max</b>, ten columns, monthly USD per bedroom size</li>
+      <li><b>area_rows</b>, the number of HUD area rows the rollup aggregated. 1 means the county maps to a single HUD area and the published FMR carries over directly</li>
+    </ul>
+    <p>The median and max pair exists because counties and HUD areas do not line up one-to-one everywhere. Where they do, 3,162 of the 3,229 rows, median equals max and both are the published county FMR. The remaining 67 counties span several HUD areas, and the rollup summarizes them instead of picking one.</p>
+  </section>
+
+  <section aria-label="Look up one county">
+    <h2>Look up one county, example: Harris County, TX</h2>
+    <p>Filter on county and state together. The county name alone is ambiguous: rows named Harris County exist in Georgia and Texas, Washington County appears 30 times, Jefferson County 25 times. In a spreadsheet, filter the county and state columns. For scripts and agents, the <a href="https://github.com/jayjex/dataset-mcp" rel="noopener">dataset-mcp</a> server takes a where clause with both conditions, setup on the <a href="../agents/">For agents</a> page. This query runs against the full county file:</p>
+    <pre><code>query_dataset(
+  "hud-fmr-2026",
+  {
+    "file": "hud-fmr-by-county-2026.csv",
+    "where": [
+      { "column": "county", "op": "=", "value": "Harris County" },
+      { "column": "state", "op": "=", "value": "TX" }
+    ],
+    "columns": ["state", "county", "metro", "fmr_0br_median", "fmr_1br_median", "fmr_2br_median", "fmr_2br_max", "fmr_3br_median", "fmr_4br_median", "area_rows"]
+  }
+)</code></pre>
+    <p>Output, matching the Harris County row in the county file:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="FMR for Harris County, TX"><table><thead><tr><th scope="col">state</th><th scope="col">county</th><th scope="col">metro</th><th scope="col">fmr_0br_median</th><th scope="col">fmr_1br_median</th><th scope="col">fmr_2br_median</th><th scope="col">fmr_2br_max</th><th scope="col">fmr_3br_median</th><th scope="col">fmr_4br_median</th><th scope="col">area_rows</th></tr></thead><tbody>
+      <tr><td>TX</td><td>Harris County</td><td>metro</td><td>1280</td><td>1323</td><td>1573</td><td>1573</td><td>2116</td><td>2639</td><td>1</td></tr>
+    </tbody></table></div>
+    <p>Harris County, TX carries a 2BR FMR of 1,573 with area_rows at 1, so the value is the published FMR for the single HUD area covering the county. For contrast, Los Angeles County, CA shows a 2BR of 2,903 and Miami-Dade County, FL sits at 2,436. Whether one lookup at a time beats downloading the whole file is the tradeoff in <a href="fmr-lookup-alternatives.html">FMR lookup: one at a time, or all 51,895 ZIP rows</a>.</p>
+  </section>
+
+  <section aria-label="Counties that roll up more than one HUD area">
+    <h2>Counties that roll up more than one HUD area</h2>
+    <p>The 67 multi-area counties concentrate in New England, where HUD sets FMRs for smaller areas inside a county. Bristol County, MA aggregates 20 area rows with a 2BR median of 1,729 and a max of 2,550, an 821-dollar spread inside one county. Worcester County, MA rolls up 60 rows with a median of 2,056 and a max of 2,166. When you screen a market with the county file, read area_rows first: at 1 the county has one number, above 1 the median and max are the bounds of what HUD publishes inside that county.</p>
+    <p>The county file answers "what does HUD publish for this county". The ZIP-level picture, where ZIPs in the same metro carry their own Small Area FMRs, is the subject of <a href="hud-fmr-by-zip.html">HUD FMR by ZIP code</a>, and the geography split is laid out in <a href="safmr-vs-fmr.html">SAFMR vs FMR, explained</a>.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FMR by county questions</h2>
+    <dl>
+      <dt>How many counties are in the HUD FMR data?</dt>
+      <dd>The FY2026 county file covers 3,229 counties and county equivalents across 56 state and territory codes, one row per county. Each row carries median and max FMR values for five bedroom sizes (0BR through 4BR) in monthly dollars.</dd>
+      <dt>Why does the county file have both a median and a max column?</dt>
+      <dd>For 3,162 counties, median and max are the same number because the county maps to a single HUD area, so area_rows equals 1. The other 67 counties span more than one HUD area, and the rollup reports the median and the max of those area FMRs. Bristol County, MA, for example, aggregates 20 area rows with a 2BR median of 1,729 and a max of 2,550.</dd>
+      <dt>What is the difference between FMR by county and FMR by ZIP?</dt>
+      <dd>The county file follows HUD's traditional geography: one row per county with the FMRs of the HUD areas inside it. The ZIP file follows HUD's Small Area FMR publication: 51,895 rows, one per ZIP, where designated metros get ZIP-level values. If you need one number for a whole county, use the county file. If you need the ZIP-level variation inside a metro, use the ZIP file.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the full dataset">
+    <h2>Get the full dataset</h2>
+    <p>The free 22-row sample shows the schema. The full pack carries all 3,229 county rows, the ZIP-level file (51,895 rows), state summary (52 rows), the data dictionary, and source checksums.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">Get the full dataset</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release, huduser.gov. US government data, public domain.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

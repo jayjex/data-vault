@@ -8,10 +8,10 @@ Every pack previews on the page: real rows, documented schema, no email wall. Sc
 
 | slug | name | rows | niche | sample | full data |
 |---|---|---|---|---|---|
-| `nfl-games` | NFL Games & Betting Lines 1999–2026 | 7,548 | sports | [CSV](data/nfl-games/sample.csv) / [JSON](data/nfl-games/sample.json) | [$29](https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h) |
-| `hud-fmr-2026` | HUD Fair Market Rents FY2026 | 51,895 | gov-data | [CSV](data/hud-fmr-2026/sample.csv) / [JSON](data/hud-fmr-2026/sample.json) | [coming](https://www.getly.store/store/mtmw06l2) |
-| `airbnb-six-cities` | Airbnb Listings, 6 US Cities | 90,169 | real-estate | [CSV](data/airbnb-six-cities/sample.csv) / [JSON](data/airbnb-six-cities/sample.json) | [$39](https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtpkvxdf) |
-| `earn-bounties` | Superteam Earn Live Listings | 28 | ai-agents | [CSV](data/earn-bounties/sample.csv) / [JSON](data/earn-bounties/sample.json) | [$49](https://www.getly.store/product/superteam-earn-28-live-listings-dataset-186-reverse-engineered-api-routes-mtmy11ny) |
+| `nfl-games` | NFL Games & Betting Lines 1999–2026 | 7,548 rows | sports | [CSV](data/nfl-games/sample.csv) / [JSON](data/nfl-games/sample.json) | [$29](https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h) |
+| `hud-fmr-2026` | HUD Fair Market Rents FY2026 | 51,895 rows | gov-data | [CSV](data/hud-fmr-2026/sample.csv) / [JSON](data/hud-fmr-2026/sample.json) | [coming](https://www.getly.store/store/mtmw06l2) |
+| `airbnb-six-cities` | Airbnb Listings, 6 US Cities | 90,169 rows | real-estate | [CSV](data/airbnb-six-cities/sample.csv) / [JSON](data/airbnb-six-cities/sample.json) | [$39](https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtpkvxdf) |
+| `earn-bounties` | Superteam Earn Live Listings | 28 listings | ai-agents | [CSV](data/earn-bounties/sample.csv) / [JSON](data/earn-bounties/sample.json) | [$49](https://www.getly.store/product/superteam-earn-28-live-listings-dataset-186-reverse-engineered-api-routes-mtmy11ny) |
 | `scraper-pack` | Web Scraping Script Pack | 10 scripts | dev-tools | [JSON](data/scraper-pack/sample.json) | [$15](https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtn8em7k) |
 
 Full datasets are **not** in this repo. The repo carries samples only (first 10–25 rows per table, plus small complete aggregate tables). Total data volume: under 100 KB.
@@ -30,20 +30,20 @@ curl -s https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.json | jq '
 
 Endpoints:
 
-- `/catalog.json` — index: slugs, niches, stats, sample URLs, full-data links
-- `/data/<slug>/sample.json` — `{slug, name, columns[], row_count, records[]}`
-- `/data/<slug>/sample.csv` — same rows as CSV
-- `/llms.txt` — plain-text catalog for LLM crawlers
-- `/agents/` — docs for agent developers
+- `/catalog.json`: index of slugs, niches, stats, sample URLs, full-data links
+- `/data/<slug>/sample.json`: `{slug, name, columns[], row_count, records[]}`
+- `/data/<slug>/sample.csv`: same rows as CSV
+- `/llms.txt`: plain-text catalog for LLM crawlers
+- `/agents/`: docs for agent developers
 - `/sitemap.xml`, `/robots.txt`
 
 The repo is MCP-ready by convention: `catalog.json` is the discovery document and every `sample.json` maps to a read-only resource. A dedicated MCP server is planned as phase 2.
 
 ## Pages
 
-- `index.html` — catalog with niche filters (sports, real-estate, gov-data, ai-agents, dev-tools)
-- `datasets/<slug>.html` — per-dataset page: description, stats, preview table, sample download, full-data link
-- `agents/index.html` — endpoint docs + worked examples
+- `index.html`: catalog with niche filters (sports, real-estate, gov-data, ai-agents, dev-tools)
+- `datasets/<slug>.html`: per-dataset page, description + stats + preview table + sample download + full-data link
+- `agents/index.html`: endpoint docs + worked examples
 
 Static site, vanilla HTML/CSS/JS, no build step. To preview locally: `python3 -m http.server` and open `http://localhost:8000`.
 

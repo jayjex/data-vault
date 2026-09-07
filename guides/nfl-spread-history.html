@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NFL Point Spread History: Lines, Covers, and Upsets Since 1999 | Data Vault</title>
+<meta name="description" content="NFL point spread history counted from 7,276 played games in the games CSV: average spread by era, home favorites in 65.0% of games, the nine biggest closing lines ever, a 48.9% favorite cover rate, and the two biggest upsets by spread.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/nfl-spread-history.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="NFL Point Spread History: Lines, Covers, and Upsets Since 1999">
+<meta property="og:description" content="Average spread by era, home favorites in 65.0% of games, the nine biggest closing lines ever, a 48.9% favorite cover rate, and the two biggest upsets by spread, all counted from the NFL games CSV.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/nfl-spread-history.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "NFL point spread history: lines, covers, and upsets since 1999", "description": "Average spread by era, home favorites in 65.0% of games, the nine biggest closing lines ever, a 48.9% favorite cover rate, and the two biggest upsets by spread, all counted from the NFL games CSV.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/nfl-spread-history.html", "about": {"@type": "Dataset", "name": "NFL Games & Betting Lines 1999-2026", "url": "https://jayjex.github.io/data-vault/datasets/nfl-games.html"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "NFL point spread history", "item": "https://jayjex.github.io/data-vault/guides/nfl-spread-history.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the biggest NFL point spread in history?", "acceptedAnswer": {"@type": "Answer", "text": "Counted from the games CSV, the biggest closing spread since 1999 is 27 points: Denver favored at home over Jacksonville on October 13, 2013. Denver won 35-19 and failed to cover. Next come New England -24 over Philadelphia (November 25, 2007, won by 3, no cover) and two 22-point lines, New England -22 over Miami (December 23, 2007) and Dallas -22 over Miami (September 22, 2019). Only 9 of 7,276 played games ever carried a closing line of 20 points or more, and the favorites went 3-6 against the number on them."}}, {"@type": "Question", "name": "What percentage of NFL favorites cover the spread?", "acceptedAnswer": {"@type": "Answer", "text": "Across the 7,276 played games from 1999 through 2025 that carry a closing line, favorites covered 3,464 times and failed 3,617, with 195 pushes. That is a 48.9% cover rate over the 7,081 decided games, counted from the rows with the favorite side read off spread_line and, on the 31 pick'ems, off the moneyline. Counting pick'ems by score instead gives favorites 3,473 covers, 49.0%. The 2.7% push rate matches the shipped season-summaries.csv, and underdogs took the cover count in more seasons than favorites."}}, {"@type": "Question", "name": "How often is the home team the favorite in the NFL?", "acceptedAnswer": {"@type": "Answer", "text": "In 65.0% of played games since 1999: 4,731 of the 7,276 games with a closing line have a positive spread_line, which by the file's sign convention means the home team is favored. Road teams were favored in 2,514 (34.6%) and 31 games (0.4%) closed as pick'ems. When the home team is favored its average line is 5.82 points; when the visitor is favored, the average is 4.47 points. That asymmetry is the market pricing home field, which the home field advantage guide counts at about 2.4 points per game."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../datasets/nfl-games.html">NFL dataset</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>NFL point spread history: 27 seasons of closing lines, counted</h1>
+  <p class="byline">Counted from the <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026</a> pack, file <code>games.csv</code>, 7,548 rows &middot; the <code>spread_line</code> column explained in the <a href="nfl-spreads-history.html">spread history CSV guide</a> &middot; raw file sources in the <a href="nfl-data-apis.html">NFL data APIs comparison</a>. Nothing on this page is betting advice.</p>
+
+  <section aria-label="What was counted">
+    <h2>What was counted, and how</h2>
+    <p>The <code>games.csv</code> file holds 7,548 NFL games from the 1999 season through the 2026 schedule. The <code>spread_line</code> column, the closing point spread, exists on 7,388 of them: every played game plus 112 scheduled 2026 games that already carry early numbers. This page counts historical patterns on the <b>7,276 games that have both a final score and a line</b>, and it treats the sign convention the file uses: a positive <code>spread_line</code> means the home team is favored by that many points, negative means the visitor is favored, zero is a pick'em.</p>
+    <p>Every number below was computed by running one pass over those 7,276 rows and the 7,388 rows with a line. No season-summaries aggregates were copied except where stated, and where they were, the row count checks out.</p>
+  </section>
+
+  <section aria-label="Average spread by era">
+    <h2>Average NFL spread by era</h2>
+    <p>Take the absolute value of every closing line and average it by five-year buckets. Lines have drifted down, from a 5.3-5.5 point plateau through the 2010s to under 5 in the current era:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Average spread by era table"><table><thead><tr><th scope="col">Era</th><th scope="col">Games with a line</th><th scope="col">Average closing spread</th></tr></thead><tbody>
+      <tr><td>1999-2003</td><td>1,311</td><td>5.30 pts</td></tr>
+      <tr><td>2004-2008</td><td>1,335</td><td>5.49 pts</td></tr>
+      <tr><td>2009-2013</td><td>1,335</td><td>5.50 pts</td></tr>
+      <tr><td>2014-2018</td><td>1,335</td><td>5.11 pts</td></tr>
+      <tr><td>2019-2023</td><td>1,390</td><td>5.44 pts</td></tr>
+      <tr><td>2024-2026</td><td>682</td><td>4.95 pts</td></tr>
+      <tr><td>All, 1999-2026</td><td>7,388</td><td>5.33 pts</td></tr>
+    </tbody></table></div>
+    <p>Per season, the widest book was 2009 at 6.54 points and the tightest full season was 2016 at 4.63. The median line across all 7,388 rows is 4.0, so half the games in NFL history since 1999 have closed at a field goal or less. The 2024-2026 bucket includes 112 scheduled 2026 games carrying early numbers rather than closed lines, which pulls its average down a little; on played 2024-2025 games alone it sits near 5.1.</p>
+  </section>
+
+  <section aria-label="Home favorite share">
+    <h2>How often the home team is favored</h2>
+    <p>Home teams were favored in <b>4,731 of 7,276 played games, 65.0%</b>. Visitors were favored in 2,514 (34.6%) and 31 games closed on the pick'em, spread_line exactly 0. Counting the 112 scheduled 2026 rows with early lines moves the home-favorite share to 65.1% (4,806 of 7,388), which tells you the ratio holds in the current schedule too.</p>
+    <p>The lines themselves are lopsided in the same direction. When the home team is favored, the average line is 5.82 points; when the visitor is favored, the average is 4.47. Bookmakers also charge extra for the jersey: the average signed spread_line across all rows is +2.24 for the home side, which matches the 2.39-point scoring gap the <a href="nfl-home-field-advantage.html">home field advantage guide</a> measures directly from the scores.</p>
+  </section>
+
+  <section aria-label="Favorite cover rate">
+    <h2>Spread accuracy: how often the favorite covers</h2>
+    <p>A favorite covers when it wins by more than the line. Running that over all 7,276 rows:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Favorite cover table"><table><thead><tr><th scope="col">Outcome</th><th scope="col">Games</th><th scope="col">Share</th></tr></thead><tbody>
+      <tr><td>Favorite covered</td><td>3,464</td><td>48.9% of decided games</td></tr>
+      <tr><td>Underdog covered</td><td>3,617</td><td>51.1% of decided games</td></tr>
+      <tr><td>Push (margin exactly equals the line)</td><td>195</td><td>2.7% of all games</td></tr>
+    </tbody></table></div>
+    <p>Over the 7,081 games decided against the number, favorites went <b>3,464-3,617, a 48.9% cover rate</b>. One counting choice is worth stating: on the 31 pick'ems there is no favorite by the spread, so the favorite side was read off the moneyline for those rows; score-only tie-breaking instead gives favorites 3,473 covers, 49.0%. Either way the point spread lands within half a point of a coin flip, which is what a closing line is built to do, and the 195 pushes reconcile exactly with the shipped <code>season-summaries.csv</code>.</p>
+    <p>The season table in the <a href="nfl-spreads-history.html">spread history CSV guide</a> breaks this per season from the shipped file. Extremes there: favorites covered 58.8% in 2005, their best run in the file, and 43.6% in 2006, their worst, a full swing of 15 points in one offseason with no structural change in the data.</p>
+  </section>
+
+  <section aria-label="Biggest spread games">
+    <h2>The biggest NFL point spreads ever closed</h2>
+    <p>Every game in the file with a closing line of 20 points or more, sorted by the number. This is the verified top 5 and the tier behind it:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Biggest spread games table"><table><thead><tr><th scope="col">Date</th><th scope="col">Game</th><th scope="col">Closing line</th><th scope="col">Result</th><th scope="col">Cover</th></tr></thead><tbody>
+      <tr><td>2013-10-13</td><td>JAX 19 @ DEN 35</td><td>DEN -27</td><td>Denver by 16</td><td>No</td></tr>
+      <tr><td>2007-11-25</td><td>PHI 28 @ NE 31</td><td>NE -24</td><td>New England by 3</td><td>No</td></tr>
+      <tr><td>2007-12-23</td><td>MIA 7 @ NE 28</td><td>NE -22</td><td>New England by 21</td><td>No</td></tr>
+      <tr><td>2019-09-22</td><td>MIA 6 @ DAL 31</td><td>DAL -22</td><td>Dallas by 25</td><td>Yes</td></tr>
+      <tr><td>2007-12-16</td><td>NYJ 10 @ NE 20</td><td>NE -20.5</td><td>New England by 10</td><td>No</td></tr>
+      <tr><td>2011-12-04</td><td>IND 24 @ NE 31</td><td>NE -20.5</td><td>New England by 7</td><td>No</td></tr>
+      <tr><td>2019-09-22</td><td>NYJ 14 @ NE 30</td><td>NE -20.5</td><td>New England by 16</td><td>No</td></tr>
+      <tr><td>2021-10-24</td><td>HOU 5 @ ARI 31</td><td>ARI -20.5</td><td>Arizona by 26</td><td>Yes</td></tr>
+      <tr><td>2020-11-01</td><td>NYJ 9 @ KC 35</td><td>KC -20</td><td>Kansas City by 26</td><td>Yes</td></tr>
+    </tbody></table></div>
+    <p>Two things in the table. First, only 9 of 7,276 played games ever closed at 20 or more, and 5 of them came before 2015, so the era averages above were not built on one wild season of blowout lines. Second, the favorites on those 9 lines went <b>3-6 against the number</b>. Denver never led the 2013 Jaguars by the 27 it needed; New England beat Philadelphia by 3 as a 24-point favorite in the game remembered for the Eagles' fourth-down stop; the biggest line on the board has usually been a bad bet, and the file says so in 6 of 9 cases.</p>
+  </section>
+
+  <section aria-label="Biggest upsets by spread">
+    <h2>The biggest upsets by spread</h2>
+    <p>Flip the question and rank the games where the underdog won outright against the largest line. Ties cannot be upsets, so the 15 games ending level drop out. The two biggest, both 17.5-point lines, went to the visitor:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Biggest upsets table"><table><thead><tr><th scope="col">Date</th><th scope="col">Game</th><th scope="col">Favorite</th><th scope="col">Outcome</th></tr></thead><tbody>
+      <tr><td>2019-12-29</td><td>MIA 27 @ NE 24</td><td>NE -17.5</td><td>Miami wins outright by 3</td></tr>
+      <tr><td>2020-12-20</td><td>NYJ 23 @ LA 20</td><td>LA -17.5</td><td>NY Jets win outright by 3</td></tr>
+      <tr><td>2018-09-23</td><td>BUF 27 @ MIN 6</td><td>MIN -16.5</td><td>Buffalo wins by 21</td></tr>
+    </tbody></table></div>
+    <p>Five more games sit one tier down at 14.5 and two at 14, including the 2002 expansion Texans winning 24-6 at Pittsburgh as 14-point road underdogs, the largest outright margin by an underdog against a double-digit favorite in the file, and the 1999 expansion Browns taking 16-15 in the same stadium. Expansion teams gave the line its worst days: the 1999 Browns and the 2002 Texans, each in its first season, account for two of the nine biggest outright upsets in the file.</p>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the games CSV behind these numbers</h2>
+    <p>The free 22-row sample carries the same 46 columns, including <code>spread_line</code>, so the cover formula and every count on this page can be re-run on it before buying anything. The full pack is the 7,548-row games.csv, team-records-by-season.csv with per-team ATS splits, season-summaries.csv, a data dictionary, and SHA-256 checksums. If the plan is to pull lines from live sources instead of a static file, the <a href="nfl-data-apis.html">NFL data APIs comparison</a> tests ESPN, nflverse, and the official NFL API for exactly that.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/nfl-games/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h" rel="noopener">Get full data</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. The sample and season-summaries download free here, no signup. Source: nflverse game and betting data, CC BY 4.0.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>NFL point spread history questions</h2>
+    <div class="faq">
+      <h3>What is the biggest NFL point spread in history?</h3>
+      <p>Counted from the games CSV, the biggest closing spread since 1999 is 27 points: Denver favored at home over Jacksonville on October 13, 2013. Denver won 35-19 and failed to cover. Next come New England -24 over Philadelphia (November 25, 2007, won by 3, no cover) and two 22-point lines, New England -22 over Miami (December 23, 2007) and Dallas -22 over Miami (September 22, 2019). Only 9 of 7,276 played games ever carried a closing line of 20 points or more, and the favorites went 3-6 against the number on them.</p>
+      <h3>What percentage of NFL favorites cover the spread?</h3>
+      <p>Across the 7,276 played games from 1999 through 2025 that carry a closing line, favorites covered 3,464 times and failed 3,617, with 195 pushes. That is a 48.9% cover rate over the 7,081 decided games, counted from the rows with the favorite side read off spread_line and, on the 31 pick'ems, off the moneyline. Counting pick'ems by score instead gives favorites 3,473 covers, 49.0%. The 2.7% push rate matches the shipped season-summaries.csv, and underdogs took the cover count in more seasons than favorites.</p>
+      <h3>How often is the home team the favorite in the NFL?</h3>
+      <p>In 65.0% of played games since 1999: 4,731 of the 7,276 games with a closing line have a positive spread_line, which by the file's sign convention means the home team is favored. Road teams were favored in 2,514 (34.6%) and 31 games (0.4%) closed as pick'ems. When the home team is favored its average line is 5.82 points; when the visitor is favored, the average is 4.47 points. That asymmetry is the market pricing home field, which the home field advantage guide counts at about 2.4 points per game.</p>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

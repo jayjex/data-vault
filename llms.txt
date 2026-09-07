@@ -69,6 +69,7 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - [NFL Stadium Weather: How Roof and Weather Show Up in Game Data](https://jayjex.github.io/data-vault/guides/nfl-stadium-weather.html): roof/temp/wind columns, dome vs outdoor scoring on the 22-row sample, hottest kickoffs
 - [NFL Data by Conference: AFC vs NFC From Real Game Rows](https://jayjex.github.io/data-vault/guides/nfl-data-by-conference.html): 1999 AFC/NFC map, 7 inter-conference games, points and win counts, pandas script
 - [NFL Spread History CSV: ATS Cover Data for Every Game Since 1999](https://jayjex.github.io/data-vault/guides/nfl-spreads-history.html): spread_line sign convention, cover ATS arithmetic, 27-season cover table from season-summaries.csv
+- [NFL Betting Data: Spreads, Results, Totals, and Weather in One Dataset](https://jayjex.github.io/data-vault/guides/nfl-betting-data.html): what a betting dataset contains, legal sources, game_id join walkthrough with real output
 - [Free Sports Data CSV: Verified Sources, Licenses, and a 7,548-Game NFL Dataset](https://jayjex.github.io/data-vault/guides/free-sports-data-csv.html): licensed sources for sports CSVs
 - [NFL Data in Excel or Google Sheets: Import the CSV, Step by Step](https://jayjex.github.io/data-vault/guides/nfl-dataset-excel.html): spreadsheet import walkthrough
 - [NFL Data in Python: Load the Games CSV with pandas](https://jayjex.github.io/data-vault/guides/nfl-dataset-python.html): pandas quickstart on the 22-row sample
@@ -98,6 +99,7 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - [Airbnb Data Methodology: How Snapshot Datasets Are Built](https://jayjex.github.io/data-vault/guides/airbnb-data-methodology.html): collection pipeline, snapshot limits, two-snapshot bookings proxy
 - [Superteam Earn Data: the Solana Bounties Dataset and Its API Map](https://jayjex.github.io/data-vault/guides/solana-bounties-data-guide.html): bounty schema and 186+ API routes
 - [Solana Grants List: Mapping the Ecosystem's Funding Programs from Public Data](https://jayjex.github.io/data-vault/guides/solana-grants-data.html): research method, 51-row snapshot splits, 6 AGENT_ALLOWED rows, grants-vs-bounty framing
+- [Solana Ecosystem Data: Public Sources for Research, Tested Live](https://jayjex.github.io/data-vault/guides/solana-ecosystem-data.html): JSON-RPC validator stats, Superteam Earn snapshot, solana-research-library MCP, endpoint test log with honest statuses
 - [Solana Bounty Tracker Data: Web3 Bounty Listings Without an Official API](https://jayjex.github.io/data-vault/guides/web3-bounty-data.html): harvesting bounty listings
 - [Superteam Earn Alternative: Solana Bounty Tracker vs Dataset Approach](https://jayjex.github.io/data-vault/guides/bounty-tracker-alternative.html): dashboards vs raw rows
 - [What Is a Data Dictionary? Structure and Real CSV Examples](https://jayjex.github.io/data-vault/guides/data-dictionary-explained.html): column-code documentation format

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NFL Betting Data: Spreads, Results, Totals, and Weather in One Dataset | Data Vault</title>
+<meta name="description" content="What a sports betting dataset contains: closing spreads, final scores, totals, and kickoff weather, one row per game. 7,548 NFL games (7,276 with closing lines), a worked spread-to-results join on game_id, and where the data legally comes from. Research use, no advice.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/nfl-betting-data.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="NFL Betting Data: Spreads, Results, Totals, and Weather in One Dataset">
+<meta property="og:description" content="What a sports betting dataset contains and how it is built: 7,548 NFL games, 7,276 with closing lines, joined from a spreads table to results on game_id. Historical research data, no betting advice.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/nfl-betting-data.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "NFL betting data: spreads, results, totals, and weather in one dataset", "description": "What a sports betting dataset contains and how it is built: 7,548 NFL games, 7,276 with closing lines, joined from a spreads table to results on game_id. Historical research data, no betting advice.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/nfl-betting-data.html", "about": {"@type": "Dataset", "name": "NFL Games & Betting Lines 1999-2026", "url": "https://jayjex.github.io/data-vault/datasets/nfl-games.html"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "NFL betting data guide", "item": "https://jayjex.github.io/data-vault/guides/nfl-betting-data.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What data do you need to analyze NFL betting?", "acceptedAnswer": {"@type": "Answer", "text": "Four things, one row per game: the closing point spread, the final score, the closing total, and kickoff conditions. The NFL games CSV carries all of them as columns named spread_line (closing spread, stored relative to the home team), result (home_score minus away_score), total_line (closing total), and roof/temp/wind for weather. The full file covers 7,548 games from 1999 through the 2026 schedule, 7,276 of them played with a closing line."}}, {"@type": "Question", "name": "Where can I legally get historical NFL betting data?", "acceptedAnswer": {"@type": "Answer", "text": "nflverse-data publishes NFL game results with closing lines as a direct CSV download on GitHub, licensed CC BY 4.0, which allows commercial use with attribution. The Data Vault sample (22 rows) and season-summaries.csv (27 rows) download free from this site under the same license. Sportsbook sites display odds but do not offer bulk historical downloads, and scraping them violates their terms; licensed open-data releases are the legal route."}}, {"@type": "Question", "name": "How do you join a spreads CSV to game results?", "acceptedAnswer": {"@type": "Answer", "text": "Merge the two tables on a shared per-game identifier. In the NFL games data that key is game_id, in the format season_week_AWAY_HOME, for example 1999_01_KC_CHI. In pandas: spreads.merge(results, on='game_id', how='inner'), where results are keyed by the same game_id. Run on the Data Vault sample, the inner join returns all 22 rows with lines and scores side by side; on the full file the same join assembles 7,276 played games from 1999 through 2025."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../datasets/nfl-games.html">NFL dataset</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>NFL betting data: what a sports betting dataset contains, and how one is built</h1>
+  <p class="byline">Guide to the <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026</a> pack &middot; where the lines come from: the <a href="nfl-spreads-history.html">spread history guide</a> and the <a href="free-sports-data-csv.html">free sports data sources review</a>. Historical records only; nothing on this page is betting advice, a pick, or a prediction.</p>
+
+  <section aria-label="Quick answer">
+    <h2>What "NFL betting data" means as a dataset</h2>
+    <p>Strip the word "betting" down to its records and the dataset is modest: one row per game, carrying the closing point spread, the final score, the closing total, and the kickoff conditions. No tips, no systems, no odds feeds. That is what a sports betting dataset is, and the NFL Games &amp; Betting Lines pack is exactly that shape: 7,548 games from 1999 through the full 2026 schedule, 7,276 of them played with a closing line, 46 columns per row. Use it to study what the lines were and what happened next, which is the whole of what historical analysis can honestly do.</p>
+    <p>The free 22-row sample carries the same 46 columns and downloads here with no signup, so every table and join on this page can be reproduced before buying anything.</p>
+  </section>
+
+  <section aria-label="The four ingredients">
+    <h2>The four ingredients of a betting dataset</h2>
+    <p>Column names below come straight from the games CSV:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Core betting dataset columns"><table>
+      <thead><tr><th scope="col">Ingredient</th><th scope="col">Column(s)</th><th scope="col">Coverage in the pack</th></tr></thead>
+      <tbody>
+        <tr><td>Closing point spread</td><td><code>spread_line</code> (stored relative to the home team)</td><td>every played game since 1999</td></tr>
+        <tr><td>Final scores and margin</td><td><code>away_score</code>, <code>home_score</code>, <code>result</code> (home minus away)</td><td>every played game since 1999</td></tr>
+        <tr><td>Closing total</td><td><code>total_line</code>, scored against <code>total</code> (combined points)</td><td>same rows as the spread</td></tr>
+        <tr><td>Kickoff conditions</td><td><code>roof</code>, <code>surface</code>, <code>temp</code>, <code>wind</code> (blank for domes)</td><td>same rows; moneylines and odds reach back to 2006 (5,407 games)</td></tr>
+      </tbody>
+    </table></div>
+    <p>Two rows from the free sample show the shape:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Sample rows"><table>
+      <thead><tr><th scope="col">game_id</th><th scope="col">spread_line</th><th scope="col">total_line</th><th scope="col">Final</th><th scope="col">result</th><th scope="col">roof</th></tr></thead>
+      <tbody>
+        <tr><td>1999_01_KC_CHI</td><td>-3 (KC favored)</td><td>38</td><td>CHI 20-17</td><td>3</td><td>outdoors</td></tr>
+        <tr><td>1999_01_BUF_IND</td><td>-3 (BUF favored)</td><td>45.5</td><td>IND 31-14</td><td>17</td><td>dome</td></tr>
+      </tbody>
+    </table></div>
+    <p>Read from that: Kansas City closed as a 3-point road favorite and lost outright; Buffalo closed as a 3-point road favorite and lost by 17. The rows record that; what anyone should do next is not in the file. The full column glossary, including rest days and starting quarterbacks, lives in the <a href="nfl-games-data-guide.html">games.csv column guide</a>.</p>
+  </section>
+
+  <section aria-label="Where the data comes from">
+    <h2>Where betting data comes from, legally</h2>
+    <p>The pack's source is <a href="https://github.com/nflverse/nflverse-data" rel="noopener">nflverse-data</a>, a public GitHub project that publishes game results with closing lines as plain CSV, licensed <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>. Commercial analysis is allowed with a credit line. The free sports data review verifies that license and four other sources, league by league.</p>
+    <p>The honest limits on sources: sportsbook sites show current odds but sell no historical bulk downloads, their terms forbid scraping, and the popular aggregators license their data rather than give it away. A public, openly licensed release is the clean route, and it is why this pack's rows are checksummed copies of nflverse output with derived tables built on top.</p>
+  </section>
+
+  <section aria-label="How the dataset is assembled">
+    <h2>How the dataset is assembled: joining spreads to results on game_id</h2>
+    <p>Betting datasets are two stories joined per game. The lines are one story, set before kickoff: a spread, a total, an expected margin. The results are the other, known only after: final scores, the actual margin, the actual combined total. The join key is a per-game identifier, <code>game_id</code>, in the format <code>season_week_AWAY_HOME</code>, for example <code>1999_01_KC_CHI</code>. In the full pack both stories already live in one row of games.csv; the join below is shown because separate spreads and results files are the common situation when you build a betting dataset from raw sources.</p>
+    <p>Real example, run against the free sample. First the lines and the results are pulled into two tables, each keyed by game_id:</p>
+<pre>import pandas as pd
+
+games = pd.read_csv("https://jayjex.github.io/data-vault/data/nfl-games/sample.csv",
+                    dtype={"game_id": str})
+spreads = games[["game_id", "season", "week", "spread_line", "total_line"]]
+results = games[["game_id", "gameday", "away_team", "home_team",
+                 "away_score", "home_score", "result"]]</pre>
+    <p>Then one merge lines them up per game:</p>
+<pre>joined = spreads.merge(results, on="game_id", how="inner")
+print(joined.shape)   # (22, 11) on the sample
+print(joined.head(5).to_string(index=False))</pre>
+    <p>The printed output from that exact run:</p>
+<pre>spreads: (22, 5) results: (22, 7) merged: (22, 11)
+        game_id  season  week  spread_line  total_line    gameday away_team home_team  away_score  home_score  result
+1999_01_MIN_ATL    1999     1         -4.0        49.0 1999-09-12       MIN       ATL          17          14      -3
+ 1999_01_KC_CHI    1999     1         -3.0        38.0 1999-09-12        KC       CHI          17          20       3
+1999_01_PIT_CLE    1999     1         -6.0        37.0 1999-09-12       PIT       CLE          43           0     -43
+ 1999_01_OAK_GB    1999     1          9.0        43.0 1999-09-12       OAK        GB          24          28       4
+1999_01_BUF_IND    1999     1         -3.0        45.5 1999-09-12       BUF       IND          14          31      17</pre>
+    <p>On the full file, the same merge is what assembles the history: 7,548 game rows, of which 7,276 played games carry a closing line, and 272 are the scheduled 2026 games still waiting on scores. Run the merged table through <code>result - spread_line</code> and every cover-and-push question from the <a href="nfl-spreads-history.html">spread history guide</a> becomes arithmetic; that is also the check worth running on any spread history CSV you download from anywhere.</p>
+    <p>After the join, the derived tables in the pack save the group-bys: team-records-by-season.csv (861 rows) carries per-team ATS and over/under records, and season-summaries.csv (27 rows, <a href="../data/nfl-games/season-summaries.csv" download>free in full</a>) carries per-season cover and over/under rates. Both are built from this same joined view.</p>
+  </section>
+
+  <section aria-label="Weather and totals">
+    <h2>Weather and totals: the columns that make rows researchable</h2>
+    <p>Weather is what separates a betting dataset from a scores list, because totals react to it and any total analysis needs the conditions on the row. In games.csv the columns are <code>roof</code>, <code>surface</code>, <code>temp</code> (Fahrenheit), and <code>wind</code> (mph), recorded at kickoff, blank for dome games. In the 22-row sample, 6 games are domes with blank temp and 16 are outdoors with values, from 67&deg;F in Green Bay to 80&deg;F in Chicago. The <a href="nfl-stadium-weather.html">stadium weather guide</a> works those columns across the full file, dome vs outdoor scoring included.</p>
+    <p>Totals follow the same join logic as spreads: <code>total_line</code> is the pre-kickoff number, <code>total</code> is what the two teams actually scored combined, and over/under records in the derived tables are the comparison, counted per season in season-summaries.csv.</p>
+  </section>
+
+  <section aria-label="Limits of the data">
+    <h2>What a betting dataset cannot do</h2>
+    <p>The file holds closing lines and finished games. It holds no opening lines, no line movement, no injury reports, and no probabilities for games that have not happened. Closing lines describe what the market priced at kickoff; they are a record of the past, and nothing in a 7,276-row history predicts week 1 of the next season. This page and the pack are for research and analysis of completed games. If you are looking for picks or staking advice, they are not here, and no historical CSV can supply them.</p>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the betting dataset</h2>
+    <p>Start free: the <a href="../data/nfl-games/sample.csv" download>22-row sample CSV</a> (46 columns, spread to weather) and the complete season-summaries.csv download with no signup, and the MCP queries on the <a href="../agents/">for agents</a> page filter the full 7,548-row file at no cost. The full pack adds all rows, the two derived tables, a data dictionary, and SHA-256 checksums. Prefer a notebook? The <a href="nfl-dataset-python.html">pandas quickstart</a> loads the sample in two lines, and the <a href="nfl-dataset-excel.html">Excel and Google Sheets guide</a> covers the spreadsheet route.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/nfl-games/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h" rel="noopener">Get full data</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. The sample and season-summaries download free here, no signup. Source: nflverse game and betting data, CC BY 4.0. Snapshot taken 2026-09-06; results run through the 2025 season.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>NFL betting data questions</h2>
+    <div class="faq">
+      <h3>What data do you need to analyze NFL betting?</h3>
+      <p>Four things, one row per game: the closing point spread, the final score, the closing total, and kickoff conditions. In the games CSV those are <code>spread_line</code> (stored relative to the home team), <code>result</code> (home minus away), <code>total_line</code>, and <code>roof</code>/<code>temp</code>/<code>wind</code>. The full file covers 7,548 games from 1999 through the 2026 schedule, 7,276 of them played with a closing line.</p>
+      <h3>Where can I legally get historical NFL betting data?</h3>
+      <p><a href="https://github.com/nflverse/nflverse-data" rel="noopener">nflverse-data</a> publishes game results with closing lines as a direct CSV download on GitHub, licensed CC BY 4.0, which allows commercial use with attribution. On this site, the 22-row sample and the full season-summaries.csv download free under the same license. Sportsbook sites display odds but offer no bulk downloads and forbid scraping, so openly licensed releases are the legal route.</p>
+      <h3>How do you join a spreads CSV to game results?</h3>
+      <p>Merge on a shared per-game key. Here that key is <code>game_id</code>, formatted <code>season_week_AWAY_HOME</code> (example: <code>1999_01_KC_CHI</code>). In pandas: <code>spreads.merge(results, on="game_id", how="inner")</code>. On the sample the inner join returns all 22 rows with lines and scores side by side; on the full file the same join assembles 7,276 played games from 1999 through 2025.</p>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

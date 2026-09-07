@@ -37,7 +37,7 @@
 <main id="main" class="wrap page">
   <a class="crumb" href="..">&larr; Catalog</a>
   <h1>NFL spread history CSV: 27 seasons of closing lines and ATS covers</h1>
-  <p class="byline">Guide to the <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026</a> pack &middot; column definitions in the <a href="nfl-games-data-guide.html">games.csv column guide</a> &middot; weather columns covered in the <a href="nfl-stadium-weather.html">stadium weather guide</a>. Counted from the game rows themselves; nothing on this page is betting advice.</p>
+  <p class="byline">Guide to the <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026</a> pack &middot; column definitions in the <a href="nfl-games-data-guide.html">games.csv column guide</a> &middot; weather columns covered in the <a href="nfl-stadium-weather.html">stadium weather guide</a> &middot; what a full betting dataset contains: <a href="nfl-betting-data.html">NFL betting data explained</a>. Counted from the game rows themselves; nothing on this page is betting advice.</p>
 
   <section aria-label="What the spread column holds">
     <h2>What the spread_line column holds</h2>
@@ -57,7 +57,7 @@
 # &gt; 0: home team covered
 # &lt; 0: away team covered
 # == 0: push (only possible on integer lines)</code></pre>
-    <p>Check it against the two sample rows. MIN @ ATL: result -3, spread_line -4, so -3 - (-4) = +1. The home team lost but covered, because losing by 3 is better than the 4 the line demanded. KC @ CHI: 3 - (-3) = +6, home underdog covers by six. The pack's derived table, team-records-by-season.csv, runs exactly this arithmetic on every row and sums it per team per season into <code>ats_wins</code>, <code>ats_losses</code>, and <code>ats_pushes</code> columns, so a query like "Kansas City's 2023 ATS record" is a filter, not a research project: 16-5-0.</p>
+    <p>Check it against the two sample rows. MIN @ ATL: result -3, spread_line -4, so -3 - (-4) = +1. The home team lost but covered, because losing by 3 is better than the 4 the line demanded. KC @ CHI: 3 - (-3) = +6, home underdog covers by six. The pack's derived table, team-records-by-season.csv, runs exactly this arithmetic on every row and sums it per team per season into <code>ats_wins</code>, <code>ats_losses</code>, and <code>ats_pushes</code> columns, so a query like "Kansas City's 2023 ATS record" is a filter, not a research project: 16-5-0. For how these rows assemble into a full betting dataset, spreads joined to results and totals on <code>game_id</code>, see the <a href="nfl-betting-data.html">NFL betting data guide</a>.</p>
   </section>
 
   <section aria-label="Spread history table">

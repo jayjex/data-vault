@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solana Bounty Tracker Data: Web3 Bounty Listings Without an Official API | Data Vault</title>
+<meta name="description" content="Web3 bounty listings sit on scattered boards behind undocumented APIs, and trackers miss deadlines. What the Superteam Earn dataset gives research and tooling: 28 full descriptions, 186 routes, MCP queries. Snapshot, no live feed.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/web3-bounty-data.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Solana Bounty Tracker Data: Web3 Bounty Listings Without an Official API">
+<meta property="og:description" content="Web3 bounty listings sit on scattered boards behind undocumented APIs. What the Superteam Earn dataset gives research and tooling: 28 full descriptions, 186 routes, MCP queries.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/web3-bounty-data.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Solana Bounty Tracker Data: Web3 Bounty Listings Without an Official API", "description": "Web3 bounty listings sit on scattered boards behind undocumented APIs, and trackers miss deadlines. What the Superteam Earn dataset gives research and tooling: 28 full descriptions, 186 routes, MCP queries. Snapshot, no live feed.", "datePublished": "2026-09-09", "dateModified": "2026-09-09", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/web3-bounty-data.html", "about": {"@type": "Dataset", "name": "Superteam Earn Live Listings", "url": "https://jayjex.github.io/data-vault/datasets/earn-bounties.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Web3 bounty listings data guide", "item": "https://jayjex.github.io/data-vault/guides/web3-bounty-data.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is this a real-time Solana bounty tracker?", "acceptedAnswer": {"@type": "Answer", "text": "No. The dataset is a snapshot harvested from the public Superteam Earn API on 2026-09-04. It has no live endpoint and pushes no notifications. A paid refresh of the same files is planned so you can re-pull the snapshot later, and between refreshes you can pair the snapshot with your own checks against the public site."}}, {"@type": "Question", "name": "How many bounty listings are in the dataset?", "acceptedAnswer": {"@type": "Answer", "text": "The cards file holds 51 records covering 17 unique live listings from harvest day (each listing appears once per API page). The full-descriptions file holds 28 listings with complete description HTML, deadlines, rewards, and tokens; 16 of the 17 live card listings appear there too, and the other 12 descriptions are listings that had already rotated off the live feed."}}, {"@type": "Question", "name": "Can an AI agent query the bounty data without opening the site?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The dataset-mcp MCP server (github.com/jayjex/dataset-mcp) loads the released files and answers read-only queries: query_dataset filters rows, get_stats returns column distributions, and 100 rows come back per call. On the harvest snapshot, 45 of 51 card records are marked HUMAN_ONLY and 6 are AGENT_ALLOWED, so the agentAccess column tells your tooling which listings permit automation."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Web3 bounty listings data: the input a Solana bounty tracker needs</h1>
+  <p class="byline">Snapshot from 2026-09-04, published 2026-09-09. Data source: the public Superteam Earn API.</p>
+
+  <section aria-label="The tracking problem">
+    <h2>Why web3 bounty listings are hard to track</h2>
+    <p>Paid bounty work in crypto lives on a handful of separate boards. Superteam Earn covers much of the Solana ecosystem, hackathon platforms run their own listing feeds, and grant portals post their own calls. Each board ships its own page layout, and most expose no documented public API. A builder who wants one view of open work has to assemble it piece by piece.</p>
+    <p>Three failure modes follow. First, coverage gaps: your tracker only sees the boards you wired up, and each new board is a new reverse-engineering project. Second, brittle scrapes: a page redesign silently breaks an HTML scraper that has no schema contract to protect it. Third, missed deadlines: bounty pages bury cutoff times in markup, and a submission window that closes at 21:59 UTC does not care that your cron job ran at 22:00.</p>
+    <p>The usual fix is a structured dataset with a stable column list: one row per listing, fields for reward, token, deadline, status, sponsor, and submission counts. That is what the pack documented here provides for the largest Solana bounty board.</p>
+  </section>
+
+  <section aria-label="What the dataset holds">
+    <h2>What the Superteam Earn dataset gives you</h2>
+    <p>The pack was harvested from the public Superteam Earn API on 2026-09-04 and ships four files (full inventory on the <a href="../datasets/earn-bounties.html">dataset page</a>):</p>
+    <ul>
+      <li><b>earn-listings-cards.json</b>, 51 card records that cover 17 unique live listings. The cards API paginates, and the same 17 listings appear on each of 3 pages, so dedupe on slug or id before counting. The 18 card fields include rewardAmount, token, deadline (ISO 8601), status, sponsor, agentAccess, and nested comment and submission counters.</li>
+      <li><b>earn-listings-full-descriptions.json</b>, 28 listings with the full description HTML the cards API truncates: scope, deliverables, and judging criteria. Fields: slug, title, reward, token, deadline, desc.</li>
+      <li><b>earn-api-endpoints.txt</b>, a map of 186 reverse-engineered API routes across 25 top-level groups: listings, comments, submissions, grants, hackathons, homepage stats, and more.</li>
+      <li><b>earn-README.md</b>, harvest notes with the date, source, and file inventory, plus the documented <code>/api/search/{title}</code> trick and Privy session flow notes.</li>
+    </ul>
+    <p>The two listing files overlap without matching: 16 of the 17 live card listings have full descriptions, and 12 description rows are listings that had already aged out of the live feed by harvest day. Treat them as two views of one week in the market.</p>
+  </section>
+
+  <section aria-label="Querying without code">
+    <h2>Query the bounty data over MCP</h2>
+    <p>The <a href="https://github.com/jayjex/dataset-mcp" rel="noopener">dataset-mcp</a> server (listed in the official registry as <code>io.github.jayjex/dataset-mcp</code>) reads the full released files and answers read-only queries: <code>query_dataset</code> filters and paginates, <code>get_stats</code> returns column distributions, 100 rows per call. Setup is one npx line; the walkthrough is on the <a href="../agents/">For agents</a> page.</p>
+    <p>A real call against the cards file, listings above 5,000 USD:</p>
+    <pre><code>query_dataset(
+  "earn-bounties",
+  {
+    "where": [{ "column": "rewardAmount", "op": "gt", "value": 5000 }],
+    "columns": ["title", "rewardAmount", "token"]
+  }
+)</code></pre>
+    <p>Returns 6 rows from the September 2026 test run, 2 unique listings repeated across API pages: Create Content for Breakpoint 2026 (8,000 USDG) and Solana Summit Serbia Content Bounty (10,000 USDG). Dedupe on slug and the shape is clean enough to feed a tracker's database directly.</p>
+    <p>A second call, <code>get_stats("earn-bounties", { "column": "agentAccess" })</code>, returns 45 HUMAN_ONLY and 6 AGENT_ALLOWED records. That flag is the contract agent tooling needs: it marks which listings allow automated participation.</p>
+  </section>
+
+  <section aria-label="Endpoint map">
+    <h2>The 186-route endpoint map, read-only</h2>
+    <p>earn-api-endpoints.txt documents how a production bounty platform organizes its routes: 186 paths across listings, comments, submissions, bookmarks, grants, hackathons, image signing, and sponsor operations. It is a reference, not a scrape script. Nothing in it requires credentials you do not already have, and the notes on the Privy passwordless auth flow describe what the public app already does. For tracker builders, the map shows which endpoints a future integration would target and what fields each touches.</p>
+  </section>
+
+  <section aria-label="Use cases">
+    <h2>Research and tooling use cases</h2>
+    <ul>
+      <li><b>Schema design for an aggregator.</b> The 18 card fields and the flattened sample CSV give a tracker's database a starting schema that mirrors a live board, before you write a line of integration code.</li>
+      <li><b>Backfill and notification logic.</b> Deadlines, statuses, and submission counters as rows let you prototype the alerting part of a tracker: which listings close soonest, which reward tiers draw submissions, how fast a feed rotates. The 12 aged-out descriptions show exactly what rotation looks like.</li>
+      <li><b>Market research.</b> Reward distributions, the bounty-to-project split, and the 45/6 agentAccess split are baselines for studying how the Solana work market looked in September 2026.</li>
+      <li><b>Agent tooling.</b> The MCP queries above run headless, so an agent can pull filtered rows, dedupe, and hand a clean table to the next step of a pipeline.</li>
+    </ul>
+  </section>
+
+  <section aria-label="Limits">
+    <h2>Honest limits before you build on this</h2>
+    <ul>
+      <li><b>One board.</b> This dataset covers Superteam Earn. A multi-platform web3 bounty tracker still needs sources for hackathon boards and grant portals; this gives you the Solana anchor.</li>
+      <li><b>A snapshot, not a feed.</b> Every row reflects 2026-09-04. There is no live endpoint and no push updates. A paid refresh of the same files is planned, so you can re-pull later snapshots, but nothing here updates itself.</li>
+      <li><b>28 listings extracted.</b> Full descriptions exist for 28 listings, of which 16 were still live on harvest day. Cards cover 17 unique live listings. Treat counts as harvest-day facts, not as totals for the platform's history.</li>
+      <li><b>Duplication in the raw file.</b> The cards file stores each listing once per API page. Count unique slugs, or use the stats calls, before you report any number.</li>
+    </ul>
+    <p>Framing note: this pack is a research and tooling input. Nothing on this page predicts contest outcomes and nothing here is an income estimate.</p>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the bounty data</h2>
+    <p>Check the schema with the free 10-card sample, then take the full pack if it fits: all 51 card records, all 28 full descriptions, the 186-route endpoint map, and the harvest README.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/earn-bounties/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/superteam-earn-28-live-listings-dataset-186-reverse-engineered-api-routes-mtmy11ny" rel="noopener">Get full data, $49</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Source: public Superteam Earn API, harvested 2026-09-04. Personal and commercial use; no resale of the files as-is. For the schema deep dive, read the <a href="solana-bounties-data-guide.html">Superteam Earn data guide</a>.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

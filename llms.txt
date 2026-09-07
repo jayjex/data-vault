@@ -79,6 +79,7 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - [NFL Roster Data: Free Sources, ID Schemes, and a Live ESPN API Example](https://jayjex.github.io/data-vault/guides/nfl-roster-data.html): nflverse weekly rosters 2002-2026 with 36 columns, nfl_data_py import_weekly_rosters, live ESPN KC roster fetch, espn_id/gsis_id join map
 - [Free NFL Historical Data: nflverse Raw vs a Preprocessed CSV Pack](https://jayjex.github.io/data-vault/guides/nfl-data-alternative.html): raw releases vs preprocessed trade-offs
 - [Open Data API: Free Sample Endpoints and an MCP Query Layer](https://jayjex.github.io/data-vault/guides/open-data-api-alternative.html): no-key endpoints plus query_dataset
+- [Public Data APIs: 12 Free Endpoints We Tested Live](https://jayjex.github.io/data-vault/guides/public-data-apis-list.html): curl-tested government, sports, weather, crypto APIs with real outputs
 - [HUD Fair Market Rent Data by ZIP Code, Explained (FY2026 CSV)](https://jayjex.github.io/data-vault/guides/hud-rent-data-explained.html): schema walkthrough of the HUD pack
 - [HUD FMR by ZIP Code: Fair Market Rent by ZIP, FY2026](https://jayjex.github.io/data-vault/guides/hud-fmr-by-zip.html): single-ZIP lookup methods
 - [HUD FMR by County: Fair Market Rent by County, FY2026](https://jayjex.github.io/data-vault/guides/hud-fmr-by-county.html): 3,229 county rows, rollup explainer
@@ -106,6 +107,7 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - [Superteam Earn Alternative: Solana Bounty Tracker vs Dataset Approach](https://jayjex.github.io/data-vault/guides/bounty-tracker-alternative.html): dashboards vs raw rows
 - [What Is a Data Dictionary? Structure and Real CSV Examples](https://jayjex.github.io/data-vault/guides/data-dictionary-explained.html): column-code documentation format
 - [FMR Dataset Download: Fair Market Rent CSV, Ready for pandas](https://jayjex.github.io/data-vault/guides/fmr-dataset-download.html): analysis-ready FMR dataset, real pd.read_csv output, live sample URL
+- [HUD FMR Excel: Work With the Official FMR Excel Files](https://jayjex.github.io/data-vault/guides/hud-fmr-excel.html): workbook structure, clean Excel/Sheets imports, leading-zero ZIP trap, VLOOKUP examples
 - [CSV vs API for Data: Which One You Need, With a Decision Table](https://jayjex.github.io/data-vault/guides/csv-vs-api.html): worked decision example
 - [Scrape Without Coding: 10 Editable Template Scripts](https://jayjex.github.io/data-vault/guides/scrape-without-coding.html): edit-one-config workflow
 - [Python Scraping Template: 10 Ready-to-Edit Patterns](https://jayjex.github.io/data-vault/guides/scraping-python-templates.html): patterns mapped to Python, self-host angle

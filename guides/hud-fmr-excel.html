@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD FMR Excel: Work With the Official FMR Excel Files, FY2026 | Data Vault</title>
+<meta name="description" content="The official HUD FMR Excel files explained: FY26_FMRs.xlsx (4,764 county rows) and the SAFMR workbook (51,895 ZIP rows), header quirks, clean imports into Excel and Google Sheets, and VLOOKUP examples.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fmr-excel.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="HUD FMR Excel: Work With the Official FMR Excel Files, FY2026">
+<meta property="og:description" content="The official HUD FMR Excel files explained: FY26_FMRs.xlsx (4,764 county rows) and the SAFMR workbook (51,895 ZIP rows), header quirks, clean imports into Excel and Google Sheets, and VLOOKUP examples.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fmr-excel.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "HUD FMR Excel: work with the official FMR Excel files, FY2026", "description": "The official HUD FMR Excel files explained: FY26_FMRs.xlsx (4,764 county rows) and the SAFMR workbook (51,895 ZIP rows), header quirks, clean imports into Excel and Google Sheets, and VLOOKUP examples.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fmr-excel.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does HUD publish FMR data as an Excel file?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. HUD's FY2026 release ships two Excel workbooks on huduser.gov: FY26_FMRs.xlsx with 4,764 county-level rows across 2 sheets, and fy2026_safmrs.xlsx with 51,895 ZIP-level rows on one sheet. Both are real .xlsx files that open in Excel, but their layout (newline-broken headers, values stored as mixed text and numbers) makes a clean import take a few extra steps."}}, {"@type": "Question", "name": "Why do my ZIP codes lose their leading zeros in Excel?", "acceptedAnswer": {"@type": "Answer", "text": "Excel reads a ZIP like 01960 as the number 1960 and drops the zero. In the FY2026 ZIP-level data, 3,533 of 51,895 ZIP rows start with 0, so a default import silently corrupts them. Fix it by importing the zip column as Text: in Power Query, set the column type to Text before Close & Load; in the older Text Import Wizard, set that column to Text in step 3; in Google Sheets, uncheck Convert text to numbers during File > Import."}}, {"@type": "Question", "name": "Is there a cleaner file than the official FMR workbooks?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, if your work is lookups rather than one-off reading. The HUD FMR FY2026 CSV pack collapses both workbooks into one flat 10-column table (zip, hud_area_code, metro, area_name, state, fmr_0br through fmr_4br) with ZIPs kept as text. A free 22-row sample shows the exact schema, and VLOOKUP or XLOOKUP runs on it with no cleanup."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>HUD FMR in Excel: the official workbooks, clean imports, and formulas</h1>
+  <p class="byline">FY2026 edition, published 2026-09-10. Data source: HUD, public domain. Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <section aria-label="Quick answer">
+    <p>Huduser.gov publishes the FY2026 Fair Market Rent data as two Excel workbooks: <code>FY26_FMRs.xlsx</code> (368 KB, 4,764 county-level rows) and <code>fy2026_safmrs.xlsx</code> (4.2 MB, 51,895 ZIP-level rows). Both open in Excel and Google Sheets. Both need a few settings handled before the data is usable: the SAFMR sheet's header cells contain line breaks, values are stored as mixed text and numbers, and a default import strips the leading zeros off 3,533 ZIP codes.</p>
+    <p>This guide walks the real structure of each workbook (checked against the files HUD serves today), the import settings that get a clean load in Excel and Google Sheets, and lookup formulas that run once the data is in. If your goal is repeated lookups rather than reading a spreadsheet once, the <a href="../datasets/hud-fmr-2026.html">HUD FMR FY2026 pack</a> ships the same values as one flat CSV; the <a href="fmr-dataset-download.html">FMR dataset download guide</a> covers the pandas side.</p>
+  </section>
+
+  <section aria-label="The two official workbooks">
+    <h2>The two official HUD FMR workbooks</h2>
+    <p>Both files live on the <a href="https://www.huduser.gov/portal/datasets/fmr.html" rel="noopener">HUD FMR datasets page</a> under the FY2026 section:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Workbook comparison"><table>
+      <thead><tr><th scope="col">File</th><th scope="col">Size</th><th scope="col">Rows</th><th scope="col">What one row is</th></tr></thead>
+      <tbody>
+        <tr><td>FY26_FMRs.xlsx</td><td>368 KB</td><td>4,764 data rows, 2 sheets</td><td>One county (or county-equivalent) FMR area</td></tr>
+        <tr><td>fy2026_safmrs.xlsx</td><td>4.2 MB</td><td>51,895 data rows, 1 sheet</td><td>One ZIP code</td></tr>
+      </tbody>
+    </table></div>
+    <p>The county workbook's first sheet, <code>FY26_FMRs</code>, carries 14 columns: stusps, state, hud_area_code, countyname, county_town_name, metro, hud_area_name, fips, pop2023, and one fmr column per bedroom size (fmr_0 through fmr_4). The second sheet, <code>Field_Descriptions</code>, documents those columns in 15 rows. First data row, read straight from the file: Autauga County, AL, hud_area_code METRO33860M33860, in the Montgomery, AL MSA, with fmr_0 = 860 and fmr_2 = 1016.</p>
+    <p>The ZIP workbook has a single sheet, <code>SAFMRs</code>, with 18 columns. Its Abilene, TX MSA row carries base FMRs of 850 / 880 / 1090 / 1420 / 1710 for 0BR through 4BR, the same numbers as ZIP 76437 in the free sample on this site. The two workbooks together are the full FY2026 publication; every value in our CSV pack traces back to them.</p>
+  </section>
+
+  <section aria-label="What the sheets actually look like">
+    <h2>What the sheets actually look like</h2>
+    <p>The SAFMR sheet's header row is the first surprise. The header cells contain hard line breaks, because HUD formats them to wrap inside narrow columns. Read programmatically, the first two and one value column come out like this:</p>
+<pre>Cell A1: 'ZIP\nCode'
+Cell B1: 'HUD Area Code'
+Cell J1: 'SAFMR\n2BR'
+Cell K1: 'SAFMR\n2BR - 90%\nPayment\nStandard'
+Cell L1: 'SAFMR\n2BR - 110%\nPayment\nStandard'</pre>
+    <p>Each bedroom size gets three columns: the base SAFMR, then 90% and 110% payment standard variants. That makes 5 bedroom sizes x 3 columns = 15 value columns, plus ZIP Code, HUD Area Code, and Area Name = 18. If you parse the sheet in code, the base FMRs sit at every third column starting from the fourth; in Excel terms, columns D, G, J, M, P hold the base values and the columns between hold the 90% and 110% figures.</p>
+    <p>Value cells mix text and numbers in the same column. In the Abilene row, the 0BR and 1BR cells hold text strings (<code>'850'</code>, <code>'880'</code>) while the 2BR, 3BR, and 4BR cells hold real numbers (1090, 1420, 1710). The county workbook does the same, and pop2023 arrives as a number next to fips codes stored as text. Sorting or averaging a column with mixed types gives wrong results or <code>#VALUE!</code> errors, so the import step below forces consistent types.</p>
+    <p>The county workbook's headers are flat by comparison (no line breaks), but its first sheet also carries two nearly identical name columns, countyname and county_town_name, and the metro column is a 0/1 flag rather than a label.</p>
+  </section>
+
+  <section aria-label="Import into Excel">
+    <h2>Import into Excel cleanly</h2>
+    <p>Double-clicking the xlsx opens it as-is, since it already is a workbook. The steps below matter when you convert the sheet into a typed table, or when you bring in a CSV export instead:</p>
+    <ol>
+      <li>Data &gt; Get Data &gt; From File &gt; From Text/CSV (or From Workbook for the xlsx).</li>
+      <li>In the preview, click <b>Transform Data</b>, not Load.</li>
+      <li>Power Query: set every <code>fmr</code> / <code>SAFMR</code> column to Whole Number (Transform &gt; Data Type). This kills the text-vs-number mix in one pass.</li>
+      <li>Set the ZIP or fips column to <b>Text</b> before anything else touches it. This is the step that saves the leading zeros.</li>
+      <li>Home &gt; Close &amp; Load. The data lands as a typed Excel table.</li>
+    </ol>
+    <p>On the ZIP workbook you can also delete the 90% and 110% columns in the same Power Query session (right-click &gt; Remove Other Columns, keeping D, G, J, M, P among the value columns), which leaves a 9-column base-FMR table.</p>
+  </section>
+
+  <section aria-label="Import into Google Sheets">
+    <h2>Import into Google Sheets</h2>
+    <p>Sheets cannot open a remote xlsx by URL, so download the workbook first, then File &gt; Import &gt; Upload. Two settings decide whether the load is clean:</p>
+    <ul>
+      <li><b>Uncheck Convert text to numbers, dates, and formulas.</b> Checked, it reads <code>'850'</code> as 850 (fine) but also reads ZIP 01960 as 1960 (bad). Unchecked, every column imports as text; select the FMR columns afterward and Format &gt; Number &gt; Number.</li>
+      <li>Separator: automatic works for both workbooks.</li>
+    </ul>
+    <p>For a CSV instead of the workbook, <code>IMPORTDATA</code> pulls a file straight from a URL:</p>
+<pre>=IMPORTDATA("https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.csv")</pre>
+    <p>IMPORTDATA applies the same number conversion, so the ZIP column loses leading zeros on the 0-prefixed rows. Wrap the fix around it, then VLOOKUP against the converted key:</p>
+<pre>=ARRAYFORMULA(TEXT(IMPORTDATA("...sample.csv"), "00000"))</pre>
+    <p>applied to the ZIP column, or simply import through File &gt; Import with conversion off.</p>
+  </section>
+
+  <section aria-label="The leading zero trap">
+    <h2>The leading zero ZIP trap, counted</h2>
+    <p>In the FY2026 ZIP-level data, 3,533 of the 51,895 ZIP rows start with 0: all of Puerto Rico (006xx), the New England states (01xxx through 04xxx), and scattered others. A default Excel or Sheets import treats those cells as numbers, drops the zero, and the ZIP becomes a 4-digit value. Everything downstream breaks quietly: VLOOKUPs against a 5-character key return <code>#N/A</code> for exactly those 3,533 rows, and joins by ZIP drop New England and Puerto Rico without any error message.</p>
+    <p>The fix is one setting at import time: read the ZIP column as Text (Power Query step above, wizard step 3, or Sheets conversion unchecked). If the damage is already done, <code>=TEXT(A2,"00000")</code> rebuilds the 5-character form from a numeric column, as long as no digits beyond the leading zero were lost.</p>
+    <p>The same trap applies to the county workbook's fips column and to any CSV you import later. The CSV pack sidesteps it: ZIPs ship quoted as text, and the <a href="hud-fmr-by-zip.html">FMR by ZIP guide</a> shows the full lookup workflow against that file.</p>
+  </section>
+
+  <section aria-label="Formulas">
+    <h2>Formulas to run once the data is in</h2>
+    <p>Examples use the free 22-row <a href="../data/hud-fmr-2026/sample.csv" download>sample CSV</a>, 10 columns, ZIP in column A, fmr_2br in column H, headers in row 1, data in rows 2 through 23. All three return values from the Abilene, TX MSA rows:</p>
+    <ul>
+      <li>2BR FMR for one ZIP: <code>=VLOOKUP("79508", A:H, 8, FALSE)</code> returns <b>1240</b>.</li>
+      <li>Same lookup with a visible miss value: <code>=XLOOKUP("79562", A2:A23, H2:H23, "ZIP not in file")</code> returns <b>1900</b>, the highest 2BR SAFMR in the sample. Note the lookup key is a text string, which matches the Text-typed ZIP column; if you pass the number 79562, Excel will not find it.</li>
+      <li>Average 2BR FMR across one metro in the sample: <code>=AVERAGEIF(B2:B23, "METRO10180M10180", H2:H23)</code> returns <b>1177</b> over the 22 sample ZIPs, all in that one metro.</li>
+    </ul>
+    <p>On the full 51,895-row file the same formulas run unchanged with the ranges widened. Keep the lookup key and the ZIP column the same type (both text or both numbers) or the match fails silently on half the file.</p>
+  </section>
+
+  <section aria-label="Workbook vs CSV">
+    <h2>When the workbook is fine, and when the CSV wins</h2>
+    <p>Reading one county's numbers once? The official workbook is fine; open it, look, close it. The import friction only pays off once.</p>
+    <p>Building anything that repeats (a monthly rent-comps sheet, a payment-standard calculator, a lookup fed by a list of ZIPs), the flat CSV wins on three counts: one table instead of two workbooks with different layouts, one consistent type per column instead of mixed text and number cells, and a header row you can reference by name. The <a href="hud-fmr-data-dictionary.html">data dictionary</a> lists all 10 CSV columns with types and first-row examples.</p>
+    <p>Different dataset, same workflow: the <a href="nfl-dataset-excel.html">NFL data in Excel guide</a> runs the identical import-then-formula pattern on a sports CSV, if you want a second worked example in a totally different domain.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">Get the full dataset</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. The full pack carries all 51,895 ZIP rows, the 3,229-row county rollup, a 52-row state summary, the data dictionary, and source checksums. The sample downloads free here, no signup.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>HUD FMR Excel questions</h2>
+    <dl>
+      <dt>Does HUD publish FMR data as an Excel file?</dt>
+      <dd>Yes. HUD's FY2026 release ships two Excel workbooks on huduser.gov: FY26_FMRs.xlsx with 4,764 county-level rows across 2 sheets, and fy2026_safmrs.xlsx with 51,895 ZIP-level rows on one sheet. Both are real .xlsx files that open in Excel, but their layout (newline-broken headers, values stored as mixed text and numbers) makes a clean import take a few extra steps.</dd>
+      <dt>Why do my ZIP codes lose their leading zeros in Excel?</dt>
+      <dd>Excel reads a ZIP like 01960 as the number 1960 and drops the zero. In the FY2026 ZIP-level data, 3,533 of 51,895 ZIP rows start with 0, so a default import silently corrupts them. Fix it by importing the zip column as Text: in Power Query, set the column type to Text before Close &amp; Load; in the older Text Import Wizard, set that column to Text in step 3; in Google Sheets, uncheck Convert text to numbers during File &gt; Import.</dd>
+      <dt>Is there a cleaner file than the official FMR workbooks?</dt>
+      <dd>Yes, if your work is lookups rather than one-off reading. The HUD FMR FY2026 CSV pack collapses both workbooks into one flat 10-column table (zip, hud_area_code, metro, area_name, state, fmr_0br through fmr_4br) with ZIPs kept as text. A free 22-row sample shows the exact schema, and VLOOKUP or XLOOKUP runs on it with no cleanup.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Attribution">
+    <h2>Source and license</h2>
+    <p>Workbook structure documented from the FY2026 Fair Market Rent files served by <a href="https://www.huduser.gov/portal/datasets/fmr.html" rel="noopener">huduser.gov</a>, downloaded and parsed 2026-09-10. US government data, public domain. This page describes the data and offers no housing, legal, or investment advice.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

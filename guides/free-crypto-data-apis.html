@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Crypto Data APIs: 5 Price Sources Tested Live | Data Vault</title>
+<meta name="description" content="Five free crypto price APIs tested with curl on the same day: CoinGecko, Coinbase, Binance, Kraken, and CoinPaprika. Verbatim outputs, real rate-limit evidence, and the DNS wall three of them sit behind on some networks.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/free-crypto-data-apis.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Free Crypto Data APIs: 5 Price Sources Tested Live">
+<meta property="og:description" content="CoinGecko, Coinbase, Binance, Kraken, and CoinPaprika tested with curl on the same day, with verbatim outputs, rate-limit evidence, and a DNS-hijack postmortem.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/free-crypto-data-apis.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Free crypto data APIs: five price sources tested live", "description": "Five free crypto price APIs tested with curl on the same day: CoinGecko, Coinbase, Binance, Kraken, and CoinPaprika. Verbatim outputs, real rate-limit evidence, and the DNS wall three of them sit behind on some networks.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/free-crypto-data-apis.html", "about": {"@type": "Thing", "name": "free crypto data APIs"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ItemList", "name": "Free crypto price APIs tested live", "numberOfItems": 5, "itemListElement": [{"@type": "ListItem", "position": 1, "name": "CoinGecko simple price API (keyless)", "url": "https://api.coingecko.com/api/v3/simple/price"}, {"@type": "ListItem", "position": 2, "name": "Coinbase Data API spot price (keyless)", "url": "https://api.coinbase.com/v2/prices/BTC-USD/spot"}, {"@type": "ListItem", "position": 3, "name": "Binance spot ticker price", "url": "https://api.binance.com/api/v3/ticker/price"}, {"@type": "ListItem", "position": 4, "name": "Kraken public Ticker", "url": "https://api.kraken.com/0/public/Ticker"}, {"@type": "ListItem", "position": 5, "name": "CoinPaprika tickers API", "url": "https://api.coinpaprika.com/v1/tickers/btc-bitcoin"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the best free crypto price API?", "acceptedAnswer": {"@type": "Answer", "text": "All five sources on this page returned HTTP 200 with no key on the test day: CoinGecko simple/price, Coinbase /v2/prices spot, Binance ticker/price, Kraken public Ticker, and CoinPaprika tickers. For a one-line price check, CoinGecko has the smallest integration and Coinbase returns the simplest payload. For polling at any volume, CoinPaprika is the only one that exposes its own rate-limit headers, and Binance publishes a per-minute weight budget your code can read from the response headers. For order-book depth and last-trade detail, the exchange APIs (Binance, Kraken) return fields the aggregators do not."}}, {"@type": "Question", "name": "Is the Coinbase API free to use without a key?", "acceptedAnswer": {"@type": "Answer", "text": "The /v2/prices endpoints (spot, buy, sell) need no authentication and no scope per the official Coinbase Developer docs, and our keyless spot call returned HTTP 200. Coinbase publishes no keyless rate-limit number we could find; the old API rate-limits page moved during their docs migration and the spot-price page states only that the endpoint requires no auth. Also note the endpoint answers with a USD amount that changes every call, and the historic spot price accepts a date parameter."}}, {"@type": "Question", "name": "Why did Coinbase, Binance, and Kraken fail on your first try?", "acceptedAnswer": {"@type": "Answer", "text": "The first attempts never reached them. The local ISP resolver hijacked DNS for api.coinbase.com, api.binance.com, and api.kraken.com, answering with IPs that serve unrelated certificates, so curl aborted with error 60 (certificate subject name mismatch). Querying a public resolver (1.1.1.1) for the real IPs and passing them to curl with --resolve made all three return 200 on the same minute. On networks with a clean resolver none of this is needed, and Binance also runs a market-data-only host, data-api.binance.vision, that answered directly without any DNS work."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Free crypto data APIs: five price sources tested live</h1>
+  <p class="byline">Every call on this page ran on 2026-09-07 from our build box, one curl request per endpoint, and the outputs are pasted verbatim from that run. Prices appear only inside the API payloads; this page is about the pipes, not the market, and nothing here is trading or investment advice.</p>
+
+  <section aria-label="How the list was built">
+    <h2>How this free crypto API comparison was built</h2>
+    <p>Five candidates: the two aggregators every list recommends (CoinGecko, CoinPaprika) and the three exchanges whose public endpoints people copy from Stack Overflow (Coinbase, Binance, Kraken). Same method as our <a href="public-data-apis-list.html">public data APIs list</a>: one curl call each, a fixed User-Agent, HTTP status recorded, response body pasted as returned. Anything that failed got a second attempt after diagnosis, because a failure you cannot explain is not a result.</p>
+    <p>Three of the five failed the first call, and the reason turned out to sit between our box and the internet, not at the API providers. That failure mode is the part most crypto API tutorials skip, so this page documents it with the exact errors before the comparison tables.</p>
+  </section>
+
+  <section aria-label="DNS hijack">
+    <h2>The wall three of five hit: DNS hijack, not the API</h2>
+    <p>Our build box sits behind an Indonesian consumer ISP. First round, plain curl, default DNS: CoinGecko and CoinPaprika returned 200 immediately, and Coinbase, Binance, and Kraken all aborted with the same TLS error:</p>
+    <pre><code>curl: (60) SSL: no alternative certificate subject name matches target hostname 'api.coinbase.com'</code></pre>
+    <p>That error means the certificate the server presented does not match the hostname. <code>openssl s_client</code> showed why. The certificate served for <code>api.coinbase.com</code> belongs to <code>internetpositif.id</code>, and the ones for Binance and Kraken belong to <code>internetpositif.id</code> and <code>internetsehatku.com</code> respectively. The ISP's resolver hijacks DNS for these domains and answers with its own block-page servers, whose certificates can never match. The API providers never saw a byte.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="DNS hijack table"><table><thead><tr><th scope="col">Host</th><th scope="col">First attempt</th><th scope="col">Certificate actually served</th></tr></thead><tbody>
+      <tr><td>api.coinbase.com</td><td>curl error 60, no TLS handshake</td><td>CN=internetpositif.id (Let's Encrypt E8)</td></tr>
+      <tr><td>api.binance.com</td><td>curl error 60, no TLS handshake</td><td>CN=internetpositif.id (Let's Encrypt E8)</td></tr>
+      <tr><td>api.kraken.com</td><td>curl error 60, no TLS handshake</td><td>CN=internetsehatku.com (Let's Encrypt YE2)</td></tr>
+    </tbody></table></div>
+    <p>The fix took one minute. Ask a public resolver for the real address, pin it for one request with <code>--resolve</code>, and the same endpoints answered 200 on the same minute:</p>
+    <pre><code>dig +short @1.1.1.1 api.kraken.com        # 104.17.189.205 on test day
+
+curl -sS --resolve api.kraken.com:443:104.17.189.205 \
+  "https://api.kraken.com/0/public/Ticker?pair=XBTUSD"</code></pre>
+    <p>The resolved address can change, so re-run the <code>dig</code> step rather than copying the IP from here. With the pin, the same endpoints answered 200 on the same minute:</p>
+    <p>Two honest notes. Pinning an IP from a third-party resolver is a diagnostic tool, not a production pattern; in production, change your resolver to 1.1.1.1 or 8.8.8.8, or run your calls from a network whose DNS you control. And Binance publishes a market-data-only host, <code>data-api.binance.vision</code>, which was not on the ISP's block list at all and answered directly with no DNS work, so the same vendor can be reachable or not depending on which hostname you pick.</p>
+    <p>General lesson for anyone comparing free crypto APIs from inside a restrictive network: test the resolver before you blame the API. A timeout or a certificate error on one network says nothing about the endpoint on another.</p>
+  </section>
+
+  <section aria-label="The five APIs">
+    <h2>The five free crypto price APIs, tested 2026-09-07</h2>
+    <p>All five returned HTTP 200 on test day. Aggregators return one price per asset; exchanges return their own market's price, so the numbers differ between rows by design. Table cells are trimmed to fit; each API's section below has the fuller body.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Crypto API table"><table><thead><tr><th scope="col">API</th><th scope="col">Endpoint</th><th scope="col">Auth</th><th scope="col">Verbatim output (trimmed)</th></tr></thead><tbody>
+      <tr><td>CoinGecko (keyless)</td><td><code>GET https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&amp;vs_currencies=usd</code></td><td>none</td><td><code>{"bitcoin":{"usd":79076},"ethereum":{"usd":2484.36}}</code></td></tr>
+      <tr><td>Coinbase Data API</td><td><code>GET https://api.coinbase.com/v2/prices/BTC-USD/spot</code></td><td>none</td><td><code>{"data":{"amount":"79069.945","base":"BTC","currency":"USD"}}</code></td></tr>
+      <tr><td>Binance spot</td><td><code>GET https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT</code></td><td>none</td><td><code>{"symbol":"BTCUSDT","price":"79081.61000000"}</code></td></tr>
+      <tr><td>Kraken public</td><td><code>GET https://api.kraken.com/0/public/Ticker?pair=XBTUSD</code></td><td>none</td><td><code>{"error":[],"result":{"XXBTZUSD":{"c":["79051.00000","0.00027526"], ...}}}</code></td></tr>
+      <tr><td>CoinPaprika</td><td><code>GET https://api.coinpaprika.com/v1/tickers/btc-bitcoin</code></td><td>none</td><td><code>{"id":"btc-bitcoin","rank":1,...,"quotes":{"USD":{"price":79103.41789298884,...}}}</code></td></tr>
+    </tbody></table></div>
+
+    <h3>CoinGecko: the one-GET integration</h3>
+    <p>Verbatim body from the test call:</p>
+    <pre><code>{"bitcoin":{"usd":79076},"ethereum":{"usd":2484.36}}</code></pre>
+    <p>Headers came back with no rate-limit fields at all, so your code cannot read its own budget here. The response carries <code>cache-control: max-age=30</code>, meaning the number you get can be up to 30 seconds old, and <code>x-data-source: 2.0</code> identifies the aggregation version. The official errors-and-rate-limits page states the keyless tier is IP-based and shared across everyone on the same IP, and the demo plan with a free key buys a documented 100 calls/min. All requests count toward the limit, including 4xx and 5xx errors, so retry loops burn budget twice.</p>
+
+    <h3>Coinbase: simplest payload, thinnest docs</h3>
+    <p>Two calls a few minutes apart returned <code>"amount":"79054.635"</code> and then <code>"amount":"79069.945"</code>, and the second one, with response headers captured:</p>
+    <pre><code>{"data":{"amount":"79069.945","base":"BTC","currency":"USD"}}</code></pre>
+    <p>The Data API reference for prices states the spot, buy, and sell endpoints require no authentication and no scope, and spot accepts a <code>date</code> parameter for historic prices. What Coinbase does not publish, as far as we could find after their docs moved to docs.cdp.coinbase.com, is a keyless rate-limit number; the old API rate-limits page we tried 404s, and the response headers carry no rate-limit fields. Treat the cap as unknown and cache the answer; the payload itself tells you the price is only correct for seconds.</p>
+
+    <h3>Binance: the only one that tells you the weight you spent</h3>
+    <p>Both official hosts answered. The main API (after the DNS pin) and the market-data-only host that answered with no pinning:</p>
+    <pre><code>GET https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT
+{"symbol":"BTCUSDT","price":"79081.61000000"}
+x-mbx-used-weight-1m: 2
+
+GET https://data-api.binance.vision/api/v3/ticker/price?symbol=BTCUSDT
+{"symbol":"BTCUSDT","price":"79029.96000000"}</code></pre>
+    <p>The <code>x-mbx-used-weight-1m: 2</code> header matches the documented weight of 2 for one <code>ticker/price</code> call, so a script can watch its own consumption every response. The <code>exchangeInfo</code> endpoint reports the limits themselves, verbatim from test day:</p>
+    <pre><code>[{"rateLimitType": "REQUEST_WEIGHT", "interval": "MINUTE", "intervalNum": 1, "limit": 6000},
+ {"rateLimitType": "ORDERS", "interval": "SECOND", "intervalNum": 10, "limit": 100},
+ {"rateLimitType": "ORDERS", "interval": "DAY", "intervalNum": 1, "limit": 200000},
+ {"rateLimitType": "RAW_REQUESTS", "interval": "MINUTE", "intervalNum": 5, "limit": 300000}]</code></pre>
+    <p>The official REST API docs describe the enforcement ladder: exceed the limit and you get HTTP 429 with a <code>Retry-After</code> header; keep going past 429 and the IP gets auto-banned with HTTP 418, with bans scaling from 2 minutes to 3 days for repeat offenders. Limits bind by IP, not by API key. The docs also list alternate base hosts (<code>api1</code> through <code>api4</code>.binance.com) for when the main host is congested or, in our case, hijacked downstream.</p>
+
+    <h3>Kraken: one call per second, and the XBT naming trap</h3>
+    <p>Full verbatim body, which is short enough to paste whole:</p>
+    <pre><code>{"error":[],"result":{"XXBTZUSD":{"a":["79051.00000","1","1.000"],"b":["79050.90000","3","3.000"],
+"c":["79051.00000","0.00027526"],"v":["999.39954344","1676.38937064"],"p":["79561.36929","79709.38371"],
+"t":[48702,76175],"l":["78960.60000","78960.60000"],"h":["80435.00000","80541.20000"],"o":"80334.40000"}}}</code></pre>
+    <p>Two things surprise people here. Bitcoin is <code>XBT</code>, not <code>BTC</code>, and the pair gets a doubled prefix, <code>XXBTZUSD</code>, which is also what you pass back in queries. The <code>c</code> array is the last trade price and volume; <code>a</code> and <code>b</code> are the ask and bid with volume and level; <code>v</code>, <code>p</code>, <code>t</code>, <code>l</code>, <code>h</code>, <code>o</code> are today's and 24-hour volume, average price, trade count, low, high, and open. No rate-limit headers come back on this endpoint. The official support article on API rate limits says public endpoints tolerate 1 call per second per IP and stays within the limits at that frequency, with Trades and OHLC additionally limited per currency pair; the private endpoints run a counter system instead (Starter tier: counter max 15, decaying 0.33 per second). Overrun the public limits and Kraken answers with <code>EAPI:Rate limit exceeded</code> or <code>EService: Throttled</code> in the error array.</p>
+
+    <h3>CoinPaprika: the only source with self-describing rate-limit headers</h3>
+    <p>Body trimmed to the research-relevant fields:</p>
+    <pre><code>{"id":"btc-bitcoin","name":"Bitcoin","symbol":"BTC","rank":1,
+"total_supply":20081072,"max_supply":21000000,"beta_value":1.01978,
+"first_data_at":"2010-07-17T00:00:00Z","last_updated":"2026-09-07T15:11:16Z",
+"quotes":{"USD":{"price":79103.41789298884,"volume_24h":19433996400.599102,
+"volume_24h_change_24h":14.649999618530273,"market_cap":1588481430155, ...}}}</code></pre>
+    <p>The headers are what make this one useful for anything beyond a demo:</p>
+    <pre><code>ratelimit-limit: 20000
+ratelimit-remaining: 19964
+ratelimit-reset: 2105219
+cache-control: public, max-age=30, s-maxage=30, stale-while-revalidate=10, stale-if-error=600</code></pre>
+    <p>A limit of 20,000 with a reset counter of 2,105,219 seconds, about 24 days from the test timestamp, lands at the start of the next month: a monthly window, not a daily one. No other source in this comparison returns its own budget, so CoinPaprika is the one where a polling script can self-throttle from the response instead of guessing.</p>
+  </section>
+
+  <section aria-label="Rate limits compared">
+    <h2>Rate limits, with the evidence for each</h2>
+    <p>Every API list repeats rate-limit folklore. Here is what each source actually documents and what our test run observed:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Rate limit table"><table><thead><tr><th scope="col">API</th><th scope="col">Keyless cap</th><th scope="col">Header evidence on test day</th><th scope="col">Documented where</th></tr></thead><tbody>
+      <tr><td>CoinGecko</td><td>no number published; IP-based, shared by all users of that IP; demo key raises to 100 calls/min</td><td>no rate-limit headers; <code>cache-control: max-age=30</code></td><td>CoinGecko API docs, errors and rate limits page</td></tr>
+      <tr><td>Coinbase</td><td>not published for the keyless /v2 prices endpoints</td><td>no rate-limit headers</td><td>Coinbase Developer docs, Data API prices page (old rate-limits page moved)</td></tr>
+      <tr><td>Binance</td><td>6,000 request weight per minute per IP; ticker/price weighs 2</td><td><code>x-mbx-used-weight-1m: 2</code> after one call; limits array read from <code>exchangeInfo</code></td><td>binance-spot-api-docs REST API reference (github.com/binance)</td></tr>
+      <tr><td>Kraken</td><td>public endpoints: 1 call/sec per IP stays within limits; Trades/OHLC also per-pair</td><td>no rate-limit headers</td><td>Kraken support article 206548367 and docs.kraken.com Spot REST rate limits</td></tr>
+      <tr><td>CoinPaprika</td><td>20,000 calls per month (header-declared)</td><td><code>ratelimit-limit: 20000</code>, <code>ratelimit-remaining: 19964</code>, reset ≈ 24 days</td><td>its own response headers; CoinPaprika API docs describe the free tier</td></tr>
+    </tbody></table></div>
+    <p>One trap cuts across all five: they answer with different reference prices. Coinbase quotes its BTC-USD market, Binance quotes BTCUSDT against Tether, Kraken quotes XXBTZUSD, and the two aggregators blend venues. The spread between payloads in the same minute on test day was roughly 70 dollars across sources, which is normal market microstructure across markets with different quote assets, not an error to debug.</p>
+  </section>
+
+  <section aria-label="Which to pick">
+    <h2>Which free crypto API fits which job</h2>
+    <ul>
+      <li>One price check in a script or a bot reply: CoinGecko's <code>simple/price</code> or Coinbase's spot endpoint. One GET, one line of JSON.</li>
+      <li>Continuous polling: CoinPaprika, because the response headers carry the remaining budget, or Binance, because every response reports the weight consumed against the 6,000-per-minute budget.</li>
+      <li>Order-book depth, bids and asks, last trades: the exchange APIs. Kraken's Ticker returns book top and 24h stats in one call; Binance's <code>depth</code> endpoint goes to 5,000 levels with weight scaling by limit.</li>
+      <li>Historic spot by calendar date: Coinbase spot with the <code>date</code> parameter.</li>
+      <li>On-chain state (epochs, validators, supply) instead of market prices: that lives on the chain's own JSON-RPC, which we test in the <a href="solana-ecosystem-data.html">Solana ecosystem data guide</a>.</li>
+    </ul>
+  </section>
+
+  <section aria-label="Related resources">
+    <h2>Where to go next</h2>
+    <p>The cross-category version of this test, twelve government, sports, weather, and crypto endpoints including CoinGecko, is the <a href="public-data-apis-list.html">public data APIs list</a>. For parsing these responses without a library, the <a href="json-api-tutorial.html">JSON API tutorial</a> walks nested payloads, pagination, and the two error shapes with verbatim output. And when a full download beats an endpoint, the <a href="csv-vs-api.html">CSV vs API decision guide</a> lays out the trade in one table.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../tools/sample-data-downloads.html">Browse free samples</a>
+      <a class="btn" href="https://www.getly.store/store/mtmw06l2" rel="noopener">Get the full pack</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Third-party APIs listed above carry their own terms and rate limits; check each provider's docs before commercial use. Nothing on this page is investment, tax, or trading advice.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>What is the best free crypto price API?</h3>
+    <p>All five sources on this page returned HTTP 200 with no key on the test day: CoinGecko simple/price, Coinbase /v2/prices spot, Binance ticker/price, Kraken public Ticker, and CoinPaprika tickers. For a one-line price check, CoinGecko has the smallest integration and Coinbase returns the simplest payload. For polling at any volume, CoinPaprika is the only one that exposes its own rate-limit headers, and Binance publishes a per-minute weight budget your code can read from the response headers. For order-book depth and last-trade detail, the exchange APIs (Binance, Kraken) return fields the aggregators do not.</p>
+    <h3>Is the Coinbase API free to use without a key?</h3>
+    <p>The /v2/prices endpoints (spot, buy, sell) need no authentication and no scope per the official Coinbase Developer docs, and our keyless spot call returned HTTP 200. Coinbase publishes no keyless rate-limit number we could find; the old API rate-limits page moved during their docs migration and the spot-price page states only that the endpoint requires no auth. Also note the endpoint answers with a USD amount that changes every call, and the historic spot price accepts a date parameter.</p>
+    <h3>Why did Coinbase, Binance, and Kraken fail on your first try?</h3>
+    <p>The first attempts never reached them. The local ISP resolver hijacked DNS for api.coinbase.com, api.binance.com, and api.kraken.com, answering with IPs that serve unrelated certificates, so curl aborted with error 60 (certificate subject name mismatch). Querying a public resolver (1.1.1.1) for the real IPs and passing them to curl with --resolve made all three return 200 on the same minute. On networks with a clean resolver none of this is needed, and Binance also runs a market-data-only host, data-api.binance.vision, that answered directly without any DNS work.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

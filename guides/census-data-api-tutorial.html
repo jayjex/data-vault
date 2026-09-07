@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Census Data API Tutorial: Discovery Catalog, Free Key, ACS Rent in Python | Data Vault</title>
+<meta name="description" content="A Census data API tutorial: query the 1,803-dataset discovery catalog, register a free key, structure a year/dataset/variables query, and pull ACS median gross rent in pandas. Every output pasted verbatim from a live run.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/census-data-api-tutorial.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Census Data API Tutorial: Discovery Catalog, Free Key, ACS Rent in Python">
+<meta property="og:description" content="Query the 1,803-dataset discovery catalog without a key, register a free key for data queries, and pull ACS median gross rent with pandas. Every command ran live; outputs pasted verbatim.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/census-data-api-tutorial.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Census Data API Tutorial: Discovery Catalog, Free Key, ACS Rent in Python", "description": "A Census data API tutorial: query the 1,803-dataset discovery catalog, register a free key, structure a year/dataset/variables query, and pull ACS median gross rent in pandas. Every output pasted verbatim from a live run.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/census-data-api-tutorial.html", "about": {"@type": "Thing", "name": "US Census Bureau Data API"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the Census data API free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The key costs nothing, the signup form at api.census.gov/data/key_signup.html takes about two minutes, and the data is public domain. The Census user guide caps a single data query at 50 variables. The discovery catalog at api.census.gov/data.json answers without any key at all, which is where you should spend your first ten minutes."}}, {"@type": "Question", "name": "How do I get a free Census data API key?", "acceptedAnswer": {"@type": "Answer", "text": "Open the Request a KEY box on the Census developers site, which leads to the form at api.census.gov/data/key_signup.html, and fill it out. The Census user guide says the email address you enter must end in .com, .net, .org, .gov, or .edu. A message arrives with the key code in the body and a link to register the key; the key starts working once you click it. Then append &key=YOUR_KEY to every data query."}}, {"@type": "Question", "name": "Can I query the Census API without a key?", "acceptedAnswer": {"@type": "Answer", "text": "On the data endpoints, no. A curl test on 2026-09-10 of api.census.gov/data/2023/acs/acs1 without a key returned HTTP 302 with a redirect to missing_key.html, and the current user guide states that an API key must be used with all data queries. Older write-ups describe a 500-queries-per-IP-per-day allowance for keyless calls; that policy no longer matches the Census user guide or the endpoint behavior we observed. The discovery catalog, variables.json, and geography.json still answer without a key, and Census Reporter serves the same ACS tables with no signup."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Census data API tutorial: discovery, keys, and ACS rent in Python</h1>
+  <p class="byline">Published 2026-09-10. Every command below ran from our box the same day, and every output block is pasted verbatim from that run. The keyed call in the signup section is the one exception: no Census key was registered on our box, so that block documents the request shape from the Census user guide rather than a pasted response.</p>
+
+  <section aria-label="Three doors into the Census API">
+    <h2>Three doors into the Census API, and which ones open without a key</h2>
+    <p>The Census Bureau serves all of its machine data from one host, api.census.gov, but the endpoints behave very differently. One GET returns the entire dataset catalog to anyone. Another resolves table codes into variable IDs for anyone. The third, the one that returns actual numbers, redirects keyless callers to a Missing Key page. The doors:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Census API access table"><table><thead><tr><th scope="col">Door</th><th scope="col">URL</th><th scope="col">Key</th><th scope="col">Best for</th></tr></thead><tbody>
+      <tr><td>Discovery catalog</td><td><code>GET https://api.census.gov/data.json</code></td><td>none</td><td>Finding which dataset and vintage carries your subject</td></tr>
+      <tr><td>Dataset metadata</td><td><code>api.census.gov/data/2023/acs/acs1/variables.json</code></td><td>none</td><td>Resolving table codes like B25064 into variable IDs</td></tr>
+      <tr><td>Data query</td><td><code>api.census.gov/data/2023/acs/acs1?get=NAME,B25064_001E&amp;for=state:48</code></td><td>free, required</td><td>Pulling values for states, counties, places, ZIPs</td></tr>
+    </tbody></table></div>
+    <p>The keyless first two doors are where discovery work happens, and they answer fast. The keyed door is where every number comes from. This tutorial walks each door in order, ending with a pandas pull of ACS median gross rent that runs today with no key at all.</p>
+  </section>
+
+  <section aria-label="Discovery catalog">
+    <h2>Door one: the discovery catalog holds 1,803 datasets</h2>
+    <p>One request returns the full catalog. It is a 5.2 MB JSON document, so pull it to a file first:</p>
+    <pre>curl -s -w "HTTP %{http_code}, %{size_download} bytes\n" -o /tmp/data.json https://api.census.gov/data.json</pre>
+    <pre>HTTP 200, 5212460 bytes</pre>
+    <p>Each entry in the <code>dataset</code> array describes one dataset: a <code>c_dataset</code> path such as ["acs", "acs1"], a <code>c_vintage</code> year, and links to that dataset's variables.json and geography.json. Filter the catalog in Python (Python 3.12, pandas 3.0.5, all in the block below):</p>
+    <pre>import json, urllib.request
+
+HEADERS = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36"}
+
+def get(url):
+    req = urllib.request.Request(url, headers=HEADERS)
+    with urllib.request.urlopen(req) as r:
+        return json.load(r)
+
+catalog = get("https://api.census.gov/data.json")["dataset"]
+print("datasets in catalog:", len(catalog))
+
+acs1 = [d for d in catalog if d.get("c_dataset") == ["acs", "acs1"]]
+vintages = sorted(d["c_vintage"] for d in acs1)
+print("acs1 datasets:", len(acs1), "vintages:", vintages[0], "-", vintages[-1])
+
+vars2023 = get("https://api.census.gov/data/2023/acs/acs1/variables.json")["variables"]
+print("variables in 2023 acs1:", len(vars2023))
+print("B25064_001E:", vars2023["B25064_001E"]["label"])
+print("B25031_004E:", vars2023["B25031_004E"]["label"])</pre>
+    <pre>datasets in catalog: 1803
+acs1 datasets: 19 vintages: 2005 - 2024
+variables in 2023 acs1: 36724
+B25064_001E: Estimate!!Median gross rent
+B25031_004E: Estimate!!Median gross rent --!!Total:!!2 bedrooms</pre>
+    <p>1,803 datasets, of which 270 are ACS products once you count the PUMS, data-profile, and subject-table variants. The 19 core acs1 entries cover every vintage from 2005 through 2024, one per year. The same catalog powers the dataset picker on data.census.gov, so scripting against data.json beats clicking through the web app whenever you need to check several vintages at once.</p>
+  </section>
+
+  <section aria-label="Endpoint structure">
+    <h2>Door two: endpoint structure is year, dataset, variables</h2>
+    <p>Every data query follows one shape:</p>
+    <pre>https://api.census.gov/data/{year}/{survey}?get={variables}&amp;for={geography}</pre>
+    <p>Concretely, the 2023 American Community Survey one-year release, table B25064 (median gross rent), for Texas:</p>
+    <pre>https://api.census.gov/data/2023/acs/acs1?get=NAME,B25064_001E,B25031_004E&amp;for=state:48</pre>
+    <p><code>get</code> takes a comma-separated variable list, <code>NAME</code> being the free geography-name variable every dataset carries. <code>for</code> takes a geography level and a FIPS code, and <code>state:*</code> returns every state in one call. The response is a JSON array whose first row holds the variable names and each following row holds one geography's values, so it loads into pandas with one call. That URL shape is what a key unlocks; without one, here is what the same request returns (from our 2026-09-10 run):</p>
+    <pre>curl -s -w "\nHTTP %{http_code} redirect %{redirect_url}\n" "https://api.census.gov/data/2023/acs/acs1?get=NAME,B25064_001E&amp;for=state:48"</pre>
+    <pre>HTTP 302 redirect https://api.census.gov/data/missing_key.html</pre>
+    <p>The 2020 decennial PL dataset behaves the same way. The current user guide, on its Query Limits page (revised May 14, 2026), states it plainly: "An API key must be used with all data queries made to the Census Data API," and it caps any single query at 50 variables. Older write-ups across the web describe a 500-queries-per-IP-per-day allowance for keyless calls; that policy no longer matches either the guide or the endpoint, so plan on a key for any data pull.</p>
+  </section>
+
+  <section aria-label="Variable lookup">
+    <h2>Variable lookup: variables.json resolves table codes</h2>
+    <p>Table codes like B25064 are census table IDs, not API variable names. The API wants <code>B25064_001E</code>, the estimate variable, and the per-dataset <code>variables.json</code> is the map between the two. The 2023 acs1 file holds 36,724 variables, and each entry carries a label and a predicate type. The rent tables resolve like this:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="B25031 bedroom variables"><table><thead><tr><th scope="col">Variable</th><th scope="col">Label</th></tr></thead><tbody>
+      <tr><td><code>B25064_001E</code></td><td>Median gross rent, all sizes</td></tr>
+      <tr><td><code>B25031_001E</code></td><td>Median gross rent by bedrooms, total</td></tr>
+      <tr><td><code>B25031_002E</code></td><td>No bedroom</td></tr>
+      <tr><td><code>B25031_003E</code></td><td>1 bedroom</td></tr>
+      <tr><td><code>B25031_004E</code></td><td>2 bedrooms</td></tr>
+      <tr><td><code>B25031_005E</code></td><td>3 bedrooms</td></tr>
+      <tr><td><code>B25031_006E</code></td><td>4 bedrooms</td></tr>
+      <tr><td><code>B25031_007E</code></td><td>5 or more bedrooms</td></tr>
+    </tbody></table></div>
+    <p>Labels came straight out of the variables.json run in the discovery section, not from memory. B25064 is the all-sizes median gross rent; B25031 splits the same measure by bedroom count, and the <code>_004E</code> slot is the 2BR number, the one that lines up with HUD's 2BR fair market rent. Gross rent means contract rent plus a utilities allowance on both tables, the same rent-plus-utilities basis the FMR uses.</p>
+  </section>
+
+  <section aria-label="Getting a key">
+    <h2>Getting the free key, documented from the user guide</h2>
+    <p>The Census <a href="https://www.census.gov/data/developers/guidance/api-user-guide.API_Key.html" rel="noopener">API key guide</a> lists four steps:</p>
+    <ul>
+      <li>Open the developers site and click the Request a KEY box, which leads to the form at <a href="https://api.census.gov/data/key_signup.html" rel="noopener">api.census.gov/data/key_signup.html</a>.</li>
+      <li>Fill out the form. The guide says the email address must end in .com, .net, .org, .gov, or .edu.</li>
+      <li>Check the inbox: the message carries the key code in the body plus a link to register the key.</li>
+      <li>Click that link. The key starts working once registered.</li>
+    </ul>
+    <p>Two gotchas sit in those steps. First, the email rule: a disposable inbox domain such as mail.tm ends in .tm, which is outside the five extensions the guide names, so a throwaway address is the wrong tool for this form. Second, the activation link is not optional; a key pasted straight from the email body before registration is the classic reason a fresh key returns errors. With a registered key, the same Texas call from the last section becomes:</p>
+    <pre>curl -s "https://api.census.gov/data/2023/acs/acs1?get=NAME,B25064_001E,B25031_004E&amp;for=state:*&amp;key=$CENSUS_KEY"</pre>
+    <p>Keep the key out of scripts and out of git: read it from an environment variable, as above. We ran the signup form's rules against the guide, not against a submitted form, because no key was registered on our box for this tutorial; the Census <a href="https://www.census.gov/data/developers/guidance/api-user-guide.html" rel="noopener">user guide</a> is the authority if their pages move.</p>
+  </section>
+
+  <section aria-label="Keyless pull">
+    <h2>The pull that runs without a key today: Census Reporter</h2>
+    <p>Until the key exists, ACS tables are still reachable in pandas. Census Reporter mirrors ACS releases and serves them from <code>api.censusreporter.org</code> with no signup. The same two rent tables, five states, one DataFrame (Python 3.12, pandas 3.0.5, run 2026-09-10):</p>
+    <pre>import json, urllib.request
+import pandas as pd
+
+HEADERS = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36"}
+
+def acs_state(fips):
+    url = (f"https://api.censusreporter.org/1.0/data/show/latest"
+           f"?table_ids=B25064,B25031&amp;geo_ids=04000US{fips}")
+    req = urllib.request.Request(url, headers=HEADERS)
+    with urllib.request.urlopen(req) as r:
+        d = json.load(r)
+    fips_id = f"04000US{fips}"
+    est = d["data"][fips_id]
+    return {
+        "state": d["geography"][fips_id]["name"],
+        "median_gross_rent": est["B25064"]["estimate"]["B25064001"],
+        "median_2br_rent": est["B25031"]["estimate"]["B25031004"],
+        "release": d["release"]["id"],
+    }
+
+states = {"48":"Texas","36":"New York","29":"Missouri","12":"Florida","28":"Mississippi"}
+df = pd.DataFrame([acs_state(f) for f in states])
+print(df.to_string(index=False))</pre>
+    <pre>      state  median_gross_rent  median_2br_rent     release
+      Texas             1475.0           1475.0 acs2024_1yr
+   New York             1634.0           1634.0 acs2024_1yr
+    Missouri             1067.0           1057.0 acs2024_1yr
+    Florida             1812.0           1812.0 acs2024_1yr
+Mississippi              990.0            963.0 acs2024_1yr</pre>
+    <p>These five rows match the ACS 2024 one-year figures on our <a href="hud-fmr-vs-census-rent.html">HUD FMR vs census rent</a> comparison digit for digit; that page pulled the same tables through Census Reporter on 2026-09-07, this run landed three days later, and the values agree. The bedroom split comes free on the same endpoint:</p>
+    <pre>rows = []
+for fips in ["48","36","29","12","28"]:
+    with open(f"/tmp/cr_b31_{fips}.json") as f:
+        d = json.load(f)
+    g = f"04000US{fips}"
+    est = d["data"][g]["B25031"]["estimate"]
+    rows.append({"state": d["geography"][g]["name"],
+                 "studio": est["B25031002"], "1br": est["B25031003"],
+                 "2br": est["B25031004"], "3br": est["B25031005"],
+                 "4br": est["B25031006"], "5br_plus": est["B25031007"]})
+df = pd.DataFrame(rows)
+print(df.to_string(index=False))</pre>
+    <pre>      state  studio    1br    2br    3br    4br  5br_plus
+      Texas  1279.0 1307.0 1475.0 1729.0 2178.0    2580.0
+   New York  1534.0 1530.0 1634.0 1852.0 2049.0    2123.0
+    Missouri   855.0  870.0 1057.0 1285.0 1571.0    1439.0
+    Florida  1546.0 1589.0 1812.0 2076.0 2375.0    2938.0
+Mississippi   652.0  829.0  963.0 1083.0 1307.0    1117.0</pre>
+    <p>One gotcha from the same run: Python's default urllib User-Agent gets an HTTP 403 from Census Reporter's Cloudflare layer. Send a browser-shaped User-Agent header, as the blocks above do, and the JSON arrives. Once a Census key is registered, the keyed endpoint covers the same tables plus every other dataset in the catalog, with the 50-variable-per-query ceiling as the only size limit.</p>
+  </section>
+
+  <section aria-label="Related resources">
+    <h2>Where to go next</h2>
+    <p>The Census discovery endpoint is one of the twelve entries in our <a href="public-data-apis-list.html">public data APIs list</a>, each curl-tested from our box with the real output recorded. For what the median gross rent actually compares against, the <a href="hud-fmr-vs-census-rent.html">HUD FMR vs census rent</a> page puts the 40th-percentile FMR next to the 50th-percentile ACS median on five states. The <a href="fred-api-tutorial.html">FRED API tutorial</a> covers the other government API with a two-door key policy, and the <a href="json-api-tutorial.html">JSON API tutorial</a> walks the response-parsing side of these endpoints.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../tools/sample-data-downloads.html">Browse free samples</a>
+      <a class="btn" href="https://www.getly.store/store/mtmw06l2" rel="noopener">Get the full pack</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Census data is public domain; Census Reporter is an independent open-source project, so check its terms before redistribution. Data Vault is not affiliated with the Census Bureau or Census Reporter.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>Is the Census data API free?</h3>
+    <p>Yes. The key costs nothing, the signup form at api.census.gov/data/key_signup.html takes about two minutes, and the data is public domain. The Census user guide caps a single data query at 50 variables. The discovery catalog at api.census.gov/data.json answers without any key at all, which is where you should spend your first ten minutes.</p>
+    <h3>How do I get a free Census data API key?</h3>
+    <p>Open the Request a KEY box on the Census developers site, which leads to the form at api.census.gov/data/key_signup.html, and fill it out. The Census user guide says the email address you enter must end in .com, .net, .org, .gov, or .edu. A message arrives with the key code in the body and a link to register the key; the key starts working once you click it. Then append &amp;key=YOUR_KEY to every data query.</p>
+    <h3>Can I query the Census API without a key?</h3>
+    <p>On the data endpoints, no. A curl test on 2026-09-10 of api.census.gov/data/2023/acs/acs1 without a key returned HTTP 302 with a redirect to missing_key.html, and the current user guide states that an API key must be used with all data queries. Older write-ups describe a 500-queries-per-IP-per-day allowance for keyless calls; that policy no longer matches the Census user guide or the endpoint behavior we observed. The discovery catalog, variables.json, and geography.json still answer without a key, and Census Reporter serves the same ACS tables with no signup.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

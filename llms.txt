@@ -86,6 +86,7 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - [FMR vs Actual Rent: What Each Number Measures and Why They Differ](https://jayjex.github.io/data-vault/guides/fmr-vs-rent-actuals.html): benchmark vs market rent
 - [HUD FMR vs Census Rent: FMR vs ACS Median Gross Rent](https://jayjex.github.io/data-vault/guides/hud-fmr-vs-census-rent.html): 40th vs 50th percentile, five-state table
 - [SAFMR vs FMR: Small Area Fair Market Rent vs Metro FMR](https://jayjex.github.io/data-vault/guides/safmr-vs-fmr.html): ZIP-level vs metro-level rents
+- [HUD FMR by Bedroom Size: Studio to 4BR Medians, FY2026](https://jayjex.github.io/data-vault/guides/hud-fmr-by-bedroom.html): national 0BR-4BR medians, 4BR/studio ratios in five large metros
 - [HUD FMR Texas: Fair Market Rent Data for Texas, FY2026](https://jayjex.github.io/data-vault/guides/hud-fmr-texas.html): state=TX filter, 3,247 ZIP rows, metro split
 - [Airbnb Data Download: 6-City Listings CSV (90,169 Rows)](https://jayjex.github.io/data-vault/guides/airbnb-data-guide.html): schema and cities in the Airbnb pack
 - [Airbnb Price Data: Mean and Median Nightly Price in 6 US Cities](https://jayjex.github.io/data-vault/guides/airbnb-price-data.html): per-city means and medians, snapshot vs live

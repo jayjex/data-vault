@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD FMR by Bedroom Size: Studio to 4BR Medians, FY2026 | Data Vault</title>
+<meta name="description" content="HUD FMR by bedroom size from the FY2026 ZIP-level CSV: national medians for 0BR through 4BR, studio vs 4BR ratios in five big metros, and when the 0-bedroom FMR prices at a premium.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fmr-by-bedroom.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="HUD FMR by Bedroom Size: Studio to 4BR Medians, FY2026">
+<meta property="og:description" content="HUD FMR by bedroom size from the FY2026 ZIP-level CSV: national medians for 0BR through 4BR, studio vs 4BR ratios in five big metros, and when the 0-bedroom FMR prices at a premium.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fmr-by-bedroom.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "HUD FMR by Bedroom Size: Studio to 4BR Medians, FY2026", "description": "HUD FMR by bedroom size from the FY2026 ZIP-level CSV: national medians for 0BR through 4BR, studio vs 4BR ratios in five big metros, and when the 0-bedroom FMR prices at a premium.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-bedroom.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the HUD FMR for a 0-bedroom (studio) apartment in FY2026?", "acceptedAnswer": {"@type": "Answer", "text": "The 0-bedroom FMR is the fair market rent HUD publishes for studio units. Across the 51,895 ZIP rows in the FY2026 ZIP-level file, the median 0-bedroom FMR is 870 dollars a month. Because the file repeats each metro's base values across most of its ZIPs, the same 51,895 rows collapse to 2,616 unique HUD areas, and the median across those areas is 780 dollars. Use the area median when you want one number per market and the ZIP-row median when every ZIP should weigh equally."}}, {"@type": "Question", "name": "How much more is a 4-bedroom FMR than a studio FMR?", "acceptedAnswer": {"@type": "Answer", "text": "In the FY2026 ZIP-level file, the national median 4-bedroom FMR is 1,720 dollars against a median studio FMR of 870 dollars, so the 4-bedroom costs about twice the studio, a ratio of 1.98. The ratio moves by market: it runs 2.06 in Houston, 1.86 in Phoenix, 1.81 in Chicago, 1.75 in Philadelphia, and 1.57 in New York, where high studio floors compress the ladder."}}, {"@type": "Question", "name": "When is the studio FMR expensive relative to larger units?", "acceptedAnswer": {"@type": "Answer", "text": "Compare the metro studio median against the national studio median and do the same for the 4-bedroom column. In the FY2026 file, New York's studio median of 2,750 dollars sits at 3.16 times the national studio median while its 4-bedroom median sits at 2.51 times the national 4-bedroom median, so New York's premium concentrates in studios. Houston shows the reverse: its studio index is 1.44 and its 4-bedroom index 1.50. A metro whose studio index exceeds its 4-bedroom index is where the 0-bedroom FMR prices at a relative premium."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>HUD FMR by bedroom size: studio to 4BR, FY2026 medians and ratios</h1>
+  <p class="byline">FY2026 edition, published 2026-09-10. Data source: HUD, public domain. Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>Every row of the FY2026 ZIP-level FMR file carries five bedroom sizes, fmr_0br through fmr_4br, in monthly dollars. The 0-bedroom column is the studio FMR. Across the file's 51,895 ZIP rows, the medians run 870 for a studio, 940 for a 1-bedroom, 1,150 for a 2-bedroom, 1,500 for a 3-bedroom, and 1,720 for a 4-bedroom. A 4-bedroom FMR costs about twice a studio FMR nationally, and the exact ratio changes by metro, from 2.06 in Houston down to 1.57 in New York. Where the ratio compresses, studios carry the metro's premium; the metro tables below show it.</p>
+  </section>
+
+  <section aria-label="National medians by bedroom size">
+    <h2>National FMR medians by bedroom size</h2>
+    <p>Computed from fmr-by-zip-2026.csv in the <a href="../datasets/hud-fmr-2026.html">HUD FMR FY2026 pack</a>, all 51,895 ZIP rows, no blanks in any FMR column. The file repeats each metro's base values across most of its ZIPs, so the same rows also collapse to 2,616 unique hud_area_code values. Both cuts:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="National FMR medians by bedroom size"><table><thead><tr><th scope="col">Bedroom size</th><th scope="col">Median, 51,895 ZIP rows</th><th scope="col">Median, 2,616 unique areas</th></tr></thead><tbody>
+      <tr><td>0BR (studio)</td><td>$870</td><td>$780</td></tr>
+      <tr><td>1BR</td><td>$940</td><td>$840</td></tr>
+      <tr><td>2BR</td><td>$1,150</td><td>$1,030</td></tr>
+      <tr><td>3BR</td><td>$1,500</td><td>$1,350</td></tr>
+      <tr><td>4BR</td><td>$1,720</td><td>$1,560</td></tr>
+    </tbody></table></div>
+    <p>Pick the cut that matches the question. The ZIP-row median weighs every ZIP equally, which is the right basis when a table will be joined against ZIP-level data. The unique-area median weighs every HUD market equally, which is the right basis for a national picture, since a metro with 410 ZIP rows counts once, same as a rural area with one. The ZIP-row medians run higher because big metros with big rents hold more ZIPs.</p>
+    <p>The steps between sizes are uneven. Studio to 1BR is 70 dollars at the ZIP-row median, 8 percent. 1BR to 2BR is 210. 2BR to 3BR is 350. 3BR to 4BR is 220. The smallest jump sits at the bottom of the ladder: an extra room beyond a studio costs far less than having a separate unit at all.</p>
+  </section>
+
+  <section aria-label="Studio vs 4BR">
+    <h2>Studio vs 4BR: the ratio, market by market</h2>
+    <p>Five of the largest metros, ZIP-row medians computed inside each metro's own rows, against the national ZIP-row medians. The index column reads as a multiple of the national median for that bedroom size:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Studio vs 4BR medians in five large metros"><table><thead><tr><th scope="col">Metro</th><th scope="col">ZIP rows</th><th scope="col">Studio median</th><th scope="col">4BR median</th><th scope="col">Ratio 4BR / studio</th><th scope="col">Studio index</th><th scope="col">4BR index</th></tr></thead><tbody>
+      <tr><td>New York, NY</td><td>410</td><td>$2,750</td><td>$4,320</td><td>1.57</td><td>3.16</td><td>2.51</td></tr>
+      <tr><td>Chicago-Joliet-Naperville, IL</td><td>370</td><td>$1,475</td><td>$2,665</td><td>1.81</td><td>1.70</td><td>1.55</td></tr>
+      <tr><td>Houston-The Woodlands-Sugar Land, TX</td><td>327</td><td>$1,250</td><td>$2,580</td><td>2.06</td><td>1.44</td><td>1.50</td></tr>
+      <tr><td>Phoenix-Mesa-Chandler, AZ</td><td>225</td><td>$1,460</td><td>$2,720</td><td>1.86</td><td>1.68</td><td>1.58</td></tr>
+      <tr><td>Philadelphia-Camden-Wilmington, PA-NJ-DE-MD</td><td>473</td><td>$1,440</td><td>$2,520</td><td>1.75</td><td>1.66</td><td>1.47</td></tr>
+    </tbody></table></div>
+    <p>Nationwide the 4BR/studio ratio is 1.98 at the ZIP-row median. Every metro above sits off that mark in its own direction. New York compresses the ladder to 1.57 because its studio floor is extraordinary: the cheapest of its 410 ZIP rows still carries a 0-bedroom FMR of 2,170, and the 10th percentile sits at 2,230. Houston stretches the ladder to 2.06 because its studios stay comparatively cheap while its 4-bedroom column climbs.</p>
+  </section>
+
+  <section aria-label="When studios price at a premium">
+    <h2>When the studio FMR is the expensive one</h2>
+    <p>Room count alone does not say which size is expensive in a market. The check is two indexes: metro studio median over national studio median, and metro 4BR median over national 4BR median. When the studio index beats the 4BR index, the metro's premium concentrates in small units.</p>
+    <p>New York is the clearest case in the table. Its studios run at 3.16 times the national studio median while its 4-bedrooms run at 2.51 times the national 4-bedroom median. The premium per bedroom shrinks as units grow, which shows up in the compressed 1.57 ratio. Chicago, Phoenix, and Philadelphia all show the same direction, a studio index above the 4BR index by 0.15 to 0.19. Houston is the exception, the only metro in the table whose 4BR index exceeds its studio index, which is what pushes its ratio past the national mark.</p>
+    <p>Practical reads of those two columns: a voucher holder comparing markets should look at the index for their own household size, since a metro cheap on average can still be expensive at their bedroom count. An investor sizing a studio acquisition should treat a high studio index as a sign the small-unit segment carries the market's scarcity, and as a sign it can also correct hardest, because the FMR is a 40th-percentile benchmark, not a rent forecast. What the number does and does not measure is laid out in <a href="fmr-vs-rent-actuals.html">FMR vs actual rent</a>.</p>
+  </section>
+
+  <section aria-label="Pull bedroom-size FMRs yourself">
+    <h2>Pull any bedroom-size FMR yourself</h2>
+    <p>Each ZIP row holds all five sizes, so one lookup answers every bedroom-count question at once. Over the <a href="../agents/">dataset-mcp server</a>, a studio query on ZIP 10001:</p>
+    <pre><code>query_dataset(
+  "hud-fmr-2026",
+  {
+    "where": [{ "column": "zip", "op": "=", "value": "10001" }],
+    "columns": ["zip", "area_name", "fmr_0br", "fmr_1br", "fmr_2br", "fmr_3br", "fmr_4br"]
+  }
+)</code></pre>
+    <p>The returned row: ZIP 10001, New York, NY HUD Metro FMR Area, fmr_0br 3800, fmr_1br 3990, fmr_2br 4370, fmr_3br 5470, fmr_4br 5950. That single Manhattan ZIP prices a studio above the 4-bedroom median of any metro in the table above. The single-ZIP flow, including the no-MCP paths, is the subject of <a href="hud-fmr-by-zip.html">HUD FMR by ZIP code</a>, and the metro-level view of all 649 areas is in <a href="hud-metro-list.html">HUD metro area list</a>.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FMR by bedroom questions</h2>
+    <dl>
+      <dt>What is the HUD FMR for a 0-bedroom (studio) apartment in FY2026?</dt>
+      <dd>The 0-bedroom FMR is the fair market rent HUD publishes for studio units. Across the 51,895 ZIP rows in the FY2026 ZIP-level file, the median 0-bedroom FMR is 870 dollars a month. Because the file repeats each metro's base values across most of its ZIPs, the same 51,895 rows collapse to 2,616 unique HUD areas, and the median across those areas is 780 dollars. Use the area median when you want one number per market and the ZIP-row median when every ZIP should weigh equally.</dd>
+      <dt>How much more is a 4-bedroom FMR than a studio FMR?</dt>
+      <dd>In the FY2026 ZIP-level file, the national median 4-bedroom FMR is 1,720 dollars against a median studio FMR of 870 dollars, so the 4-bedroom costs about twice the studio, a ratio of 1.98. The ratio moves by market: it runs 2.06 in Houston, 1.86 in Phoenix, 1.81 in Chicago, 1.75 in Philadelphia, and 1.57 in New York, where high studio floors compress the ladder.</dd>
+      <dt>When is the studio FMR expensive relative to larger units?</dt>
+      <dd>Compare the metro studio median against the national studio median and do the same for the 4-bedroom column. In the FY2026 file, New York's studio median of 2,750 dollars sits at 3.16 times the national studio median while its 4-bedroom median sits at 2.51 times the national 4-bedroom median, so New York's premium concentrates in studios. Houston shows the reverse: its studio index is 1.44 and its 4-bedroom index 1.50. A metro whose studio index exceeds its 4-bedroom index is where the 0-bedroom FMR prices at a relative premium.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <p>Start with the free 22-row sample to check the schema, then take the full pack: all three CSVs (51,895 ZIP rows, 3,229 county rollups, 52 state rows), the data dictionary, and source checksums.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">Get the full dataset</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release, huduser.gov. US government data, public domain. Data Vault is not affiliated with HUD.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

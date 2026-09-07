@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD FMR vs Census Rent (ACS): Why the Two Numbers Differ | Data Vault</title>
+<meta name="description" content="HUD FMR vs ACS rent: the FMR is a 40th percentile gross rent estimate, the ACS median gross rent is the 50th. A five-state FY2026 vs ACS 2024 table shows the gaps and when to use each number.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fmr-vs-census-rent.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="HUD FMR vs Census Rent (ACS): Why the Two Numbers Differ">
+<meta property="og:description" content="HUD FMR vs ACS rent: the FMR is a 40th percentile gross rent estimate, the ACS median gross rent is the 50th. A five-state FY2026 vs ACS 2024 table shows the gaps and when to use each number.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fmr-vs-census-rent.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "HUD FMR vs Census Rent (ACS): Why the Two Numbers Differ", "description": "HUD FMR vs ACS rent: the FMR is a 40th percentile gross rent estimate, the ACS median gross rent is the 50th. A five-state FY2026 vs ACS 2024 table shows the gaps and when to use each number.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fmr-vs-census-rent.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Why is HUD's FMR lower than the census median gross rent?", "acceptedAnswer": {"@type": "Answer", "text": "Four differences stack. The FMR sits at the 40th percentile of gross rent while the ACS median is the 50th, so the FMR starts below by construction. The universes differ: HUD tunes the FMR toward recent-mover rents and excludes new construction, while the ACS counts every renter-occupied unit paying cash rent. The vintages differ: FY2026 FMRs come from a multi-year ACS survey file collected before the release, adjusted forward for inflation, while the ACS 2024 one-year numbers come straight from 2024 responses. The weighting differs too: the state FMR medians in the FY2026 summary are medians across ZIP rows, one vote per ZIP, while the ACS median weights each household the same. Nationally the gap lands at 340 dollars: a 1,150 dollar FMR 2BR median across all 51,895 ZIP rows versus a 1,490 dollar ACS 2BR median gross rent."}}, {"@type": "Question", "name": "Which number should I use for the Housing Choice Voucher program?", "acceptedAnswer": {"@type": "Answer", "text": "The FMR. Public housing agencies set payment standards between 90 and 110 percent of the FMR, so the FMR is the number that moves voucher dollars. The ACS median is a statistical summary and never sets a program number. Where HUD publishes Small Area FMRs, the ZIP-level value replaces the metro value for payment-standard work; the HUD payment standard guide walks the band arithmetic on real FY2026 rows."}}, {"@type": "Question", "name": "What census table holds the ACS median gross rent?", "acceptedAnswer": {"@type": "Answer", "text": "Table B25064, Median Gross Rent (Dollars), in the American Community Survey. The one-year release covers geographies of 65,000 or more people; the five-year release covers smaller areas down to block groups. Table B25031 splits the same measure by bedroom count, which is the version to use when comparing against a specific FMR bedroom size. Gross rent means contract rent plus an allowance for utilities, the same rent-plus-utilities basis the FMR uses. The Census data API requires a key; Census Reporter serves the same tables without one."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>HUD FMR vs census rent: why the two numbers differ</h1>
+  <p class="byline">Published 2026-09-10. Sources: HUD FY2026 Fair Market Rent release, huduser.gov, public domain; US Census Bureau 2024 American Community Survey one-year estimates, tables B25064 and B25031, retrieved via Census Reporter on 2026-09-07. Data Vault is not affiliated with HUD or the Census Bureau. This page covers data and measurement; it is not housing or legal advice.</p>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>Both numbers describe rent in the same market, and they land in different places by design. HUD's Fair Market Rent is the 40th percentile of gross rent, shelter rent plus utilities, for standard-quality units in a market area. The Census Bureau's ACS median gross rent is the 50th percentile of gross rent across all renter-occupied units paying cash rent. Ten points of the rent distribution sit between those two definitions before timing, weighting, or universe differences do any work at all.</p>
+    <p>On the current releases, the gap is real: the national 2BR FMR median is 1,150 dollars across all 51,895 ZIP rows in the FY2026 file, and the 2024 ACS 2BR median gross rent for the United States is 1,490 dollars. FMR sits 340 dollars, or 23 percent, below.</p>
+    <p>Unlike the comparison against listing prices in <a href="fmr-vs-rent-actuals.html">FMR vs actual rent</a>, this one is apples to apples on rent basis: both numbers include utilities, and table B25031 lets you match the bedroom size too. Everything left in the gap is percentile, universe, vintage, and weighting, which makes FMR vs ACS the cleanest way to see what a benchmark choice does to a number.</p>
+  </section>
+
+  <section aria-label="What each number measures">
+    <h2>What each number measures</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="FMR vs ACS median gross rent comparison"><table><thead><tr><th scope="col"></th><th scope="col">HUD FMR (FY2026)</th><th scope="col">ACS median gross rent (2024 one-year)</th></tr></thead><tbody>
+      <tr><td>Who publishes it</td><td>HUD, once each fiscal year</td><td>Census Bureau, American Community Survey, once a year</td></tr>
+      <tr><td>Percentile</td><td>40th percentile of gross rent</td><td>50th percentile, the median</td></tr>
+      <tr><td>Rent basis</td><td>Shelter rent plus utilities, monthly</td><td>Same: gross rent = contract rent plus a utility allowance</td></tr>
+      <tr><td>Universe</td><td>Standard-quality units, tuned toward recent movers; new construction excluded</td><td>Every renter-occupied unit paying cash rent, at any tenure and quality</td></tr>
+      <tr><td>Geography</td><td>Metro area, or ZIP code where SAFMRs apply</td><td>State, county, place, and nearly any geography in the one- or five-year release</td></tr>
+      <tr><td>Vintage</td><td>Built from a multi-year ACS survey file collected before the release, adjusted forward for inflation to the fiscal year</td><td>2024 responses, published in 2025</td></tr>
+      <tr><td>Primary use</td><td>Payment standards for the Housing Choice Voucher program</td><td>Research, demographics, and year-over-year trend lines</td></tr>
+    </tbody></table></div>
+    <p>Column-by-column detail on the FMR side is in <a href="hud-rent-data-explained.html">HUD fair market rent data, explained</a>.</p>
+  </section>
+
+  <section aria-label="Why the numbers differ">
+    <h2>Why FMR sits below the census median</h2>
+    <p><b>The percentile does most of the work.</b> A 40th percentile estimate means 40 percent of the standard units rent for less than the FMR and 60 percent rent for more. The ACS median is the middle of its distribution. In any market where rents spread at all, the 40th percentile sits below the 50th, so FMR below ACS is the expected result, market by market.</p>
+    <p><b>The universes differ.</b> HUD tunes the FMR toward what recent movers pay and excludes units first occupied as new construction in the last two years. The ACS counts every renter-occupied unit paying cash rent, including long-tenure tenants on below-market leases. Each choice moves its number, some up and some down, but the universes stop being identical the moment either is made.</p>
+    <p><b>The vintages differ.</b> The FY2026 FMRs grow out of a multi-year ACS file collected before the release, re-priced to the fiscal year with an inflation adjustment. The ACS 2024 one-year numbers come straight from households answering in 2024. In markets where rents moved faster than the adjustment, the gap widens.</p>
+    <p><b>The weighting differs in state-level tables.</b> The FMR medians in the table below are medians across ZIP rows in the FY2026 file, one vote per ZIP. The ACS medians weight every renter household the same, so large metros carry more of the number. Texas shows the effect: its 3,247 ZIP rows produce a 2BR median of 1,190, while the household-weighted ACS 2BR median runs 1,475, because Dallas, Houston, Austin, and San Antonio hold most of the renters but a minority of the ZIPs.</p>
+  </section>
+
+  <section aria-label="The five-state table">
+    <h2>FY2026 FMR vs ACS 2024, five states</h2>
+    <p>The FMR column is the state 2BR median from the free <a href="../data/hud-fmr-2026/state-summary.csv" download>state-summary.csv</a> in the HUD FMR pack. The ACS columns come from the 2024 one-year release: table B25031 for the 2BR median gross rent and table B25064 for the all-sizes median. ACS margins of error at this geography level run 5 to 22 dollars, small next to the gaps.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="FMR vs ACS five-state table"><table><thead><tr><th scope="col">State</th><th scope="col">FMR 2BR median</th><th scope="col">ACS 2BR median gross rent</th><th scope="col">Gap</th><th scope="col">FMR below ACS by</th></tr></thead><tbody>
+      <tr><td>Texas</td><td>1190</td><td>1475</td><td>285</td><td>19.3 percent</td></tr>
+      <tr><td>New York</td><td>1430</td><td>1634</td><td>204</td><td>12.5 percent</td></tr>
+      <tr><td>Missouri</td><td>960</td><td>1057</td><td>97</td><td>9.2 percent</td></tr>
+      <tr><td>Florida</td><td>1800</td><td>1812</td><td>12</td><td>0.7 percent</td></tr>
+      <tr><td>Mississippi</td><td>960</td><td>963</td><td>3</td><td>0.3 percent</td></tr>
+      <tr><td>United States</td><td>1150</td><td>1490</td><td>340</td><td>22.8 percent</td></tr>
+    </tbody></table></div>
+    <p>The gap changes size by state. In Mississippi the two numbers nearly touch, 3 dollars apart, and Florida sits 12 dollars apart. In Texas they sit 285 apart. The percentile guarantees a gap; the weighting and the shape of each state's rent distribution decide its size. The all-sizes ACS median from B25064 runs close to the 2BR median in these states, 1,487 against 1,490 nationally, so the 340-dollar national comparison against the 2BR FMR median holds on either table.</p>
+    <p>One honesty note on the table itself: the FMR column is a median of ZIP-level values, so it is the number you get from the file as shipped. Rebuilding a household-weighted state FMR from the ZIP rows requires population weights the file does not carry. <a href="hud-fmr-texas.html">HUD FMR for Texas</a> and <a href="hud-fmr-florida.html">HUD FMR for Florida</a> show the state spreads row by row.</p>
+  </section>
+
+  <section aria-label="When to use which">
+    <h2>When to use FMR and when to use the ACS median</h2>
+    <p><b>Use the FMR for anything program-facing.</b> Public housing agencies set payment standards between 90 and 110 percent of the FMR, so voucher math runs on FMR values, and where HUD publishes SAFMRs the ZIP-level value replaces the metro value. <a href="hud-payment-standard.html">HUD payment standard</a> walks the band arithmetic, and <a href="safmr-vs-fmr.html">SAFMR vs FMR</a> shows when the ZIP value changes the answer.</p>
+    <p><b>Use the ACS median for research and market work.</b> It is household-weighted, refreshed every year on a consistent methodology, available free for nearly any geography, and built on the median, which resists outlier distortion. Year-over-year state rent trends, demographic reporting, and cross-market comparisons all belong here.</p>
+    <p><b>Use the ZIP-level FMR for a specific ZIP.</b> ACS five-year ZIP medians lag and mix years; the SAFMR is the current official value for that ZIP. <a href="hud-fmr-by-zip.html">HUD FMR by ZIP code</a> runs the lookup end to end.</p>
+    <p><b>Run both when you benchmark.</b> The gap between the two numbers is information. A market where the FMR trails the ACS median by 20 percent behaves differently for voucher administration than one where they nearly touch, and the five rows above show both cases.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FMR vs census rent questions</h2>
+    <dl>
+      <dt>Why is HUD's FMR lower than the census median gross rent?</dt>
+      <dd>Four differences stack. The FMR sits at the 40th percentile of gross rent while the ACS median is the 50th, so the FMR starts below by construction. The universes differ: HUD tunes the FMR toward recent-mover rents and excludes new construction, while the ACS counts every renter-occupied unit paying cash rent. The vintages differ: FY2026 FMRs come from a multi-year ACS survey file collected before the release, adjusted forward for inflation, while the ACS 2024 one-year numbers come straight from 2024 responses. The weighting differs too: the state FMR medians in the FY2026 summary are medians across ZIP rows, one vote per ZIP, while the ACS median weights each household the same. Nationally the gap lands at 340 dollars: a 1,150 dollar FMR 2BR median across all 51,895 ZIP rows versus a 1,490 dollar ACS 2BR median gross rent.</dd>
+      <dt>Which number should I use for the Housing Choice Voucher program?</dt>
+      <dd>The FMR. Public housing agencies set payment standards between 90 and 110 percent of the FMR, so the FMR is the number that moves voucher dollars. The ACS median is a statistical summary and never sets a program number. Where HUD publishes Small Area FMRs, the ZIP-level value replaces the metro value for payment-standard work; the HUD payment standard guide walks the band arithmetic on real FY2026 rows.</dd>
+      <dt>What census table holds the ACS median gross rent?</dt>
+      <dd>Table B25064, Median Gross Rent (Dollars), in the American Community Survey. The one-year release covers geographies of 65,000 or more people; the five-year release covers smaller areas down to block groups. Table B25031 splits the same measure by bedroom count, which is the version to use when comparing against a specific FMR bedroom size. Gross rent means contract rent plus an allowance for utilities, the same rent-plus-utilities basis the FMR uses. The Census data API requires a key; Census Reporter serves the same tables without one.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <p>The FMR side of the table downloads free: the 22-row sample to check the schema, and the 52-row state summary for the medians above. The full HUD pack carries all three CSVs (51,895 + 3,229 + 52 rows), the data dictionary, and source checksums. The ACS tables stay free on data.census.gov.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>Download FMR sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">Get full FMR data</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. FMR source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release, huduser.gov, public domain. ACS source: US Census Bureau, 2024 American Community Survey one-year estimates, tables B25064 and B25031, retrieved via Census Reporter on 2026-09-07, public domain. Data Vault is not affiliated with HUD or the Census Bureau.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

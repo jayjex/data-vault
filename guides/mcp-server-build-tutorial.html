@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build an MCP Server in Python: 76-Line Tutorial With Tested Output | Data Vault</title>
+<meta name="description" content="An MCP server tutorial in plain Python over stdio: initialize, tools/list, tools/call, the three response shapes, error handling, and the npx github: publishing pattern. 76 lines, run for real, verified against the official MCP SDK.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/mcp-server-build-tutorial.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Build an MCP Server in Python: 76-Line Tutorial With Tested Output">
+<meta property="og:description" content="Build an MCP server in plain Python over stdio: initialize, tools/list, tools/call, error handling, and the npx github: publishing pattern. 76 lines, run for real, verified against the official MCP SDK.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/mcp-server-build-tutorial.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Build an MCP Server in Python: 76-Line Tutorial With Tested Output", "description": "An MCP server tutorial in plain Python over stdio: initialize, tools/list, tools/call, the three response shapes, error handling, and the npx github: publishing pattern. 76 lines, run for real, verified against the official MCP SDK.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/mcp-server-build-tutorial.html", "about": {"@type": "Thing", "name": "building an MCP server in Python"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How much code does a minimal MCP server need?", "acceptedAnswer": {"@type": "Answer", "text": "The server on this page is 76 lines of Python with no dependencies beyond the standard library, and it answers initialize, tools/list, and tools/call. A working server needs those three methods plus one JSON response per line on stdout. Handing schema validation and the rest of the spec to the official SDK costs about 40 lines of JavaScript for a comparable tool set."}}, {"@type": "Question", "name": "Do you need the MCP SDK to build an MCP server?", "acceptedAnswer": {"@type": "Answer", "text": "No. The Model Context Protocol is JSON-RPC 2.0 over a transport, and stdio servers are the simplest case: read a JSON object per line, write one back. The raw server on this page passed a handshake, a tools/list, and two tools/call requests from a client built on the official TypeScript SDK 1.30.0. The SDK still earns its keep beyond the basics: input validation against the schemas, request batching, and the other transports."}}, {"@type": "Question", "name": "How do I publish an MCP server so clients can install it with npx?", "acceptedAnswer": {"@type": "Answer", "text": "Put the entry file at the repo root with a shebang line, point the bin field of package.json at it, and list it in the files field so the published package stays small. Clients can then run it with npx github:youruser/your-repo. On npm 12 the git-based form needs --allow-git=all first, which is how dataset-mcp ships: npx --allow-git=all -y github:jayjex/dataset-mcp. For registry listings, add a server.json declaring a name like io.github.jayjex/dataset-mcp."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Build an MCP server in 76 lines of Python</h1>
+  <p class="byline">Published 2026-09-10. Code and outputs captured live on 2026-09-07 with Python 3.14.4 on Linux; the same server passed a handshake from the official TypeScript MCP SDK 1.30.0 the same day. Every output below is verbatim from those runs.</p>
+
+  <section aria-label="What you are building">
+    <h2>What you are building</h2>
+    <p>An MCP (Model Context Protocol) server is a program that answers JSON-RPC 2.0 requests from an agent client. The stdio transport, the one Claude Desktop and most coding agents use, is the simplest case: the client starts your process, writes one JSON object per line to its stdin, and reads one JSON object per line from its stdout. No sockets, no auth, no framework.</p>
+    <p>A working server answers three requests: <code>initialize</code> (name and version), <code>tools/list</code> (what tools exist, with JSON Schema input descriptions), and <code>tools/call</code> (run one tool, return text content). This page builds one from the standard library alone so every moving part stays visible, then shows where the official SDK takes over.</p>
+    <p>The example server exposes two tools over a two-row notes dictionary: <code>notes_search</code> for keyword matching and <code>notes_get</code> for fetch-by-id. Toy data on purpose; the point is the protocol around it. Our production server <a href="https://github.com/jayjex/dataset-mcp" rel="noopener">dataset-mcp</a> follows the same request loop at larger scale, and its design is the reference for the publishing section.</p>
+  </section>
+
+  <section aria-label="The whole server">
+    <h2>The whole server</h2>
+    <p>76 lines including blank lines. Save as <code>server.py</code>:</p>
+<pre>#!/usr/bin/env python3
+"""Minimal MCP server over stdio: notes_search / notes_get, JSON-RPC 2.0."""
+import json
+import sys
+
+NOTES = {
+    "n1": {"title": "Airport pickup", "body": "Terminal 3, 14:30, plate ends 8821"},
+    "n2": {"title": "Fridge", "body": "Buy oat milk, limes, coffee beans"},
+}
+
+def handle(method, params, id_):
+    if method == "initialize":
+        result = {"protocolVersion": params.get("protocolVersion", "2025-06-18"),
+                  "capabilities": {"tools": {}},
+                  "serverInfo": {"name": "notes-mcp", "version": "0.1.0"}}
+    elif method == "tools/list":
+        result = {"tools": [
+            {"name": "notes_search",
+             "description": "Search notes by keyword; omit query to list all",
+             "inputSchema": {"type": "object",
+                             "properties": {"query": {"type": "string",
+                                           "description": "Case-insensitive keyword"}},
+                             "required": []}},
+            {"name": "notes_get",
+             "description": "Fetch one note by id",
+             "inputSchema": {"type": "object",
+                             "properties": {"id": {"type": "string"}},
+                             "required": ["id"]}}]}
+    elif method == "tools/call":
+        name, args = params["name"], params.get("arguments", {})
+        try:
+            if name == "notes_search":
+                q = args.get("query", "").lower()
+                hits = [{"id": i, "title": n["title"]} for i, n in NOTES.items()
+                        if not q or q in n["title"].lower() or q in n["body"].lower()]
+                text = json.dumps({"matches": hits})
+            elif name == "notes_get":
+                try:
+                    text = json.dumps(NOTES[args["id"]])
+                except KeyError:
+                    return {"jsonrpc": "2.0", "id": id_, "result": {"content": [
+                            {"type": "text", "text": "unknown id: valid ids are n1, n2"}],
+                            "isError": True}}
+            else:
+                return {"jsonrpc": "2.0", "id": id_, "result": {"content": [
+                        {"type": "text", "text": f"unknown tool: {name}"}],
+                        "isError": True}}
+            return {"jsonrpc": "2.0", "id": id_, "result": {"content": [{"type": "text", "text": text}]}}
+        except Exception as e:
+            return {"jsonrpc": "2.0", "id": id_, "result": {"content": [
+                    {"type": "text", "text": f"{type(e).__name__}: {e}"}], "isError": True}}
+    else:
+        return {"jsonrpc": "2.0", "id": id_, "error": {"code": -32601,
+                "message": f"Method not found: {method}"}}
+    return {"jsonrpc": "2.0", "id": id_, "result": result}
+
+def main():
+    for line in sys.stdin:
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            req = json.loads(line)
+        except json.JSONDecodeError:
+            sys.stdout.write(json.dumps({"jsonrpc": "2.0", "id": None, "error": {
+                "code": -32700, "message": "Parse error: request was not valid JSON"}}) + "\n")
+            sys.stdout.flush()
+            continue
+        if "method" not in req or req["method"].startswith("notifications/"):
+            continue
+        out = handle(req["method"], req.get("params", {}), req["id"])
+        sys.stdout.write(json.dumps(out) + "\n")
+        sys.stdout.flush()
+
+if __name__ == "__main__":
+    main()
+</pre>
+    <p>The structure is worth reading once slowly. <code>main()</code> owns the transport: read a line, skip blanks and notifications (requests without an <code>id</code> expect no reply), parse, dispatch, write one line back, flush. <code>handle()</code> owns the three protocol methods, and everything under <code>tools/call</code> is ordinary code you already know how to write.</p>
+  </section>
+
+  <section aria-label="Run it">
+    <h2>Run it</h2>
+    <p>MCP servers speak to programs, so the honest test drives the stdin/stdout loop directly. Write the session to a file, one request per line, including the errors any real session eventually hits:</p>
+<pre>cat &gt; session.jsonl &lt;&lt;'EOF'
+{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"hand-rolled","version":"0.0.1"}}}
+{"jsonrpc":"2.0","method":"notifications/initialized"}
+{"jsonrpc":"2.0","id":2,"method":"tools/list"}
+{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"notes_search","arguments":{"query":"airport"}}}
+{"jsonrpc":"2.0","id":4,"method":"tools/call","params":{"name":"notes_get","arguments":{"id":"n9"}}}
+{"jsonrpc":"2.0","id":5,"method":"tools/call","params":{"name":"nope","arguments":{}}}
+{"jsonrpc":"2.0","id":6,"method":"resources/list"}
+not json at all
+EOF
+python3 server.py &lt; session.jsonl</pre>
+    <p>Output, verbatim, one response per line (pretty-printed here at one field per line for readability; the server emits compact single lines, and running it twice gives byte-identical output):</p>
+<pre>{"jsonrpc": "2.0", "id": 1, "result": {"protocolVersion": "2025-06-18",
+ "capabilities": {"tools": {}},
+ "serverInfo": {"name": "notes-mcp", "version": "0.1.0"}}}
+{"jsonrpc": "2.0", "id": 2, "result": {"tools": [{"name": "notes_search",
+ "description": "Search notes by keyword; omit query to list all",
+ "inputSchema": {"type": "object", "properties": {"query": {"type": "string",
+ "description": "Case-insensitive keyword"}}, "required": []}},
+ {"name": "notes_get", "description": "Fetch one note by id",
+ "inputSchema": {"type": "object", "properties": {"id": {"type": "string"}},
+ "required": ["id"]}}]}}
+{"jsonrpc": "2.0", "id": 3, "result": {"content": [{"type": "text",
+ "text": "{\"matches\": [{\"id\": \"n1\", \"title\": \"Airport pickup\"}]}"}]}}
+{"jsonrpc": "2.0", "id": 4, "result": {"content": [{"type": "text",
+ "text": "unknown id: valid ids are n1, n2"}], "isError": true}}
+{"jsonrpc": "2.0", "id": 5, "result": {"content": [{"type": "text",
+ "text": "unknown tool: nope"}], "isError": true}}
+{"jsonrpc": "2.0", "id": 6, "error": {"code": -32601,
+ "message": "Method not found: resources/list"}}
+{"jsonrpc": "2.0", "id": null, "error": {"code": -32700,
+ "message": "Parse error: request was not valid JSON"}}</pre>
+    <p>The notification line produced no output, which is correct: notifications carry no <code>id</code> and expect no reply.</p>
+  </section>
+
+  <section aria-label="The three response shapes">
+    <h2>The three response shapes</h2>
+    <p>Everything a tools-bearing server returns lands in one of three shapes, and the run above shows all three. Picking the right one is most of the error-handling design:</p>
+    <p><strong>Plain result.</strong> Responses 1 through 3. The method ran, the answer rides in <code>result</code>. For <code>tools/call</code> the result carries a <code>content</code> array, and text content is the workhorse: our server JSON-encodes structured answers into that string. dataset-mcp does the same, so a query like <code>query_dataset("hud-fmr-2026", {where: [{column: "state", op: "=", value: "TX"}], limit: 5})</code> arrives at the model as 5 rows of JSON text inside one content block.</p>
+    <p><strong>Tool error (<code>isError: true</code>).</strong> Responses 4 and 5. The protocol worked, the tool call did not. Unknown tool names, bad arguments, a slug that matches nothing: answer with a normal <code>result</code> whose <code>isError</code> flag is true and whose text says what went wrong and what would work instead. The model reads that text and corrects course. Note response 4 lists the valid ids; an error message that names the valid inputs saves the next round trip. dataset-mcp follows the same rule for bad slugs and bad operators, replying with the valid values listed.</p>
+    <p><strong>Protocol error (<code>error</code> object).</strong> Responses 6 and 7. The request itself broke the protocol: a method the server never declared (<code>-32601</code>), or a line that was never valid JSON (<code>-32700</code>). These are JSON-RPC errors with numeric codes, not tool results, because the client (or its SDK) handles them differently from a failed tool call.</p>
+  </section>
+
+  <section aria-label="Connect a real client">
+    <h2>Connect a real client</h2>
+    <p>A hand-rolled <code>tools/call</code> proves the server answers its own protocol. A client built on the official SDK is the stronger test, because that is what Claude Desktop and the agents actually are. Twenty lines of TypeScript against <code>@modelcontextprotocol/sdk</code> 1.30.0:</p>
+<pre>import { Client } from "@modelcontextprotocol/sdk/client/index.js";
+import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
+const t = new StdioClientTransport({ command: "python3", args: ["server.py"] });
+const c = new Client({ name: "verify-client", version: "0.0.1" });
+await c.connect(t);
+const tools = await c.listTools();
+console.log("tools:", tools.tools.map(x =&gt; x.name).join(", "));
+const hit = await c.callTool({ name: "notes_search", arguments: { query: "fridge" } });
+console.log("search:", hit.content[0].text);
+const miss = await c.callTool({ name: "notes_get", arguments: { id: "n9" } });
+console.log("miss isError:", miss.isError, "| text:", miss.content[0].text);
+await c.close();
+console.log("SDK handshake OK");</pre>
+    <p>Output, verbatim:</p>
+<pre>tools: notes_search, notes_get
+search: {"matches": [{"id": "n2", "title": "Fridge"}]}
+miss isError: true | text: unknown id: valid ids are n1, n2
+SDK handshake OK</pre>
+    <p>The SDK client drove the raw Python server with no changes on either side. That is the compatibility bar to clear, and clearing it with zero dependencies means the protocol floor is genuinely low. The SDK earns its keep one level up: schema validation for arguments, request batching, and the HTTP transports. A comparable server on the SDK side of the fence is roughly 40 lines of JavaScript importing <code>McpServer</code> and <code>StdioServerTransport</code>, which is exactly how dataset-mcp is built.</p>
+  </section>
+
+  <section aria-label="Publish it">
+    <h2>Publish it: GitHub repo to npx install</h2>
+    <p>An MCP server nobody can install is a demo. The install path we use ships the repo on GitHub and lets clients run it straight from git: <code>npx github:youruser/your-repo</code>. dataset-mcp installs exactly this way, and its repo layout is the template:</p>
+<pre>dataset-mcp/
+  index.js            # entry file at repo root, shebang on line 1
+  package.json        # name, bin, files, engines
+  package-lock.json
+  README.md           # config JSON for Claude Desktop and TOML agents
+  LICENSE             # MIT
+  server.json         # MCP registry declaration
+  data/               # manifest the server fetches at runtime</pre>
+    <p>The <code>package.json</code> fields that matter (abbreviated from dataset-mcp v1.1.0):</p>
+<pre>{
+  "name": "@jayjex/dataset-mcp",
+  "version": "1.1.0",
+  "type": "module",
+  "bin": { "dataset-mcp": "index.js" },
+  "files": ["index.js", "README.md"],
+  "engines": { "node": "&gt;=18" }
+}</pre>
+    <p>Three details do the work. The shebang (<code>#!/usr/bin/env node</code>) on the entry file's first line makes it executable when npx fetches it. The <code>bin</code> field names the command. The <code>files</code> field keeps the published payload to the entry file and README instead of the whole repo history.</p>
+    <p>One npm-version wrinkle: npm 12 refuses git-based installs by default, so the git form needs the flag first, and that is the form our own docs tell people to copy:</p>
+<pre><span class="cm"># npm 12+</span>
+npx --allow-git=all -y github:jayjex/dataset-mcp
+<span class="cm"># npm 10 and 11</span>
+npx -y github:jayjex/dataset-mcp</pre>
+    <p>Without the flag, npm 12 exits with <code>EALLOWGIT</code> before your code runs. Setting <code>allow-git=github.com</code> once in <code>~/.npmrc</code> removes the need for the flag everywhere. The full config-file walkthrough lives in the <a href="mcp-claude-desktop.html">MCP server for Claude Desktop guide</a>.</p>
+    <p>For discovery beyond people who already have your repo URL, add a <code>server.json</code> declaring your registry name; dataset-mcp is listed as <code>io.github.jayjex/dataset-mcp</code> in the official registry. The format mirrors the package: name, description, repository URL, version.</p>
+  </section>
+
+  <section aria-label="Scaling up">
+    <h2>From 76 lines to a production server</h2>
+    <p>The notes server and dataset-mcp share the same skeleton: a request loop, a method dispatcher, tools that return JSON text in a content block, tool-level errors that list valid inputs. What production adds is scope, and dataset-mcp's choices each solve one problem:</p>
+    <p><strong>Keep data out of the server.</strong> dataset-mcp ships zero data files. A <code>catalog.json</code> and a release manifest describe the datasets, full CSVs download from a public GitHub release on first query into <code>~/.cache/dataset-mcp/</code>, and every load re-verifies the file's SHA-256 against the manifest. The server stays a 25 KB single file; the data scales independently.</p>
+    <p><strong>Push filtering into the tool schema.</strong> Five tools cover the whole surface (<code>list_datasets</code>, <code>get_dataset_info</code>, <code>get_sample</code>, <code>query_dataset</code>, <code>get_stats</code>) over 149,673 rows. <code>query_dataset</code> takes <code>where</code> clauses with <code>=</code>, <code>contains</code>, <code>gt</code>, <code>lt</code>, column picking, and <code>next_offset</code> paging at 100 rows per call, all declared in the tool's input schema so clients can build correct calls without reading source.</p>
+    <p><strong>Measure and print the timing.</strong> Warm queries against cached files run 180 to 400 ms; a cold first call adds a one-time download, about 1.5 s including parse for the 3.6 MB NYC file. Publishing those numbers sets expectations and makes regressions visible.</p>
+    <p>The tool-level API is documented in depth on the <a href="../agents/mcp-dataset-server.html">dataset-mcp server page</a>, and the <a href="../tools/mcp-tools-list.html">MCP tools list</a> indexes all three servers we run if you want more examples of tool sets before designing your own. The protocol details behind all of this are in the official docs at <a href="https://modelcontextprotocol.io" rel="noopener">modelcontextprotocol.io</a>.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>How much code does a minimal MCP server need?</h3>
+    <p>The server on this page is 76 lines of Python with no dependencies beyond the standard library, and it answers <code>initialize</code>, <code>tools/list</code>, and <code>tools/call</code>. A working server needs those three methods plus one JSON response per line on stdout. Handing schema validation and the rest of the spec to the official SDK costs about 40 lines of JavaScript for a comparable tool set.</p>
+    <h3>Do you need the MCP SDK to build an MCP server?</h3>
+    <p>No. The Model Context Protocol is JSON-RPC 2.0 over a transport, and stdio servers are the simplest case: read a JSON object per line, write one back. The raw server on this page passed a handshake, a <code>tools/list</code>, and two <code>tools/call</code> requests from a client built on the official TypeScript SDK 1.30.0. The SDK still earns its keep beyond the basics: input validation against the schemas, request batching, and the other transports.</p>
+    <h3>How do I publish an MCP server so clients can install it with npx?</h3>
+    <p>Put the entry file at the repo root with a shebang line, point the <code>bin</code> field of <code>package.json</code> at it, and list it in the <code>files</code> field so the published package stays small. Clients can then run it with <code>npx github:youruser/your-repo</code>. On npm 12 the git-based form needs <code>--allow-git=all</code> first, which is how dataset-mcp ships: <code>npx --allow-git=all -y github:jayjex/dataset-mcp</code>. For registry listings, add a <code>server.json</code> declaring a name like <code>io.github.jayjex/dataset-mcp</code>.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

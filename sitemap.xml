@@ -17,6 +17,7 @@
   <url><loc>https://jayjex.github.io/data-vault/datasets/airbnb-six-cities.html</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/datasets/earn-bounties.html</loc><lastmod>2026-09-09</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/guides/mcp-claude-desktop.html</loc><lastmod>2026-09-10</lastmod></url>
+  <url><loc>https://jayjex.github.io/data-vault/guides/mcp-server-build-tutorial.html</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/guides/solana-bounties-data-guide.html</loc><lastmod>2026-09-09</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/guides/solana-grants-data.html</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/guides/solana-ecosystem-data.html</loc><lastmod>2026-09-10</lastmod></url>
@@ -36,6 +37,7 @@
   <url><loc>https://jayjex.github.io/data-vault/guides/nfl-data-alternative.html</loc><lastmod>2026-09-09</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/guides/hud-fmr-by-zip.html</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html</loc><lastmod>2026-09-10</lastmod></url>
+  <url><loc>https://jayjex.github.io/data-vault/guides/real-estate-investor-data.html</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/guides/hud-fmr-data-dictionary.html</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/guides/hud-fmr-by-county.html</loc><lastmod>2026-09-07</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/guides/hud-metro-list.html</loc><lastmod>2026-09-10</lastmod></url>
@@ -81,7 +83,7 @@
   <url><loc>https://jayjex.github.io/data-vault/guides/nfl-roster-data.html</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/guides/nfl-data-by-team.html</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/guides/nfl-data-by-conference.html</loc><lastmod>2026-09-10</lastmod></url>
-  <url><loc>https://jayjex.github.io/data-vault/tools/mcp-tools-list.html</loc><lastmod>2026-09-07</lastmod></url>
+  <url><loc>https://jayjex.github.io/data-vault/tools/mcp-tools-list.html</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/tools/mcp-server-directory.html</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/tools/scraping-scripts.html</loc><lastmod>2026-09-07</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/guides/reddit-historical-data.html</loc><lastmod>2026-09-10</lastmod></url>

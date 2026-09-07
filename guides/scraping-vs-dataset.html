@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Web Scraping vs Buying a Dataset: The 5-Factor Decision | Data Vault</title>
+<meta name="description" content="Scrape or buy data? A 5-factor decision matrix, time, maintenance, legal/ToS, freshness, volume, tested against three real builds on this site: HUD FMRs, Airbnb listings, and NFL games.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/scraping-vs-dataset.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Web Scraping vs Buying a Dataset: The 5-Factor Decision">
+<meta property="og:description" content="Scrape or buy data? Five factors decide it: time, maintenance, legal/ToS, freshness, volume. Three case studies from datasets built on this site.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/scraping-vs-dataset.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Web Scraping vs Buying a Dataset: The 5-Factor Decision", "description": "Scrape or buy data? A 5-factor decision matrix, time, maintenance, legal/ToS, freshness, volume, tested against three real builds on this site: HUD FMRs, Airbnb listings, and NFL games.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/scraping-vs-dataset.html", "about": {"@type": "Thing", "name": "web scraping vs dataset"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Web scraping vs dataset", "item": "https://jayjex.github.io/data-vault/guides/scraping-vs-dataset.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is it cheaper to scrape data or buy a dataset?", "acceptedAnswer": {"@type": "Answer", "text": "Scraping costs time instead of money, and the time bill is recurring. The first run of a scraper is hours. The maintenance is forever, because every site redesign breaks selectors and each fix is a small edit that has to be repeated. A dataset is one download and zero selectors. For a one-off pull of a few hundred rows, scraping is usually the faster route. For anything you refresh weekly or load by the thousand-row file, the dataset wins on total time."}}, {"@type": "Question", "name": "When should you scrape instead of using a dataset?", "acceptedAnswer": {"@type": "Answer", "text": "Four conditions, roughly all true at once: no downloadable source for the data exists, the pages are public, you need the freshness that your own runs give you, and the scope is a handful of sites you can check by hand. A price you want to watch daily or a small public table that no one republishes fit. A 50,000-row archive with a fixed release date does not, because the release already exists and scraping adds work without adding freshness."}}, {"@type": "Question", "name": "Why not scrape Airbnb directly?", "acceptedAnswer": {"@type": "Answer", "text": "Airbnb's terms of service bar scraping, and the legal picture changes by jurisdiction: US courts have treated public-page scraping as mostly permissible since hiQ Labs v. LinkedIn in 2022, while EU jurisdictions weigh the same act against GDPR. Instead of scraping, this site builds from Inside Airbnb snapshots, which volunteers collect and republish under CC BY 4.0. The trade is freshness, the 6-city pack spans snapshots from 2026-06-22 to 2026-08-10, and the gain is a dataset with a clean license and no scraping liability."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Web scraping vs buying a dataset: the 5-factor decision</h1>
+  <p class="byline">Published 2026-09-10. The three case studies below are datasets built and shipped on this site, with the numbers from those builds. This page is not legal advice.</p>
+
+  <section aria-label="Scrape or buy data">
+    <h2>Scrape or buy data: the question to ask first</h2>
+    <p>Both routes end the same way: rows on your disk. The difference is who absorbs the work between the first run and the day the project ends. Scraping moves that work to you, one site redesign at a time. A ready dataset moves it to whoever cleaned and republished the file.</p>
+    <p>Before any of the five factors, answer one question: does a legal, downloadable source already exist? If yes, stop here, download it, and skip the scraper. The NFL case below shows why. If no, or if the source exists in a format that fights you, the five factors decide it.</p>
+  </section>
+
+  <section aria-label="The decision matrix">
+    <h2>The decision matrix: 5 factors</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Scraping versus ready dataset decision matrix"><table>
+      <thead><tr><th scope="col">Factor</th><th scope="col">Scrape it yourself</th><th scope="col">Ready dataset</th></tr></thead>
+      <tbody>
+        <tr><td>Time to first row</td><td>Hours: install, configure, test selectors per site</td><td>Minutes: download a file that already parses</td></tr>
+        <tr><td>Maintenance</td><td>Every redesign breaks selectors; each fix is a small edit, repeated for the life of the project</td><td>None. The file is fixed; a new release is a re-download</td></tr>
+        <tr><td>Legal / ToS</td><td>Depends on the site and country. Terms of service may bar it, and courts in the US and EU treat the same scrape differently</td><td>The publisher's license states what you may do, in writing</td></tr>
+        <tr><td>Freshness</td><td>As fresh as your last run; you control the cadence</td><td>As fresh as the release date; you get what was published</td></tr>
+        <tr><td>Volume</td><td>One site at a time, bounded by rate limits and page counts</td><td>Thousands of rows in one file, already deduped and typed</td></tr>
+      </tbody>
+    </table></div>
+    <p>Two rows carry the most weight in practice. Maintenance is the one people underestimate: the first scraper is the cheap part. Legality is the one people overestimate for public data in the US and underestimate in the EU, where the same act gets weighed against privacy law. <a href="airbnb-data-by-country.html">Airbnb data by country</a> shows the effect on real coverage: scraping volunteers concentrate where the law is comfortable.</p>
+  </section>
+
+  <section aria-label="When scraping is the right call">
+    <h2>When scraping is the right call</h2>
+    <p>Scrape when four things line up: no downloadable source exists, the pages are public, your freshness need matches a cadence you can run, and the scope is a handful of sites. A price you want to watch daily fits. A feed that loads on scroll fits. Both are what the <a href="scrape-without-coding.html">scrape without coding templates</a> cover, one config edit per site, with the robots.txt and rate-limit checks built in. Writing in Python instead? The same ten patterns map one to one in the <a href="scraping-python-templates.html">python scraping templates</a> guide.</p>
+  </section>
+
+  <section aria-label="When a ready dataset wins">
+    <h2>When a ready dataset wins</h2>
+    <p>A dataset wins when the job is recurring, the volume is large, or the legal question matters. Load the same source every week, join it, and chart it, and every manual step in your pipeline is a step you pay for again. This is the same trade as <a href="csv-vs-api.html">CSV vs API</a>: a static file for reproducible loads, a query layer for ad hoc pulls.</p>
+    <p>The hidden case is data that needs cleaning no matter what. If the official source ships Excel workbooks with merge cells and text-stored numbers, someone has to do that conversion once. Doing it yourself is fine once. Paying for a file where it is already done is cheaper the second time you need it.</p>
+  </section>
+
+  <section aria-label="Three case studies">
+    <h2>Three case studies from this site</h2>
+    <p>Each dataset sold here started as a scrape-or-buy decision, and all three landed in a different place. The numbers come from the builds.</p>
+
+    <h3>Case 1: HUD rent data, official but hostile</h3>
+    <p>HUD publishes Fair Market Rents as free, public-domain Excel workbooks on huduser.gov. No scraping involved and none needed: the files download directly. The problem is the format. FY26_FMRs.xlsx holds 4,764 county rows across 14 columns, and the ZIP-level numbers live in a separate 4.2 MB workbook, fy2026_safmrs.xlsx. Real parsing problems from the conversion behind the <a href="hud-fmr-data-downloads.html">HUD FMR data download guide</a>: a header cell containing the literal string <code>ZIP\nCode</code> with a newline inside it, the county workbook refusing to open because of a malformed internal timestamp that took an unzip-edit-rezip to fix, and ZIP codes that lose their leading zeros the moment a spreadsheet tool reads them as numbers. The cleaned result, fmr-by-zip-2026.csv, is 51,895 rows with 10 typed columns, ZIPs preserved as text.</p>
+    <p>The lesson: an official free source removes the legality question and still leaves the format work. That work is a one-time cost, which is exactly what makes a cleaned <a href="../datasets/hud-fmr-2026.html">HUD FMR CSV</a> worth having instead of repeating the xlsx fight every fiscal year.</p>
+
+    <h3>Case 2: Airbnb listings, legality decides it</h3>
+    <p>Scraping Airbnb directly is off the table here. The company's terms of service bar scraping, and the law around it runs on different tracks: hiQ Labs v. LinkedIn (2022) left public-page scraping on solid ground in the US, while EU jurisdictions weigh the same act against GDPR. Instead, this site builds from <a href="https://insideairbnb.com/get-the-data/" rel="noopener">Inside Airbnb</a> snapshots, which volunteers collect and republish under CC BY 4.0. The 6-city pack is 90,169 listings across Austin, Nashville, Denver, New York City, Las Vegas, and San Diego, from snapshots taken between 2026-06-22 and 2026-08-10, normalized into one 12-column schema.</p>
+    <p>The lesson: where scraping is legally or contractually messy, the snapshot dataset is the legal route, and the price is freshness. A snapshot is one day's capture, and <a href="airbnb-data-methodology.html">the methodology guide</a> covers what that misses. For most analysis, a dated snapshot with a clean license beats a fresh scrape with a terms-of-service problem.</p>
+
+    <h3>Case 3: NFL games, free legal source makes scraping pointless</h3>
+    <p><a href="https://github.com/nflverse/nflverse-data" rel="noopener">nflverse</a> publishes every NFL game since 1999 as free CSVs under CC BY 4.0, refreshed by automated GitHub Actions releases: 7,548 games in this site's pack, 46 columns per row, closing spreads and totals included. Scraping ESPN or a sports site would add a legal question, selector maintenance, and rate limits for data that is already free, licensed, and machine-readable. The <a href="nfl-data-alternative.html">nflverse comparison guide</a> covers the one decision left: raw releases versus a preprocessed pack with normalized lines and derived tables, 861 team-season records and 27 season summaries.</p>
+    <p>The lesson: when a source publishes clean downloads under a permissive license, scraping is the wrong tool at any price. Check for the free source before writing the first selector.</p>
+  </section>
+
+  <section aria-label="The decision in order">
+    <h2>Run the decision in order</h2>
+    <ol>
+      <li>A legal, downloadable source exists? Download it. Done. (NFL)</li>
+      <li>The source is legal but the format is hostile? Convert once, or take a cleaned file. (HUD)</li>
+      <li>No source exists, and scraping the site is contractually or legally messy? Look for a republished dataset with a real license. (Airbnb)</li>
+      <li>No source, scraping is fine, small scope, ongoing freshness need? Scrape. (the templates)</li>
+      <li>Still torn? Count the maintenance: number of sites times redesigns per year, and weigh that against a one-line download.</li>
+    </ol>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <p>Every dataset mentioned here has a free sample download, and the catalog lists all of them with row counts and sources.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../tools/sample-data-downloads.html">Browse free samples</a>
+      <a class="btn" href="../index.html">See the catalog</a>
+    </div>
+    <p class="btn-note">Free samples need no signup. Sources, licenses, and checksums are documented on each dataset page.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ: scraping or buying data</h2>
+    <h3>Is it cheaper to scrape data or buy a dataset?</h3>
+    <p>Scraping costs time instead of money, and the time bill is recurring. The first run of a scraper is hours. The maintenance is forever, because every site redesign breaks selectors and each fix is a small edit that has to be repeated. A dataset is one download and zero selectors. For a one-off pull of a few hundred rows, scraping is usually the faster route. For anything you refresh weekly or load by the thousand-row file, the dataset wins on total time.</p>
+    <h3>When should you scrape instead of using a dataset?</h3>
+    <p>Four conditions, roughly all true at once: no downloadable source for the data exists, the pages are public, you need the freshness that your own runs give you, and the scope is a handful of sites you can check by hand. A price you want to watch daily or a small public table that no one republishes fit. A 50,000-row archive with a fixed release date does not, because the release already exists and scraping adds work without adding freshness.</p>
+    <h3>Why not scrape Airbnb directly?</h3>
+    <p>Airbnb's terms of service bar scraping, and the legal picture changes by jurisdiction: US courts have treated public-page scraping as mostly permissible since hiQ Labs v. LinkedIn in 2022, while EU jurisdictions weigh the same act against GDPR. Instead of scraping, this site builds from Inside Airbnb snapshots, which volunteers collect and republish under CC BY 4.0. The trade is freshness, the 6-city pack spans snapshots from 2026-06-22 to 2026-08-10, and the gain is a dataset with a clean license and no scraping liability.</p>
+  </section>
+
+  <section aria-label="Keep reading">
+    <h2>Keep reading</h2>
+    <ul>
+      <li><a href="scrape-without-coding.html">Scrape without coding</a>: the ten editable template scripts and the robots.txt checks</li>
+      <li><a href="scraping-python-templates.html">Python scraping templates</a>: the same ten patterns mapped to requests, BeautifulSoup, and Playwright</li>
+      <li><a href="csv-vs-api.html">CSV vs API</a>: static files against query access, the same trade one level up</li>
+      <li><a href="inside-airbnb-alternative.html">Inside Airbnb alternative</a>: what the 6-city pack adds over the raw per-city files</li>
+      <li><a href="nfl-data-alternative.html">nflverse raw vs preprocessed</a>: when the free source is enough</li>
+      <li><a href="hud-fmr-data-downloads.html">HUD FMR data download</a>: every official source compared</li>
+    </ul>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

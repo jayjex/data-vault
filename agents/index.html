@@ -70,7 +70,7 @@ print(sample["records"][0])     <span class="cm"># first row</span></pre>
 
   <section aria-label="Full data">
     <h2>Full data</h2>
-    <p>Samples are free. Full packs are sold through Getly; every entry in <code>catalog.json</code> carries the link under <code>full_data</code>. Checkout and delivery run on Getly's side. The HUD pack is still coming, so its entry points at the store page instead.</p>
+    <p>Samples are free. Full packs are sold through Getly; every entry in <code>catalog.json</code> carries the link under <code>full_data</code>. Checkout and delivery run on Getly's side.</p>
   </section>
 
   <section aria-label="Attribution">
@@ -78,9 +78,19 @@ print(sample["records"][0])     <span class="cm"># first row</span></pre>
     <p>Samples are CC BY 4.0 unless the dataset page says otherwise. Republish them with credit: "Data Vault (jayjex.github.io/data-vault), CC BY 4.0", plus the upstream source noted per dataset (nflverse, HUD, Inside Airbnb, superteam.fun).</p>
   </section>
 
-  <section aria-label="MCP note">
-    <h2>MCP</h2>
-    <p>The repo is MCP-ready by convention: <code>catalog.json</code> works as the discovery document and every <code>sample.json</code> maps cleanly to a read-only resource. A dedicated MCP server is planned as phase 2; until then an MCP client can map catalog entries to resources directly.</p>
+  <section aria-label="MCP server">
+    <h2>MCP server</h2>
+    <p>An MCP server wraps this catalog: <code>list_datasets</code>, <code>get_dataset_info</code>, and <code>get_sample</code> tools, samples fetched on demand. Repo: <a href="https://github.com/jayjex/dataset-mcp" rel="noopener">github.com/jayjex/dataset-mcp</a>, listed in the official registry as <code>io.github.jayjex/dataset-mcp</code>.</p>
+<pre><span class="cm"># Claude Desktop (claude_desktop_config.json)</span>
+{
+  "mcpServers": {
+    "dataset-mcp": {
+      "command": "npx",
+      "args": ["-y", "github:jayjex/dataset-mcp"]
+    }
+  }
+}</pre>
+    <p>npm package <code>@jayjex/dataset-mcp</code> is coming; the <code>github:</code> form needs no publish.</p>
   </section>
 </main>
 

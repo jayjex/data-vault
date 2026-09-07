@@ -5,6 +5,9 @@
 Base URL: https://jayjex.github.io/data-vault
 Catalog (start here): https://jayjex.github.io/data-vault/catalog.json
 Agent docs: https://jayjex.github.io/data-vault/agents/
+MCP server: npx -y github:jayjex/dataset-mcp (tools: list_datasets, get_dataset_info, get_sample)
+MCP repo: https://github.com/jayjex/dataset-mcp
+MCP registry name: io.github.jayjex/dataset-mcp
 
 ## Datasets
 
@@ -20,7 +23,7 @@ FY2026 fair market rents for 51,895 ZIP codes, 3,229 counties, and 52 states. Fi
 - Sample JSON: https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.json
 - Sample CSV: https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.csv
 - Page: https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html
-- Full data: [Coming to the store](https://www.getly.store/store/mtmw06l2)
+- Full data: [Get full data, $24](https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm)
 
 ### Airbnb Listings, 6 US Cities (airbnb-six-cities)
 90,169 Airbnb listings across Austin, Nashville, Denver, New York City, Las Vegas, and San Diego in one normalized schema. Niche: real-estate. Stats: {"rows": 90169, "tables": 8, "columns": 12, "updated": "2026-08-10"}.

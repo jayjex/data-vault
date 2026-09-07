@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NFL Data APIs Compared: ESPN, nflverse, nfl_data_py, and the Official NFL API | Data Vault</title>
+<meta name="description" content="Four NFL data APIs compared side by side: ESPN's site API, the nflverse CSV releases, the nfl_data_py and nflreadpy packages, and the league's own endpoint. Every check ran live on 2026-09-10, with a table for auth, rate limits, format, and history depth.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/nfl-data-apis.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="NFL Data APIs Compared: ESPN, nflverse, nfl_data_py, and the Official NFL API">
+<meta property="og:description" content="Four NFL data APIs compared: ESPN's site API, the nflverse CSV releases, the nfl_data_py and nflreadpy packages, and the league's own 401-returning endpoint. Live checks on 2026-09-10, verdict per use case.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/nfl-data-apis.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "NFL data APIs compared: ESPN, nflverse, nfl_data_py, and the official NFL API", "description": "Four NFL data APIs compared side by side: ESPN's site API, the nflverse CSV releases, the nfl_data_py and nflreadpy packages, and the league's own endpoint. Every check ran live on 2026-09-10, with a table for auth, rate limits, format, and history depth.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/nfl-data-apis.html", "about": {"@type": "Dataset", "name": "NFL Games & Betting Lines 1999-2026", "url": "https://jayjex.github.io/data-vault/datasets/nfl-games.html"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "NFL data APIs compared", "item": "https://jayjex.github.io/data-vault/guides/nfl-data-apis.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is there an official NFL data API?", "acceptedAnswer": {"@type": "Answer", "text": "Nothing public. The league's api.nfl.com answered 401 Unauthorized to plain unauthenticated calls on 2026-09-10, and developer.nfl.com returned 401 to a programmatic fetch the same day. Access runs through a developer portal with keys for approved partners and licensed feeds on top. Anyone without a deal with the league sources game data from ESPN's site API or the nflverse releases instead."}}, {"@type": "Question", "name": "What is the difference between nfl_data_py and nflreadpy?", "acceptedAnswer": {"@type": "Answer", "text": "Both wrap the same nflverse releases, so the underlying rows are identical. nfl_data_py 0.3.3 returns pandas DataFrames through import_schedules() and pins numpy<2.0 and pandas<2.0, which can collide with a current environment. nflreadpy 0.1.5 returns polars DataFrames through load_schedules() and depends on requests, polars, platformdirs, tqdm, and pydantic. Both version numbers and pins were read live from the PyPI JSON API on 2026-09-10."}}, {"@type": "Question", "name": "Which NFL data API should I use?", "acceptedAnswer": {"@type": "Answer", "text": "Match the source to the job. A current-week score query: ESPN's site API, keyless and a few KB per call. Full 1999-2026 game history: the nflverse games.csv release file, 7,548 rows in one download under CC BY 4.0. A pipeline that also needs play-by-play or rosters: nfl_data_py or nflreadpy, which pull the same releases with one import. A contract and licensed feed: developer.nfl.com, where the keys live."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../datasets/nfl-games.html">NFL dataset</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>NFL data APIs compared: ESPN, nflverse, nfl_data_py, and the official NFL API</h1>
+  <p class="byline">Guide to the <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026</a> pack &middot; deeper dives in the <a href="espn-api-python.html">ESPN API in Python guide</a> and the <a href="nfl-data-api-python.html">NFL data API in Python guide</a> &middot; every status code and output comment on this page comes from a live run on 2026-09-10.</p>
+
+  <section aria-label="Quick answer">
+    <p>Four things get called an NFL data API, and they are very different products:</p>
+    <table>
+      <tr><th>Source</th><th>What it is</th><th>Checked 2026-09-10</th></tr>
+      <tr><td><a href="#espn">ESPN site API</a></td><td>Public JSON endpoints powering ESPN's own site</td><td><code>scoreboard</code> 200, 16 events &middot; <code>teams</code> 200, 32 clubs</td></tr>
+      <tr><td><a href="#nflverse">nflverse releases</a></td><td>Static CSV files on GitHub releases, weekly in season</td><td><code>games.csv</code> 200, 7,548 rows</td></tr>
+      <tr><td><a href="#packages">nfl_data_py / nflreadpy</a></td><td>Python packages that wrap the nflverse releases</td><td>PyPI JSON 200 &middot; 0.3.3 and 0.1.5</td></tr>
+      <tr><td><a href="#official">Official NFL API</a></td><td>The league's own <code>api.nfl.com</code></td><td>401 without credentials, root and content path</td></tr>
+    </table>
+    <p>Verdict up front: ESPN for this week's scores, nflverse for every game since 1999, the packages when you also want play-by-play and rosters, and nothing free when you need a contract. Each section below shows the actual calls and output.</p>
+  </section>
+
+  <section aria-label="ESPN site API">
+    <h2 id="espn">ESPN site API: the fastest route to a scoreboard</h2>
+    <p>ESPN serves the JSON its own site and apps render, under <code>site.api.espn.com</code>, and the public endpoints answer any client with no key:</p>
+<pre>import requests
+
+r = requests.get(
+    "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+    params={"seasonType": 2, "week": 1, "dates": 2025},
+    timeout=30,
+)
+r.raise_for_status()
+print(r.status_code, len(r.content))    # 200 138361
+print(len(r.json()["events"]))          # 16
+print(r.json()["events"][0]["name"])    # Dallas Cowboys at Philadelphia Eagles</pre>
+    <p>What you get: fixtures and results as nested JSON, one call per week via <code>week</code> and <code>dates</code>, plus a <code>teams</code> endpoint that returned all 32 clubs (200, 148,848 bytes on the checked date). The upside is speed; the price is a contract. The endpoint is undocumented, with no published schema, no versioning promise, and no published rate limit, so keep timeouts on, cache what you already fetched, and back off on errors.</p>
+    <p>History depth is the other limit. The <code>dates</code> parameter reaches back at least a season or two (2025 week 1 worked on the checked date), but there is no claim anywhere about how far, and nobody builds a multi-decade dataset on a display feed. Endpoint-by-endpoint examples with verbatim output: the <a href="espn-api-python.html">ESPN API in Python guide</a>.</p>
+  </section>
+
+  <section aria-label="nflverse releases">
+    <h2 id="nflverse">nflverse releases: full history as static CSV</h2>
+    <p>The nflverse-data project publishes the full game history as a GitHub release asset. Strictly speaking this is a file download with stable URLs rather than an API, and that is exactly why it is dependable: the URL either returns the same file or a clean error. A plain <code>requests</code> call follows the redirect to GitHub's asset CDN:</p>
+<pre>import requests
+
+url = "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv"
+r = requests.get(url, timeout=120)
+r.raise_for_status()
+print(r.status_code, len(r.content))    # 200 2177161
+print(r.content.count(b"\n"))           # 7549  (7548 rows + header)</pre>
+    <p>7,548 game rows, 1999 through the scheduled 2026 season. Each release directory carries a freshness stamp:</p>
+<pre>stamp = requests.get(
+    "https://github.com/nflverse/nflverse-data/releases/download/schedules/timestamp.json",
+    timeout=30,
+).json()
+print(stamp)    # {'last_updated': '2026-09-07 09:36:23 EDT'}</pre>
+    <p>Schedules are one release among several. The stamps for the others came back the same way on the checked date: <code>pbp</code> play-by-play updated 2026-08-26, <code>player_stats</code> updated 2025-05-07, <code>rosters</code> updated 2026-09-07. Licensing is the cleanest in the space: <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>, commercial use allowed with credit as "Data from nflverse, CC BY 4.0".</p>
+  </section>
+
+  <section aria-label="The Python packages">
+    <h2 id="packages">nfl_data_py and nflreadpy: the same files with an import</h2>
+    <p>Two packages pull the nflverse releases into a DataFrame without you touching URLs. Their current state, read live from the PyPI JSON API (<code>https://pypi.org/pypi/&lt;name&gt;/json</code>, both 200):</p>
+    <table>
+      <tr><th>Package</th><th>Version</th><th>Frame</th><th>Key schedule call</th><th>Dependencies that matter</th></tr>
+      <tr><td><code>nfl_data_py</code></td><td>0.3.3</td><td>pandas</td><td><code>import_schedules()</code></td><td>pins <code>numpy&lt;2.0</code> and <code>pandas&lt;2.0</code>, plus <code>appdirs&gt;1</code> and <code>fastparquet&gt;0.5</code></td></tr>
+      <tr><td><code>nflreadpy</code></td><td>0.1.5</td><td>polars</td><td><code>load_schedules()</code></td><td><code>requests</code>, <code>polars&gt;=0.20.0</code>, <code>platformdirs</code>, <code>tqdm</code>, <code>pydantic</code></td></tr>
+    </table>
+    <p>The catch sits in the first row: <code>nfl_data_py</code> 0.3.3 requires numpy under 2.0 and pandas under 2.0, so installing it into a current environment can downgrade or refuse. <code>nflreadpy</code> is newer, built by the nflverse org itself, and leans on polars with no pandas pin. Underneath, both download the exact files from the nflverse section above, so data quality is identical; the choice is a dependency question, and <code>requests</code> against the URLs directly sidesteps both packages' constraint sets entirely.</p>
+  </section>
+
+  <section aria-label="Official NFL API">
+    <h2 id="official">The official NFL API: 401 without a deal</h2>
+    <p>The league runs its own host, <code>api.nfl.com</code>, and it is closed to walk-up traffic. Two calls on the checked date, output verbatim in kind:</p>
+<pre>r = requests.get("https://api.nfl.com/", timeout=30)
+print(r.status_code)    # 401
+
+r2 = requests.get("https://api.nfl.com/content/v1/videos/football/nfl/2026", timeout=30)
+print(r2.status_code)   # 401</pre>
+    <p>The body is an XML <code>401 Unauthorized</code> page on both. <code>developer.nfl.com</code>, the portal for the league's API program, also answered 401 to a plain programmatic fetch. So the practical picture: keys are issued through the portal to approved partners, feeds above that carry license terms, and there is no public, keyless tier to test against. When a vendor page says "official NFL data", read that as licensed and priced, and check whether ESPN or nflverse covers your need before getting on that path.</p>
+  </section>
+
+  <section aria-label="Comparison table">
+    <h2>Side by side: auth, rate limit, format, history</h2>
+    <table>
+      <tr><th></th><th>ESPN site API</th><th>nflverse releases</th><th>nfl_data_py / nflreadpy</th><th>Official NFL API</th></tr>
+      <tr><td>Auth</td><td>none</td><td>none</td><td>none</td><td>required, keys via developer portal</td></tr>
+      <tr><td>Rate limit</td><td>unpublished; keep timeouts and cache</td><td>GitHub asset downloads, no key</td><td>same as nflverse, plus install-time constraints</td><td>managed per agreement</td></tr>
+      <tr><td>Format</td><td>nested JSON</td><td>CSV, JSON stamps</td><td>pandas / polars DataFrames</td><td>undisclosed</td></tr>
+      <tr><td>History depth</td><td>recent seasons via <code>dates</code> (2025 tested)</td><td>1999-2026, 7,548 rows</td><td>whatever the wrapped releases carry</td><td>n/a from outside</td></tr>
+      <tr><td>Contract</td><td>undocumented site API</td><td>CC BY 4.0, stable release URLs</td><td>same files, same license</td><td>licensed, terms behind the portal</td></tr>
+    </table>
+    <p>Use case call map, same facts one row shorter:</p>
+    <table>
+      <tr><th>If you need</th><th>Use</th></tr>
+      <tr><td>This week's scores, a quick query, a small script</td><td>ESPN site API</td></tr>
+      <tr><td>Full 1999-2026 game history with betting lines</td><td>nflverse <code>games.csv</code> (or the preprocessed <a href="../datasets/nfl-games.html">pack</a>)</td></tr>
+      <tr><td>Play-by-play, rosters, weekly player stats in one workflow</td><td><code>nfl_data_py</code> / <code>nflreadpy</code>, one import per release</td></tr>
+      <tr><td>A signed contract, SLA, or licensed feed</td><td><code>developer.nfl.com</code>, or a commercial vendor</td></tr>
+    </table>
+  </section>
+
+  <section aria-label="From live calls to a pinned dataset">
+    <h2>From live calls to a pinned dataset</h2>
+    <p>The free routes cover everything except the work of pinning: normalizing spread and moneyline columns, deriving team records and season summaries, and keeping a schema stable between runs. That is what the preprocessed pack is for. The <a href="../data/nfl-games/sample.csv" download>free 22-row sample</a> carries the same schema as the nflverse games.csv, and the <a href="../datasets/nfl-games.html">full pack</a> ships 7,548 games with derived tables, a <a href="nfl-games-data-guide.html">column guide</a>, and SHA-256 checksums. Weather context for those game rows: the <a href="nfl-stadium-weather.html">stadium weather guide</a>.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/nfl-games/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h" rel="noopener">Get full data</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. The full pack is 3 CSVs (7,548 + 861 + 27 rows), data dictionary, source SHA-256 checksums. The sample downloads free here, no signup.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>NFL data API questions</h2>
+    <dl>
+      <dt>Is there an official NFL data API?</dt>
+      <dd>Nothing public. The league's <code>api.nfl.com</code> answered 401 Unauthorized to plain unauthenticated calls on 2026-09-10, and <code>developer.nfl.com</code> returned 401 to a programmatic fetch the same day. Access runs through a developer portal with keys for approved partners and licensed feeds on top. Anyone without a deal with the league sources game data from ESPN's site API or the nflverse releases instead.</dd>
+      <dt>What is the difference between nfl_data_py and nflreadpy?</dt>
+      <dd>Both wrap the same nflverse releases, so the underlying rows are identical. <code>nfl_data_py</code> 0.3.3 returns pandas DataFrames through <code>import_schedules()</code> and pins <code>numpy&lt;2.0</code> and <code>pandas&lt;2.0</code>, which can collide with a current environment. <code>nflreadpy</code> 0.1.5 returns polars DataFrames through <code>load_schedules()</code> and depends on requests, polars, platformdirs, tqdm, and pydantic. Both version numbers and pins were read live from the PyPI JSON API on 2026-09-10.</dd>
+      <dt>Which NFL data API should I use?</dt>
+      <dd>Match the source to the job. A current-week score query: ESPN's site API, keyless and a few KB per call. Full 1999-2026 game history: the nflverse games.csv release file, 7,548 rows in one download under CC BY 4.0. A pipeline that also needs play-by-play or rosters: nfl_data_py or nflreadpy, which pull the same releases with one import. A contract and licensed feed: developer.nfl.com, where the keys live.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Attribution">
+    <h2>Sources and license</h2>
+    <p>Game rows trace back to the nflverse-data project, file <code>schedules/games.csv</code>, released under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>; credit it as "Data from nflverse, CC BY 4.0". The ESPN endpoint is a public site API with no documentation contract behind it. PyPI package metadata was read from the public <code>pypi.org/pypi/&lt;name&gt;/json</code> endpoints. No logos or league marks appear anywhere in the pack; team names are factual data. This page and the pack describe data only and offer no betting advice, picks, or predictions.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

@@ -75,6 +75,7 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - [NFL Data in Python: Load the Games CSV with pandas](https://jayjex.github.io/data-vault/guides/nfl-dataset-python.html): pandas quickstart on the 22-row sample
 - [NFL Data API in Python: requests Examples with Live Endpoints](https://jayjex.github.io/data-vault/guides/nfl-data-api-python.html): live ESPN + nflverse endpoint examples
 - [ESPN API in Python: requests Examples for the Free Site Endpoints](https://jayjex.github.io/data-vault/guides/espn-api-python.html): undocumented ESPN endpoints, scoreboard and teams
+- [NFL Data APIs Compared: ESPN, nflverse, nfl_data_py, and the Official NFL API](https://jayjex.github.io/data-vault/guides/nfl-data-apis.html): four sources tested live, auth/rate-limit/format/history table, 401 evidence on api.nfl.com
 - [Free NFL Historical Data: nflverse Raw vs a Preprocessed CSV Pack](https://jayjex.github.io/data-vault/guides/nfl-data-alternative.html): raw releases vs preprocessed trade-offs
 - [Open Data API: Free Sample Endpoints and an MCP Query Layer](https://jayjex.github.io/data-vault/guides/open-data-api-alternative.html): no-key endpoints plus query_dataset
 - [HUD Fair Market Rent Data by ZIP Code, Explained (FY2026 CSV)](https://jayjex.github.io/data-vault/guides/hud-rent-data-explained.html): schema walkthrough of the HUD pack

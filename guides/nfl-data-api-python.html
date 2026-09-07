@@ -37,7 +37,7 @@
 <main id="main" class="wrap page">
   <a class="crumb" href="..">&larr; Catalog</a>
   <h1>NFL data API in Python: requests examples with live endpoints</h1>
-  <p class="byline">Guide to the <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026</a> pack &middot; free 22-row CSV sample &middot; loading files instead? Read the <a href="nfl-dataset-python.html">pandas quickstart</a> or the <a href="nfl-dataset-excel.html">Excel and Google Sheets import guide</a> &middot; every status code and output comment on this page comes from a live run on 2026-09-10.</p>
+  <p class="byline">Guide to the <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026</a> pack &middot; free 22-row CSV sample &middot; loading files instead? Read the <a href="nfl-dataset-python.html">pandas quickstart</a> or the <a href="nfl-dataset-excel.html">Excel and Google Sheets import guide</a> &middot; four sources compared head to head in the <a href="nfl-data-apis.html">NFL data APIs guide</a> &middot; every status code and output comment on this page comes from a live run on 2026-09-10.</p>
 
   <section aria-label="Quick answer">
     <p>Two lines of Python ask ESPN's site API for a week of NFL results, no key, no signup:</p>
@@ -57,7 +57,7 @@ print(events[0]["name"])    # Dallas Cowboys at Philadelphia Eagles</pre>
 
   <section aria-label="The free routes">
     <h2>The free routes, checked live</h2>
-    <p>The league itself runs no public API for Python or anything else. What people mean by an NFL data API is one of the routes below or a paid commercial feed. All of these were hit on 2026-09-10:</p>
+    <p>The league itself runs no public API for Python or anything else; <code>api.nfl.com</code> answered 401 to unauthenticated calls on the checked date, and the <a href="nfl-data-apis.html">NFL data APIs guide</a> has the full breakdown. What people mean by an NFL data API is one of the routes below or a paid commercial feed. All of these were hit on 2026-09-10:</p>
     <table>
       <tr><th>Route</th><th>What you get</th><th>Auth</th><th>Checked 2026-09-10</th></tr>
       <tr><td>ESPN site API, <code>scoreboard</code></td><td>One week of fixtures and results as nested JSON</td><td>none</td><td>200, 16 events</td></tr>

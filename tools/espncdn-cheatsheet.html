@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ESPN CDN Endpoints: 10 Hidden URLs for Scoreboard, Schedule, News and Standings (No Key) | Data Vault</title>
+<meta name="description" content="Ten ESPN CDN endpoints that work with plain curl and no key: site.api.espn.com plus cdn.espn.com and sports.core.api.espn.com, each with a one-line verbatim output from a live run, scoreboard date/limit/groups params, and the honest 404s.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/tools/espncdn-cheatsheet.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="ESPN CDN Endpoints: 10 Hidden URLs for Scoreboard, Schedule, News and Standings (No Key)">
+<meta property="og:description" content="Ten ESPN CDN endpoints that work with plain curl and no key, each with verbatim output from a live run on 2026-09-10, a scoreboard parameter cheat sheet, and the honest 404s.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/tools/espncdn-cheatsheet.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "ESPN CDN endpoints: 10 hidden URLs for scoreboard, schedule, news and standings (no key)", "description": "Ten ESPN CDN endpoints that work with plain curl and no key: site.api.espn.com plus cdn.espn.com and sports.core.api.espn.com, each with a one-line verbatim output from a live run, scoreboard date/limit/groups params, and the honest 404s.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/tools/espncdn-cheatsheet.html", "about": {"@type": "Dataset", "name": "NFL Games & Betting Lines 1999-2026", "url": "https://jayjex.github.io/data-vault/datasets/nfl-games.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "ESPN CDN endpoints cheat sheet", "item": "https://jayjex.github.io/data-vault/tools/espncdn-cheatsheet.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ItemList", "name": "ESPN CDN endpoints tested live on 2026-09-10", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "NFL scoreboard with dates, limit and groups", "url": "https://jayjex.github.io/data-vault/tools/espncdn-cheatsheet.html#e1"}, {"@type": "ListItem", "position": 2, "name": "Full-season NFL schedule (cdn.espn.com)", "url": "https://jayjex.github.io/data-vault/tools/espncdn-cheatsheet.html#e2"}, {"@type": "ListItem", "position": 3, "name": "NFL news feed with limit", "url": "https://jayjex.github.io/data-vault/tools/espncdn-cheatsheet.html#e3"}, {"@type": "ListItem", "position": 4, "name": "NFL standings by conference", "url": "https://jayjex.github.io/data-vault/tools/espncdn-cheatsheet.html#e4"}, {"@type": "ListItem", "position": 5, "name": "Single-game summary with box score", "url": "https://jayjex.github.io/data-vault/tools/espncdn-cheatsheet.html#e5"}, {"@type": "ListItem", "position": 6, "name": "Team schedule, 17 events", "url": "https://jayjex.github.io/data-vault/tools/espncdn-cheatsheet.html#e6"}, {"@type": "ListItem", "position": 7, "name": "College Football Playoff rankings", "url": "https://jayjex.github.io/data-vault/tools/espncdn-cheatsheet.html#e7"}, {"@type": "ListItem", "position": 8, "name": "One athlete by numeric ID", "url": "https://jayjex.github.io/data-vault/tools/espncdn-cheatsheet.html#e8"}, {"@type": "ListItem", "position": 9, "name": "League team directory with $ref links", "url": "https://jayjex.github.io/data-vault/tools/espncdn-cheatsheet.html#e9"}, {"@type": "ListItem", "position": 10, "name": "Soccer standings table (cdn.espn.com)", "url": "https://jayjex.github.io/data-vault/tools/espncdn-cheatsheet.html#e10"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the ESPN CDN API free?", "acceptedAnswer": {"@type": "Answer", "text": "The public endpoints on this page cost nothing to call. All ten URLs answered plain unauthenticated curl with no key, no account, and no special headers on 2026-09-10. These are the same feeds ESPN's own site and apps load, served from site.api.espn.com, cdn.espn.com, and sports.core.api.espn.com. ESPN sells licensed developer feeds separately; what the site serves for free is what is documented here."}}, {"@type": "Question", "name": "Is the ESPN API documented?", "acceptedAnswer": {"@type": "Answer", "text": "No. None of the endpoints on this page have a published schema, a versioning promise, or a stated rate limit. They power ESPN's own web properties and stay up because ESPN's pages depend on them, which has kept them stable for years, but ESPN can change field names, nesting, or availability at any time. Treat the endpoints as a bonus, keep timeouts on every call, and cache responses instead of re-fetching in a loop."}}, {"@type": "Question", "name": "Can I use ESPN API data in my app?", "acceptedAnswer": {"@type": "Answer", "text": "For a hobby project, a prototype, or personal analysis, the feeds behave like any public JSON endpoint. For anything commercial, these endpoints are undocumented and carry no reuse terms, so there is no permission to republish their content at scale. The safer route for production is a pinned, licensed dataset: the NFL Games & Betting Lines pack on this site ships 7,548 games from the nflverse releases under CC BY 4.0, with a clear credit line and checksums."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../datasets/nfl-games.html">NFL dataset</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>ESPN CDN endpoints: 10 hidden URLs for scoreboard, schedule, news and standings, no key</h1>
+  <p class="byline">Tool page &middot; companion to the <a href="../guides/espn-api-python.html">ESPN API in Python guide</a> and the <a href="../guides/nfl-data-apis.html">NFL data APIs comparison</a> &middot; every status code and output line below comes from a live curl run on 2026-09-10.</p>
+
+  <section aria-label="Quick answer">
+    <p>ESPN's site runs on public JSON endpoints that were never documented: <code>site.api.espn.com</code> for the display feeds, <code>cdn.espn.com/core</code> for page fragments, <code>sports.core.api.espn.com</code> for the reference graph. All of them answer plain <code>curl</code> with no key. Ten are below, each with its URL and one line of verbatim output, all hit on 2026-09-10. Swap the league segment (<code>football/nfl</code>) for <code>basketball/nba</code>, <code>hockey/nhl</code>, <code>baseball/mlb</code>, or <code>football/college-football</code> and the same shapes come back.</p>
+  </section>
+
+  <section aria-label="The endpoint list">
+    <h2>The 10 endpoints, tested live</h2>
+    <table>
+      <tr><th>#</th><th>Endpoint</th><th>Returns</th><th>Checked 2026-09-10</th></tr>
+      <tr><td>1</td><td><code>site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard</code></td><td>One week of fixtures and scores</td><td>200, 13 events</td></tr>
+      <tr><td>2</td><td><code>cdn.espn.com/core/nfl/schedule?xhr=1&amp;dates=2026</code></td><td>Whole season, grouped by date</td><td>200, 261 KB</td></tr>
+      <tr><td>3</td><td><code>site.api.espn.com/apis/site/v2/sports/football/nfl/news</code></td><td>Latest articles with links and images</td><td>200, 6 articles</td></tr>
+      <tr><td>4</td><td><code>site.api.espn.com/apis/v2/sports/football/nfl/standings</code></td><td>Conference standings tree</td><td>200, 157 KB</td></tr>
+      <tr><td>5</td><td><code>site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event=401772830</code></td><td>One game: box score, drives, odds</td><td>200, 452 KB</td></tr>
+      <tr><td>6</td><td><code>site.api.espn.com/apis/site/v2/sports/football/nfl/teams/kc/schedule</code></td><td>One club's season, 17 events</td><td>200, 240 KB</td></tr>
+      <tr><td>7</td><td><code>site.api.espn.com/apis/site/v2/sports/football/college-football/rankings</code></td><td>CFP and media polls</td><td>200, 645 KB</td></tr>
+      <tr><td>8</td><td><code>sports.core.api.espn.com/v2/sports/football/leagues/nfl/athletes/15847</code></td><td>One athlete record</td><td>200, Travis Kelce</td></tr>
+      <tr><td>9</td><td><code>sports.core.api.espn.com/v2/sports/football/leagues/nfl/teams?limit=32</code></td><td>Team directory, paginated</td><td>200, count 32</td></tr>
+      <tr><td>10</td><td><code>cdn.espn.com/core/soccer/table?league=eng.1&amp;xhr=1</code></td><td>Standings for any ESPN league</td><td>200, 2.6 MB</td></tr>
+    </table>
+    <p>Each endpoint gets its verbatim run below. The scoreboard takes the most parameters, so it comes first with a cheat sheet.</p>
+  </section>
+
+  <section aria-label="Endpoint 1, scoreboard">
+    <h2 id="e1">1. Scoreboard: dates, limit, groups</h2>
+    <p>Base URL, no params, on the Sunday of week 1 in the 2025 season:</p>
+<pre>curl -s "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20250907"
+# HTTP 200, 13 events; events[0].name = "Tampa Bay Buccaneers at Atlanta Falcons"</pre>
+    <p><code>dates=YYYYMMDD</code> pins the calendar day; the surrounding week's games come back with it. <code>limit</code> caps the events array, and <code>groups</code> filters to one competition group:</p>
+<pre>curl -s "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?limit=2"
+# HTTP 200, exactly 2 events (default response: 29 KB, capped: 6.5 KB)</pre>
+<pre>curl -s "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?groups=8&amp;dates=20250907"
+# HTTP 200, 8 events, all AFC: Bengals-Browns, Dolphins-Colts, Raiders-Patriots...</pre>
+    <p>The group IDs are not listed anywhere official; they are the ids on the conference objects inside <code>/apis/v2/.../standings</code> (NFL: AFC <code>8</code>, NFC <code>7</code>). Full NFC side, <code>groups=7</code>: 7 events. Other scoreboard params that answered on the checked date: <code>seasontype</code> (1 preseason, 2 regular, 3 postseason) and <code>week</code>. <code>groups=28</code> or <code>29</code> still returns 200, but with zero events, so a 200 alone is not proof a group id means anything.</p>
+    <table>
+      <tr><th>Param</th><th>What it does</th><th>Verified 2026-09-10</th></tr>
+      <tr><td><code>dates=YYYYMMDD</code></td><td>Pins one calendar day and returns that week's games</td><td><code>dates=20250907</code> → 13 events, week 1 of 2025</td></tr>
+      <tr><td><code>limit=N</code></td><td>Caps the events array</td><td><code>limit=2</code> → exactly 2 events</td></tr>
+      <tr><td><code>groups=ID</code></td><td>Filters to one competition group (conference)</td><td><code>groups=8</code> → 8 AFC events; ids read off standings objects</td></tr>
+      <tr><td><code>seasontype=1|2|3</code></td><td>Preseason, regular season, postseason</td><td>accepted on the checked date</td></tr>
+      <tr><td><code>week=N</code></td><td>Season week number</td><td>accepted on the checked date</td></tr>
+      <tr><td>no params</td><td>Current week</td><td>200, live week</td></tr>
+    </table>
+  </section>
+
+  <section aria-label="Endpoint 2, cdn schedule">
+    <h2 id="e2">2. Full-season schedule from cdn.espn.com</h2>
+    <p>The site API's scoreboard returns one week at a time. The CDN fragment service returns the whole season in one call. Bare <code>cdn.espn.com/core/nfl/schedule</code> returns HTML; append <code>xhr=1</code> and it returns JSON:</p>
+<pre>curl -s "https://cdn.espn.com/core/nfl/schedule?xhr=1&amp;dates=2026"
+# HTTP 200, 261 KB; content.schedule keys = ["20260909","20260910","20260913","20260914"]
+# content.schedule["20260913"].games[0].name = "Tampa Bay Buccaneers at Cincinnati Bengals"</pre>
+    <p>The games sit under <code>content.schedule</code>, one date key per game day, and each date's <code>games</code> list carries the same event objects as the scoreboard feed. The default window is the current week; a <code>dates=YYYY</code> season parameter widens it, and individual dates work here too.</p>
+  </section>
+
+  <section aria-label="Endpoint 3, news">
+    <h2 id="e3">3. News feed</h2>
+    <p>The least-known site API path: a clean article list with headlines, links, images, and publish dates. <code>limit</code> works here as well:</p>
+<pre>curl -s "https://site.api.espn.com/apis/site/v2/sports/football/nfl/news"
+# HTTP 200, 6 articles; articles[0].headline = "NFL Week 1 betting: Odds, lines and totals for every game"</pre>
+<pre>curl -s "https://site.api.espn.com/apis/site/v2/sports/football/nfl/news?limit=2"
+# HTTP 200, exactly 2 articles</pre>
+    <p>Sports swap the same way: <code>football/college-football/news?limit=1</code> returned a Pitt upset headline on the checked date. Each article carries <code>published</code>, <code>links.web</code>, and an <code>images</code> array.</p>
+  </section>
+
+  <section aria-label="Endpoint 4, standings">
+    <h2 id="e4">4. Standings</h2>
+    <p>Note the version bump: standings live under <code>apis/v2</code>, not <code>apis/site/v2</code>:</p>
+<pre>curl -s "https://site.api.espn.com/apis/v2/sports/football/nfl/standings"
+# HTTP 200, 157 KB; children = ["American Football Conference", "National Football Conference"]</pre>
+    <p>Each child conference carries its group <code>id</code> (AFC 8, NFC 7), which is where the scoreboard's <code>groups</code> values come from. Appending <code>?groups=1</code> here changes nothing: standings accepts the param but always returns both conferences.</p>
+  </section>
+
+  <section aria-label="Endpoint 5, summary">
+    <h2 id="e5">5. One-game summary</h2>
+    <p>Box score, scoring drives, leaders, injuries, and odds for a single event ID. Event IDs come from the scoreboard response:</p>
+<pre>curl -s "https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event=401772830"
+# HTTP 200, 452 KB; header shows Atlanta Falcons 20, Tampa Bay Buccaneers 23, status Final</pre>
+    <p>That was the week 1 2025 Falcons-Buccaneers opener, and the top-level keys include <code>boxscore</code>, <code>drives</code>, <code>leaders</code>, <code>injuries</code>, <code>broadcasts</code>, and <code>againstTheSpread</code>.</p>
+  </section>
+
+  <section aria-label="Endpoint 6, team schedule">
+    <h2 id="e6">6. Team schedule</h2>
+    <p>The per-team path from the roster endpoint, with <code>schedule</code> at the end:</p>
+<pre>curl -s "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/kc/schedule"
+# HTTP 200, 240 KB; 17 events; events[0] = "Denver Broncos at Kansas City Chiefs", 2026-09-15T00:15Z</pre>
+  </section>
+
+  <section aria-label="Endpoint 7, rankings">
+    <h2 id="e7">7. Rankings (college football)</h2>
+    <p>NFL has no rankings endpoint; the path 404s for <code>football/nfl</code>. College football returns every poll in one call:</p>
+<pre>curl -s "https://site.api.espn.com/apis/site/v2/sports/football/college-football/rankings"
+# HTTP 200, 645 KB; polls = ["AP Top 25", "AFCA Coaches Poll", "FCS Coaches Poll", ...]
+# AP Top 25 first four: Ohio State, Oregon, Georgia, Notre Dame</pre>
+  </section>
+
+  <section aria-label="Endpoint 8, athlete">
+    <h2 id="e8">8. One athlete by numeric ID</h2>
+    <p>The core API serves one flat, fast record per athlete. The numeric ID is the same value as nflverse roster files' <code>espn_id</code> column, verified in the <a href="../guides/nfl-roster-data.html">NFL roster data guide</a>:</p>
+<pre>curl -s "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/athletes/15847"
+# HTTP 200, 4.7 KB; displayName = "Travis Kelce", position = TE</pre>
+  </section>
+
+  <section aria-label="Endpoint 9, core teams">
+    <h2 id="e9">9. Team directory with $ref links</h2>
+    <p>The core API's team list is paginated and link-based: each item is a <code>$ref</code> URL you fetch separately. That makes it the reference graph's front door:</p>
+<pre>curl -s "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/teams?limit=32"
+# HTTP 200, 3.7 KB; count=32, items = $ref URLs under .../seasons/2026/teams/{id}</pre>
+  </section>
+
+  <section aria-label="Endpoint 10, soccer table">
+    <h2 id="e10">10. Soccer standings table</h2>
+    <p>The same CDN fragment service covers every ESPN league, soccer included. The Premier League table in one call, <code>xhr=1</code> again required for JSON:</p>
+<pre>curl -s "https://cdn.espn.com/core/soccer/table?league=eng.1&amp;xhr=1"
+# HTTP 200, 2.6 MB; eng.1 = Premier League, full standings JSON</pre>
+  </section>
+
+  <section aria-label="Curl notes">
+    <h2>Curl notes for every call</h2>
+    <p>Plain <code>curl</code> or any HTTP client works: no key, no account, no special headers, same as the scoreboard in the <a href="../guides/espn-api-python.html">ESPN API in Python guide</a>. Three habits keep the endpoints happy: a <code>--max-time</code> or client timeout on every call, caching responses you already fetched, and backing off instead of looping retries. There is no published rate limit, and hammering an undocumented feed is how undocumented feeds get shut.</p>
+    <p>Endpoint coverage so far on this site: rosters in the <a href="../guides/nfl-roster-data.html">NFL roster data guide</a>, the scoreboard and teams walkthrough in the <a href="../guides/espn-api-python.html">ESPN API in Python guide</a>, and the wider source comparison, including the 401 that <code>api.nfl.com</code> returns to unauthenticated calls, in the <a href="../guides/nfl-data-apis.html">NFL data APIs guide</a>.</p>
+  </section>
+
+  <section aria-label="The honest 404s">
+    <h2>The honest 404s</h2>
+    <p>Three guesses failed on the checked date, recorded here so nobody else has to:</p>
+    <p><code>/apis/site/v2/sports/football/nfl/rankings</code>: 404. Rankings exist for <code>football/college-football</code> only, as endpoint 7 above. <code>site.web.api.espn.com/apis/common/v3/sports/football/nfl/scoreboard</code>: 404, the common/v3 path is wrong for this host; the v2 scoreboard is the one that works. And <code>groups=28</code> or <code>29</code> on the NFL scoreboard: 200 with an empty events array, a 200 that means nothing.</p>
+  </section>
+
+  <section aria-label="From endpoints to a pinned dataset">
+    <h2>From endpoints to a pinned dataset</h2>
+    <p>These feeds cover now: this week's scores, today's news, the current standings tree. History is a different job, and the <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026 pack</a> is the pinned side of the pairing: 7,548 games with spreads, totals, and moneylines, plus derived tables and a <a href="../guides/nfl-games-data-guide.html">column guide</a>. The <a href="../data/nfl-games/sample.csv" download>free 22-row sample</a> carries the same schema.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/nfl-games/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h" rel="noopener">Get full data</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. The full pack is 3 CSVs (7,548 + 861 + 27 rows), data dictionary, source SHA-256 checksums. The sample downloads free here, no signup.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>ESPN CDN endpoint questions</h2>
+    <dl>
+      <dt>Is the ESPN CDN API free?</dt>
+      <dd>The public endpoints on this page cost nothing to call. All ten URLs answered plain unauthenticated <code>curl</code> with no key, no account, and no special headers on 2026-09-10. These are the same feeds ESPN's own site and apps load, served from <code>site.api.espn.com</code>, <code>cdn.espn.com</code>, and <code>sports.core.api.espn.com</code>. ESPN sells licensed developer feeds separately; what the site serves for free is what is documented here.</dd>
+      <dt>Is the ESPN API documented?</dt>
+      <dd>No. None of the endpoints on this page have a published schema, a versioning promise, or a stated rate limit. They power ESPN's own web properties and stay up because ESPN's pages depend on them, which has kept them stable for years, but ESPN can change field names, nesting, or availability at any time. Treat the endpoints as a bonus, keep timeouts on every call, and cache responses instead of re-fetching in a loop.</dd>
+      <dt>Can I use ESPN API data in my app?</dt>
+      <dd>For a hobby project, a prototype, or personal analysis, the feeds behave like any public JSON endpoint. For anything commercial, these endpoints are undocumented and carry no reuse terms, so there is no permission to republish their content at scale. The safer route for production is a pinned, licensed dataset: the <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines pack</a> on this site ships 7,548 games from the nflverse releases under CC BY 4.0, with a clear credit line and checksums.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Attribution">
+    <h2>Sources and license</h2>
+    <p>The ESPN endpoints above are public, undocumented services served by ESPN; this page makes no claim on their content or continued availability, and every response shown is quoted as a short factual line for reference. Historical game rows referenced here trace to the nflverse-data project, file <code>schedules/games.csv</code>, released under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>; credit it as "Data from nflverse, CC BY 4.0". Team and player names are factual data; no logos or league marks appear on this page. This page describes data only and offers no betting advice, picks, or predictions.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

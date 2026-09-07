@@ -92,16 +92,22 @@
         <tr><td><code>extra</code></td><td><code>{"name":"USDC","version":"2"}</code></td><td>EIP-712 domain hint for the signature</td></tr>
       </tbody>
     </table>
-    <p>One caveat about the hostname: the demo runs behind a Cloudflare quick tunnel, which rotates its URL when the service restarts. Treat the hostname as ephemeral and the response shape as the durable part.</p>
+    <p>One caveat about the hostname: the demo runs behind a Cloudflare quick tunnel, which rotates its URL when the service restarts. Treat the hostname as ephemeral and the response shape as the durable part. Two replay notes as of 2026-09-10: a fresh hostname may 404, and the two routes are now priced separately (NFL scores 10,000 atomic units, HUD FMR 1,000 atomic units per call), so a fresh challenge for <code>/hud/fmr</code> will show <code>amount</code> 1000 where the quote above shows 10000.</p>
     <p>The same server also answers two free routes, <code>GET /health</code> and <code>GET /catalog</code>, with no payment header at all. The catalog doubles as machine-readable documentation of both paid routes.</p>
   </section>
 
   <section aria-label="Step 2 buyer">
     <h2>Step 2: how a buyer calls a pay-per-call API</h2>
-    <p>The buyer side is a few lines with the x402 SDK. This is the exact snippet from the demo API's README:</p>
+    <p>The buyer side is a few lines with the x402 SDK. This is the exact snippet from the demo API's README as of 2026-09-10. One correction worth knowing: <code>.register()</code> takes a scheme instance, not a raw signer, so the viem account goes inside <code>ExactEvmScheme</code> — the raw-signer form fails at request time:</p>
 <pre>import { x402Client, wrapFetchWithPayment } from "@x402/fetch";
-const paid = wrapFetchWithPayment(fetch, new x402Client().register("eip155:8453", evmSignerFromPk));
+import { ExactEvmScheme } from "@x402/evm/exact/client";
+import { privateKeyToAccount } from "viem/accounts";
+
+const client = new x402Client().register("eip155:8453",
+  new ExactEvmScheme(privateKeyToAccount(process.env.EVM_PRIVATE_KEY)));
+const paid = wrapFetchWithPayment(fetch, client);
 const res = await paid("https://&lt;PUBLIC_URL&gt;/nfl/scores?season=2025"); // auto 402 -&gt; sign -&gt; retry</pre>
+    <p>We smoke-tested this from a fresh npm install: plain fetch gets the readable 402 challenge, the wrapped client signs with a throwaway key and retries, and the facilitator returns a structured <code>invalid_exact_evm_signature</code> rejection (anvil dev key, no USDC). That is the full path minus the last paid step, and it is the same flow worked through with curl in the <a href="https://gist.github.com/jayjex/9cb7cd0612b3192e06915f784e6d6e4a" rel="noopener">x402 endpoints gist</a>.</p>
     <p>What happens inside that wrapped call: the first request goes out unpaid, the 402 comes back, the client decodes <code>PAYMENT-REQUIRED</code>, matches it against the registered network signer, produces the EIP-3009 signature, and retries once with <code>PAYMENT-SIGNATURE</code> set. From the caller's perspective it reads like plain fetch. A client that skips the SDK does the same steps by hand: decode the header, sign the transfer authorization, resend. The <code>extensions.bazaar</code> block in the challenge goes further and advertises the input schema and an output example, so an agent can figure out what it is buying without reading a docs page.</p>
     <p>The NFL route in that snippet serves scores and betting lines 1999-2026 from the nflverse releases; the sources behind those rows (ESPN, nflverse, the league's own closed API) are compared in the <a href="nfl-data-apis.html">NFL data APIs guide</a>.</p>
   </section>

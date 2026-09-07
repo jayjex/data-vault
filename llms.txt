@@ -19,6 +19,7 @@ HUD FMR metro definition guide (how HUD defines a metro FMR area, MSA vs HUD Met
 Rent affordability guide (the 30% rule vs the FMR, five metros against the US median household income, FY2026): https://jayjex.github.io/data-vault/guides/rent-affordability-calculator.html
 What is llms.txt (plain-English definition of the format, how agents read the file, honest status): https://jayjex.github.io/data-vault/guides/what-is-llms-txt.html
 Dataset DOIs: the NFL, HUD FMR, and Airbnb packs have permanent citable DOIs on Zenodo: https://doi.org/10.5281/zenodo.22643177 , https://doi.org/10.5281/zenodo.22643149 , https://doi.org/10.5281/zenodo.22643189
+Paid per-call API (x402 protocol, USDC on Base): the NFL scores and HUD FMR datasets are also queryable as paid x402 endpoints, $0.01/call NFL and $0.001/call HUD FMR, curl challenge replay + SDK snippet: https://gist.github.com/jayjex/9cb7cd0612b3192e06915f784e6d6e4a
 
 ## Datasets
 

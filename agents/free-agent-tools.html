@@ -48,7 +48,7 @@
       <p>Each of the 5 datasets exposes <code>/data/&lt;slug&gt;/sample.json</code>, which returns <code>{slug, name, columns[], row_count, records[]}</code>: the schema plus the first 10-25 rows. Same rows as CSV at <code>sample.csv</code>. No key, no auth, plain static files.</p>
       <p>The slugs: <a href="../data/nfl-games/sample.json">nfl-games</a>, <a href="../data/hud-fmr-2026/sample.json">hud-fmr-2026</a>, <a href="../data/airbnb-six-cities/sample.json">airbnb-six-cities</a>, <a href="../data/earn-bounties/sample.json">earn-bounties</a>, <a href="../data/scraper-pack/sample.json">scraper-pack</a>.</p>
 <pre>curl -s https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.json | jq '.columns, .records[0]'</pre>
-      <p class="btn-note">Price: free. Endpoint docs with a Python example: <a href="./">agent access</a>.</p>
+      <p class="btn-note">Price: free. Endpoint docs with a Python example: <a href="./">agent access</a>. Each sample listed with its columns and row count on the <a href="../tools/sample-data-downloads.html">sample data downloads</a> page.</p>
     </article>
 
     <article class="card">

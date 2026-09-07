@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sample Data Downloads: Free CSV and JSON Test Files | Data Vault</title>
+<meta name="description" content="Five free sample data downloads in CSV and JSON: NFL games, HUD rents, Airbnb listings, bounty listings, scraper scripts. Columns listed, row counts stated, one curl each. For schema testing, mockups, demo apps, and teaching.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/tools/sample-data-downloads.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Sample Data Downloads: Free CSV and JSON Test Files | Data Vault">
+<meta property="og:description" content="Five free sample data downloads in CSV and JSON: NFL games, HUD rents, Airbnb listings, bounty listings, scraper scripts. Columns listed, row counts stated, one curl each.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/tools/sample-data-downloads.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Free sample data downloads","url":"https://jayjex.github.io/data-vault/tools/sample-data-downloads.html","itemListElement":[{"@type":"ListItem","position":1,"name":"NFL games sample, 22 rows and 46 columns","url":"https://jayjex.github.io/data-vault/data/nfl-games/sample.json"},{"@type":"ListItem","position":2,"name":"HUD fair market rents FY2026 sample, 22 rows and 10 columns","url":"https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.json"},{"@type":"ListItem","position":3,"name":"Airbnb listings in 6 cities sample, 20 rows and 12 columns","url":"https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.json"},{"@type":"ListItem","position":4,"name":"Superteam Earn bounty listings sample, 10 rows and 15 columns","url":"https://jayjex.github.io/data-vault/data/earn-bounties/sample.json"},{"@type":"ListItem","position":5,"name":"Web scraping script pack sample, 10 rows, one per script","url":"https://jayjex.github.io/data-vault/data/scraper-pack/sample.json"}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../tools/scraping-scripts.html">Tools</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <p class="kicker">sample data</p>
+  <h1>Sample data downloads, free</h1>
+  <p class="lead">Five sample files on this site, each free to download with no signup. Every dataset here ships a <code>sample.json</code> (schema plus the first rows) and a <code>sample.csv</code> (the same rows as CSV). They are plain static files: point curl at them, or download in a browser. Each card below states the exact columns and row count, and each sample link returned HTTP 200 on 2026-09-07.</p>
+
+  <section aria-label="Grab one in ten seconds">
+    <h2>Grab one in ten seconds</h2>
+<pre>curl -s https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.json | jq '.columns, .records[0]'
+curl -s -o hud-sample.csv https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.csv</pre>
+    <p>The JSON shape is the same for every dataset: <code>{slug, name, columns[], row_count, records[]}</code>. Read <code>columns</code> to learn the schema, read <code>records</code> to see real values. The CSV twin has the identical rows with a header line, so it opens straight in Excel, Sheets, pandas, or any database importer.</p>
+  </section>
+
+  <section aria-label="What sample data is good for">
+    <h2>What sample data is good for</h2>
+    <p><strong>Schema testing.</strong> Point your loader, migration, or validator at 10 to 22 real rows before committing to a 90,000-row import. Wrong types and missing values surface in seconds, and the columns listed below are the actual ones, so you can write your <code>CREATE TABLE</code> before downloading anything else.</p>
+    <p><strong>Mockups and prototypes.</strong> A UI with real rows in it reads differently from one stuffed with <code>foo</code> and <code>bar</code>. Twenty NFL games with scores, spreads, and weather make a dashboard look finished; ten bounty listings with real reward amounts make a card layout testable.</p>
+    <p><strong>Demo apps and fixtures.</strong> Sample files are small enough to commit to a repo as test fixtures. Deterministic, local, no API on the critical path: your CI loads a static file, not a live service.</p>
+    <p><strong>Teaching.</strong> Explaining SQL joins or pandas groupby works better with an interesting table than with <code>iris</code> again. A 22-row game table with spreads and scores gives students something they already understand.</p>
+  </section>
+
+  <section aria-label="The five samples">
+    <h2>The five samples</h2>
+
+    <article class="card">
+      <span class="niche">sports</span>
+      <h3>NFL games and betting lines, 22 rows &times; 46 columns</h3>
+      <p>One row per game from the 1999-2026 pack. Columns include <code>gameday</code>, <code>week</code>, <code>away_team</code>, <code>home_team</code>, <code>away_score</code>, <code>home_score</code>, <code>spread_line</code>, <code>total_line</code>, <code>away_moneyline</code>, <code>home_moneyline</code>, rest days, starting QBs, coaches, and stadium weather (<code>temp</code>, <code>wind</code>, <code>roof</code>, <code>surface</code>). Wide enough to exercise any join or pivot you are building.</p>
+      <p>Sample: <a href="../data/nfl-games/sample.json">sample.json</a> &middot; <a href="../data/nfl-games/sample.csv">sample.csv</a></p>
+      <p class="btn-note">Full pack: 7,548 games with spreads, totals, and moneylines, <a href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h" rel="noopener">$29 on Getly</a>.</p>
+    </article>
+
+    <article class="card">
+      <span class="niche">gov-data</span>
+      <h3>HUD fair market rents FY2026, 22 rows &times; 10 columns</h3>
+      <p>One row per ZIP code area. Columns: <code>zip</code>, <code>hud_area_code</code>, <code>metro</code>, <code>area_name</code>, <code>state</code>, and five rent columns <code>fmr_0br</code> through <code>fmr_4br</code>. Ten tidy columns, all numeric after the location fields, which makes it the friendliest of the five for a first import or a classroom demo.</p>
+      <p>Sample: <a href="../data/hud-fmr-2026/sample.json">sample.json</a> &middot; <a href="../data/hud-fmr-2026/sample.csv">sample.csv</a></p>
+      <p class="btn-note">Full pack: 51,895 ZIP codes plus county and state tables, <a href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">$24 on Getly</a>.</p>
+    </article>
+
+    <article class="card">
+      <span class="niche">real-estate</span>
+      <h3>Airbnb listings in 6 US cities, 20 rows &times; 12 columns</h3>
+      <p>One row per listing. Columns: <code>id</code>, <code>name</code>, <code>neighbourhood</code>, <code>latitude</code>, <code>longitude</code>, <code>room_type</code>, <code>price</code>, <code>minimum_nights</code>, <code>availability_365</code>, <code>number_of_reviews</code>, <code>reviews_per_month</code>, <code>last_review</code>. The lat/lon pairs plot immediately, which makes it a good sample for map prototypes.</p>
+      <p>Sample: <a href="../data/airbnb-six-cities/sample.json">sample.json</a> &middot; <a href="../data/airbnb-six-cities/sample.csv">sample.csv</a></p>
+      <p class="btn-note">Full pack: 90,169 listings across Austin, Nashville, Denver, NYC, Las Vegas, and San Diego, <a href="https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtpkvxdf" rel="noopener">$39 on Getly</a>.</p>
+    </article>
+
+    <article class="card">
+      <span class="niche">crypto</span>
+      <h3>Superteam Earn bounty listings, 10 rows &times; 15 columns</h3>
+      <p>One row per open listing. Columns: <code>title</code>, <code>type</code>, <code>reward_amount</code>, <code>token</code>, <code>min_reward_ask</code>, <code>max_reward_ask</code>, <code>deadline</code>, <code>status</code>, <code>agent_access</code>, <code>is_pro</code>, <code>sponsor</code>, <code>comments</code>, <code>submissions</code>, plus id and slug. Real rewards in USDC and other tokens, deadlines, and sponsor names.</p>
+      <p>Sample: <a href="../data/earn-bounties/sample.json">sample.json</a> &middot; <a href="../data/earn-bounties/sample.csv">sample.csv</a></p>
+      <p class="btn-note">Full pack: 28 listings with full description HTML and 186+ reverse-engineered API routes, <a href="https://www.getly.store/product/superteam-earn-28-live-listings-dataset-186-reverse-engineered-api-routes-mtmy11ny" rel="noopener">$49 on Getly</a>.</p>
+    </article>
+
+    <article class="card">
+      <span class="niche">dev-tools</span>
+      <h3>Web scraping script pack inventory, 10 rows &times; 2 columns</h3>
+      <p>One row per script in the pack. Columns: <code>file</code> and <code>pattern</code>, the filename and what the script handles (pagination, infinite scroll, login sessions, price monitors, sitemap crawling, retries, and the rest). The smallest sample on the page, and a decent example of a minimal two-column inventory table.</p>
+      <p>Sample: <a href="../data/scraper-pack/sample.json">sample.json</a> &middot; <a href="../data/scraper-pack/sample.csv">sample.csv</a></p>
+      <p class="btn-note">Full pack: ten Playwright scripts, Node 18+, <a href="https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtn8em7k" rel="noopener">$15 on Getly</a>.</p>
+    </article>
+  </section>
+
+  <section aria-label="Formats and licenses">
+    <h2>Formats and licenses</h2>
+    <p>Both files are static, served from GitHub Pages, no key, no rate limit beyond the host's. <code>sample.json</code> carries the schema; <code>sample.csv</code> carries the same rows with a header line. Licenses: the HUD sample is US government data, public domain; the NFL sample is CC BY 4.0 via nflverse; the Airbnb sample is CC BY 4.0 via Inside Airbnb. The <code>license</code> field in <a href="../catalog.json">catalog.json</a> states it per dataset if you need the exact string for attribution.</p>
+  </section>
+
+  <section aria-label="Related pages">
+    <h2>Where to go next</h2>
+    <p><a href="../agents/free-agent-tools.html">Free tools for AI agents</a> rounds up the MCP server, <code>catalog.json</code>, and llms.txt alongside these samples. <a href="../agents/">Agent access</a> documents every endpoint with a worked Python example. Deciding between a static file and a live API for your pipeline? <a href="../guides/csv-vs-api.html">CSV vs API for data</a> is a decision table with a worked example.</p>
+  </section>
+</main>
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

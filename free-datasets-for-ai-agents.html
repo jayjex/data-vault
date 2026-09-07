@@ -38,7 +38,7 @@
 
   <section aria-label="Access methods">
     <h2>Two ways to query, both free</h2>
-    <p><strong>MCP server.</strong> Point your MCP client at <code>npx --allow-git=all -y github:jayjex/dataset-mcp</code> (the flag is for npm 12+, npm 10 and 11 run the plain form). Tools: <code>list_datasets</code>, <code>get_dataset_info</code>, <code>get_sample</code>, <code>query_dataset</code>, and <code>get_stats</code>. <code>query_dataset</code> filters and paginates the full released files, 100 rows per call, with <code>=</code>, <code>contains</code>, <code>gt</code>, and <code>lt</code> operators. The server caches the files locally and verifies SHA-256 on every load.</p>
+    <p><strong>MCP server.</strong> Point your MCP client at <code>npx --allow-git=all -y github:jayjex/dataset-mcp</code> (the flag is for npm 12+, npm 10 and 11 run the plain form). Tools: <code>list_datasets</code>, <code>get_dataset_info</code>, <code>get_sample</code>, <code>query_dataset</code>, and <code>get_stats</code>. <code>query_dataset</code> filters and paginates the full released files, 100 rows per call, with <code>=</code>, <code>contains</code>, <code>gt</code>, and <code>lt</code> operators. The server caches the files locally and verifies SHA-256 on every load. Full setup and a captured session: <a href="agents/mcp-dataset-server.html">MCP server for datasets</a>.</p>
 <pre>query_dataset("hud-fmr-2026", {
   where: [{ column: "state", op: "=", value: "TX" }],
   limit: 5

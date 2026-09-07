@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD Metro Area List: Every FY2026 Metro FMR Area | Data Vault</title>
+<meta name="description" content="The FY2026 HUD FMR files cover 2,599 metro and nonmetro areas: 649 metro, 1,950 nonmetro. The biggest metro areas by ZIP count, the priciest 2BR medians, and how the area_name column works.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-metro-list.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="HUD Metro Area List: Every FY2026 Metro FMR Area">
+<meta property="og:description" content="The FY2026 HUD FMR files cover 2,599 metro and nonmetro areas: 649 metro, 1,950 nonmetro. The biggest metro areas by ZIP count, the priciest 2BR medians, and how the area_name column works.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-metro-list.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "HUD Metro Area List: Every FY2026 Metro FMR Area", "description": "The FY2026 HUD FMR files cover 2,599 metro and nonmetro areas: 649 metro, 1,950 nonmetro. The biggest metro areas by ZIP count, the priciest 2BR medians, and how the area_name column works.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-metro-list.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How many metro areas are in the HUD FMR data?", "acceptedAnswer": {"@type": "Answer", "text": "The FY2026 ZIP-level file uses 2,599 distinct HUD FMR area names: 649 metro areas holding 27,296 ZIP rows, plus 1,950 nonmetro areas covering the remaining 24,599 ZIPs. Every area name carries the suffix \"HUD Metro FMR Area\" or \"MSA\" in the metro case. A separate county rollup in the same pack covers 3,229 counties, 1,253 of them metro."}}, {"@type": "Question", "name": "Which HUD metro areas cover the most ZIP codes?", "acceptedAnswer": {"@type": "Answer", "text": "Washington-Arlington-Alexandria, DC-VA-MD leads FY2026 with 488 ZIP rows, followed by Los Angeles-Long Beach-Glendale, CA (474) and Philadelphia-Camden-Wilmington, PA-NJ-DE-MD (473). New York, NY covers 410 ZIPs and Pittsburgh, PA covers 393. All ten largest metros are in the table on this page with their 2BR medians and per-ZIP ranges."}}, {"@type": "Question", "name": "Why do HUD metro area names differ from Census metro names?", "acceptedAnswer": {"@type": "Answer", "text": "HUD defines its own FMR areas rather than adopting Census or OMB boundaries, so the same city can carry a different name and footprint. In the FY2026 file, New York is \"New York, NY HUD Metro FMR Area\" while the Census equivalent is the New York-Newark-Jersey City MSA covering parts of NY and NJ. Use the area_name column as the lookup key and the hud_area_code column (METRO or NCNTY plus an area identifier) as the stable ID when joining across tables."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>HUD metro area list: every FY2026 metro FMR area</h1>
+  <p class="byline">FY2026 edition, published 2026-09-10. Data source: HUD, public domain. Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <section aria-label="What counts as a HUD metro area">
+    <h2>What counts as a HUD metro area</h2>
+    <p>HUD publishes Fair Market Rents per FMR area, its own unit of geography, not per city or Census metro. The FY2026 ZIP-level file in the <a href="../datasets/hud-fmr-2026.html">HUD FMR FY2026 pack</a> carries 51,895 ZIP rows spread across 2,599 distinct area names. Counting the <b>metro</b> column: 649 metro areas hold 27,296 ZIP rows, and 1,950 nonmetro areas hold the other 24,599. A county rollup in the same pack splits 3,229 counties into 1,253 metro and 1,976 nonmetro.</p>
+    <p>The names are consistent once you see the pattern. Metro names end in <b>HUD Metro FMR Area</b> or <b>MSA</b>, nonmetro names in <b>HUD Nonmetro FMR Area</b>, and each name includes its state suffixes: "Abilene, TX MSA", "Washington-Arlington-Alexandria, DC-VA-MD HUD Metro FMR Area", "Yauco, PR HUD Metro FMR Area". The <b>area_name</b> column is the human-readable key; the <b>hud_area_code</b> column, METRO or NCNTY plus an area identifier, is the stable ID for joins.</p>
+  </section>
+
+  <section aria-label="Largest metro areas by ZIP count">
+    <h2>The ten largest metro areas, by ZIP count</h2>
+    <p>Rank, name, state, ZIP rows, and the 2BR picture inside each metro: median across its ZIPs, then the range from cheapest to priciest ZIP. The wide ranges are Small Area FMRs at work; <a href="safmr-vs-fmr.html">SAFMR vs FMR</a> explains the mechanism.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Ten largest HUD metro areas by ZIP count, FY2026"><table><thead><tr><th scope="col">#</th><th scope="col">Metro FMR area</th><th scope="col">ST</th><th scope="col">ZIP rows</th><th scope="col">2BR median</th><th scope="col">2BR low</th><th scope="col">2BR high</th></tr></thead><tbody>
+      <tr><td>1</td><td>Washington-Arlington-Alexandria, DC-VA-MD HUD Metro FMR Area</td><td>DC</td><td>488</td><td>2240</td><td>1130</td><td>3370</td></tr>
+      <tr><td>2</td><td>Los Angeles-Long Beach-Glendale, CA HUD Metro FMR Area</td><td>CA</td><td>474</td><td>3060</td><td>2070</td><td>4350</td></tr>
+      <tr><td>3</td><td>Philadelphia-Camden-Wilmington, PA-NJ-DE-MD MSA</td><td>PA</td><td>473</td><td>1940</td><td>1130</td><td>2720</td></tr>
+      <tr><td>4</td><td>New York, NY HUD Metro FMR Area</td><td>NY</td><td>410</td><td>3150</td><td>2510</td><td>4370</td></tr>
+      <tr><td>5</td><td>Pittsburgh, PA HUD Metro FMR Area</td><td>PA</td><td>393</td><td>1330</td><td>970</td><td>1950</td></tr>
+      <tr><td>6</td><td>Chicago-Joliet-Naperville, IL HUD Metro FMR Area</td><td>IL</td><td>370</td><td>1870</td><td>1170</td><td>2670</td></tr>
+      <tr><td>7</td><td>Houston-The Woodlands-Sugar Land, TX HUD Metro FMR Area</td><td>TX</td><td>327</td><td>1590</td><td>970</td><td>2360</td></tr>
+      <tr><td>8</td><td>Atlanta-Sandy Springs-Roswell, GA HUD Metro FMR Area</td><td>GA</td><td>299</td><td>1750</td><td>970</td><td>2730</td></tr>
+      <tr><td>9</td><td>St. Louis, MO-IL HUD Metro FMR Area</td><td>MO</td><td>268</td><td>1290</td><td>990</td><td>1830</td></tr>
+      <tr><td>10</td><td>Boston-Cambridge-Quincy, MA-NH HUD Metro FMR Area</td><td>MA</td><td>261</td><td>3210</td><td>2560</td><td>4410</td></tr>
+    </tbody></table></div>
+    <p>Two things the table shows. Philadelphia, DC, Houston, Atlanta, and Chicago each span a 2BR range wider than their own median, which is what ZIP-level SAFMRs do inside one metro. And size says nothing about rent level: Boston sits 10th by ZIP count with the highest 2BR median of the ten.</p>
+  </section>
+
+  <section aria-label="Most expensive and cheapest metros">
+    <h2>Priciest and cheapest FMR areas in FY2026</h2>
+    <p>Ranked by 2BR median across all 649 metro areas: Santa Cruz-Watsonville, CA leads at 4,350, ahead of San Jose-Sunnyvale-Santa Clara and San Francisco, both at 3,480, then Santa Ana-Anaheim-Irvine at 3,240. At the other end, three Puerto Rico areas tie for cheapest at 520: Yauco, San Germ&aacute;n, and Guayama. Nonmetro areas stay out of this ranking but sit in the same file under their own names.</p>
+    <p>For the ZIP-level view inside one metro, <a href="hud-fmr-by-zip.html">HUD FMR by ZIP code</a> walks through a single-ZIP lookup end to end, and <a href="fmr-lookup-alternatives.html">FMR lookup: one at a time, or all 51,895 ZIP rows</a> covers when a bulk file beats per-area lookups.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>HUD metro area questions</h2>
+    <dl>
+      <dt>How many metro areas are in the HUD FMR data?</dt>
+      <dd>The FY2026 ZIP-level file uses 2,599 distinct HUD FMR area names: 649 metro areas holding 27,296 ZIP rows, plus 1,950 nonmetro areas covering the remaining 24,599 ZIPs. Every area name carries the suffix "HUD Metro FMR Area" or "MSA" in the metro case. A separate county rollup in the same pack covers 3,229 counties, 1,253 of them metro.</dd>
+      <dt>Which HUD metro areas cover the most ZIP codes?</dt>
+      <dd>Washington-Arlington-Alexandria, DC-VA-MD leads FY2026 with 488 ZIP rows, followed by Los Angeles-Long Beach-Glendale, CA (474) and Philadelphia-Camden-Wilmington, PA-NJ-DE-MD (473). New York, NY covers 410 ZIPs and Pittsburgh, PA covers 393. All ten largest metros are in the table on this page with their 2BR medians and per-ZIP ranges.</dd>
+      <dt>Why do HUD metro area names differ from Census metro names?</dt>
+      <dd>HUD defines its own FMR areas rather than adopting Census or OMB boundaries, so the same city can carry a different name and footprint. In the FY2026 file, New York is "New York, NY HUD Metro FMR Area" while the Census equivalent is the New York-Newark-Jersey City MSA covering parts of NY and NJ. Use the area_name column as the lookup key and the hud_area_code column (METRO or NCNTY plus an area identifier) as the stable ID when joining across tables.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the full dataset">
+    <h2>Get the full dataset</h2>
+    <p>The free 22-row sample shows the schema, including the area_name and hud_area_code columns. The full pack carries all 51,895 ZIP rows, the county rollup (3,229 rows), state summary (52 rows), the data dictionary, and source checksums.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">Get the full dataset</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release, huduser.gov. US government data, public domain.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

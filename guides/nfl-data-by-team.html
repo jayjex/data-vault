@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NFL Stats by Team CSV: 861 Team-Season Rows, 1999-2025 | Data Vault</title>
+<meta name="description" content="NFL stats by team in one CSV: 861 rows of W-L-T, points for and against, ATS records, and over/under counts per team per season, 1999-2025. Column guide, real sample rows, query examples, and download options.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/nfl-data-by-team.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="NFL Stats by Team CSV: 861 Team-Season Rows, 1999-2025">
+<meta property="og:description" content="NFL stats by team in one CSV: 861 rows of W-L-T, points for and against, ATS records, and over/under counts per team per season, 1999-2025. Sample rows, query examples, free MCP queries.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/nfl-data-by-team.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "NFL Stats by Team CSV: 861 Team-Season Rows, 1999-2025", "description": "The team-records-by-season.csv schema explained column by column, real sample rows from all 27 seasons, pandas and MCP query examples, and how to download the 861-row table.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/nfl-data-by-team.html", "about": {"@type": "Dataset", "name": "NFL Games & Betting Lines 1999-2026", "url": "https://jayjex.github.io/data-vault/datasets/nfl-games.html"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "NFL stats by team CSV", "item": "https://jayjex.github.io/data-vault/guides/nfl-data-by-team.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+{"@type": "Question", "name": "Where can I get NFL stats by team as a CSV?", "acceptedAnswer": {"@type": "Answer", "text": "Data Vault's NFL pack includes team-records-by-season.csv, 861 rows with games, wins, losses, ties, points for and against, ATS record, and over/under record for every team and season from 1999 through 2025. The whole table is queryable free over MCP (100 rows per call, no signup), and the complete CSV downloads with the pack from Getly."}},
+{"@type": "Question", "name": "What seasons and teams does the 861-row table cover?", "acceptedAnswer": {"@type": "Answer", "text": "Seasons 1999 through 2025, playoffs included, so a team that reaches the Super Bowl shows 20-21 games that season. The first three seasons carry 31 teams each and the rest carry 32 (the Texans joined in 2002), which is why the table has 861 rows instead of 864."}},
+{"@type": "Question", "name": "Can I query team-season stats without downloading anything?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The dataset-mcp server queries the released 861-row file directly: run npx -y github:jayjex/dataset-mcp, then filter on any column. A call like query_dataset(\"nfl-games\", {file: \"nfl-team-records-by-season.csv\", where: [{column: \"team\", op: \"=\", value: \"KC\"}], limit: 10}) returns the Chiefs' season rows. No API key, no cost, 100 rows per call."}},
+{"@type": "Question", "name": "What do ats_wins and overs mean in the file?", "acceptedAnswer": {"@type": "Answer", "text": "ats_wins counts games where the team covered the closing spread, ats_losses counts failures, and ats_pushes counts games that landed exactly on an integer line; ats_win_pct divides wins by wins plus losses, so pushes are excluded. overs, unders, and total_pushes apply the same three-way split to the closing total line. These are historical data columns for research, not predictions or betting advice."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../datasets/nfl-games.html">NFL dataset</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>NFL stats by team CSV: 861 team-season rows, 1999-2025</h1>
+  <p class="byline">Guide to <code>team-records-by-season.csv</code> in the <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026</a> pack · snapshot 2026-09-06 · for the game-level table, read the <a href="nfl-games-data-guide.html">games.csv column guide</a>.</p>
+
+  <section aria-label="Quick answer">
+    <p>The NFL stats-by-team file in this catalog is <code>team-records-by-season.csv</code>: 861 rows, one per team per season from 1999 through 2025, playoffs included. Each row carries 15 columns: games played, wins, losses, ties, points for and against, the against-the-spread record with pushes broken out, and the over/under record. All of it was computed from the 7,548-row games table by a script that ships with the pack, so you can audit or rebuild every number.</p>
+    <p>You can work with the table three ways: <a href="#queries">query it free over MCP</a> (100 rows per call, no signup), compute your own per-team splits from the free <a href="../data/nfl-games/sample.csv" download>games sample</a>, or download the full 861-row CSV with the <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">full pack</a>. The sections below show the schema, real sample rows, and the queries.</p>
+  </section>
+
+  <section aria-label="Schema">
+    <h2>The 15 columns</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Column reference"><table>
+      <thead><tr><th scope="col">Column</th><th scope="col">Meaning</th></tr></thead>
+      <tbody>
+        <tr><td>season</td><td>NFL season year, 1999 to 2025</td></tr>
+        <tr><td>team</td><td>3-letter nflverse abbreviation, e.g. KC, PHI, DAL</td></tr>
+        <tr><td>games</td><td>Games played that season, regular season plus playoffs</td></tr>
+        <tr><td>wins, losses, ties</td><td>W-L-T record, playoff games included</td></tr>
+        <tr><td>points_for</td><td>Total points scored</td></tr>
+        <tr><td>points_against</td><td>Total points allowed</td></tr>
+        <tr><td>ats_wins</td><td>Games where the team covered the closing spread</td></tr>
+        <tr><td>ats_losses</td><td>Games where the team failed to cover</td></tr>
+        <tr><td>ats_pushes</td><td>Games that landed exactly on the spread (integer lines only)</td></tr>
+        <tr><td>ats_win_pct</td><td>ats_wins / (ats_wins + ats_losses), pushes excluded</td></tr>
+        <tr><td>overs</td><td>Games whose combined score went over total_line</td></tr>
+        <tr><td>unders</td><td>Games that went under</td></tr>
+        <tr><td>total_pushes</td><td>Games whose combined score equaled total_line exactly</td></tr>
+      </tbody>
+    </table></div>
+    <p>ATS stands for against the spread. A team covers when its margin of victory beats the line it gave, computed as <code>margin + team_spread &gt; 0</code>. A push lands exactly on the line, which only happens on integer spreads like -3; half-point lines like 3.5 cannot push. The same three-way split applies to totals. Pushes count as neither a cover nor a miss, and <code>ats_win_pct</code> excludes them.</p>
+  </section>
+
+  <section aria-label="Sample rows">
+    <h2>Sample rows from the file</h2>
+    <p class="table-note">Ten of the 861 rows, copied verbatim from team-records-by-season.csv. Read a row like 2024,KC as: 20 games, a 17-3 record, 462 points scored, 409 allowed.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Sample team-season rows"><table>
+      <thead><tr><th scope="col">season</th><th scope="col">team</th><th scope="col">games</th><th scope="col">wins</th><th scope="col">losses</th><th scope="col">ties</th><th scope="col">points_for</th><th scope="col">points_against</th><th scope="col">ats_wins</th><th scope="col">ats_losses</th><th scope="col">ats_pushes</th><th scope="col">ats_win_pct</th><th scope="col">overs</th><th scope="col">unders</th><th scope="col">total_pushes</th></tr></thead>
+      <tbody>
+        <tr><td>1999</td><td>ARI</td><td>16</td><td>6</td><td>10</td><td>0</td><td>245</td><td>382</td><td>5</td><td>11</td><td>0</td><td>0.312</td><td>7</td><td>9</td><td>0</td></tr>
+        <tr><td>1999</td><td>BAL</td><td>16</td><td>8</td><td>8</td><td>0</td><td>324</td><td>277</td><td>8</td><td>8</td><td>0</td><td>0.5</td><td>7</td><td>9</td><td>0</td></tr>
+        <tr><td>1999</td><td>DAL</td><td>17</td><td>8</td><td>9</td><td>0</td><td>362</td><td>303</td><td>11</td><td>5</td><td>1</td><td>0.688</td><td>7</td><td>10</td><td>0</td></tr>
+        <tr><td>2024</td><td>KC</td><td>20</td><td>17</td><td>3</td><td>0</td><td>462</td><td>409</td><td>17</td><td>3</td><td>0</td><td>0.85</td><td>9</td><td>11</td><td>0</td></tr>
+        <tr><td>2024</td><td>DET</td><td>18</td><td>15</td><td>3</td><td>0</td><td>595</td><td>387</td><td>16</td><td>2</td><td>0</td><td>0.889</td><td>10</td><td>7</td><td>1</td></tr>
+        <tr><td>2024</td><td>TEN</td><td>17</td><td>3</td><td>14</td><td>0</td><td>311</td><td>460</td><td>2</td><td>15</td><td>0</td><td>0.118</td><td>10</td><td>7</td><td>0</td></tr>
+        <tr><td>2025</td><td>KC</td><td>17</td><td>6</td><td>11</td><td>0</td><td>362</td><td>328</td><td>11</td><td>6</td><td>0</td><td>0.647</td><td>4</td><td>13</td><td>0</td></tr>
+        <tr><td>2025</td><td>PHI</td><td>18</td><td>11</td><td>7</td><td>0</td><td>398</td><td>348</td><td>11</td><td>6</td><td>1</td><td>0.647</td><td>7</td><td>11</td><td>0</td></tr>
+        <tr><td>2025</td><td>BUF</td><td>19</td><td>13</td><td>6</td><td>0</td><td>538</td><td>422</td><td>15</td><td>4</td><td>0</td><td>0.789</td><td>10</td><td>9</td><td>0</td></tr>
+        <tr><td>2025</td><td>ARI</td><td>17</td><td>3</td><td>14</td><td>0</td><td>355</td><td>488</td><td>4</td><td>13</td><td>0</td><td>0.235</td><td>10</td><td>7</td><td>0</td></tr>
+      </tbody>
+    </table></div>
+    <p>A few rows here mark things to know before you aggregate. KC 2024 shows 20 games because playoffs count: 17-3 is the 15-2 regular season plus a 2-1 playoff run. The first three seasons carry 31 teams each (the Texans joined in 2002), which is why 27 seasons produce 861 rows instead of 864. And franchise codes stay at their old homes: OAK, SD, STL, plus WAS through 2021 and WSH from 2022. Map those before joining across decades.</p>
+  </section>
+
+  <section aria-label="Query examples" id="queries">
+    <h2>Query examples: filter by team and season</h2>
+
+    <h3>Free over MCP, no download</h3>
+    <p>The dataset-mcp server queries the released 861-row file directly. Start the server, then call <code>query_dataset</code>. Every Chiefs season since 2020, first page:</p>
+    <pre>npx --allow-git=all -y github:jayjex/dataset-mcp
+<span class="cm"># plain form works on npm 10/11: npx -y github:jayjex/dataset-mcp</span>
+
+query_dataset("nfl-games", {file: "nfl-team-records-by-season.csv", where: [{column: "team", op: "=", value: "KC"}, {column: "season", op: "gt", value: 2019}], limit: 10})
+
+<span class="cm">total_matched: 6 | next_offset: null</span>
+<span class="cm">2020,KC,19,16,3,0,542,434,17,2,0,0.895,9,10,0</span>
+<span class="cm">2021,KC,20,14,6,0,588,448,18,2,0,0.9,12,8,0</span>
+<span class="cm">2022,KC,20,17,3,0,584,444,18,2,0,0.9,9,11,0</span>
+<span class="cm">...</span></pre>
+    <p>Filters combine, operators are <code>=</code>, <code>contains</code>, <code>gt</code>, and <code>lt</code>, and <code>get_stats</code> returns counts, min/max, and top-N values for any column without paging through rows. Setup details live on the <a href="../agents/">for agents</a> page. This runs against the full file and costs nothing.</p>
+    <p>Team splits at the game level work the same way on the main games table. Every 2024 Chiefs game, home or away, free:</p>
+    <pre>query_dataset("nfl-games", {where: [{column: "season", op: "=", value: 2024}, {column: "home_team", op: "=", value: "KC"}], limit: 5})
+<span class="cm">total_matched: 10 | next_offset: 5</span>
+
+query_dataset("nfl-games", {where: [{column: "season", op: "=", value: 2024}, {column: "away_team", op: "=", value: "KC"}], limit: 5})
+<span class="cm">total_matched: 10 | next_offset: 5</span></pre>
+    <p>Ten home games, ten away games, 20 total: the playoff games count too. Compare those call outputs against the single KC 2024 row in the team table and the whole derivation checks out in a browser tab.</p>
+
+    <h3>In pandas, on the full CSV</h3>
+    <p>After loading the table from the pack:</p>
+    <pre>import pandas as pd
+df = pd.read_csv("team-records-by-season.csv")
+
+kc = df[(df.team == "KC") &amp; (df.season &gt;= 2015)]
+
+# point differential per team-season
+df["point_diff"] = df.points_for - df.points_against
+top_2025 = df[df.season == 2025].sort_values("point_diff", ascending=False).head(10)
+
+# best single-season cover rates since 2010
+best_ats = df[df.season &gt;= 2010].nlargest(10, "ats_win_pct")[
+    ["season", "team", "wins", "losses", "ats_wins", "ats_losses", "ats_win_pct"]]</pre>
+
+    <h3>In Excel or Google Sheets</h3>
+    <p>Open the CSV, click any cell, Data &rarr; Create a filter. Set team = KC to get the 27 season rows, or season = 2025 to get all 32 teams from one season. Sort by points_against ascending for best defenses, or by ats_win_pct for the year's biggest overperformers against closing lines.</p>
+  </section>
+
+  <section aria-label="Download">
+    <h2>How to download the 861 rows</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Free vs full pack"><table>
+      <thead><tr><th scope="col"></th><th scope="col">Free</th><th scope="col">Full pack</th></tr></thead>
+      <tbody>
+        <tr><td>team-records-by-season.csv</td><td>queryable over MCP, 100 rows/call</td><td>complete 861-row CSV download</td></tr>
+        <tr><td>season-summaries.csv</td><td><a href="../data/nfl-games/season-summaries.csv" download>all 27 rows, free download</a></td><td>same table</td></tr>
+        <tr><td>games.csv</td><td><a href="../data/nfl-games/sample.csv" download>22-row sample</a></td><td>all 7,548 rows, 46 columns</td></tr>
+        <tr><td>derive script + dictionary</td><td>described in this guide</td><td><code>derive.py</code> included, full dictionary</td></tr>
+      </tbody>
+    </table></div>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/nfl-games/season-summaries.csv" download>Download season summaries (CSV)</a>
+      <a class="btn" href="https://www.getly.store/store/mtmw06l2" rel="noopener">Get the full pack</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. The full pack is 3 CSVs (7,548 + 861 + 27 rows), the derivation script, a data dictionary, and source SHA-256 checksums.</p>
+  </section>
+
+  <section aria-label="Attribution">
+    <h2>Source and license</h2>
+    <p>Every number in the table was computed from nflverse's <code>schedules/games.csv</code>, downloaded 2026-09-06 with the SHA-256 recorded in the pack. nflverse-data is released under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>, and the derived table carries the same terms. If you publish work built on this data, credit it like this: "Data from nflverse, CC BY 4.0". Team names are factual data; no logos or league marks appear in the pack.</p>
+  </section>
+
+  <section aria-label="Scope">
+    <h2>What this data is for</h2>
+    <p>The table is historical record: per-team-per-season results and line outcomes as they stood at each game. Common uses are research and analysis, such as ranking point differentials across eras, comparing franchise scoring trends, or splitting a model's training data by team-season. This page and the pack describe the data only and offer no betting advice, picks, or predictions.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>Where can I get NFL stats by team as a CSV?</h3>
+    <p>Data Vault's NFL pack includes <code>team-records-by-season.csv</code>: 861 rows with games, wins, losses, ties, points for and against, ATS record, and over/under record for every team and season from 1999 through 2025. The whole table is <a href="#queries">queryable free over MCP</a> (100 rows per call, no signup), and the complete CSV downloads with the pack from Getly.</p>
+    <h3>What seasons and teams does the 861-row table cover?</h3>
+    <p>Seasons 1999 through 2025, playoffs included, so a Super Bowl team shows 20-21 games that season. The first three seasons carry 31 teams each and the rest carry 32 after the Texans joined in 2002, which is why the table has 861 rows instead of 864.</p>
+    <h3>Can I query team-season stats without downloading anything?</h3>
+    <p>Yes. The dataset-mcp server queries the released 861-row file directly: run <code>npx -y github:jayjex/dataset-mcp</code>, then filter on any column. A call like <code>query_dataset("nfl-games", {file: "nfl-team-records-by-season.csv", where: [{column: "team", op: "=", value: "KC"}], limit: 10})</code> returns the Chiefs' season rows. No API key, no cost, 100 rows per call.</p>
+    <h3>What do ats_wins and overs mean in the file?</h3>
+    <p><code>ats_wins</code> counts games where the team covered the closing spread, <code>ats_losses</code> counts failures, and <code>ats_pushes</code> counts games that landed exactly on an integer line; <code>ats_win_pct</code> divides wins by wins plus losses, so pushes are excluded. <code>overs</code>, <code>unders</code>, and <code>total_pushes</code> apply the same three-way split to the closing total line. These are historical data columns for research, not predictions or betting advice.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

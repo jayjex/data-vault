@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MCP Tools List: 12 Tools Across 3 Servers, With Real Outputs | Data Vault</title>
+<meta name="description" content="A working MCP tools list: all 12 tools in dataset-mcp, earn-bounty-scanner, and solana-research-library, each with a one-line description and real output captured over stdio JSON-RPC.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/tools/mcp-tools-list.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="MCP Tools List: 12 Tools Across 3 Servers, With Real Outputs">
+<meta property="og:description" content="All 12 tools in dataset-mcp, earn-bounty-scanner, and solana-research-library, each with a one-line description and real output captured over stdio JSON-RPC.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/tools/mcp-tools-list.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "MCP Tools List: 12 Tools Across 3 Servers, With Real Outputs", "description": "A working MCP tools list: all 12 tools in dataset-mcp, earn-bounty-scanner, and solana-research-library, each with a one-line description and real output captured over stdio JSON-RPC.", "datePublished": "2026-09-07", "dateModified": "2026-09-07", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/tools/mcp-tools-list.html", "about": {"@type": "Thing", "name": "MCP server tools list"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "MCP tools list", "item": "https://jayjex.github.io/data-vault/tools/mcp-tools-list.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is an MCP tools list?", "acceptedAnswer": {"@type": "Answer", "text": "The set of tools an MCP server advertises to clients. Your client sends a tools/list request over JSON-RPC, the server responds with each tool's name, description, and input schema, and that response is what fills the tools menu in Claude Desktop or another MCP client. This page indexes the 12 tools our three servers advertise."}}, {"@type": "Question", "name": "How do I list an MCP server's tools myself?", "acceptedAnswer": {"@type": "Answer", "text": "Start the server over stdio, send an initialize request, then notifications/initialized, then a tools/list request. The server answers with the full tool catalog. The same transport works for calling tools: a tools/call request with a name and arguments returns the output."}}, {"@type": "Question", "name": "Which server should I use for Superteam Earn data?", "acceptedAnswer": {"@type": "Answer", "text": "earn-bounty-scanner for live data: it fetches superteam.fun at call time, so rewards and deadlines are current. dataset-mcp for a fixed snapshot: the earn-bounties dataset is a 51-card capture from 2026-09-04 with SHA-256 verification, which is better for reproducible pipelines."}}, {"@type": "Question", "name": "Are these MCP servers free to run?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. All three are MIT-licensed and run locally over stdio with no API key. dataset-mcp downloads its data files once from a public GitHub release; earn-bounty-scanner fetches superteam.fun per call; solana-research-library ships its database inside the package and makes no network calls."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../tools/scraping-scripts.html">Tools</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>MCP tools list: every tool in our three servers</h1>
+  <p class="byline">Published 2026-09-07. An MCP client only sees the tools a server advertises, so we ran all three of ours over stdio JSON-RPC on that date and pasted what came back. Outputs are abridged to the fields that matter; counts and values are unchanged.</p>
+
+  <section aria-label="The list at a glance">
+    <h2>The list at a glance</h2>
+    <p>Three servers, 12 tools. <strong>dataset-mcp</strong> queries fixed dataset files with filters and stats. <strong>earn-bounty-scanner</strong> reads the live Superteam Earn feed. <strong>solana-research-library</strong> serves a curated research database that ships inside the package.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Server overview"><table><thead><tr><th scope="col">Server</th><th scope="col">Tools</th><th scope="col">Data source</th><th scope="col">Install</th></tr></thead><tbody>
+      <tr><td><a href="#dataset-mcp">dataset-mcp</a></td><td>5</td><td>149,673 rows across 5 datasets, downloaded once from a public GitHub release</td><td><code>npx -y github:jayjex/dataset-mcp</code></td></tr>
+      <tr><td><a href="#earn-bounty-scanner">earn-bounty-scanner</a></td><td>3</td><td>live Superteam Earn API at superteam.fun, fetched per call</td><td><code>npx -y earn-bounty-scanner</code></td></tr>
+      <tr><td><a href="#solana-research-library">solana-research-library</a></td><td>4</td><td>25 field-probed platforms, database ships in the package, no network at runtime</td><td><code>npx -y solana-research-library</code></td></tr>
+    </tbody></table></div>
+    <p>All three are MIT-licensed, need no API key, and run on Node.js 18 or newer.</p>
+  </section>
+
+  <section aria-label="dataset-mcp tools">
+    <h2 id="dataset-mcp">dataset-mcp: 5 tools over the dataset catalog</h2>
+    <p>Version 1.1.0, listed in the MCP registry as <code>io.github.jayjex/dataset-mcp</code>. It downloads a dataset file once into <code>~/.cache/dataset-mcp/</code>, pins it with SHA-256, then answers queries from memory. Full server docs are on the <a href="../agents/mcp-dataset-server.html">MCP server for datasets</a> page.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="dataset-mcp tools"><table><thead><tr><th scope="col">Tool</th><th scope="col">What it returns</th></tr></thead><tbody>
+      <tr><td><code>list_datasets()</code></td><td>every dataset in the catalog with row counts, update dates, and full-query availability</td></tr>
+      <tr><td><code>get_dataset_info(slug)</code></td><td>one dataset's file list with rows, bytes, SHA-256, attribution, license, and query tips</td></tr>
+      <tr><td><code>get_sample(slug, format)</code></td><td>free preview rows, about 22 per dataset, JSON or CSV</td></tr>
+      <tr><td><code>query_dataset(slug, {...})</code></td><td>filter and paginate the full file: <code>where</code> clauses with <code>=</code>, <code>contains</code>, <code>gt</code>, <code>lt</code>, column picking, 100 rows per call, <code>next_offset</code> paging</td></tr>
+      <tr><td><code>get_stats(slug, {...})</code></td><td>row count, non-empty and unique counts, numeric min/max/mean, top-N frequencies</td></tr>
+    </tbody></table></div>
+
+    <h3>list_datasets() output</h3>
+<pre>{
+  "catalog": "Data Vault",
+  "last_built": "2026-09-09",
+  "count": 6,
+  "datasets": [
+    {
+      "slug": "nfl-games",
+      "name": "NFL Games &amp; Betting Lines 1999-2026",
+      "stats": { "rows": 7548, "tables": 3, "columns": 46, "updated": "2026-09-06" },
+      "full_query": { "available": true, "release": "https://github.com/jayjex/dataset-mcp/releases/tag/data-v1" }
+    },
+    ...
+  ]
+}</pre>
+
+    <h3>query_dataset() output: Texas 2-bedroom rents</h3>
+<pre>query_dataset("hud-fmr-2026",
+  { where: [{ column: "state", op: "=", value: "TX" }],
+    columns: ["zip", "area_name", "fmr_2br"], limit: 2 })
+
+total_rows_in_file: 51895 | total_matched: 3247 | next_offset: 2
+sha256: 04ffb4597f37de264a2e3c91d39462b44539f650bd7f30b2938ca73971fbe975
+  {"zip": "76437", "area_name": "Abilene, TX MSA", "fmr_2br": "1090"}
+  {"zip": "76443", "area_name": "Abilene, TX MSA", "fmr_2br": "1090"}</pre>
+
+    <h3>get_stats() output: NYC Airbnb prices</h3>
+<pre>get_stats("airbnb-six-cities", { file: "airbnb-new-york-city.csv", column: "price" })
+
+rows: 30234 | non_empty: 20331 | unique_count: 12114
+numeric: min 4.58 | max 31210.79 | mean 267.35
+top values: 59.11 x62, 61.01 x45, 209.00 x32, 279.00 x30, 165.93 x28</pre>
+  </section>
+
+  <section aria-label="earn-bounty-scanner tools">
+    <h2 id="earn-bounty-scanner">earn-bounty-scanner: 3 tools over the live Earn feed</h2>
+    <p>Version 1.0.0, listed in the MCP registry as <code>io.github.jayjex/earn-bounty-scanner</code>. It wraps public superteam.fun API endpoints with plain fetch, no auth, and returns the full description text through an undocumented search-index endpoint. Where dataset-mcp serves the fixed 2026-09-04 snapshot, this server answers with the feed as it is at call time.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="earn-bounty-scanner tools"><table><thead><tr><th scope="col">Tool</th><th scope="col">What it returns</th></tr></thead><tbody>
+      <tr><td><code>search_bounties(query)</code></td><td>bounties matching a keyword with id, title, reward, deadline, status, agentAccess, sponsor, and the full description text; short single keywords recall best</td></tr>
+      <tr><td><code>get_bounty(id)</code></td><td>one bounty's complete details by listing uuid, including full description text</td></tr>
+      <tr><td><code>recent_bounties()</code></td><td>currently OPEN bounties from the live feed, page 1, newest first, with agentAccess flags</td></tr>
+    </tbody></table></div>
+    <p><code>agentAccess</code> is the field agents care about: <code>AGENT_ALLOWED</code> means an agent may submit, <code>HUMAN_ONLY</code> means bot submitters are barred.</p>
+
+    <h3>recent_bounties() output</h3>
+<pre>{
+  "count": 26,
+  "bounties": [
+    {
+      "title": "Create Content for Breakpoint 2026",
+      "status": "OPEN",
+      "rewardAmount": 8000,
+      "token": "USDG",
+      "deadline": "2026-09-07T21:59:59.999Z",
+      "agentAccess": "HUMAN_ONLY",
+      "sponsor": "Superteam Germany",
+      "url": "https://superteam.fun/earn/listings/bounty/create-content-for-breakpoint-2026"
+    },
+    {
+      "title": "Solana Summit Serbia Content Bounty: $10,000 for the best summit content",
+      "status": "OPEN",
+      "rewardAmount": 10000,
+      "token": "USDG",
+      "deadline": "2026-09-10T21:59:59.000Z",
+      "agentAccess": "HUMAN_ONLY",
+      "sponsor": "Superteam Balkan"
+    },
+    ...
+  ]
+}</pre>
+
+    <h3>search_bounties() output: keyword "solana"</h3>
+<pre>{
+  "query": "solana",
+  "count": 5,
+  "results": [
+    {
+      "title": "Solana Summit Serbia Content Bounty: $10,000 for the best summit content",
+      "rewardAmount": 10000,
+      "token": "USDG",
+      "status": "OPEN",
+      "sponsor": "Superteam Balkan",
+      "description": "Solana Summit Serbia is the biggest Solana event in Europe this summer: a two-day
+conference on Aug 26-27 at Sava Centar, Belgrade ... Prizes: 20 winners x $500 ..."
+    },
+    ...
+  ]
+}</pre>
+    <p>The description field carries the complete bounty text, not a teaser, so the agent reads requirements and judges fit without opening a browser. Hyphenated titles return 0 search rows; search one distinctive word instead.</p>
+  </section>
+
+  <section aria-label="solana-research-library tools">
+    <h2 id="solana-research-library">solana-research-library: 4 tools over a research database</h2>
+    <p>Version 1.0.0. It serves a curated intelligence DB of 25 Solana/web3 earning platforms, each field-probed on 2026-09-04 with a verdict (<code>LIVE-RAIL</code> / <code>USER-GATED</code> / <code>CONDITIONAL-PASS</code> / <code>WATCHLIST</code> / <code>DEAD</code>), the exact payout rail, the KYC gate, and evidence notes. The database ships inside the package, so tools answer instantly and an upstream outage cannot fail a call.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="solana-research-library tools"><table><thead><tr><th scope="col">Tool</th><th scope="col">What it returns</th></tr></thead><tbody>
+      <tr><td><code>list_topics()</code></td><td>the index of all 25 entries: platform, category, verdict, payout rail, KYC, chains</td></tr>
+      <tr><td><code>get_topic(idOrName)</code></td><td>one entry's full evidence notes and source brief, matched by id, exact name, or unique fragment</td></tr>
+      <tr><td><code>search_topics(query)</code></td><td>keyword search over names, categories, rails, KYC gates, and notes, ranked by term frequency</td></tr>
+      <tr><td><code>stats()</code></td><td>dataset shape: verdict mix, category mix, KYC-free share, crypto-rail share, live-rail shortlist</td></tr>
+    </tbody></table></div>
+
+    <h3>search_topics() output: "no KYC"</h3>
+<pre>{
+  "query": "no KYC",
+  "matches": 6,
+  "topics": [
+    {
+      "id": "apify-store",
+      "platform": "Apify Store (scraper marketplace)",
+      "verdict": "DEAD",
+      "payoutRail": "fiat only — PayPal/Wise ($20 min) or other fiat ($100 min); NO crypto",
+      "kyc": "mandatory: gov ID, proof of address, tax docs, UBO info",
+      "snippet": "Demand real ($1M+/mo paid to devs, 54.5k Actors, 80% dev share ...) ...
+Usable ONLY as free distribution upselling to your own x402 endpoints."
+    },
+    ...
+  ]
+}</pre>
+
+    <h3>get_topic() output: "bountybook"</h3>
+<pre>{
+  "id": "bountybook",
+  "platform": "Bountybook.ai agent-bounty venue",
+  "category": "agent-bounties",
+  "verdict": "CONDITIONAL-PASS",
+  "payoutRail": "USDC on Base escrowed (official USDC 0x833589fC…A02913) into treasury
+0x1bc6c226…, instant release on oracle pass",
+  "kyc": "none (wallet nonce auth; claiming/submitting free)",
+  "notes": "API-only flow (claim, submit, get paid), no browser needed. /stats: 206 jobs,
+$947 budget, $174.71 totalPaidOut, 54 completed. Experimental PoC, unaudited contracts,
+LLM oracle final + probabilistic ... Treat as submit-only, never deposit, expect rejects.",
+  "source": "x402-bounty-audit.md (2026-09-04)"
+}</pre>
+
+    <h3>stats() output</h3>
+<pre>{
+  "entries": 25,
+  "verdictMix": { "LIVE-RAIL": 4, "USER-GATED": 6, "CONDITIONAL-PASS": 2, "WATCHLIST": 2, "DEAD": 11 },
+  "kycFreeEntries": 13,
+  "cryptoRailEntries": 18,
+  "liveRails": ["x402 pay-per-call data endpoints", "FiatDock MCP marketplace",
+                "First Dollar bounty platform", "Hive write-to-earn"]
+}</pre>
+    <p>The 11 DEAD entries are kill-logged with reasons, so an agent checking this library skips re-researching lanes that already failed verification.</p>
+  </section>
+
+  <section aria-label="Connect all three">
+    <h2>Connect all three at once</h2>
+    <p>Drop this into <code>claude_desktop_config.json</code> (or the <code>mcp_servers</code> TOML form for pi and Codex) and restart the client:</p>
+<pre>{
+  "mcpServers": {
+    "dataset-mcp": {
+      "command": "npx",
+      "args": ["-y", "github:jayjex/dataset-mcp"]
+    },
+    "earn-bounty-scanner": {
+      "command": "npx",
+      "args": ["-y", "earn-bounty-scanner"]
+    },
+    "solana-research-library": {
+      "command": "npx",
+      "args": ["-y", "solana-research-library"]
+    }
+  }
+}</pre>
+    <p>On npm 12, dataset-mcp needs <code>--allow-git=all</code> before <code>-y</code>; see the <a href="../guides/mcp-claude-desktop.html">MCP server for Claude Desktop guide</a> for that and the full walkthrough.</p>
+    <p>To verify a server's tool list yourself, the raw JSON-RPC over stdio is three lines: an <code>initialize</code> request, <code>notifications/initialized</code>, then <code>{"jsonrpc":"2.0","id":2,"method":"tools/list"}</code>. The response is the same list a client shows in its tools menu.</p>
+  </section>
+
+  <section aria-label="Full packs">
+    <h2>Get the full pack</h2>
+    <p>These servers answer questions. A real project usually wants the raw files in its own pipeline: pinned snapshots, spreadsheets, scripts that run without a chat client. The complete packs behind the datasets are available as one-off downloads:</p>
+    <p><a class="btn" href="https://www.getly.store/store/mtmw06l2" rel="noopener">Get the full pack</a></p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Full packs"><table><thead><tr><th scope="col">Pack</th><th scope="col">Rows</th><th scope="col">What you get</th></tr></thead><tbody>
+      <tr><td><a href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h" rel="noopener">NFL games and betting lines 1999-2026</a></td><td>7,548</td><td>full CSV zip: scores, spreads, totals, moneylines</td></tr>
+      <tr><td><a href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">HUD Fair Market Rents FY2026</a></td><td>51,895</td><td>ZIP, county, and state tables with a data dictionary</td></tr>
+      <tr><td><a href="https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtpkvxdf" rel="noopener">Airbnb listings, 6 US cities</a></td><td>90,169</td><td>per-city CSVs, 2026 snapshots</td></tr>
+      <tr><td><a href="https://www.getly.store/product/superteam-earn-28-live-listings-dataset-186-reverse-engineered-api-routes-mtmy11ny" rel="noopener">Superteam Earn listings and API routes</a></td><td>51 cards</td><td>cards file plus 186+ reverse-engineered API routes</td></tr>
+    </tbody></table></div>
+    <p>Sample files stay free on the <a href="../free-datasets-for-ai-agents.html">free datasets for AI agents</a> page, and the tool-level docs live on the <a href="../agents/mcp-dataset-server.html">dataset-mcp server page</a>. For the data behind the examples above, see the <a href="../guides/hud-rent-data-explained.html">HUD rent data guide</a> and the <a href="../guides/solana-bounties-data-guide.html">Superteam Earn data guide</a>.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>What is an MCP tools list?</h3>
+    <p>The set of tools an MCP server advertises to clients. Your client sends a <code>tools/list</code> request over JSON-RPC, the server responds with each tool's name, description, and input schema, and that response fills the tools menu in Claude Desktop or any other MCP client. This page indexes the 12 tools our three servers advertise.</p>
+    <h3>How do I list an MCP server's tools myself?</h3>
+    <p>Start the server over stdio, send an <code>initialize</code> request, then <code>notifications/initialized</code>, then a <code>tools/list</code> request. The server answers with the full tool catalog. Calling a tool is the same transport: a <code>tools/call</code> request with a name and arguments returns the output.</p>
+    <h3>Which server should I use for Superteam Earn data?</h3>
+    <p><a href="#earn-bounty-scanner">earn-bounty-scanner</a> for live data: it fetches superteam.fun at call time, so rewards and deadlines are current. <a href="#dataset-mcp">dataset-mcp</a> for a fixed snapshot: the earn-bounties dataset is a 51-card capture from 2026-09-04 with SHA-256 verification, which suits reproducible pipelines.</p>
+    <h3>Are these MCP servers free to run?</h3>
+    <p>Yes. All three are MIT-licensed and run locally over stdio with no API key. dataset-mcp downloads its data files once from a public GitHub release, earn-bounty-scanner fetches superteam.fun per call, and solana-research-library ships its database inside the package with no network calls.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Real Estate Data Download: HUD Rent Benchmarks + Airbnb Listings (CSV) | Data Vault</title>
+<meta name="description" content="Free real estate data you can actually download as CSV: HUD FY2026 fair market rents for 51,895 ZIP codes (public domain) and 90,169 Airbnb listings across 6 US cities (CC BY 4.0). Free samples, no signup.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/free-real-estate-data.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Free Real Estate Data Download: HUD Rent Benchmarks + Airbnb Listings (CSV)">
+<meta property="og:description" content="Free real estate data you can actually download as CSV: HUD FY2026 fair market rents for 51,895 ZIP codes (public domain) and 90,169 Airbnb listings across 6 US cities (CC BY 4.0).">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/free-real-estate-data.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Free Real Estate Data Download: HUD Rent Benchmarks and Airbnb Listings as CSV", "description": "Free real estate data downloads for investors and analysts: HUD FY2026 Fair Market Rents (51,895 ZIP rows, public domain) and Inside Airbnb snapshots (90,169 listings in 6 cities, CC BY 4.0), with free samples, license notes, and a ZIP-level join workflow.", "datePublished": "2026-09-07", "dateModified": "2026-09-07", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/free-real-estate-data.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}, "mentions": [{"@type": "Dataset", "name": "Airbnb Listings, 6 US Cities", "url": "https://jayjex.github.io/data-vault/datasets/airbnb-six-cities.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Free real estate data download guide", "item": "https://jayjex.github.io/data-vault/guides/free-real-estate-data.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+{"@type": "Question", "name": "Where can I download free real estate data as CSV?", "acceptedAnswer": {"@type": "Answer", "text": "Two sources cover most rental-analysis needs. HUD publishes its FY2026 Fair Market Rent tables as US government data: 51,895 ZIP-level rows with rents for studios through 4-bedroom units. Inside Airbnb publishes listing snapshots under CC BY 4.0; the six-city pack here holds 90,169 listings in one schema. On this page, a 22-row HUD sample, the complete 52-row state summary, a 20-row Airbnb sample, and the complete 6-row city index all download free with no signup."}},
+{"@type": "Question", "name": "Is HUD fair market rent data free for commercial use?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. HUD's Fair Market Rent data is US government work in the public domain, so you can use it in client deliverables, models, or republished tables with no credit line required. The Inside Airbnb data is different: CC BY 4.0 allows commercial use, but the credit line (Data by Inside Airbnb, InsideAirbnb.com, CC BY 4.0) must stay with any redistribution."}},
+{"@type": "Question", "name": "Can I check the full files before downloading them?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The dataset-mcp server answers read-only queries against the complete files, free, with no API key: 100 rows per call, filters on any column. For example, query_dataset(\"airbnb-six-cities\", {where: [{column: \"neighbourhood\", op: \"=\", value: \"78701\"}], limit: 5}) returns five listings in downtown Austin."}},
+{"@type": "Question", "name": "How do investors use rent benchmark data together with listings data?", "acceptedAnswer": {"@type": "Answer", "text": "The two files join on ZIP code: the Airbnb neighbourhood column holds a ZIP code area, and the HUD table has one FMR row per ZIP. Analysts compare a market's median nightly rate against the local FMR for the same bedroom count, flag listings priced far above the FMR ceiling, and screen ZIPs where high FMR and high availability signal a market with both short-term and long-term demand."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../datasets/hud-fmr-2026.html">Rent data</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Free real estate data download: rent benchmarks and short-term-rental listings</h1>
+  <p class="byline">Guide for investors and analysts · checked 2026-09-07 · covers the <a href="../datasets/hud-fmr-2026.html">HUD Fair Market Rents FY2026</a> and <a href="../datasets/airbnb-six-cities.html">Airbnb Listings, 6 US Cities</a> packs</p>
+
+  <section aria-label="Quick answer">
+    <p>Search for a free real estate data download and you mostly find gated dashboards and PDFs with the numbers stripped out. Two sources skip all of that: HUD's FY2026 Fair Market Rent tables and Inside Airbnb's listing snapshots. Both are files you download and keep. HUD's data is US government work, public domain, no conditions attached. Inside Airbnb publishes under CC BY 4.0, which allows commercial work as long as the credit line stays with the data. This page walks through both downloads, links the free samples inline, and shows how the two datasets work together in a rental screening workflow.</p>
+  </section>
+
+  <section aria-label="The two sources">
+    <h2>The two sources, and what each license allows</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Free real estate data sources"><table>
+      <thead><tr><th scope="col">Source</th><th scope="col">What you get</th><th scope="col">License / terms</th><th scope="col">Verified</th></tr></thead>
+      <tbody>
+        <tr><td><a href="../datasets/hud-fmr-2026.html">HUD Fair Market Rents FY2026</a></td><td>Rent benchmarks for 51,895 ZIP codes, 3,229 counties, 52 states, five bedroom sizes per row</td><td><a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="noopener">Public domain</a>, US government data, commercial use with no conditions</td><td>2026-09-07</td></tr>
+        <tr><td><a href="../datasets/airbnb-six-cities.html">Inside Airbnb snapshots, 6 cities</a></td><td>90,169 listings with nightly price, room type, ZIP-level area, availability, review counts</td><td><a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>, commercial use with the credit line kept</td><td>2026-09-07</td></tr>
+      </tbody>
+    </table></div>
+    <p>One caution about "free real estate data" you find elsewhere: aggregator sites republish Zillow or MLS numbers under terms that rarely permit redistribution, and several market them as public. The two sources above state their terms on the record. For license details pack by pack, the <a href="public-domain-datasets.html">public domain datasets guide</a> lists the exact credit strings.</p>
+  </section>
+
+  <section aria-label="Download 1: HUD fair market rents">
+    <h2>Download 1: HUD Fair Market Rents FY2026</h2>
+    <p>FMR is HUD's rent benchmark: what a modestly priced unit should rent for in each area, and the ceiling housing agencies use for voucher payments. The FY2026 release parses into three tables. fmr-by-zip-2026.csv carries 51,895 rows, one per ZIP, with <code>fmr_0br</code> through <code>fmr_4br</code>, metro status, area name, and state. fmr-by-county-2026.csv carries 3,229 county rows with medians and maxes per bedroom size. state-summary.csv carries 52 rows naming the highest- and lowest-rent county per state.</p>
+    <p>Two of the files are free here with no signup:</p>
+    <ul class="files">
+      <li><a href="../data/hud-fmr-2026/sample.csv" download>sample.csv</a><span class="sz">22 rows, ZIP-level schema · 1.7 KB</span></li>
+      <li><a href="../data/hud-fmr-2026/sample.json" download>sample.json</a><span class="sz">22 records · 5.6 KB</span></li>
+      <li><a href="../data/hud-fmr-2026/state-summary.csv" download>state-summary.csv</a><span class="sz">all 52 rows, complete · 3.9 KB</span></li>
+    </ul>
+    <p>The column-by-column breakdown lives in <a href="hud-rent-data-explained.html">HUD fair market rent data, explained</a>, and <a href="safmr-vs-fmr.html">SAFMR vs FMR</a> covers when ZIP-level rents differ from metro-wide ones.</p>
+  </section>
+
+  <section aria-label="Download 2: Airbnb listings">
+    <h2>Download 2: Airbnb listings across 6 US cities</h2>
+    <p>Inside Airbnb publishes periodic snapshots of each city's listings. Six of them are normalized here into one 12-column schema: 90,169 listings, snapshot dates June through August 2026. Each row holds the nightly price in USD, room type, ZIP-level <code>neighbourhood</code>, blurred coordinates (about 11 meters), <code>minimum_nights</code>, <code>availability_365</code>, and review counts. Host names and exact coordinates are stripped upstream.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Per-city listings"><table>
+      <thead><tr><th scope="col">City</th><th scope="col">Snapshot date</th><th scope="col">Listings</th></tr></thead>
+      <tbody>
+        <tr><td>Austin, TX</td><td>2026-06-22</td><td>11,295</td></tr>
+        <tr><td>Nashville, TN</td><td>2026-06-26</td><td>10,242</td></tr>
+        <tr><td>Denver, CO</td><td>2026-06-30</td><td>4,939</td></tr>
+        <tr><td>Las Vegas (Clark County), NV</td><td>2026-06-27</td><td>20,234</td></tr>
+        <tr><td>New York City, NY</td><td>2026-08-10</td><td>30,234</td></tr>
+        <tr><td>San Diego, CA</td><td>2026-06-27</td><td>13,225</td></tr>
+      </tbody>
+    </table></div>
+    <p>Free files with no signup:</p>
+    <ul class="files">
+      <li><a href="../data/airbnb-six-cities/sample.csv" download>sample.csv</a><span class="sz">20 rows, Austin · 2.6 KB</span></li>
+      <li><a href="../data/airbnb-six-cities/sample.json" download>sample.json</a><span class="sz">20 records · 7.7 KB</span></li>
+      <li><a href="../data/airbnb-six-cities/cities-index.csv" download>cities-index.csv</a><span class="sz">all 6 rows, complete per-city index · 1.1 KB</span></li>
+    </ul>
+    <p>The <a href="airbnb-data-sample.html">Airbnb dataset sample page</a> explains all 12 columns, and <a href="inside-airbnb-alternative.html">Inside Airbnb alternative</a> covers what a normalized six-city copy adds over the raw per-city downloads.</p>
+  </section>
+
+  <section aria-label="Using the two together">
+    <h2>How investors and analysts use the two together</h2>
+    <p>Both files join on ZIP. The Airbnb <code>neighbourhood</code> column holds a ZIP code area, and the HUD table has one FMR row per ZIP, so a spreadsheet VLOOKUP or one SQL join puts a monthly benchmark next to every listing. Three questions that combination answers:</p>
+    <ul>
+      <li><strong>Screen a market before touring it.</strong> Compare a city's median nightly rate (Austin's sits at USD 217 in the June 2026 snapshot) against the local FMR for the same bedroom count, using the free <a href="../data/airbnb-six-cities/cities-index.csv" download>cities-index.csv</a> and <a href="../data/hud-fmr-2026/state-summary.csv" download>state-summary.csv</a>.</li>
+      <li><strong>Flag pricing that depends on premium demand.</strong> FMR is what HUD judges a modest unit to rent for, so a long-term listing priced far above the FMR ceiling is a bet on a stronger tenant than the market median.</li>
+      <li><strong>Test short-term-rental feasibility by ZIP.</strong> High FMR plus high <code>availability_365</code> points to a ZIP where short-term leases face little long-term competition and the underlying rent level still supports a fallback strategy.</li>
+    </ul>
+    <p>Every number needed for these checks is on this page or in the free files above.</p>
+  </section>
+
+  <section aria-label="Query before downloading">
+    <h2>Query the full files free, no key</h2>
+    <p>Twenty or 22 rows prove a schema but answer no real question. The dataset-mcp server covers that step: read-only queries against the complete files, 100 rows per call, filters on any column, no API key.</p>
+    <pre>npx --allow-git=all -y github:jayjex/dataset-mcp</pre>
+    <p>Five listings in downtown Austin, by ZIP:</p>
+    <pre>query_dataset("airbnb-six-cities", {where: [{column: "neighbourhood", op: "=", value: "78701"}], limit: 5})</pre>
+    <p>Setup steps and more worked examples live on the <a href="../agents/">for agents</a> page.</p>
+  </section>
+
+  <section aria-label="Sample vs full pack">
+    <h2>Free sample vs full pack</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Sample vs full"><table>
+      <thead><tr><th scope="col"></th><th scope="col">Free on this page</th><th scope="col">Full pack</th></tr></thead>
+      <tbody>
+        <tr><td>HUD ZIP table</td><td>22-row sample</td><td>all 51,895 rows</td></tr>
+        <tr><td>HUD county table</td><td>not included</td><td>3,229 rows</td></tr>
+        <tr><td>HUD state summary</td><td>all 52 rows</td><td>all 52 rows</td></tr>
+        <tr><td>Airbnb listings</td><td>20-row sample</td><td>all 90,169 rows, per-city CSVs</td></tr>
+        <tr><td>Per-city index</td><td>all 6 rows</td><td>all 6 rows</td></tr>
+        <tr><td>Data dictionary</td><td>the linked guides</td><td>full dictionary + source checksums</td></tr>
+        <tr><td>MCP queries</td><td colspan="2">full files, free, 100 rows/call, no key</td></tr>
+      </tbody>
+    </table></div>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>Download HUD sample (CSV)</a>
+      <a class="btn-ghost btn" href="../data/airbnb-six-cities/sample.csv" download>Download Airbnb sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/store/mtmw06l2" rel="noopener">Get the full pack</a>
+    </div>
+    <p class="btn-note">Full packs: the complete HUD FY2026 tables (51,895 + 3,229 + 52 rows) and the 90,169-row Airbnb six-city pack, each with data dictionary and source checksums. Checkout and download run through Getly.</p>
+  </section>
+
+  <section aria-label="Licenses">
+    <h2>Licenses in one paragraph</h2>
+    <p>HUD FY2026 FMR data is US government data in the public domain: use it in client work, models, or republished tables with no credit required. The Inside Airbnb rows are CC BY 4.0: commercial use allowed, and the line "Data by Inside Airbnb, InsideAirbnb.com, CC BY 4.0" stays with any redistribution. The <a href="public-domain-datasets.html">public domain datasets guide</a> maps both cases with the exact credit strings.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>Where can I download free real estate data as CSV?</h3>
+    <p>Two sources cover most rental-analysis needs. HUD publishes its FY2026 Fair Market Rent tables as US government data: 51,895 ZIP-level rows with rents for studios through 4-bedroom units. Inside Airbnb publishes listing snapshots under CC BY 4.0, and the six-city pack here holds 90,169 listings in one schema. On this page, a <a href="../data/hud-fmr-2026/sample.csv" download>22-row HUD sample</a>, the <a href="../data/hud-fmr-2026/state-summary.csv" download>complete 52-row state summary</a>, a <a href="../data/airbnb-six-cities/sample.csv" download>20-row Airbnb sample</a>, and the <a href="../data/airbnb-six-cities/cities-index.csv" download>complete 6-row city index</a> all download free with no signup.</p>
+    <h3>Is HUD fair market rent data free for commercial use?</h3>
+    <p>Yes. HUD's FMR data is US government work in the public domain, so you can ship it in client deliverables, models, or republished tables with no credit line required. Inside Airbnb data is the different case: CC BY 4.0 allows commercial use, but the credit line "Data by Inside Airbnb, InsideAirbnb.com, CC BY 4.0" must stay with any redistribution.</p>
+    <h3>Can I check the full files before downloading them?</h3>
+    <p>Yes. The dataset-mcp server answers read-only queries against the complete files, free, with no API key: 100 rows per call, filters on any column. The query example above returns five listings in downtown Austin, and <code>get_stats</code> returns min, max, mean, and top values for any column.</p>
+    <h3>How do investors use rent benchmarks together with listings data?</h3>
+    <p>The two files join on ZIP code: the Airbnb <code>neighbourhood</code> column holds a ZIP code area, and the HUD table has one FMR row per ZIP. Analysts compare a market's median nightly rate against the local FMR for the same bedroom count, flag long-term listings priced far above the FMR ceiling, and screen ZIPs where high FMR and high availability point to both short-term and long-term demand.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

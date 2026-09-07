@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>llms.txt vs sitemap.xml: What Each File Does, With a Live Example | Data Vault</title>
+<meta name="description" content="llms.txt guides LLMs and agents to the pages and endpoints worth reading; sitemap.xml lists every URL for search crawlers. A side-by-side look at a site that runs both, with real snippets.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/llms-txt-vs-sitemap.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="llms.txt vs sitemap.xml: What Each File Does, With a Live Example">
+<meta property="og:description" content="llms.txt guides LLMs and agents to the pages and endpoints worth reading; sitemap.xml lists every URL for search crawlers. Side by side, with real snippets from a site that runs both.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/llms-txt-vs-sitemap.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "llms.txt vs sitemap.xml: What Each File Does, With a Live Example", "description": "llms.txt guides LLMs and agents to the pages and endpoints worth reading; sitemap.xml lists every URL for search crawlers. A side-by-side look at a site that runs both, with real snippets.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/llms-txt-vs-sitemap.html", "about": {"@type": "Thing", "name": "llms.txt vs sitemap.xml"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "llms.txt vs sitemap.xml", "item": "https://jayjex.github.io/data-vault/guides/llms-txt-vs-sitemap.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can llms.txt replace sitemap.xml?", "acceptedAnswer": {"@type": "Answer", "text": "No. The two files serve different readers. sitemap.xml speaks to search engine crawlers that index pages, and llms.txt speaks to LLMs and agents that need to pick the right pages and endpoints to read. A site that wants both search traffic and agent traffic publishes both."}}, {"@type": "Question", "name": "Do search engines use llms.txt for ranking?", "acceptedAnswer": {"@type": "Answer", "text": "Google has said its crawlers ignore llms.txt and it plays no role in ranking. The file is read by AI agents and agent products that choose to fetch it, not by the search index. Publish it for agents, keep the sitemap for search."}}, {"@type": "Question", "name": "Where does robots.txt fit next to llms.txt and sitemap.xml?", "acceptedAnswer": {"@type": "Answer", "text": "robots.txt is the exclusion file: it tells crawlers what not to fetch and, in most setups, carries a Sitemap: line pointing at sitemap.xml. llms.txt is the opposite direction. It recommends what an LLM should read. A typical root directory holds all three, each doing one job."}}, {"@type": "Question", "name": "Which file should I add first?", "acceptedAnswer": {"@type": "Answer", "text": "The sitemap. It is a defined protocol at sitemaps.org, search consoles accept it directly, and it benefits any site that wants pages indexed. Add llms.txt when you also want agents and LLMs to find your machine-readable endpoints, APIs, or key docs without crawling HTML."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>llms.txt vs sitemap.xml: what each file does</h1>
+  <p class="byline">Published 2026-09-10. Snippets below come from the live files on this site: <a href="../sitemap.xml">sitemap.xml</a> and <a href="../llms.txt">llms.txt</a>.</p>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p><code>sitemap.xml</code> is a URL list for search engine crawlers. It tells Googlebot and friends: here is every page on this site, please index them. <code>llms.txt</code> is a guided reading list for LLMs and AI agents. It tells them: start here, these are the pages and endpoints worth your context window, with a one-line description for each.</p>
+    <p>One file wants maximum coverage. The other wants curation. That difference drives everything else: format, discovery, and who reads it.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="llms.txt vs sitemap.xml comparison table"><table><thead><tr><th scope="col"></th><th scope="col">sitemap.xml</th><th scope="col">llms.txt</th></tr></thead><tbody>
+      <tr><td><b>Read by</b></td><td>Search engine crawlers (Googlebot, Bingbot)</td><td>LLMs and AI agents</td></tr>
+      <tr><td><b>Job</b></td><td>Index every page</td><td>Point at the pages and endpoints worth reading</td></tr>
+      <tr><td><b>Format</b></td><td>XML, defined at sitemaps.org</td><td>Markdown, a proposal at llmstxt.org</td></tr>
+      <tr><td><b>Descriptions</b></td><td>URLs only, no per-page summary</td><td>One line per link, plus license and access rules</td></tr>
+      <tr><td><b>Discovery</b></td><td><code>Sitemap:</code> line in robots.txt, or Search Console</td><td>No formal mechanism; agents fetch <code>/llms.txt</code> at the root</td></tr>
+      <tr><td><b>Status</b></td><td>Supported protocol since 2006</td><td>Voluntary convention, no RFC</td></tr>
+      <tr><td><b>Covers</b></td><td>HTML pages (and docs, videos with extensions)</td><td>Pages plus JSON endpoints, APIs, datasets, MCP servers</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section aria-label="What sitemap.xml does">
+    <h2>What sitemap.xml does</h2>
+    <p>A sitemap is machine-generated XML: one <code>&lt;url&gt;</code> block per page with a location and an optional last-modified date. Here are the first lines of ours, unedited:</p>
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;
+  &lt;url&gt;&lt;loc&gt;https://jayjex.github.io/data-vault/&lt;/loc&gt;&lt;lastmod&gt;2026-09-09&lt;/lastmod&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://jayjex.github.io/data-vault/agents/llms-txt-guide.html&lt;/loc&gt;&lt;lastmod&gt;2026-09-09&lt;/lastmod&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html&lt;/loc&gt;&lt;lastmod&gt;2026-09-07&lt;/lastmod&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://jayjex.github.io/data-vault/guides/csv-vs-api.html&lt;/loc&gt;&lt;lastmod&gt;2026-09-09&lt;/lastmod&gt;&lt;/url&gt;
+&lt;/urlset&gt;</code></pre>
+    <p>Every publishable URL goes in, whether it is a dataset page, a guide, or the printables index. Notice what is missing: descriptions. A crawler gets the URL and the date, and it learns what the page says only by fetching and parsing it. That is by design, because a search index wants to rank the page itself, not trust your summary of it.</p>
+    <p>Also missing: everything that is not an HTML page. Our <a href="../catalog.json">catalog.json</a>, the sample CSV endpoints, and the MCP install command have no place in a sitemap. Search crawlers index pages; they do not need a JSON index of datasets.</p>
+  </section>
+
+  <section aria-label="What llms.txt does">
+    <h2>What llms.txt does</h2>
+    <p>llms.txt is markdown written for a different reader. An agent arrives with no browser session and a limited context window. It cannot afford to fetch and parse 30 HTML pages to find the one dataset it needs. The file below is the top of ours, unedited:</p>
+<pre><code># Data Vault
+
+&gt; Sample-first data catalog by Matchbook Labs. Free CSV/JSON samples for every dataset, machine-readable index for agents, full packs sold via Getly.
+
+Base URL: https://jayjex.github.io/data-vault
+Catalog (start here): https://jayjex.github.io/data-vault/catalog.json
+Agent docs: https://jayjex.github.io/data-vault/agents/
+MCP server: npx --allow-git=all -y github:jayjex/dataset-mcp (v1.1.0; tools: list_datasets, get_dataset_info, get_sample, query_dataset, get_stats)
+
+## Datasets
+
+### HUD Fair Market Rents FY2026 (hud-fmr-2026)
+FY2026 fair market rents for 51,895 ZIP codes, 3,229 counties, and 52 states. Five bedroom sizes per row. Niche: gov-data.
+- Sample JSON: https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.json
+- Page: https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html</code></pre>
+    <p>Three things a sitemap cannot do, this file does in the first screenful:</p>
+    <ul>
+      <li><b>It describes.</b> Each entry carries a one-line summary, so an agent can decide relevance before fetching anything else. The blockquote alone settles "what is this site."</li>
+      <li><b>It covers endpoints, not just pages.</b> catalog.json, sample JSON URLs, and the MCP install command are first-class entries. An agent that only reads this file still knows how to query the data.</li>
+      <li><b>It carries the rules.</b> License and attribution terms sit in the same payload, so an agent reads them before copying data, not after.</li>
+    </ul>
+    <p>The tradeoff is reach. Nothing guarantees an agent will look for the file. It is a convention sites adopt voluntarily, read by the agent products that choose to check for it. Google's crawlers ignore it entirely.</p>
+  </section>
+
+  <section aria-label="Same site, both files">
+    <h2>Same site, both files: what each one contributes</h2>
+    <p>This catalog runs both, which makes the division of labor easy to see. The <a href="../sitemap.xml">sitemap</a> lists all 34 pages and exists so Google indexes the dataset and guide pages at all. The <a href="../llms.txt">llms.txt</a> is shorter, curated, and ends with access rules instead of URL blocks.</p>
+    <p>The two files overlap on almost nothing. A dataset like <a href="../datasets/hud-fmr-2026.html">HUD fair market rents</a> appears in both, but as different payloads: a bare URL with a date in the sitemap, versus row counts, sample endpoints, and a link to the full-data page in llms.txt. The sitemap entry gets the page indexed for someone searching rent data. The llms.txt entry gets the dataset used by an agent building something with rent data.</p>
+    <p>If you deleted one file, the loss would be asymmetric. Lose the sitemap and search indexing degrades to whatever links crawlers stumble across. Lose llms.txt and agents fall back to crawling HTML, which is slower and burns their context, but still possible. That is the honest ranking of stakes: the sitemap protects an established channel, llms.txt improves an emerging one.</p>
+  </section>
+
+  <section aria-label="Do you need both">
+    <h2>Do you need both?</h2>
+    <p>If your site serves humans through search and serves agents through data or docs, yes, and the setup cost is two static files. Sitemap first: it is a settled protocol, search consoles accept it directly, and any content site benefits. Add llms.txt when agents are or should be part of your audience, which today mostly means sites with APIs, datasets, or substantial documentation.</p>
+    <p>Two rules keep the files honest. Keep the sitemap exhaustive and the llms.txt curated. And keep llms.txt links absolute, because agents may read the file far from your site where relative paths break. Our <a href="../agents/llms-txt-guide.html">llms.txt structure guide</a> covers the format in depth, including a link-checker script.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>Can llms.txt replace sitemap.xml?</h3>
+    <p>No. The two files serve different readers. sitemap.xml speaks to search engine crawlers that index pages, and llms.txt speaks to LLMs and agents that need to pick the right pages and endpoints to read. A site that wants both search traffic and agent traffic publishes both.</p>
+    <h3>Do search engines use llms.txt for ranking?</h3>
+    <p>Google has said its crawlers ignore llms.txt and it plays no role in ranking. The file is read by AI agents and agent products that choose to fetch it, not by the search index. Publish it for agents, keep the sitemap for search.</p>
+    <h3>Where does robots.txt fit next to llms.txt and sitemap.xml?</h3>
+    <p>robots.txt is the exclusion file: it tells crawlers what not to fetch and, in most setups, carries a <code>Sitemap:</code> line pointing at sitemap.xml. llms.txt is the opposite direction. It recommends what an LLM should read. A typical root directory holds all three, each doing one job.</p>
+    <h3>Which file should I add first?</h3>
+    <p>The sitemap. It is a defined protocol at sitemaps.org, search consoles accept it directly, and it benefits any site that wants pages indexed. Add llms.txt when you also want agents and LLMs to find your machine-readable endpoints, APIs, or key docs without crawling HTML.</p>
+  </section>
+
+  <section aria-label="Get the full pack">
+    <h2>Get the full pack</h2>
+    <p>The packs this catalog sells are the full versions of the datasets above: complete CSVs with data dictionaries, source checksums, and licensing for personal and commercial use. Free samples for every dataset stay open, and agents can query them through the free MCP server.</p>
+    <a class="btn" href="https://www.getly.store/store/mtmw06l2" rel="noopener">Get the full pack</a>
+    <p class="btn-note">Checkout and download run through Getly. Want to see data quality first? Fetch any <a href="../">free sample</a> or read the <a href="../guides/how-we-sell-public-data.html">pipeline behind the packs</a>.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

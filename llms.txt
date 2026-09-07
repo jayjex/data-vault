@@ -28,6 +28,7 @@ FY2026 fair market rents for 51,895 ZIP codes, 3,229 counties, and 52 states. Fi
 - Sample CSV: https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.csv
 - Page: https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html
 - Texas guide: https://jayjex.github.io/data-vault/guides/hud-fmr-texas.html (state=TX filter, 3,247 ZIP rows, metro table, free state-summary.csv)
+- County guide: https://jayjex.github.io/data-vault/guides/hud-fmr-by-county.html (3,229 county rows, Harris County TX query example, median/max rollup explainer)
 - Full data: [Get full data](https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm)
 
 ### Airbnb Listings, 6 US Cities (airbnb-six-cities)

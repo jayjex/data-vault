@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSV vs Excel: Which File Format for Data Analysis? | Data Vault</title>
+<meta name="description" content="CSV vs Excel for data work: a per-scenario decision matrix, the HUD workbook war story, and what an Excel round trip does to dates, ZIP codes, and encoding.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/csv-vs-excel-data-analysis.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="CSV vs Excel: Which File Format for Data Analysis?">
+<meta property="og:description" content="A per-scenario decision matrix for CSV versus XLSX, the HUD workbook war story, and what an Excel round trip does to dates, ZIP codes, and encoding.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/csv-vs-excel-data-analysis.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "CSV vs Excel: Which File Format for Data Analysis?", "description": "CSV vs Excel for data work: a per-scenario decision matrix, the HUD workbook war story, and what an Excel round trip does to dates, ZIP codes, and encoding.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/csv-vs-excel-data-analysis.html", "about": {"@type": "Thing", "name": "CSV versus Excel for data analysis"}, "mentions": [{"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}, {"@type": "Article", "name": "FMR Dataset Download: Fair Market Rent CSV, Ready for pandas", "url": "https://jayjex.github.io/data-vault/guides/fmr-dataset-download.html"}, {"@type": "Article", "name": "CSV Encoding: UTF-8, the Excel BOM, and Windows-1252, With Real Files", "url": "https://jayjex.github.io/data-vault/guides/csv-encoding-utf8.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "CSV vs Excel for data analysis", "item": "https://jayjex.github.io/data-vault/guides/csv-vs-excel-data-analysis.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is CSV or Excel (XLSX) better for data analysis?", "acceptedAnswer": {"@type": "Answer", "text": "For analysis that code will run (pandas, R, SQL, or a query tool), CSV: one flat table, no formulas to break, loadable in one line like pd.read_csv. Excel wins when the workbook itself is the deliverable: formulas that recompute, several sheets, formatting a reviewer reads. HUD's FY2026 rent release ships both ways: two official XLSX workbooks that fight parsers, and the same numbers cleaned into a 51,895-row CSV that loads with zero type fixes beyond reading ZIP codes as text."}}, {"@type": "Question", "name": "What does Excel change when it opens and saves a CSV?", "acceptedAnswer": {"@type": "Answer", "text": "Three things, all reproducible: ZIP codes lose leading zeros, so 00601 becomes 601 (3,533 rows in our 51,895-row HUD file start with zero); ISO dates like 2026-09-09 come back in the locale's display format on save; and the 'CSV UTF-8' save option writes a BOM that renames the first column in Python (the header zip becomes \\ufeffzip). Long numeric IDs can return in scientific notation with trailing digits lost. None of this shows a warning dialog."}}, {"@type": "Question", "name": "How do I convert an Excel workbook to CSV without losing data?", "acceptedAnswer": {"@type": "Answer", "text": "Excel exports only the active sheet, and formulas export as their last calculated values, not their definitions, so a multi-sheet workbook becomes one CSV per sheet. Expect the format itself to resist: HUD's county workbook FY26_FMRs_revised.xlsx ships a malformed timestamp in its document properties (2026- 2-19T18:17:31Z) that stops openpyxl with 'Unable to read workbook: could not read properties' before any row loads; the fix was unzipping the xlsx, patching the property files, and rezipping. Save the export as UTF-8, then verify the leading-zero and date columns survived before the file goes anywhere."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../tools/scraping-scripts.html">Tools</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>CSV vs Excel: which format for your data?</h1>
+  <p class="byline">Published 2026-09-10. Every error string and row count on this page comes from the <a href="fmr-dataset-download.html">FMR dataset download</a> build and the free sample files on this site, checked 2026-09-10. Data Vault is not affiliated with HUD.</p>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>Ship a CSV when the file is one flat table that code will read: one row per record, one header line, text all the way down. Ship an XLSX when the workbook is the product: several sheets, formulas that recompute, formatting a human reviews. The two formats fail in different ways, and the amount of machinery between your data and the reader decides which failure modes you inherit.</p>
+    <p>One government release demonstrates both sides. HUD publishes FY2026 fair market rents as two Excel workbooks that resist parsers in three separate layers, and the same numbers exist on this site as a 51,895-row CSV that loads in one <code>pd.read_csv</code> call. That case study sits in the middle of this page, followed by a per-scenario decision matrix and the round-trip trap that catches people who move between the two formats casually.</p>
+  </section>
+
+  <section aria-label="What each format actually is">
+    <h2>What each format actually is</h2>
+    <p>A CSV file is plain text: header row, comma-separated values, one record per line, UTF-8 or another single encoding. That is the whole spec, which is why pandas, R, jq, every database loader, every spreadsheet, and every version-control system read it without a library decision. The trade is symmetry: no formulas, no types, no sheets, no formatting. What is on disk is what everyone sees, byte for byte, which is also why <code>git diff</code> on a CSV produces a readable review and <code>git diff</code> on an XLSX produces a binary shrug.</p>
+    <p>An XLSX file is a zip archive of XML parts: the sheet data, a shared-strings table, styles, and document properties. Excel assembles and renders all of it, which is where its powers come from: formulas stored as definitions rather than results, values recalculated on open, multiple sheets in one file, freeze panes and number formats that survive round trips between Excel users. The trade is the machinery. More layers mean more places to refuse to open, and a file that needs Excel, openpyxl, or another spreadsheet library to touch at all. The next section shows what one malformed property file does to that stack.</p>
+  </section>
+
+  <section aria-label="Case study: HUD workbooks versus one CSV">
+    <h2>Case study: HUD's two workbooks versus our one CSV</h2>
+    <p>We built the <a href="../datasets/hud-fmr-2026.html">HUD Fair Market Rents FY2026</a> pack by parsing HUD's two official workbooks with openpyxl. The parse works now. The first pass hit three problems, one per XLSX layer, and each is documented with verbatim strings in the <a href="fmr-dataset-download.html">FMR dataset download</a> guide:</p>
+    <p><strong>The document properties refused to load.</strong> The county workbook <code>FY26_FMRs_revised.xlsx</code> ships with a malformed timestamp in its document properties, <code>2026- 2-19T18:17:31Z</code>, a space where the month padding should be. openpyxl dies with <code>Unable to read workbook: could not read properties</code> before a single row is visible. The fix ran below the file format entirely: unzip the xlsx, patch the two property files with a regex, rezip. A spreadsheet's own metadata blocked every tool that reads spreadsheets, and no CSV has metadata to corrupt.</p>
+    <p><strong>The header row carried line breaks.</strong> The SAFMR workbook's first column is named <code>ZIP\nCode</code> and the rent columns read like <code>SAFMR\n0BR -\n90%\nPayment\nStan...</code>, raw newline characters inside header cells. Any join by column name has to strip those first. The same header in CSV would be a comma-separated line of text you can read with <code>head -1</code>, and a broken one would be visible in any text editor.</p>
+    <p><strong>The cells stored display strings.</strong> Rent values came out as whatever the spreadsheet last displayed: strings like <code>'850'</code>, floats like <code>1090.0</code>, comma-formatted text in the county file. Eighteen columns carried six usable values (the FMR plus 90% and 110% payment-standard variants for five bedroom sizes), so the parser walked the row with a stride of three. Our cleaned CSV, <code>fmr-by-zip-2026.csv</code>, does none of this: 51,895 rows, ten columns, bare integers, zero empty rent cells, plain UTF-8, only <code>area_name</code> quoted because metro names contain commas. One dtype hint (<code>zip</code> as text, for the 3,533 leading-zero rows) and the file is a dataframe.</p>
+    <p>None of this is criticism of HUD. The workbooks are built for program staff reading tables, and in that job they are fine. As a container for data that code consumes, the XLSX layer added three failure modes the CSV never has, and the <a href="fmr-dataset-download.html">FMR dataset download</a> guide shows the exact parsing session against both.</p>
+  </section>
+
+  <section aria-label="Decision matrix">
+    <h2>Decision matrix: which format per scenario</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="CSV versus XLSX decision matrix"><table><thead><tr><th scope="col">Scenario</th><th scope="col">Pick</th><th scope="col">Why</th></tr></thead><tbody>
+      <tr><td>Loaded by pandas, R, SQL, or a query tool</td><td>CSV</td><td>One header, no formulas, no zip layer; the HUD file loads in one line with one dtype hint</td></tr>
+      <tr><td>Version control in git</td><td>CSV</td><td>Text diffs and reviewable pull requests; an XLSX diff is binary noise</td></tr>
+      <tr><td>Same data going to many tools and people</td><td>CSV</td><td>Every language, BI tool, and spreadsheet reads text; nothing to install</td></tr>
+      <tr><td>Public release or long archive</td><td>CSV</td><td>Specless text survives decades and tool churn; pair it with a <a href="data-dictionary-explained.html">data dictionary</a></td></tr>
+      <tr><td>Formulas that must recompute</td><td>XLSX</td><td>Excel stores formula definitions, not just results; CSV stores nothing but text</td></tr>
+      <tr><td>Several tables in one file (per-metro tabs, a README sheet)</td><td>XLSX</td><td>CSV is one table per file; multi-table means several CSVs or one workbook</td></tr>
+      <tr><td>Formatting a human reads (bold headers, freeze panes, filters)</td><td>XLSX</td><td>Formatting survives; CSV strips it by definition</td></tr>
+      <tr><td>Handing data into code from an Excel workflow</td><td>CSV export</td><td>One-way export only; read the round-trip trap below first</td></tr>
+    </tbody></table></div>
+    <p>Two scenarios sit together at the bottom and cause most of the damage in practice: a workbook that grew into the system of record, then a CSV export that has to survive the trip into code. The export direction is safe. The reverse is where formats eat data.</p>
+  </section>
+
+  <section aria-label="The round-trip trap">
+    <h2>The round-trip trap: what Excel does to a CSV on open and save</h2>
+    <p>Opening a CSV in Excel, touching a cell, and saving it back runs the file through Excel's type inference twice, and the save writes Excel's decisions, not yours. Three manglings, all against real columns from files on this site:</p>
+    <p><strong>Leading zeros die.</strong> Excel reads <code>00601</code> as the number 601. In our HUD file, 3,533 of 51,895 rows have a ZIP starting with zero (3,004 unique ZIPs, the 006xx Puerto Rico range and the 0xxxx New England range among them), and one open-save cycle breaks every join against a geography table keyed on five characters. The <a href="hud-fmr-excel.html">HUD FMR Excel guide</a> shows the import settings that keep the column text in the first place.</p>
+    <p><strong>Dates get reinterpreted.</strong> A text cell holding <code>2026-09-09</code>, the format every date in our bounty listings sample uses, becomes a real date cell on open, and the save writes it back in the locale's display format: <code>09/09/2026</code> on a US machine, something else on an EU one. Values that merely look like dates or fractions get converted too. A pandas import expecting ISO strings then fails or, worse, silently mixes formats across rows.</p>
+    <p><strong>Encoding shifts underneath you.</strong> Excel's "CSV UTF-8" save option writes a byte order mark, <code>ef bb bf</code>, ahead of the header, and Python code that looked up the column <code>zip</code> starts failing with <code>KeyError: 'zip'</code> because the real key is <code>\ufeffzip</code>. Save from a Windows locale without the UTF-8 option and the file comes back Windows-1252, where characters outside the codepage are destroyed: the green circle emoji in our bounty sample, four bytes (<code>f0 9f 9f a2</code>) in UTF-8, has no Windows-1252 form. The <a href="csv-encoding-utf8.html">CSV encoding and UTF-8</a> guide reproduces both failures verbatim with the fixes.</p>
+    <p>One more, briefly: a 19-digit ID like the Airbnb listing IDs in our sample exceeds what numeric columns hold exactly (past 2 to the 53rd power), so it comes back rounded and re-rendered in scientific notation. That trap and the Tableau version of it are in the <a href="airbnb-data-in-tableau.html">Airbnb data in Tableau</a> guide.</p>
+    <p>The working pattern costs nothing: keep the XLSX as the human-facing working file, export a CSV when code needs data, and never save the CSV back over itself from Excel. On the code side, pin the types on import (<code>pd.read_csv(..., dtype={"zip": str})</code>) and check whether a free <a href="what-is-a-csv-sample.html">CSV sample</a> survives the import before writing loader code against the full file.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>CSV vs Excel questions</h2>
+    <dl>
+      <dt>Is CSV or Excel (XLSX) better for data analysis?</dt>
+      <dd>For analysis that code will run (pandas, R, SQL, or a query tool), CSV: one flat table, no formulas to break, loadable in one line like pd.read_csv. Excel wins when the workbook itself is the deliverable: formulas that recompute, several sheets, formatting a reviewer reads. HUD's FY2026 rent release ships both ways: two official XLSX workbooks that fight parsers, and the same numbers cleaned into a 51,895-row CSV that loads with zero type fixes beyond reading ZIP codes as text.</dd>
+      <dt>What does Excel change when it opens and saves a CSV?</dt>
+      <dd>Three things, all reproducible: ZIP codes lose leading zeros, so 00601 becomes 601 (3,533 rows in our 51,895-row HUD file start with zero); ISO dates like 2026-09-09 come back in the locale's display format on save; and the 'CSV UTF-8' save option writes a BOM that renames the first column in Python (the header zip becomes \ufeffzip). Long numeric IDs can return in scientific notation with trailing digits lost. None of this shows a warning dialog.</dd>
+      <dt>How do I convert an Excel workbook to CSV without losing data?</dt>
+      <dd>Excel exports only the active sheet, and formulas export as their last calculated values, not their definitions, so a multi-sheet workbook becomes one CSV per sheet. Expect the format itself to resist: HUD's county workbook FY26_FMRs_revised.xlsx ships a malformed timestamp in its document properties (2026- 2-19T18:17:31Z) that stops openpyxl with 'Unable to read workbook: could not read properties' before any row loads; the fix was unzipping the xlsx, patching the property files, and rezipping. Save the export as UTF-8, then verify the leading-zero and date columns survived before the file goes anywhere.</dd>
+    </dl>
+    <p>Next reads: the <a href="fmr-dataset-download.html">FMR dataset download</a> guide shows the full parsing session against HUD's workbooks and the clean 51,895-row CSV that came out of it, and the <a href="hud-fmr-excel.html">HUD FMR Excel guide</a> works the opposite direction, importing the official workbooks into Excel and Sheets with the import settings that keep ZIP codes intact. When a CSV is the pick, <a href="what-is-a-csv-sample.html">what a CSV sample is</a> covers judging one before the full download, <a href="csv-encoding-utf8.html">CSV encoding and UTF-8</a> fixes the import errors, and <a href="csv-vs-api.html">CSV vs API for data</a> decides whether you want the file at all.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

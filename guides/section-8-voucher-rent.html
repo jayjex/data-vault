@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Section 8 Voucher Rent: How Much Section 8 Pays, With FY2026 Numbers | Data Vault</title>
+<meta name="description" content="How much does Section 8 pay toward rent? The voucher covers the gap between your 30% income share and the payment standard. Worked example from the FY2026 Abilene, TX FMR file, with three income scenarios.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/section-8-voucher-rent.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Section 8 Voucher Rent: How Much Section 8 Pays, With FY2026 Numbers">
+<meta property="og:description" content="How much does Section 8 pay toward rent? The voucher covers the gap between your 30% income share and the payment standard. Worked example from the FY2026 Abilene, TX FMR file, with three income scenarios.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/section-8-voucher-rent.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Section 8 Voucher Rent: How Much Section 8 Pays, With FY2026 Numbers", "description": "How much does Section 8 pay toward rent? The voucher covers the gap between your 30% income share and the payment standard. Worked example from the FY2026 Abilene, TX FMR file, with three income scenarios.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/section-8-voucher-rent.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How much does Section 8 pay toward rent?", "acceptedAnswer": {"@type": "Answer", "text": "The voucher pays the gap between your share and the area's payment standard. Your share is generally 30% of monthly adjusted income, and the payment standard is the figure your public housing agency sets between 90% and 110% of HUD's fair market rent. Example with FY2026 numbers: in Abilene, TX, ZIP 76437, the two-bedroom FMR is 1,090 dollars. Assume the agency set the payment standard at that figure and a household's monthly adjusted income is 2,000 dollars. The household pays 600 dollars (30%) and the voucher covers 490 dollars. Every household in the same unit size gets a different voucher number, because the income side changes while the payment standard stays fixed."}}, {"@type": "Question", "name": "How is my Section 8 rent share calculated?", "acceptedAnswer": {"@type": "Answer", "text": "Your agency starts from your income after HUD-allowed deductions (childcare, medical costs above a threshold, and dependents all reduce the figure), then takes roughly 30% of the adjusted monthly amount as your share of rent and utilities. Federal rules let an agency set a minimum tenant rent, capped at 50 dollars. If the unit's rent and utility allowance together exceed the payment standard, you pay the difference on top of your 30% share. The agency calculates the exact number at your annual recertification, so your portion moves when your income moves, not when the market does."}}, {"@type": "Question", "name": "Does a Section 8 voucher cover the full rent?", "acceptedAnswer": {"@type": "Answer", "text": "A voucher never covers more than the payment standard minus your 30% share, and it never follows the asking price upward. If a two-bedroom unit rents for 1,150 dollars in an area where the payment standard is 1,090 dollars, the voucher still pays the same amount and you pay the extra 60 dollars, as long as the agency approves the unit. At lease-up, your total share including that difference cannot exceed 40% of your adjusted monthly income. In the Abilene example with 2,000 dollars monthly adjusted income, the voucher covers 490 dollars of the 1,150-dollar unit and the household pays 660 dollars."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Section 8 voucher rent: how much the voucher pays, worked with FY2026 numbers</h1>
+  <p class="byline">FY2026 edition, published 2026-09-10. Data source: HUD, public domain. Data Vault is not affiliated with HUD. This page documents the data and the arithmetic; it is not housing or legal advice, and your housing agency's calculation is the one that counts.</p>
+
+  <section aria-label="The voucher math in one look">
+    <h2>The voucher math in one look</h2>
+    <p>Two numbers decide what a Housing Choice Voucher (Section 8) pays on any given lease. One is yours: the household's monthly adjusted income, of which you pay about 30% toward rent. The other belongs to your area: the payment standard, the figure your public housing agency (PHA) sets between 90% and 110% of HUD's fair market rent for the unit size. The voucher fills the space between those two numbers.</p>
+    <pre><code>your share      = 30% of monthly adjusted income
+voucher pays    = payment standard − your share
+payment standard = between 90% and 110% of the FMR</code></pre>
+    <p>That is why the same voucher program produces a different dollar amount for every household. The payment standard is fixed for your area and bedroom size; the income side moves with each family. The band around the FMR, and who sets the final figure inside it, is explained in <a href="hud-payment-standard.html">HUD payment standard</a>.</p>
+  </section>
+
+  <section aria-label="Worked example from the FY2026 Abilene FMR file">
+    <h2>Worked example: Abilene, TX, two bedrooms</h2>
+    <p>Start with a real row from the FY2026 FMR file. ZIP 76437 in Abilene, Texas (Abilene, TX MSA) carries these FY2026 figures, straight from the <a href="../datasets/hud-fmr-2026.html">HUD FMR pack</a>:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="FY2026 FMR row for Abilene ZIP 76437"><table><thead><tr><th scope="col">ZIP</th><th scope="col">Area</th><th scope="col">FMR 0BR</th><th scope="col">FMR 1BR</th><th scope="col">FMR 2BR</th><th scope="col">FMR 3BR</th><th scope="col">FMR 4BR</th></tr></thead><tbody>
+      <tr><td>76437</td><td>Abilene, TX MSA</td><td>850</td><td>880</td><td>1,090</td><td>1,420</td><td>1,710</td></tr>
+    </tbody></table></div>
+    <p>The two-bedroom FMR is 1,090 dollars, so the payment standard for that bedroom size must sit between 981 dollars (90%) and 1,199 dollars (110%). The Abilene agency's actual figure lives in its administrative plan, not in HUD's file. For the rest of this example, assume the agency set the payment standard at 1,090 dollars, level with the FMR, which is a legal choice inside the band.</p>
+    <p>Now add a household. The income figures below are examples, picked to show the mechanics; no real household is described. They also treat adjusted income as equal to gross income, which the real calculation does not: HUD deductions for dependents, childcare, and medical costs shrink the base before the 30% is taken.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Tenant share vs voucher portion at three example incomes"><table><thead><tr><th scope="col">Monthly adjusted income (example)</th><th scope="col">Your share: 30%</th><th scope="col">Voucher pays</th><th scope="col">Total toward the 1,090-dollar standard</th></tr></thead><tbody>
+      <tr><td>1,200 dollars</td><td>360</td><td>730</td><td>1,090</td></tr>
+      <tr><td>2,000 dollars</td><td>600</td><td>490</td><td>1,090</td></tr>
+      <tr><td>3,200 dollars</td><td>960</td><td>130</td><td>1,090</td></tr>
+    </tbody></table></div>
+    <p>Read the table left to right: the lower the income, the more the voucher covers, and the total stays pinned at the payment standard. At 3,633 dollars of monthly adjusted income, the 30% share alone reaches 1,090 dollars and the voucher contribution for this unit size drops to nothing. Federal rules also let an agency set a minimum tenant rent, capped at 50 dollars, so the lowest-income households in the table would pay the agency's minimum rather than the full 30% figure if that minimum were higher.</p>
+  </section>
+
+  <section aria-label="When the actual rent is above the payment standard">
+    <h2>What happens when the unit rents for more than the standard</h2>
+    <p>Say the two-bedroom unit you want asks 1,150 dollars a month and the agency approves it, even though the payment standard is 1,090 dollars. The voucher does not stretch. It still pays payment standard minus your share, and you pay the 60-dollar difference on top. At the 2,000-dollar example income, that means 600 dollars plus 60 dollars, or 660 dollars out of pocket. At lease-up, your total share including that difference cannot go past 40% of your monthly adjusted income, a federal guardrail; after you move in, a rent increase or income drop can push the effective share higher, and the annual recertification is where the agency recalculates.</p>
+    <p>Utilities complicate the split a little: the agency subtracts a utility allowance from the unit's rent-plus-utilities cost before comparing it to the payment standard. In practice the voucher can cover part of the utility bill when the allowance is large. The agency's schedule lists the allowance per bedroom size.</p>
+  </section>
+
+  <section aria-label="Where each number comes from">
+    <h2>Where each number comes from</h2>
+    <p>The FMR side is public and national: HUD publishes it each fiscal year for every metro, county, and designated ZIP from American Community Survey data, and <a href="hud-fmr-by-zip.html">FMR by ZIP code</a> shows how to look up any single ZIP in the FY2026 file. The payment standard side is local: each of the roughly 3,000 agencies picks a point in the 90%-110% band, per bedroom size, and publishes it in its schedule (<a href="hud-payment-standard.html">how that band works</a>). Before any of this math applies, the household has to clear the program's income eligibility test, which runs on a different HUD dataset altogether; <a href="hud-income-limits.html">HUD income limits</a> covers how the two scales differ.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>Section 8 rent questions</h2>
+    <dl>
+      <dt>How much does Section 8 pay toward rent?</dt>
+      <dd>The voucher pays the gap between your share and the area's payment standard. Your share is generally 30% of monthly adjusted income, and the payment standard is the figure your public housing agency sets between 90% and 110% of HUD's fair market rent. Example with FY2026 numbers: in Abilene, TX, ZIP 76437, the two-bedroom FMR is 1,090 dollars. Assume the agency set the payment standard at that figure and a household's monthly adjusted income is 2,000 dollars. The household pays 600 dollars (30%) and the voucher covers 490 dollars. Every household in the same unit size gets a different voucher number, because the income side changes while the payment standard stays fixed.</dd>
+      <dt>How is my Section 8 rent share calculated?</dt>
+      <dd>Your agency starts from your income after HUD-allowed deductions (childcare, medical costs above a threshold, and dependents all reduce the figure), then takes roughly 30% of the adjusted monthly amount as your share of rent and utilities. Federal rules let an agency set a minimum tenant rent, capped at 50 dollars. If the unit's rent and utility allowance together exceed the payment standard, you pay the difference on top of your 30% share. The agency calculates the exact number at your annual recertification, so your portion moves when your income moves, not when the market does.</dd>
+      <dt>Does a Section 8 voucher cover the full rent?</dt>
+      <dd>A voucher never covers more than the payment standard minus your 30% share, and it never follows the asking price upward. If a two-bedroom unit rents for 1,150 dollars in an area where the payment standard is 1,090 dollars, the voucher still pays the same amount and you pay the extra 60 dollars, as long as the agency approves the unit. At lease-up, your total share including that difference cannot exceed 40% of your adjusted monthly income. In the Abilene example with 2,000 dollars monthly adjusted income, the voucher covers 490 dollars of the 1,150-dollar unit and the household pays 660 dollars.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <p>The FMR figures on this page come from the FY2026 HUD release. Check the free 22-row sample for the schema, then take the full pack: all three CSVs (51,895 ZIP rows, 3,229 county rollups, 52 state rows), the data dictionary, and source checksums.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">Get the full dataset</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release, huduser.gov. US government data, public domain. Data Vault is not affiliated with HUD.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

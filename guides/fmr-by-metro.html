@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD FMR by Metro: The Priciest and Cheapest Metro Areas, FY2026 | Data Vault</title>
+<meta name="description" content="HUD FMR by metro area, FY2026: the 15 priciest metros by 2BR median, from Santa Cruz-Watsonville at 4,350 to Boston at 2,690, against the 10 cheapest led by Yauco, PR at 520. The 8.4x spread, why metros price apart, and how to rank the metros yourself.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/fmr-by-metro.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="HUD FMR by Metro: The Priciest and Cheapest Metro Areas, FY2026">
+<meta property="og:description" content="The 15 priciest HUD metro areas by 2BR median in FY2026, from Santa Cruz-Watsonville at 4,350 down to Boston at 2,690, the 10 cheapest led by Yauco, PR at 520, and the 8.4x spread between them.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/fmr-by-metro.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "HUD FMR by Metro: The Priciest and Cheapest Metro Areas, FY2026", "description": "The 15 priciest HUD metro areas by 2BR median in FY2026, from Santa Cruz-Watsonville at 4,350 down to Boston at 2,690, the 10 cheapest led by Yauco, PR at 520, and the 8.4x spread between them.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/fmr-by-metro.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which metro area has the highest HUD FMR in FY2026?", "acceptedAnswer": {"@type": "Answer", "text": "Santa Cruz-Watsonville, CA tops the FY2026 metro ranking with a 2BR median of 4,350 dollars across its 23 ZIP rows, and its priciest ZIP reaches 5,230. San Francisco and San Jose-Sunnyvale-Santa Clara tie at 3,480, Santa Ana-Anaheim-Irvine follows at 3,240, and New York, NY rounds out the top five at 3,175. At the other end, Yauco, PR carries a 2BR median of 520, so the most expensive metro prices at 8.4 times the cheapest."}}, {"@type": "Question", "name": "How many HUD metro areas are in the FY2026 FMR data?", "acceptedAnswer": {"@type": "Answer", "text": "The FY2026 ZIP-level file covers 2,599 distinct HUD FMR area names, of which 649 are metro areas; this page ranks those 649 by the median 2BR FMR across each metro's ZIP rows. HUD codes a few high-rent markets as nonmetro, so they fall outside the ranking: Nantucket County, MA carries a 2BR median of 3,140, which would rank sixth among metros, but its rows carry the nonmetro flag."}}, {"@type": "Question", "name": "Why does HUD FMR differ so much between metros?", "acceptedAnswer": {"@type": "Answer", "text": "HUD sets a separate FMR for each metro area at the 40th percentile of gross rents in that area, so the number moves with the local rental market rather than with any national figure. In FY2026 the metro medians run from 520 dollars in Yauco, PR to 4,350 dollars in Santa Cruz-Watsonville, CA, an 8.4x spread that mirrors what local rents actually do. A voucher's payment standard follows the metro number, and in many metros HUD goes a step further with Small Area FMRs set per ZIP."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>HUD FMR by metro: the priciest and cheapest metro areas, FY2026</h1>
+  <p class="byline">FY2026 edition, published 2026-09-10. Data source: HUD, public domain. Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>HUD prices every metro FMR area separately, and the FY2026 file rewards the comparison: across the 649 metro areas in the <a href="../datasets/hud-fmr-2026.html">HUD FMR FY2026 pack</a>, the 2BR median runs from 520 dollars a month in Yauco, PR to 4,350 dollars in Santa Cruz-Watsonville, CA. That is an 8.4x spread between the most and least expensive metro in the country. The median across all 649 metro medians sits at 1,210, a touch above the 1,150 national ZIP-row median, and 57 metros carry a 2BR median of 2,000 or more while 97 sit at 1,000 or below.</p>
+    <p>The ranking below groups the 51,895 ZIP rows by area_name and takes the median 2BR FMR across each metro's own rows. One method note: this cut weighs every ZIP equally, so a metro's median here can differ slightly from a median over unique FMR values, which is the cut the <a href="hud-metro-list.html">HUD metro area list</a> shows when it sorts the same areas by ZIP count.</p>
+  </section>
+
+  <section aria-label="The 15 priciest metro areas">
+    <h2>The 15 priciest metros, by 2BR median</h2>
+    <p>Eleven of the fifteen are in California, and the top four all are. Santa Cruz-Watsonville leads FY2026 with a 2BR median of 4,350, San Francisco and San Jose-Sunnyvale-Santa Clara tie at 3,480, and Santa Ana-Anaheim-Irvine closes the top four at 3,240. New York is the East Coast's entry at 3,175, its priciest ZIP reaching 4,370, and Boston takes the fifteenth spot at 2,690. Every 2BR low and high in the table is a real ZIP in that metro, so the range shows what Small Area FMRs do inside a single metro; <a href="safmr-vs-fmr.html">SAFMR vs FMR</a> explains the mechanism.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Fifteen priciest HUD metro areas by 2BR median, FY2026"><table><thead><tr><th scope="col">#</th><th scope="col">Metro FMR area</th><th scope="col">ST</th><th scope="col">ZIP rows</th><th scope="col">2BR median</th><th scope="col">2BR low</th><th scope="col">2BR high</th></tr></thead><tbody>
+      <tr><td>1</td><td>Santa Cruz-Watsonville, CA MSA</td><td>CA</td><td>23</td><td>4,350</td><td>3,440</td><td>5,230</td></tr>
+      <tr><td>2</td><td>San Francisco, CA HUD Metro FMR Area</td><td>CA</td><td>113</td><td>3,480</td><td>2,990</td><td>5,010</td></tr>
+      <tr><td>3</td><td>San Jose-Sunnyvale-Santa Clara, CA HUD Metro FMR Area</td><td>CA</td><td>106</td><td>3,480</td><td>2,540</td><td>4,740</td></tr>
+      <tr><td>4</td><td>Santa Ana-Anaheim-Irvine, CA HUD Metro FMR Area</td><td>CA</td><td>147</td><td>3,240</td><td>2,620</td><td>4,760</td></tr>
+      <tr><td>5</td><td>New York, NY HUD Metro FMR Area</td><td>NY</td><td>410</td><td>3,175</td><td>2,510</td><td>4,370</td></tr>
+      <tr><td>6</td><td>Santa Maria-Santa Barbara, CA MSA</td><td>CA</td><td>41</td><td>3,120</td><td>2,430</td><td>4,440</td></tr>
+      <tr><td>7</td><td>Napa, CA MSA</td><td>CA</td><td>16</td><td>3,070</td><td>2,520</td><td>3,710</td></tr>
+      <tr><td>8</td><td>San Diego-Chula Vista-Carlsbad, CA MSA</td><td>CA</td><td>178</td><td>3,000</td><td>1,460</td><td>4,500</td></tr>
+      <tr><td>9</td><td>Oakland-Fremont, CA HUD Metro FMR Area</td><td>CA</td><td>115</td><td>2,920</td><td>2,110</td><td>4,050</td></tr>
+      <tr><td>10</td><td>Los Angeles-Long Beach-Glendale, CA HUD Metro FMR Area</td><td>CA</td><td>474</td><td>2,900</td><td>2,070</td><td>4,350</td></tr>
+      <tr><td>11</td><td>San Benito County, CA HUD Metro FMR Area</td><td>CA</td><td>9</td><td>2,830</td><td>2,370</td><td>4,350</td></tr>
+      <tr><td>12</td><td>Nassau-Suffolk, NY HUD Metro FMR Area</td><td>NY</td><td>190</td><td>2,790</td><td>2,330</td><td>4,120</td></tr>
+      <tr><td>13</td><td>Jersey City, NJ HUD Metro FMR Area</td><td>NJ</td><td>21</td><td>2,760</td><td>2,240</td><td>4,140</td></tr>
+      <tr><td>14</td><td>Santa Rosa-Petaluma, CA MSA</td><td>CA</td><td>54</td><td>2,755</td><td>2,470</td><td>3,430</td></tr>
+      <tr><td>15</td><td>Boston-Cambridge-Quincy, MA-NH HUD Metro FMR Area</td><td>MA</td><td>261</td><td>2,690</td><td>2,560</td><td>4,410</td></tr>
+    </tbody></table></div>
+    <p>Two entries deserve a note. Nantucket County, MA carries a 2BR median of 3,140, which would rank sixth, but HUD codes it nonmetro, so it sits outside this ranking of the 649 metro areas. And the ladder keeps climbing past the table: Oxnard-Thousand Oaks-Ventura and Salinas tie at 2,690 in slots 16 and 17, with Urban Honolulu at 2,640 and Bridgeport-Stamford-Danbury, the priciest Connecticut metro, at 2,610.</p>
+  </section>
+
+  <section aria-label="The 10 cheapest metro areas">
+    <h2>The 10 cheapest metros, by 2BR median</h2>
+    <p>Puerto Rico owns the bottom ten outright. The 2BR medians run from 520 in Yauco, San Germán, and Guayama up to 610 in Fajardo, and even San Juan-Guaynabo, the island's priciest metro at 670, prices at barely half the national ZIP-row median of 1,150. The cheapest mainland entry is Morehouse Parish, LA at 855, still 64 percent above Yauco.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Ten cheapest HUD metro areas by 2BR median, FY2026"><table><thead><tr><th scope="col">#</th><th scope="col">Metro FMR area</th><th scope="col">ST</th><th scope="col">ZIP rows</th><th scope="col">2BR median</th><th scope="col">2BR low</th><th scope="col">2BR high</th></tr></thead><tbody>
+      <tr><td>1</td><td>Guayama, PR MSA</td><td>PR</td><td>5</td><td>520</td><td>480</td><td>600</td></tr>
+      <tr><td>2</td><td>San Germán, PR HUD Metro FMR Area</td><td>PR</td><td>11</td><td>520</td><td>490</td><td>560</td></tr>
+      <tr><td>3</td><td>Yauco, PR HUD Metro FMR Area</td><td>PR</td><td>5</td><td>520</td><td>480</td><td>540</td></tr>
+      <tr><td>4</td><td>Arecibo, PR MSA</td><td>PR</td><td>11</td><td>530</td><td>490</td><td>650</td></tr>
+      <tr><td>5</td><td>Mayagüez, PR HUD Metro FMR Area</td><td>PR</td><td>7</td><td>530</td><td>520</td><td>570</td></tr>
+      <tr><td>6</td><td>Ponce, PR HUD Metro FMR Area</td><td>PR</td><td>14</td><td>550</td><td>540</td><td>760</td></tr>
+      <tr><td>7</td><td>Aguadilla, PR MSA</td><td>PR</td><td>14</td><td>555</td><td>520</td><td>650</td></tr>
+      <tr><td>8</td><td>Barranquitas-Aibonito, PR HUD Metro FMR Area</td><td>PR</td><td>10</td><td>600</td><td>540</td><td>620</td></tr>
+      <tr><td>9</td><td>Caguas, PR HUD Metro FMR Area</td><td>PR</td><td>16</td><td>600</td><td>520</td><td>750</td></tr>
+      <tr><td>10</td><td>Fajardo, PR HUD Metro FMR Area</td><td>PR</td><td>5</td><td>610</td><td>550</td><td>620</td></tr>
+    </tbody></table></div>
+    <p>The bedroom-size gaps stretch with the ranking. Santa Cruz-Watsonville's studio median of 3,280 prices at more than four times the median 4BR in Yauco, 720, and its 4BR median of 5,850 runs 8.1 times it. A studio in the priciest metro rents for more than a 4-bedroom in the cheapest, which is the spread in its sharpest form. The bedroom-by-bedroom view of the same file is in <a href="hud-fmr-by-bedroom.html">HUD FMR by bedroom</a>.</p>
+  </section>
+
+  <section aria-label="Why metro FMRs differ">
+    <h2>Why metros price so far apart</h2>
+    <p>HUD sets each metro's FMR at the 40th percentile of gross rents in that area, so the number tracks the local rental market rather than a national benchmark. That design is why the spread is this wide: the 40th percentile in Santa Cruz-Watsonville reflects a coastal market of 23 ZIPs where the cheapest ZIP still carries a 2BR of 3,440, while the 40th percentile in Yauco reflects rents that top out at 540. Building limits do real work at the top of the table, where island and coastal geographies cap how much new supply can meet demand, and the top four slots are all California metros for exactly that reason.</p>
+    <p>For voucher households the metro number is the one that matters, because the payment standard follows it. The same Housing Choice Voucher budget covers a 2BR at the 40th percentile in Yauco or needs to stretch to 4,350 in Santa Cruz-Watsonville, which is why <a href="hud-payment-standard.html">payment standards</a> and the metro-level FMR move together. <a href="hud-fmr-by-state.html">HUD FMR by state</a> shows the same ranking one level up, <a href="hud-fmr-by-county.html">HUD FMR by county</a> one level down, and the single-ZIP lookup in <a href="hud-fmr-by-zip.html">HUD FMR by ZIP code</a> resolves the exact block you care about.</p>
+  </section>
+
+  <section aria-label="Rank the metros yourself">
+    <h2>Rank the metros yourself</h2>
+    <p>The full 51,895-row ZIP file rebuilds both tables exactly: group by area_name, filter the metro column to metro areas, and take the median of fmr_2br per group. Over the <a href="../agents/">dataset-mcp server</a>, one query pulls every New York metro row for the group:</p>
+    <pre><code>query_dataset(
+  "hud-fmr-2026",
+  {
+    "where": [{ "column": "area_name", "op": "=", "value": "New York, NY HUD Metro FMR Area" }],
+    "columns": ["zip", "area_name", "state", "fmr_2br"]
+  }
+)</code></pre>
+    <p>Swap the where clause for any metro in either table. The naming conventions behind area_name, and the full 2,599-area breakdown, are in <a href="hud-metro-list.html">HUD metro area list</a>.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>HUD FMR by metro questions</h2>
+    <dl>
+      <dt>Which metro area has the highest HUD FMR in FY2026?</dt>
+      <dd>Santa Cruz-Watsonville, CA tops the FY2026 metro ranking with a 2BR median of 4,350 dollars across its 23 ZIP rows, and its priciest ZIP reaches 5,230. San Francisco and San Jose-Sunnyvale-Santa Clara tie at 3,480, Santa Ana-Anaheim-Irvine follows at 3,240, and New York, NY rounds out the top five at 3,175. At the other end, Yauco, PR carries a 2BR median of 520, so the most expensive metro prices at 8.4 times the cheapest.</dd>
+      <dt>How many HUD metro areas are in the FY2026 FMR data?</dt>
+      <dd>The FY2026 ZIP-level file covers 2,599 distinct HUD FMR area names, of which 649 are metro areas; this page ranks those 649 by the median 2BR FMR across each metro's ZIP rows. HUD codes a few high-rent markets as nonmetro, so they fall outside the ranking: Nantucket County, MA carries a 2BR median of 3,140, which would rank sixth among metros, but its rows carry the nonmetro flag.</dd>
+      <dt>Why does HUD FMR differ so much between metros?</dt>
+      <dd>HUD sets a separate FMR for each metro area at the 40th percentile of gross rents in that area, so the number moves with the local rental market rather than with any national figure. In FY2026 the metro medians run from 520 dollars in Yauco, PR to 4,350 dollars in Santa Cruz-Watsonville, CA, an 8.4x spread that mirrors what local rents actually do. A voucher's payment standard follows the metro number, and in many metros HUD goes a step further with Small Area FMRs set per ZIP.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the dataset">
+    <h2>Get the full dataset</h2>
+    <p>The free 22-row sample shows the schema behind both tables. The full pack adds the 51,895-row ZIP file, the county file (3,229 rows), the state summary, the data dictionary, and source checksums, so you can re-run the metro ranking with any bedroom column.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">Get the full dataset</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release, huduser.gov. US government data, public domain. Data Vault is not affiliated with HUD.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

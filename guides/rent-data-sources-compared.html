@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rent Data Sources Compared: HUD FMR, Census ACS, CPI, Zillow ZORI, MLS | Data Vault</title>
+<meta name="description" content="Five rent data sources compared side by side: HUD FMR (1,150 2BR median), Census ACS median gross rent (1,490), CPI rent (+2.9%), Zillow ZORI (1,962), and local MLS. Methodology, lag, coverage, cost, and which source fits which job.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/rent-data-sources-compared.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Rent Data Sources Compared: HUD FMR, Census ACS, CPI, Zillow ZORI, MLS">
+<meta property="og:description" content="Five rent data sources compared side by side: methodology, lag, coverage, cost, and which source fits which job.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/rent-data-sources-compared.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Rent Data Sources Compared: HUD FMR, Census ACS, CPI, Zillow ZORI, MLS", "description": "Five rent data sources compared side by side: HUD FMR (1,150 2BR median), Census ACS median gross rent (1,490), CPI rent (+2.9%), Zillow ZORI (1,962), and local MLS. Methodology, lag, coverage, cost, and which source fits which job.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/rent-data-sources-compared.html", "about": [{"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}, {"@type": "Dataset", "name": "BLS Consumer Price Index, Rent of Primary Residence (CUSR0000SEHA)", "url": "https://data.bls.gov/timeseries/CUSR0000SEHA"}, {"@type": "Dataset", "name": "Zillow Observed Rent Index (ZORI)", "url": "https://www.zillow.com/research/data/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the best free source for rent data?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on the question. HUD FMR is the free source that covers every ZIP code in the country and carries legal standing in the voucher program. Census ACS median gross rent is the free source for medians that line up with income tables. CPI rent is the free source for rent inflation and lease escalators. Zillow ZORI is free as a research series and tracks asking rents monthly in big metros. The only paid source in the comparison is the local MLS, which buys real-time granularity at the cost of a license."}}, {"@type": "Question", "name": "Why do rent data sources give different numbers for the same market?", "acceptedAnswer": {"@type": "Answer", "text": "Each source sits at a different point in the same market and reads it on a different clock. The FY2026 national 2BR FMR median is 1,150 dollars, a 40th percentile gross-rent figure. The ACS 2024 one-year 2BR median gross rent is 1,490 dollars, a 50th percentile figure across all renter households. Zillow ZORI put the typical US asking rent at 1,962 dollars in July 2026, across all bedroom sizes and weighted toward big metros. None of the three is wrong: the percentile position, the utilities, the bedroom mix, and the timing all differ by construction."}}, {"@type": "Question", "name": "Can I download all five rent data sources for free?", "acceptedAnswer": {"@type": "Answer", "text": "Three of the five download freely and without restriction: the HUD FMR file is public domain, the ACS tables publish on census.gov as public-domain data, and BLS publishes CPI rent in monthly release tables on bls.gov. Zillow publishes ZORI as a free research series, but its use is governed by Zillow terms and the data pages block scripted access; a plain command-line fetch of the research data page returns HTTP 403. The local MLS has no free public download at all, since feeds are licensed through membership."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Rent data sources compared: five answers to five different questions</h1>
+  <p class="byline">Published 2026-09-10. Sources: HUD FY2026 Fair Market Rent release, huduser.gov; US Census Bureau American Community Survey, census.gov; BLS Consumer Price Index news release for July 2026, USDL-26-1378, bls.gov; Zillow Observed Rent Index as published by Zillow. All four public series are public domain or free research data; MLS data is licensed. Data Vault is not affiliated with any of these publishers. This page covers data and measurement; it is not housing or legal advice.</p>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>Search "rent data sources" and you get five names, all describing the same market, none interchangeable. The FY2026 national 2-bedroom HUD FMR median is 1,150 dollars. The ACS 2024 one-year 2-bedroom median gross rent is 1,490 dollars. CPI rent rose 2.9 percent over the 12 months ending July 2026. Zillow's ZORI put the typical US asking rent at 1,962 dollars the same month. A local MLS would quote something else again, because it reads the listing board in one market on one day.</p>
+    <p>Four of the five are free. Three download as files you can redistribute. One is an index of percent changes rather than dollars, and one costs a license. The differences that matter are what each source measures, how far behind the market it runs, how much of the country it covers, and what it costs, so the table below is the comparison in one screen.</p>
+    <p>Deeper head-to-heads on this site cover the pairs inside this family: <a href="hud-fmr-vs-zillow-rent.html">HUD FMR vs Zillow rent data</a>, <a href="hud-fmr-vs-cpi-rent.html">HUD FMR vs CPI rent</a>, and <a href="hud-fmr-vs-census-rent.html">HUD FMR vs census rent</a>. This page puts all five sources side by side and picks one per job.</p>
+  </section>
+
+  <section aria-label="The five sources at a glance">
+    <h2>The five rent data sources at a glance</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Five rent data sources compared: methodology, lag, coverage, cost, best for"><table><thead><tr><th scope="col">Source</th><th scope="col">Methodology</th><th scope="col">Lag</th><th scope="col">Coverage</th><th scope="col">Free?</th><th scope="col">Best for</th></tr></thead><tbody>
+      <tr><td>HUD FMR (FY2026)</td><td>40th percentile gross rent, shelter rent plus utilities, per market area and bedroom count, from a multi-year ACS file re-priced to the fiscal year</td><td>Annual release; survey vintage is 1 to 3 years old by the time it ships</td><td>51,895 ZIP codes, 3,229 counties, every state and territory, metro and nonmetro</td><td>Yes, public domain, redistributable</td><td>Voucher program admin, official benchmarks, whole-country analysis</td></tr>
+      <tr><td>Census ACS median gross rent</td><td>50th percentile gross rent (Table B25064) across all renter-occupied units paying cash rent</td><td>Annual one-year release, roughly 9 months after the survey year ends</td><td>US, states, metros, counties, tracts; no ZIP-level medians that small</td><td>Yes, public domain, redistributable</td><td>Demographic research, income cross-tabs, poverty and affordability work</td></tr>
+      <tr><td>CPI rent of primary residence (CUSR0000SEHA)</td><td>Percent-change index of tenant-paid contract rents, built from about 6,000 housing units a month across 75 urban areas, each unit re-priced every 6 months</td><td>Monthly release, but reflects existing leases, so market shifts pass through in 9 to 12 months</td><td>US city average plus regional and 23 selected metro indexes</td><td>Yes, public domain</td><td>Rent inflation, lease escalators, real-terms adjustments</td></tr>
+      <tr><td>Zillow ZORI</td><td>Smoothed, seasonally adjusted index of typical asking rents on Zillow listings, all bedroom sizes</td><td>Monthly, reads the current listing market</td><td>Metro and ZIP series where Zillow listing volume supports one; thin in rural areas</td><td>Free research series, Zillow terms apply, scripted access blocked</td><td>Asking-rent momentum, timing a lease or purchase in big metros</td></tr>
+      <tr><td>Local MLS</td><td>Asking rents on agent-posted listings as posted, no smoothing, no index math</td><td>Real-time, day zero</td><td>Single market, down to neighborhood, bedroom count, and unit amenities</td><td>No, licensed through membership or feeds</td><td>Brokerage comps, leasing decisions in one specific market</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section aria-label="What each source is built from">
+    <h2>What each source is built from</h2>
+    <p><b>HUD FMR: a 40th percentile level for every ZIP.</b> HUD prices a modest standard-quality unit gross of utilities, per market area and bedroom count, and publishes the result once a fiscal year. The FY2026 file spans 51,895 ZIP rows, and the national 2BR median across those rows is 1,150 dollars. The full column-by-column walkthrough is in <a href="hud-rent-data-explained.html">HUD rent data, explained</a>.</p>
+    <p><b>Census ACS: the 50th percentile of what renters pay.</b> Table B25064 reports median gross rent, and the 2024 one-year release puts the US 2-bedroom median at 1,490 dollars. The ACS counts every renter-occupied unit paying cash rent, so the median tracks all current households, recent movers and long-tenured alike, and it publishes on the same geography grid as the rest of the census data, which is what makes income and demographic cross-tabs easy. <a href="hud-fmr-vs-census-rent.html">HUD FMR vs census rent</a> compares the two percentiles state by state.</p>
+    <p><b>CPI rent: a growth rate, not a level.</b> BLS prices about 6,000 housing units a month across 75 urban areas and re-quotes each unit once every six months, which is why the index reads existing leases and runs 9 to 12 months behind asking rents. In the July 2026 release, published August 12, 2026 as USDL-26-1378, rent of primary residence rose 2.9 percent over the year and 0.3 percent in the month, seasonally adjusted. The next release, for August 2026, is scheduled for September 11, 2026.</p>
+    <p><b>Zillow ZORI: the asking market, monthly.</b> ZORI is a smoothed, seasonally adjusted index of typical asking rents on Zillow listings. The July 2026 typical US asking rent was 1,962 dollars, up 2.3 percent annually per Zillow's August 18, 2026 press release. Pulled live on 2026-09-10, the ZORI metro file downloaded as a 1.0 MB CSV with columns through 2026-07-31, and the Columbus, OH row read 1,519 dollars for July 2026. The series is free as research data, but Zillow's terms govern reuse and the data pages return HTTP 403 to scripted fetches, so bulk pipelines point at the government files instead.</p>
+    <p><b>Local MLS: the listing board, raw.</b> An MLS carries what agents actually posted, this week, in one market, split by bedrooms, neighborhoods, and amenities, with no index smoothing and no survey design. That granularity is the product, and the license is the price: feeds are sold through membership, and there is no public download. Everything an MLS gives you fresh, the other four sources give you smoothed, lagged, or aggregated.</p>
+  </section>
+
+  <section aria-label="Which source for which job">
+    <h2>Which rent data source for which job</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Rent data source recommendation matrix by use case"><table><thead><tr><th scope="col">Use case</th><th scope="col">Primary source</th><th scope="col">Cross-check</th><th scope="col">Why</th></tr></thead><tbody>
+      <tr><td>Program admin: HCV payment standards</td><td>HUD FMR, plus SAFMRs where designated</td><td>None; the FMR is the legal input</td><td>Payment standards are set as a 90 to 110 percent band around the FMR, so the calculation has one source of truth</td></tr>
+      <tr><td>Research: demographics and affordability</td><td>Census ACS median gross rent</td><td>FMR for ZIP-level detail the ACS lacks</td><td>The ACS publishes medians on the same geography grid as income and poverty tables, so cross-tabs join cleanly</td></tr>
+      <tr><td>Inflation: escalators and real-terms math</td><td>CPI rent (CUSR0000SEHA)</td><td>ZORI as a leading indicator of where the index is heading</td><td>A monthly percent-change series with a consistent methodology is the only clean input for escalation clauses</td></tr>
+      <tr><td>Investment: screening a metro</td><td>ZORI for the asking level, FMR for the benchmark</td><td>Both together</td><td>In Ohio, the FY2026 2BR FMR median is 1,070 dollars while Columbus ZORI sits at 1,519 for July 2026; a listing far below both reads as underpricing, far above both as a premium bet</td></tr>
+      <tr><td>Brokerage: pricing and leasing this month</td><td>Local MLS comps</td><td>ZORI for the metro-level direction</td><td>Real-time, unit-specific asking rents beat any index for a decision that closes this week</td></tr>
+    </tbody></table></div>
+    <p>Two habits keep the matrix honest. First, match the bedroom count before comparing any two sources, because ZORI's headline mixes all sizes while FMR and ACS medians here are 2-bedroom. Second, add utilities back to asking rents before comparing them against FMR or ACS figures, which are both gross of utilities. The <a href="fmr-vs-rent-actuals.html">FMR vs actual rent guide</a> walks the full checklist for benchmark-versus-market comparisons, and <a href="real-estate-investor-data.html">real estate investor data</a> applies it to deal screening.</p>
+  </section>
+
+  <section aria-label="Why the five numbers never match">
+    <h2>Why the five numbers never match</h2>
+    <p>Take the same national market read through three sources at once: 1,150 dollars for the FY2026 2BR FMR median, 1,490 dollars for the ACS 2024 2BR median gross rent, 1,962 dollars for the July 2026 ZORI typical asking rent. The spread comes from four design choices, each documented by its publisher.</p>
+    <p><b>Percentile position.</b> The FMR is deliberately set at the 40th percentile so a voucher finds units across a wide range of neighborhoods. The ACS median sits at the 50th by definition. ZORI tracks the typical asking rent, near the middle of the listing distribution. Same market, three positions.</p>
+    <p><b>Rent basis.</b> FMR and ACS gross rents include utilities; asking rents on Zillow and the MLS usually quote shelter rent with utilities billed separately. An asking rent equal to a gross figure in dollars is cheaper in real terms, which pushes the listing-side numbers up relative to the survey-side numbers.</p>
+    <p><b>Contracted vs asking.</b> The FMR and the ACS read rents tenants pay, the CPI reads existing leases, and ZORI and the MLS read what landlords ask today. Asking moves first in a rising market; the contracted side carries older, lower leases inside its average.</p>
+    <p><b>Coverage and mix.</b> The FMR file reaches every ZIP including small towns, the ACS reaches tracts, the CPI covers 75 urban areas, and ZORI needs listing volume, so its national figure leans toward big metros with mixed bedroom sizes. No single source is the market; each is a documented slice of it, and quoting the slice you used is what makes a rent number citable.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>Rent data source questions</h2>
+    <dl>
+      <dt>What is the best free source for rent data?</dt>
+      <dd>It depends on the question. HUD FMR is the free source that covers every ZIP code in the country and carries legal standing in the voucher program. Census ACS median gross rent is the free source for medians that line up with income tables. CPI rent is the free source for rent inflation and lease escalators. Zillow ZORI is free as a research series and tracks asking rents monthly in big metros. The only paid source in the comparison is the local MLS, which buys real-time granularity at the cost of a license.</dd>
+      <dt>Why do rent data sources give different numbers for the same market?</dt>
+      <dd>Each source sits at a different point in the same market and reads it on a different clock. The FY2026 national 2BR FMR median is 1,150 dollars, a 40th percentile gross-rent figure. The ACS 2024 one-year 2BR median gross rent is 1,490 dollars, a 50th percentile figure across all renter households. Zillow ZORI put the typical US asking rent at 1,962 dollars in July 2026, across all bedroom sizes and weighted toward big metros. None of the three is wrong: the percentile position, the utilities, the bedroom mix, and the timing all differ by construction.</dd>
+      <dt>Can I download all five rent data sources for free?</dt>
+      <dd>Three of the five download freely and without restriction: the HUD FMR file is public domain, the ACS tables publish on census.gov as public-domain data, and BLS publishes CPI rent in monthly release tables on bls.gov. Zillow publishes ZORI as a free research series, but its use is governed by Zillow terms and the data pages block scripted access; a plain command-line fetch of the research data page returns HTTP 403. The local MLS has no free public download at all, since feeds are licensed through membership.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <p>The FMR sample behind the 1,150 median downloads free: 22 ZIP rows from Abilene, TX with all five bedroom sizes. The full pack carries all three CSVs (51,895 + 3,229 + 52 rows), the data dictionary, and source checksums.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>Download FMR sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">Get full FMR data</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. FMR source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release, huduser.gov, public domain. ACS: US Census Bureau, Table B25064, public domain. CPI: Bureau of Labor Statistics, July 2026 release, public domain. ZORI: Zillow research series, subject to Zillow terms. Data Vault is not affiliated with any of these publishers.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

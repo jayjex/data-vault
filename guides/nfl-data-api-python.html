@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NFL Data API in Python: requests Examples with Live Endpoints | Data Vault</title>
+<meta name="description" content="NFL data API in Python: two requests examples that ran against live endpoints today, ESPN's scoreboard JSON and the nflverse games.csv release file, plus the honest case for a pinned snapshot CSV next to them.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/nfl-data-api-python.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="NFL Data API in Python: requests Examples with Live Endpoints">
+<meta property="og:description" content="Two requests examples that ran against live NFL endpoints today: ESPN's scoreboard JSON and the nflverse games.csv release file, with the honest trade-off against a pinned snapshot CSV.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/nfl-data-api-python.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "NFL data API in Python: requests examples with live endpoints", "description": "Two requests examples that ran against live NFL endpoints today: ESPN's scoreboard JSON and the nflverse games.csv release file, with the honest trade-off against a pinned snapshot CSV.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/nfl-data-api-python.html", "about": {"@type": "Dataset", "name": "NFL Games & Betting Lines 1999-2026", "url": "https://jayjex.github.io/data-vault/datasets/nfl-games.html"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "NFL data API in Python", "item": "https://jayjex.github.io/data-vault/guides/nfl-data-api-python.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is there a free NFL API for Python?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, two of them work without keys. ESPN's site API returns a week of scores and fixtures as JSON, and the nflverse-data releases publish the full games.csv that a plain requests call can download. The league itself runs no official public API; the paid commercial feeds are separate products. Both free routes were checked live on 2026-09-10 and returned 200."}}, {"@type": "Question", "name": "Do I need an API key for the ESPN scoreboard or the nflverse files?", "acceptedAnswer": {"@type": "Answer", "text": "No for either. A requests.get call with no auth headers returned 200 for both on 2026-09-10. The difference is the contract: ESPN's endpoint is undocumented, so its response shape can change without notice, while the nflverse file is a full 2.1 MB download on every call, with the update time recorded in its timestamp.json."}}, {"@type": "Question", "name": "Should my script call a live API or load a snapshot CSV?", "acceptedAnswer": {"@type": "Answer", "text": "Use the live route for the current week's scoreboard and the snapshot for any analysis you rerun over days or weeks. The nflverse file costs a 2.1 MB download per run and the ESPN shape can shift, while a snapshot CSV keeps a pinned schema, ships with SHA-256 checksums and derived tables like team records and season summaries, and works offline. Many scripts use both: live results on top of a pinned history."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../datasets/nfl-games.html">NFL dataset</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>NFL data API in Python: requests examples with live endpoints</h1>
+  <p class="byline">Guide to the <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026</a> pack &middot; free 22-row CSV sample &middot; loading files instead? Read the <a href="nfl-dataset-python.html">pandas quickstart</a> or the <a href="nfl-dataset-excel.html">Excel and Google Sheets import guide</a> &middot; every status code and output comment on this page comes from a live run on 2026-09-10.</p>
+
+  <section aria-label="Quick answer">
+    <p>Two lines of Python ask ESPN's site API for a week of NFL results, no key, no signup:</p>
+<pre>import requests
+
+r = requests.get(
+    "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+    params={"seasonType": 2, "week": 1, "dates": 2025},
+    timeout=30,
+)
+r.raise_for_status()
+events = r.json()["events"]
+print(len(events))          # 16
+print(events[0]["name"])    # Dallas Cowboys at Philadelphia Eagles</pre>
+    <p>That ran on 2026-09-10 against the real endpoint, output verbatim. A second free route, the nflverse-data releases, serves the entire game history as one CSV that the same <code>requests</code> call can download. The sections below cover both, then the trade-off against a pinned snapshot CSV.</p>
+  </section>
+
+  <section aria-label="The free routes">
+    <h2>The free routes, checked live</h2>
+    <p>The league itself runs no public API for Python or anything else. What people mean by an NFL data API is one of the routes below or a paid commercial feed. All of these were hit on 2026-09-10:</p>
+    <table>
+      <tr><th>Route</th><th>What you get</th><th>Auth</th><th>Checked 2026-09-10</th></tr>
+      <tr><td>ESPN site API, <code>scoreboard</code></td><td>One week of fixtures and results as nested JSON</td><td>none</td><td>200, 16 events</td></tr>
+      <tr><td>ESPN site API, <code>teams</code></td><td>Team metadata per club, abbreviation and venue</td><td>none</td><td>200</td></tr>
+      <tr><td>nflverse-data releases, <code>schedules/games.csv</code></td><td>Full 1999-2026 game history, one 2.1 MB CSV</td><td>none</td><td>200, 7,548 rows, updated 2026-09-07</td></tr>
+      <tr><td><code>nfl_data_py</code> (PyPI)</td><td>Wrapper that pulls the same nflverse releases into pandas, <code>import_schedules()</code></td><td>none</td><td>version 0.3.3, pins pandas &lt; 2.0</td></tr>
+      <tr><td><code>nflreadpy</code> (PyPI)</td><td>Newer wrapper, <code>load_schedules()</code> into polars</td><td>none</td><td>version 0.1.5</td></tr>
+    </table>
+    <p>The wrappers are a real option and worth one caveat: <code>nfl_data_py</code> 0.3.3 requires numpy &lt; 2.0 and pandas &lt; 2.0, so it can collide with a current environment. Calling the URLs directly with <code>requests</code> avoids the dependency pinning entirely, which is what the examples here do.</p>
+  </section>
+
+  <section aria-label="Example 1, ESPN scoreboard">
+    <h2>Example 1: ESPN scoreboard JSON</h2>
+    <p>The quick-answer call again, with the score lines pulled out. Competitors sit under each event's <code>competitions</code> list, ESPN returns scores as strings, and the <code>homeAway</code> key tells you which side is which, since the array order is not guaranteed:</p>
+<pre>import requests
+
+r = requests.get(
+    "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+    params={"seasonType": 2, "week": 1, "dates": 2025},
+    timeout=30,
+)
+r.raise_for_status()
+data = r.json()
+for e in data["events"][:2]:
+    comp = e["competitions"][0]["competitors"]
+    home = next(c for c in comp if c["homeAway"] == "home")
+    away = next(c for c in comp if c["homeAway"] == "away")
+    print(f'{away["team"]["abbreviation"]} {away["score"]} at '
+          f'{home["team"]["abbreviation"]} {home["score"]}')
+# DAL 20 at PHI 24
+# KC 21 at LAC 27</pre>
+    <p>Week 1 of the 2025 season returned 16 events, and the two games above closed 24-20 and 27-21. Swap <code>params</code> for <code>{"seasonType": 2, "week": 1, "dates": 2026}</code> to see the current season's opening week fill in as results land. Team lookups follow the same pattern at <code>/teams/kc</code>, also 200 on the checked date.</p>
+    <p>One honest limit: this is an undocumented site endpoint, not a published product. The response shape held long enough for the example above, but treat the deep nesting as a display feed, read the fields you need, and do not build a long-lived pipeline on assumptions about the structure.</p>
+  </section>
+
+  <section aria-label="Example 2, nflverse release file">
+    <h2>Example 2: the nflverse games.csv over HTTP</h2>
+    <p>Where ESPN covers a week, the nflverse-data releases cover every season since 1999 in one file. The download URL redirects to a CDN, and <code>requests</code> follows it automatically:</p>
+<pre>import csv, io, requests
+
+url = "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv"
+r = requests.get(url, timeout=60)
+r.raise_for_status()
+print(r.status_code, len(r.content))    # 200 2177170
+
+rows = list(csv.reader(io.StringIO(r.text)))
+print(len(rows) - 1)                    # 7548</pre>
+    <p>7,548 game rows, the same count the preprocessed pack carries. Before you parse, you can ask the release how fresh it is:</p>
+<pre>stamp = requests.get(
+    "https://github.com/nflverse/nflverse-data/releases/download/schedules/timestamp.json",
+    timeout=30,
+).json()
+print(stamp["last_updated"])    # 2026-09-07 04:16:18 EDT</pre>
+    <p>To hand the file to pandas, <code>pd.read_csv(io.StringIO(r.text))</code> works on the same response object, and the columns match the ones in the <a href="nfl-dataset-python.html">pandas quickstart</a>, which loads this site's 22-row sample with the same schema.</p>
+  </section>
+
+  <section aria-label="Live API or snapshot CSV">
+    <h2>Live API or snapshot CSV? The honest trade-off</h2>
+    <p>Both routes get you the same game rows, and the right pick depends on how often you rerun and what has to stay true between runs:</p>
+    <table>
+      <tr><th></th><th>Live API or release file</th><th>Pinned snapshot CSV</th></tr>
+      <tr><td>Freshness</td><td>Current week the moment it lands; release file refreshed in season (2026-09-07 at the last check)</td><td>Static: results through the 2025 season plus scheduled 2026 rows, refresh means re-download</td></tr>
+      <tr><td>Cost per run</td><td>Scoreboard JSON is a few KB; full history is 2.1 MB every single call</td><td>Download once, everything after is local disk</td></tr>
+      <tr><td>Stability</td><td>ESPN is undocumented and can shift shape; the nflverse file follows its source schema</td><td>Schema pinned, SHA-256 checksums in the pack, joins do not break between runs</td></tr>
+      <tr><td>Work done for you</td><td>Raw fields: you normalize spreads and derive records yourself</td><td>Normalized spread and moneyline columns, 861 team records, 27 season summaries, data dictionary</td></tr>
+      <tr><td>Best for</td><td>Dashboards, current-week scripts, one-off lookups</td><td>Repeat analysis, offline work, agents and notebooks that need reproducible inputs</td></tr>
+    </table>
+    <p>The practical answer for most projects is both, in one script: pull the scoreboard for this week's games, load the snapshot for everything before this season. Neither makes the other wrong; they cover different halves of the freshness-versus-stability line.</p>
+  </section>
+
+  <section aria-label="From live calls to a pinned dataset">
+    <h2>From live calls to a pinned dataset</h2>
+    <p>The <a href="../data/nfl-games/sample.csv" download>free 22-row sample</a> on this site is the first 22 rows of that same games.csv lineage, and the <a href="../datasets/nfl-games.html">full pack</a> ships the whole table preprocessed with the derived tables, the <a href="nfl-games-data-guide.html">column guide</a>, and SHA-256 checksums so the snapshot can be verified like the release file can. Raw nflverse route vs preprocessed pack, laid out in detail: the <a href="nfl-data-alternative.html">nflverse comparison guide</a>.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/nfl-games/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h" rel="noopener">Get full data</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. The full pack is 3 CSVs (7,548 + 861 + 27 rows), data dictionary, source SHA-256 checksums. The sample downloads free here, no signup.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>NFL data API questions</h2>
+    <dl>
+      <dt>Is there a free NFL API for Python?</dt>
+      <dd>Yes, two of them work without keys. ESPN's site API returns a week of scores and fixtures as JSON, and the nflverse-data releases publish the full <code>games.csv</code> that a plain <code>requests</code> call can download. The league itself runs no official public API; the paid commercial feeds are separate products. Both free routes were checked live on 2026-09-10 and returned 200.</dd>
+      <dt>Do I need an API key for the ESPN scoreboard or the nflverse files?</dt>
+      <dd>No for either. A <code>requests.get</code> call with no auth headers returned 200 for both on 2026-09-10. The difference is the contract: ESPN's endpoint is undocumented, so its response shape can change without notice, while the nflverse file is a full 2.1 MB download on every call, with the update time recorded in its <code>timestamp.json</code>.</dd>
+      <dt>Should my script call a live API or load a snapshot CSV?</dt>
+      <dd>Use the live route for the current week's scoreboard and the snapshot for any analysis you rerun over days or weeks. The nflverse file costs a 2.1 MB download per run and the ESPN shape can shift, while a snapshot CSV keeps a pinned schema, ships with SHA-256 checksums and derived tables like team records and season summaries, and works offline. Many scripts use both: live results on top of a pinned history.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Attribution">
+    <h2>Sources and license</h2>
+    <p>All game rows trace back to the nflverse-data project, file <code>schedules/games.csv</code>, released under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>; credit it as "Data from nflverse, CC BY 4.0". Samples on this site carry the same license. The ESPN endpoint is a public site API with no documentation contract behind it. No logos or league marks appear anywhere in the pack; team names are factual data. This page and the pack describe data only and offer no betting advice, picks, or predictions.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NFL Data in Python: Load the Games CSV with pandas | Data Vault</title>
+<meta name="description" content="NFL data in Python, quickstart style: one pd.read_csv call loads the free 22-row games CSV straight from its URL, then three small analyses run on it, win counts, dome vs outdoor scoring, and kickoff temperatures.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/nfl-dataset-python.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="NFL Data in Python: Load the Games CSV with pandas">
+<meta property="og:description" content="One pd.read_csv call loads the free 22-row NFL games CSV straight from its URL, then three small analyses run on it: win counts, dome vs outdoor scoring, and kickoff temperatures.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/nfl-dataset-python.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "NFL data in Python: load the games CSV with pandas", "description": "One pd.read_csv call loads the free 22-row NFL games CSV straight from its URL, then three small analyses run on it: win counts, dome vs outdoor scoring, and kickoff temperatures.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/nfl-dataset-python.html", "about": {"@type": "Dataset", "name": "NFL Games & Betting Lines 1999-2026", "url": "https://jayjex.github.io/data-vault/datasets/nfl-games.html"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "NFL data in Python", "item": "https://jayjex.github.io/data-vault/guides/nfl-dataset-python.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does the NFL sample CSV load in pandas without any cleaning?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. pd.read_csv on the sample URL returns a DataFrame with shape (22, 46), one row per game. game_id arrives as a string, gameday parses as text you can convert with pd.to_datetime, and scores, lines, rest days, and roof read in with the right types on the first pass. The one thing to expect is NaN values in temp and wind for the 6 dome games, where the source file is blank."}}, {"@type": "Question", "name": "Why do the temp and wind columns come in as floats with missing values?", "acceptedAnswer": {"@type": "Answer", "text": "Blank cells in the CSV become NaN, and any integer column that contains NaN gets stored as float64. That is the honest reading: the 6 dome games in the sample have no temp or wind because the stadium roof was closed, so the number was never recorded. Keep them as NaN and the groupby and mean calls stay correct, or fill them only when the filling makes sense for your analysis."}}, {"@type": "Question", "name": "Will the same pandas code run on the full 7,548-row NFL pack?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, unchanged. The sample is the first 22 rows of games.csv with the same 46-column schema, so every read_csv, groupby, and sort_values call here runs the same way on the full file, 1999 through 2026. Only the row count grows, and the odds columns that sit empty in the 1999 sample fill in from 2006 onward. The full pack ships with a data dictionary and SHA-256 checksums."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../datasets/nfl-games.html">NFL dataset</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>NFL data in Python: load the games CSV with pandas</h1>
+  <p class="byline">Guide to the <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026</a> pack &middot; free 22-row CSV sample &middot; every column explained in the <a href="nfl-games-data-guide.html">games.csv column guide</a> &middot; prefer a spreadsheet? Read the <a href="nfl-dataset-excel.html">Excel and Google Sheets import guide</a>.</p>
+
+  <section aria-label="Quick answer">
+    <p>Two lines of pandas load the NFL sample and print its size:</p>
+<pre>import pandas as pd
+
+games = pd.read_csv("https://jayjex.github.io/data-vault/data/nfl-games/sample.csv")
+print(games.shape)   # (22, 46)</pre>
+    <p>The file is 46 columns and 22 data rows, one row per game, weeks 1 and 2 of the 1999 season. <code>read_csv</code> accepts the URL directly, so nothing to download first, no signup, no API key. The three analyses below were run against that exact URL; every number shown in the output comments comes from the real file.</p>
+  </section>
+
+  <section aria-label="Setup">
+    <h2>Setup</h2>
+    <p>pandas is the only package the quickstart needs. Install it once:</p>
+<pre>pip install pandas</pre>
+    <p>Then work in a Jupyter notebook, an IPython session, or a plain script. Reading a URL instead of a local path means the same two lines work on any machine with network access. If you would rather pin a local copy, download the <a href="../data/nfl-games/sample.csv" download>sample CSV</a> and point <code>read_csv</code> at the filename.</p>
+  </section>
+
+  <section aria-label="Load the sample">
+    <h2>Load the sample and check it</h2>
+    <p>The conventions worth one glance before the analyses:</p>
+<pre>import pandas as pd
+
+url = "https://jayjex.github.io/data-vault/data/nfl-games/sample.csv"
+games = pd.read_csv(url, dtype={"game_id": str})
+
+print(games.shape)          # (22, 46)
+print(games.loc[0, "game_id"])  # 1999_01_MIN_ATL
+print(games["temp"].dtype)  # float64</pre>
+    <ul>
+      <li><code>game_id</code> is the join key in season_week_AWAY_HOME format, like <code>1999_01_MIN_ATL</code>. The <code>dtype</code> argument holds it as a string; the <code>_</code> characters would force that reading anyway, and the argument makes the type certain.</li>
+      <li><code>temp</code> and <code>wind</code> arrive as <code>float64</code> because the 6 dome games have blank cells. Blank becomes NaN, and a numeric column containing NaN cannot stay int64. The full column list lives in the <a href="nfl-games-data-guide.html">games.csv column guide</a>.</li>
+      <li><code>spread_line</code> is stored relative to the home team: -4 means the away team is favored by 4.</li>
+    </ul>
+  </section>
+
+  <section aria-label="Three small analyses">
+    <h2>Three small analyses</h2>
+
+    <h3>1. Who won more, home or away teams?</h3>
+<pre>home_wins = (games["home_score"] &gt; games["away_score"]).sum()
+away_wins = (games["away_score"] &gt; games["home_score"]).sum()
+print(home_wins, away_wins)
+# 10 12</pre>
+    <p>The 22 games split 10 home wins and 12 away wins, no ties. A quick reality check for anyone modeling home-field advantage: in this early-September window the road teams won more, which is exactly why 22 rows teach pandas and not trends. The full pack carries all 7,548 games if you want to test the home-edge question properly.</p>
+
+    <h3>2. Dome vs outdoor scoring</h3>
+<pre>scoring = games.groupby("roof")["total"].agg(["count", "mean"]).round(1)
+print(scoring)
+#          count  mean
+# roof
+# dome         6  38.0
+# outdoors    16  45.5</pre>
+    <p><code>total</code> is combined points. The 6 dome games averaged 38.0, the 16 outdoor games 45.5. The <code>count</code> column keeps the sample-size gap visible: 6 rows is a handful, so treat the gap as a pandas exercise, not a finding. On the full file the same groupby runs across 27 seasons.</p>
+
+    <h3>3. The hottest kickoffs and what those games scored</h3>
+<pre>hot = games[games["temp"].notna()].sort_values("temp", ascending=False)
+print(hot[["away_team", "home_team", "temp", "total"]].head(3).to_string(index=False))
+# away_team home_team  temp  total
+#       NYG        TB  88.0     30
+#       CIN       TEN  84.0     71
+#        KC       CHI  80.0     37</pre>
+    <p>The <code>notna()</code> filter drops the 6 dome rows first, where temp was never recorded, then sorts the 16 outdoor rows. Note the two outdoor games at 84 and 88 degrees landed 71 and 30 combined points: temperature alone explains little, which is the point of pulling the columns next to each other. Across the 16 rows where temp exists, it runs from 60 to 88 degrees.</p>
+  </section>
+
+  <section aria-label="From sample to full pack">
+    <h2>From the sample to the full pack</h2>
+    <p>Every call above runs unchanged on the full 7,548-row games.csv, 1999 through 2026 (results through the 2025 season, plus 272 scheduled 2026 rows). Same 46 columns, same dtypes, bigger frames. The odds columns empty in this 1999 sample fill in from 2006 on. The pack also includes team-records-by-season.csv (861 rows, covered in the <a href="nfl-data-by-team.html">team-records CSV guide</a>) and season-summaries.csv (27 rows), plus a data dictionary and SHA-256 checksums. Not sure raw nflverse downloads vs the preprocessed pack? The <a href="nfl-data-alternative.html">nflverse vs pack comparison</a> lays out both routes.</p>
+    <p>Not ready for 7,548 rows? <a href="../data/nfl-games/season-summaries.csv" download>season-summaries.csv</a> is a complete table, free, 27 rows, one per season with scoring averages, home win rates, and favorite cover rates. It loads with the same <code>read_csv</code> call.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/nfl-games/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h" rel="noopener">Get full data</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. The full pack is 3 CSVs (7,548 + 861 + 27 rows), data dictionary, source SHA-256 checksums. The sample and season-summaries download free here, no signup.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>NFL data in Python questions</h2>
+    <dl>
+      <dt>Does the NFL sample CSV load in pandas without any cleaning?</dt>
+      <dd>Yes. <code>pd.read_csv</code> on the sample URL returns a DataFrame with shape (22, 46), one row per game. <code>game_id</code> arrives as a string, <code>gameday</code> parses as text you can convert with <code>pd.to_datetime</code>, and scores, lines, rest days, and roof read in with the right types on the first pass. The one thing to expect is NaN values in <code>temp</code> and <code>wind</code> for the 6 dome games, where the source file is blank.</dd>
+      <dt>Why do the temp and wind columns come in as floats with missing values?</dt>
+      <dd>Blank cells in the CSV become NaN, and any integer column that contains NaN gets stored as float64. That is the honest reading: the 6 dome games in the sample have no temp or wind because the stadium roof was closed, so the number was never recorded. Keep them as NaN and the groupby and mean calls stay correct, or fill them only when the filling makes sense for your analysis.</dd>
+      <dt>Will the same pandas code run on the full 7,548-row NFL pack?</dt>
+      <dd>Yes, unchanged. The sample is the first 22 rows of games.csv with the same 46-column schema, so every read_csv, groupby, and sort_values call here runs the same way on the full file, 1999 through 2026. Only the row count grows, and the odds columns that sit empty in the 1999 sample fill in from 2006 onward. The full pack ships with a data dictionary and SHA-256 checksums.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Attribution">
+    <h2>Source and license</h2>
+    <p>All game rows come from the nflverse-data project, file <code>schedules/games.csv</code>, downloaded 2026-09-06 with the SHA-256 recorded in the pack. nflverse-data is released under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>; credit it as "Data from nflverse, CC BY 4.0". Samples on this site carry the same license. No logos or league marks appear anywhere in the pack; team names are factual data. This page and the pack describe data only and offer no betting advice, picks, or predictions.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

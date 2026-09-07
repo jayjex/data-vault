@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Airbnb Price Data Exploration: Medians, ZIPs, Percentiles, Outliers (Austin) | Data Vault</title>
+<meta name="description" content="Explore Airbnb price data in an 11,295-row Austin dataset: median by room type, top ZIP codes, p25-p95 percentiles, availability buckets, and 1,000-night minimum_nights outliers. Free sample CSV.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/airbnb-price-data-exploration.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Airbnb Price Data Exploration: Medians, ZIPs, Percentiles, Outliers (Austin)">
+<meta property="og:description" content="Median price per room type, top neighborhoods, price percentiles, availability buckets, and minimum_nights outliers from an 11,295-row Austin Airbnb dataset.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/airbnb-price-data-exploration.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Airbnb Price Data Exploration: Medians, ZIPs, Percentiles, Outliers (Austin)", "description": "Median price per room type, top neighborhoods, price percentiles, availability buckets, and minimum_nights outliers from an 11,295-row Austin Airbnb dataset.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/airbnb-price-data-exploration.html", "about": {"@type": "Dataset", "name": "Airbnb Listings, 6 US Cities", "url": "https://jayjex.github.io/data-vault/datasets/airbnb-six-cities.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Airbnb Price Data Exploration", "item": "https://jayjex.github.io/data-vault/guides/airbnb-price-data-exploration.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the median Airbnb price in the Austin dataset?", "acceptedAnswer": {"@type": "Answer", "text": "$217 per night across the 10,321 priced listings, snapshot 2026-06-22. By room type: entire home/apt $233.38 (8,548 priced rows), private room $95.72 (1,516), hotel room $314.00 (186), shared room $16.81 (71). The middle half of priced listings falls between $133.10 and $363.00."}}, {"@type": "Question", "name": "Which Austin neighborhoods have the most Airbnb listings?", "acceptedAnswer": {"@type": "Answer", "text": "ZIP code 78704 leads with 1,684 listings, followed by 78702 (1,210), 78701 (1,147), 78745 (645), and 78741 (541). Those five ZIPs hold 5,227 of the 11,295 rows, 46.3% of the file, out of 43 ZIP codes total."}}, {"@type": "Question", "name": "What does a minimum_nights value of 1,000 or more mean?", "acceptedAnswer": {"@type": "Answer", "text": "In the 90,169-row pack, 5 listings set a minimum stay between 1,000 and 1,124 nights, all in the New York City file. A 1,124-night minimum is more than three years, so nobody books those rooms as nightly rentals; the rows behave as long-term housing postings riding the listings schema. Austin's highest minimum_nights is 365. Segment or drop these rows before computing nightly-market stats."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Airbnb price data exploration: inside the Austin listings file</h1>
+  <p class="byline">Published 2026-09-10. Source: Inside Airbnb, CC BY 4.0. Data Vault is not affiliated with Airbnb or Inside Airbnb. This page documents the data; it is not pricing or investment advice.</p>
+
+  <section aria-label="What this page covers">
+    <p>Most "airbnb price data" pages hand you one blended national number and move on. This one works the other way: we took the Austin file from our 90,169-row 6-city pack, 11,295 listings captured 2026-06-22, and computed everything a first exploration should produce. Median price per room type, the busiest ZIP codes, the price distribution from p25 to p95, how <code>availability_365</code> splits, and one quirk we did not expect: listings whose <code>minimum_nights</code> crosses 1,000. Every figure below was computed from the shipped CSV with Python, and the last section shows the code so you can rerun it.</p>
+  </section>
+
+  <section aria-label="The Austin file">
+    <h2>The file we explored</h2>
+    <p>Austin is one of six city files in the <a href="../datasets/airbnb-six-cities.html">Airbnb Listings, 6 US Cities</a> pack. Its summary file carries 11,295 rows and 12 columns, snapshot 2026-06-22, neighborhoods given as 43 distinct ZIP codes. The raw snapshot comes from <a href="https://insideairbnb.com/get-the-data/" rel="noopener">Inside Airbnb's get-the-data page</a>, published under CC BY 4.0; our pack normalizes the six cities into one schema. Two quirks to know before you compute anything: 974 rows have an empty <code>price</code>, and one row has an empty <code>minimum_nights</code>. The stats below exclude blanks and say so where it matters.</p>
+  </section>
+
+  <section aria-label="Median price per room type">
+    <h2>Median price per room type</h2>
+    <p>Of the 11,295 rows, 9,354 are entire homes or apartments, 1,665 private rooms, 201 hotel rooms, and 75 shared rooms. Medians below use priced rows only:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Median nightly price per room type, Austin"><table>
+      <thead><tr><th scope="col">Room type</th><th scope="col">Rows</th><th scope="col">Priced rows</th><th scope="col">Median nightly</th></tr></thead>
+      <tbody>
+        <tr><td>Entire home/apt</td><td>9,354</td><td>8,548</td><td>$233.38</td></tr>
+        <tr><td>Private room</td><td>1,665</td><td>1,516</td><td>$95.72</td></tr>
+        <tr><td>Hotel room</td><td>201</td><td>186</td><td>$314.00</td></tr>
+        <tr><td>Shared room</td><td>75</td><td>71</td><td>$16.81</td></tr>
+      </tbody>
+    </table></div>
+    <p>Hotel rooms top the table at $314 a night even though they are 1.8% of the file. Private rooms run at $95.72, less than half the entire-home median, which is the kind of gap that breaks averages blended across room types. The all-listings median, $217.00, matches the per-city figure in the pack's <code>cities-index.csv</code>, a good checksum when you explore on your own.</p>
+  </section>
+
+  <section aria-label="Price distribution">
+    <h2>Price distribution: p25, p50, p75, p95</h2>
+    <p>Percentiles over the 10,321 priced listings, linear interpolation, values in dollars per night:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Price percentiles for Austin priced listings"><table>
+      <thead><tr><th scope="col">Min</th><th scope="col">p25</th><th scope="col">p50</th><th scope="col">p75</th><th scope="col">p95</th><th scope="col">Max</th></tr></thead>
+      <tbody>
+        <tr><td>$7.95</td><td>$133.10</td><td>$217.00</td><td>$363.00</td><td>$969.00</td><td>$58,600.50</td></tr>
+      </tbody>
+    </table></div>
+    <p>The shape tells you more than any single number. Half the market sits between $133.10 and $363.00, a $230 band. Then the tail takes over: from p95 to max, the price multiplies by 60, with the most expensive Austin listing at $58,600.50 per night. That tail is why the median, not the mean, is the honest answer to "what does an Austin listing cost", and why per-room-type medians in the section above stay stable while means would swing with a handful of luxury rows.</p>
+  </section>
+
+  <section aria-label="Top neighborhoods by listing count">
+    <h2>Top 5 neighborhoods by listing count</h2>
+    <p>The <code>neighbourhood</code> column holds ZIP codes, 43 distinct values. Counting rows per ZIP:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Top 5 Austin ZIP codes by listing count"><table>
+      <thead><tr><th scope="col">Rank</th><th scope="col">ZIP</th><th scope="col">Listings</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>78704</td><td>1,684</td></tr>
+        <tr><td>2</td><td>78702</td><td>1,210</td></tr>
+        <tr><td>3</td><td>78701</td><td>1,147</td></tr>
+        <tr><td>4</td><td>78745</td><td>645</td></tr>
+        <tr><td>5</td><td>78741</td><td>541</td></tr>
+      </tbody>
+    </table></div>
+    <p>Five ZIPs out of 43 carry 5,227 rows, 46.3% of the file. 78704 is South Austin including the SoCo strip, 78702 and 78701 cover East Austin and downtown, so the supply concentrates exactly where tourists walk. If you model Austin as one uniform market, half your listings disagree with you.</p>
+  </section>
+
+  <section aria-label="Availability buckets">
+    <h2>availability_365 in buckets</h2>
+    <p>The <code>availability_365</code> column counts how many of the following 365 days each listing is open. Bucketed:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="availability_365 buckets for Austin listings"><table>
+      <thead><tr><th scope="col">Days available</th><th scope="col">Listings</th></tr></thead>
+      <tbody>
+        <tr><td>0</td><td>599</td></tr>
+        <tr><td>1&ndash;90</td><td>1,841</td></tr>
+        <tr><td>91&ndash;180</td><td>1,663</td></tr>
+        <tr><td>181&ndash;270</td><td>1,973</td></tr>
+        <tr><td>271&ndash;364</td><td>4,769</td></tr>
+        <tr><td>365</td><td>450</td></tr>
+      </tbody>
+    </table></div>
+    <p>Two ends of the range deserve a look. At one end, 599 listings show 0 available days, blocked or paused inventory that still occupies the file. At the other, 450 listings are open every single day of the year, and the 271&ndash;364 bucket holds 4,769 more. Availability is the closest thing a listings snapshot has to intent: full-year calendars usually mean professional operators, while the 1&ndash;90 bucket (1,841 listings) reads more like hosts renting out occasional weeks.</p>
+  </section>
+
+  <section aria-label="Minimum nights outliers">
+    <h2>The outlier: minimum_nights over 1,000</h2>
+    <p>Austin's own numbers are tame: median <code>minimum_nights</code> is 2, 4,640 listings allow a single night, and the maximum is 365. The pack-wide view is where the oddity lives. Five listings in the New York City file set a minimum stay of 1,000 nights or more:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Pack listings with minimum_nights of 1,000 or more"><table>
+      <thead><tr><th scope="col">minimum_nights</th><th scope="col">Listing name</th><th scope="col">Room type</th><th scope="col">Neighborhood</th></tr></thead>
+      <tbody>
+        <tr><td>1,124</td><td>Large 1 bdrm, River views!</td><td>Entire home/apt</td><td>Washington Heights</td></tr>
+        <tr><td>1,124</td><td>NYC Astoria LaGuardia #2 Wide PrivateRoom King Bed</td><td>Private room</td><td>Ditmars Steinway</td></tr>
+        <tr><td>1,124</td><td>NYC Astoria LaGuardia #4 Very Tiny Room Single Bed</td><td>Private room</td><td>Ditmars Steinway</td></tr>
+        <tr><td>1,124</td><td>NYC Astoria LaGuardia #5 Small PrivateRoom KingBed</td><td>Private room</td><td>Ditmars Steinway</td></tr>
+        <tr><td>1,000</td><td>Private Bedrooms (2) in Washington Heights.</td><td>Private room</td><td>Washington Heights</td></tr>
+      </tbody>
+    </table></div>
+    <p>A 1,124-night minimum is 3.1 years. No vacation rental works that way, and all five rows have an empty <code>price</code>, so they contribute nothing to nightly-rate stats anyway. What they look like is long-term housing postings riding the short-term-rental schema, plausibly a workaround in a city with strict rules on short stays. Five rows out of 90,169 would not move a mean, but they change how you read the <code>minimum_nights</code> column: high values there mark a different kind of listing, not a demanding host. Filter or segment on <code>minimum_nights &gt;= 365</code> before you compute anything nightly.</p>
+  </section>
+
+  <section aria-label="Reproduce these numbers">
+    <h2>Reproduce the numbers</h2>
+    <p>The whole exploration is a dozen lines of standard library. Against the pack's Austin file:</p>
+    <pre><code>import csv, statistics
+rows = list(csv.DictReader(open("cities/austin/listings-summary.csv")))
+prices = sorted(float(r["price"]) for r in rows if r["price"])
+
+def pct(p):
+    k = (len(prices) - 1) * p / 100
+    f = int(k)
+    return prices[f] + (prices[min(f + 1, len(prices) - 1)] - prices[f]) * (k - f)
+
+print(statistics.median(prices), pct(25), pct(50), pct(75), pct(95))
+# 217.0 133.1 217.0 363.0 969.0</code></pre>
+    <p>The <a href="../data/airbnb-six-cities/sample.csv">free 20-row sample CSV</a> carries the same 12 columns if you want to test the pipeline before pulling full files, and the <a href="airbnb-data-guide.html">column-by-column data guide</a> explains the rest of the schema.</p>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the dataset</h2>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/airbnb-six-cities/sample.csv" download>Download free sample (CSV)</a>
+      <a class="btn" href="../datasets/airbnb-six-cities.html">Airbnb Listings, 6 US Cities</a>
+    </div>
+    <p class="btn-note">Full pack: 90,169 rows across 6 city files, one snapshot date each, plus cities-index.csv, a data dictionary, and source checksums. Data from Inside Airbnb, CC BY 4.0.</p>
+  </section>
+
+  <section aria-label="More from the catalog">
+    <h2>More from the catalog</h2>
+    <ul>
+      <li><a href="airbnb-data-scraper.html">Airbnb scraper: why it fails</a>: live test results against airbnb.com, and the legal snapshot alternatives</li>
+      <li><a href="airbnb-price-data.html">Airbnb price data: mean vs median in 6 cities</a>: the same pack, priced city by city</li>
+      <li><a href="airbnb-data-by-city.html">Airbnb data by city</a>: rows, snapshot dates, and room mix for all six markets</li>
+      <li><a href="airbnb-occupancy-data.html">Airbnb occupancy data</a>: what a listings snapshot can and cannot tell you</li>
+      <li><a href="airbnb-data-methodology.html">Airbnb data methodology</a>: how Inside Airbnb snapshots are made</li>
+      <li><a href="../datasets/airbnb-six-cities.html">Airbnb Listings, 6 US Cities</a>: the 90,169-row dataset this exploration runs on</li>
+    </ul>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>What is the median Airbnb price in the Austin dataset?</h3>
+    <p>$217 per night across the 10,321 priced listings, snapshot 2026-06-22. By room type: entire home/apt $233.38 (8,548 priced rows), private room $95.72 (1,516), hotel room $314.00 (186), shared room $16.81 (71). The middle half of priced listings falls between $133.10 and $363.00.</p>
+    <h3>Which Austin neighborhoods have the most Airbnb listings?</h3>
+    <p>ZIP code 78704 leads with 1,684 listings, followed by 78702 (1,210), 78701 (1,147), 78745 (645), and 78741 (541). Those five ZIPs hold 5,227 of the 11,295 rows, 46.3% of the file, out of 43 ZIP codes total.</p>
+    <h3>What does a minimum_nights value of 1,000 or more mean?</h3>
+    <p>In the 90,169-row pack, 5 listings set a minimum stay between 1,000 and 1,124 nights, all in the New York City file. A 1,124-night minimum is more than three years, so nobody books those rooms as nightly rentals; the rows behave as long-term housing postings riding the listings schema. Austin's highest minimum_nights is 365. Segment or drop these rows before computing nightly-market stats.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

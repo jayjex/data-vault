@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Small Area Fair Market Rent: SAFMR Explained, ZIP by ZIP | Data Vault</title>
+<meta name="description" content="Small Area Fair Market Rent explained: HUD's ZIP-level FMR. How HUD computes a SAFMR, which metro areas must use them, and the San Diego spread in real FY2026 and FY2027 numbers.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/safmr-small-area-fmr.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Small Area Fair Market Rent: SAFMR Explained, ZIP by ZIP">
+<meta property="og:description" content="Small Area Fair Market Rent explained: HUD's ZIP-level FMR. How HUD computes a SAFMR, which metro areas must use them, and the San Diego spread in real FY2026 and FY2027 numbers.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/safmr-small-area-fmr.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Small Area Fair Market Rent: SAFMR Explained, ZIP by ZIP", "description": "Small Area Fair Market Rent explained: HUD's ZIP-level FMR. How HUD computes a SAFMR, which metro areas must use them, and the San Diego spread in real FY2026 and FY2027 numbers.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/safmr-small-area-fmr.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2027", "url": "https://doi.org/10.5281/zenodo.22649503"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Small Area Fair Market Rent: SAFMR Explained", "item": "https://jayjex.github.io/data-vault/guides/safmr-small-area-fmr.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is a small area fair market rent?", "acceptedAnswer": {"@type": "Answer", "text": "A small area fair market rent (SAFMR) is HUD's fair market rent computed for a single ZIP code inside a metro instead of for the metro as a whole. It is the same 40th percentile gross rent estimate, shelter rent plus utilities for standard-quality units, calculated at ZIP level from three years of American Community Survey data, with a rent ratio method filling ZIPs the survey cannot support."}}, {"@type": "Question", "name": "Which metro areas are required to use SAFMRs?", "acceptedAnswer": {"@type": "Answer", "text": "HUD's first designation notice, published November 16, 2016 (81 FR 80678), listed 24 metro areas whose agencies have used SAFMRs since April 1, 2018. A second notice (88 FR 73352, October 25, 2023) added 41 metro areas effective October 1, 2024, and the designations are permanent under 24 CFR 888.113(c)(4). Agencies elsewhere can opt in through HUD's Office of Public and Indian Housing, and agencies using SAFMRs voluntarily must notify HUD."}}, {"@type": "Question", "name": "How is a SAFMR different from the metro-wide FMR?", "acceptedAnswer": {"@type": "Answer", "text": "Geography is the difference; the math underneath is the same 40th percentile gross rent. In the FY2026 file, San Diego-Chula Vista-Carlsbad, CA MSA 2-bedroom SAFMRs run from 1,460 in ZIP 92004 to 4,500 in ZIP 91914, a spread of 3,040 dollars inside one metro whose base 2BR value is 3,000. A metro-wide FMR would carry one number for all 178 ZIP rows; the SAFMRs carry 82 distinct values, capped at 150 percent of the metro FMR."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Small Area Fair Market Rent: SAFMR explained, ZIP by ZIP</h1>
+  <p class="byline">FY2027 edition, published 2026-09-10. Data source: HUD, public domain. Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>A small area fair market rent (SAFMR) is HUD's rent benchmark computed for one ZIP code instead of one metro. The regular FMR sets a single 40th percentile gross rent estimate for a whole HUD Metro FMR Area; the SAFMR runs the same estimate on the rents of each ZIP inside that area. Where HUD requires SAFMRs, the ZIP value is the number housing agencies use to set voucher payment standards. Where HUD does not, the metro-wide FMR governs, and an agency can opt in by asking HUD.</p>
+    <p>HUD publishes SAFMRs in an annual workbook, fy2027_safmrs.xlsx for the current year, posted August 31, 2026 and effective October 1, 2026. That workbook covers 51,871 ZIP-level rows, metro and nonmetro areas alike; ZIPs inside designated metros carry ZIP-specific values, and the rest repeat their area's numbers. The <a href="hud-fair-market-rent-explained.html">Fair Market Rent definition guide</a> covers the FMR side of the comparison.</p>
+  </section>
+
+  <section aria-label="Why HUD computes rents per ZIP">
+    <h2>Why HUD computes rents per ZIP</h2>
+    <p>One rent per metro averages over neighborhoods that rent nothing alike. Voucher families shopping against a metro-wide ceiling can afford the cheap ZIPs and get priced out of the expensive ones, so voucher use concentrates in a handful of low-rent neighborhoods. ZIP-level values tie the ceiling to the rents of the ZIP a family rents in.</p>
+    <p>HUD tried the idea as a demonstration that started with Dallas in 2012, proposed a rule on June 16, 2016 (<a href="https://www.federalregister.gov/citation/81-FR-39218" rel="noopener">81 FR 39218</a>), and finalized it on November 16, 2016 (<a href="https://www.federalregister.gov/citation/81-FR-80567" rel="noopener">81 FR 80567</a>). Since then HUD designates metro areas for mandatory SAFMR use through Federal Register notices, with a second cohort added in October 2023.</p>
+  </section>
+
+  <section aria-label="How HUD computes a SAFMR">
+    <h2>How HUD computes a SAFMR</h2>
+    <p>The FY2027 notice (<a href="https://www.federalregister.gov/citation/91-FR-56156" rel="noopener">91 FR 56156</a>) keeps the SAFMR methodology unchanged from FY2026. The steps, in HUD's order of preference:</p>
+    <ol>
+      <li>Direct estimate: HUD takes the ZIP Code Tabulation Area's two-bedroom equivalent 40th percentile gross rent from Census standard-quality rent data, using the first statistically reliable figure from two-bedroom, then one-bedroom, then three-bedroom gross rents, converted with the parent area's bedroom ratios.</li>
+      <li>Three-year smoothing: the estimates average the latest three years of 5-year American Community Survey data. FY2027 uses the 2022, 2023, and 2024 vintages, inflation-adjusted to 2024 dollars.</li>
+      <li>Rent ratio fallback: for ZIPs without reliable bedroom-level data, HUD applies a ratio of the ZIP's all-bedroom median gross rent to the area's median.</li>
+      <li>Neighbor fallback: if the all-bedroom data also fails, HUD borrows from bordering ZIPs that have data, weighted by the length of shared boundary, when at least half the neighbors qualify.</li>
+      <li>Cap: no two-bedroom SAFMR exceeds 150 percent of the two-bedroom FMR for the area the ZIP sits in.</li>
+    </ol>
+  </section>
+
+  <section aria-label="Where SAFMRs are required and where they are optional">
+    <h2>Where SAFMRs are required, and where they are optional</h2>
+    <p>The November 16, 2016 designation notice (<a href="https://www.federalregister.gov/citation/81-FR-80678" rel="noopener">81 FR 80678</a>) listed 24 metro areas that met the rule's selection criteria, effective January 17, 2017, with agencies using SAFMRs since April 1, 2018. A metro made the list if it satisfied all five criteria: at least 2,500 vouchers under lease, at least 20 percent of the standard-quality rental stock in ZIPs where the SAFMR runs above 110 percent of the metro FMR, at least 25 percent of voucher families living in concentrated low-income areas, a voucher concentration ratio above 1.55, and a metro vacancy rate above 4 percent.</p>
+    <p>On October 25, 2023, HUD's second designation notice (<a href="https://www.federalregister.gov/citation/88-FR-73352" rel="noopener">88 FR 73352</a>) added 41 metro areas effective October 1, 2024, with payment standards required to align by January 1, 2025. Designations are permanent under <a href="https://www.ecfr.gov/current/title-24/section-888.113" rel="noopener">24 CFR 888.113(c)(4)</a>, so the mandatory list stands at 65 metro areas going into FY2027. The FY2027 notice changed boundaries only: Calvert County, MD left the Washington-Arlington-Alexandria area, and several Connecticut towns moved in and out of the Hartford area.</p>
+    <p>Everywhere else, SAFMRs are optional. A housing agency can opt in under 24 CFR 888.113(c)(3) by written request to HUD's Office of Public and Indian Housing, and an agency already using SAFMRs voluntarily must notify HUD. That is the whole required-versus-optional split: 65 designated metros use them by rule, everyone else by choice.</p>
+  </section>
+
+  <section aria-label="The spread in real numbers">
+    <h2>The spread in real numbers: San Diego</h2>
+    <p>San Diego-Chula Vista-Carlsbad, CA MSA is a first-cohort designation, and the CSV makes the case for it. From the FY2026 file, three of its 178 ZIP rows, verbatim:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="San Diego ZIP-level 2BR FMRs, FY2026"><table><thead><tr><th scope="col">zip</th><th scope="col">area_name</th><th scope="col">fmr_2br (FY2026)</th></tr></thead><tbody>
+      <tr><td>92004</td><td>San Diego-Chula Vista-Carlsbad, CA MSA</td><td>1460</td></tr>
+      <tr><td>91908</td><td>San Diego-Chula Vista-Carlsbad, CA MSA</td><td>3000</td></tr>
+      <tr><td>91914</td><td>San Diego-Chula Vista-Carlsbad, CA MSA</td><td>4500</td></tr>
+    </tbody></table></div>
+    <p>The base 2BR value, the one 69 ZIPs carry, is 3,000. ZIP 92004 in Borrego Springs sits at 1,460 and ZIP 91914 at 4,500, a spread of 3,040 dollars inside one metro. That top value is no accident: 4,500 is exactly 150 percent of 3,000, the cap HUD's methodology puts on any two-bedroom SAFMR. One metro-wide number would have covered both ends of that range with a single, wrong figure.</p>
+    <p>The FY2027 file redraws the same picture: base 2BR 2,820 across 70 ZIPs, 1670 at the floor (ZIP 92590) and 4230 at the ceiling (ZIP 92118), again exactly 150 percent of the base, with 84 distinct 2BR values across the metro's 178 rows.</p>
+  </section>
+
+  <section aria-label="Designated and non-designated metros in the file">
+    <h2>Designated and non-designated metros in the same file</h2>
+    <p>Dallas shows the mandatory side. The Dallas, TX HUD Metro FMR Area has carried SAFMRs since April 1, 2018. In the FY2027 file, its 260 ZIP rows hold 107 distinct 2BR values around a base of 1,720, from 1,020 in ZIP 75161 to 2,710 in ZIP 75072, a 1,690-dollar spread.</p>
+    <p>Abilene, TX MSA shows the other side. It carries ZIP variation in the file, base 1,150 across 16 of its 33 rows with 79562 at 1,970, but HUD never designated it, so the metro FMR governs unless the agency opts in. Variation in the file is a data fact, the designation is a program fact.</p>
+    <p>The CSV carries no SAFMR flag column; 36,002 of its 51,871 rows differ from their area's base 2BR value for reasons that mix SAFMRs with other HUD area rules. Scan for divergent ZIPs, then confirm against HUD's <a href="https://www.huduser.gov/portal/datasets/fmr/smallarea/index.html" rel="noopener">SAFMR tables</a> before relying on any single value. How HUD stitches ZIP rows into one area record is in <a href="hud-fmr-by-metro-area.html">HUD FMR by metro area</a>, and the side-by-side comparison sits in <a href="safmr-vs-fmr.html">SAFMR vs FMR</a>.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>Small area fair market rent questions</h2>
+    <dl>
+      <dt>What is a small area fair market rent?</dt>
+      <dd>A small area fair market rent (SAFMR) is HUD's fair market rent computed for a single ZIP code inside a metro instead of for the metro as a whole. It is the same 40th percentile gross rent estimate, shelter rent plus utilities for standard-quality units, calculated at ZIP level from three years of American Community Survey data, with a rent ratio method filling ZIPs the survey cannot support.</dd>
+      <dt>Which metro areas are required to use SAFMRs?</dt>
+      <dd>HUD's first designation notice, published November 16, 2016 (81 FR 80678), listed 24 metro areas whose agencies have used SAFMRs since April 1, 2018. A second notice (88 FR 73352, October 25, 2023) added 41 metro areas effective October 1, 2024, and the designations are permanent under 24 CFR 888.113(c)(4). Agencies elsewhere can opt in through HUD's Office of Public and Indian Housing, and agencies using SAFMRs voluntarily must notify HUD.</dd>
+      <dt>How is a SAFMR different from the metro-wide FMR?</dt>
+      <dd>Geography is the difference; the math underneath is the same 40th percentile gross rent. In the FY2026 file, San Diego-Chula Vista-Carlsbad, CA MSA 2-bedroom SAFMRs run from 1,460 in ZIP 92004 to 4,500 in ZIP 91914, a spread of 3,040 dollars inside one metro whose base 2BR value is 3,000. A metro-wide FMR would carry one number for all 178 ZIP rows; the SAFMRs carry 82 distinct values, capped at 150 percent of the metro FMR.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <p>The FY2027 CSVs on Zenodo carry the ZIP-level table used here; the FY2026 dataset page holds the file behind the San Diego spread. Free samples, no signup.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="https://doi.org/10.5281/zenodo.22649503" rel="noopener">FY2027 CSVs on Zenodo (free)</a>
+      <a class="btn" href="../datasets/hud-fmr-2026.html">FY2026 dataset page</a>
+    </div>
+    <p class="btn-note">Source: US Department of Housing and Urban Development, FY2027 and FY2026 Fair Market Rent releases, huduser.gov. US government data, public domain. Zenodo repackaging CC BY 4.0. Data Vault is not affiliated with HUD.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

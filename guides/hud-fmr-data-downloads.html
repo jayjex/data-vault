@@ -84,6 +84,7 @@
       <tr><td>MCP query</td><td>Agents and pipelines that need specific rows on demand</td><td>No file management: filter, paginate, done. 100 rows per call with checksummed caching, so repeated pulls come back from memory in milliseconds.</td></tr>
     </tbody></table></div>
     <p>The one-off rule of thumb: an analyst asks "what is the 2BR FMR in this county" and Excel answers fastest. A developer asks "load all 51,895 rows and join on ZIP" and wants the CSV. An agent asks "give me the rows for these five ZIPs right now" and wants the query. Most working setups end up using two of the three: CSV as the source of truth, MCP for ad hoc pulls.</p>
+    <p>New to the benchmark these files carry? <a href="hud-fair-market-rent-explained.html">What is fair market rent</a> explains the 40th percentile definition and why the FMR sits below the median rent.</p>
     <p>Deciding between static files and live queries in general is the subject of <a href="csv-vs-api.html">CSV vs API for data</a>, and the link between HUD's numbers and the census side is covered in <a href="hud-fmr-vs-census-rent.html">HUD FMR vs census rent</a>.</p>
   </section>
 

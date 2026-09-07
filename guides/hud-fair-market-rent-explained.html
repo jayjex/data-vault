@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What Is Fair Market Rent? HUD FMR Explained, With FY2026 Numbers | Data Vault</title>
+<meta name="description" content="Fair market rent is HUD's 40th percentile gross rent estimate, not the median. What FMR measures, how HUD computes it each fiscal year, why vouchers use it, SAFMR vs metro-wide values, and a real ZIP lookup from the FY2026 CSV.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fair-market-rent-explained.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="What Is Fair Market Rent? HUD FMR Explained, With FY2026 Numbers">
+<meta property="og:description" content="Fair market rent is HUD's 40th percentile gross rent estimate, not the median. What FMR measures, how HUD computes it, why vouchers use it, SAFMR vs metro-wide values, and a real ZIP lookup.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fair-market-rent-explained.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "What Is Fair Market Rent? HUD FMR Explained, With FY2026 Numbers", "description": "Fair market rent is HUD's 40th percentile gross rent estimate, not the median. What FMR measures, how HUD computes it each fiscal year, why vouchers use it, SAFMR vs metro-wide values, and a real ZIP lookup from the FY2026 CSV.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fair-market-rent-explained.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}, "mentions": [{"@type": "Article", "name": "HUD FMR Data Download: Every Official Source, Compared", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-data-downloads.html"}, {"@type": "Article", "name": "HUD FMR 2027: Fair Market Rents for FY2027, What Changed by ZIP", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-2027.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "What Is Fair Market Rent", "item": "https://jayjex.github.io/data-vault/guides/hud-fair-market-rent-explained.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is fair market rent in simple terms?", "acceptedAnswer": {"@type": "Answer", "text": "Fair market rent (FMR) is HUD's estimate of what a modest, standard-quality rental costs in a local market: the 40th percentile of gross rents, meaning shelter rent plus utilities. In an area with the FY2026 FMR as its benchmark, 40 percent of standard units rent for less than the FMR and 60 percent rent for more. HUD publishes a number for every metro FMR area, and ZIP-level values where Small Area FMRs apply."}}, {"@type": "Question", "name": "Is fair market rent the same as the median rent?", "acceptedAnswer": {"@type": "Answer", "text": "No. A median rent is the 50th percentile, the middle of the local distribution. HUD set FMRs at the 50th percentile through fiscal year 2000, then the Quality Housing and Work Responsibility Act of 1998 moved the standard to the 40th percentile starting with the FY2001 numbers. The 40th percentile sits below half the market by design, and HUD still publishes separate 50th percentile rent estimates as a different product on huduser.gov."}}, {"@type": "Question", "name": "How does HUD use fair market rent for Section 8 vouchers?", "acceptedAnswer": {"@type": "Answer", "text": "The FMR is the base for the Housing Choice Voucher payment standard. An agency sets its payment standard between 90 and 110 percent of the FMR, and the voucher covers the difference between the payment standard and the family's share of the rent. For ZIP 76437 in Abilene, TX, the FY2026 2BR FMR is 1,090, which puts the 90 to 110 percent band at 981 to 1,199. A family renting above the standard pays the gap, with the family share capped at 40 percent of income at move-in."}}, {"@type": "Question", "name": "Do fair market rents change every year?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. HUD re-releases the FMRs every federal fiscal year, effective October 1. The FY2026 numbers run through September 30, 2026, and the FY2027 FMRs, which HUD posted on August 26 and 31, 2026, take effect October 1, 2026. Each year's workbooks live on huduser.gov, and an FMR is only current inside its fiscal year."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>What is fair market rent? HUD's FMR, explained</h1>
+  <p class="byline">Published 2026-09-10. Built from HUD's FY2026 and FY2027 FMR files, downloaded from huduser.gov. Source data public domain. Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>Fair market rent (FMR) is the rent estimate HUD publishes once a year for every metro FMR area in the country. The standard definition: the 40th percentile of gross rents, shelter rent plus utilities, for modest, standard-quality rental units in a local market. Read the percentile literally: in an area whose benchmark is the FY2026 FMR, 40 percent of standard units rent for less than the FMR and 60 percent rent for more.</p>
+    <p>Two things follow from that definition, and both get confused in search results. First, the FMR is below the median rent by construction, because a median is the 50th percentile and HUD set the standard at the 40th. Second, the FMR is a benchmark, so it describes a market and never prices a specific apartment. Its main job is program arithmetic: housing agencies set voucher payment standards from it. This page works through the percentile rule, the annual cycle, the voucher math on a real ZIP from our CSV, and the metro-wide vs ZIP-level split.</p>
+  </section>
+
+  <section aria-label="The 40th percentile and why it is not the median">
+    <h2>The 40th percentile, and why it is not the median</h2>
+    <p>A percentile marks a position in the local rent distribution. The 50th percentile, the median, is the middle: half of units rent below it, half above. The 40th percentile sits lower: 40 percent of units rent below it, 60 percent above. Nothing about the market changed between those two sentences; the number just moved to a different spot in the same distribution.</p>
+    <p>The position is a policy choice with a paper trail. Through the fiscal year 2000 FMRs, HUD set the standard at the 50th percentile. The Quality Housing and Work Responsibility Act of 1998 (Public Law 105-276) rewrote it to the 40th percentile, first applied to the fiscal year 2001 numbers, and it has held through FY2026. HUD still publishes <a href="https://www.huduser.gov/portal/datasets/50per.html" rel="noopener">50th percentile rent estimates</a> as a separate product on huduser.gov, so a high-looking "FMR" may be that product instead. The full timeline is in <a href="hud-fmr-history.html">HUD FMR history</a>.</p>
+    <p>The rule applies across geography types. Metro-wide FMRs and ZIP-level Small Area FMRs are both 40th percentile estimates; the percentile does not change, only the size of the area each number describes.</p>
+  </section>
+
+  <section aria-label="How HUD computes the number each year">
+    <h2>How HUD computes the number each year</h2>
+    <p>Each FMR starts from American Community Survey rent data for the area, counted as gross rent, shelter rent plus utilities, for standard-quality units, tuned toward units recent movers actually rent rather than the whole standing stock. HUD adjusts the estimates for inflation and applies its methodology rules for the year, then publishes the results as Excel workbooks on huduser.gov. What each release contains, workbook by workbook, is the subject of <a href="hud-fmr-data-downloads.html">HUD FMR data download</a>.</p>
+    <p>The calendar runs on the federal fiscal year, October 1 through September 30. FMRs take effect on October 1 and stay current until the next release. HUD posted the FY2027 county workbook (FY27_FMRs.xlsx) on August 26, 2026 and the ZIP-level SAFMR workbook (fy2027_safmrs.xlsx) on August 31, 2026, and those FY2027 numbers take effect October 1, 2026. Until that date, FY2026 is the operating number for every program that references the FMR. The year-over-year diff, median 2BR up 3.30% across 51,819 matched ZIP areas, is worked through in <a href="hud-fmr-2027.html">HUD FMR 2027</a>.</p>
+  </section>
+
+  <section aria-label="FMR versus the rent you actually see">
+    <h2>FMR versus the rent you actually see</h2>
+    <p>An FMR describes a market; a rent you see on a listing describes one unit. A specific 2BR can rent for more or less than the area's FMR without anything being wrong, because the FMR is the 40th percentile of standard units, and the listed unit may be newer, larger, or better located than the standard the percentile describes. The gaps run on four axes: percentile (40th vs an actual rent at any point in the distribution), basis (benchmark estimate vs observed asking or contract rent), timing (a fiscal-year number held for a year vs daily listings), and geography (metro-wide or ZIP estimate vs a street address). <a href="fmr-vs-rent-actuals.html">FMR vs actual rent</a> puts real rows on each axis.</p>
+    <p>Two neighboring numbers cause most of the mix-ups. The ACS median gross rent is a 50th percentile across all renter-occupied units, so it runs above the FMR in the same market, which <a href="hud-fmr-vs-census-rent.html">HUD FMR vs census rent</a> tables across five states. Zillow's ZORI is a monthly asking-rent index, 1,962 against the FY2026 2BR FMR median of 1,150 at the national level, and <a href="hud-fmr-vs-zillow-rent.html">HUD FMR vs Zillow rent data</a> explains the gap. Neither of those replaces the FMR for program purposes, because agencies set payment standards from the FMR only.</p>
+  </section>
+
+  <section aria-label="Why the voucher program runs on FMRs">
+    <h2>Why the voucher program runs on FMRs</h2>
+    <p>The Housing Choice Voucher program needs one defensible number per area to budget subsidies against, and the 40th percentile FMR is that number. Under 24 CFR 982.505, a public housing agency sets its payment standard between 90 and 110 percent of the FMR, and the voucher pays the difference between the payment standard and the family's share. The band gives agencies room on both sides of the benchmark while keeping them anchored to the same published base.</p>
+    <p>ZIP 76437 in Stephens County, Texas, part of the Abilene, TX MSA, is the lookup example used across this site's FMR pages. The FY2026 row, verbatim from fmr-by-zip-2026.csv:</p>
+    <pre><code>76437,METRO10180M10180,metro,"Abilene, TX MSA",TX,850,880,1090,1420,1710</code></pre>
+    <p>The 2BR value is 1,090. A payment standard set from that FMR lands in a 90 to 110 percent band of 981 to 1,199. When the FY2027 FMR of 1,150 takes effect October 1, 2026, the band moves to 1,035 to 1,265:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="ZIP 76437 payment standard band, FY2026 vs FY2027"><table><thead><tr><th scope="col">FMR year</th><th scope="col">2BR FMR</th><th scope="col">90% floor</th><th scope="col">110% ceiling</th><th scope="col">Effective</th></tr></thead><tbody>
+      <tr><td>FY2026</td><td>1,090</td><td>981</td><td>1,199</td><td>through Sep 30, 2026</td></tr>
+      <tr><td>FY2027</td><td>1,150</td><td>1,035</td><td>1,265</td><td>Oct 1, 2026</td></tr>
+    </tbody></table></div>
+    <p>A family renting above the payment standard pays the gap out of pocket, and at move-in the family share is capped at 40 percent of monthly adjusted income. The band math and the cap, worked on Abilene rows, are in <a href="fmr-payment-standard.html">payment standard for Section 8</a>, and <a href="hud-payment-standard.html">HUD payment standard</a> tables the band for six ZIPs.</p>
+  </section>
+
+  <section aria-label="Metro-wide FMR versus Small Area FMR">
+    <h2>Metro-wide FMR versus Small Area FMR (SAFMR)</h2>
+    <p>The default FMR covers a whole metro area, one value for every ZIP in it. That flatness is the design's known weakness: rents inside a metro spread widely by neighborhood, so one ceiling over-reaches in cheap ZIPs and falls short in expensive ones. Small Area FMRs are the fix HUD runs where it designates them: the same 40th percentile gross rent estimate, computed for a single ZIP code. HUD started the SAFMR demonstration with Dallas in 2012 and finalized the rule in November 2016, and in designated metros agencies base payment standards on the ZIP-level values. <a href="safmr-vs-fmr.html">SAFMR vs FMR</a> works the comparison and <a href="hud-fmr-small-areas.html">HUD FMR small areas</a> carries the geography.</p>
+    <p>The ZIP-level CSV shows the structure. Most rows repeat their metro's base value, and rows that differ from the base are where ZIP-level rules such as SAFMRs sit; HUD's SAFMR tables for the fiscal year confirm which ZIPs carry one, and <a href="hud-fmr-safmr-list.html">HUD SAFMR list</a> ranks the ZIP-vs-metro gaps. The Abilene sample rows make the spread visible even in a small metro: ZIP 76437 carries a 2BR FMR of 1,090 while ZIP 79536 in the same MSA carries 1,460, a 340-dollar gap between two ZIPs of the same metro in one file.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>Fair market rent questions</h2>
+    <dl>
+      <dt>What is fair market rent in simple terms?</dt>
+      <dd>Fair market rent (FMR) is HUD's estimate of what a modest, standard-quality rental costs in a local market: the 40th percentile of gross rents, meaning shelter rent plus utilities. In an area with the FY2026 FMR as its benchmark, 40 percent of standard units rent for less than the FMR and 60 percent rent for more. HUD publishes a number for every metro FMR area, and ZIP-level values where Small Area FMRs apply.</dd>
+      <dt>Is fair market rent the same as the median rent?</dt>
+      <dd>No. A median rent is the 50th percentile, the middle of the local distribution. HUD set FMRs at the 50th percentile through fiscal year 2000, then the Quality Housing and Work Responsibility Act of 1998 moved the standard to the 40th percentile starting with the FY2001 numbers. The 40th percentile sits below half the market by design, and HUD still publishes separate 50th percentile rent estimates as a different product on huduser.gov.</dd>
+      <dt>How does HUD use fair market rent for Section 8 vouchers?</dt>
+      <dd>The FMR is the base for the Housing Choice Voucher payment standard. An agency sets its payment standard between 90 and 110 percent of the FMR, and the voucher covers the difference between the payment standard and the family's share of the rent. For ZIP 76437 in Abilene, TX, the FY2026 2BR FMR is 1,090, which puts the 90 to 110 percent band at 981 to 1,199. A family renting above the standard pays the gap, with the family share capped at 40 percent of income at move-in.</dd>
+      <dt>Do fair market rents change every year?</dt>
+      <dd>Yes. HUD re-releases the FMRs every federal fiscal year, effective October 1. The FY2026 numbers run through September 30, 2026, and the FY2027 FMRs, which HUD posted on August 26 and 31, 2026, take effect October 1, 2026. Each year's workbooks live on huduser.gov, and an FMR is only current inside its fiscal year.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the FMR data">
+    <h2>Get the FMR data behind these numbers</h2>
+    <p>The FY2026 ZIP file with the ZIP 76437 row is on the <a href="../datasets/hud-fmr-2026.html">HUD Fair Market Rents FY2026 dataset page</a>, with a free 22-row sample. Every official source for the workbooks, plus the CSV and MCP routes, is compared in <a href="hud-fmr-data-downloads.html">HUD FMR data download</a>, and the FY2027 diff is in <a href="hud-fmr-2027.html">HUD FMR 2027</a>.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="../datasets/hud-fmr-2026.html">FY2026 dataset page</a>
+    </div>
+    <p class="btn-note">Source: US Department of Housing and Urban Development, Fair Market Rent releases (FY2026 and FY2027), huduser.gov. US government data, public domain. Data Vault is not affiliated with HUD.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude Desktop MCP Setup: Add a Server in 5 Steps (dataset-mcp Example) | Data Vault</title>
+<meta name="description" content="Claude Desktop MCP setup, step by step: where claude_desktop_config.json lives on macOS and Windows, the dataset-mcp config JSON copied from the README, how to restart and verify, and a first query with the real output.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/agents/claude-desktop-mcp-setup.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Claude Desktop MCP Setup: Add a Server in 5 Steps (dataset-mcp Example)">
+<meta property="og:description" content="Add an MCP server to Claude Desktop in five steps: find claude_desktop_config.json, paste the config, restart, verify the tools menu, run a first query. dataset-mcp as the worked example, with a live captured output.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/agents/claude-desktop-mcp-setup.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Claude Desktop MCP Setup: Add a Server in 5 Steps (dataset-mcp Example)", "description": "Add an MCP server to Claude Desktop in five steps: find claude_desktop_config.json, paste the config, restart, verify the tools menu, run a first query. dataset-mcp as the worked example, with a live captured output.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/agents/claude-desktop-mcp-setup.html", "about": {"@type": "Thing", "name": "Claude Desktop MCP setup"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Where is the Claude Desktop config file on macOS and Windows?", "acceptedAnswer": {"@type": "Answer", "text": "On macOS: ~/Library/Application Support/Claude/claude_desktop_config.json. On Windows: %APPDATA%\\Claude\\claude_desktop_config.json. Create the file if it does not exist yet, then add your server under mcpServers."}}, {"@type": "Question", "name": "Do I need the --allow-git=all flag with dataset-mcp?", "acceptedAnswer": {"@type": "Answer", "text": "On npm 12, yes: the install form github:jayjex/dataset-mcp is git-based and npm 12 refuses it by default with EALLOWGIT, so the args become [\"--allow-git=all\", \"-y\", \"github:jayjex/dataset-mcp\"]. Alternatively set allow-git=github.com once in ~/.npmrc. npm 10 and 11 need no flag."}}, {"@type": "Question", "name": "How do I verify an MCP server connected in Claude Desktop?", "acceptedAnswer": {"@type": "Answer", "text": "Fully quit Claude Desktop from the tray (macOS: Cmd-Q) and reopen it, start a new chat, and open the tools menu below the input box: the server should be listed with its tools and no error state. Then ask a question that needs one of the tools and watch the tool call appear in the transcript."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="./">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <p class="kicker">claude desktop mcp setup</p>
+  <h1>Claude Desktop MCP setup: add a server in five steps</h1>
+  <p class="byline">Published 2026-09-10. Steps tested against <a href="https://github.com/jayjex/dataset-mcp" rel="noopener">dataset-mcp</a> v1.1.0; the first-query output below was captured over the same stdio transport Claude Desktop uses.</p>
+
+  <p class="lead">Claude Desktop MCP setup comes down to five steps: find <code>claude_desktop_config.json</code>, add your server under <code>mcpServers</code>, fully quit and reopen Claude Desktop, check the tools menu, then run one query to confirm the server answers. This walkthrough uses <strong>dataset-mcp</strong>, a free MCP server that queries 149,673 rows of NFL, rent, Airbnb, and bounty data, as the worked example. Any stdio MCP server follows the same shape.</p>
+
+  <section aria-label="Where the config file lives">
+    <h2>Step 1: find claude_desktop_config.json</h2>
+    <p>Claude Desktop reads MCP servers from one JSON file. If it does not exist yet, create it:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Config file locations"><table><thead><tr><th scope="col">OS</th><th scope="col">Path</th></tr></thead><tbody>
+      <tr><td>macOS</td><td><code>~/Library/Application Support/Claude/claude_desktop_config.json</code></td></tr>
+      <tr><td>Windows</td><td><code>%APPDATA%\Claude\claude_desktop_config.json</code></td></tr>
+    </tbody></table></div>
+    <p>You also need Node.js 18 or newer, because the server runs through <code>npx</code>. Check with <code>node --version</code> in a terminal.</p>
+  </section>
+
+  <section aria-label="Add the config">
+    <h2>Step 2: add the server under mcpServers</h2>
+    <p>Open the file (or create it) and add an entry under <code>mcpServers</code>. Each entry needs a <code>command</code> and <code>args</code>; Claude Desktop launches it over stdio at startup. This is the config from the dataset-mcp README, verbatim:</p>
+<pre>{
+  "mcpServers": {
+    "dataset-mcp": {
+      "command": "npx",
+      "args": ["-y", "github:jayjex/dataset-mcp"]
+    }
+  }
+}</pre>
+    <p>npm 12 refuses git-based installs by default (<code>EALLOWGIT</code>), and the <code>github:jayjex/dataset-mcp</code> form is git-based. If you are on npm 12, use the flag-carrying form the README also ships:</p>
+<pre>{
+  "mcpServers": {
+    "dataset-mcp": {
+      "command": "npx",
+      "args": ["--allow-git=all", "-y", "github:jayjex/dataset-mcp"]
+    }
+  }
+}</pre>
+    <p>Setting <code>allow-git=github.com</code> once in <code>~/.npmrc</code> makes the plain form work again. npm 10 and 11 need no flag.</p>
+  </section>
+
+  <section aria-label="Sanity check">
+    <h2>Step 3: run the command once in a terminal</h2>
+    <p>Before blaming Claude Desktop for a broken server, prove the command itself runs. In a terminal:</p>
+<pre><span class="cm"># npm 12+ needs the allow-git flag; npm 10 and 11 work without it</span>
+npx --allow-git=all -y github:jayjex/dataset-mcp</pre>
+    <p>The process starts and waits on stdin, which is correct for a stdio server. Ctrl-C out of it. If this step prints an error, Claude Desktop would show the same error, so fix it here first.</p>
+  </section>
+
+  <section aria-label="Restart and verify">
+    <h2>Step 4: fully quit Claude Desktop, then check the tools menu</h2>
+    <p>Claude Desktop reads <code>claude_desktop_config.json</code> only at startup. Closing the window is not enough. macOS: Cmd-Q (or quit from the menu). Windows: right-click the tray icon and quit. Reopen it, start a new chat, and open the tools menu (the search-and-tools icon below the input box). dataset-mcp should appear with its five tools: <code>list_datasets</code>, <code>get_dataset_info</code>, <code>get_sample</code>, <code>query_dataset</code>, and <code>get_stats</code>, each with no error state.</p>
+  </section>
+
+  <section aria-label="First query">
+    <h2>Step 5: run a first query</h2>
+    <p>You never call the tools by hand. Ask in plain language: "What are the FY2026 fair market rents for ZIP code 77002 in Houston?" Claude Desktop picks <code>query_dataset</code>, builds the filter, and reads the rows back into the answer. The tool call looks like this:</p>
+<pre>query_dataset("hud-fmr-2026", {
+  where: [{ column: "zip", op: "=", value: "77002" }],
+  columns: ["zip", "area_name", "state", "fmr_0br", "fmr_1br",
+            "fmr_2br", "fmr_3br", "fmr_4br"],
+  limit: 10
+})</pre>
+    <p>And here is the real server output, captured live over stdio JSON-RPC on 2026-09-10. The first call downloaded the 51,895-row ZIP file into <code>~/.cache/dataset-mcp/</code>; later calls re-verify the file's SHA-256 before answering:</p>
+<pre>total_rows_in_file: 51895 | total_matched: 1 | next_offset: null
+sha256: 04ffb4597f37de264a2e3c91d39462b44539f650bd7f30b2938ca73971fbe975
+{"zip": "77002",
+ "area_name": "Houston-The Woodlands-Sugar Land, TX HUD Metro FMR Area",
+ "state": "TX",
+ "fmr_0br": "1920", "fmr_1br": "1980", "fmr_2br": "2360",
+ "fmr_3br": "3170", "fmr_4br": "3960"}</pre>
+    <p>One ZIP matched, the Houston HUD Metro FMR Area, with FY2026 rents from studio ($1,920) to 4-bedroom ($3,960). If the tool call appears in the transcript and the row count looks right, your setup works end to end. Good follow-up queries: <code>get_stats</code> on the NYC Airbnb price column, or <code>query_dataset</code> on 2025 NFL closing lines.</p>
+  </section>
+
+  <section aria-label="Troubleshooting">
+    <h2>Troubleshooting</h2>
+    <p><strong>The server does not appear in the tools menu.</strong> Three usual causes: the JSON does not parse (a stray comma or missing brace breaks the whole file, so validate it), the entry is not nested under <code>mcpServers</code>, or you closed the window instead of quitting. Run the terminal sanity check from step 3, then fully quit and reopen.</p>
+    <p><strong>EALLOWGIT on npm 12.</strong> npm 12 refuses git-based installs by default, and <code>github:jayjex/dataset-mcp</code> is git-based. Either switch the args to the <code>--allow-git=all</code> form from step 2, or put <code>allow-git=github.com</code> in <code>~/.npmrc</code>.</p>
+    <p><strong>npx returns 403 from npm.</strong> A custom <code>registry</code> line in <code>~/.npmrc</code> or a corporate proxy that blocks git-hosted packages can answer 403 for the tarball fetch. Check <code>npm config get registry</code>, remove the override or allow <code>github.com</code>, and retry. Also check that the npx cache (<code>~/.npm/_npx</code>) is not half-written from an interrupted install; clearing it forces a clean fetch.</p>
+    <p><strong>Claude Desktop shows the server with an error state.</strong> Open the logs: on macOS <code>~/Library/Logs/Claude/mcp.log</code> and <code>mcp-server-*.log</code>, on Windows <code>%APPDATA%\Claude\logs\</code>. The log line for a failing launch usually matches what the terminal sanity check printed.</p>
+    <p><strong>A tool call returns a network error.</strong> The server reads from <code>jayjex.github.io</code>, <code>raw.githubusercontent.com</code>, and <code>github.com</code>, and downloads files into a local cache on first use. Make sure those hosts are reachable from your machine; nothing else needs to be open.</p>
+  </section>
+
+  <section aria-label="Where to go next">
+    <h2>Where to go next</h2>
+    <p>The <a href="../guides/mcp-claude-desktop.html">MCP server for Claude Desktop guide</a> stays dataset-mcp-only and shows more verified outputs: 2025 NFL closing lines, NYC Airbnb price stats, and Superteam Earn bounties, plus timing numbers from the same session. The <a href="mcp-tools-for-claude.html">MCP tools for Claude</a> page wires up the other two servers from the same shop, earn-bounty-scanner and solana-research-library, with their config JSON and registry entries. The full tool docs live on the <a href="mcp-dataset-server.html">dataset-mcp server page</a>.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>Where is the Claude Desktop config file on macOS and Windows?</h3>
+    <p>On macOS: <code>~/Library/Application Support/Claude/claude_desktop_config.json</code>. On Windows: <code>%APPDATA%\Claude\claude_desktop_config.json</code>. Create the file if it does not exist yet, then add your server under <code>mcpServers</code>.</p>
+    <h3>Do I need the --allow-git=all flag with dataset-mcp?</h3>
+    <p>On npm 12, yes: the install form <code>github:jayjex/dataset-mcp</code> is git-based and npm 12 refuses it by default with <code>EALLOWGIT</code>, so the args become <code>["--allow-git=all", "-y", "github:jayjex/dataset-mcp"]</code>. Alternatively set <code>allow-git=github.com</code> once in <code>~/.npmrc</code>. npm 10 and 11 need no flag.</p>
+    <h3>How do I verify an MCP server connected in Claude Desktop?</h3>
+    <p>Fully quit Claude Desktop from the tray (macOS: Cmd-Q) and reopen it, start a new chat, and open the tools menu below the input box: the server should be listed with its tools and no error state. Then ask a question that needs one of the tools and watch the tool call appear in the transcript.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NFL Games Dataset CSV: 7,548 Games with Betting Lines (1999-2026) | Data Vault</title>
+<meta name="description" content="The games.csv schema explained column by column, season coverage 1999-2026, and free MCP query examples. NFL historical betting data with a free 22-row CSV sample; full pack $29.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/nfl-games-data-guide.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="NFL Games Dataset CSV: 7,548 Games with Betting Lines (1999-2026)">
+<meta property="og:description" content="The games.csv schema explained column by column, season coverage 1999-2026, and free MCP query examples. Free 22-row CSV sample; full pack $29.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/nfl-games-data-guide.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "NFL Games Dataset CSV: Structure, Season Coverage, and How to Query It", "description": "The games.csv schema explained column by column, season coverage 1999-2026, and free MCP query examples against the full file.", "datePublished": "2026-09-09", "dateModified": "2026-09-09", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/nfl-games-data-guide.html", "about": {"@type": "Dataset", "name": "NFL Games & Betting Lines 1999-2026", "url": "https://jayjex.github.io/data-vault/datasets/nfl-games.html"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "NFL games dataset CSV guide", "item": "https://jayjex.github.io/data-vault/guides/nfl-games-data-guide.html"}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../datasets/nfl-games.html">NFL dataset</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>NFL games dataset CSV: what's inside, season by season</h1>
+  <p class="byline">Guide to the <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026</a> pack · snapshot 2026-09-06</p>
+
+  <section aria-label="Quick answer">
+    <p>The pack's main file, games.csv, holds 7,548 NFL games in one CSV, one row per game, from the 1999 season through the full 2026 schedule. Each row carries 46 columns: final scores, the closing spread, the closing total, moneylines with American odds, rest days, starting quarterbacks, head coaches, referee, stadium, roof, surface, and kickoff weather. Two derived tables add per-team-per-season records (861 rows) and per-season scoring summaries (27 rows).</p>
+    <p>Need NFL historical betting data free first? The <a href="../data/nfl-games/sample.csv" download>22-row sample CSV</a> and the complete <a href="../data/nfl-games/season-summaries.csv" download>season-summaries.csv</a> download with no signup, and the <a href="#query">MCP queries below</a> run against the full 7,548-row file at no cost. The full pack is a one-time $29.</p>
+  </section>
+
+  <section aria-label="Season coverage">
+    <h2>Season coverage: 1999 through 2026</h2>
+    <p>Every completed NFL game from week 1 of 1999 through the last snap of the 2025 season, plus all 272 scheduled 2026 games with no scores yet. Results therefore run through 2025, and the 2026 rows fill in as the season plays out on future snapshots.</p>
+    <p>Line availability varies by era, and the file marks it honestly rather than filling in placeholders:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Coverage by field"><table>
+      <thead><tr><th scope="col">Field group</th><th scope="col">Available from</th><th scope="col">Rows covered</th></tr></thead>
+      <tbody>
+        <tr><td>schedule, teams, scores</td><td>1999</td><td>all 7,548</td></tr>
+        <tr><td>spread_line, total_line</td><td>1999</td><td>7,388 of 7,548 (no lines yet on 160 unplayed 2026 rows)</td></tr>
+        <tr><td>moneylines and odds (spreads, totals)</td><td>2006</td><td>5,407</td></tr>
+        <tr><td>gametime, temp, wind</td><td>varies</td><td>empty in early seasons and domes</td></tr>
+        <tr><td>QB names, coaches, referee</td><td>varies</td><td>empty where the source did not track them</td></tr>
+      </tbody>
+    </table></div>
+    <p>Team abbreviations are nflverse codes and keep franchises at their old homes: OAK, SD, STL. Washington appears as WAS through 2021 and WSH from 2022. If you join across decades, map those codes first.</p>
+  </section>
+
+  <section aria-label="games.csv columns">
+    <h2>games.csv columns, by group</h2>
+    <p>The full data dictionary ships in the pack. These are the columns you will touch most. The <a href="../data/nfl-games/sample.csv" download>free sample</a> shows 14 of the 46 columns; every one is defined here.</p>
+
+    <h3>Game identity and schedule</h3>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Identity columns"><table>
+      <thead><tr><th scope="col">Column</th><th scope="col">Meaning</th></tr></thead>
+      <tbody>
+        <tr><td>game_id</td><td>nflverse ID, format season_week_AWAY_HOME, e.g. 2024_01_BAL_KC</td></tr>
+        <tr><td>season</td><td>NFL season year, 1999 to 2026</td></tr>
+        <tr><td>game_type</td><td>REG regular season, WC wild card, DIV divisional, CON conference championship, SB Super Bowl</td></tr>
+        <tr><td>week</td><td>Week number; playoff weeks continue past the regular season</td></tr>
+        <tr><td>gameday</td><td>Kickoff date, YYYY-MM-DD</td></tr>
+        <tr><td>weekday, gametime</td><td>Day of week and scheduled kickoff in US Eastern time (gametime empty in early seasons)</td></tr>
+        <tr><td>location</td><td>Home or Neutral (every Super Bowl is Neutral)</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Teams and score</h3>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Score columns"><table>
+      <thead><tr><th scope="col">Column</th><th scope="col">Meaning</th></tr></thead>
+      <tbody>
+        <tr><td>away_team, home_team</td><td>3-letter nflverse abbreviations</td></tr>
+        <tr><td>away_score, home_score</td><td>Final points. Empty until the game is played</td></tr>
+        <tr><td>result</td><td>home_score minus away_score</td></tr>
+        <tr><td>total</td><td>home_score plus away_score</td></tr>
+        <tr><td>overtime</td><td>1 if the game went to overtime, else 0</td></tr>
+        <tr><td>div_game</td><td>1 if both teams share a division, else 0</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Closing lines</h3>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Line columns"><table>
+      <thead><tr><th scope="col">Column</th><th scope="col">Meaning</th></tr></thead>
+      <tbody>
+        <tr><td>spread_line</td><td>Closing spread for the HOME team. Positive = home favored, negative = away favored. From 1999, 7,388 rows</td></tr>
+        <tr><td>total_line</td><td>Closing over/under line, e.g. 44.5. From 1999, 7,388 rows</td></tr>
+        <tr><td>away_moneyline, home_moneyline</td><td>American odds to win outright. Negative = favorite, positive = underdog. From 2006</td></tr>
+        <tr><td>away_spread_odds, home_spread_odds</td><td>American odds against the spread. From 2006</td></tr>
+        <tr><td>over_odds, under_odds</td><td>American odds on the over and under. From 2006</td></tr>
+      </tbody>
+    </table></div>
+    <p>The spread sign convention matters when you write queries: spread_line is stored relative to the home team. A value of -4 means the away team is favored by 4; a value of 3 means the home team is favored by 3. The away team's spread is the negation. Pushes only exist on integer lines, when the result lands exactly on the number; half-point lines like 3.5 cannot push. The derived tables exclude pushes from cover percentages and count them separately as pushes.</p>
+
+    <h3>Game context</h3>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Context columns"><table>
+      <thead><tr><th scope="col">Column</th><th scope="col">Meaning</th></tr></thead>
+      <tbody>
+        <tr><td>away_rest, home_rest</td><td>Days of rest since each team's previous game</td></tr>
+        <tr><td>away_qb_name, home_qb_name</td><td>Starting quarterbacks (IDs in the *_qb_id columns)</td></tr>
+        <tr><td>away_coach, home_coach</td><td>Head coaches</td></tr>
+        <tr><td>referee</td><td>Crew referee for the game</td></tr>
+        <tr><td>roof, surface</td><td>outdoors / dome / closed / open, and grass, fieldturf, and similar</td></tr>
+        <tr><td>temp, wind</td><td>Kickoff temperature in Fahrenheit and wind in MPH. Empty for domes and many older outdoor games</td></tr>
+        <tr><td>stadium, stadium_id</td><td>Stadium name and nflverse code, e.g. ATL00</td></tr>
+        <tr><td>old_game_id, gsis, pfr, pff, espn, ftn, nfl_detail_id</td><td>Cross-reference IDs for joins with other NFL data sources</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section aria-label="Derived tables">
+    <h2>The two derived tables</h2>
+    <p>Both are computed from games.csv alone, by a documented script included in the pack, so you can rebuild or audit them.</p>
+    <p><strong>team-records-by-season.csv</strong>, 861 rows: one row per team per season, playoffs included. Wins, losses, ties, points for and against, record against the spread with pushes broken out, and over/under record.</p>
+    <p><strong>season-summaries.csv</strong>, 27 rows: one row per season, 1999 through 2025, and <a href="../data/nfl-games/season-summaries.csv" download>free to download</a> as the complete table. Average home and away scoring, home win rate, share of decided games where the favorite covered, over/under split, and push counts.</p>
+  </section>
+
+  <section aria-label="MCP queries" id="query">
+    <h2>Query the full file over MCP, free</h2>
+    <p>You can filter the full 7,548-row file without downloading it. The dataset-mcp server queries the released files directly: 100 rows per call, filters on any column, results cached locally with a SHA-256 check on every load. No API key, no cost.</p>
+    <pre>npx --allow-git=all -y github:jayjex/dataset-mcp
+<span class="cm"># plain form works on npm 10/11: npx -y github:jayjex/dataset-mcp</span></pre>
+    <p>Example query, every 2025-season game, first page:</p>
+    <pre>query_dataset("nfl-games", {where: [{column: "season", op: "=", value: "2025"}], limit: 10})
+
+<span class="cm">total_matched: 285 | next_offset: 10</span>
+<span class="cm">2025_01_DAL_PHI  2025-09-04  DAL@PHI  20-24  spread=8.5  total=47.5</span>
+<span class="cm">2025_01_KC_LAC   2025-09-05  KC@LAC   21-27  spread=-3   total=47.5</span>
+<span class="cm">...</span></pre>
+    <p>The season filter returns 285 games for 2025: 272 regular-season games plus the 13 playoff games. Filter operators are <code>=</code>, <code>contains</code> (case-insensitive), <code>gt</code>, and <code>lt</code> (numeric-aware, with date handling for gameday). <code>columns</code> picks a subset, and <code>offset</code> pages through large results. A second tool, <code>get_stats</code>, returns row counts, unique counts, numeric min/max/mean, and top-N values for any column, which makes quick sanity checks like home_win_pct by season a one-liner. Setup details live on the <a href="../agents/">for agents</a> page, and the raw files sit in the <a href="https://github.com/jayjex/dataset-mcp/releases/tag/data-v1" rel="noopener">data-v1 release</a>.</p>
+  </section>
+
+  <section aria-label="Download">
+    <h2>Free sample vs full pack</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Sample vs full"><table>
+      <thead><tr><th scope="col"></th><th scope="col">Free sample</th><th scope="col">Full pack, $29</th></tr></thead>
+      <tbody>
+        <tr><td>games.csv</td><td>22 rows, 14 of 46 columns</td><td>all 7,548 rows, 46 columns</td></tr>
+        <tr><td>team-records-by-season.csv</td><td>not included</td><td>861 rows</td></tr>
+        <tr><td>season-summaries.csv</td><td>all 27 rows</td><td>all 27 rows</td></tr>
+        <tr><td>data dictionary</td><td>this guide</td><td>full dictionary + source checksums</td></tr>
+        <tr><td>MCP queries</td><td colspan="2">full file, free, 100 rows/call</td></tr>
+      </tbody>
+    </table></div>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/nfl-games/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h" rel="noopener">Get full data, $29</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. The full pack is 3 CSVs (7,548 + 861 + 27 rows), data dictionary, source SHA-256 checksums.</p>
+  </section>
+
+  <section aria-label="Attribution">
+    <h2>Source and license</h2>
+    <p>All game rows come from the nflverse-data project, file <code>schedules/games.csv</code>, downloaded 2026-09-06 with the SHA-256 recorded in the pack. nflverse-data is released under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>. The derived tables were computed from that file by Data Vault and carry the same license terms.</p>
+    <p>If you publish work built on this data, credit it like this: "Data from nflverse, CC BY 4.0". Samples on this site are also CC BY 4.0. No logos or league marks are included anywhere in the pack; team names are factual data.</p>
+  </section>
+
+  <section aria-label="Scope">
+    <h2>What this data is for</h2>
+    <p>Everything here is historical record: results, lines, and conditions as they stood at each game. Common uses are research and analysis, such as home win rates by decade, scoring trends across eras, weather effects on totals, or training and testing models on a 27-season split. The pack and this page describe the data only and offer no betting advice, picks, or predictions.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

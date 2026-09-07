@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NFL Data in Excel or Google Sheets: Import the CSV, Step by Step | Data Vault</title>
+<meta name="description" content="Import the free 22-row NFL games CSV into Google Sheets or Excel step by step: the OPEN() formula, Excel's From Text/CSV import, column formats to check, and example formulas.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/nfl-dataset-excel.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="NFL Data in Excel or Google Sheets: Import the CSV, Step by Step">
+<meta property="og:description" content="Import the free 22-row NFL games CSV into Google Sheets or Excel step by step: the OPEN() formula, Excel's From Text/CSV import, column formats to check, and example formulas.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/nfl-dataset-excel.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "NFL data in Excel or Google Sheets: import the CSV sample step by step", "description": "Import the free 22-row NFL games CSV into Google Sheets or Excel step by step: the OPEN() formula, Excel's From Text/CSV import, column formats to check, and example formulas that run on the imported rows.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/nfl-dataset-excel.html", "about": {"@type": "Dataset", "name": "NFL Games & Betting Lines 1999-2026", "url": "https://jayjex.github.io/data-vault/datasets/nfl-games.html"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "NFL data in Excel or Google Sheets", "item": "https://jayjex.github.io/data-vault/guides/nfl-dataset-excel.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does the NFL sample CSV open in both Excel and Google Sheets?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The file is comma-separated UTF-8 with 46 header columns and 22 data rows, no signup and no email wall. In Google Sheets, use File > Import > Upload or the OPEN() formula. In Excel, use Data > From Text/CSV. The one column to keep as text is game_id, so Excel preserves IDs in the season_week_AWAY_HOME format, like 1999_01_MIN_ATL."}}, {"@type": "Question", "name": "Why does my NFL CSV import show fewer than 46 columns?", "acceptedAnswer": {"@type": "Answer", "text": "The import guessed the wrong separator, or it split values on punctuation inside quoted fields. Set the delimiter to comma, turn off any space separator, and import game_id as Text. The preview dialog shows all 46 headers before anything loads; if column 47 appears, the separator settings are splitting on data inside the stadium field rather than between fields."}}, {"@type": "Question", "name": "Is the 22-row sample the same data as the full NFL pack?", "acceptedAnswer": {"@type": "Answer", "text": "Same 46-column games.csv schema, first 22 rows. The sample covers weeks 1 and 2 of the 1999 season. The full pack carries all 7,548 games from 1999 through 2026, plus the derived tables team-records-by-season.csv (861 rows) and season-summaries.csv (27 rows), a data dictionary, and source SHA-256 checksums. The 27-row season-summaries.csv downloads free from the same data folder."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../datasets/nfl-games.html">NFL dataset</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>NFL data in Excel or Google Sheets: import the CSV step by step</h1>
+  <p class="byline">Guide to the <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026</a> pack &middot; free 22-row CSV sample &middot; new to data files? Read <a href="data-dictionary-explained.html">what a data dictionary is</a> first.</p>
+
+  <section aria-label="Quick answer">
+    <p>The sample CSV from the NFL Games &amp; Betting Lines 1999-2026 pack imports into both tools in about two minutes: 22 rows, 46 columns, one row per game, weeks 1 and 2 of the 1999 season. The file is comma-separated UTF-8, and the same import steps run unchanged on the full 7,548-game file.</p>
+    <p>The steps below cover Google Sheets (File &gt; Import, plus the <code>OPEN()</code> formula), Excel (Data &gt; From Text/CSV), the column formats to check after loading, and example formulas that run on the imported sample. The <a href="../data/nfl-games/sample.csv" download>sample downloads free</a>, no signup. The full pack ships through Getly.</p>
+  </section>
+
+  <section aria-label="Get the CSV">
+    <h2>Get the CSV</h2>
+    <p><a href="../data/nfl-games/sample.csv" download>Download sample.csv</a> in the browser, or pull it from a terminal:</p>
+<pre>curl -o nfl-sample.csv https://jayjex.github.io/data-vault/data/nfl-games/sample.csv</pre>
+    <p>What lands in the file: final scores, the closing spread and total lines, rest days, starting QBs, coaches, referee, stadium, roof, surface, and kickoff weather for 22 games. Ten of the 46 columns come in empty, and the file marks that honestly rather than padding with placeholders: moneylines and odds are blank in this 1999 window (the full file carries them from 2006 on), <code>gametime</code> is blank in early seasons, and <code>temp</code>/<code>wind</code> are blank for the 6 dome games and some older outdoor ones.</p>
+    <p>The first row is the 46-column header; the 22 data rows follow. The full column list with meanings is in the <a href="nfl-games-data-guide.html">games.csv column guide</a>.</p>
+  </section>
+
+  <section aria-label="Google Sheets import">
+    <h2>Import into Google Sheets</h2>
+    <ol>
+      <li>Open a blank spreadsheet at <code>sheets.new</code>.</li>
+      <li>File &gt; Import &gt; Upload, and drop in sample.csv.</li>
+      <li>Import location: <b>Replace spreadsheet</b> (or Insert new sheet to keep an existing tab).</li>
+      <li>Separator type: comma. Leave <i>Convert text to numbers, dates, and formulas</i> checked.</li>
+      <li>Import data. Row 1 holds the 46 headers, rows 2 through 23 hold the games.</li>
+    </ol>
+    <h3>The OPEN() formula alternative</h3>
+    <p>Put this in cell A1 of a blank sheet and the whole file pulls in, no download needed:</p>
+<pre>=OPEN("https://jayjex.github.io/data-vault/data/nfl-games/sample.csv")</pre>
+    <p>Sheets asks to authorize access to external data the first time; approve once. Editing the cell re-pulls the file, which is handy when a snapshot updates. Row counts for the sample stay at 22 data rows, so nothing gets truncated.</p>
+    <h3>Three columns to check after the load</h3>
+    <ul>
+      <li><code>game_id</code> (column A): format season_week_AWAY_HOME, like <code>1999_01_MIN_ATL</code>. Excel from time to time tries a date interpretation on codes like this; if it does, set the column back to Text.</li>
+      <li><code>gameday</code> (column E): arrives as a date, ISO format YYYY-MM-DD. If your locale shows a serial number instead, format the column as Date.</li>
+      <li><code>spread_line</code> (AA) and <code>total_line</code> (AD): decimal numbers. In locales that use comma decimals, <code>3.5</code> can land as 35; set the separator to comma and the locale to United States under File &gt; Settings, then re-import.</li>
+    </ul>
+  </section>
+
+  <section aria-label="Excel import">
+    <h2>Import into Excel</h2>
+    <ol>
+      <li>Open a blank workbook.</li>
+      <li>Data &gt; Get Data &gt; From File &gt; From Text/CSV (newer ribbons show Data &gt; From Text/CSV directly).</li>
+      <li>Pick sample.csv. The preview opens with File Origin <b>65001: Unicode (UTF-8)</b> and delimiter <b>Comma</b>. Leave both as they are.</li>
+      <li>Click <b>Transform Data</b> instead of Load. In Power Query, select the <code>game_id</code> column, Transform &gt; Data Type &gt; Text.</li>
+      <li>Home &gt; Close &amp; Load. All 46 columns land as an Excel table, rows 2 through 23 hold the games.</li>
+    </ol>
+    <p>Older Windows Excel (2016 and earlier) has no Get Data ribbon button on some builds: File &gt; Open, browse to the CSV, and the Text Import Wizard runs instead. Choose Delimited, tick Comma, and in step 3 of the wizard set the <code>game_id</code> column to Text before you Finish. On Mac, Data &gt; Get Data (Power Query) or File &gt; Import runs the wizard.</p>
+    <p>Save the workbook as .xlsx after loading; Power Query keeps the source path, so replacing the file later and running Data &gt; Refresh All re-imports whatever rows the file carries, including the full 7,548.</p>
+  </section>
+
+  <section aria-label="Columns that matter">
+    <h2>Columns to format once the data is in</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Column formats"><table>
+      <thead><tr><th scope="col">Column</th><th scope="col">Field</th><th scope="col">Format</th></tr></thead>
+      <tbody>
+        <tr><td>A</td><td>game_id</td><td>Text. Join key, format season_week_AWAY_HOME</td></tr>
+        <tr><td>E</td><td>gameday</td><td>Date, ISO YYYY-MM-DD</td></tr>
+        <tr><td>I, K</td><td>away_score, home_score</td><td>Whole number</td></tr>
+        <tr><td>M, N</td><td>result, total</td><td>Whole number. result = home minus away, total = home plus away</td></tr>
+        <tr><td>AA</td><td>spread_line</td><td>Decimal. Relative to the home team: -4 means the away team is favored by 4</td></tr>
+        <tr><td>AD</td><td>total_line</td><td>Decimal. Closing over/under, e.g. 44.5</td></tr>
+        <tr><td>AH</td><td>roof</td><td>Text. In the sample: 16 rows outdoors, 6 rows dome</td></tr>
+        <tr><td>AJ, AK</td><td>temp, wind</td><td>Whole number. Blank for domes and some older outdoor games</td></tr>
+      </tbody>
+    </table></div>
+    <p>The rest of the 46 columns are defined in the <a href="nfl-games-data-guide.html">games.csv column guide</a>. The six odds columns (Y, Z, AB, AC, AE, AF) stay empty in this 1999 sample; the full file fills them from 2006.</p>
+  </section>
+
+  <section aria-label="Example formulas">
+    <h2>Formulas to try on the imported sample</h2>
+    <p>These assume the sample sits at A1 with headers in row 1.</p>
+    <ul>
+      <li>Home wins: <code>=COUNTIF(M2:M23,"&gt;0")</code> returns 10. The 22 games split 10 home wins, 12 away wins, no ties.</li>
+      <li>Dome vs outdoor scoring: <code>=AVERAGEIF(AH2:AH23,"dome",N2:N23)</code> returns 38.0 across the 6 dome games; switch the condition to <code>"outdoors"</code> for 45.5 across the 16 outdoor ones.</li>
+      <li>High-scoring games: in Sheets, <code>=QUERY(A1:AT23,"select H, J, N where N &gt;= 50 order by N desc",1)</code> lists the 5 games that reached 50 combined points, away team first. In Excel, Data &gt; Filter on column N, Number Filters &gt; Greater Than 50.</li>
+    </ul>
+    <p>One convention worth knowing before you build anything on <code>spread_line</code>: the number is stored relative to the home team. In the sample, <code>1999_01_BAL_STL</code> closed at 0 (a pick'em) and Baltimore won at home by 17. Away-favored games carry negative values, home-favored positive ones.</p>
+  </section>
+
+  <section aria-label="From sample to full pack">
+    <h2>From the sample to the full pack</h2>
+    <p>The sample is the first 22 rows of games.csv. The full pack carries all 7,548 games, 1999 through 2026 (results through the 2025 season, plus 272 scheduled 2026 rows), with the derived tables team-records-by-season.csv (861 rows, W/L/T and ATS records per team per season, covered in the <a href="nfl-data-by-team.html">team-records CSV guide</a>) and season-summaries.csv (27 rows). A data dictionary and source SHA-256 checksums ship with it. The import steps above run unchanged; only the row count grows.</p>
+    <p>Not ready for 7,548 rows? <a href="../data/nfl-games/season-summaries.csv" download>season-summaries.csv</a> is a complete table, free, 27 rows, one per season from 1999 to 2025 with scoring averages, home win rates, and favorite cover rates. It imports with the same steps.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/nfl-games/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h" rel="noopener">Get full data</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. The full pack is 3 CSVs (7,548 + 861 + 27 rows), data dictionary, source SHA-256 checksums. The sample and season-summaries download free here, no signup.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>NFL data in Excel questions</h2>
+    <dl>
+      <dt>Does the NFL sample CSV open in both Excel and Google Sheets?</dt>
+      <dd>Yes. The file is comma-separated UTF-8 with 46 header columns and 22 data rows, no signup and no email wall. In Google Sheets, use File &gt; Import &gt; Upload or the <code>OPEN()</code> formula. In Excel, use Data &gt; From Text/CSV. The one column to keep as text is <code>game_id</code>, so Excel preserves IDs in the season_week_AWAY_HOME format, like <code>1999_01_MIN_ATL</code>.</dd>
+      <dt>Why does my NFL CSV import show fewer than 46 columns?</dt>
+      <dd>The import guessed the wrong separator, or it split values on punctuation inside quoted fields. Set the delimiter to comma, turn off any space separator, and import <code>game_id</code> as Text. The preview dialog shows all 46 headers before anything loads; if column 47 appears, the separator settings are splitting on data inside the stadium field rather than between fields.</dd>
+      <dt>Is the 22-row sample the same data as the full NFL pack?</dt>
+      <dd>Same 46-column games.csv schema, first 22 rows. The sample covers weeks 1 and 2 of the 1999 season. The full pack carries all 7,548 games from 1999 through 2026, plus the derived tables team-records-by-season.csv (861 rows) and season-summaries.csv (27 rows), a data dictionary, and source SHA-256 checksums. The 27-row season-summaries.csv downloads free from the same data folder.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Attribution">
+    <h2>Source and license</h2>
+    <p>All game rows come from the nflverse-data project, file <code>schedules/games.csv</code>, downloaded 2026-09-06 with the SHA-256 recorded in the pack. nflverse-data is released under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>; credit it as "Data from nflverse, CC BY 4.0". Samples on this site carry the same license. No logos or league marks appear anywhere in the pack; team names are factual data. This page and the pack describe data only and offer no betting advice, picks, or predictions.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD FMR by State: FY2026 Fair Market Rent for All 50 States, DC and Puerto Rico | Data Vault</title>
+<meta name="description" content="HUD fair market rent for every state, FY2026: a 52-row table of 2BR medians, ZIP-level lows and highs, and ZIP counts sorted from California at 2,635 down to Puerto Rico at 600, plus the five most and least expensive states. Free state summary CSV.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="HUD FMR by State: FY2026 Fair Market Rent for All 50 States, DC and Puerto Rico">
+<meta property="og:description" content="A 52-row table of FY2026 HUD 2BR fair market rents by state, sorted from California at 2,635 down to Puerto Rico at 600, with the five most and least expensive states.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "HUD FMR by State: FY2026 Fair Market Rent for All 50 States, DC and Puerto Rico", "description": "A 52-row table of FY2026 HUD 2BR fair market rents by state, sorted from California at 2,635 down to Puerto Rico at 600, with the five most and least expensive states.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+    {"@type": "Question", "name": "Which state has the highest HUD fair market rent for FY2026?", "acceptedAnswer": {"@type": "Answer", "text": "California tops the FY2026 state summary with a 2BR median of 2,635 dollars across its 2,606 ZIP rows, and its priciest ZIP reaches 5,230. Hawaii follows at 2,550, Massachusetts at 2,485, New Jersey at 2,360, and DC at 2,200. At the other end, Puerto Rico's 2BR median is 600, and the cheapest state medians (Arkansas and Kansas at 920) run less than half the California number."}},
+    {"@type": "Question", "name": "How many states are in the HUD FMR data?", "acceptedAnswer": {"@type": "Answer", "text": "The FY2026 state summary carries 52 rows: the 50 states plus DC and Puerto Rico. Each row reports the median, minimum, and maximum 2BR FMR across that state's ZIPs, the count of ZIP rows in the full file, and the highest- and lowest-rent counties. The state rows roll up to 51,895 ZIP rows in total."}},
+    {"@type": "Question", "name": "Why is my state's FMR different from my city's rent?", "acceptedAnswer": {"@type": "Answer", "text": "HUD does not publish one rent per state. The state median on this page averages over hundreds of ZIPs, and HUD sets the actual payment standard at the metro or county level, so a San Francisco ZIP and a Modoc County ZIP in the same state carry FMRs more than 4,000 dollars apart. Look up your county in the county file, or your ZIP in the ZIP file, before you plan anything around the state number."}}
+  ]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ItemList", "name": "HUD FMR by state, FY2026 2BR medians", "numberOfItems": 52, "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "California (CA)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#CA"},
+    {"@type": "ListItem", "position": 2, "name": "Hawaii (HI)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#HI"},
+    {"@type": "ListItem", "position": 3, "name": "Massachusetts (MA)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#MA"},
+    {"@type": "ListItem", "position": 4, "name": "New Jersey (NJ)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#NJ"},
+    {"@type": "ListItem", "position": 5, "name": "District of Columbia (DC)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#DC"},
+    {"@type": "ListItem", "position": 6, "name": "New Hampshire (NH)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#NH"},
+    {"@type": "ListItem", "position": 7, "name": "Connecticut (CT)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#CT"},
+    {"@type": "ListItem", "position": 8, "name": "Rhode Island (RI)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#RI"},
+    {"@type": "ListItem", "position": 9, "name": "Florida (FL)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#FL"},
+    {"@type": "ListItem", "position": 10, "name": "Maryland (MD)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#MD"},
+    {"@type": "ListItem", "position": 11, "name": "Colorado (CO)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#CO"},
+    {"@type": "ListItem", "position": 12, "name": "Nevada (NV)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#NV"},
+    {"@type": "ListItem", "position": 13, "name": "Arizona (AZ)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#AZ"},
+    {"@type": "ListItem", "position": 14, "name": "Oregon (OR)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#OR"},
+    {"@type": "ListItem", "position": 15, "name": "Washington (WA)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#WA"},
+    {"@type": "ListItem", "position": 16, "name": "Alaska (AK)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#AK"},
+    {"@type": "ListItem", "position": 17, "name": "Maine (ME)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#ME"},
+    {"@type": "ListItem", "position": 18, "name": "Delaware (DE)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#DE"},
+    {"@type": "ListItem", "position": 19, "name": "New York (NY)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#NY"},
+    {"@type": "ListItem", "position": 20, "name": "Vermont (VT)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#VT"},
+    {"@type": "ListItem", "position": 21, "name": "Montana (MT)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#MT"},
+    {"@type": "ListItem", "position": 22, "name": "Utah (UT)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#UT"},
+    {"@type": "ListItem", "position": 23, "name": "Virginia (VA)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#VA"},
+    {"@type": "ListItem", "position": 24, "name": "Pennsylvania (PA)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#PA"},
+    {"@type": "ListItem", "position": 25, "name": "Idaho (ID)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#ID"},
+    {"@type": "ListItem", "position": 26, "name": "North Carolina (NC)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#NC"},
+    {"@type": "ListItem", "position": 27, "name": "Texas (TX)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#TX"},
+    {"@type": "ListItem", "position": 28, "name": "South Carolina (SC)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#SC"},
+    {"@type": "ListItem", "position": 29, "name": "Michigan (MI)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#MI"},
+    {"@type": "ListItem", "position": 30, "name": "Georgia (GA)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#GA"},
+    {"@type": "ListItem", "position": 31, "name": "Tennessee (TN)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#TN"},
+    {"@type": "ListItem", "position": 32, "name": "New Mexico (NM)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#NM"},
+    {"@type": "ListItem", "position": 33, "name": "Wisconsin (WI)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#WI"},
+    {"@type": "ListItem", "position": 34, "name": "Indiana (IN)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#IN"},
+    {"@type": "ListItem", "position": 35, "name": "Minnesota (MN)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#MN"},
+    {"@type": "ListItem", "position": 36, "name": "Ohio (OH)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#OH"},
+    {"@type": "ListItem", "position": 37, "name": "Illinois (IL)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#IL"},
+    {"@type": "ListItem", "position": 38, "name": "Louisiana (LA)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#LA"},
+    {"@type": "ListItem", "position": 39, "name": "Wyoming (WY)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#WY"},
+    {"@type": "ListItem", "position": 40, "name": "Nebraska (NE)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#NE"},
+    {"@type": "ListItem", "position": 41, "name": "Alabama (AL)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#AL"},
+    {"@type": "ListItem", "position": 42, "name": "Oklahoma (OK)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#OK"},
+    {"@type": "ListItem", "position": 43, "name": "South Dakota (SD)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#SD"},
+    {"@type": "ListItem", "position": 44, "name": "Iowa (IA)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#IA"},
+    {"@type": "ListItem", "position": 45, "name": "North Dakota (ND)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#ND"},
+    {"@type": "ListItem", "position": 46, "name": "Missouri (MO)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#MO"},
+    {"@type": "ListItem", "position": 47, "name": "Mississippi (MS)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#MS"},
+    {"@type": "ListItem", "position": 48, "name": "Kentucky (KY)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#KY"},
+    {"@type": "ListItem", "position": 49, "name": "West Virginia (WV)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#WV"},
+    {"@type": "ListItem", "position": 50, "name": "Arkansas (AR)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#AR"},
+    {"@type": "ListItem", "position": 51, "name": "Kansas (KS)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#KS"},
+    {"@type": "ListItem", "position": 52, "name": "Puerto Rico (PR)", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#PR"}
+  ]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>HUD FMR by state: FY2026 fair market rent for all 50 states, DC and Puerto Rico</h1>
+  <p class="byline">FY2026 edition, published 2026-09-10. Data source: HUD, public domain. Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <section aria-label="The 52-state FMR table">
+    <h2>The 52-state table, sorted by 2BR median</h2>
+    <p>HUD publishes fair market rents per ZIP code, not per state, so a state number only means something once you roll the ZIPs up. The table below does that rollup from the FY2026 ZIP file: for each of the 52 rows (50 states, DC, Puerto Rico) it takes the median, minimum, and maximum 2BR FMR across every ZIP in the state, plus the count of ZIP rows the state contributes to the 51,895-row file. Sort order runs from the most expensive median to the cheapest. Every state links to its own row, so <a href="#TX">TX</a> or <a href="#FL">FL</a> jump straight to the line you want, and the numbers re-compute exactly from the <a href="../data/hud-fmr-2026/state-summary.csv" download>free state summary CSV</a>.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="FY2026 HUD 2BR FMR by state, sorted by median descending"><table><thead><tr><th scope="col">State</th><th scope="col">Name</th><th scope="col">2BR median</th><th scope="col">2BR min (ZIP)</th><th scope="col">2BR max (ZIP)</th><th scope="col">ZIP rows</th></tr></thead><tbody>
+      <tr id="CA"><td><a class="mono" href="#CA">CA</a></td><td>California</td><td>2,635</td><td>1,070</td><td>5,230</td><td>2606</td></tr>
+      <tr id="HI"><td><a class="mono" href="#HI">HI</a></td><td>Hawaii</td><td>2,550</td><td>1,870</td><td>3,960</td><td>127</td></tr>
+      <tr id="MA"><td><a class="mono" href="#MA">MA</a></td><td>Massachusetts</td><td>2,485</td><td>1,350</td><td>4,410</td><td>770</td></tr>
+      <tr id="NJ"><td><a class="mono" href="#NJ">NJ</a></td><td>New Jersey</td><td>2,360</td><td>1,230</td><td>4,140</td><td>643</td></tr>
+      <tr id="DC"><td><a class="mono" href="#DC">DC</a></td><td>District of Columbia</td><td>2,200</td><td>1,130</td><td>3,370</td><td>488</td></tr>
+      <tr id="NH"><td><a class="mono" href="#NH">NH</a></td><td>New Hampshire</td><td>1,930</td><td>1,100</td><td>3,410</td><td>311</td></tr>
+      <tr id="CT"><td><a class="mono" href="#CT">CT</a></td><td>Connecticut</td><td>1,895</td><td>1,230</td><td>3,770</td><td>434</td></tr>
+      <tr id="RI"><td><a class="mono" href="#RI">RI</a></td><td>Rhode Island</td><td>1,830</td><td>1,460</td><td>2,840</td><td>117</td></tr>
+      <tr id="FL"><td><a class="mono" href="#FL">FL</a></td><td>Florida</td><td>1,800</td><td>970</td><td>3,650</td><td>1555</td></tr>
+      <tr id="MD"><td><a class="mono" href="#MD">MD</a></td><td>Maryland</td><td>1,770</td><td>970</td><td>3,000</td><td>389</td></tr>
+      <tr id="CO"><td><a class="mono" href="#CO">CO</a></td><td>Colorado</td><td>1,620</td><td>970</td><td>3,090</td><td>771</td></tr>
+      <tr id="NV"><td><a class="mono" href="#NV">NV</a></td><td>Nevada</td><td>1,620</td><td>980</td><td>2,770</td><td>259</td></tr>
+      <tr id="AZ"><td><a class="mono" href="#AZ">AZ</a></td><td>Arizona</td><td>1,610</td><td>1,050</td><td>2,760</td><td>553</td></tr>
+      <tr id="OR"><td><a class="mono" href="#OR">OR</a></td><td>Oregon</td><td>1,600</td><td>970</td><td>2,780</td><td>574</td></tr>
+      <tr id="WA"><td><a class="mono" href="#WA">WA</a></td><td>Washington</td><td>1,580</td><td>970</td><td>3,750</td><td>761</td></tr>
+      <tr id="AK"><td><a class="mono" href="#AK">AK</a></td><td>Alaska</td><td>1,510</td><td>970</td><td>2,450</td><td>275</td></tr>
+      <tr id="ME"><td><a class="mono" href="#ME">ME</a></td><td>Maine</td><td>1,500</td><td>970</td><td>3,200</td><td>551</td></tr>
+      <tr id="DE"><td><a class="mono" href="#DE">DE</a></td><td>Delaware</td><td>1,470</td><td>1,260</td><td>2,100</td><td>46</td></tr>
+      <tr id="NY"><td><a class="mono" href="#NY">NY</a></td><td>New York</td><td>1,430</td><td>970</td><td>4,370</td><td>2397</td></tr>
+      <tr id="VT"><td><a class="mono" href="#VT">VT</a></td><td>Vermont</td><td>1,410</td><td>990</td><td>2,450</td><td>368</td></tr>
+      <tr id="MT"><td><a class="mono" href="#MT">MT</a></td><td>Montana</td><td>1,370</td><td>980</td><td>2,480</td><td>562</td></tr>
+      <tr id="UT"><td><a class="mono" href="#UT">UT</a></td><td>Utah</td><td>1,320</td><td>970</td><td>2,780</td><td>368</td></tr>
+      <tr id="VA"><td><a class="mono" href="#VA">VA</a></td><td>Virginia</td><td>1,225</td><td>910</td><td>2,480</td><td>1212</td></tr>
+      <tr id="PA"><td><a class="mono" href="#PA">PA</a></td><td>Pennsylvania</td><td>1,220</td><td>970</td><td>2,720</td><td>2575</td></tr>
+      <tr id="ID"><td><a class="mono" href="#ID">ID</a></td><td>Idaho</td><td>1,210</td><td>970</td><td>2,240</td><td>406</td></tr>
+      <tr id="NC"><td><a class="mono" href="#NC">NC</a></td><td>North Carolina</td><td>1,190</td><td>930</td><td>2,680</td><td>1449</td></tr>
+      <tr id="TX"><td><a class="mono" href="#TX">TX</a></td><td>Texas</td><td>1,190</td><td>970</td><td>2,900</td><td>3247</td></tr>
+      <tr id="SC"><td><a class="mono" href="#SC">SC</a></td><td>South Carolina</td><td>1,170</td><td>900</td><td>2,680</td><td>629</td></tr>
+      <tr id="MI"><td><a class="mono" href="#MI">MI</a></td><td>Michigan</td><td>1,140</td><td>970</td><td>2,300</td><td>1554</td></tr>
+      <tr id="GA"><td><a class="mono" href="#GA">GA</a></td><td>Georgia</td><td>1,130</td><td>970</td><td>2,730</td><td>1416</td></tr>
+      <tr id="TN"><td><a class="mono" href="#TN">TN</a></td><td>Tennessee</td><td>1,090</td><td>930</td><td>2,600</td><td>1201</td></tr>
+      <tr id="NM"><td><a class="mono" href="#NM">NM</a></td><td>New Mexico</td><td>1,080</td><td>970</td><td>2,200</td><td>503</td></tr>
+      <tr id="WI"><td><a class="mono" href="#WI">WI</a></td><td>Wisconsin</td><td>1,080</td><td>970</td><td>2,100</td><td>1251</td></tr>
+      <tr id="IN"><td><a class="mono" href="#IN">IN</a></td><td>Indiana</td><td>1,070</td><td>960</td><td>2,200</td><td>1373</td></tr>
+      <tr id="MN"><td><a class="mono" href="#MN">MN</a></td><td>Minnesota</td><td>1,070</td><td>970</td><td>2,560</td><td>1398</td></tr>
+      <tr id="OH"><td><a class="mono" href="#OH">OH</a></td><td>Ohio</td><td>1,070</td><td>970</td><td>2,150</td><td>1883</td></tr>
+      <tr id="IL"><td><a class="mono" href="#IL">IL</a></td><td>Illinois</td><td>1,030</td><td>920</td><td>2,670</td><td>1938</td></tr>
+      <tr id="LA"><td><a class="mono" href="#LA">LA</a></td><td>Louisiana</td><td>1,030</td><td>830</td><td>2,000</td><td>854</td></tr>
+      <tr id="WY"><td><a class="mono" href="#WY">WY</a></td><td>Wyoming</td><td>1,020</td><td>960</td><td>1,740</td><td>229</td></tr>
+      <tr id="NE"><td><a class="mono" href="#NE">NE</a></td><td>Nebraska</td><td>1,010</td><td>960</td><td>2,050</td><td>1094</td></tr>
+      <tr id="AL"><td><a class="mono" href="#AL">AL</a></td><td>Alabama</td><td>980</td><td>780</td><td>1,970</td><td>1037</td></tr>
+      <tr id="OK"><td><a class="mono" href="#OK">OK</a></td><td>Oklahoma</td><td>980</td><td>940</td><td>1,870</td><td>1087</td></tr>
+      <tr id="SD"><td><a class="mono" href="#SD">SD</a></td><td>South Dakota</td><td>980</td><td>930</td><td>1,770</td><td>663</td></tr>
+      <tr id="IA"><td><a class="mono" href="#IA">IA</a></td><td>Iowa</td><td>970</td><td>920</td><td>1,710</td><td>1719</td></tr>
+      <tr id="ND"><td><a class="mono" href="#ND">ND</a></td><td>North Dakota</td><td>970</td><td>870</td><td>1,640</td><td>718</td></tr>
+      <tr id="MO"><td><a class="mono" href="#MO">MO</a></td><td>Missouri</td><td>960</td><td>890</td><td>2,040</td><td>1906</td></tr>
+      <tr id="MS"><td><a class="mono" href="#MS">MS</a></td><td>Mississippi</td><td>960</td><td>840</td><td>1,930</td><td>847</td></tr>
+      <tr id="KY"><td><a class="mono" href="#KY">KY</a></td><td>Kentucky</td><td>950</td><td>870</td><td>1,910</td><td>1320</td></tr>
+      <tr id="WV"><td><a class="mono" href="#WV">WV</a></td><td>West Virginia</td><td>950</td><td>870</td><td>1,580</td><td>1156</td></tr>
+      <tr id="AR"><td><a class="mono" href="#AR">AR</a></td><td>Arkansas</td><td>920</td><td>880</td><td>2,020</td><td>990</td></tr>
+      <tr id="KS"><td><a class="mono" href="#KS">KS</a></td><td>Kansas</td><td>920</td><td>880</td><td>1,650</td><td>1096</td></tr>
+      <tr id="PR"><td><a class="mono" href="#PR">PR</a></td><td>Puerto Rico</td><td>600</td><td>480</td><td>990</td><td>219</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section aria-label="The five most and least expensive states">
+    <h2>Five most and least expensive states</h2>
+    <p>The top of the table is a coastal cluster. California leads FY2026 with a 2BR median of 2,635, Hawaii follows at 2,550, Massachusetts at 2,485, New Jersey at 2,360, and DC closes the top five at 2,200. Hawaii stands out for how little it varies: its 127 ZIP rows run from 1,870 to 3,960, so even the cheapest Hawaii ZIP prices above the state median of most of the country. California runs the widest spread in the pack, from 1,070 in its cheapest ZIP to 5,230 at the top, a 4,160-dollar range inside one state.</p>
+    <p>The bottom five price out at less than half the California median. Puerto Rico's 2BR median is 600, with no ZIP above 990. Arkansas and Kansas tie at 920, and Kentucky and West Virginia tie at 950. Mississippi and Missouri also sit under 1,000, and 12 of the 52 rows carry a median below 1,000 while 16 sit above 1,500. The gap between row one and row 52 is 2,035 dollars on the median, and at the ZIP level the full file runs from 480 in Puerto Rico to 5,230 in California.</p>
+  </section>
+
+  <section aria-label="Why state medians hide the spread">
+    <h2>Why the state median hides the spread</h2>
+    <p>A state median looks like one number, but HUD prices every ZIP separately. In FY2026 the payment standard a voucher household actually faces is set at the metro or county level, so two ZIPs in the same state can sit thousands of dollars apart. California is the extreme case: Santa Cruz County carries a 2BR of 4,214 while Modoc County sits at 1,108. Florida spans from Monroe County at 2,504 down to Calhoun County at 973. New York runs from Westchester County at 2,910 to Chenango County at 973, and Texas from Rockwall County at 1,931 to Bailey County at 973.</p>
+    <p>That spread is why the state summary names a highest and lowest county per row, and why the state median should be a first look rather than the number you plan around. To drill into one state, <a href="hud-fmr-texas.html">HUD FMR for Texas</a> walks the 3,247 Texas ZIP rows metro by metro, and <a href="hud-fmr-florida.html">HUD FMR for Florida</a> does the same for its 1,555 rows. The geography behind the county numbers is covered in <a href="hud-fmr-by-county.html">HUD FMR by county</a>, and the single-ZIP lookup in <a href="hud-fmr-by-zip.html">HUD FMR by ZIP code</a>. For bedroom counts other than 2BR, <a href="hud-fmr-by-bedroom.html">HUD FMR by bedroom</a> breaks the file out from 0BR to 4BR.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>HUD FMR by state questions</h2>
+    <dl>
+      <dt>Which state has the highest HUD fair market rent for FY2026?</dt>
+      <dd>California tops the FY2026 state summary with a 2BR median of 2,635 dollars across its 2,606 ZIP rows, and its priciest ZIP reaches 5,230. Hawaii follows at 2,550, Massachusetts at 2,485, New Jersey at 2,360, and DC at 2,200. At the other end, Puerto Rico's 2BR median is 600, and the cheapest state medians (Arkansas and Kansas at 920) run less than half the California number.</dd>
+      <dt>How many states are in the HUD FMR data?</dt>
+      <dd>The FY2026 state summary carries 52 rows: the 50 states plus DC and Puerto Rico. Each row reports the median, minimum, and maximum 2BR FMR across that state's ZIPs, the count of ZIP rows in the full file, and the highest- and lowest-rent counties. The state rows roll up to 51,895 ZIP rows in total.</dd>
+      <dt>Why is my state's FMR different from my city's rent?</dt>
+      <dd>HUD does not publish one rent per state. The state median on this page averages over hundreds of ZIPs, and HUD sets the actual payment standard at the metro or county level, so a San Francisco ZIP and a Modoc County ZIP in the same state carry FMRs more than 4,000 dollars apart. Look up your county in the county file, or your ZIP in the ZIP file, before you plan anything around the state number.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the dataset">
+    <h2>Get the full dataset</h2>
+    <p>The 52-row state summary behind this table is free. The full pack adds the 51,895-row ZIP file, the county file (3,229 rows), the data dictionary, and source checksums, so you can rebuild every state rollup above and go deeper than the medians.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/state-summary.csv" download>Download state summary (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">Get the full dataset</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release, huduser.gov. US government data, public domain.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

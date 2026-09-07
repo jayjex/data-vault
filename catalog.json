@@ -1,7 +1,7 @@
 {
  "name": "Data Vault",
  "url": "https://jayjex.github.io/data-vault/",
- "last_built": "2026-09-09",
+ "last_built": "2026-09-10",
  "description": "Sample-first data catalog by Matchbook Labs. Free CSV/JSON samples for every dataset; full packs sold via Getly.",
  "agent_docs": "https://jayjex.github.io/data-vault/agents/",
  "for_agents": "Fetch this file, pick a dataset, fetch its sample.json to learn the schema. Full data is linked per dataset, and the MCP server queries the full files for free (see mcp).",
@@ -79,6 +79,44 @@
    },
    "license": "Public domain (US government data)",
    "page": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"
+  },
+  {
+   "slug": "hud-fmr-2027",
+   "name": "HUD Fair Market Rents FY2027",
+   "niche": "gov-data",
+   "tags": [
+    "gov-data",
+    "real-estate",
+    "rent"
+   ],
+   "description": "FY2027 fair market rents for 51,871 ZIP codes, 3,229 counties, and 52 states, effective October 1, 2026. Five bedroom sizes per row.",
+   "stats": {
+    "rows": 51871,
+    "tables": 3,
+    "columns": 10,
+    "updated": "FY2027"
+   },
+   "sample": {
+    "csv": "https://jayjex.github.io/data-vault/data/hud-fmr-2027/sample.csv",
+    "json": "https://jayjex.github.io/data-vault/data/hud-fmr-2027/sample.json",
+    "rows": 22,
+    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+   },
+   "extra_files": [
+    {
+     "name": "state-summary.csv",
+     "url": "https://jayjex.github.io/data-vault/data/hud-fmr-2027/state-summary.csv",
+     "rows": 52,
+     "note": "complete aggregate table, 52 rows"
+    }
+   ],
+   "full_data": {
+    "status": "available",
+    "url": "https://www.getly.store/store/matchbook-labs-mtmw06l2",
+    "note": "FY2027 Getly pack in prep; until it lands the full FY2027 files are free via the bundled MCP server (query_dataset \"hud-fmr-2027\") or the data-v1 GitHub release."
+   },
+   "license": "Public domain (US government data)",
+   "page": "https://jayjex.github.io/data-vault/guides/hud-fmr-2027.html"
   },
   {
    "slug": "airbnb-six-cities",

@@ -68,7 +68,7 @@
 
   <section aria-label="Query FMR data without downloading">
     <h2>How to query fair market rent by ZIP code without downloading anything</h2>
-    <p>Downloading the CSV works fine in a spreadsheet. Scripts and agents have a faster path: the <a href="https://github.com/jayjex/dataset-mcp" rel="noopener">dataset-mcp</a> server reads the full 51,895-row file and filters it in memory. Setup instructions are on the <a href="../agents/">For agents</a> page. Weighing the two approaches in general? <a href="csv-vs-api.html">CSV vs API for data</a> breaks down when each one fits.</p>
+    <p>Downloading the CSV works fine in a spreadsheet. Scripts and agents have a faster path: the <a href="https://github.com/jayjex/dataset-mcp" rel="noopener">dataset-mcp</a> server reads the full 51,895-row file and filters it in memory. Setup instructions are on the <a href="../agents/">For agents</a> page. Weighing the two approaches in general? <a href="csv-vs-api.html">CSV vs API for data</a> breaks down when each one fits. For a single-ZIP lookup walkthrough, <a href="hud-fmr-by-zip.html">HUD FMR by ZIP code</a> runs one end to end.</p>
     <p>A real call, filtering the ZIP file for Texas:</p>
     <pre><code>query_dataset(
   "hud-fmr-2026",

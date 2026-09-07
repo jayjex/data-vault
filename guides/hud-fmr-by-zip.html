@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD FMR by ZIP Code: Fair Market Rent by ZIP, FY2026 | Data Vault</title>
+<meta name="description" content="Look up HUD FMR by ZIP code: the FY2026 CSV holds 51,895 ZIP rows with FMRs for 0BR through 4BR. Real MCP query for ZIP 79508, column guide, free sample, full dataset.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fmr-by-zip.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="HUD FMR by ZIP Code: Fair Market Rent by ZIP, FY2026">
+<meta property="og:description" content="Look up HUD FMR by ZIP code: the FY2026 CSV holds 51,895 ZIP rows with FMRs for 0BR through 4BR. Real MCP query for ZIP 79508, column guide, free sample.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fmr-by-zip.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "HUD FMR by ZIP Code: Fair Market Rent by ZIP, FY2026", "description": "Look up HUD FMR by ZIP code: the FY2026 CSV holds 51,895 ZIP rows with FMRs for 0BR through 4BR. Real MCP query for ZIP 79508, column guide, free sample, full dataset.", "datePublished": "2026-09-09", "dateModified": "2026-09-09", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-zip.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How many ZIP codes are in the HUD FMR data?", "acceptedAnswer": {"@type": "Answer", "text": "HUD's FY2026 ZIP-level file covers 51,895 ZIP codes, one row per ZIP, with FMR values for five bedroom sizes (0BR through 4BR) in each row. The values come from HUD's FY2026 Small Area FMR publication: ZIPs without a designated SAFMR carry their metro area's FMR."}}, {"@type": "Question", "name": "How do I look up the FMR for one specific ZIP code?", "acceptedAnswer": {"@type": "Answer", "text": "Filter the ZIP file on the zip column. In a spreadsheet, filter for the 5-digit code you want. Over MCP, the dataset-mcp server takes a where clause like [{ \"column\": \"zip\", \"op\": \"=\", \"value\": \"79508\" }] against the hud-fmr-2026 dataset and returns that row in milliseconds. The free 22-row sample shows the exact schema before you download anything."}}, {"@type": "Question", "name": "Why does one ZIP show a different FMR than the ZIP next door?", "acceptedAnswer": {"@type": "Answer", "text": "HUD sets Small Area FMRs (SAFMRs) at the ZIP level in designated metros, so neighboring ZIPs can carry different values inside the same hud_area_code. In the Abilene, TX MSA sample, ZIP 79508 has a 2BR FMR of 1,240 while 76437 sits at 1,090. Rows that differ from their metro's base values point to ZIP-level variation worth confirming against HUD's SAFMR tables."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>HUD FMR by ZIP code: fair market rent lookup for FY2026</h1>
+  <p class="byline">FY2026 edition, published 2026-09-09. Data source: HUD, public domain. Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <section aria-label="What FMR by ZIP means">
+    <h2>What FMR by ZIP means</h2>
+    <p>Fair Market Rent is HUD's estimate of the 40th percentile gross rent, shelter rent plus utilities, for standard-quality units in a market. The headline FMR covers a whole metro or county area. Since fiscal year 2018, HUD also sets Small Area FMRs (SAFMRs) at the ZIP level in designated metros, and publishes ZIP-level values nationwide with each year's release. When someone searches for fair market rent by ZIP, that ZIP-level file is what answers the question. The definitions behind the two numbers live in <a href="safmr-vs-fmr.html">SAFMR vs FMR, explained</a>.</p>
+    <p>For FY2026, the ZIP-level table covers 51,895 ZIP codes. Every row carries FMR values for five bedroom sizes, 0BR through 4BR, in monthly dollars rounded exactly as HUD published them.</p>
+  </section>
+
+  <section aria-label="Inside the FY2026 ZIP file">
+    <h2>Inside the FY2026 ZIP file</h2>
+    <p>The ZIP table in the <a href="../datasets/hud-fmr-2026.html">HUD FMR FY2026 pack</a> is fmr-by-zip-2026.csv, 51,895 rows, one per ZIP code, built from HUD's FY2026 Small Area FMR file. Ten columns:</p>
+    <ul>
+      <li><b>zip</b>, the 5-digit ZIP code, the lookup key</li>
+      <li><b>hud_area_code</b>, METRO or NCNTY plus the HUD area identifier</li>
+      <li><b>metro</b>, metro or nonmetro</li>
+      <li><b>area_name</b>, the HUD Fair Market Rent Area Name, for example "Abilene, TX MSA"</li>
+      <li><b>state</b>, 2-letter code</li>
+      <li><b>fmr_0br</b> through <b>fmr_4br</b>, five columns, monthly USD per bedroom size</li>
+    </ul>
+    <p>ZIPs without a designated SAFMR repeat their metro's values, so inside one hud_area_code most rows match and a few differ. Those differing rows are the ZIP-level variation, and there is no separate SAFMR flag column; the difference shows up in the fmr values themselves. Where HUD's fallback rules apply, the published numbers already reflect them. Full column notes sit in <a href="hud-rent-data-explained.html">HUD fair market rent data, explained</a>.</p>
+  </section>
+
+  <section aria-label="Look up one ZIP">
+    <h2>Look up one ZIP code, example: 79508</h2>
+    <p>Filter on the zip column. In a spreadsheet, that is a filter. For scripts and agents, the <a href="https://github.com/jayjex/dataset-mcp" rel="noopener">dataset-mcp</a> server takes a where clause, setup on the <a href="../agents/">For agents</a> page. This example runs against the free 22-row sample, which includes ZIP 79508:</p>
+    <pre><code>query_dataset(
+  "hud-fmr-2026",
+  {
+    "where": [{ "column": "zip", "op": "=", "value": "79508" }],
+    "columns": ["zip", "area_name", "fmr_0br", "fmr_1br", "fmr_2br", "fmr_3br", "fmr_4br"]
+  }
+)</code></pre>
+    <p>Output, matching the 79508 row in the free sample:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="FMR for ZIP 79508"><table><thead><tr><th scope="col">zip</th><th scope="col">area_name</th><th scope="col">fmr_0br</th><th scope="col">fmr_1br</th><th scope="col">fmr_2br</th><th scope="col">fmr_3br</th><th scope="col">fmr_4br</th></tr></thead><tbody>
+      <tr><td>79508</td><td>Abilene, TX MSA</td><td>980</td><td>990</td><td>1240</td><td>1610</td><td>1930</td></tr>
+    </tbody></table></div>
+    <p>ZIP 79508 sits in the Abilene, TX MSA with a 2BR FMR of 1,240. Neighboring 76437 in the same metro and same hud_area_code shows 1,090. Same metro, different ZIP, 150 dollars apart: that is a SAFMR at work. Whether to grab one ZIP at a time or the whole file is the tradeoff in <a href="fmr-lookup-alternatives.html">FMR lookup: one at a time, or all 51,895 ZIP rows</a>.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FMR by ZIP questions</h2>
+    <dl>
+      <dt>How many ZIP codes are in the HUD FMR data?</dt>
+      <dd>HUD's FY2026 ZIP-level file covers 51,895 ZIP codes, one row per ZIP, with FMR values for five bedroom sizes (0BR through 4BR) in each row. The values come from HUD's FY2026 Small Area FMR publication: ZIPs without a designated SAFMR carry their metro area's FMR.</dd>
+      <dt>How do I look up the FMR for one specific ZIP code?</dt>
+      <dd>Filter the ZIP file on the zip column. In a spreadsheet, filter for the 5-digit code you want. Over MCP, the dataset-mcp server takes a where clause like [{ "column": "zip", "op": "=", "value": "79508" }] against the hud-fmr-2026 dataset and returns that row in milliseconds. The free 22-row sample shows the exact schema before you download anything.</dd>
+      <dt>Why does one ZIP show a different FMR than the ZIP next door?</dt>
+      <dd>HUD sets Small Area FMRs (SAFMRs) at the ZIP level in designated metros, so neighboring ZIPs can carry different values inside the same hud_area_code. In the Abilene, TX MSA sample, ZIP 79508 has a 2BR FMR of 1,240 while 76437 sits at 1,090. Rows that differ from their metro's base values point to ZIP-level variation worth confirming against HUD's SAFMR tables.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the full dataset">
+    <h2>Get the full dataset</h2>
+    <p>The free 22-row sample shows the schema. The full pack carries all 51,895 ZIP rows plus the county rollup (3,229 rows), state summary (52 rows), the data dictionary, and source checksums.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">Get the full dataset</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release, huduser.gov. US government data, public domain.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

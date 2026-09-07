@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>x402 API: How HTTP 402 Pay-Per-Call Works, With a Live Challenge | Data Vault</title>
+<meta name="description" content="x402 turns HTTP 402 into a working payment flow: an unpaid call gets a machine-readable challenge, the client pays in USDC on Base, a facilitator settles. A live two-endpoint data API supplies the verbatim 402, the decoded accepts block, the buyer snippet, and pay-per-call vs subscription math.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/x402-data-api.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="x402 API: How HTTP 402 Pay-Per-Call Works, With a Live Challenge">
+<meta property="og:description" content="An unpaid curl returns HTTP 402 with a PAYMENT-REQUIRED header you can decode on this page. How the x402 challenge-payment-settle flow works, from an API that is live right now.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/x402-data-api.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "x402 API: How HTTP 402 Pay-Per-Call Works, With a Live Challenge", "description": "x402 turns HTTP 402 into a working payment flow: an unpaid call gets a machine-readable challenge, the client pays in USDC on Base, a facilitator settles. A live two-endpoint data API supplies the verbatim 402, the decoded accepts block, the buyer snippet, and pay-per-call vs subscription math.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/x402-data-api.html", "about": [{"@type": "Thing", "name": "x402 protocol"}, {"@type": "Thing", "name": "HTTP 402 Payment Required"}, {"@type": "Thing", "name": "pay-per-call API pricing"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "x402 API: How HTTP 402 Pay-Per-Call Works", "item": "https://jayjex.github.io/data-vault/guides/x402-data-api.html"}]}
+</script>
+<script type="application/ld+json" id="faq-ld">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the x402 protocol?", "acceptedAnswer": {"@type": "Answer", "text": "An open spec for pay-per-call APIs. A server that wants money for a request answers with HTTP 402 and a machine-readable challenge in the PAYMENT-REQUIRED header; the client signs a USDC transfer on Base (an EIP-3009 authorization), resends the request with a PAYMENT-SIGNATURE header, and a facilitator service verifies and settles the payment so the server can return data. No account or API key is involved. The two-endpoint demo behind this page runs it live; the 402 response quoted below is verbatim from 2026-09-10."}}, {"@type": "Question", "name": "How does an HTTP 402 payment work in practice?", "acceptedAnswer": {"@type": "Answer", "text": "Three steps. First the challenge: an unpaid GET returns 402 with a base64 PaymentRequired object that lists scheme exact, network eip155:8453 (Base mainnet), an amount in atomic units (10000 equals 0.01 USDC), the asset contract, and the payTo wallet. Second the payment: the client signs that USDC transfer and resends with PAYMENT-SIGNATURE. Third verify and settle: the server checks the payload through a facilitator, returns the data with a PAYMENT-RESPONSE header, and the facilitator settles the transfer on-chain."}}, {"@type": "Question", "name": "When is pay-per-call cheaper than a subscription?", "acceptedAnswer": {"@type": "Answer", "text": "When usage is bursty or small. At the demo rate of $0.01 per call, 100 calls a month cost one dollar and 1,000 calls cost ten dollars, well under most flat data tiers; around 2,500 calls a month you reach the door of a 25-dollar tier, and steady volume above that favors a flat subscription with predictable billing. Agents, CI jobs, and MVPs with spiky traffic fit per-call; high steady volume with a fixed budget fits a subscription."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../datasets/nfl-games.html">NFL dataset</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>x402 API: how HTTP 402 pay-per-call works, with a live challenge</h1>
+  <p class="byline">The monetized end of the <a href="public-data-apis-list.html">public data APIs list</a> &middot; the demo API serves NFL game rows compared in the <a href="nfl-data-apis.html">NFL data APIs guide</a> &middot; every status code, header, and JSON object on this page comes from live calls on 2026-09-10.</p>
+
+  <section aria-label="Quick answer">
+    <h2>What the x402 API flow is</h2>
+    <p>x402 is an open protocol for pay-per-call APIs. A server that charges per request answers an unpaid call with HTTP 402 and a machine-readable payment challenge in the <code>PAYMENT-REQUIRED</code> header. The client signs a USDC transfer on Base, resends the request with the signature attached, and a facilitator service verifies and settles the payment before the server returns data. No account, no API key, no invoice. The status code that sat reserved for three decades finally has a job.</p>
+    <p>We run a small two-endpoint data API on this stack: <code>GET /nfl/scores</code> (7,548 NFL games with betting lines from the nflverse releases, CC BY 4.0) and <code>GET /hud/fmr</code> (Fair Market Rents for 51,895 ZIPs, US HUD public domain). Every response quoted below is verbatim from live calls on 2026-09-10, and you can reproduce the first one with a single curl.</p>
+  </section>
+
+  <section aria-label="HTTP 402 background">
+    <h2>HTTP 402: reserved for thirty years, used now</h2>
+    <p><code>402 Payment Required</code> has been in the HTTP status list since the early specs, marked reserved for future use. No browser or framework ever shipped a payment flow for it, so APIs that charge did the gating out of band: sign-up walls, keys, monthly invoices, humans reading pricing pages. x402 keeps the status code and defines the machine-readable contract that travels with it, so the negotiation happens inside ordinary HTTP instead of a sales call. This page uses the v2 shape of the spec, documented at docs.x402.org.</p>
+  </section>
+
+  <section aria-label="The flow">
+    <h2>The flow in three steps</h2>
+    <ol>
+      <li><strong>Challenge.</strong> An unpaid GET returns <code>402</code> with a <code>PAYMENT-REQUIRED</code> header (base64 JSON) and a readable JSON body. The challenge states what the server wants: asset, network, amount, destination wallet.</li>
+      <li><strong>Payment.</strong> The client picks one of the <code>accepts</code> entries, signs an EIP-3009 USDC transfer authorization for that amount (10,000 atomic units, which is 0.01 USDC at USDC's 6 decimals), and resends the request with a <code>PAYMENT-SIGNATURE</code> header.</li>
+      <li><strong>Verify and settle.</strong> The server POSTs the payload to the facilitator's <code>/verify</code> endpoint, which checks signature, amount, and asset. On a pass the server returns the data with a <code>PAYMENT-RESPONSE</code> header and the facilitator settles the transfer on-chain (Base mainnet, chain <code>eip155:8453</code>).</li>
+    </ol>
+  </section>
+
+  <section aria-label="Step 1 verbatim">
+    <h2>Step 1, verbatim: the unpaid call</h2>
+    <p>One curl, no headers, against the HUD route of the demo API:</p>
+<pre>curl -i "https://bookstore-buys-sees-journey.trycloudflare.com/hud/fmr?zip=76437"
+# HTTP/2 402
+# content-type: application/json; charset=utf-8
+# payment-required: eyJ4NDAyVmVyc2lvbiI6MiwiZXJyb3IiOiJQQVlNRU5ULVNJR05BVFVSRSBoZWFkZXIgaXMg...
+# (base64 truncated; it decodes to the same object as the body below)
+#
+# {"x402Version":2,"error":"PAYMENT-SIGNATURE header is required",
+#  "resource":{"url":"https://bookstore-buys-sees-journey.trycloudflare.com/hud/fmr",
+#   "description":"HUD Fair Market Rent 2026 by ZIP code (51,895 ZIP-level rows). Query: zip=XXXXX required. Returns FMR for 0-4 bedrooms.",
+#   "mimeType":"application/json","serviceName":"Matchbook Sports &amp; Rent Data",
+#   "tags":["hud","rent","fmr","housing","real-estate","data"]},
+#  "accepts":[{"scheme":"exact","network":"eip155:8453","amount":"10000",
+#    "asset":"0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+#    "payTo":"0xaECCEE9470450bEA19b315E3C0a580DBa6930500",
+#    "maxTimeoutSeconds":60,"extra":{"name":"USDC","version":"2"}}],
+#  "extensions":{"bazaar":{ "...": "input schema + output example, elided here" }}}</pre>
+    <p>The <code>PAYMENT-REQUIRED</code> header carries the same object base64-encoded, so a client that reads only headers gets everything. The <code>accepts</code> entry is the part a buyer acts on:</p>
+    <table>
+      <caption>Fields of the accepts entry, from the live 402 above</caption>
+      <thead><tr><th>Field</th><th>Value</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><code>scheme</code></td><td><code>exact</code></td><td>Pay the exact amount in the listed asset</td></tr>
+        <tr><td><code>network</code></td><td><code>eip155:8453</code></td><td>Base mainnet, EIP-155 chain identifier</td></tr>
+        <tr><td><code>amount</code></td><td><code>"10000"</code></td><td>Atomic units; USDC has 6 decimals, so 10,000 = 0.01 USDC</td></tr>
+        <tr><td><code>asset</code></td><td><code>0x833589fC...A02913</code></td><td>USDC contract on Base</td></tr>
+        <tr><td><code>payTo</code></td><td><code>0xaECCEE94...6930500</code></td><td>Seller wallet that receives the payment</td></tr>
+        <tr><td><code>maxTimeoutSeconds</code></td><td><code>60</code></td><td>Window the signed authorization is good for</td></tr>
+        <tr><td><code>extra</code></td><td><code>{"name":"USDC","version":"2"}</code></td><td>EIP-712 domain hint for the signature</td></tr>
+      </tbody>
+    </table>
+    <p>One caveat about the hostname: the demo runs behind a Cloudflare quick tunnel, which rotates its URL when the service restarts. Treat the hostname as ephemeral and the response shape as the durable part.</p>
+    <p>The same server also answers two free routes, <code>GET /health</code> and <code>GET /catalog</code>, with no payment header at all. The catalog doubles as machine-readable documentation of both paid routes.</p>
+  </section>
+
+  <section aria-label="Step 2 buyer">
+    <h2>Step 2: how a buyer calls a pay-per-call API</h2>
+    <p>The buyer side is a few lines with the x402 SDK. This is the exact snippet from the demo API's README:</p>
+<pre>import { x402Client, wrapFetchWithPayment } from "@x402/fetch";
+const paid = wrapFetchWithPayment(fetch, new x402Client().register("eip155:8453", evmSignerFromPk));
+const res = await paid("https://&lt;PUBLIC_URL&gt;/nfl/scores?season=2025"); // auto 402 -&gt; sign -&gt; retry</pre>
+    <p>What happens inside that wrapped call: the first request goes out unpaid, the 402 comes back, the client decodes <code>PAYMENT-REQUIRED</code>, matches it against the registered network signer, produces the EIP-3009 signature, and retries once with <code>PAYMENT-SIGNATURE</code> set. From the caller's perspective it reads like plain fetch. A client that skips the SDK does the same steps by hand: decode the header, sign the transfer authorization, resend. The <code>extensions.bazaar</code> block in the challenge goes further and advertises the input schema and an output example, so an agent can figure out what it is buying without reading a docs page.</p>
+    <p>The NFL route in that snippet serves scores and betting lines 1999-2026 from the nflverse releases; the sources behind those rows (ESPN, nflverse, the league's own closed API) are compared in the <a href="nfl-data-apis.html">NFL data APIs guide</a>.</p>
+  </section>
+
+  <section aria-label="Step 3 verify and settle">
+    <h2>Step 3: verify and settle, stated honestly</h2>
+    <p>On the server side, a paid request is: decode <code>PAYMENT-SIGNATURE</code>, POST the payload to the facilitator's <code>/verify</code>, and serve data only on a pass, with <code>PAYMENT-RESPONSE</code> attached. The facilitator then settles the USDC transfer on-chain. Settlement rides on the facilitator (the demo uses <code>facilitator.payai.network</code>), which is the piece that turns a signed authorization into an actual Base transaction.</p>
+    <p>What we verified live on 2026-09-10, no hand-waving:</p>
+    <ul>
+      <li>The 402 challenge fired on both paid routes through the public tunnel, with the header decoding to the v2 PaymentRequired shape shown above.</li>
+      <li>A malformed or v1-shaped header got a clean structured 402 back, server-side, no crash.</li>
+      <li>A verify roundtrip with a schema-valid payload carrying a fake signature reached the facilitator and returned its structured rejection (<code>payment verification failed: invalid_payload</code>), which proves the challenge shape is accepted end-to-end.</li>
+      <li>Settlement with a real signature is code-complete and tested up to the facilitator's response; no funded wallet sits on the box, so the final on-chain leg stays untested until the first payer arrives.</li>
+    </ul>
+    <p>That last bullet is the honest state of the demo: everything a buyer touches is live, and the seller-side money leg is one funded signature away from proven.</p>
+    <p>Want the no-money version of this? Our <a href="open-data-api-alternative.html">open data API endpoints</a> serve dataset samples free on GitHub Pages.</p>
+  </section>
+
+  <section aria-label="Per-call vs subscription">
+    <h2>Pay-per-call vs subscription for small data</h2>
+    <p>Subscriptions price certainty; per-call prices use. At the demo's example rate of $0.01 per call, the math looks like this:</p>
+    <table>
+      <caption>Monthly cost at $0.01 per call</caption>
+      <thead><tr><th>Calls per month</th><th>Cost at $0.01 per call</th><th>Who fits</th></tr></thead>
+      <tbody>
+        <tr><td>10</td><td>ten cents</td><td>one-off scripts, a weekend test</td></tr>
+        <tr><td>100</td><td>one dollar</td><td>a cron job, a dashboard refresh</td></tr>
+        <tr><td>1,000</td><td>ten dollars</td><td>an agent polling a few times an hour</td></tr>
+        <tr><td>10,000</td><td>one hundred dollars</td><td>steady production traffic</td></tr>
+      </tbody>
+    </table>
+    <p>Flat data tiers commonly start in the tens of dollars a month and charge the same whether you make 5 calls or 5,000. Around 2,500 calls a month at this example rate you reach the door of a 25-dollar tier, and steady volume above that is where a subscription's predictable billing starts to win. Below that, per-call has three practical edges for small data: no idle cost when traffic is spiky, no signup or key provisioning between deciding to call and calling, and one request carries its own payment so any HTTP client with a wallet can buy a single row set from a CI job or an agent at 3 a.m. without a human in the loop. High, steady, budget-capped usage still belongs on a flat plan.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <dl>
+      <dt>What is the x402 protocol?</dt>
+      <dd>An open spec for pay-per-call APIs. A server that wants money for a request answers with HTTP 402 and a machine-readable challenge in the PAYMENT-REQUIRED header; the client signs a USDC transfer on Base (an EIP-3009 authorization), resends the request with a PAYMENT-SIGNATURE header, and a facilitator service verifies and settles the payment so the server can return data. No account or API key is involved. The two-endpoint demo behind this page runs it live; the 402 response quoted below is verbatim from 2026-09-10.</dd>
+      <dt>How does an HTTP 402 payment work in practice?</dt>
+      <dd>Three steps. First the challenge: an unpaid GET returns 402 with a base64 PaymentRequired object that lists scheme exact, network eip155:8453 (Base mainnet), an amount in atomic units (10000 equals 0.01 USDC), the asset contract, and the payTo wallet. Second the payment: the client signs that USDC transfer and resends with PAYMENT-SIGNATURE. Third verify and settle: the server checks the payload through a facilitator, returns the data with a PAYMENT-RESPONSE header, and the facilitator settles the transfer on-chain.</dd>
+      <dt>When is pay-per-call cheaper than a subscription?</dt>
+      <dd>When usage is bursty or small. At the demo rate of $0.01 per call, 100 calls a month cost one dollar and 1,000 calls cost ten dollars, well under most flat data tiers; around 2,500 calls a month you reach the door of a 25-dollar tier, and steady volume above that favors a flat subscription with predictable billing. Agents, CI jobs, and MVPs with spiky traffic fit per-call; high steady volume with a fixed budget fits a subscription.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Attribution">
+    <h2>Sources and status</h2>
+    <p>The x402 spec lives at docs.x402.org (v2 quickstart for buyers and sellers); USDC on Base is contract <code>0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913</code>; the demo settles through <code>facilitator.payai.network</code>. All outputs on this page are quoted verbatim from live calls made on 2026-09-10 and may rotate (the tunnel hostname) or evolve (the spec) after that date. NFL game rows come from the nflverse releases under CC BY 4.0; HUD FMR rows are US-government public domain. This page is an explainer, and the demo API exists to have something real to quote; Data Vault is not affiliated with the x402 project, Coinbase, or the facilitator operator. Nothing here is financial advice.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

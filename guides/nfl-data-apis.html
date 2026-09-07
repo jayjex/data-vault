@@ -107,7 +107,7 @@ print(r.status_code)    # 401
 
 r2 = requests.get("https://api.nfl.com/content/v1/videos/football/nfl/2026", timeout=30)
 print(r2.status_code)   # 401</pre>
-    <p>The body is an XML <code>401 Unauthorized</code> page on both. <code>developer.nfl.com</code>, the portal for the league's API program, also answered 401 to a plain programmatic fetch. So the practical picture: keys are issued through the portal to approved partners, feeds above that carry license terms, and there is no public, keyless tier to test against. When a vendor page says "official NFL data", read that as licensed and priced, and check whether ESPN or nflverse covers your need before getting on that path.</p>
+    <p>The body is an XML <code>401 Unauthorized</code> page on both. <code>developer.nfl.com</code>, the portal for the league's API program, also answered 401 to a plain programmatic fetch. So the practical picture: keys are issued through the portal to approved partners, feeds above that carry license terms, and there is no public, keyless tier to test against. When a vendor page says "official NFL data", read that as licensed and priced, and check whether ESPN or nflverse covers your need before getting on that path. The opposite end of that spectrum is a seller charging per request instead of per contract: the <a href="x402-data-api.html">x402 data API guide</a> shows how HTTP 402 payments work on a live API that serves these same nflverse game rows.</p>
   </section>
 
   <section aria-label="Comparison table">

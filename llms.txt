@@ -16,6 +16,7 @@ HUD income limits guide (AMI vs FMR, FY2026 30/50/80 percent limits parsed from 
 HUD payment standard guide (the 90%-110% PHA band around the FMR, FY2026 band table for six ZIPs): https://jayjex.github.io/data-vault/guides/hud-payment-standard.html
 Payment standard for Section 8 guide (90%-110% FMR band, band computed from the FY2026 Abilene TX rows, 40% move-in cap example): https://jayjex.github.io/data-vault/guides/fmr-payment-standard.html
 HUD FMR metro definition guide (how HUD defines a metro FMR area, MSA vs HUD Metro FMR Area across the 649 metros, widest intra-metro 2BR spread worked from San Diego): https://jayjex.github.io/data-vault/guides/hud-fmr-by-metro-area.html
+HUD FMR 2027 guide (FY2027 rates effective October 1, 2026, 51,871 ZIP rows parsed from FY27_FMRs.xlsx + fy2027_safmrs.xlsx, median 2BR +3.30% YoY, Kingston NY +70.37% max, ZIP 76437 FY26-vs-FY27 side-by-side): https://jayjex.github.io/data-vault/guides/hud-fmr-2027.html
 Rent affordability guide (the 30% rule vs the FMR, five metros against the US median household income, FY2026): https://jayjex.github.io/data-vault/guides/rent-affordability-calculator.html
 What is llms.txt (plain-English definition of the format, how agents read the file, honest status): https://jayjex.github.io/data-vault/guides/what-is-llms-txt.html
 Dataset DOIs: the NFL, HUD FMR, and Airbnb packs have permanent citable DOIs on Zenodo: https://doi.org/10.5281/zenodo.22643177 , https://doi.org/10.5281/zenodo.22643149 , https://doi.org/10.5281/zenodo.22643189

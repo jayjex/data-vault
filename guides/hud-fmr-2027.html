@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD FMR 2027: Fair Market Rents for FY2027, What Changed by ZIP | Data Vault</title>
+<meta name="description" content="The 2027 fair market rents are out: 51,871 ZIP rows parsed from HUD's FY27_FMRs.xlsx and SAFMR workbooks, effective October 1, 2026. Median 2BR up 3.3%, FY2026 vs FY2027 ZIP comparison, biggest moves, and free CSV downloads.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fmr-2027.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="HUD FMR 2027: Fair Market Rents for FY2027, What Changed by ZIP">
+<meta property="og:description" content="The 2027 fair market rents are out: 51,871 ZIP rows parsed from HUD's FY27_FMRs.xlsx and SAFMR workbooks, effective October 1, 2026. Median 2BR up 3.3%, with the FY2026 vs FY2027 ZIP comparison.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fmr-2027.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "HUD FMR 2027: Fair Market Rents for FY2027, What Changed by ZIP", "description": "The 2027 fair market rents are out: 51,871 ZIP rows parsed from HUD's FY27_FMRs.xlsx and SAFMR workbooks, effective October 1, 2026. Median 2BR up 3.3%, with the FY2026 vs FY2027 ZIP comparison.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fmr-2027.html", "about": {"@type": "Dataset", "name": "US Fair Market Rents by ZIP Code - FY2027 (HUD)", "url": "https://doi.org/10.5281/zenodo.22649503"}, "mentions": [{"@type": "Article", "name": "HUD FMR Data Download: Every Official Source, Compared", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-data-downloads.html"}, {"@type": "Article", "name": "FMR Dataset Download: Fair Market Rent CSV, Ready for pandas", "url": "https://jayjex.github.io/data-vault/guides/fmr-dataset-download.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "HUD FMR 2027", "item": "https://jayjex.github.io/data-vault/guides/hud-fmr-2027.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "When do the 2027 fair market rents take effect?", "acceptedAnswer": {"@type": "Answer", "text": "October 1, 2026. HUD posted the FY2027 county workbook (FY27_FMRs.xlsx) on August 26, 2026 and the ZIP-level SAFMR workbook (fy2027_safmrs.xlsx) on August 31, 2026. Those files are the operating basis for voucher payment standards in the new federal fiscal year; the FY2026 numbers stop being the current rates the same day."}}, {"@type": "Question", "name": "How much did fair market rents change for 2027?", "acceptedAnswer": {"@type": "Answer", "text": "Most areas moved a few percent. Matching 51,819 ZIP-level areas present in both years, 51,800 changed in at least one bedroom size, and the median 2BR change is +3.30%. Moves ran both ways: 36,101 matched areas up and 13,885 down at the 2BR line, with the steepest cuts near -10% in ZIPs of the Atlanta, San Antonio, and Bridgeport metros. The largest jump is ZIP 12461 in the Kingston, NY MSA, where the 2BR FMR went from 1,620 to 2,760, +70.37%."}}, {"@type": "Question", "name": "Where can I download the 2027 FMR data?", "acceptedAnswer": {"@type": "Answer", "text": "Two places. HUD publishes the official workbooks on huduser.gov: FY27_FMRs.xlsx at the county level and fy2027_safmrs.xlsx with one row per ZIP area. The same data parsed into clean CSVs is on Zenodo under DOI 10.5281/zenodo.22649503: fmr-by-zip-2027.csv (51,871 rows), a 3,229-row county rollup, and a 52-row state summary, CC BY 4.0, no signup."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>HUD FMR 2027: what the new fair market rents changed, ZIP by ZIP</h1>
+  <p class="byline">FY2027 edition, published 2026-09-10. Built from HUD's FY2027 workbooks, downloaded from huduser.gov on 2026-09-08 and SHA-256 verified. Source data public domain. Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>FY2027 is live. HUD posted <a href="https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx" rel="noopener">FY27_FMRs.xlsx</a> on August 26, 2026 and the ZIP-level <a href="https://www.huduser.gov/portal/datasets/fmr/fmr2027/fy2027_safmrs.xlsx" rel="noopener">fy2027_safmrs.xlsx</a> on August 31, 2026, and the new rates take effect October 1, 2026. We parsed both workbooks into the same ten-column CSV shape as the FY2026 file on the same day: 51,871 ZIP rows, a 3,229-row county rollup, and a 52-row state summary, published free on Zenodo under <a href="https://doi.org/10.5281/zenodo.22649503" rel="noopener">DOI 10.5281/zenodo.22649503</a>.</p>
+    <p>The headline number: the median 2BR change across the file is +3.30%. That average hides a spread from about -10% at the bottom to +70.37% at the top, so this page walks the year-over-year diff the way you would actually run it: matched ZIP areas, one lookup side by side, and the outliers both directions. Every number below was computed from the two CSVs, not copied from a summary.</p>
+  </section>
+
+  <section aria-label="What changed from FY2026 to FY2027">
+    <h2>What changed from FY2026 to FY2027</h2>
+    <p>Join fmr-by-zip-2026.csv and fmr-by-zip-2027.csv on <b>zip</b> plus <b>hud_area_code</b> and 51,819 of the FY2027 rows match a FY2026 row. Of those, 51,800 changed in at least one bedroom size. At the 2BR line, 36,101 matched areas went up, 13,885 went down, and 1,833 held flat. The median of the matched 2BR changes is +3.30%, and the median 2BR level itself moved from 1,150 to 1,190.</p>
+    <p>State medians show the same mix. From the 52-row state summaries, the 2BR median went up in New York (1,430 to 1,500), Texas (1,190 to 1,220), Alabama (980 to 1,020), and Colorado (1,620 to 1,650), and down in Arizona (1,610 to 1,520) and California (2,635 to 2,600). Alaska held flat at 1,510. The ZIP-level counts at the top and bottom of the range tell you where the sharp moves sit:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Largest FY2026 to FY2027 2BR moves"><table><thead><tr><th scope="col">ZIP</th><th scope="col">Area</th><th scope="col">2BR FY2026</th><th scope="col">2BR FY2027</th><th scope="col">Change</th></tr></thead><tbody>
+      <tr><td>12461</td><td>Kingston, NY MSA</td><td>1,620</td><td>2,760</td><td>+70.37%</td></tr>
+      <tr><td>35544</td><td>Lamar County, AL</td><td>810</td><td>1,370</td><td>+69.14%</td></tr>
+      <tr><td>46301</td><td>Gary, IN HUD Metro FMR Area</td><td>1,210</td><td>2,020</td><td>+66.94%</td></tr>
+      <tr><td>30331</td><td>Atlanta-Sandy Springs-Roswell, GA</td><td>1,600</td><td>1,440</td><td>-10.00%</td></tr>
+      <tr><td>78655</td><td>San Antonio-New Braunfels, TX</td><td>1,300</td><td>1,170</td><td>-10.00%</td></tr>
+      <tr><td>06824</td><td>Bridgeport-Stamford-Danbury, CT MSA</td><td>3,500</td><td>3,150</td><td>-10.00%</td></tr>
+    </tbody></table></div>
+    <p>194 matched areas moved 30% or more at the 2BR line, led by Vermont (19) and North Dakota (10). The geography also shifted a little between years: 14 ZIP codes in the FY2026 file have no FY2027 row and 14 new ones appear, so a join on ZIP alone is missing 28 rows of the picture, which is why the diff keys on zip plus hud_area_code.</p>
+  </section>
+
+  <section aria-label="The biggest move, Kingston NY">
+    <h2>The biggest move: Kingston, NY, +70.37%</h2>
+    <p>ZIP 12461 sits in the Kingston, NY MSA. Its full rows, verbatim from both files:</p>
+    <pre><code>12461,METRO28740M28740,metro,"Kingston, NY MSA",NY,1240,1240,1620,2060,2220
+12461,METRO28740M28740,metro,"Kingston, NY MSA",NY,1920,2110,2760,3350,3630</code></pre>
+    <p>First line FY2026, second line FY2027, same ten columns. Every bedroom size jumped: the 2BR went 1,620 to 2,760 (+70.37%), the 0BR 1,240 to 1,920, the 4BR 2,220 to 3,630. Neighboring Kingston-area ZIPs moved far less, 1,870 to 2,030 in ZIP 12401 and 1,820 to 1,880 in ZIP 12402, so the new value is ZIP-specific rather than a metro-wide reset. Large single-ZIP jumps like this are what Small Area FMRs produce; <a href="safmr-vs-fmr.html">SAFMR vs FMR</a> explains the mechanism and HUD's designation rule.</p>
+    <p>At the other end, the steepest cuts in the file all land at exactly -10.00% (ZIPs 30331 in Atlanta, 78655 in San Antonio, 06824 in Bridgeport among them), which reads like a floor rather than a coincidence. If your numbers matter for a program decision, check the specific ZIP against the official workbook before you act on the diff.</p>
+  </section>
+
+  <section aria-label="ZIP lookup side by side">
+    <h2>One ZIP lookup, FY2027 vs FY2026, side by side</h2>
+    <p>ZIP 76437 in Stephens County, Texas, part of the Abilene, TX MSA, is the lookup example used across this site's FMR pages, so it makes the cleanest before-and-after:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="ZIP 76437 FMR by bedroom, FY2026 vs FY2027"><table><thead><tr><th scope="col">Bedrooms</th><th scope="col">FY2026</th><th scope="col">FY2027</th><th scope="col">Change</th></tr></thead><tbody>
+      <tr><td>0BR</td><td>850</td><td>910</td><td>+60</td></tr>
+      <tr><td>1BR</td><td>880</td><td>920</td><td>+40</td></tr>
+      <tr><td>2BR</td><td>1,090</td><td>1,150</td><td>+60</td></tr>
+      <tr><td>3BR</td><td>1,420</td><td>1,490</td><td>+70</td></tr>
+      <tr><td>4BR</td><td>1,710</td><td>1,790</td><td>+80</td></tr>
+    </tbody></table></div>
+    <p>The two source lines, verbatim:</p>
+    <pre><code>76437,METRO10180M10180,metro,"Abilene, TX MSA",TX,850,880,1090,1420,1710
+76437,METRO10180M10180,metro,"Abilene, TX MSA",TX,910,920,1150,1490,1790</code></pre>
+    <p>October 1, 2026 is the switch date. A payment standard set from the FY2026 2BR value of 1,090 gives a 90%-110% band of 981 to 1,199; the FY2027 value of 1,150 moves that band to 1,035 to 1,265. The band math and the 40% move-in cap are worked through in <a href="fmr-payment-standard.html">payment standard for Section 8</a>. Until October, FY2026 is still the number agencies operate on.</p>
+  </section>
+
+  <section aria-label="Run the diff yourself">
+    <h2>Run the year-over-year diff yourself</h2>
+    <p>The whole median calculation is a few lines of csv-module Python over the two files:</p>
+    <pre><code>import csv, statistics
+
+rows26, rows27 = {}, {}
+for path, store in [("fmr-by-zip-2026.csv", rows26), ("fmr-by-zip-2027.csv", rows27)]:
+    with open(path, newline="", encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            store[(row["zip"], row["hud_area_code"])] = int(row["fmr_2br"])
+
+common = set(rows26) & set(rows27)
+changes = [(rows27[k] - rows26[k]) / rows26[k] * 100 for k in common]
+print(len(common), round(statistics.median(changes), 2))
+# 51819 3.3</code></pre>
+    <p>Both files keep the zip column as five-character text, so leading zeros survive; the loading details, including the <code>dtype={'zip': str}</code> habit, are in <a href="fmr-dataset-download.html">FMR dataset download</a>. Where each year's numbers come from, and how HUD's workbooks compare with Census Reporter and the CSV route, is the subject of <a href="hud-fmr-data-downloads.html">HUD FMR data download</a>.</p>
+  </section>
+
+  <section aria-label="Where to get FY2027 data">
+    <h2>Where to get the FY2027 data</h2>
+    <p>Huduser.gov is the primary source: <a href="https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx" rel="noopener">FY27_FMRs.xlsx</a> for the county-level values and <a href="https://www.huduser.gov/portal/datasets/fmr/fmr2027/fy2027_safmrs.xlsx" rel="noopener">fy2027_safmrs.xlsx</a> for the ZIP-level ones. Both are Excel workbooks with the usual parse hazards, hard line breaks in headers and ZIPs that want to lose their leading zeros. The cleaned versions of exactly those files are on Zenodo under <a href="https://doi.org/10.5281/zenodo.22649503" rel="noopener">DOI 10.5281/zenodo.22649503</a>: all three CSVs plus the data dictionary and build script, CC BY 4.0, citable and free.</p>
+    <p>Two honest status notes. The dataset-mcp server still serves the FY2026 file (<code>query_dataset("hud-fmr-2026", ...)</code>, 51,895 rows); the FY2027 CSVs land in it with the FY2027 pack release. Until then, FY2027 means downloading the Zenodo CSVs. And for anything dated before October 1, 2026, the <a href="../datasets/hud-fmr-2026.html">HUD FMR FY2026 pack</a> remains the right file, with its 51,895-row ZIP dataset and free 22-row sample.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>HUD FMR 2027 questions</h2>
+    <dl>
+      <dt>When do the 2027 fair market rents take effect?</dt>
+      <dd>October 1, 2026. HUD posted the FY2027 county workbook (FY27_FMRs.xlsx) on August 26, 2026 and the ZIP-level SAFMR workbook (fy2027_safmrs.xlsx) on August 31, 2026. Those files are the operating basis for voucher payment standards in the new federal fiscal year; the FY2026 numbers stop being the current rates the same day.</dd>
+      <dt>How much did fair market rents change for 2027?</dt>
+      <dd>Most areas moved a few percent. Matching 51,819 ZIP-level areas present in both years, 51,800 changed in at least one bedroom size, and the median 2BR change is +3.30%. Moves ran both ways: 36,101 matched areas up and 13,885 down at the 2BR line, with the steepest cuts near -10% in ZIPs of the Atlanta, San Antonio, and Bridgeport metros. The largest jump is ZIP 12461 in the Kingston, NY MSA, where the 2BR FMR went from 1,620 to 2,760, +70.37%.</dd>
+      <dt>Where can I download the 2027 FMR data?</dt>
+      <dd>Two places. HUD publishes the official workbooks on huduser.gov: <a href="https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx" rel="noopener">FY27_FMRs.xlsx</a> at the county level and <a href="https://www.huduser.gov/portal/datasets/fmr/fmr2027/fy2027_safmrs.xlsx" rel="noopener">fy2027_safmrs.xlsx</a> with one row per ZIP area. The same data parsed into clean CSVs is on Zenodo under <a href="https://doi.org/10.5281/zenodo.22649503" rel="noopener">DOI 10.5281/zenodo.22649503</a>: fmr-by-zip-2027.csv (51,871 rows), a 3,229-row county rollup, and a 52-row state summary, CC BY 4.0, no signup.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the FY2027 FMR data</h2>
+    <p>The FY2027 CSVs are free on Zenodo: ZIP, county, and state files plus the data dictionary, permanently citable through the DOI. The FY2026 pack stays live here with its free sample and full ZIP dataset for anything dated before October 1, 2026.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="https://doi.org/10.5281/zenodo.22649503" rel="noopener">FY2027 CSVs on Zenodo (free)</a>
+      <a class="btn" href="../datasets/hud-fmr-2026.html">FY2026 dataset page</a>
+    </div>
+    <p class="btn-note">Source: US Department of Housing and Urban Development, FY2027 Fair Market Rent release, huduser.gov. US government data, public domain. Zenodo repackaging CC BY 4.0. Data Vault is not affiliated with HUD.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MCP Server Directory: Official Registry, Community Indexes, 3 Free Servers | Data Vault</title>
+<meta name="description" content="An MCP server directory in two layers: the official modelcontextprotocol registry, five community indexes worth browsing, and our three MIT-licensed servers with the config JSON from each README.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/tools/mcp-server-directory.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="MCP Server Directory: Official Registry, Community Indexes, 3 Free Servers">
+<meta property="og:description" content="The official MCP registry, five community indexes worth browsing, and our three MIT-licensed servers with the config JSON from each README.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/tools/mcp-server-directory.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "MCP Server Directory: Official Registry, Community Indexes, 3 Free Servers", "description": "An MCP server directory in two layers: the official modelcontextprotocol registry, five community indexes worth browsing, and our three MIT-licensed servers with the config JSON from each README.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/tools/mcp-server-directory.html", "about": {"@type": "Thing", "name": "MCP server directory"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "MCP server directory", "item": "https://jayjex.github.io/data-vault/tools/mcp-server-directory.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ItemList", "name": "MCP server directory", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "MCP Registry (official)", "url": "https://registry.modelcontextprotocol.io"}, {"@type": "ListItem", "position": 2, "name": "PulseMCP", "url": "https://www.pulsemcp.com"}, {"@type": "ListItem", "position": 3, "name": "mcp.so", "url": "https://mcp.so"}, {"@type": "ListItem", "position": 4, "name": "Glama MCP servers", "url": "https://glama.ai/mcp/servers"}, {"@type": "ListItem", "position": 5, "name": "mcpservers.org", "url": "https://mcpservers.org"}, {"@type": "ListItem", "position": 6, "name": "dataset-mcp", "url": "https://github.com/jayjex/dataset-mcp"}, {"@type": "ListItem", "position": 7, "name": "earn-bounty-scanner", "url": "https://github.com/jayjex/earn-bounty-scanner"}, {"@type": "ListItem", "position": 8, "name": "solana-research-library", "url": "https://github.com/jayjex/solana-research-library"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is an MCP server directory?", "acceptedAnswer": {"@type": "Answer", "text": "A browsable index of MCP (Model Context Protocol) servers: what each one does, which tools it exposes, and how to install it. The MCP ecosystem has one official registry run by the team behind the protocol, plus several community-built directories that add search, categories, and editorial descriptions on top."}}, {"@type": "Question", "name": "Which MCP server directory is the official one?", "acceptedAnswer": {"@type": "Answer", "text": "The MCP Registry at registry.modelcontextprotocol.io, run by the team behind the Model Context Protocol. It is the canonical place where servers register under verified names like io.github.jayjex/dataset-mcp. The community directories index it and add their own discovery layers, but a listing on any of them is not an endorsement; check the license, the repo activity, and ideally run the server yourself before wiring it into a client."}}, {"@type": "Question", "name": "Are the servers in this directory free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. All three servers listed here are MIT-licensed, free to run, and need no API key. dataset-mcp downloads its data files once from a public GitHub release, earn-bounty-scanner fetches the public superteam.fun API per call, and solana-research-library ships its database inside the package with no network calls at runtime."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>MCP server directory: the registry, five community indexes, and our three servers</h1>
+  <p class="byline">Published 2026-09-10. A directory of MCP servers in two layers: where the ecosystem indexes them, and the three servers we publish with the exact config JSON from each README. The first half is deliberately short; the big indexes already do breadth better than we ever will.</p>
+
+  <section aria-label="Where MCP servers are indexed">
+    <h2>Where MCP servers are indexed</h2>
+    <p>An MCP server only exists to a client after it is configured, so discovery happens through indexes. Two kinds matter. The <strong>official registry</strong> is where servers register under verified names. The <strong>community directories</strong> crawl it and each other, then add categories, search, and descriptions. If you are hunting for a server for a specific job, check both: the registry for provenance, a directory for browsing.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="MCP server directories"><table><thead><tr><th scope="col">Directory</th><th scope="col">What you will find there</th></tr></thead><tbody>
+      <tr><td><a href="https://registry.modelcontextprotocol.io" rel="noopener">MCP Registry</a></td><td>the official registry run by the team behind the Model Context Protocol; servers register under verified names like <code>io.github.jayjex/dataset-mcp</code>, and clients can resolve them programmatically</td></tr>
+      <tr><td><a href="https://www.pulsemcp.com" rel="noopener">PulseMCP</a></td><td>a large browsable index with categories, per-server tool listings, and weekly coverage of the ecosystem</td></tr>
+      <tr><td><a href="https://mcp.so" rel="noopener">mcp.so</a></td><td>a search-heavy index that lists each server's tools and links straight to the repo</td></tr>
+      <tr><td><a href="https://glama.ai/mcp/servers" rel="noopener">Glama</a></td><td>a directory with per-server tool docs, plus its own MCP client and gateway on the same site</td></tr>
+      <tr><td><a href="https://mcpservers.org" rel="noopener">mcpservers.org</a></td><td>a curated, categorized listing with community reviews per server</td></tr>
+    </tbody></table></div>
+    <p>A listing on any of these is a starting point, not a vetting. Before wiring a stranger's server into Claude Desktop or another client, check the license, whether the repo is alive, and what the install command actually runs. Our own <a href="mcp-tools-list.html">MCP tools list</a> shows what a server's tool catalog looks like over raw JSON-RPC, so you can compare before trusting a description.</p>
+  </section>
+
+  <section aria-label="Our three servers">
+    <h2>Our three servers</h2>
+    <p>All three are MIT-licensed, free to run, and work over stdio with no API key. Each entry below uses the config JSON from the server's README, verbatim.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Server overview"><table><thead><tr><th scope="col">Server</th><th scope="col">Tools</th><th scope="col">Data source</th><th scope="col">License</th></tr></thead><tbody>
+      <tr><td><a href="#dataset-mcp">dataset-mcp</a></td><td>5</td><td>149,673 rows across 5 datasets, downloaded once from a public GitHub release</td><td>MIT</td></tr>
+      <tr><td><a href="#earn-bounty-scanner">earn-bounty-scanner</a></td><td>3</td><td>live Superteam Earn API at superteam.fun, fetched per call</td><td>MIT</td></tr>
+      <tr><td><a href="#solana-research-library">solana-research-library</a></td><td>4</td><td>25 field-probed platforms, database ships inside the package, no network at runtime</td><td>MIT</td></tr>
+    </tbody></table></div>
+
+    <h3 id="dataset-mcp">dataset-mcp</h3>
+    <p>Query the Data Vault catalog from any MCP client: filter and paginate full files with <code>query_dataset()</code>, pull stats with <code>get_stats()</code>, preview with <code>get_sample()</code>. Version 1.1.0, listed in the official registry as <code>io.github.jayjex/dataset-mcp</code>. Full docs on the <a href="../agents/mcp-dataset-server.html">MCP server for datasets</a> page; every tool with captured output on the <a href="mcp-tools-list.html">MCP tools list</a>.</p>
+    <p>Claude Desktop (<code>claude_desktop_config.json</code>):</p>
+<pre>{
+  "mcpServers": {
+    "dataset-mcp": {
+      "command": "npx",
+      "args": ["-y", "github:jayjex/dataset-mcp"]
+    }
+  }
+}</pre>
+    <p>npm 12 refuses git-based installs by default, so on npm 12 use <code>["--allow-git=all", "-y", "github:jayjex/dataset-mcp"]</code> instead, or set <code>allow-git=github.com</code> in <code>~/.npmrc</code>. npm 10 and 11 need no flag. TOML-based clients (pi, Codex) use <code>[mcp_servers.dataset-mcp]</code> with the same command and args.</p>
+
+    <h3 id="earn-bounty-scanner">earn-bounty-scanner</h3>
+    <p>Live Solana bounties from Superteam Earn: search with full description text, fetch one bounty by id, or list what is open right now. The <code>agentAccess</code> field tells an agent whether it may submit (<code>AGENT_ALLOWED</code>) or is barred (<code>HUMAN_ONLY</code>). Listed in the official registry as <code>io.github.jayjex/earn-bounty-scanner</code>.</p>
+    <p>From the README, install and config:</p>
+<pre>{
+  "mcpServers": {
+    "earn-bounty-scanner": {
+      "command": "npx",
+      "args": ["-y", "earn-bounty-scanner"]
+    }
+  }
+}</pre>
+
+    <h3 id="solana-research-library">solana-research-library</h3>
+    <p>A curated intelligence DB of 25 Solana/web3 earning platforms, each field-probed on 2026-09-04 with a verdict (<code>LIVE-RAIL</code> / <code>USER-GATED</code> / <code>CONDITIONAL-PASS</code> / <code>WATCHLIST</code> / <code>DEAD</code>), the exact payout rail, and the KYC gate. The 11 DEAD entries are kill-logged with reasons, so an agent skips re-researching lanes that already failed verification. The database ships inside the package: tools answer instantly and an upstream outage cannot fail a call.</p>
+    <p>From the README, install and config (npm package pending, so the git form for now):</p>
+<pre>git clone https://github.com/jayjex/solana-research-library
+cd solana-research-library
+npm install
+npm run build</pre>
+<pre>{
+  "mcpServers": {
+    "solana-research-library": {
+      "command": "node",
+      "args": ["/absolute/path/to/solana-research-library/dist/index.js"]
+    }
+  }
+}</pre>
+    <p>Once the npm package is published, <code>npx -y solana-research-library</code> will work too. All three servers in one config block, plus the tool-by-tool outputs: <a href="mcp-tools-list.html">MCP tools list</a>.</p>
+  </section>
+
+  <section aria-label="Install walkthrough">
+    <h2>Installing them in Claude Desktop</h2>
+    <p>The config JSON above drops into <code>claude_desktop_config.json</code>; after saving, fully quit Claude Desktop and reopen it, because the file is only read at startup. The <a href="../guides/mcp-claude-desktop.html">MCP server for Claude Desktop</a> guide walks the whole path with verified outputs: file locations on macOS and Windows, the npm 12 <code>EALLOWGIT</code> error, and what the tools menu should show once the server connects. A Claude-focused comparison of the same three servers sits on the <a href="../agents/mcp-tools-for-claude.html">MCP tools for Claude</a> page.</p>
+  </section>
+
+  <section aria-label="How this directory is scoped">
+    <h2>How this directory is scoped</h2>
+    <p>This page lists servers we build and run, with outputs captured from real sessions, and links out to the indexes that cover the rest of the ecosystem. That is the whole editorial rule: breadth belongs to PulseMCP, mcp.so, Glama, and mcpservers.org; provenance belongs to the official registry; what we can verify belongs here. If a server appears on this page, we have run it over stdio and documented its tools.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>What is an MCP server directory?</h3>
+    <p>A browsable index of MCP (Model Context Protocol) servers: what each one does, which tools it exposes, and how to install it. The MCP ecosystem has one official registry run by the team behind the protocol, plus several community-built directories that add search, categories, and editorial descriptions on top.</p>
+    <h3>Which MCP server directory is the official one?</h3>
+    <p>The <a href="https://registry.modelcontextprotocol.io" rel="noopener">MCP Registry</a> at registry.modelcontextprotocol.io, run by the team behind the Model Context Protocol. It is the canonical place where servers register under verified names like <code>io.github.jayjex/dataset-mcp</code>. The community directories index it and add their own discovery layers, but a listing on any of them is not an endorsement; check the license, the repo activity, and ideally run the server yourself before wiring it into a client.</p>
+    <h3>Are the servers in this directory free?</h3>
+    <p>Yes. All three servers listed here are MIT-licensed, free to run, and need no API key. dataset-mcp downloads its data files once from a public GitHub release, earn-bounty-scanner fetches the public superteam.fun API per call, and solana-research-library ships its database inside the package with no network calls at runtime.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

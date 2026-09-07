@@ -105,6 +105,7 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - [Web Scraping Scripts Pack: 10 Ready-to-Run Playwright Templates](https://jayjex.github.io/data-vault/tools/scraping-scripts.html): the script pack landing
 - [How to Create an llms.txt File (No Generator Needed)](https://jayjex.github.io/data-vault/tools/llms-txt-howto.html): build one by hand, live example
 - [Free API Datasets for AI Agents, 5 packs with JSON samples](https://jayjex.github.io/data-vault/free-datasets-for-ai-agents.html): agent-oriented dataset index
+- [MCP Server Directory: Official Registry, Community Indexes, 3 Free Servers](https://jayjex.github.io/data-vault/tools/mcp-server-directory.html): registry + PulseMCP/mcp.so/Glama/mcpservers.org, our servers with README configs
 
 ## Agents
 

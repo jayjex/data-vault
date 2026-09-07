@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dataset License Guide: CC BY 4.0, CC0, ODbL, MIT, or No License | Data Vault</title>
+<meta name="description" content="The five data license types compared: CC BY 4.0 for attribution, CC0 for public domain, ODbL for share-alike, MIT for data files in code projects, and what no license means. With the exact attribution formats from our own Zenodo DOI records.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/dataset-license-guide.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Dataset License Guide: CC BY 4.0, CC0, ODbL, MIT, or No License">
+<meta property="og:description" content="CC BY 4.0, CC0, ODbL, MIT, or no license: what each data license allows, when to pick which, and the attribution formats we ship.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/dataset-license-guide.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Dataset License Guide: CC BY 4.0, CC0, ODbL, MIT, or No License", "description": "The five data license types compared: CC BY 4.0 for attribution, CC0 for public domain, ODbL for share-alike, MIT for data files in code projects, and what no license means. With the exact attribution formats from our own Zenodo DOI records.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/dataset-license-guide.html", "about": {"@type": "Thing", "name": "dataset licensing"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Dataset license guide", "item": "https://jayjex.github.io/data-vault/guides/dataset-license-guide.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What license should I choose for my dataset?", "acceptedAnswer": {"@type": "Answer", "text": "Default to CC BY 4.0 when you want the data to spread and a credit line is acceptable: it allows any use, commercial included, on one condition. Choose CC0 when you want zero conditions, ODbL when derivative databases must stay open under the same license, and MIT when data files ship inside a code project. A file with no license line is all rights reserved by default, which means nobody else can legally reuse it."}}, {"@type": "Question", "name": "Can you use the MIT license for data?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. MIT is a short, permissive license that applies to any copyrighted work, data files included. A MIT-licensed dataset allows any use, commercial included, with one condition: keep the copyright notice and license text with the files. It lacks the database-specific share-alike terms of ODbL, so it suits publishers who want simplicity over copyleft."}}, {"@type": "Question", "name": "Can I use a dataset that has no license?", "acceptedAnswer": {"@type": "Answer", "text": "Only with the creator's permission. Copyright defaults to all rights reserved, so a dataset without a license statement is not free to reuse, even when the download link works. Ask the creator to add a license, or look for an open alternative. NFL data is the example we know best: raw NFL.com content is all rights reserved, while nflverse republishes game facts as CC BY 4.0 CSVs."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Dataset license guide: CC BY 4.0, CC0, ODbL, MIT, or no license</h1>
+  <p class="byline">Published 2026-09-10. Every license string, DOI, and credit line quoted on this page is taken verbatim from our own <a href="../catalog.json">catalog.json</a> and Zenodo records. The license summaries follow the license texts at creativecommons.org, opendatacommons.org, and opensource.org.</p>
+
+  <section aria-label="Why the license line decides everything">
+    <h2>The license line decides what your dataset is worth to anyone else</h2>
+    <p>A dataset with no license statement is the most expensive file on the internet: free to download, unusable to ship. Copyright defaults to all rights reserved in every jurisdiction that matters, so without a license line the file is legally locked to whoever downloaded it. One sentence fixes that, but the sentence you pick changes who can build on the data and on what terms. This guide compares the five data license types you will actually meet, when to pick which, and the attribution formats we use on our own Zenodo DOI records.</p>
+  </section>
+
+  <section aria-label="The five data license types">
+    <h2>Five data license types, one table</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Data license types table"><table><thead><tr><th scope="col">License</th><th scope="col">One-line meaning</th><th scope="col">What others must do</th><th scope="col">Seen on</th></tr></thead><tbody>
+      <tr><td><strong>CC BY 4.0</strong></td><td>Any use including commercial, one condition: attribution</td><td>Keep the credit line with the data</td><td>nflverse, Inside Airbnb</td></tr>
+      <tr><td><strong>CC0</strong></td><td>Creator waived all copyright; effectively public domain</td><td>Nothing</td><td>openfootball soccer results, many open data projects</td></tr>
+      <tr><td><strong>ODbL</strong></td><td>Open database license with a share-alike clause</td><td>Credit, and derivative databases stay ODbL</td><td>OpenStreetMap</td></tr>
+      <tr><td><strong>MIT</strong></td><td>Short permissive software license, works on data files too</td><td>Keep the copyright notice and license text</td><td>Data files inside GitHub projects</td></tr>
+      <tr><td><strong>No license</strong></td><td>Copyright default: all rights reserved</td><td>Nothing without permission</td><td>Most website content, most scraped files</td></tr>
+    </tbody></table></div>
+    <p>One distinction hides in row two. Public domain and CC0 land in the same place but arrive differently: US federal government works such as HUD's Fair Market Rent tables carry no copyright by law, while CC0 is a waiver a copyright holder applies on purpose. For a dataset you publish yourself, CC0 is the tool. Our <a href="public-domain-datasets.html">public domain datasets guide</a> covers the government side in depth.</p>
+  </section>
+
+  <section aria-label="Which license when">
+    <h2>Which license when</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="License decision table"><table><thead><tr><th scope="col">Your situation</th><th scope="col">Pick</th><th scope="col">Why</th></tr></thead><tbody>
+      <tr><td>Publishing a dataset you want to spread, credit is fine</td><td>CC BY 4.0</td><td>Credit travels with every reuse, so the data points back to you while staying free for anyone</td></tr>
+      <tr><td>Publishing and you do not care about credit</td><td>CC0</td><td>Zero conditions; the closest a copyright holder can get to public domain on their own work</td></tr>
+      <tr><td>Derivative databases must stay open</td><td>ODbL</td><td>The share-alike clause binds derivatives of the database to the same license</td></tr>
+      <tr><td>Shipping data files inside a code project</td><td>MIT</td><td>One notice file, same license as the code, nothing extra to read</td></tr>
+      <tr><td>You found a file with no license line</td><td>Nothing usable</td><td>All rights reserved by default; ask the creator before building on it</td></tr>
+      <tr><td>The data is US government work</td><td>Public domain</td><td>Copyright does not attach to federal works; no license needed from you either</td></tr>
+    </tbody></table></div>
+    <p>The first row is the pattern behind most open data you will touch. The <a href="open-data-movement.html">open data movement</a> runs on it: nflverse, Inside Airbnb, and hundreds of government portals publish under CC BY 4.0 or public domain, and every cleaned dataset built on top inherits the choice.</p>
+  </section>
+
+  <section aria-label="Compatibility: derivatives and commercial use">
+    <h2>Compatibility: derivatives and commercial use</h2>
+    <p><strong>Commercial use.</strong> CC BY 4.0, CC0, ODbL, and MIT all allow commercial use. They differ on paperwork: CC BY wants a credit line, ODbL wants credit plus share-alike on derived databases, MIT wants the notice kept, CC0 wants nothing. A license with a non-commercial or research-only clause fails the open test, and a missing license fails harder.</p>
+    <p><strong>Derivatives under CC BY 4.0.</strong> You may adapt and republish the data, but you may not add restrictions the upstream license does not have. A derived table stays CC BY 4.0; you cannot bolt a non-commercial clause onto it. This is the inherit-and-forward rule: the license follows the data, not the website it came from. Our NFL pack computes new tables from nflverse releases, and the license string in <a href="../catalog.json">catalog.json</a> reads exactly: <em>"CC BY 4.0 (game data from nflverse, CC BY 4.0)"</em>. The new tables carry the upstream license verbatim.</p>
+    <p><strong>Derivatives under ODbL.</strong> The share-alike clause applies to derivative databases. Rebuild an OpenStreetMap extract into a new queryable database and that database must ship under ODbL too. A chart, paper, or application built from the data is a Produced Work under the ODbL terms and can carry its own license. That split between derivative databases and produced works is where most ODbL confusion lives; when in doubt, the safe read for a transformed table with new structure is that it stays ODbL.</p>
+    <p><strong>Stacking upstream sources.</strong> Two upstream licenses in one table means both travel. Our Airbnb pack derives from Inside Airbnb (CC BY 4.0) and carries <em>"CC BY 4.0 (listing data from Inside Airbnb, CC BY 4.0)"</em>. Mixing a CC BY source with an ODbL source in one table would force the ODbL share-alike onto the result; mixing a CC BY source with a no-license source is not possible at all, because the no-license part cannot be redistributed in the first place.</p>
+  </section>
+
+  <section aria-label="Attribution format done right">
+    <h2>Attribution format done right, with our real cite lines</h2>
+    <p>CC BY 4.0's attribution requirement is specific: credit the creator, link to the source, link to the license, and note changes if you made any. In practice a line with creator, title, repository, and DOI satisfies it, which is the format Zenodo generates for every record with a DOI. These are our three datasets' cite lines, verbatim from the records:</p>
+<pre>Matchbook Labs (2026). NFL Modern-Era Betting and Game Data 1999-2026:
+Scores, Spreads, Totals, Moneylines. Zenodo.
+DOI 10.5281/zenodo.22643177
+
+Matchbook Labs (2026). USA Rent Benchmark FY2026: Fair Market Rent by
+ZIP Code and County (HUD FMR). Zenodo.
+DOI 10.5281/zenodo.22643149
+
+Matchbook Labs (2026). Six US Short-Term Rental Markets: Inside Airbnb
+Summary Listings, 90,169 Rows. Zenodo. DOI 10.5281/zenodo.22643189</pre>
+    <p>Each pattern is the same: <em>Creator (Year). Title. Repository. DOI</em>. The DOI does double duty as the source link and the permanent identifier, so a reader can verify the exact release even after the files change. The <a href="../datasets/nfl-games.html">NFL pack</a>, <a href="../datasets/hud-fmr-2026.html">HUD pack</a>, and <a href="../datasets/airbnb-six-cities.html">Airbnb pack</a> pages repeat their line in the header, and anyone republishing our CC BY 4.0 samples can paste the same shape. For the HUD pack the license needs nothing, but we state the provenance anyway: US government data, public domain.</p>
+    <p>Attribution that does not work: "source: internet", "data from a public API", or a credit buried in a place nobody would look. The first two name no creator and no license. The third fails the "reasonable manner" requirement in the license text. If you cannot fit the full line in a chart caption, put it in the README or footer and link to it.</p>
+  </section>
+
+  <section aria-label="Case study: the nflverse credit line">
+    <h2>Case study: the nflverse credit line</h2>
+    <p>nflverse publishes NFL game data as weekly CSV releases under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>. Volunteers maintain it, commercial use is included, and the whole legal weight of the license sits on one credit line. That model is why open sports data exists at all: the league's own content is all rights reserved, and nflverse republishes the factual rows under a license anyone can build on.</p>
+    <p>Our NFL games pack derives from those releases, so it carries the upstream license forward. The string in catalog.json and on the dataset page reads: <em>"CC BY 4.0 (game data from nflverse, CC BY 4.0)"</em>. The shape does three jobs in one line: it names the license our pack ships under, names the upstream source, and states that the license came from upstream rather than from us. A reader who wants to republish our sample knows the line to keep; a reader who wants the raw source knows where it lives.</p>
+    <p>The cost of dropping that line is a license breach, and the cost of keeping it is one sentence. Every dataset we ship includes an ATTRIBUTION.txt with the source URLs and license strings for exactly this reason. Choose upstream sources that make your attribution line short, because a credit line nobody minds pasting is a credit line that survives.</p>
+  </section>
+
+  <section aria-label="Where to go next">
+    <h2>Where to go next</h2>
+    <p>For the license terms across our own packs row by row, the <a href="public-domain-datasets.html">public domain datasets and license table</a> lists every credit line verbatim. For where open licensing came from and why it exists, the <a href="open-data-movement.html">open data history guide</a> traces the movement from FOIA to data.gov to nflverse. Before you commit to a file, the <a href="what-is-a-csv-sample.html">CSV sample guide</a> shows how to judge quality with the free rows, and <a href="scraping-vs-dataset.html">scraping vs datasets</a> explains why a licensed bulk file beats re-typing a website.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../tools/sample-data-downloads.html">Browse free samples</a>
+      <a class="btn" href="https://www.getly.store/store/mtmw06l2" rel="noopener">Get the full pack</a>
+    </div>
+    <p class="btn-note">Upstream open-data sources carry their own licenses (CC BY 4.0, public domain); the license lines on each <a href="../catalog.json">dataset page</a> state what applies.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>What license should I choose for my dataset?</h3>
+    <p>Default to CC BY 4.0 when you want the data to spread and a credit line is acceptable: it allows any use, commercial included, on one condition. Choose CC0 when you want zero conditions, ODbL when derivative databases must stay open under the same license, and MIT when data files ship inside a code project. A file with no license line is all rights reserved by default, which means nobody else can legally reuse it.</p>
+    <h3>Can you use the MIT license for data?</h3>
+    <p>Yes. MIT is a short, permissive license that applies to any copyrighted work, data files included. A MIT-licensed dataset allows any use, commercial included, with one condition: keep the copyright notice and license text with the files. It lacks the database-specific share-alike terms of ODbL, so it suits publishers who want simplicity over copyleft.</p>
+    <h3>Can I use a dataset that has no license?</h3>
+    <p>Only with the creator's permission. Copyright defaults to all rights reserved, so a dataset without a license statement is not free to reuse, even when the download link works. Ask the creator to add a license, or look for an open alternative. NFL data is the example we know best: raw NFL.com content is all rights reserved, while nflverse republishes game facts as CC BY 4.0 CSVs.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Airbnb Rental Analysis: Screen 6 US Markets With One Dataset | Data Vault</title>
+<meta name="description" content="An Airbnb rental analysis you can reproduce: screening six US markets with one CSV schema, a worked NYC example (mean nightly price 267.35 over 30,234 listings), and the limits of the method.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/airbnb-investment-analysis.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Airbnb Rental Analysis: Screen 6 US Markets With One Dataset | Data Vault">
+<meta property="og:description" content="A rental-market screening method you can reproduce: one CSV schema across six US cities, a worked New York City example from 30,234 listings, and where the numbers stop.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/airbnb-investment-analysis.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Airbnb Rental Analysis: Screen 6 US Markets With One Dataset", "description": "A rental-market screening method you can reproduce: one CSV schema across six US cities, a worked New York City example from 30,234 listings, and where the numbers stop.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/airbnb-investment-analysis.html", "about": {"@type": "Dataset", "name": "Airbnb Listings, 6 US Cities", "url": "https://jayjex.github.io/data-vault/datasets/airbnb-six-cities.html"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Airbnb rental analysis", "item": "https://jayjex.github.io/data-vault/guides/airbnb-investment-analysis.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+{"@type": "Question", "name": "What data do I need for an Airbnb rental analysis?", "acceptedAnswer": {"@type": "Answer", "text": "At minimum: nightly price, room type, minimum nights, availability, and review activity for the listings in the market you are screening. The 6-city pack used in this guide carries exactly those fields for 90,169 listings across Austin, Nashville, Denver, New York City, Las Vegas (Clark County), and San Diego, all in one 12-column schema with one snapshot date per city. The free sample and cities-index.csv cover the shape of the data before you commit to anything."}},
+{"@type": "Question", "name": "Why is New York City's mean nightly price higher than its median?", "acceptedAnswer": {"@type": "Answer", "text": "Skew. The mean over the 20,331 priced NYC listings is 267.35 while the median in cities-index.csv sits at 175, because a small number of very expensive pulls the average up. The price column tops out at 31,210.79 for a single listing. Averages move with outliers; medians barely do. When the two diverge this much, screen markets on the median and treat the mean as a tail-risk reading."}},
+{"@type": "Question", "name": "Is this Airbnb data investment advice?", "acceptedAnswer": {"@type": "Answer", "text": "No. The pack is a historical snapshot of public listing data from Inside Airbnb, licensed CC BY 4.0, and this guide shows how to compute descriptive statistics from it. It contains no projections, no yield estimates, no buy or pass recommendations, and no knowledge of any individual property's costs, bookings, or revenue. Real acquisition decisions need local regulation checks, expense modeling, and professional advice this data cannot provide."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Airbnb rental analysis: screening six US markets with one dataset</h1>
+  <p class="byline">Worked example over <a href="../datasets/airbnb-six-cities.html">Airbnb Listings, 6 US Cities</a> · snapshots Jun to Aug 2026 · data by Inside Airbnb, CC BY 4.0. This page shows a data method, not investment advice.</p>
+
+  <section aria-label="What this covers">
+    <p>Before anyone buys a short-term rental, the market gets screened: what do typical listings charge, how much supply competes with them, and how booked-up does the market look. Scraping Airbnb by hand makes that slow and fragile. This guide runs the same screen with one CSV pack: 90,169 listings across Austin, Nashville, Denver, New York City, Las Vegas (Clark County), and San Diego, every city in the same 12 columns, one snapshot date per city.</p>
+    <p>Everything below is reproducible with the free sample, the free cities-index.csv, and free MCP queries against the full files. One thing first: this is a tutorial on public listing data. It contains no projections, no yield estimates, and no buy or pass recommendations. The <a href="#disclaimer">disclaimer section</a> spells out what the data cannot tell you.</p>
+  </section>
+
+  <section aria-label="The stats that matter">
+    <h2>Four numbers that do the screening</h2>
+    <p>A rental analysis from listing data comes down to a handful of descriptive stats, all computable from the same table:</p>
+    <ul>
+      <li><strong>Median nightly price</strong> per city, the anchor for what a typical listing charges. Medians resist outliers, which listing prices have plenty of.</li>
+      <li><strong>Mean nightly price</strong> next to that median. A big gap between the two is itself a finding: the market has a long expensive tail.</li>
+      <li><strong>Supply and mix</strong>: how many listings compete in the market, and how they split across Entire home/apt, Private room, Hotel room, and Shared room.</li>
+      <li><strong>availability_365</strong> and <strong>minimum_nights</strong>, the closest things the summary file has to a calendar signal.</li>
+    </ul>
+    <p>Every city in the pack ships the same 12 columns, so each stat runs once per city with no reformatting. <a href="airbnb-data-guide.html">The column guide</a> explains each field in detail.</p>
+  </section>
+
+  <section aria-label="Worked example: New York City">
+    <h2>Worked example: New York City, snapshot 2026-08-10</h2>
+    <p>NYC is the biggest city in the pack at 30,234 rows, and the messiest, which makes it the useful example. The first call is a stats query on the price column over the full released file:</p>
+    <pre>get_stats("airbnb-six-cities", {file: "airbnb-new-york-city.csv", column: "price"})
+
+{
+  "slug": "airbnb-six-cities",
+  "file": "airbnb-new-york-city.csv",
+  "rows": 30234,
+  "column": "price",
+  "non_empty": 20331,
+  "empty": 9903,
+  "unique_count": 12114,
+  "numeric": {
+    "min": 4.58,
+    "max": 31210.79,
+    "mean": 267.35232108602753,
+    "numeric_count": 20331
+  }
+}</pre>
+    <p class="table-note">Output captured 2026-09-10 from dataset-mcp v1.1.0 against the released file, values verbatim.</p>
+    <p>Three things fall out of that block before any analysis starts. First, 9,903 of the 30,234 listings carry no price at all, so every rate statistic describes the 20,331 priced rows, roughly two thirds of the market. Second, the mean lands at 267.35. Third, the max sits at 31,210.79 for a single listing, an outlier that drags the mean on its own.</p>
+    <p>Now put the mean next to the median. cities-index.csv, the per-city summary that ships free with the sample files, puts the NYC median at USD 175 a night against that mean of 267.35. When the average runs about 90 dollars above the median, the tail is doing the talking: a small set of very expensive listings pulls the mean up while the typical listing sits much lower. Screen on the median when you want to know what a normal listing charges, read the mean as a tail-risk number, and treat single-listing extremes as data-quality noise rather than going rates.</p>
+    <p>The same file adds a calendar-side signal. The most common <code>minimum_nights</code> value is 30, set by 23,501 of the 30,228 listings that carry a value. A market where monthly minimums dominate behaves differently from one built on two-night weekend stays, and in NYC that pattern tracks the city's registration rules for short-term rentals. <a href="hud-rent-data-explained.html">HUD rent data</a> is the natural next pull if you want to compare nightly rates against monthly rent levels.</p>
+  </section>
+
+  <section aria-label="Comparing the six markets">
+    <h2>Comparing the six markets side by side</h2>
+    <p>The same two calls, repeated per city, fill a comparison table. Medians come from cities-index.csv; the availability means were computed with <code>get_stats</code> on each city's file (2026-09-10):</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Six-market comparison table"><table>
+      <thead><tr><th scope="col">City</th><th scope="col">Snapshot</th><th scope="col">Listings</th><th scope="col">Median nightly (USD)</th><th scope="col">Mean availability_365</th></tr></thead>
+      <tbody>
+        <tr><td>Austin, TX</td><td>2026-06-22</td><td>11,295</td><td>217</td><td>226.58</td></tr>
+        <tr><td>Nashville, TN</td><td>2026-06-26</td><td>10,242</td><td>282</td><td>251.24</td></tr>
+        <tr><td>Denver, CO</td><td>2026-06-30</td><td>4,939</td><td>176</td><td>206.18</td></tr>
+        <tr><td>New York City, NY</td><td>2026-08-10</td><td>30,234</td><td>175</td><td>190.03</td></tr>
+        <tr><td>Las Vegas (Clark County), NV</td><td>2026-06-27</td><td>20,234</td><td>234</td><td>216.56</td></tr>
+        <tr><td>San Diego, CA</td><td>2026-06-27</td><td>13,225</td><td>323</td><td>213.38</td></tr>
+      </tbody>
+    </table></div>
+    <p>The screen reads like this. San Diego carries the highest median at 323 with mid-pack availability; Denver posts the lowest median at 176 on the smallest supply, 4,939 listings. NYC pairs the lowest median with the lowest mean availability (190.03), the biggest supply, and the monthly-minimum pattern from above, which is the signature of a market where regulation shapes what can be listed at all. Nashville sits at the top on open calendar (251.24), meaning listings there had the most bookable days left at snapshot.</p>
+    <p>Room-type mix sharpens the comparison and ships in the same free index. San Diego runs 83 percent Entire home/apt; NYC splits 55/42 between Entire home/apt and Private room. An Entire-home-heavy market and a private-room-heavy market are different businesses, so a screen that stops at price misses that.</p>
+  </section>
+
+  <section aria-label="Limits of the method">
+    <h2>What listing data cannot tell you</h2>
+    <ul>
+      <li><strong>No occupancy.</strong> availability_365 measures bookable days at snapshot, which blends bookings, host blocks, and regulatory holds. It is a supply signal, not a verified occupancy rate.</li>
+      <li><strong>No revenue.</strong> Nightly rate times 365 is not income. Vacancy, cleaning, platform fees, taxes, and seasonality all sit outside this file.</li>
+      <li><strong>No costs or building economics.</strong> Nothing here knows a property's mortgage, HOA, utilities, or condition.</li>
+      <li><strong>One day per city.</strong> Each city is a single snapshot on its own date (June to August 2026). Rates move; these tables are pictures of one day each.</li>
+      <li><strong>Pricing noise.</strong> The 4.58 floor and the 31,210.79 ceiling in NYC show the price column carries both teasers and outliers. Filter or trim before you average.</li>
+      <li><strong>No legal review.</strong> Minimum-stay patterns hint at regulation, but only the city's own rules decide whether a short-term rental is lawful at a given address.</li>
+    </ul>
+  </section>
+
+  <section aria-label="Run it yourself">
+    <h2>Running the same screen yourself</h2>
+    <p>The full 90,169-row files are queryable free over MCP, 100 rows per call, no signup. Start the server and run one stats call per city:</p>
+    <pre>npx --allow-git=all -y github:jayjex/dataset-mcp
+
+get_stats("airbnb-six-cities", {file: "airbnb-new-york-city.csv", column: "price"})
+get_stats("airbnb-six-cities", {file: "airbnb-austin.csv", column: "availability_365"})</pre>
+    <p>Setup steps and more query examples live on the <a href="../agents/">For agents</a> page, and the free <a href="../data/airbnb-six-cities/sample.csv" download>20-row sample CSV</a> plus <a href="../data/airbnb-six-cities/cities-index.csv" download>cities-index.csv</a> carry the medians and room-type mix used above.</p>
+  </section>
+
+  <section aria-label="Disclaimer" id="disclaimer">
+    <h2>Disclaimer: not investment advice</h2>
+    <p>This guide and the underlying data are for research and education. Nothing on this page is investment, financial, tax, or legal advice, and no recommendation to buy, sell, or operate any property is made or implied. The dataset is a historical snapshot of public listings published by Inside Airbnb under CC BY 4.0; it contains no bookings, revenues, or costs, and past pricing says nothing about future performance. Short-term rental rules change city by city and block by block. Consult qualified local professionals before any real-estate decision.</p>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the dataset</h2>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/airbnb-six-cities/sample.csv" download>Download free sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtpkvxdf" rel="noopener">Get the full 6-city pack</a>
+    </div>
+    <p class="btn-note">Full pack: 90,169 rows across 6 cities, per-city CSVs, cities-index.csv, data dictionary, methodology, source checksums. Checkout and download run through Getly.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>What data do I need for an Airbnb rental analysis?</h3>
+    <p>At minimum: nightly price, room type, minimum nights, availability, and review activity for the listings in the market you are screening. The 6-city pack used in this guide carries exactly those fields for 90,169 listings across Austin, Nashville, Denver, New York City, Las Vegas (Clark County), and San Diego, all in one 12-column schema with one snapshot date per city. The free <a href="airbnb-data-sample.html">sample</a> and <a href="../data/airbnb-six-cities/cities-index.csv">cities-index.csv</a> cover the shape of the data before you commit to anything.</p>
+    <h3>Why is New York City's mean nightly price higher than its median?</h3>
+    <p>Skew. The mean over the 20,331 priced NYC listings is 267.35 while the median in cities-index.csv sits at 175, because a small number of very expensive listings pulls the average up. The price column tops out at 31,210.79 for a single listing. Averages move with outliers; medians barely do. When the two diverge this much, screen markets on the median and treat the mean as a tail-risk reading.</p>
+    <h3>Is this Airbnb data investment advice?</h3>
+    <p>No. The pack is a historical snapshot of public listing data from Inside Airbnb, licensed CC BY 4.0, and this guide shows how to compute descriptive statistics from it. It contains no projections, no yield estimates, no buy or pass recommendations, and no knowledge of any individual property's costs, bookings, or revenue. Real acquisition decisions need local regulation checks, expense modeling, and professional advice this data cannot provide.</p>
+  </section>
+
+  <section aria-label="More from the catalog">
+    <h2>More from the catalog</h2>
+    <ul>
+      <li><a href="airbnb-data-guide.html">Airbnb data download guide</a>: the 12 columns explained, with MCP query examples</li>
+      <li><a href="../datasets/airbnb-six-cities.html">Airbnb Listings, 6 US Cities</a>: dataset page with preview table and stats</li>
+      <li><a href="inside-airbnb-alternative.html">Inside Airbnb alternative</a>: what the 6-city pack adds over the raw per-city files</li>
+      <li><a href="../datasets/hud-fmr-2026.html">HUD Fair Market Rents FY2026</a>: 51,895 ZIP codes, pairs well with nightly-rate data</li>
+      <li><a href="../agents/">For agents</a>: endpoint docs and worked examples</li>
+    </ul>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

@@ -39,8 +39,8 @@
 
   <section aria-label="What a generator does and does not do">
     <h2>What a generator can and cannot do</h2>
-    <p>Tools that generate <code>llms.txt</code> crawl a sitemap or your HTML and draft the link list for you. That part is real work saved, on a site with hundreds of URLs. What the crawler cannot do is rank. The file earns its keep because it is curated: the JSON index sits above the press page, the licensing rules ride along in the same payload, and every link carries one description written for a reader with no context. A generated file that lists everything is a second sitemap, which is the one thing the format is not for. Our <a href="../guides/llms-txt-vs-sitemap.html">llms.txt vs sitemap.xml comparison</a> shows the difference on a site that runs both files.</p>
-    <p>The practical split: hand-write the file with the recipe below, and if you already run a generator, use its output as a link inventory to edit down, not as the file itself.</p>
+    <p>Tools that generate <code>llms.txt</code> crawl a sitemap or your HTML and draft the link list for you. That part is real work saved, on a site with hundreds of URLs. What the crawler cannot do is rank. The file earns its keep because it is curated: the JSON index sits above the press page, the licensing rules ride along in the same payload, and every link carries one description written for a reader with no context. A generated file that lists everything is a second sitemap, which is the one thing the format is not for. Our <a href="../guides/llms-txt-vs-sitemap.html">llms.txt vs sitemap.xml comparison</a> shows the difference on a site that runs both files, and the <a href="../agents/llms-txt-guide.html">llms.txt guide</a> covers the format itself: status, minimal structure, and why a data platform publishes one.</p>
+    <p>Split the work: hand-write the file with the recipe below. If you already run a generator, use its output as a link inventory to edit down, not as the file itself.</p>
   </section>
 
   <section aria-label="Six steps">
@@ -50,7 +50,7 @@
     <p>Make two lists. Pages worth an agent's context: docs, guides, reference material, policies that affect automated use. Machine-readable endpoints: JSON indexes, APIs, downloads, feeds. Leave out pages that only matter to humans, like marketing and testimonials. For this catalog the inventory came to a handful of entry points (catalog index, agent docs, MCP install line) plus one section per dataset pack.</p>
 
     <h3>2. Write the H1 and the blockquote</h3>
-    <p>Site name as the H1. Below it, one blockquote paragraph saying what the site offers and to whom. The test: could an agent decide whether your site is relevant from that paragraph alone? If yes, it stops reading headers and starts fetching your links.</p>
+    <p>Site name as the H1. Below it, one blockquote paragraph saying what the site offers and to whom. Ask one question while you write it: could an agent decide whether your site is relevant from that paragraph alone? If yes, it stops reading headers and starts fetching your links.</p>
 
     <h3>3. Group links under H2 headings</h3>
     <p><code>## Docs</code> for pages, <code>## Endpoints</code> for anything machine-readable, plus any section that fits your content, like <code>## Datasets</code>. Every link is markdown, absolute, with a one-line description after it:</p>

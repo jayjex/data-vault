@@ -12,6 +12,7 @@ Free printables index (223 free printable pages from the Matchbook Labs funnel, 
 Free printables by use case (same 223 pages regrouped into budget, moving, study and worksheet use cases): https://jayjex.github.io/data-vault/printable-index-roundup.html
 MCP full query: query_dataset(slug, {where, columns, limit, offset}) filters and paginates the FULL released files, 100 rows/call. Example: query_dataset("hud-fmr-2026", {where: [{column: "state", op: "=", value: "TX"}], limit: 5}) returns 3,247 matched Texas rent rows. Full data release: https://github.com/jayjex/dataset-mcp/releases/tag/data-v1
 FMR calculator guide (the math behind FMRs + MCP lookup, no official HUD calculator exists): https://jayjex.github.io/data-vault/guides/hud-fair-market-rent-calculator.html
+HUD income limits guide (AMI vs FMR, FY2026 30/50/80 percent limits parsed from huduser.gov files beside each metro's 2BR FMR): https://jayjex.github.io/data-vault/guides/hud-income-limits.html
 HUD payment standard guide (the 90%-110% PHA band around the FMR, FY2026 band table for six ZIPs): https://jayjex.github.io/data-vault/guides/hud-payment-standard.html
 Rent affordability guide (the 30% rule vs the FMR, five metros against the US median household income, FY2026): https://jayjex.github.io/data-vault/guides/rent-affordability-calculator.html
 What is llms.txt (plain-English definition of the format, how agents read the file, honest status): https://jayjex.github.io/data-vault/guides/what-is-llms-txt.html

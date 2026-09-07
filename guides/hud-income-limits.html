@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD Income Limits FY2026: AMI vs Fair Market Rent, With Real Numbers | Data Vault</title>
+<meta name="description" content="HUD income limits and fair market rent come from two different datasets. FY2026 AMI numbers parsed from huduser.gov's own files, eligibility math worked beside the 2BR FMR of the same metro.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-income-limits.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="HUD Income Limits FY2026: AMI vs Fair Market Rent, With Real Numbers">
+<meta property="og:description" content="HUD income limits and fair market rent come from two different datasets. FY2026 AMI numbers parsed from huduser.gov's own files, eligibility math worked beside the 2BR FMR of the same metro.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-income-limits.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "HUD Income Limits FY2026: AMI vs Fair Market Rent, With Real Numbers", "description": "HUD income limits and fair market rent come from two different datasets. FY2026 AMI numbers parsed from huduser.gov's own files, eligibility math worked beside the 2BR FMR of the same metro.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-income-limits.html", "about": [{"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}, {"@type": "Dataset", "name": "HUD FY2026 Income Limits", "url": "https://www.huduser.gov/portal/datasets/il.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the difference between HUD income limits and FMR?", "acceptedAnswer": {"@type": "Answer", "text": "They measure different things in different units. HUD income limits are annual household income ceilings, set at 30, 50, and 80 percent of the area median income for household sizes 1 through 8, and they gate who qualifies for programs such as the Housing Choice Voucher. The FMR is a monthly rent benchmark, the 40th percentile gross rent for an area by bedroom size, and it sizes what the subsidy covers through payment standards. FY2026 Houston metro, for a household of four: the 80 percent income limit is 83,200 dollars a year while the 2-bedroom FMR is 2,360 dollars a month."}}, {"@type": "Question", "name": "How does HUD calculate AMI income limits?", "acceptedAnswer": {"@type": "Answer", "text": "HUD estimates the median family income for each HUD metro and nonmetro area from American Community Survey microdata, applies state and nonmetro adjustments, and caps how far limits can move year over year, so a published limit can sit away from a flat percentage of the median. The annual files on huduser.gov are the finished output. The FY2026 Section 8 income limit file carries 4,764 county rows across 2,635 distinct HUD areas with columns for the 30, 50, and 80 percent limits at household sizes 1 through 8. HUD's public API requires an access key and returned 403 without one in a September 2026 test, so the files are the no-key route."}}, {"@type": "Question", "name": "What counts as low income for HUD programs in FY2026?", "acceptedAnswer": {"@type": "Answer", "text": "Low income is 80 percent of the area median income, and the dollar line moves by area and household size. In the FY2026 Section 8 file, the 4-person low-income limit is 83,200 dollars in the Houston-The Woodlands-Sugar Land metro, 89,900 dollars in Phoenix-Mesa-Chandler, 97,200 dollars in Chicago-Joliet-Naperville, and 135,700 dollars in the New York, NY HUD Metro FMR Area. Below 80 percent, the 50 percent line marks very low income and the 30 percent line marks extremely low income. The housing agency makes the actual eligibility determination from adjusted income and its own rules."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>HUD income limits vs fair market rent: AMI and the other HUD number</h1>
+  <p class="byline">FY2026 edition, published 2026-09-10. Data source: HUD, public domain. Data Vault is not affiliated with HUD. This page documents the data; it is not housing, legal, or eligibility advice, and a housing agency makes every actual eligibility determination.</p>
+
+  <section aria-label="Two HUD numbers, two different jobs">
+    <h2>Two HUD numbers, two different jobs</h2>
+    <p>People searching for HUD income limits often land on fair market rent tables, and the reverse. The confusion has a reason: both numbers come from HUD, both are set for the same metro areas, and both feed the Housing Choice Voucher program. They still come from two separate datasets that answer two separate questions. Income limits are annual household income ceilings that gate who qualifies. The FMR is a monthly rent benchmark that sizes what the subsidy covers.</p>
+    <p>This page puts the two side by side on FY2026 numbers. The income side is parsed from HUD's own income limit files on huduser.gov, pulled live in September 2026. The rent side comes from the FY2026 ZIP-level FMR file behind the <a href="../datasets/hud-fmr-2026.html">HUD FMR dataset</a>, 51,895 ZIP rows.</p>
+  </section>
+
+  <section aria-label="What AMI income limits are">
+    <h2>What AMI income limits are</h2>
+    <p>AMI stands for area median income; HUD's own files call the underlying figure median family income. From that median, HUD publishes income limits at three fixed percentages: 30 percent marks extremely low income, 50 percent very low income, and 80 percent low income. Each limit is set per household size, 1 through 8 persons, because a 5-person household at the same income has a harder budget than a 1-person one.</p>
+    <p>The national non-metro row from the FY2026 very low income file, verbatim (annual dollars):</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="National non-metro FY2026 very low income limits"><table><thead><tr><th scope="col">Median</th><th scope="col">1 Person</th><th scope="col">2 Person</th><th scope="col">3 Person</th><th scope="col">4 Person</th><th scope="col">5 Person</th><th scope="col">6 Person</th><th scope="col">7 Person</th><th scope="col">8 Person</th></tr></thead><tbody>
+      <tr><td>84,700</td><td>29,650</td><td>33,900</td><td>38,150</td><td>42,350</td><td>45,750</td><td>49,150</td><td>52,550</td><td>55,950</td></tr>
+    </tbody></table></div>
+    <p>HUD prints a note under that row worth keeping in mind: limits may not equal 50 percent of the median because of caps on annual increases and decreases. The limits are published numbers, and computing 30, 50, or 80 percent of a median yourself gets you an approximation of the limit, same as guessing an FMR gets you an approximation of rent.</p>
+  </section>
+
+  <section aria-label="FY2026 income limit rows, four metros">
+    <h2>The FY2026 income limit rows, four metros</h2>
+    <p>The main FY2026 file, <em>Section8-FY26.xlsx</em> on huduser.gov, carries 4,764 county rows across 2,635 distinct HUD areas, with a <code>median2026</code> column and limit columns for the 50, 30, and 80 percent tiers at household sizes 1 through 8. Four metro rows, household of four, annual dollars:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="FY2026 income limits for four metros"><table><thead><tr><th scope="col">HUD area</th><th scope="col">Median family income</th><th scope="col">50% limit (very low)</th><th scope="col">80% limit (low)</th></tr></thead><tbody>
+      <tr><td>Houston-The Woodlands-Sugar Land, TX (Harris County)</td><td>104,000</td><td>52,000</td><td>83,200</td></tr>
+      <tr><td>Phoenix-Mesa-Chandler, AZ (Maricopa County)</td><td>112,400</td><td>56,200</td><td>89,900</td></tr>
+      <tr><td>Chicago-Joliet-Naperville, IL (Cook County)</td><td>121,500</td><td>60,750</td><td>97,200</td></tr>
+      <tr><td>New York, NY HUD Metro FMR Area</td><td>104,300</td><td>84,800</td><td>135,700</td></tr>
+    </tbody></table></div>
+    <p>Three of the four track the median closely: Chicago's 80 percent limit of 97,200 is 80 percent of 121,500 to the dollar, and Houston's 83,200 works out the same way. New York does not. Its median of 104,300 sits below Chicago's, yet its 4-person limits run 84,800 at 50 percent and 135,700 at 80 percent, well above a flat percentage of the median. That is the caps-and-adjustments behavior from the note above showing up in real data, and it is the single strongest argument for taking the published row instead of recomputing one.</p>
+  </section>
+
+  <section aria-label="What the FMR is">
+    <h2>The FMR side, briefly</h2>
+    <p>The fair market rent is an annual rent benchmark, not an income figure. HUD sets it as the 40th percentile gross rent, shelter rent plus utilities, for standard-quality units in each area, in monthly dollars, separately for 0 through 4 bedrooms. The full definition, file layout, and query flow live in <a href="hud-rent-data-explained.html">HUD fair market rent data, explained</a>. For the same four metros, the FY2026 2-bedroom FMR runs 2,360 in Houston, 1,840 in Phoenix, 2,670 in Chicago, and 4,370 in New York. The national median across the 51,895 ZIP rows is 1,150 a month.</p>
+  </section>
+
+  <section aria-label="Eligibility math with both numbers">
+    <h2>The eligibility math, one metro, both numbers</h2>
+    <p>Take a household of four in the Houston metro earning 70,000 a year. The two HUD numbers enter the voucher process at two different points:</p>
+    <p>First, the gate. The FY2026 80 percent limit for a 4-person household is 83,200. The household's 70,000 sits under it, so it passes the low-income test for the Housing Choice Voucher program. A household earning 90,000 would fail that same test, regardless of what rents in Houston cost.</p>
+    <p>Second, the size of the help. The FMR is what turns eligibility into dollars. The Houston 2-bedroom FMR is 2,360 a month, and the housing agency sets its payment standard somewhere between 90 and 110 percent of that, a band of 2,124 to 2,596. In the simplified version of the rent calculation, the household pays about 30 percent of its monthly income, 1,750 on 70,000 a year, and the subsidy covers the gap to the payment standard: roughly 2,360 minus 1,750, about 610 a month. The real calculation runs on adjusted income with deductions and utility allowances set by the agency, so treat 610 as the shape of the math, same as this page's <a href="hud-fair-market-rent-calculator.html">FMR calculator math</a> page treats its payment standard examples.</p>
+    <p>Which number answers which question:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Income limits vs FMR, question mapping"><table><thead><tr><th scope="col">Question</th><th scope="col">Number that answers it</th></tr></thead><tbody>
+      <tr><td>Does this household qualify for the program?</td><td>Income limit: 70,000 against the 83,200 ceiling for a Houston household of four</td></tr>
+      <tr><td>How much rent does the subsidy cover?</td><td>FMR: the 2,360 two-bedroom benchmark and the payment standard band built on it</td></tr>
+      <tr><td>Is this asking rent reasonable against the benchmark?</td><td>FMR, plus the 90 to 110 percent band the agency publishes</td></tr>
+    </tbody></table></div>
+    <p>Both files also join cleanly. The income limit file keys each row on a HUD area code such as METRO26420M26420 for Houston, and the FMR ZIP file uses the same codes in its <code>hud_area_code</code> column. One join key gets you the eligibility ceiling and the rent benchmark for the same market.</p>
+  </section>
+
+  <section aria-label="Why the two scales move independently">
+    <h2>Why the two scales move independently</h2>
+    <p>The four-metro tables above already show it, laid out together:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Income limits and FMR side by side, four metros"><table><thead><tr><th scope="col">Metro</th><th scope="col">80% income limit, 4-person (year)</th><th scope="col">FMR 2BR (month)</th></tr></thead><tbody>
+      <tr><td>Houston-The Woodlands-Sugar Land, TX</td><td>83,200</td><td>2,360</td></tr>
+      <tr><td>Phoenix-Mesa-Chandler, AZ</td><td>89,900</td><td>1,840</td></tr>
+      <tr><td>Chicago-Joliet-Naperville, IL</td><td>97,200</td><td>2,670</td></tr>
+      <tr><td>New York, NY HUD Metro FMR Area</td><td>135,700</td><td>4,370</td></tr>
+    </tbody></table></div>
+    <p>Phoenix's income ceiling sits above Houston's while its 2-bedroom FMR sits below. Income limits follow area incomes, with their own adjustment caps; FMRs follow area rents at the 40th percentile, with a different adjustment history. A metro can be high on one scale and low on the other, and any workflow that assumes the two move together will misprice eligibility or subsidy somewhere. The <a href="hud-fmr-history.html">FMR history</a> page covers how the rent side earned its current shape; the income side has its own <a href="https://www.huduser.gov/portal/datasets/il/il26/IncomeLimitsMethodology-FY26.pdf" rel="noopener">methodology document</a> on huduser.gov.</p>
+  </section>
+
+  <section aria-label="Where the income limit data lives">
+    <h2>Where the income limit data lives</h2>
+    <p>HUD exposes income limits through a public API that requires an access key; a September 2026 test call to the income limits endpoint without one returned 403. The files are the no-key route, all fetched live on 2026-09-10 from the <a href="https://www.huduser.gov/portal/datasets/il.html" rel="noopener">HUD income limits page</a>:</p>
+    <ul>
+      <li><a href="https://www.huduser.gov/portal/datasets/il/il26/Section8-FY26.xlsx" rel="noopener">Section8-FY26.xlsx</a>, the full FY2026 Section 8 file: 4,764 county rows, 2,635 HUD areas, 30/50/80 percent limits for household sizes 1 through 8, plus the <code>median2026</code> column.</li>
+      <li><a href="https://www.huduser.gov/portal/datasets/il/il26/FY2026-National-Non-Met-Very-Low-Income-Limits.xlsx" rel="noopener">FY2026 national non-metro very low income limits</a>, the single national row shown above.</li>
+      <li><a href="https://www.huduser.gov/portal/datasets/il/il26/FY26-Median-Attachment-State-Medians.pdf" rel="noopener">FY2026 state median family incomes</a>, total, metro, and nonmetro per state, for example Texas 101,500 total and 104,200 metro.</li>
+    </ul>
+    <p>On the rent side, the FY2026 FMRs sit behind the <a href="../datasets/hud-fmr-2026.html">HUD FMR pack</a> as clean CSVs keyed to the same area codes, and the <a href="../agents/">dataset-mcp server</a> queries the ZIP-level file over MCP without a download.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>HUD income limit questions</h2>
+    <dl>
+      <dt>What is the difference between HUD income limits and FMR?</dt>
+      <dd>They measure different things in different units. HUD income limits are annual household income ceilings, set at 30, 50, and 80 percent of the area median income for household sizes 1 through 8, and they gate who qualifies for programs such as the Housing Choice Voucher. The FMR is a monthly rent benchmark, the 40th percentile gross rent for an area by bedroom size, and it sizes what the subsidy covers through payment standards. FY2026 Houston metro, for a household of four: the 80 percent income limit is 83,200 dollars a year while the 2-bedroom FMR is 2,360 dollars a month.</dd>
+      <dt>How does HUD calculate AMI income limits?</dt>
+      <dd>HUD estimates the median family income for each HUD metro and nonmetro area from American Community Survey microdata, applies state and nonmetro adjustments, and caps how far limits can move year over year, so a published limit can sit away from a flat percentage of the median. The annual files on huduser.gov are the finished output. The FY2026 Section 8 income limit file carries 4,764 county rows across 2,635 distinct HUD areas with columns for the 30, 50, and 80 percent limits at household sizes 1 through 8. HUD's public API requires an access key and returned 403 without one in a September 2026 test, so the files are the no-key route.</dd>
+      <dt>What counts as low income for HUD programs in FY2026?</dt>
+      <dd>Low income is 80 percent of the area median income, and the dollar line moves by area and household size. In the FY2026 Section 8 file, the 4-person low-income limit is 83,200 dollars in the Houston-The Woodlands-Sugar Land metro, 89,900 dollars in Phoenix-Mesa-Chandler, 97,200 dollars in Chicago-Joliet-Naperville, and 135,700 dollars in the New York, NY HUD Metro FMR Area. Below 80 percent, the 50 percent line marks very low income and the 30 percent line marks extremely low income. The housing agency makes the actual eligibility determination from adjusted income and its own rules.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <p>Income limits are free from huduser.gov at the links above. For the rent side of the pair, start with the free 22-row sample to check the schema, then take the full pack: all three CSVs (51,895 ZIP rows, 3,229 county rollups, 52 state rows), the data dictionary, and source checksums.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">Get the full dataset</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Sources: US Department of Housing and Urban Development, FY2026 Fair Market Rent release and FY2026 Income Limits, huduser.gov. US government data, public domain. Data Vault is not affiliated with HUD.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

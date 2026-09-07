@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD FMR History: How Fair Market Rent Methodology Changed (FY2001 to FY2026) | Data Vault</title>
+<meta name="description" content="How HUD fair market rents got their current shape: the 40th percentile came from the 1998 housing act, ZIP-level SAFMRs came after a Dallas demonstration, and methodology changes explain most year-to-year jumps. FY2026 numbers included.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fmr-history.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="HUD FMR History: How Fair Market Rent Methodology Changed (FY2001 to FY2026)">
+<meta property="og:description" content="How HUD fair market rents got their current shape: the 40th percentile came from the 1998 housing act, ZIP-level SAFMRs came after a Dallas demonstration, and methodology changes explain most year-to-year jumps.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fmr-history.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "HUD FMR History: How Fair Market Rent Methodology Changed (FY2001 to FY2026)", "description": "How HUD fair market rents got their current shape: the 40th percentile came from the 1998 housing act, ZIP-level SAFMRs came after a Dallas demonstration, and methodology changes explain most year-to-year jumps. FY2026 numbers included.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fmr-history.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "When did HUD FMRs move to the 40th percentile?", "acceptedAnswer": {"@type": "Answer", "text": "Through fiscal year 2000, HUD set FMRs at the 50th percentile of gross rent. The Quality Housing and Work Responsibility Act of 1998 (Public Law 105-276) changed the standard to the 40th percentile, and HUD first applied it to the fiscal year 2001 FMRs. The 40th percentile has held through FY2026, and it applies to Small Area FMRs as well as metro-wide ones."}}, {"@type": "Question", "name": "Does the FY2026 pack include FMRs from past years?", "acceptedAnswer": {"@type": "Answer", "text": "No. The pack carries FY2026 only: 51,895 ZIP rows, 3,229 county rows, and a 52-row state summary. For a time series, HUD's FMR archive on huduser.gov keeps the published tables for past fiscal years. What the FY2026 file does show is geography inside one year: ZIP rows that differ from their metro's base value, which is where Small Area FMRs and other area rules live."}}, {"@type": "Question", "name": "Why did an area's FMR jump from one fiscal year to the next?", "acceptedAnswer": {"@type": "Answer", "text": "Some of the move is the market, and some is methodology. Methodology causes include a new ACS base file, inflation adjustment, changes to recent-mover weighting, OMB metro redefinitions that move a ZIP or county between HUD areas, minimum-rent floors that catch low-rent areas, and a ZIP picking up a SAFMR instead of its metro value. Each of those can shift a number even when local rents barely moved, so a year-over-year comparison should start with HUD's methodology notes for both years."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>HUD FMR history: how fair market rent methodology changed</h1>
+  <p class="byline">Published 2026-09-10. Sources: HUD FY2026 Fair Market Rent release, huduser.gov, public domain; legislative citations from public law and Federal Register records. Data Vault is not affiliated with HUD. This page covers data history; it is not housing or legal advice.</p>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>A Fair Market Rent published in FY2026 looks different from one published in 2000, and the difference comes from three deliberate changes rather than drift. First, the percentile moved: FMRs sat at the 50th percentile of gross rent until FY2000, and the Quality Housing and Work Responsibility Act of 1998 reset the standard to the 40th percentile starting with the FY2001 numbers. Second, the geography thickened: one rent per metro area is still the default, but since FY2018 many metros run on ZIP-level Small Area FMRs. Third, the machinery underneath was rebuilt repeatedly, and those rebuilds are why an area's number can jump between fiscal years even when its rents barely moved.</p>
+    <p>Anyone reading FMR history should hold one number in mind as the current endpoint: the FY2026 2BR median across all 51,895 ZIP rows is 1,150 dollars a month. Every rule below produced that file.</p>
+  </section>
+
+  <section aria-label="From 50th to 40th percentile">
+    <h2>From 50th to 40th percentile, FY2001</h2>
+    <p>Through the 2000 FMRs, HUD set each area's number at the 50th percentile of gross rent, the middle of the local distribution. The Quality Housing and Work Responsibility Act of 1998 (Public Law 105-276) rewrote the standard to the 40th percentile, and HUD first applied it to the fiscal year 2001 FMRs, where it has stayed ever since.</p>
+    <p>The percentile switch moved the whole series down by construction: 40 percent of standard units rent below the FMR, instead of half. HUD still publishes <a href="https://www.huduser.gov/portal/datasets/50per.html" rel="noopener">50th percentile rent estimates</a> as a separate product on huduser.gov, so an old-looking high number may be that product rather than a past FMR. The current standard, 40th percentile gross rent, shelter rent plus utilities, applies to metro-wide FMRs and to Small Area FMRs alike.</p>
+  </section>
+
+  <section aria-label="From metro to ZIP">
+    <h2>From one number per metro to one per ZIP</h2>
+    <p>The second change is geographic. A metro-wide FMR gives every ZIP in the area the same ceiling, which concentrates voucher use in low-rent neighborhoods and falls short in high-rent ones. HUD tested the ZIP-level fix with a demonstration that started in Dallas in 2012, proposed a rule in June 2016, and finalized it that November (<a href="https://www.federalregister.gov/citation/81-FR-80673" rel="noopener">81 FR 80673</a>). Since fiscal year 2018, HUD has designated metro areas each year where housing agencies must base payment standards on the ZIP-level SAFMRs.</p>
+    <p>Each SAFMR is the same 40th percentile gross rent estimate, computed at ZIP scale from American Community Survey five-year data plus private rent data on recent moves. The result is a file where geography carries more information each year: ZIPs in a designated metro get their own values, and the rest inherit their metro's number. <a href="safmr-vs-fmr.html">SAFMR vs FMR</a> covers the designation mechanics, and <a href="hud-payment-standard.html">HUD payment standard</a> shows the band arithmetic the ZIP values feed into.</p>
+  </section>
+
+  <section aria-label="Why numbers jump between fiscal years">
+    <h2>Why FMRs jump between fiscal years</h2>
+    <p>Year-over-year moves mix two causes: the rental market, and HUD's methodology. A methodology change can shift an area's number with no market movement at all. The known causes:</p>
+    <ul>
+      <li><b>New survey base.</b> Each FMR grows out of a multi-year American Community Survey file collected before the release, re-priced to the fiscal year with an inflation adjustment. A new base file changes the distribution the percentile is cut from.</li>
+      <li><b>Recent-mover tuning.</b> HUD tunes the estimate toward what recent movers pay. Adjustments to that weighting move the number independently of standing tenants' rents.</li>
+      <li><b>Area redefinitions.</b> HUD area boundaries follow OMB metro definitions. When a county or ZIP is reassigned between HUD areas, its FMR changes with it, sometimes sharply.</li>
+      <li><b>Minimum-rent floors.</b> Low-rent areas fall back to state or national minimums, and parts of Texas do this in FY2026. An area crossing into or out of a floor sees a step change.</li>
+      <li><b>SAFMR rollout.</b> A ZIP picked up by a SAFMR designation swaps its metro-wide value for its own, a one-time move in either direction.</li>
+      <li><b>The percentile switch itself.</b> FY2001 dropped areas from the 50th to the 40th percentile, the largest one-time methodology move in the series.</li>
+    </ul>
+    <p>The practical habit: before reading a year-over-year change as market news, read HUD's methodology notes for both fiscal years on the <a href="https://www.huduser.gov/portal/datasets/fmr.html" rel="noopener">FMR documentation page</a>. Where two numbers disagree, one of them may describe a different survey base, geography, or percentile, and the notes say which.</p>
+  </section>
+
+  <section aria-label="What the FY2026 file shows">
+    <h2>What the FY2026 file can and cannot show</h2>
+    <p>The <a href="../datasets/hud-fmr-2026.html">HUD FMR FY2026 pack</a> carries 51,895 ZIP rows, 3,229 county rows, and a 52-row state summary, all FY2026. It has no historical columns and no SAFMR flag column; the schema is zip, hud_area_code, metro, area_name, state, and fmr_0br through fmr_4br. That means the pack anchors one point of the time series rather than the series itself. Past fiscal years stay in HUD's published archive on huduser.gov.</p>
+    <p>What one year does show is the geography the history produced. In the free 22-row sample from Abilene, TX MSA, 12 of 22 ZIPs sit at the metro-wide base 2BR value of 1,090, and 10 carry higher values of their own, up to 1,900 in ZIP 79562, 810 dollars above the base:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Abilene ZIP variation example"><table><thead><tr><th scope="col">zip</th><th scope="col">hud_area_code</th><th scope="col">fmr_2br</th><th scope="col">vs metro base</th></tr></thead><tbody>
+      <tr><td>76437</td><td>METRO10180M10180</td><td>1090</td><td>base</td></tr>
+      <tr><td>79508</td><td>METRO10180M10180</td><td>1240</td><td>+150</td></tr>
+      <tr><td>79536</td><td>METRO10180M10180</td><td>1460</td><td>+370</td></tr>
+      <tr><td>79562</td><td>METRO10180M10180</td><td>1900</td><td>+810</td></tr>
+    </tbody></table></div>
+    <p>One hud_area_code, four values for the same bedroom count. That spread is the ZIP-level expansion rendered as data, though the file itself does not label which rows are SAFMRs; rows that differ from the metro base are a hint, and HUD's SAFMR tables carry the official designation. At the other end of the scale, the state summary condenses the country to 52 rows, and the FY2026 2BR median across all ZIP rows comes out at 1,150.</p>
+    <p>For a time series built from the pack, compare like with like: same hud_area_code, same percentile, and ZIP rows checked against the SAFMR tables for both years. <a href="hud-rent-data-explained.html">HUD fair market rent data, explained</a> covers every column, and <a href="fmr-vs-rent-actuals.html">FMR vs actual rent</a> shows how the benchmark sits against asking rents.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FMR history questions</h2>
+    <dl>
+      <dt>When did HUD FMRs move to the 40th percentile?</dt>
+      <dd>Through fiscal year 2000, HUD set FMRs at the 50th percentile of gross rent. The Quality Housing and Work Responsibility Act of 1998 (Public Law 105-276) changed the standard to the 40th percentile, and HUD first applied it to the fiscal year 2001 FMRs. The 40th percentile has held through FY2026, and it applies to Small Area FMRs as well as metro-wide ones.</dd>
+      <dt>Does the FY2026 pack include FMRs from past years?</dt>
+      <dd>No. The pack carries FY2026 only: 51,895 ZIP rows, 3,229 county rows, and a 52-row state summary. For a time series, HUD's FMR archive on huduser.gov keeps the published tables for past fiscal years. What the FY2026 file does show is geography inside one year: ZIP rows that differ from their metro's base value, which is where Small Area FMRs and other area rules live.</dd>
+      <dt>Why did an area's FMR jump from one fiscal year to the next?</dt>
+      <dd>Some of the move is the market, and some is methodology. Methodology causes include a new ACS base file, inflation adjustment, changes to recent-mover weighting, OMB metro redefinitions that move a ZIP or county between HUD areas, minimum-rent floors that catch low-rent areas, and a ZIP picking up a SAFMR instead of its metro value. Each of those can shift a number even when local rents barely moved, so a year-over-year comparison should start with HUD's methodology notes for both years.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <p>Start with the free 22-row sample to check the schema, then take the full pack when it fits. The full pack carries all three CSVs (51,895 + 3,229 + 52 rows), the data dictionary, and source checksums.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">Get full data</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release, huduser.gov. US government data, public domain. Data Vault is not affiliated with HUD.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

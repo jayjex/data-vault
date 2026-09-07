@@ -80,7 +80,13 @@ print(sample["records"][0])     <span class="cm"># first row</span></pre>
 
   <section aria-label="MCP server">
     <h2>MCP server</h2>
-    <p>An MCP server wraps this catalog: <code>list_datasets</code>, <code>get_dataset_info</code>, and <code>get_sample</code> tools, samples fetched on demand. Repo: <a href="https://github.com/jayjex/dataset-mcp" rel="noopener">github.com/jayjex/dataset-mcp</a>, listed in the official registry as <code>io.github.jayjex/dataset-mcp</code>.</p>
+    <p>An MCP server wraps this catalog, and since v1.1.0 it queries the FULL files, not only samples: <code>query_dataset</code> filters and paginates any released table (100 rows per call, <code>offset</code> to page through, operators <code>=</code>, <code>contains</code>, <code>gt</code>, <code>lt</code>), <code>get_stats</code> returns row counts, unique counts, numeric min/max/mean, and top-N frequencies, plus <code>list_datasets</code>, <code>get_dataset_info</code>, and <code>get_sample</code> for previews. Full files (19 MB, 22 files) live in the public release <a href="https://github.com/jayjex/dataset-mcp/releases/tag/data-v1" rel="noopener">data-v1</a>; the server caches them locally and verifies SHA-256 on every load. Repo: <a href="https://github.com/jayjex/dataset-mcp" rel="noopener">github.com/jayjex/dataset-mcp</a>, listed in the official registry as <code>io.github.jayjex/dataset-mcp</code>.</p>
+    <p>One query, no download on your side:</p>
+<pre>query_dataset("hud-fmr-2026", {
+  where: [{ column: "state", op: "=", value: "TX" }],
+  limit: 5
+})
+<span class="cm"># 3,247 Texas rows matched, returns zip, area_name, fmr_0br..fmr_4br</span></pre>
 <pre><span class="cm"># Claude Desktop (claude_desktop_config.json)</span>
 {
   "mcpServers": {

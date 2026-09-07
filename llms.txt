@@ -5,9 +5,10 @@
 Base URL: https://jayjex.github.io/data-vault
 Catalog (start here): https://jayjex.github.io/data-vault/catalog.json
 Agent docs: https://jayjex.github.io/data-vault/agents/
-MCP server: npx -y github:jayjex/dataset-mcp (tools: list_datasets, get_dataset_info, get_sample)
+MCP server: npx -y github:jayjex/dataset-mcp (v1.1.0, tools: list_datasets, get_dataset_info, get_sample, query_dataset, get_stats)
 MCP repo: https://github.com/jayjex/dataset-mcp
 MCP registry name: io.github.jayjex/dataset-mcp
+MCP full query: query_dataset(slug, {where, columns, limit, offset}) filters and paginates the FULL released files, 100 rows/call. Example: query_dataset("hud-fmr-2026", {where: [{column: "state", op: "=", value: "TX"}], limit: 5}) returns 3,247 matched Texas rent rows. Full data release: https://github.com/jayjex/dataset-mcp/releases/tag/data-v1
 
 ## Datasets
 

@@ -4,7 +4,7 @@
  "last_built": "2026-09-07",
  "description": "Sample-first data catalog by Matchbook Labs. Free CSV/JSON samples for every dataset; full packs sold via Getly.",
  "agent_docs": "https://jayjex.github.io/data-vault/agents/",
- "for_agents": "Fetch this file, pick a dataset, fetch its sample.json to learn the schema. Full data is linked per dataset.",
+ "for_agents": "Fetch this file, pick a dataset, fetch its sample.json to learn the schema. Full data is linked per dataset, and the MCP server queries the full files for free (see mcp).",
  "datasets": [
   {
    "slug": "nfl-games",
@@ -183,5 +183,13 @@
    "license": "Personal + commercial use, no redistribution",
    "page": "https://jayjex.github.io/data-vault/datasets/scraper-pack.html"
   }
- ]
+ ],
+ "mcp": {
+  "server": "npx -y github:jayjex/dataset-mcp",
+  "registry": "io.github.jayjex/dataset-mcp",
+  "repo": "https://github.com/jayjex/dataset-mcp",
+  "version": "1.1.0",
+  "full_query": "query_dataset(slug, {where, columns, limit, offset}) filters and paginates the full released files (100 rows/call, operators =, contains, gt, lt). get_stats(slug, {column}) returns unique counts, numeric min/max/mean, top-N. Full release: https://github.com/jayjex/dataset-mcp/releases/tag/data-v1",
+  "example": "query_dataset(\"hud-fmr-2026\", {where: [{column: \"state\", op: \"=\", value: \"TX\"}], limit: 5})"
+ }
 }

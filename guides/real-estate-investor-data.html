@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Real Estate Investor Data: Free Sources for Rent, Price, Vacancy and Tax Numbers | Data Vault</title>
+<meta name="description" content="Real estate investor data sources you can pull free: HUD fair market rents, Zillow ZORI and ZHVI CSVs, FRED housing series, Census vacancy counts, and Tax Foundation property tax tables. Every endpoint tested live on 2026-09-10.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/real-estate-investor-data.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Real Estate Investor Data: Free Sources for Rent, Price, Vacancy and Tax Numbers">
+<meta property="og:description" content="Real estate investor data sources you can pull free: HUD fair market rents, Zillow ZORI and ZHVI CSVs, FRED housing series, Census vacancy counts, and Tax Foundation property tax tables.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/real-estate-investor-data.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Real Estate Investor Data: Free Sources for Rent, Price, Vacancy and Tax Numbers", "description": "Where real estate investors get free data: HUD Fair Market Rents for rent benchmarks, Zillow Research ZORI and ZHVI CSVs for rents and prices, FRED for Case-Shiller and mortgage-rate series, the Census Housing Vacancy Survey, and Tax Foundation property tax tables, with a four-step screening workflow.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/real-estate-investor-data.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}, "mentions": [{"@type": "Dataset", "name": "Zillow Research public data (ZORI, ZHVI)"}, {"@type": "Dataset", "name": "FRED housing series"}, {"@type": "Dataset", "name": "Census Housing Vacancy Survey"}, {"@type": "Dataset", "name": "Tax Foundation state tax data"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Real estate investor data guide", "item": "https://jayjex.github.io/data-vault/guides/real-estate-investor-data.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+{"@type": "Question", "name": "Where can real estate investors get free data?", "acceptedAnswer": {"@type": "Answer", "text": "Five sources cover most screening needs at no cost. HUD publishes Fair Market Rents for every ZIP code, county, and metro, public domain. Zillow Research posts its ZORI rent index and ZHVI home value index as static CSVs for hundreds of metros. FRED carries the Case-Shiller home price index, 30-year mortgage rates, and the national rental vacancy rate, all reachable without an API key. The Census Housing Vacancy Survey publishes quarterly vacancy counts. The Tax Foundation collects state and local property tax collections per capita."}},
+{"@type": "Question", "name": "Which rent number should an investor screen against: HUD FMR or Zillow ZORI?", "acceptedAnswer": {"@type": "Answer", "text": "They measure different things, so use both. HUD FMR is a gross-rent benchmark for a modest unit in a specific area, set once a year per ZIP and county, and it includes utilities. ZORI is a monthly index of asking rents across all homes in a metro, smoothed and seasonally adjusted, with no utility component. As of the FY2026 release, Ohio's median 2BR FMR is 1,070 dollars while ZORI for the Columbus metro sits at 1,519 dollars for July 2026. A listing far below both numbers signals underpricing; far above both signals a bet on a premium tenant."}},
+{"@type": "Question", "name": "How do I download FRED data without an API key?", "acceptedAnswer": {"@type": "Answer", "text": "FRED's graph endpoint returns a plain CSV for any series without registration. The pattern is fred.stlouisfed.org/graph/fredgraph.csv?id=SERIES_ID. For example, fredgraph.csv?id=CSUSHPINSA returns the Case-Shiller national home price index from January 1987 to the latest month, one date column and one value column, which loads straight into a spreadsheet or a script. No key, no rate-limit signup, no JSON parsing."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../datasets/hud-fmr-2026.html">Rent data</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Real estate investor data: free sources for rent, price, vacancy, and tax numbers</h1>
+  <p class="byline">Guide for investors · every endpoint on this page was fetched live on 2026-09-10 and the numbers below are the responses as they came back. Data documentation, not investment advice.</p>
+
+  <section aria-label="Quick answer">
+    <p>Most "real estate investor data" searches end at paid dashboards reselling numbers that come from free public sources. The five sources below are the originals: HUD sets rent benchmarks per ZIP, Zillow publishes its rent and value indexes as downloadable CSVs, FRED serves the price and rate series, the Census Bureau runs the vacancy survey, and the Tax Foundation tracks state property tax collections. All five are free to pull, and all five work from a terminal or a spreadsheet. The workflow at the bottom chains them in the order a screening decision needs them: pick a metro, check the rent, check the price trend, check the vacancy.</p>
+  </section>
+
+  <section aria-label="The five sources">
+    <h2>The five sources at a glance</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Free data sources for real estate investors"><table>
+      <thead><tr><th scope="col">Source</th><th scope="col">What it gives</th><th scope="col">Cost / terms</th><th scope="col">Update cycle</th><th scope="col">How to access</th></tr></thead>
+      <tbody>
+        <tr><td><a href="#rent">HUD Fair Market Rents</a></td><td>Rent benchmarks for 51,895 ZIPs, 3,229 counties, every metro, 0BR through 4BR</td><td>Free, US government data, public domain</td><td>Annual, one FY release</td><td>huduser.gov CSV downloads; free state summary on this site</td></tr>
+        <tr><td><a href="#zillow">Zillow Research</a></td><td>ZORI rent index (752 metros), ZHVI home value index (895 metros), monthly</td><td>Free, attribution required on republish</td><td>Monthly</td><td>Static CSVs at files.zillowstatic.com, no login</td></tr>
+        <tr><td><a href="#fred">FRED (St. Louis Fed)</a></td><td>Case-Shiller index, 30-year mortgage rates, rental vacancy rate, housing CPI</td><td>Free, no key for CSV endpoint</td><td>Daily to quarterly, per series</td><td>fredgraph.csv endpoint, one URL per series</td></tr>
+        <tr><td><a href="#vacancy">Census Housing Vacancy Survey</a></td><td>National and regional rental vacancy and homeownership rates</td><td>Free, US government data</td><td>Quarterly</td><td>census.gov tables; the national rate also mirrors to FRED</td></tr>
+        <tr><td><a href="#taxes">Tax Foundation</a></td><td>State and local property tax collections per capita, tax rate tables by state</td><td>Free, cited source required on republish</td><td>Annual updates per topic</td><td>taxfoundation.org data hub, HTML tables</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section aria-label="Rent benchmarks">
+    <h2 id="rent">Rent benchmarks: HUD Fair Market Rents</h2>
+    <p>FMR is HUD's number for what a modestly priced unit should rent for in an area, utilities included, and it anchors what housing agencies pay vouchers against. It is the strongest free rent number because it covers ZIP-level geography the paid tools rarely match: the FY2026 file carries 51,895 ZIP rows with rents from studios to 4BR units, and the license is public domain, so commercial use needs no permission or credit.</p>
+    <p>Access runs three ways. HUD posts the raw CSVs on huduser.gov. The <a href="hud-fmr-by-state.html">52-state table of 2BR medians on this site</a> re-computes from the free <a href="../data/hud-fmr-2026/state-summary.csv" download>state summary CSV</a>. And for anything deeper than a lookup, the full ZIP file is in the <a href="../datasets/hud-fmr-2026.html">HUD FMR FY2026 dataset pack</a>. For the difference between FMR and what tenants actually pay, <a href="fmr-vs-rent-actuals.html">FMR vs rent actuals</a> works an example; <a href="safmr-vs-fmr.html">SAFMR vs FMR</a> covers the ZIP-level variant used in high-cost metros.</p>
+  </section>
+
+  <section aria-label="Zillow data">
+    <h2 id="zillow">Rent and price trends: Zillow Research CSVs</h2>
+    <p>Zillow's research division publishes the underlying indexes behind its charts as static CSV files, no login. Two matter for screening. ZORI, the Zillow Observed Rent Index, tracks asking rents across all homes in a market, smoothed and seasonally adjusted; the metro file lists 752 metros in monthly columns back to January 2015. ZHVI, the Zillow Home Value Index, does the same for prices across 895 metros, dollar-denominated.</p>
+    <p>Pulled live on 2026-09-10, the ZORI metro file downloaded as a 1.0 MB CSV with columns running through 2026-07-31, and the Columbus, OH row read 1,519 dollars for July 2026. The ZHVI metro file came back at 4.3 MB through the same month, Columbus at roughly 333,000 dollars. Both URLs return the full history in one shot:</p>
+    <pre>https://files.zillowstatic.com/research/public_csvs/zori/Metro_zori_uc_sfrcondomfr_sm_month.csv
+https://files.zillowstatic.com/research/public_csvs/zhvi/Metro_zhvi_uc_sfrcondo_tier_0.33_0.67_sm_sa_month.csv</pre>
+    <p>The indexes are estimates built from Zillow listings data, so treat each value as a market-level trend line, not an appraisal. Zillow's terms require attribution when you republish the numbers, which is a fair trade for a free monthly series at this geographic depth.</p>
+  </section>
+
+  <section aria-label="FRED series">
+    <h2 id="fred">Prices, rates, and macro context: FRED</h2>
+    <p>The St. Louis Fed's FRED database hosts the long-run series investors quote: the Case-Shiller national home price index, 30-year mortgage rates, the rental vacancy rate, and the shelter component of CPI. The ordinary FRED web UI exports CSVs but sends you through a chart page first, and the REST API needs a key. The graph endpoint skips both:</p>
+    <pre>https://fred.stlouisfed.org/graph/fredgraph.csv?id=CSUSHPINSA</pre>
+    <p>One URL per series, two columns, no key. Live responses on 2026-09-10: CSUSHPINSA returned the Case-Shiller index from 1987-01-01 through 2026-06-01 at 336.66; MORTGAGE30US returned the weekly 30-year fixed rate through 2026-09-03 at 6.71 percent; RRVRUSQ156N returned the quarterly rental vacancy rate through 2026-04-01 at 7.3 percent. The same pattern works for any of FRED's 800,000-plus series, so a five-line script can pull the full macro picture for a memo.</p>
+  </section>
+
+  <section aria-label="Vacancy data">
+    <h2 id="vacancy">Vacancy: Census Housing Vacancy Survey</h2>
+    <p>The Census Bureau's Housing Vacancy Survey publishes rental vacancy and homeownership rates quarterly, national and by region, in tables on <a href="https://www.census.gov/housing/hvs/" rel="noopener">census.gov/housing/hvs</a> (verified live, 2026-09-10). The national rental vacancy rate was 7.3 percent for Q2 2026, which came through the FRED mirror <code>RRVRUSQ156N</code> at the same value. Vacancy is the thin marker in screening: a metro where rents rise while vacancy also rises is a market asking where the demand went. Two caveats: HVS moves to national and regional geography only, so metro-level vacancy means state or local datasets, and HUD's own vacancy API requires a key, so for most purposes the FRED mirror is the fastest path to the quarterly number.</p>
+  </section>
+
+  <section aria-label="Tax data">
+    <h2 id="taxes">Taxes: Tax Foundation state tables</h2>
+    <p>Property tax load differs by state and county enough to change a cash-flow model, and the Tax Foundation keeps the cleanest free tables. The <a href="https://taxfoundation.org/data/all/state/" rel="noopener">state tax data hub</a> (live, 2026-09-10) indexes per-topic pages; the <a href="https://taxfoundation.org/data/all/state/property-taxes-per-capita-2019/" rel="noopener">property taxes per capita</a> page lists state and local property tax collections per person, and the corporate and income tax rate tables cover the state-level stack behind that. Access is plain HTML, annual updates per topic, republish with a citation. For holding-cost estimates, pair the per-capita table with a county assessor lookup, since per-capita numbers hide the county spread inside states like Texas and New Jersey.</p>
+  </section>
+
+  <section aria-label="Investor workflow">
+    <h2>The workflow: metro to numbers in four steps</h2>
+    <p>Worked example: screening Columbus, OH. Every number below was pulled from the sources above on 2026-09-10.</p>
+    <ol>
+      <li><strong>Pick the metro, pull the ZIP list.</strong> Choose the metro and get its ZIP rows from the HUD file. Ohio carries 1,883 ZIP rows in the FY2026 file, and the <a href="hud-fmr-by-state.html">state table</a> shows the state median 2BR FMR at 1,070 with a ZIP spread from 970 to 2,150, so metro choice inside the state matters before anything else.</li>
+      <li><strong>Check the rent.</strong> Compare the metro's ZORI (Columbus: 1,519 for July 2026) against the local FMR for your bedroom count. ZORI measures asking rents across all homes; FMR prices a modest unit gross of utilities. A listing far under both reads as underpricing; far over both is a premium bet, and the <a href="fmr-vs-rent-actuals.html">FMR vs actuals gap</a> tells you which benchmark fits your strategy.</li>
+      <li><strong>Check the price trend.</strong> Pull ZHVI for the metro (Columbus: about 333,000 in July 2026) and the Case-Shiller national series for the cycle context (336.66 in June 2026). Rent-to-price on your own deal numbers, against these two baselines, gives the first yield estimate before any spreadsheet work.</li>
+      <li><strong>Check vacancy, then taxes.</strong> The national rental vacancy rate at 7.3 percent is the backdrop; a metro drifting above it while rents stall is a warning. Then read the Tax Foundation per-capita table for the state's holding-cost environment and follow up with the county assessor for the specific parcel.</li>
+    </ol>
+    <p>Everything in steps 1 through 4 runs on the free files and endpoints listed here. For the full ZIP-level rent table behind step 1, the <a href="../datasets/hud-fmr-2026.html">HUD FMR FY2026 pack</a> carries all 51,895 rows, and the <a href="free-real-estate-data.html">free real estate data guide</a> shows how the rent benchmarks join with listing-level data by ZIP.</p>
+  </section>
+
+  <section aria-label="What the free sources miss">
+    <h2>What these sources do not give you</h2>
+    <p>Set expectations before building on them. FMR updates once a year, so mid-year rent shifts show up in ZORI, not HUD. Zillow's indexes are market-level estimates, so they say nothing about one specific house. The Census vacancy numbers stop at national and regional geography. Property tax tables are state-level until you call a county assessor. None of it replaces a title search, an inspection, or a local lease comp pull. The sources set the market frame; the deal-specific diligence stays manual.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>Where can real estate investors get free data?</h3>
+    <p>Five sources cover most screening needs at no cost. HUD publishes Fair Market Rents for every ZIP code, county, and metro, public domain. Zillow Research posts its ZORI rent index and ZHVI home value index as static CSVs for hundreds of metros. FRED carries the Case-Shiller home price index, 30-year mortgage rates, and the national rental vacancy rate, all reachable without an API key. The Census Housing Vacancy Survey publishes quarterly vacancy counts. The Tax Foundation collects state and local property tax collections per capita.</p>
+    <h3>Which rent number should an investor screen against: HUD FMR or Zillow ZORI?</h3>
+    <p>They measure different things, so use both. HUD FMR is a gross-rent benchmark for a modest unit in a specific area, set once a year per ZIP and county, and it includes utilities. ZORI is a monthly index of asking rents across all homes in a metro, smoothed and seasonally adjusted, with no utility component. As of the FY2026 release, Ohio's median 2BR FMR is 1,070 dollars while ZORI for the Columbus metro sits at 1,519 dollars for July 2026. A listing far below both numbers signals underpricing; far above both signals a bet on a premium tenant.</p>
+    <h3>How do I download FRED data without an API key?</h3>
+    <p>FRED's graph endpoint returns a plain CSV for any series without registration. The pattern is fred.stlouisfed.org/graph/fredgraph.csv?id=SERIES_ID. For example, fredgraph.csv?id=CSUSHPINSA returns the Case-Shiller national home price index from January 1987 to the latest month, one date column and one value column, which loads straight into a spreadsheet or a script. No key, no rate-limit signup, no JSON parsing.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

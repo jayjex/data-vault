@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD FMR Data Dictionary: Every Column in the FY2026 ZIP Dataset | Data Vault</title>
+<meta name="description" content="The FMR data dictionary for HUD's FY2026 ZIP dataset: every column in fmr-by-zip-2026.csv, with data types, real first-row example values, and notes on the metro flag and SAFMR rows. Free 22-row sample.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fmr-data-dictionary.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="HUD FMR Data Dictionary: Every Column in the FY2026 ZIP Dataset">
+<meta property="og:description" content="Every column in HUD's FY2026 fmr-by-zip-2026.csv, with data types, real first-row example values, and notes on the metro flag and SAFMR rows.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fmr-data-dictionary.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "HUD FMR Data Dictionary: Every Column in the FY2026 ZIP Dataset", "description": "The FMR data dictionary for HUD's FY2026 ZIP dataset: every column in fmr-by-zip-2026.csv, with data types, real first-row example values, and notes on the metro flag and SAFMR rows.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fmr-data-dictionary.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}, "mentions": [{"@type": "Article", "name": "What Is a Data Dictionary? Structure and Real CSV Examples", "url": "https://jayjex.github.io/data-vault/guides/data-dictionary-explained.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "HUD FMR data dictionary", "item": "https://jayjex.github.io/data-vault/guides/hud-fmr-data-dictionary.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What columns are in the HUD FMR 2026 dataset?", "acceptedAnswer": {"@type": "Answer", "text": "The ZIP-level file fmr-by-zip-2026.csv has ten columns: zip, hud_area_code, metro, area_name, state, fmr_0br, fmr_1br, fmr_2br, fmr_3br, fmr_4br. One row per ZIP code, 51,895 rows total. The five fmr columns hold monthly dollar amounts for 0-bedroom through 4-bedroom units, rounded exactly as HUD published them."}}, {"@type": "Question", "name": "Should the zip column be read as text?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. ZIP codes are labels, not numbers, and a real share of them start with 0 (the 0xxxx range covers New England, New Jersey, and Puerto Rico). Any tool that loads the column as an integer drops that leading zero and turns a valid ZIP into a five-digit number that no longer matches the row you want. In a spreadsheet, format the column as text before pasting. In pandas, read with dtype={'zip': str}. In the CSV itself the values are plain 5-character strings, so the file is fine; it is the reader that needs the hint."}}, {"@type": "Question", "name": "How do I tell which rows are Small Area FMRs?", "acceptedAnswer": {"@type": "Answer", "text": "There is no SAFMR flag column in the file. ZIPs without a designated SAFMR repeat their metro's base values, so the ZIP-level rows stand out by comparison: group rows on hud_area_code and the rows whose fmr values differ from the group's most common values carry ZIP-level SAFMRs. In the Abilene, TX MSA sample, ZIP 79508 has a 2BR FMR of 1,240 while 76437 in the same hud_area_code sits at 1,090. That 150-dollar gap is the ZIP-level variation, and it only shows up in the fmr columns."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>HUD FMR data dictionary: every column in the FY2026 ZIP file</h1>
+  <p class="byline">Published 2026-09-10. Documents <code>fmr-by-zip-2026.csv</code> from the <a href="../datasets/hud-fmr-2026.html">HUD Fair Market Rents FY2026 pack</a>. Data source: HUD, public domain. Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <section aria-label="What this dictionary covers">
+    <h2>What this FMR data dictionary covers</h2>
+    <p>This is the column reference for the FY2026 ZIP-level HUD rent file, one entry per column: the exact header name as it appears in the file, the data type, a real example value from the first row, and the notes that save you a debugging session. The file itself is <code>fmr-by-zip-2026.csv</code>, 51,895 rows, one per ZIP code, built from HUD's FY2026 Small Area FMR publication. If you want the general format first, <a href="data-dictionary-explained.html">what a data dictionary is</a> explains the five fields a good dictionary carries and shows excerpts from this same pack.</p>
+    <p>Every example value on this page comes straight from the <a href="../data/hud-fmr-2026/sample.csv" download>free 22-row sample</a>, which covers ZIPs in the Abilene, TX MSA. Nothing here is invented for illustration. For the file's place in the wider release, <a href="hud-rent-data-explained.html">HUD rent data, explained</a> walks all three CSVs, and <a href="hud-fmr-by-zip.html">HUD FMR by ZIP code</a> runs a real single-ZIP lookup.</p>
+  </section>
+
+  <section aria-label="The header line and first row">
+    <h2>The header line and the first row</h2>
+    <p>Ten columns. Here is the raw header and the first data row of the file, byte for byte:</p>
+    <pre><code>zip,hud_area_code,metro,area_name,state,fmr_0br,fmr_1br,fmr_2br,fmr_3br,fmr_4br
+76437,METRO10180M10180,metro,"Abilene, TX MSA",TX,850,880,1090,1420,1710</code></pre>
+    <p>That first row is ZIP 76437 in the Abilene, TX MSA: monthly FMRs from 850 dollars for a studio to 1,710 for a 4-bedroom. One detail jumps out already: <code>area_name</code> is the only quoted value, because it contains a comma. Everything else is bare.</p>
+  </section>
+
+  <section aria-label="Column-by-column dictionary">
+    <h2>Column-by-column: the ten HUD dataset columns</h2>
+    <p class="table-note">Example values are from row 1 of the file (ZIP 76437).</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="HUD FMR column dictionary"><table><thead><tr><th scope="col">Column</th><th scope="col">Type</th><th scope="col">Example</th><th scope="col">Notes</th></tr></thead><tbody>
+      <tr><td>zip</td><td>text, 5 characters</td><td><code>76437</code></td><td>The lookup key, one row per ZIP code. Read it as text, not a number: some real ZIPs start with 0, and any numeric cast eats the zero.</td></tr>
+      <tr><td>hud_area_code</td><td>text</td><td><code>METRO10180M10180</code></td><td>HUD area identifier. Starts with METRO for a metro FMR area or NCNTY for a nonmetro county area. All 22 sample rows share <code>METRO10180M10180</code> because they all sit in one area, Abilene.</td></tr>
+      <tr><td>metro</td><td>text</td><td><code>metro</code></td><td>The metro flag: <code>metro</code> or <code>nonmetro</code>, derived from the hud_area_code prefix. Every row in the free sample reads <code>metro</code> because Abilene is one.</td></tr>
+      <tr><td>area_name</td><td>text, quoted</td><td><code>"Abilene, TX MSA"</code></td><td>HUD Fair Market Rent Area Name. Quoted in the CSV because of the comma inside. Names run longer in big metros, for example <code>"New York, NY HUD Metro FMR Area"</code>.</td></tr>
+      <tr><td>state</td><td>text, 2 letters</td><td><code>TX</code></td><td>State or territory code, derived from the area name. Filter on this for state-level pulls, as in the Texas and Florida walkthroughs.</td></tr>
+      <tr><td>fmr_0br</td><td>integer, monthly USD</td><td><code>850</code></td><td>FY2026 FMR for a 0-bedroom unit, the studio or efficiency row.</td></tr>
+      <tr><td>fmr_1br</td><td>integer, monthly USD</td><td><code>880</code></td><td>FY2026 FMR for a 1-bedroom unit.</td></tr>
+      <tr><td>fmr_2br</td><td>integer, monthly USD</td><td><code>1090</code></td><td>FY2026 FMR for a 2-bedroom unit. The number most lookups start with, and the one the county and state tables summarize.</td></tr>
+      <tr><td>fmr_3br</td><td>integer, monthly USD</td><td><code>1420</code></td><td>FY2026 FMR for a 3-bedroom unit.</td></tr>
+      <tr><td>fmr_4br</td><td>integer, monthly USD</td><td><code>1710</code></td><td>FY2026 FMR for a 4-bedroom unit.</td></tr>
+    </tbody></table></div>
+    <p>The five fmr columns share three rules. Values are bare integers: no dollar sign, no thousands separator, rounded to the nearest dollar exactly as HUD published them. They are monthly amounts, shelter rent plus utilities at the 40th percentile. And every row carries all five bedroom sizes, so there are no empty cells to special-case in this file.</p>
+  </section>
+
+  <section aria-label="SAFMR rows and the metro flag">
+    <h2>Base values, SAFMR rows, and the metro flag</h2>
+    <p>Two columns do the geography work, and the pair explains most of what confuses people about this file.</p>
+    <p><b>The base-value pattern.</b> ZIPs without a designated Small Area FMR repeat their metro's values, so inside one hud_area_code most rows match and a few differ. There is no flag column marking the SAFMR rows; the difference lives in the fmr values themselves. Group on hud_area_code and the minority rows that break the pattern are your ZIP-level SAFMRs. In the sample, ZIP 79508 shows 1,240 for a 2-bedroom while 76437 in the same hud_area_code shows 1,090. Same metro code, 150 dollars apart. What SAFMRs are and where HUD designates them: <a href="safmr-vs-fmr.html">SAFMR vs FMR, explained</a> and <a href="hud-fmr-small-areas.html">HUD small area FMR</a>.</p>
+    <p><b>The metro flag.</b> <code>metro</code> and <code>hud_area_code</code> carry the same signal at different resolutions. The flag says metro or nonmetro; the code says which area, and the prefix (METRO or NCNTY) says how that area is defined. A nonmetro row has an NCNTY-prefixed code, reads <code>nonmetro</code> in the metro column, and usually repeats its county value across many ZIPs. Both columns are derived from HUD's own area definitions, so they always agree with each other.</p>
+    <p>One methodology note so nothing surprises you downstream: in some areas, notably parts of Texas, HUD's fallback rules substitute state or national minimums. The published numbers already reflect that, so no adjustment belongs on your side.</p>
+  </section>
+
+  <section aria-label="Parsing notes">
+    <h2>Parsing notes before you load the file</h2>
+    <p>Four things bite people who skip the dictionary:</p>
+    <p><b>zip as text.</b> The column holds 5-character strings. Format it as text in your spreadsheet before pasting, or read it with <code>dtype={'zip': str}</code> in pandas. A ZIP that loses its leading zero stops matching HUD's own tables.</p>
+    <p><b>Quoted area_name.</b> The comma inside <code>"Abilene, TX MSA"</code> is why the field sits in quotes. Any real CSV parser handles it. Splitting on commas by hand splits Abilene in half.</p>
+    <p><b>Integers stay bare.</b> <code>1090</code>, never <code>$1,090</code>. Cast the fmr columns straight to int and skip the cleanup.</p>
+    <p><b>One row per ZIP.</b> No duplicates to dedupe, no year column, no bedroom column to melt: bedroom size lives in the column names, amounts in the cells. If you need a long format, melt the five fmr columns into bedroom-size rows yourself. Converting the whole thing: <a href="../tools/csv-to-json.html">CSV to JSON in Python</a> runs the conversion on this exact sample.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FMR data dictionary questions</h2>
+    <dl>
+      <dt>What columns are in the HUD FMR 2026 dataset?</dt>
+      <dd>The ZIP-level file fmr-by-zip-2026.csv has ten columns: zip, hud_area_code, metro, area_name, state, fmr_0br, fmr_1br, fmr_2br, fmr_3br, fmr_4br. One row per ZIP code, 51,895 rows total. The five fmr columns hold monthly dollar amounts for 0-bedroom through 4-bedroom units, rounded exactly as HUD published them.</dd>
+      <dt>Should the zip column be read as text?</dt>
+      <dd>Yes. ZIP codes are labels, not numbers, and a real share of them start with 0 (the 0xxxx range covers New England, New Jersey, and Puerto Rico). Any tool that loads the column as an integer drops that leading zero and turns a valid ZIP into a five-digit number that no longer matches the row you want. In a spreadsheet, format the column as text before pasting. In pandas, read with dtype={'zip': str}. In the CSV itself the values are plain 5-character strings, so the file is fine; it is the reader that needs the hint.</dd>
+      <dt>How do I tell which rows are Small Area FMRs?</dt>
+      <dd>There is no SAFMR flag column in the file. ZIPs without a designated SAFMR repeat their metro's base values, so the ZIP-level rows stand out by comparison: group rows on hud_area_code and the rows whose fmr values differ from the group's most common values carry ZIP-level SAFMRs. In the Abilene, TX MSA sample, ZIP 79508 has a 2BR FMR of 1,240 while 76437 in the same hud_area_code sits at 1,090. That 150-dollar gap is the ZIP-level variation, and it only shows up in the fmr columns.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the file this dictionary documents</h2>
+    <p>The free 22-row sample carries the exact schema above. The full pack adds all 51,895 ZIP rows plus the <a href="hud-fmr-by-county.html">county rollup (3,229 rows)</a>, the 52-row state summary, and the dictionary itself alongside source checksums.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">Get the full dataset</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release, huduser.gov. US government data, public domain.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

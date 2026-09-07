@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BLS API in Python: Working Examples for the Public v2 Endpoint | Data Vault</title>
+<meta name="description" content="The BLS public data API v2 answers Python requests with no key: working GET and POST examples for unemployment (LNS14000000) and rent CPI (CUSR0000SEHA), output verbatim from a live run, plus the 25-queries-per-day keyless limit and the wrong-path 403 trap.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/bls-api-tutorial.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="BLS API in Python: Working Examples for the Public v2 Endpoint">
+<meta property="og:description" content="The BLS public data API v2 answers Python requests with no key: GET and POST examples for unemployment and rent CPI, output verbatim from a live run on 2026-09-07, with the 25-queries-per-day keyless limit spelled out.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/bls-api-tutorial.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "BLS API in Python: Working Examples for the Public v2 Endpoint", "description": "The BLS public data API v2 answers Python requests with no key: working GET and POST examples for unemployment (LNS14000000) and rent CPI (CUSR0000SEHA), output verbatim from a live run, plus the 25-queries-per-day keyless limit and the wrong-path 403 trap.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/bls-api-tutorial.html", "about": [{"@type": "Thing", "name": "BLS Public Data API v2"}, {"@type": "Thing", "name": "Consumer Price Index, Rent of Primary Residence"}, {"@type": "Thing", "name": "Unemployment rate"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "BLS API in Python", "item": "https://jayjex.github.io/data-vault/guides/bls-api-tutorial.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the BLS API free to use?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The public data API v2 at api.bls.gov answers without any key or account, and every example on this page ran with a plain requests call. The keyless tier allows 25 queries per day; a free registration key from data.bls.gov raises the daily volume and unlocks longer request bodies."}}, {"@type": "Question", "name": "How many requests can I make to the BLS API without a key?", "acceptedAnswer": {"@type": "Answer", "text": "25 queries per day. The responses carry no rate-limit headers, and when the counter runs out the API still returns HTTP 200 with status REQUEST_NOT_PROCESSED and the message Request could not be serviced, as the daily threshold for total number of requests allocated to the user with registration key has been reached. Every call counts, including the single-series GET form, so batch series into one POST when you need several."}}, {"@type": "Question", "name": "How do I pull unemployment or rent CPI from the BLS API in Python?", "acceptedAnswer": {"@type": "Answer", "text": "Send the series ID to https://api.bls.gov/publicAPI/v2/timeseries/data/ with requests: LNS14000000 for the unemployment rate and CUSR0000SEHA for the CPI rent of primary residence index. The first example on this page returns the latest unemployment observation (4.1 for August 2026) in five lines of Python, and the POST example shows how to batch both series in one call."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../datasets/nfl-games.html">NFL dataset</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>BLS API in Python: working examples for the public v2 endpoint</h1>
+  <p class="byline">The Bureau of Labor Statistics side of the <a href="public-data-apis-list.html">public data APIs list</a> &middot; the rent index here feeds the <a href="hud-fmr-vs-cpi-rent.html">CPI rent vs HUD FMR comparison</a> &middot; every status code, message, and output on this page comes from live calls on 2026-09-07.</p>
+
+  <section aria-label="Quick answer">
+    <h2>Five lines of Python, no key</h2>
+    <p>The BLS public data API v2 serves federal statistics with no account and no key. One GET returns the latest unemployment rate:</p>
+<pre>import requests
+
+r = requests.get(
+    "https://api.bls.gov/publicAPI/v2/timeseries/data/LNS14000000",
+    timeout=30,
+)
+r.raise_for_status()
+series = r.json()["Results"]["series"][0]
+latest = series["data"][0]
+print(series["seriesID"])           # LNS14000000
+print(latest["periodName"])         # August
+print(latest["year"])               # 2026
+print(latest["value"])              # 4.1</pre>
+    <p>That ran on 2026-09-07 against the real endpoint, output verbatim. LNS14000000 is the seasonally adjusted unemployment rate, and 4.1 percent is the August 2026 print. The sections below cover the endpoint path, the series IDs worth calling, GET versus POST, and the limits that bite without a key.</p>
+  </section>
+
+  <section aria-label="The right path">
+    <h2>The right URL path, learned the hard way</h2>
+    <p>Two similar paths float around, and one of them dead-ends. The working base is:</p>
+    <p><code>https://api.bls.gov/publicAPI/v2/timeseries/data/</code></p>
+    <p>The other spelling, <code>api.bls.gov/public/v2/...</code> without the "API", redirects to the marketing site and then refuses bots:</p>
+<pre>curl -s -o /dev/null -w "%{http_code} %{redirect_url}\n" \
+  "https://api.bls.gov/public/v2/timeseries/data/LNS14000000"
+# 301 https://www.bls.gov/public/v2/timeseries/data/LNS14000000</pre>
+    <p>Following that redirect lands on an <em>Access Denied</em> page with HTTP 403 and a note about bot activity. If your script gets a 403 from BLS, check the path before anything else: <code>/publicAPI/v2/</code> works, <code>/public/v2/</code> does not.</p>
+  </section>
+
+  <section aria-label="Series IDs worth calling">
+    <h2>Series IDs worth calling</h2>
+    <p>A BLS request is just a series ID. Two we tested live, both from the household and CPI surveys:</p>
+    <table>
+      <caption>Live-tested series, values from the API on 2026-09-07</caption>
+      <thead><tr><th>Series ID</th><th>What it is</th><th>Latest live value</th></tr></thead>
+      <tbody>
+        <tr><td><code>LNS14000000</code></td><td>Unemployment rate, seasonally adjusted, monthly</td><td>4.1 for August 2026</td></tr>
+        <tr><td><code>CUSR0000SEHA</code></td><td>CPI, rent of primary residence, seasonally adjusted, monthly (1982-84=100)</td><td>448.542 for July 2026</td></tr>
+      </tbody>
+    </table>
+    <p>The rent value cross-checks against the published CPI release: 448.542 in July 2026 against 436.050 in July 2025 is a 2.9 percent rise over twelve months, the same figure BLS printed in the July 2026 news release. For more IDs, browse <code>data.bls.gov/timeseries/</code> or use the series search on bls.gov; the API itself takes any valid ID in the same slot.</p>
+  </section>
+
+  <section aria-label="GET versus POST">
+    <h2>GET for one series, POST for several</h2>
+    <p>The GET form puts the series ID in the path. It returns the latest observations, and that is all most quick checks need:</p>
+<pre>curl -s "https://api.bls.gov/publicAPI/v2/timeseries/data/LNS14000000"
+# {"status":"REQUEST_SUCCEEDED","responseTime":88,"message":[],
+#  "Results":{"series":[{"seriesID":"LNS14000000","data":[
+#    {"year":"2026","period":"M08","periodName":"August",
+#     "latest":"true","value":"4.1","footnotes":[{}]},
+#    {"year":"2026","period":"M07","periodName":"July","value":"4.1"},
+#    {"year":"2026","period":"M06","periodName":"June","value":"4.2"},
+#    ...]}}</pre>
+    <p>The same JSON came back through <code>requests.get</code> in the first example. Note the <code>latest</code> flag on the newest observation and that <code>value</code> arrives as a string; cast it to float before doing math.</p>
+    <p>For multiple series, year ranges, or catalogs, switch to POST with a JSON body. One call can carry several series IDs:</p>
+<pre>import requests
+
+r = requests.post(
+    "https://api.bls.gov/publicAPI/v2/timeseries/data/",
+    json={
+        "seriesid": ["CUSR0000SEHA", "LNS14000000"],
+        "startyear": "2024",
+        "endyear": "2026",
+    },
+    timeout=30,
+)
+r.raise_for_status()
+payload = r.json()
+assert payload["status"] == "REQUEST_SUCCEEDED", payload["message"]
+for series in payload["Results"]["series"]:
+    latest = series["data"][0]
+    print(series["seriesID"], latest["periodName"], latest["year"], latest["value"])</pre>
+    <p>Output verbatim from the live run on 2026-09-07:</p>
+<pre>CUSR0000SEHA July 2026 448.542
+LNS14000000 August 2026 4.1</pre>
+    <p>Both series came back in one response, each under its own <code>seriesID</code> key, newest observation first. One POST spent one query of the daily budget instead of two, which matters at 25 per day.</p>
+  </section>
+
+  <section aria-label="Limits without a key">
+    <h2>The keyless limit: 25 queries a day, counted server-side</h2>
+    <p>BLS documents 25 queries per day without a registration key (500 per day with the free key from data.bls.gov). We tested the behavior by hammering the endpoint until it stopped answering: the first 16 calls in a burst returned <code>REQUEST_SUCCEEDED</code>, and every call after that returned HTTP 200 with a different body:</p>
+<pre>{
+ "status": "REQUEST_NOT_PROCESSED",
+ "responseTime": 0,
+ "message": [
+  "Request could not be serviced, as the daily threshold for total number of requests allocated to the user with registration key  has been reached."
+ ],
+ "Results": {}
+}</pre>
+    <p>Three things in that body matter for your code. The response is still HTTP 200, so <code>raise_for_status()</code> will not save you. The <code>Results</code> key holds an empty object, so indexing into it raises <code>KeyError</code>. And the real signal sits in <code>status</code>, which you have to check yourself:</p>
+<pre>import requests
+
+def bls_latest(series_id):
+    r = requests.get(
+        f"https://api.bls.gov/publicAPI/v2/timeseries/data/{series_id}",
+        timeout=30,
+    )
+    payload = r.json()
+    if payload["status"] != "REQUEST_SUCCEEDED":
+        raise RuntimeError(
+            payload["status"] + ": " + "; ".join(payload["message"])
+        )
+    return payload["Results"]["series"][0]["data"][0]</pre>
+    <p>Called after the counter ran out, that function raised <code>RuntimeError: REQUEST_NOT_PROCESSED: Request could not be serviced, as the daily threshold...</code>, which is the behavior you want instead of a silent empty result. Cache what you pull: the unemployment rate publishes monthly, so a script that runs hourly spends 720 queries a month on 12 distinct values.</p>
+    <p>The year window is generous without a key: a POST asking for 2023 through 2026 returned every month (44 observations), and a 10-year request came back intact with the message <em>Year range has been reduced to the system-allowed limit of 10 years.</em> BLS documents the per-request series cap at 25 for the keyless tier, and batching several IDs into one POST is the way to stretch the 25-a-day budget.</p>
+  </section>
+
+  <section aria-label="Why rent CPI lags">
+    <h2>Why the rent CPI lags the market by 9 to 12 months</h2>
+    <p>CUSR0000SEHA moves slowly by design, and scripts that treat it as a live rent feed get burned. BLS prices each sampled housing unit once every six months, most tenants are mid-lease when the survey reaches them, and renewals carry prior rent forward. The index at any release date blends leases signed across the past year or more, so a shift in asking rents takes roughly four quarters to work through to the printed number. That is the commonly cited 9-to-12-month lag, and it is why the index kept climbing while asking rents flattened in 2023.</p>
+    <p>Practical takeaway for code: use CUSR0000SEHA for smooth, consistent, month-over-month percent changes, and use asking-rent sources or HUD's FMR for current dollar levels. The full comparison of what each number measures lives in the <a href="hud-fmr-vs-cpi-rent.html">CPI rent vs HUD FMR guide</a>.</p>
+  </section>
+
+  <section aria-label="When you need more than the API gives">
+    <h2>When a pinned dataset beats the API</h2>
+    <p>Inside the keyless limits the API covers most one-off needs. It stops fitting when you need long history joined against other columns, repeatable runs that cannot spend the daily budget, or rows you can hand to someone else. That is the case for a pinned snapshot with a fixed schema, judged the way we describe in <a href="what-is-a-csv-sample.html">what is a CSV sample</a>: check the columns, encoding, and row count before you commit to the full file. For the rent side specifically, our <a href="fmr-dataset-download.html">FMR dataset download</a> gives you 51,895 ZIP-level rows as CSV, no daily counter involved.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>Is the BLS API free to use?</h3>
+    <p>Yes. The public data API v2 at api.bls.gov answers without any key or account, and every example on this page ran with a plain requests call. The keyless tier allows 25 queries per day; a free registration key from data.bls.gov raises the daily volume and unlocks longer request bodies.</p>
+    <h3>How many requests can I make to the BLS API without a key?</h3>
+    <p>25 queries per day. The responses carry no rate-limit headers, and when the counter runs out the API still returns HTTP 200 with status REQUEST_NOT_PROCESSED and the message Request could not be serviced, as the daily threshold for total number of requests allocated to the user with registration key has been reached. Every call counts, including the single-series GET form, so batch series into one POST when you need several.</p>
+    <h3>How do I pull unemployment or rent CPI from the BLS API in Python?</h3>
+    <p>Send the series ID to https://api.bls.gov/publicAPI/v2/timeseries/data/ with requests: LNS14000000 for the unemployment rate and CUSR0000SEHA for the CPI rent of primary residence index. The first example on this page returns the latest unemployment observation (4.1 for August 2026) in five lines of Python, and the POST example shows how to batch both series in one call.</p>
+  </section>
+
+  <section aria-label="Attribution">
+    <h2>Sources and license</h2>
+    <p>Data comes from the BLS Public Data API v2 (<code>api.bls.gov/publicAPI/v2/</code>), a public service of the U.S. Bureau of Labor Statistics; BLS data and the API responses are in the public domain. Limits quoted from BLS's developer documentation at bls.gov/developers. Live outputs on this page are quoted verbatim from calls made on 2026-09-07; values update as BLS publishes. Data Vault is not affiliated with the Bureau of Labor Statistics. This page covers data access and measurement; it is not economic or investment advice.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD FMR vs Zillow Rent Data: Why the Numbers Differ (FY2026 vs ZORI) | Data Vault</title>
+<meta name="description" content="HUD FMR vs Zillow rent data: the FY2026 2BR FMR median is $1,150, Zillow's ZORI typical US asking rent is $1,962. Both are right, and the gap comes from listed vs contracted rents, gross vs bare rent, and timing.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fmr-vs-zillow-rent.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="HUD FMR vs Zillow Rent Data: Why the Numbers Differ (FY2026 vs ZORI)">
+<meta property="og:description" content="The FY2026 2BR FMR median is $1,150, Zillow's ZORI typical US asking rent is $1,962. Both are right, and the gap comes from definitions, not mistakes.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fmr-vs-zillow-rent.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "HUD FMR vs Zillow Rent Data: Why the Numbers Differ (FY2026 vs ZORI)", "description": "HUD FMR vs Zillow rent data: the FY2026 2BR FMR median is $1,150, Zillow's ZORI typical US asking rent is $1,962. Both are right, and the gap comes from listed vs contracted rents, gross vs bare rent, and timing.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fmr-vs-zillow-rent.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Why is Zillow's rent number so much higher than HUD's FMR?", "acceptedAnswer": {"@type": "Answer", "text": "The two numbers measure different things. ZORI tracks typical asking rents across all bedroom sizes, weighted toward big listing markets like New York, Los Angeles, and Chicago. The FMR is a 40th percentile gross rent estimate, deliberately set below the middle of the market, built for standard-quality units and set per market area. On top of that, the FMR includes utilities and Zillow asking rents usually do not, and FY2026 FMRs come from survey data collected before the release while ZORI moves monthly. The $1,150 versus $1,962 gap is the sum of those differences, not an error in either series."}}, {"@type": "Question", "name": "Can I download Zillow rent data the way I download HUD's FMR file?", "acceptedAnswer": {"@type": "Answer", "text": "Not on the same terms. HUD publishes FMRs as free government data in the public domain, so the FY2026 file can be downloaded, redistributed, and loaded into a pipeline without restrictions. Zillow publishes ZORI as a research series whose use is governed by Zillow's terms, and the data pages block scripted access outright; a plain command-line fetch of the Zillow research data page returns HTTP 403. For bulk work or agent pipelines, the FMR file is the series you can move freely."}}, {"@type": "Question", "name": "Which rent number should I use, HUD FMR or Zillow?", "acceptedAnswer": {"@type": "Answer", "text": "Use the FMR for anything tied to the Housing Choice Voucher program, because payment standards are set directly from it, and for any analysis that needs every ZIP code in the country including rural ones. Use ZORI for market research on asking rents, timing a lease or a purchase, or tracking month-to-month rent momentum in big metros. If a comparison needs both, match the bedroom size, add utilities to the asking rent, and remember one number is a 40th percentile while the other tracks the listed market."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>HUD FMR vs Zillow rent data: two numbers, two jobs</h1>
+  <p class="byline">Published 2026-09-10. Data sources: HUD, public domain; Zillow Observed Rent Index as published by Zillow. Data Vault is not affiliated with HUD or Zillow. This page covers data and measurement; it is not housing or legal advice.</p>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>People search "HUD FMR vs Zillow" after seeing the two numbers side by side and finding a gap of several hundred dollars. The FY2026 2-bedroom FMR median across all 51,895 ZIP rows is 1,150. Zillow's Zillow Observed Rent Index (ZORI) put the typical US asking rent at 1,962 in July 2026. Both numbers are correct. They measure different markets, on different bases, on different clocks, and neither can stand in for the other.</p>
+    <p>HUD FMR is a federal benchmark: the 40th percentile of gross rent, shelter rent plus utilities, for standard-quality units in each market area, published once a fiscal year as free public-domain data. Housing agencies use it to set payment standards for the Housing Choice Voucher (HCV) program. ZORI is a market series: a monthly index of typical asking rents drawn from listings on Zillow, updated every month, with use governed by Zillow's terms rather than a free license.</p>
+  </section>
+
+  <section aria-label="What each number measures">
+    <h2>What each number measures</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="HUD FMR vs Zillow ZORI comparison"><table><thead><tr><th scope="col"></th><th scope="col">HUD FMR (FY2026)</th><th scope="col">Zillow ZORI</th></tr></thead><tbody>
+      <tr><td>What it is</td><td>40th percentile gross rent estimate per market area or ZIP</td><td>Monthly index of typical asking rents on Zillow listings</td></tr>
+      <tr><td>Position in the market</td><td>Deliberately below the middle: 40 percent of units rent below it, 60 above</td><td>Tracks the typical listed rent, roughly the middle of what landlords ask</td></tr>
+      <tr><td>Rent basis</td><td>Gross: shelter rent plus utilities</td><td>Asking rent for the unit; utilities usually billed separately</td></tr>
+      <tr><td>Geography</td><td>51,895 ZIP codes, metro and nonmetro, every state and territory</td><td>Metro and ZIP series where Zillow listing volume supports one; thin in rural areas</td></tr>
+      <tr><td>Update cycle</td><td>Once a fiscal year, built from survey data collected before the release</td><td>Every month, current listings</td></tr>
+      <tr><td>Access</td><td>Free download, public domain, redistributable</td><td>Published research series; use governed by Zillow terms, scripted access blocked</td></tr>
+      <tr><td>Primary use</td><td>HCV payment standards, official rent benchmark, research</td><td>Market research, rent trends, journalism on asking rents</td></tr>
+    </tbody></table></div>
+    <p>What the FMR side of this table means, percentile and all: <a href="hud-rent-data-explained.html">HUD fair market rent data, explained</a> walks the definition and the full ZIP file column by column.</p>
+  </section>
+
+  <section aria-label="Why the numbers differ">
+    <h2>Why the two numbers differ</h2>
+    <p><b>Listed vs contracted.</b> ZORI reads the asking prices on listings, the first number a renter sees. HUD builds FMRs from survey data on rents people actually pay after the deal, adjusted for recent-mover costs. Asking rents move first and sit higher in a rising market; contracted rents lag and carry older, lower leases inside their average.</p>
+    <p><b>Gross vs bare.</b> The FMR includes utilities, because a voucher has to cover what a standard unit costs to live in, heat and water included. Listing prices quote shelter rent and leave utilities as a separate bill. A Zillow asking rent equal to the FMR in dollars is cheaper in real terms, which pushes the market number up relative to the federal one even before anything else differs.</p>
+    <p><b>A 40th percentile vs a typical rent.</b> HUD sets the FMR below the market middle on purpose, so a voucher finds units in a wide range of neighborhoods. ZORI tracks the typical asking rent, which sits near the middle of the listing distribution. Even on the same units, the same month, the same basis, these two positions differ by construction.</p>
+    <p><b>Timing.</b> FY2026 FMRs hold for the whole fiscal year from survey waves collected before the release. ZORI updates monthly and reflects the current listing market, concessions and all. In fast markets the two clocks drift apart within months of each HUD release.</p>
+    <p><b>Coverage and mix.</b> The FMR file covers every ZIP code, small towns included, and the 1,150 median below is a straight median across ZIP rows, where low-rent rural ZIPs are as present as big cities. ZORI needs listing volume, so its national figure leans toward large metros. The bedroom mix differs too: ZORI's headline covers all sizes, the FMR median here is 2-bedroom only.</p>
+  </section>
+
+  <section aria-label="The two numbers side by side">
+    <h2>The two numbers, side by side</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="FMR median vs ZORI typical asking rent"><table><thead><tr><th scope="col">Series</th><th scope="col">Value</th><th scope="col">What it counts</th></tr></thead><tbody>
+      <tr><td>HUD FMR, 2BR, FY2026</td><td>1,150 monthly median</td><td>Median fmr_2br across the 51,895 ZIP rows of the full file, gross rent, utilities included</td></tr>
+      <tr><td>Zillow ZORI, US, July 2026</td><td>1,962 typical asking rent</td><td>Typical US asking rent across Zillow listings, all bedroom sizes, shelter rent</td></tr>
+    </tbody></table></div>
+    <p>The gap is about 812 a month, 71 percent. Split it against the list above: the 40th percentile position pulls the FMR down first, the utilities add back to the FMR, the all-bedroom big-metro mix pulls ZORI up, and twelve months of listing drift does the rest. No single factor explains the gap, which is why dividing one number by the other and calling the result a market finding is the mistake to avoid.</p>
+    <p>The ZORI figure comes from Zillow's own release: "typical U.S. asking rent rose to $1,962 in July, up 2.3% annually" (<a href="https://zillow.mediaroom.com/2026-08-18-Rents-near-2%2C000%2C-rising-at-the-fastest-pace-in-over-a-year" rel="noopener">Zillow press release, August 18, 2026</a>). Zillow keeps the underlying series on its research data page at research.zillowgroup.com/data, a page that returned HTTP 403 to this site's plain command-line fetch, which is one more signal about how the data can and cannot be accessed.</p>
+    <p>For the FMR side, the numbers above come straight from the pack: the <a href="fmr-dataset-download.html">FMR dataset download guide</a> shows the full-file stats behind the 1,150 median, and the <a href="../datasets/hud-fmr-2026.html">HUD FMR FY2026 dataset page</a> has the free sample.</p>
+  </section>
+
+  <section aria-label="Which number for which job">
+    <h2>Which number for which job</h2>
+    <p><b>Housing Choice Voucher work: FMR only.</b> Payment standards are set as a band around the FMR, typically 90 to 110 percent, so voucher affordability math has one legal input. <a href="hud-payment-standard.html">The HUD payment standard guide</a> shows the band per ZIP. ZORI has no standing in that calculation.</p>
+    <p><b>Market research: ZORI, or FMR with caveats.</b> Timing a lease, pricing a unit, or tracking rent momentum in big metros is what a monthly asking-rent index is for. For annual, whole-country work, especially anywhere outside big metros, the FMR file is the benchmark that exists everywhere, and the <a href="fmr-vs-rent-actuals.html">FMR vs actual rent guide</a> covers how to compare it against listing prices without fooling yourself.</p>
+    <p><b>Bulk data and agent pipelines: FMR.</b> The FMR is public domain, so the full 51,895-row file downloads, redistributes, and loads into pipelines with no terms gate; the <a href="hud-fmr-by-zip.html">HUD FMR by ZIP guide</a> shows worked lookups over MCP. Zillow's series is a research product with use restrictions and blocked scripted access, so anything automated points at HUD's file first.</p>
+    <p>One more benchmark belongs in the same family: the census median gross rent, a 50th percentile figure with utilities included, from survey data. <a href="hud-fmr-vs-census-rent.html">HUD FMR vs census rent</a> compares those two across five states.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>HUD FMR vs Zillow questions</h2>
+    <dl>
+      <dt>Why is Zillow's rent number so much higher than HUD's FMR?</dt>
+      <dd>The two numbers measure different things. ZORI tracks typical asking rents across all bedroom sizes, weighted toward big listing markets like New York, Los Angeles, and Chicago. The FMR is a 40th percentile gross rent estimate, deliberately set below the middle of the market, built for standard-quality units and set per market area. On top of that, the FMR includes utilities and Zillow asking rents usually do not, and FY2026 FMRs come from survey data collected before the release while ZORI moves monthly. The $1,150 versus $1,962 gap is the sum of those differences, not an error in either series.</dd>
+      <dt>Can I download Zillow rent data the way I download HUD's FMR file?</dt>
+      <dd>Not on the same terms. HUD publishes FMRs as free government data in the public domain, so the FY2026 file can be downloaded, redistributed, and loaded into a pipeline without restrictions. Zillow publishes ZORI as a research series whose use is governed by Zillow's terms, and the data pages block scripted access outright; a plain command-line fetch of the Zillow research data page returns HTTP 403. For bulk work or agent pipelines, the FMR file is the series you can move freely.</dd>
+      <dt>Which rent number should I use, HUD FMR or Zillow?</dt>
+      <dd>Use the FMR for anything tied to the Housing Choice Voucher program, because payment standards are set directly from it, and for any analysis that needs every ZIP code in the country including rural ones. Use ZORI for market research on asking rents, timing a lease or a purchase, or tracking month-to-month rent momentum in big metros. If a comparison needs both, match the bedroom size, add utilities to the asking rent, and remember one number is a 40th percentile while the other tracks the listed market.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <p>The FMR sample behind the 1,150 median downloads free: 22 ZIP rows from Abilene, TX with all five bedroom sizes. The full pack carries all three CSVs (51,895 + 3,229 + 52 rows), the data dictionary, and source checksums.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>Download FMR sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">Get full FMR data</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. FMR source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release, huduser.gov, public domain. ZORI figure: Zillow press release, August 18, 2026. Data Vault is not affiliated with HUD or Zillow.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Airbnb Price Data: Mean and Median Nightly Price in 6 US Cities | Data Vault</title>
+<meta name="description" content="Airbnb price data for 6 US cities from 90,169 listings: mean and median nightly price per city, why the two numbers differ, and what a snapshot date means for pricing work. Free sample CSV.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/airbnb-price-data.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Airbnb Price Data: Mean and Median Nightly Price in 6 US Cities">
+<meta property="og:description" content="Mean and median nightly price per city from 90,169 Airbnb listings across Austin, Nashville, Denver, NYC, Las Vegas and San Diego, plus what snapshot dates mean for pricing work.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/airbnb-price-data.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Airbnb Price Data: Mean and Median Nightly Price in 6 US Cities", "description": "Mean and median nightly price per city from 90,169 Airbnb listings across six US markets, why the two numbers differ, and what snapshot dates mean for pricing work.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/airbnb-price-data.html", "about": {"@type": "Dataset", "name": "Airbnb Listings, 6 US Cities", "url": "https://jayjex.github.io/data-vault/datasets/airbnb-six-cities.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the average Airbnb nightly price in these 6 US cities?", "acceptedAnswer": {"@type": "Answer", "text": "Across the 90,169 listings in this pack, mean nightly prices run from 267.35 dollars in New York City to 483.80 dollars in San Diego. The other four cities sit between: Austin 352.25, Nashville 374.08, Denver 276.04, and Las Vegas (Clark County) 334.89. Medians are lower everywhere, from 175.30 in New York City to 322.92 in San Diego."}}, {"@type": "Question", "name": "Why is the mean nightly price so much higher than the median?", "acceptedAnswer": {"@type": "Answer", "text": "The price column is right-skewed: a small number of luxury listings at 2,000 to 10,000 dollars per night pull the mean up while barely moving the median. In San Diego the mean is 483.80 against a median of 322.92, a gap of about 161 dollars. Use the median when you want the typical listing and the mean when you are estimating revenue per listing across a market."}}, {"@type": "Question", "name": "Are these Airbnb prices live?", "acceptedAnswer": {"@type": "Answer", "text": "No. Every city was captured on a single date, between 2026-06-22 and 2026-08-10 depending on the city. The numbers describe the market on that day, and hosts change prices constantly. For a current view you need a newer snapshot: either the next Inside Airbnb release for that city or a repeated scrape of your own."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Airbnb price data: mean and median nightly price in 6 US cities</h1>
+  <p class="byline">Published 2026-09-10. Source: Inside Airbnb, CC BY 4.0. Data Vault is not affiliated with Airbnb or Inside Airbnb. This page documents the data; it is not pricing or investment advice.</p>
+
+  <section aria-label="What this Airbnb price data covers">
+    <p>Anyone searching for Airbnb price data hits the same wall: published market reports give one blended number per country, and scraping Airbnb directly gets accounts blocked. This page sits in between. It works from 90,169 individual listings across 6 US cities, reads the <code>price</code> column of each city's CSV, and reports two numbers per city: the mean and the median nightly rate. All figures below were computed from the shipped CSVs with Python; the code is <code>normalize.py</code> in the pack.</p>
+    <p>Snapshots were taken between 2026-06-22 and 2026-08-10, one date per city. A listing counts once, as it stood on its city's snapshot day.</p>
+  </section>
+
+  <section aria-label="Mean and median nightly price per city">
+    <h2>Mean and median nightly price, city by city</h2>
+    <p>The entire-home column is the median for that room type alone, the closest thing to a like-for-like comparison across markets with different room mixes:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Per-city mean and median nightly price table"><table>
+      <thead><tr><th scope="col">City</th><th scope="col">Listings</th><th scope="col">Snapshot</th><th scope="col">Mean nightly</th><th scope="col">Median nightly</th><th scope="col">Median, entire home</th></tr></thead>
+      <tbody>
+        <tr><td>Austin, TX</td><td>11,295</td><td>2026-06-22</td><td>$352.25</td><td>$217.00</td><td>$233.38</td></tr>
+        <tr><td>Nashville, TN</td><td>10,242</td><td>2026-06-26</td><td>$374.08</td><td>$281.54</td><td>$290.50</td></tr>
+        <tr><td>Denver, CO</td><td>4,939</td><td>2026-06-30</td><td>$276.04</td><td>$176.45</td><td>$191.00</td></tr>
+        <tr><td>New York City, NY</td><td>30,234</td><td>2026-08-10</td><td>$267.35</td><td>$175.30</td><td>$210.00</td></tr>
+        <tr><td>Las Vegas (Clark County), NV</td><td>20,234</td><td>2026-06-27</td><td>$334.89</td><td>$234.00</td><td>$250.00</td></tr>
+        <tr><td>San Diego, CA</td><td>13,225</td><td>2026-06-27</td><td>$483.80</td><td>$322.92</td><td>$361.00</td></tr>
+      </tbody>
+    </table></div>
+    <p>Three things stand out. San Diego is the most expensive market on every measure, with an entire-home median of $361 against Denver's $191. New York City looks cheap on the mean ($267.35) for a reason the room mix explains: 42 percent of its rows are private rooms after the city's short-term-rental registration rules, and private rooms price far below whole units. And every mean sits well above every median, which the next section explains.</p>
+  </section>
+
+  <section aria-label="Mean versus median">
+    <h2>Why the mean and median differ, and which to use</h2>
+    <p>Nightly prices skew right. Most listings cluster between $80 and $300, but a tail of luxury units at $2,000, $5,000 and higher drags the average upward. The median ignores that tail, so it answers a different question than the mean. The gap is widest in San Diego ($483.80 mean against $322.92 median, about $161) and narrowest in New York City and Nashville (about $92 each).</p>
+    <p>Which number you want depends on the job. For "what does a typical listing cost here," use the median. For "if I list a property, what does the average listing earn per booked night," the mean is the closer starting point, though it still overstates what a typical unit earns. For revenue modeling across a whole market, the mean is what multiplies out against listing counts. Rooms with small counts, like hotel rooms in Denver (n=23), are too thin to compare at all.</p>
+  </section>
+
+  <section aria-label="Snapshot versus live pricing">
+    <h2>Snapshot data versus live prices</h2>
+    <p>Each city's file is one scrape on one day. Austin is the market as of 2026-06-22; New York City as of 2026-08-10; the other four late in June. That makes every number on this page reproducible: rerun the same computation against the same file and you get the same values. A live price feed makes the opposite trade, current numbers with no way to reproduce yesterday's.</p>
+    <p>What a snapshot cannot tell you: prices set after the scrape date, weekend versus weekday dynamics, and occupancy. Hosts reprice constantly, so treat a snapshot median as the market's shape, not its current level. When you need fresh numbers, the options are the next Inside Airbnb release for that city or running your own scrape on a schedule. For most pricing work, a quarterly snapshot is enough to see trend, and it keeps every past number auditable.</p>
+  </section>
+
+  <section aria-label="Reproduce these numbers">
+    <h2>Reproduce the table yourself</h2>
+    <p>Every figure above comes from one line of pandas-shaped logic per city:</p>
+    <pre><code>import csv, statistics
+rows = list(csv.DictReader(open("listings-summary.csv")))
+prices = [float(r["price"]) for r in rows]
+print(statistics.mean(prices), statistics.median(prices))</code></pre>
+    <p>Run it against any city's CSV in the pack and you should get the table's numbers to the cent. The <a href="../data/airbnb-six-cities/sample.csv">free 20-row sample CSV</a> carries the same 12 columns if you want to test the pipeline before committing to anything, and the <a href="airbnb-data-guide.html">column-by-column data guide</a> explains the rest of the schema.</p>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the price data</h2>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/airbnb-six-cities/sample.csv" download>Download free sample (CSV)</a>
+      <a class="btn" href="../datasets/airbnb-six-cities.html">Airbnb Listings, 6 US Cities</a>
+    </div>
+    <p class="btn-note">Full pack: 90,169 rows, per-city CSVs, data dictionary, methodology, source checksums. Per-city row counts and snapshot dates: <a href="airbnb-data-by-city.html">Airbnb data by city</a>.</p>
+  </section>
+
+  <section aria-label="More datasets">
+    <h2>More from the catalog</h2>
+    <ul>
+      <li><a href="airbnb-data-by-city.html">Airbnb data by city</a>: rows, snapshots, and medians for all six markets, one query per city</li>
+      <li><a href="airbnb-investment-analysis.html">Airbnb rental analysis</a>: a worked market screen with limits and a not-investment-advice disclaimer</li>
+      <li><a href="inside-airbnb-alternative.html">Inside Airbnb alternative</a>: what the 6-city pack adds over the raw per-city files</li>
+      <li><a href="../datasets/hud-fmr-2026.html">HUD Fair Market Rents FY2026</a>: 51,895 ZIP codes, pairs well with Airbnb pricing</li>
+      <li><a href="../agents/">For agents</a>: endpoint docs and worked examples</li>
+    </ul>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>What is the average Airbnb nightly price in these 6 US cities?</h3>
+    <p>Across the 90,169 listings in this pack, mean nightly prices run from $267.35 in New York City to $483.80 in San Diego. The other four cities sit between: Austin 352.25, Nashville 374.08, Denver 276.04, and Las Vegas (Clark County) 334.89. Medians are lower everywhere, from $175.30 in New York City to $322.92 in San Diego.</p>
+    <h3>Why is the mean nightly price so much higher than the median?</h3>
+    <p>The price column is right-skewed: a small number of luxury listings at $2,000 to $10,000 per night pull the mean up while barely moving the median. In San Diego the mean is $483.80 against a median of $322.92, a gap of about 161 dollars. Use the median when you want the typical listing and the mean when you are estimating revenue per listing across a market.</p>
+    <h3>Are these Airbnb prices live?</h3>
+    <p>No. Every city was captured on a single date, between 2026-06-22 and 2026-08-10 depending on the city. The numbers describe the market on that day, and hosts change prices constantly. For a current view you need a newer snapshot: either the next Inside Airbnb release for that city or a repeated scrape of your own.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

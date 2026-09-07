@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Payment Standard for Section 8: The 90%-110% FMR Band, FY2026 | Data Vault</title>
+<meta name="description" content="How the Section 8 payment standard is set: 90% to 110% of HUD's FMR. FY2026 example from Abilene, TX, worked from the FMR file: metro band 981 to 1,199 dollars, SAFMR ZIP 79605 band 1,224 to 1,496 dollars, plus the 40% move-in cap.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/fmr-payment-standard.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Payment Standard for Section 8: The 90%-110% FMR Band, FY2026">
+<meta property="og:description" content="How the Section 8 payment standard is set: 90% to 110% of HUD's FMR. FY2026 Abilene, TX example worked from the FMR file, plus the 40% move-in cap.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/fmr-payment-standard.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Payment Standard for Section 8: The 90%-110% FMR Band, FY2026", "description": "How the Section 8 payment standard is set: 90% to 110% of HUD's FMR. FY2026 example from Abilene, TX, worked from the FMR file: metro band 981 to 1,199 dollars, SAFMR ZIP 79605 band 1,224 to 1,496 dollars, plus the 40% move-in cap.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/fmr-payment-standard.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Payment standard for Section 8", "item": "https://jayjex.github.io/data-vault/guides/fmr-payment-standard.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the payment standard in Section 8?", "acceptedAnswer": {"@type": "Answer", "text": "The payment standard is the figure your public housing agency uses as the subsidy ceiling for each bedroom size, and federal rules put it between 90% and 110% of HUD's fair market rent for your area. The voucher then pays the payment standard minus your share of rent, which is generally 30% of monthly adjusted income. In Abilene, TX, the FY2026 two-bedroom metro FMR is 1,090 dollars, so a two-bedroom payment standard there has to sit between 981 and 1,199 dollars unless HUD approved an exception."}}, {"@type": "Question", "name": "How is the HUD payment standard calculated from the FMR?", "acceptedAnswer": {"@type": "Answer", "text": "Take the area's FMR for the bedroom size and multiply by 0.90 and 1.10; those two values are the floor and ceiling of the band, and the agency picks one point inside. Worked from the FY2026 ZIP file: the base two-bedroom FMR for the Abilene, TX MSA is 1,090 dollars, giving a band of 981 to 1,199 dollars. ZIP 79605 carries a two-bedroom FMR of 1,360 dollars because it is a designated Small Area FMR ZIP, and its band runs 1,224 to 1,496 dollars. The agency's published schedule says where inside the band it actually set the number."}}, {"@type": "Question", "name": "What is the 40% rule for Section 8 move-in?", "acceptedAnswer": {"@type": "Answer", "text": "At lease-up on a new unit, your total share, meaning the 30% of adjusted income plus any difference between the rent and the payment standard, cannot exceed 40% of your monthly adjusted income. Example: with 1,500 dollars in monthly adjusted income, your 30% share is 450 dollars and the cap is 600 dollars. With a payment standard of 1,090 dollars, the highest rent this household can take on at move-in is 1,240 dollars, because 450 dollars plus the 150-dollar excess lands exactly on the cap. After move-in, a rent increase or an income drop can push the effective share higher."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Payment standard for Section 8: the 90%-110% band around the FMR</h1>
+  <p class="byline">FY2026 edition, published 2026-09-10. Data source: HUD, public domain. Data Vault is not affiliated with HUD. This page documents the data and the arithmetic; it is not housing or legal advice, and your housing agency's calculation is the one that counts.</p>
+
+  <section aria-label="What the payment standard is in Section 8">
+    <h2>What the payment standard does in the voucher math</h2>
+    <p>In the Section 8 program, formally the Housing Choice Voucher program, the payment standard is the subsidy ceiling your public housing agency (PHA) sets for each bedroom size. Federal regulations require it to fall between 90% and 110% of HUD's fair market rent for the area, unless HUD approves an exception. The voucher pays the gap between that standard and your share of rent, which is generally 30% of monthly adjusted income:</p>
+    <pre><code>payment standard low  = FMR × 0.90
+payment standard high = FMR × 1.10
+voucher pays          = payment standard − your 30% share</code></pre>
+    <p>Two numbers therefore decide what the voucher pays on any lease: the payment standard, which belongs to the area and bedroom size, and your income share, which moves with each household. The income side, including deductions and the minimum rent rules, is worked through with FY2026 numbers in <a href="section-8-voucher-rent.html">Section 8 voucher rent</a>. This page stays on the payment standard side and shows where the band comes from, computed from the real FY2026 file.</p>
+  </section>
+
+  <section aria-label="The band computed from Abilene, TX">
+    <h2>The band, computed: Abilene, TX, two bedrooms</h2>
+    <p>The FY2026 ZIP-level FMR file in the <a href="../datasets/hud-fmr-2026.html">HUD FMR pack</a> holds 51,895 ZIP rows. Filter it for the Abilene, TX MSA (hud_area_code METRO10180M10180) and 33 ZIP rows come back. Thirteen of them sit at the metro base two-bedroom FMR of 1,090 dollars; the rest carry ZIP-level Small Area FMR values that run up to 1,900 dollars in ZIP 79562. Run the band formula on the base figure:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Payment standard band from the Abilene metro base FMR"><table><thead><tr><th scope="col">Basis</th><th scope="col">FMR 2BR</th><th scope="col">Band low (90%)</th><th scope="col">Band high (110%)</th></tr></thead><tbody>
+      <tr><td>Abilene, TX MSA base</td><td>1,090</td><td>981</td><td>1,199</td></tr>
+      <tr><td>Abilene ZIP 79508 (SAFMR, from the free sample)</td><td>1,240</td><td>1,116</td><td>1,364</td></tr>
+      <tr><td>Abilene ZIP 79605 (SAFMR)</td><td>1,360</td><td>1,224</td><td>1,496</td></tr>
+    </tbody></table></div>
+    <p>Every value in the table is verbatim from fmr-by-zip-2026.csv; the multiplication is the only operation applied. The full row for ZIP 79605, for reference:</p>
+    <pre><code>79605,METRO10180M10180,metro,"Abilene, TX MSA",TX,1080,1090,1360,1760,2120</code></pre>
+    <p>One HUD metro, three different bands, all legal. A household in ZIP 79605 falls under a band whose floor, 1,224 dollars, sits above the metro base band's ceiling of 1,199 dollars. Whether the payment standard that applies to a given address is the metro figure or the ZIP figure depends on HUD's Small Area FMR designation; <a href="hud-fmr-by-zip.html">FMR by ZIP code</a> shows how to pull any single ZIP row out of the file, and <a href="hud-fmr-safmr-list.html">HUD SAFMR list</a> ranks the ZIPs that sit farthest from their metro base.</p>
+  </section>
+
+  <section aria-label="Where in the band the agency sets the number">
+    <h2>Who picks the point inside the band, and why they differ</h2>
+    <p>HUD publishes the FMR and defines the band. The payment standard itself is one point inside that band, chosen by each agency and published in its administrative plan and schedule. One agency may sit near the 90% floor to stretch its budget across more households; another may sit near the 110% ceiling so families can reach more units in a tight market. Both stay inside the rules, which is why the same metro can carry different payment standards at different agencies, and why no national table can tell you your number. In metros with designated SAFMR ZIPs, HUD requires ZIP-level payment standards in those ZIPs, so the 79605 household falls under a band built from 1,360 dollars even though the metro base is 1,090.</p>
+    <p>HUD can also approve payment standards above 110% where the FMR lags the market. That exception path lives in the agency's own schedule, not in HUD's file. The concept-level comparison between the two numbers, what HUD sets versus what the agency sets, is in <a href="hud-payment-standard.html">HUD payment standard</a>, and <a href="hud-fair-market-rent-calculator.html">the FMR calculator guide</a> runs the multiplication for any area you look up.</p>
+  </section>
+
+  <section aria-label="The 40% cap at move-in">
+    <h2>The 40% cap at move-in</h2>
+    <p>One federal guardrail closes the loop between the band and the family. At lease-up on a new unit, the household's total share, the 30% of adjusted income plus any excess rent above the payment standard, cannot exceed 40% of monthly adjusted income. Worked example, with the Abilene base standard of 1,090 dollars:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="40 percent move-in cap worked example"><table><thead><tr><th scope="col">Step</th><th scope="col">Value</th></tr></thead><tbody>
+      <tr><td>Monthly adjusted income (example)</td><td>1,500 dollars</td></tr>
+      <tr><td>30% share at lease-up</td><td>450</td></tr>
+      <tr><td>40% cap</td><td>600</td></tr>
+      <tr><td>Payment standard</td><td>1,090</td></tr>
+      <tr><td>Highest approvable rent: 1,090 + (600 − 450)</td><td>1,240</td></tr>
+    </tbody></table></div>
+    <p>The household pays 450 dollars toward the standard, the voucher covers 640 dollars, and the family can accept a rent up to 1,240 dollars by paying the 150-dollar excess out of pocket, which lands the total exactly on the 600-dollar cap. A unit asking 1,300 dollars fails the test at move-in for this income. The cap applies at lease-up on a new unit; after move-in, a rent increase or an income drop can push the effective share higher, and the annual recertification is where the agency recalculates. The full voucher-side arithmetic sits in <a href="section-8-voucher-rent.html">Section 8 voucher rent</a>.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>Payment standard questions</h2>
+    <dl>
+      <dt>What is the payment standard in Section 8?</dt>
+      <dd>The payment standard is the figure your public housing agency uses as the subsidy ceiling for each bedroom size, and federal rules put it between 90% and 110% of HUD's fair market rent for your area. The voucher then pays the payment standard minus your share of rent, which is generally 30% of monthly adjusted income. In Abilene, TX, the FY2026 two-bedroom metro FMR is 1,090 dollars, so a two-bedroom payment standard there has to sit between 981 and 1,199 dollars unless HUD approved an exception.</dd>
+      <dt>How is the HUD payment standard calculated from the FMR?</dt>
+      <dd>Take the area's FMR for the bedroom size and multiply by 0.90 and 1.10; those two values are the floor and ceiling of the band, and the agency picks one point inside. Worked from the FY2026 ZIP file: the base two-bedroom FMR for the Abilene, TX MSA is 1,090 dollars, giving a band of 981 to 1,199 dollars. ZIP 79605 carries a two-bedroom FMR of 1,360 dollars because it is a designated Small Area FMR ZIP, and its band runs 1,224 to 1,496 dollars. The agency's published schedule says where inside the band it actually set the number.</dd>
+      <dt>What is the 40% rule for Section 8 move-in?</dt>
+      <dd>At lease-up on a new unit, your total share, meaning the 30% of adjusted income plus any difference between the rent and the payment standard, cannot exceed 40% of your monthly adjusted income. Example: with 1,500 dollars in monthly adjusted income, your 30% share is 450 dollars and the cap is 600 dollars. With a payment standard of 1,090 dollars, the highest rent this household can take on at move-in is 1,240 dollars, because 450 dollars plus the 150-dollar excess lands exactly on the cap. After move-in, a rent increase or an income drop can push the effective share higher.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <p>Start with the free 22-row sample to check the schema (ZIP 79508 from the band table above is in it), then take the full pack: all three CSVs (51,895 ZIP rows, 3,229 county rollups, 52 state rows), the data dictionary, and source checksums.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">Get the full dataset</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release, huduser.gov. US government data, public domain. Data Vault is not affiliated with HUD.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

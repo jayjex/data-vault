@@ -34,6 +34,7 @@ FY2026 fair market rents for 51,895 ZIP codes, 3,229 counties, and 52 states. Fi
 - Sample JSON: https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.json
 - Sample CSV: https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.csv
 - Page: https://jayjex.github.io/data-vault/datasets/airbnb-six-cities.html
+- Guide (per-city view): https://jayjex.github.io/data-vault/guides/airbnb-data-by-city.html
 - Full data: [Get full data](https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtpkvxdf)
 
 ### Superteam Earn Live Listings (earn-bounties)

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Airbnb Data by City: 6 US Markets, Rows and Median Prices | Data Vault</title>
+<meta name="description" content="Airbnb data by city: per-city listing counts, snapshot dates, and median nightly prices for Austin, Nashville, Denver, New York City, Las Vegas, and San Diego, plus one MCP query example per city.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/airbnb-data-by-city.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Airbnb Data by City: 6 US Markets, Rows and Median Prices | Data Vault">
+<meta property="og:description" content="Per-city Airbnb listings data: 90,169 rows across 6 US cities with row counts, snapshot dates, median nightly prices, and a query example for each market.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/airbnb-data-by-city.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Airbnb Data by City: 6 US Markets, Rows and Median Prices", "description": "Per-city Airbnb listings data: row counts, snapshot dates, and median nightly prices for six US cities, with one query example per city over the dataset-mcp server.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/airbnb-data-by-city.html", "about": {"@type": "Dataset", "name": "Airbnb Listings, 6 US Cities", "url": "https://jayjex.github.io/data-vault/datasets/airbnb-six-cities.html"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Airbnb data by city", "item": "https://jayjex.github.io/data-vault/guides/airbnb-data-by-city.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+{"@type": "Question", "name": "How do I get Airbnb data for one specific city?", "acceptedAnswer": {"@type": "Answer", "text": "Three routes. The free 20-row sample CSV shows the schema on Austin rows. The full pack ships one CSV per city (airbnb-austin.csv, airbnb-nashville.csv, airbnb-denver.csv, airbnb-new-york-city.csv, airbnb-clark-county-nv.csv, airbnb-san-diego.csv), 90,169 rows in total. Or query a single city file over MCP without downloading anything: query_dataset(\"airbnb-six-cities\", {file: \"airbnb-austin.csv\", limit: 5})."}},
+{"@type": "Question", "name": "Which cities does the Airbnb 6-city dataset cover?", "acceptedAnswer": {"@type": "Answer", "text": "Austin, TX (11,295 listings, snapshot 2026-06-22), Nashville, TN (10,242, 2026-06-26), Denver, CO (4,939, 2026-06-30), New York City, NY (30,234, 2026-08-10), Las Vegas Clark County, NV (20,234, 2026-06-27), and San Diego, CA (13,225, 2026-06-27). That is 90,169 listings in one shared 12-column schema, built from Inside Airbnb summary data."}},
+{"@type": "Question", "name": "How do I compare Airbnb prices across these cities?", "acceptedAnswer": {"@type": "Answer", "text": "Use cities-index.csv, the 6-row per-city summary that ships with the free sample: it carries row counts, median nightly prices (175 to 323 USD), and room-type mix for all six markets. Medians travel better than means because a few very expensive listings skew averages. One caveat: each city was captured on its own snapshot date, June through August 2026, so treat the comparison as a screen, not a same-day quote."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../datasets/airbnb-six-cities.html">Airbnb dataset</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Airbnb data by city: 6 US markets, one schema</h1>
+  <p class="byline">Per-city view of the <a href="../datasets/airbnb-six-cities.html">Airbnb Listings, 6 US Cities</a> pack · 90,169 rows · snapshots June&ndash;August 2026 · source: Inside Airbnb, CC BY 4.0.</p>
+
+  <section aria-label="Quick answer">
+    <p>Most Airbnb datasets force a choice: one giant multi-city file where you filter everything yourself, or a scatter of per-city downloads with different column names. This catalog does neither. You get one file per city, all six in the same 12-column schema, so a query written for Austin runs unchanged against San Diego. A 6-row summary (cities-index.csv) sits on top with row counts, median nightly prices, and room-type mix per market.</p>
+    <p>The table below is that summary. Pick a city, see its size and its median, then take one of the copy-paste queries further down to open just that market.</p>
+  </section>
+
+  <section aria-label="Per-city table">
+    <h2>The 6 cities at a glance</h2>
+    <p class="table-note">Numbers copied from cities-index.csv, the per-city index that ships free with the sample files.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Airbnb data by city table"><table>
+      <thead><tr><th scope="col">City</th><th scope="col">Snapshot date</th><th scope="col">Listings</th><th scope="col">Median nightly (USD)</th><th scope="col">Entire home/apt</th><th scope="col">Private room</th></tr></thead>
+      <tbody>
+        <tr><td>Austin, TX</td><td>2026-06-22</td><td>11,295</td><td>217</td><td>82%</td><td>14%</td></tr>
+        <tr><td>Nashville, TN</td><td>2026-06-26</td><td>10,242</td><td>282</td><td>90%</td><td>8%</td></tr>
+        <tr><td>Denver, CO</td><td>2026-06-30</td><td>4,939</td><td>176</td><td>85%</td><td>12%</td></tr>
+        <tr><td>New York City, NY</td><td>2026-08-10</td><td>30,234</td><td>175</td><td>55%</td><td>42%</td></tr>
+        <tr><td>Las Vegas (Clark County), NV</td><td>2026-06-27</td><td>20,234</td><td>234</td><td>69%</td><td>28%</td></tr>
+        <tr><td>San Diego, CA</td><td>2026-06-27</td><td>13,225</td><td>323</td><td>83%</td><td>14%</td></tr>
+      </tbody>
+    </table></div>
+    <p>Three things the table says. New York City carries the most rows (30,234) and the lowest median (175), and that combination comes from its room mix: 42% private rooms, the highest share of the six markets, pulls the typical price down. San Diego is the priciest typical listing at a median of 323 with a conventional mix (83% entire homes). Denver is the smallest market at 4,939 listings, so treat any Denver split with wider error bars.</p>
+    <p>Every city keeps the same columns: <code>id</code>, <code>name</code>, <code>neighbourhood</code> (a ZIP code area), <code>latitude</code>, <code>longitude</code>, <code>room_type</code>, <code>price</code>, <code>minimum_nights</code>, <code>availability_365</code>, <code>number_of_reviews</code>, <code>reviews_per_month</code>, <code>last_review</code>. The <a href="airbnb-data-guide.html">Airbnb data guide</a> explains each one.</p>
+  </section>
+
+  <section aria-label="Query examples per city" id="queries">
+    <h2>One query per city</h2>
+    <p>The dataset-mcp server queries the full released files without any download. Start it, then pass a <code>file</code> argument to pick the city: each market is its own file (<code>airbnb-austin.csv</code>, <code>airbnb-nashville.csv</code>, <code>airbnb-denver.csv</code>, <code>airbnb-new-york-city.csv</code>, <code>airbnb-clark-county-nv.csv</code>, <code>airbnb-san-diego.csv</code>), 100 rows per call.</p>
+    <pre>npx --allow-git=all -y github:jayjex/dataset-mcp
+<span class="cm"># plain form works on npm 10/11: npx -y github:jayjex/dataset-mcp</span></pre>
+
+    <h3>Austin, TX</h3>
+    <p>Five listings in downtown Austin, ZIP 78701:</p>
+    <pre>query_dataset("airbnb-six-cities", {file: "airbnb-austin.csv", where: [{column: "neighbourhood", op: "=", value: "78701"}], limit: 5})</pre>
+
+    <h3>Nashville, TN</h3>
+    <p>Nashville runs 90% entire homes, the most investor-shaped mix of the six. The whole market in one filter:</p>
+    <pre>query_dataset("airbnb-six-cities", {file: "airbnb-nashville.csv", where: [{column: "room_type", op: "=", value: "Entire home/apt"}], limit: 5})</pre>
+
+    <h3>Denver, CO</h3>
+    <p>Budget stays well under the city median of 176: cheap nightly rates on short minimum nights:</p>
+    <pre>query_dataset("airbnb-six-cities", {file: "airbnb-denver.csv", where: [{column: "price", op: "lt", value: 80}, {column: "minimum_nights", op: "lt", value: 7}], limit: 5})</pre>
+
+    <h3>New York City, NY</h3>
+    <p>Private rooms below the city median of 175, the segment that dominates NYC supply:</p>
+    <pre>query_dataset("airbnb-six-cities", {file: "airbnb-new-york-city.csv", where: [{column: "room_type", op: "=", value: "Private room"}, {column: "price", op: "lt", value: 175}], limit: 5})</pre>
+
+    <h3>Las Vegas (Clark County), NV</h3>
+    <p>Vegas ZIP codes start with 891, so a <code>contains</code> filter pulls the strip-adjacent market:</p>
+    <pre>query_dataset("airbnb-six-cities", {file: "airbnb-clark-county-nv.csv", where: [{column: "neighbourhood", op: "contains", value: "891"}], limit: 5})</pre>
+
+    <h3>San Diego, CA</h3>
+    <p>Active listings: wide-open calendar plus real review history, useful for gauging demand in the priciest market:</p>
+    <pre>query_dataset("airbnb-six-cities", {file: "airbnb-san-diego.csv", where: [{column: "availability_365", op: "gt", value: 180}, {column: "number_of_reviews", op: "gt", value: 50}], limit: 5})</pre>
+
+    <p>Operators are <code>=</code>, <code>contains</code>, <code>gt</code>, and <code>lt</code>; <code>get_stats</code> returns counts, min/max, and top values for any column without paging rows. To compare markets instead of opening one, the per-city index is the default file of the dataset, and its <code>median_price_usd</code> column filters straight to the expensive half:</p>
+    <pre>query_dataset("airbnb-six-cities", {where: [{column: "median_price_usd", op: "gt", value: 200}], limit: 6})</pre>
+    <p>Setup steps and worked examples for all five datasets: <a href="../agents/">For agents</a>.</p>
+  </section>
+
+  <section aria-label="FAQ">
+    <h2>FAQ</h2>
+    <h3>How do I get Airbnb data for one specific city?</h3>
+    <p>Three routes. The free 20-row sample CSV shows the schema on Austin rows. The full pack ships one CSV per city (airbnb-austin.csv, airbnb-nashville.csv, airbnb-denver.csv, airbnb-new-york-city.csv, airbnb-clark-county-nv.csv, airbnb-san-diego.csv), 90,169 rows in total. Or query a single city file over MCP without downloading anything, as in the examples above.</p>
+    <h3>Which cities does the Airbnb 6-city dataset cover?</h3>
+    <p>Austin, TX (11,295 listings, snapshot 2026-06-22), Nashville, TN (10,242, 2026-06-26), Denver, CO (4,939, 2026-06-30), New York City, NY (30,234, 2026-08-10), Las Vegas Clark County, NV (20,234, 2026-06-27), and San Diego, CA (13,225, 2026-06-27). That is 90,169 listings in one shared 12-column schema, built from Inside Airbnb summary data.</p>
+    <h3>How do I compare Airbnb prices across these cities?</h3>
+    <p>Use cities-index.csv, the 6-row per-city summary that ships with the free sample: it carries row counts, median nightly prices (175 to 323 USD), and room-type mix for all six markets. Medians travel better than means because a few very expensive listings skew averages. One caveat: each city was captured on its own snapshot date, June through August 2026, so treat the comparison as a screen, not a same-day quote.</p>
+  </section>
+
+  <section aria-label="Get the full pack">
+    <h2>Get all six cities in one pack</h2>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/airbnb-six-cities/sample.csv" download>Download free sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtpkvxdf" rel="noopener">Get the full 6-city pack</a>
+    </div>
+    <p class="btn-note">90,169 rows across 6 city files plus cities-index.csv, data dictionary, methodology, and source checksums. Checkout and download run through Getly.</p>
+  </section>
+
+  <section aria-label="More from the catalog">
+    <h2>Keep reading</h2>
+    <ul>
+      <li><a href="airbnb-data-guide.html">Airbnb data download guide</a>: the 12 columns explained, snapshot dates, MCP queries</li>
+      <li><a href="airbnb-data-sample.html">Airbnb dataset sample</a>: 20 free rows to test your import against</li>
+      <li><a href="airbnb-investment-analysis.html">Airbnb rental analysis</a>: a worked market screen using this same per-city index</li>
+      <li><a href="inside-airbnb-alternative.html">Inside Airbnb alternative</a>: what the 6-city pack adds over the raw per-city files</li>
+      <li><a href="../datasets/airbnb-six-cities.html">Airbnb Listings, 6 US Cities</a>: dataset page with preview and stats</li>
+    </ul>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

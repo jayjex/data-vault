@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solana Ecosystem Data: Public Sources for Research, Tested Live | Data Vault</title>
+<meta name="description" content="Public Solana ecosystem data for research: the Superteam Earn snapshot (51 rows, 6 AGENT_ALLOWED), the solana-research-library MCP over 25 probed platforms, Solana JSON-RPC validator stats, and a live test log of every endpoint. Not investment advice.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/solana-ecosystem-data.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Solana Ecosystem Data: Public Sources for Research, Tested Live">
+<meta property="og:description" content="Public Solana ecosystem data for research: the Superteam Earn snapshot, the solana-research-library MCP, Solana JSON-RPC validator stats, and a live test log of every endpoint.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/solana-ecosystem-data.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Solana ecosystem data: public sources for research, tested live", "description": "Public Solana ecosystem data for research: the Superteam Earn snapshot, the solana-research-library MCP, Solana JSON-RPC validator stats, and a live test log of every endpoint.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/solana-ecosystem-data.html", "about": [{"@type": "Dataset", "name": "Superteam Earn Live Listings", "url": "https://jayjex.github.io/data-vault/datasets/earn-bounties.html"}, {"@type": "SoftwareApplication", "name": "solana-research-library", "url": "https://github.com/jayjex/solana-research-library"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Solana ecosystem data", "item": "https://jayjex.github.io/data-vault/guides/solana-ecosystem-data.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Where can I get Solana ecosystem data for free?", "acceptedAnswer": {"@type": "Answer", "text": "Four sources cover most research needs without a key or a subscription: the Solana JSON-RPC on api.mainnet-beta.solana.com for chain state (epoch, supply, the validator set), the public Superteam Earn API for open listings and sponsors, the Data Vault Superteam Earn snapshot for a fixed 51-row capture with a free sample, and the solana-research-library MCP server, whose database of 25 field-probed platforms ships inside the npm package. The docs sites (docs.anza.xyz, solana.com/docs) are free as well. We verified each of these with a live request on 2026-09-10; the failed alternatives and their status codes are in the test log on this page."}}, {"@type": "Question", "name": "Is there a free API for Solana validator stats?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The getVoteAccounts RPC method on api.mainnet-beta.solana.com returns the full validator set, about 297 KB of JSON on the day we tested it: activatedStake, commission, lastVote, epochCredits, plus a separate delinquent list. Stakewiz returns comparable validator data unauthenticated (2.1 MB of JSON on 2026-09-10, no rate-limit guarantees). The commercial boards are the ones that stopped working anonymously: validators.app answered 404 on its public path, api.solanabeach.io answered 522, and api.solana.fm answered 502 during our test."}}, {"@type": "Question", "name": "What is the solana-research-library MCP?", "acceptedAnswer": {"@type": "Answer", "text": "An open-source MCP server (github.com/jayjex/solana-research-library) that serves a curated database of 25 Solana/web3 earning-rail platforms, each field-probed on 2026-09-04 with a verdict (LIVE-RAIL, USER-GATED, CONDITIONAL-PASS, WATCHLIST, or DEAD), the payout rail, the KYC gate, and evidence notes. The database ships inside the package, so calls return instantly and no upstream outage can fail one. Four tools: list_topics, get_topic, search_topics, stats. As of the 2026-09-10 README, it runs locally over stdio via git clone and npm run build; the npm package was not published yet."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../datasets/earn-bounties.html">Earn dataset</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Solana ecosystem data: public sources for research, tested live</h1>
+  <p class="byline">Every endpoint below was called from our build box on 2026-09-10; status codes and outputs are from that run. This is a research-method guide, and nothing on this page is investment, tax, or trading advice.</p>
+
+  <section aria-label="What Solana ecosystem data covers">
+    <h2>What "Solana ecosystem data" covers for research</h2>
+    <p>Researchers looking for Solana ecosystem data usually need one of four layers: chain state (epochs, supply, the validator set), the work market (who posts bounties and projects, with what deadlines and automation policies), venue intelligence (which platforms in the wider web3 earning ecosystem are live, gated, or dead), and documentation (how the pieces are meant to fit). Each layer has a public source. The catch is that public endpoints rot: several once-popular Solana data APIs now refuse anonymous calls outright.</p>
+    <p>So this page does two things. It maps the four layers to sources we could actually reach on 2026-09-10, with the outputs captured from those calls, and it logs the endpoints that failed so you don't have to rediscover them.</p>
+  </section>
+
+  <section aria-label="Live endpoint test log">
+    <h2>Test log: what answered and what didn't, 2026-09-10</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Endpoint test results"><table><thead><tr><th scope="col">Endpoint</th><th scope="col">Returns</th><th scope="col">Status on 2026-09-10</th></tr></thead><tbody>
+      <tr><td>POST https://api.mainnet-beta.solana.com</td><td>Solana JSON-RPC (getEpochInfo, getVersion, getVoteAccounts, getSupply)</td><td>200. Rate limits apply; getSupply took 6.7 s.</td></tr>
+      <tr><td>POST https://api.devnet.solana.com</td><td>Same JSON-RPC on devnet</td><td>200</td></tr>
+      <tr><td>GET https://earn.superteam.fun/api/listings/</td><td>Open listings as JSON rows</td><td>308 then 200; follow redirects (curl -L)</td></tr>
+      <tr><td>GET https://earn.superteam.fun/api/search/{title}</td><td>Full listing descriptions</td><td>200</td></tr>
+      <tr><td>GET https://api.stakewiz.com/validators</td><td>Validator roster, no key</td><td>200 (2.1 MB JSON)</td></tr>
+      <tr><td>https://docs.anza.xyz</td><td>Anza validator and Agave operator docs</td><td>200</td></tr>
+      <tr><td>https://solana.com/docs</td><td>Solana official docs</td><td>200</td></tr>
+      <tr><td>GET https://public-api.solscan.io/chaininfo</td><td>Chain info</td><td>401 "Token is missing"; token-only now</td></tr>
+      <tr><td>https://api.solscan.io</td><td>&mdash;</td><td>DNS does not resolve</td></tr>
+      <tr><td>GET https://api.solanabeach.io/v1/validators</td><td>Validator stats</td><td>522, origin down</td></tr>
+      <tr><td>GET https://api.solana.fm/v1/validators</td><td>Validator stats</td><td>502</td></tr>
+      <tr><td>GET https://validators.app/api/validators</td><td>Validator stats</td><td>404</td></tr>
+    </tbody></table></div>
+    <p>Statuses change; the point of the log is that they were checked on one day with one method, not assumed. The working set is enough to cover all four layers.</p>
+  </section>
+
+  <section aria-label="Chain state via JSON-RPC">
+    <h2>Chain state and validator stats from the public RPC</h2>
+    <p>The no-key path into Solana chain data is the JSON-RPC on <code>api.mainnet-beta.solana.com</code>. One curl call returns the epoch the chain is in, the slot, and the block height:</p>
+    <pre><code>curl https://api.mainnet-beta.solana.com -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"getEpochInfo"}'</code></pre>
+    <p>Verbatim result from the 2026-09-10 run:</p>
+    <pre><code>{"jsonrpc":"2.0","result":{"absoluteSlot":445072858,"blockHeight":423117101,"epoch":1030,"slotIndex":112858,"slotsInEpoch":432000,"transactionCount":546010333908},"id":1}</code></pre>
+    <p>For validator research, <code>getVoteAccounts</code> is the free workhorse. It returns the full current validator set with <code>activatedStake</code>, <code>commission</code>, <code>lastVote</code>, and per-epoch <code>epochCredits</code>, plus a separate <code>delinquent</code> array. The response was 297 KB on test day. The first record, truncated:</p>
+    <pre><code>{"current":[{"activatedStake":139642332023481,"commission":0,
+"epochCredits":[[1026,1986352738,1979446182], ...], ...}</code></pre>
+    <p>Two honest caveats. The public RPC is rate-limited and shared, so bulk pulls belong on your own node or a paid provider; and a GET to the same host returns an HTML page ("RPC service operated by Triton One") rather than an error, which surprises scripts that forget to POST. <code>getVersion</code> answered <code>solana-core 4.2.2</code> on the same day, useful for dating protocol features in a study window. For a validator's operational side, Anza's <a href="https://docs.anza.xyz" rel="noopener">validator operator docs</a> (200 on test day) cover the Agave parameters the RPC exposes indirectly.</p>
+  </section>
+
+  <section aria-label="The work market">
+    <h2>The work market: the Superteam Earn snapshot and API</h2>
+    <p>The public board where Solana sponsors post bounties and projects is Superteam Earn, and its API answered on test day: <code>GET /api/listings/</code> returns 200 JSON after a 308 redirect (so keep <code>curl -L</code>), and the undocumented <code>GET /api/search/{title}</code> route returns full description text.</p>
+    <p>The <a href="../datasets/earn-bounties.html">Superteam Earn dataset</a> is the fixed-research version of that feed: a harvest from 2026-09-04 with 51 card rows (17 unique listings, since the API repeats each listing once per page), 28 full descriptions, and a 186-route map of the platform's endpoints. The fields that make it ecosystem data rather than a job list: <code>sponsor</code>, <code>type</code> (bounty vs project), <code>deadline</code> (ISO 8601), <code>_count.submission</code>, and <code>agentAccess</code>, the automation policy split 45 HUMAN_ONLY to 6 AGENT_ALLOWED rows (2 unique listings).</p>
+    <p>How to read the snapshot as research, and how to map sponsors and deadlines out of it, is the subject of the <a href="solana-bounties-data-guide.html">Superteam Earn data guide</a>; the <a href="solana-grants-data.html">Solana grants list guide</a> extends the same method to program-style funding and keeps grants and bounties separated.</p>
+  </section>
+
+  <section aria-label="Venue intelligence">
+    <h2>Venue intelligence: the solana-research-library MCP</h2>
+    <p>The third layer is knowing which platforms around the Solana earning ecosystem are worth researching at all. The open-source <a href="https://github.com/jayjex/solana-research-library" rel="noopener">solana-research-library</a> MCP server ships a curated database of 25 platforms, field-probed on 2026-09-04, each with a verdict (<code>LIVE-RAIL</code> / <code>USER-GATED</code> / <code>CONDITIONAL-PASS</code> / <code>WATCHLIST</code> / <code>DEAD</code>), the exact payout rail, the KYC gate, and evidence notes. The database is inside the package and the server makes no network calls at runtime, so every tool answers instantly and an upstream outage can't fail a call. The 11 DEAD entries are kill-logged with reasons, which is the part that saves the most research time.</p>
+    <p>Setup, from the repo README:</p>
+    <pre><code>git clone https://github.com/jayjex/solana-research-library
+cd solana-research-library
+npm install
+npm run build</code></pre>
+    <p>MCP client config (stdio), verbatim from the README:</p>
+    <pre><code>{
+  "mcpServers": {
+    "solana-research-library": {
+      "command": "node",
+      "args": ["/absolute/path/to/solana-research-library/dist/index.js"]
+    }
+  }
+}</code></pre>
+    <p>Once the npm package is published, <code>npx -y solana-research-library</code> works too; as of the 2026-09-10 README it had not been published yet.</p>
+    <p>Real output from the <code>stats()</code> tool, run for this page over stdio:</p>
+    <pre><code>{
+  "dataset": "solana-web3-earning-rail-intelligence",
+  "compiledAt": "2026-09-04",
+  "entries": 25,
+  "verdictMix": {
+    "LIVE-RAIL": 4,
+    "USER-GATED": 6,
+    "CONDITIONAL-PASS": 2,
+    "WATCHLIST": 2,
+    "DEAD": 11
+  },
+  "categoryMix": {
+    "payment-rails": 1, "agent-marketplaces": 2, "bounties": 2,
+    "quests": 1, "agent-bounties": 2, "passive-points": 1,
+    "write-to-earn": 5, "airdrops-testnets": 1, "data-tasks": 1,
+    "referrals": 1, "data-platforms": 7, "affiliates": 1
+  },
+  "kycFreeEntries": 13,
+  "cryptoRailEntries": 18,
+  "liveRails": [
+    "x402 pay-per-call data endpoints",
+    "FiatDock MCP marketplace",
+    "First Dollar bounty platform",
+    "Hive write-to-earn"
+  ],
+  "note": "Every platform was field-probed 2026-09-04 (live checks, on-chain verification, terms audits). DEAD entries are kill-logged so you never re-research them."
+}</code></pre>
+    <p>A <code>search_topics("Solana")</code> call returns 3 matches, from the x402 pay-per-call endpoints (LIVE-RAIL, USDC on Base + Solana) down to a BULB token write-to-earn site whose entry explains in evidence notes why it rates DEAD. <code>get_topic("bountybook")</code> returns the full escrow-and-oracle audit behind its CONDITIONAL-PASS verdict. The tool-by-tool index with captured outputs is in the <a href="../tools/mcp-tools-list.html">MCP tools list</a>, and the Claude Desktop config for all three of our servers is in <a href="../agents/mcp-tools-for-claude.html">MCP tools for Claude</a>.</p>
+  </section>
+
+  <section aria-label="Limits">
+    <h2>What this stack can and cannot tell you</h2>
+    <p>The three layers answer different questions and fail differently. Chain state from the RPC is current but shallow; it has no opinion on which platforms matter. The Superteam Earn snapshot is deep on one day and one board; listings rotate out within weeks. The research library is broad across 25 venues but frozen at its probe date, 2026-09-04; a DEAD verdict describes that day's evidence, and the kill-log notes say what to re-check before writing a platform off forever. Endpoint statuses in the test log above are a snapshot too: a 522 can heal, and a 200 can start demanding a token.</p>
+    <p>And the standard boundary: this page covers public data for research about an ecosystem's chain, work market, and venues. It is not investment, tax, or trading advice, and none of the sources here predict what any token or listing will do.</p>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the work-market snapshot</h2>
+    <p>The free 10-card sample shows the schema; the full pack has all 51 card records, 28 full descriptions, and the 186-route endpoint map. Both MCP servers above are free to run.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/earn-bounties/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/superteam-earn-28-live-listings-dataset-186-reverse-engineered-api-routes-mtmy11ny" rel="noopener">Get full data</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Source: public Superteam Earn API, harvested 2026-09-04. Personal and commercial use; no resale of the files as-is. More free pulls in the <a href="../free-datasets-for-ai-agents.html">free datasets for AI agents</a> index.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>Solana ecosystem data questions</h2>
+    <div class="faq">
+      <h3>Where can I get Solana ecosystem data for free?</h3>
+      <p>Four sources cover most research needs without a key or a subscription: the Solana JSON-RPC on api.mainnet-beta.solana.com for chain state (epoch, supply, the validator set), the public Superteam Earn API for open listings and sponsors, the Data Vault Superteam Earn snapshot for a fixed 51-row capture with a free sample, and the solana-research-library MCP server, whose database of 25 field-probed platforms ships inside the package. The docs sites (docs.anza.xyz, solana.com/docs) are free as well. Each was verified with a live request on 2026-09-10; the failed alternatives and their status codes are in the test log above.</p>
+      <h3>Is there a free API for Solana validator stats?</h3>
+      <p>Yes. The getVoteAccounts RPC method on api.mainnet-beta.solana.com returns the full validator set, about 297 KB of JSON on the day we tested it: activatedStake, commission, lastVote, epochCredits, plus a separate delinquent list. Stakewiz returns comparable validator data unauthenticated (2.1 MB of JSON on 2026-09-10, no rate-limit guarantees). The commercial boards are the ones that stopped working anonymously: validators.app answered 404 on its public path, api.solanabeach.io answered 522, and api.solana.fm answered 502 during our test.</p>
+      <h3>What is the solana-research-library MCP?</h3>
+      <p>An open-source MCP server (github.com/jayjex/solana-research-library) that serves a curated database of 25 Solana/web3 earning-rail platforms, each field-probed on 2026-09-04 with a verdict (LIVE-RAIL, USER-GATED, CONDITIONAL-PASS, WATCHLIST, or DEAD), the payout rail, the KYC gate, and evidence notes. The database ships inside the package, so calls return instantly and no upstream outage can fail one. Four tools: list_topics, get_topic, search_topics, stats. As of the 2026-09-10 README, it runs locally over stdio via git clone and npm run build; the npm package was not published yet.</p>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

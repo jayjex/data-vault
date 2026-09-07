@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rent Affordability Calculator: The 30% Rule vs the HUD FMR Benchmark, FY2026 | Data Vault</title>
+<meta name="description" content="Run the 30% rule against real benchmarks: the FY2026 2BR FMR median of 1,150 dollars is 17.1% of the 80,610-dollar US median household income. Why the FMR exists, plus a five-metro table.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/rent-affordability-calculator.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Rent Affordability Calculator: The 30% Rule vs the HUD FMR Benchmark, FY2026">
+<meta property="og:description" content="Run the 30% rule against real benchmarks: the FY2026 2BR FMR median of 1,150 dollars is 17.1% of the 80,610-dollar US median household income. Why the FMR exists, plus a five-metro table.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/rent-affordability-calculator.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Rent Affordability Calculator: The 30% Rule vs the HUD FMR Benchmark, FY2026", "description": "Run the 30% rule against real benchmarks: the FY2026 2BR FMR median of 1,150 dollars is 17.1% of the 80,610-dollar US median household income. Why the FMR exists, plus a five-metro table.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/rent-affordability-calculator.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the 30% rent rule?", "acceptedAnswer": {"@type": "Answer", "text": "The rule caps housing at 30% of gross monthly income: affordable rent = monthly income × 0.30. It dates to the 1969 Brooke Amendment, which capped public housing rents at 25% of income, a figure Congress raised to 30% in 1981. HUD still treats more than 30% of income spent on housing as the cost-burdened threshold, and in the Housing Choice Voucher program the family share can never exceed 40% of adjusted income at the initial lease when gross rent tops the payment standard."}}, {"@type": "Question", "name": "What income do I need to afford a rent under the 30% rule?", "acceptedAnswer": {"@type": "Answer", "text": "Invert the rule: required income = annual rent ÷ 0.30, which is the monthly rent times 40. The national 2BR FMR median of 1,150 dollars a month needs 46,000 dollars a year of income for rent to sit at 30%. New York's FY2026 2BR FMR of 3,175 a month needs 127,000 dollars a year under the same rule."}}, {"@type": "Question", "name": "Why does the HUD benchmark make affordability look better than listings do?", "acceptedAnswer": {"@type": "Answer", "text": "The FMR is a 40th percentile gross rent estimate, so more than half of the standard units in an area rent above it, and it includes utilities, which most listing rents do not. Both effects push the benchmark below asking rents, so an affordability percentage computed on the FMR is the optimistic edge of the range. The gap between the FMR and actual rents is the subject of the FMR vs actual rent guide."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Rent affordability calculator: the 30% rule, checked against the HUD data</h1>
+  <p class="byline">Published 2026-09-10. Data sources: HUD FY2026 Fair Market Rent file, public domain; US Census Bureau, Current Population Survey Annual Social and Economic Supplement, income year 2023. This page is data and arithmetic; it is not financial, housing, or legal advice. Data Vault is not affiliated with HUD.</p>
+
+  <section aria-label="The 30% rule in one formula">
+    <h2>The 30% rule, in one formula</h2>
+    <p>A rent affordability calculator runs one line of arithmetic, whatever the form on the website looks like:</p>
+    <pre><code>affordable rent = monthly gross income × 0.30
+income needed  = rent × 12 ÷ 0.30   (monthly rent × 40)</code></pre>
+    <p>Worked on real numbers: the US median household income in 2023 was 80,610 dollars (US Census Bureau, Current Population Survey ASEC, published September 2024). That is 6,717.50 a month, so the 30% rule hands a median household a rent budget of 2,015 a month. Run the formula in reverse and a 1,150-dollar rent needs an income of 46,000 a year to sit at 30%. The × 40 shortcut is the second formula with the division already done.</p>
+    <p>The 30% line comes from federal housing policy, not from a personal-finance blog. The Brooke Amendment of 1969 capped public housing rents at 25% of a tenant's income, and Congress raised the standard to 30% in 1981. It still has teeth: HUD counts any household paying more than 30% of income for housing as cost-burdened, and in the Housing Choice Voucher program the family share can never exceed 40% of adjusted income at the initial lease when gross rent tops the payment standard.</p>
+    <p>Where the calculator inputs come from is the real decision. An affordability check against asking rents measures one listing. An affordability check against the HUD fair market rent measures the whole market against one federal benchmark, which is what the rest of this page does.</p>
+  </section>
+
+  <section aria-label="Why the FMR exists">
+    <h2>Why the FMR exists, and why it belongs in an affordability check</h2>
+    <p>The fair market rent is HUD's annual rent benchmark for every metro, county, and, where set, ZIP. Each fiscal year HUD estimates it from American Community Survey data as the 40th percentile gross rent, shelter rent plus utilities, for standard-quality units rented by recent movers. The 40th percentile is deliberate: HUD wants a modest rent, one below the middle of the market, because the figure prices a unit a voucher family could reasonably find, not an average unit.</p>
+    <p>Federal programs run on the number. Public housing agencies set Housing Choice Voucher payment standards inside a band of 90% to 110% of the FMR, and the subsidy math pays the difference between 30% of the family's income and that standard. Rent reasonableness screens compare a proposed unit against it. The mechanics live on the <a href="hud-payment-standard.html">HUD payment standard</a> page; how HUD defines the number itself is on the <a href="hud-rent-data-explained.html">HUD fair market rent data, explained</a> page.</p>
+    <p>For an affordability calculator, the FMR's design cuts two ways. It sits at the 40th percentile, so more than half of a market's standard units rent above it. It includes utilities, which the rent line on most leases does not. An affordability percentage computed on the FMR is therefore the optimistic edge of the range, and it is worth knowing that before comparing it to an actual lease. How far apart the benchmark and asking rents sit is measured in <a href="fmr-vs-rent-actuals.html">FMR vs actual rent</a>.</p>
+  </section>
+
+  <section aria-label="The national check">
+    <h2>The national check: 1,150-dollar FMR vs 80,610-dollar income</h2>
+    <p>Both national inputs are published data. The FY2026 ZIP file carries 51,895 rows, and the median 2-bedroom FMR across all of them is 1,150 dollars a month. The median US household earned 80,610 dollars in 2023 (Census CPS ASEC). Put the two in the formula:</p>
+    <pre><code>1,150 × 12 = 13,800 a year
+13,800 ÷ 80,610 = 17.1%</code></pre>
+    <p>The national 2BR FMR median takes 17.1% of the median household income, well under the 30% line. The same numbers from the other side: the median household's 30% budget of 2,015 a month covers the FMR median with 865 dollars to spare, and a rent of 1,150 needs an income of 46,000 a year. A typical US household, against the federal benchmark, clears the 30% test with room.</p>
+    <p>Two caveats before that feels like a victory. The FMR is a 40th percentile benchmark, so the rent on a real lease will usually be higher than 1,150. And these are national medians, which flatten the places people actually live. The five-metro table below is where the spread shows up.</p>
+  </section>
+
+  <section aria-label="Five metros against the 30% rule">
+    <h2>Five metros, one income benchmark</h2>
+    <p>Five areas from the FY2026 ZIP file, chosen to span a small Texas metro, two big Texas metros, and the two big East Coast bookends of the HUD file. The FMR column is the median 2-bedroom value across each area's ZIP rows; the percentage column puts each FMR against the national median monthly income of 6,717.50; the last column is the income the 30% rule requires. Monthly dollars except the income column:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="FY2026 2BR FMR as a share of US median household income, five metros"><table><thead><tr><th scope="col">Area</th><th scope="col">FMR 2BR (median)</th><th scope="col">FMR as % of income</th><th scope="col">Income for 30% (year)</th></tr></thead><tbody>
+      <tr><td>New York, NY HUD Metro FMR Area</td><td>3,175</td><td>47.3%</td><td>127,000</td></tr>
+      <tr><td>Austin-Round Rock-San Marcos, TX MSA</td><td>1,890</td><td>28.1%</td><td>75,600</td></tr>
+      <tr><td>Philadelphia-Camden-Wilmington, PA-NJ-DE-MD MSA</td><td>1,870</td><td>27.8%</td><td>74,800</td></tr>
+      <tr><td>Houston-The Woodlands-Sugar Land, TX HUD Metro FMR Area</td><td>1,540</td><td>22.9%</td><td>61,600</td></tr>
+      <tr><td>Abilene, TX MSA</td><td>1,140</td><td>17.0%</td><td>45,600</td></tr>
+      <tr><td>National median, all 51,895 ZIP rows</td><td>1,150</td><td>17.1%</td><td>46,000</td></tr>
+    </tbody></table></div>
+    <p>The Texas rows come straight from the file, and Abilene doubles as the free sample: its 22 ZIP rows in the <a href="../datasets/hud-fmr-2026.html">HUD FMR pack</a> carry 2-bedroom values from 1090 to 1900, with a median of 1,140 (all 33 Abilene ZIPs in the full file median at the same figure). The state-wide picture, Dallas and Fort Worth split apart, Midland's expensive floor, is the subject of <a href="hud-fmr-texas.html">HUD FMR for Texas</a>.</p>
+    <p>The spread is the story. Abilene's benchmark takes about one dollar in six of a median-income household's budget; Austin's takes more than one in three-and-a-half, 28.1%. New York's benchmark of 3,175 alone takes 47.3% of the national median income, so the 30% rule fails there against the benchmark itself, and the income the rule demands is 127,000 a year. Philadelphia and Austin land almost on top of each other, 27.8% and 28.1%, within a rounding error of the 30% line.</p>
+  </section>
+
+  <section aria-label="What the table does not tell you">
+    <h2>What this table does not tell you</h2>
+    <p>Four limits, stated plainly. First, the FMR is a 40th percentile figure, so the median asking rent in each of these metros sits above the table's number, and the true affordability percentage for a real lease is higher; New York is the extreme case, where the benchmark is the cheap edge of the market. Second, the FMR includes utilities and most rent figures do not, so a rent-only budget has less slack than the formula suggests. Third, the income side is the national median, while New York households earn more than the national median, so 47.3% overstates a local median household's burden, just not by enough to change the direction of the answer. Fourth, the two inputs age on different clocks: FMRs refresh every fiscal year and the income figure is for 2023, so rerun both when either updates.</p>
+    <p>And the standing disclaimer: this page is arithmetic on published data. It is not financial advice, and it does not know your income, your utilities, or your lease.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>Rent affordability questions</h2>
+    <dl>
+      <dt>What is the 30% rent rule?</dt>
+      <dd>The rule caps housing at 30% of gross monthly income: affordable rent = monthly income × 0.30. It dates to the 1969 Brooke Amendment, which capped public housing rents at 25% of income, a figure Congress raised to 30% in 1981. HUD still treats more than 30% of income spent on housing as the cost-burdened threshold, and in the Housing Choice Voucher program the family share can never exceed 40% of adjusted income at the initial lease when gross rent tops the payment standard.</dd>
+      <dt>What income do I need to afford a rent under the 30% rule?</dt>
+      <dd>Invert the rule: required income = annual rent ÷ 0.30, which is the monthly rent times 40. The national 2BR FMR median of 1,150 dollars a month needs 46,000 dollars a year of income for rent to sit at 30%. New York's FY2026 2BR FMR of 3,175 a month needs 127,000 dollars a year under the same rule.</dd>
+      <dt>Why does the HUD benchmark make affordability look better than listings do?</dt>
+      <dd>The FMR is a 40th percentile gross rent estimate, so more than half of the standard units in an area rent above it, and it includes utilities, which most listing rents do not. Both effects push the benchmark below asking rents, so an affordability percentage computed on the FMR is the optimistic edge of the range. The gap between the FMR and actual rents is the subject of the FMR vs actual rent guide.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <p>Every FMR on this page comes from the HUD FY2026 file. Start with the free 22-row sample to check the schema, then take the full pack: all three CSVs (51,895 ZIP rows, 3,229 county rollups, 52 state rows), the data dictionary, and source checksums.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">Get the full dataset</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release, huduser.gov, and US Census Bureau, Current Population Survey ASEC, income year 2023. US government data, public domain. Data Vault is not affiliated with HUD.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Superteam Earn Alternative: Solana Bounty Tracker vs Dataset Approach | Data Vault</title>
+<meta name="description" content="A Solana bounty aggregator needs different inputs than a live tracker. What the Superteam Earn dataset gives researchers and builders: snapshot files, documented columns, 186 API routes, MCP queries. No live feed.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/bounty-tracker-alternative.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Superteam Earn Alternative: Solana Bounty Tracker vs Dataset Approach">
+<meta property="og:description" content="Live trackers watch the boards. A dataset approach gives research and aggregator builders the snapshot, the schema, and the endpoint map instead.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/bounty-tracker-alternative.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Superteam Earn Alternative: Solana Bounty Tracker vs Dataset Approach", "description": "A Solana bounty aggregator needs different inputs than a live tracker. What the Superteam Earn dataset gives researchers and builders: snapshot files, documented columns, 186 API routes, MCP queries. No live feed.", "datePublished": "2026-09-09", "dateModified": "2026-09-09", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/bounty-tracker-alternative.html", "about": {"@type": "Dataset", "name": "Superteam Earn Live Listings", "url": "https://jayjex.github.io/data-vault/datasets/earn-bounties.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Superteam Earn alternative: tracker vs dataset", "item": "https://jayjex.github.io/data-vault/guides/bounty-tracker-alternative.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is this dataset a replacement for the Superteam Earn platform?", "acceptedAnswer": {"@type": "Answer", "text": "No. Superteam Earn is where Solana bounty work happens: you browse live listings, get notified, and submit through the site. The dataset is a research and tooling input, a snapshot of the public API flattened into queryable files. Builders who want to work on bounties use the platform; builders who want to study the market or prototype their own aggregator start from the dataset."}}, {"@type": "Question", "name": "Does the dataset send real-time bounty notifications?", "acceptedAnswer": {"@type": "Answer", "text": "It does not. Every row reflects a harvest of the public Superteam Earn API on 2026-09-04. There is no live endpoint and no push updates. A paid refresh of the same files is planned so you can re-pull later snapshots, and for deadlines you still verify against the live site."}}, {"@type": "Question", "name": "Can I build my own Solana bounty aggregator from this data?", "acceptedAnswer": {"@type": "Answer", "text": "You can build the research side of one. The 18 card fields give you a starting schema, the endpoint map shows 186 routes a production platform organizes its data around, and the MCP server answers read-only queries against the full files. What it cannot do is keep the feed current: the snapshot is one board on one day, so a running aggregator still needs its own live source."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Superteam Earn alternative: a dataset approach to Solana bounty data</h1>
+  <p class="byline">Snapshot from 2026-09-04, published 2026-09-09. Data source: the public Superteam Earn API.</p>
+
+  <section aria-label="Two different jobs">
+    <h2>Two different jobs: tracking and researching</h2>
+    <p>Most searches for a Superteam Earn alternative come from two very different places. If you want to get paid for bounty work, you want the platform itself: live listings, notification pings when sponsors post, a submission flow. No dataset replaces that, and we will not pretend otherwise.</p>
+    <p>The second group has the opposite problem. Aggregator builders, analysts, and agent developers do not need another place to read listings. They need the listings as data: rows they can load, columns they can trust, and enough of the underlying API structure to build their own tooling on top. A tracker gives you a screen; this page is about the alternative that gives you a dataset.</p>
+    <p>The pack documented here is a harvest of the public Superteam Earn API: 51 card records covering 17 unique live listings, 28 full listing descriptions, and a map of 186 API routes. Below is what each approach does well, so you can pick the right one for your job.</p>
+  </section>
+
+  <section aria-label="What a live tracker does well">
+    <h2>What a live bounty tracker does well</h2>
+    <p>A platform tracker, Superteam Earn included, runs a real-time feed. New listings appear as sponsors post them, deadlines tick down on the page, and notifications reach you before a submission window closes. For a builder choosing which bounty to work on this week, that freshness is the whole point, and it is exactly what a static file cannot give you.</p>
+    <p>Trackers also handle the workflow side: profiles, submission forms, sponsor communication, payouts. That machinery sits outside anything a data pack touches.</p>
+  </section>
+
+  <section aria-label="What the dataset approach does well">
+    <h2>What the dataset approach gives you instead</h2>
+    <p>The <a href="../datasets/earn-bounties.html">Superteam Earn dataset</a> was harvested from the public API on 2026-09-04 and ships four files:</p>
+    <ul>
+      <li><b>earn-listings-cards.json</b>, 51 card records covering 17 unique live listings (the cards API paginates, so the same listing repeats once per page; dedupe on slug). The 18 fields include rewardAmount, token, deadline in ISO 8601, status, sponsor, and the agentAccess flag.</li>
+      <li><b>earn-listings-full-descriptions.json</b>, 28 listings with the complete description HTML the cards API truncates: scope, deliverables, judging criteria. 16 of the 17 live card listings appear here too, and the other 12 had already rotated off the live feed by harvest day.</li>
+      <li><b>earn-api-endpoints.txt</b>, a map of 186 routes across 25 top-level groups: listings, comments, submissions, grants, hackathons, and more.</li>
+      <li><b>earn-README.md</b>, harvest notes: date, source, file inventory, and the documented <code>/api/search/{title}</code> trick.</li>
+    </ul>
+    <p>Three things a screen cannot hand you fall out of that structure:</p>
+    <ul>
+      <li><b>A documented schema.</b> Every column has a name, a type, and a meaning you can read once and build against. No HTML parsing, no guessing which div holds the deadline.</li>
+      <li><b>An endpoint map.</b> The 186 routes show how a production bounty platform organizes its own data: what a submission endpoint touches, what a grant feed returns. Reverse-engineering that from scratch is the slow part of building an aggregator.</li>
+      <li><b>MCP queries.</b> The <a href="https://github.com/jayjex/dataset-mcp" rel="noopener">dataset-mcp</a> server loads the full files and answers read-only questions: <code>query_dataset</code> filters rows, <code>get_stats</code> returns column distributions, 100 rows per call. An agent can pull a filtered table headless, no browser and no scrape.</li>
+    </ul>
+    <p>A real query against the cards file, listings above 5,000 USD:</p>
+    <pre><code>query_dataset(
+  "earn-bounties",
+  {
+    "where": [{ "column": "rewardAmount", "op": "gt", "value": 5000 }],
+    "columns": ["title", "rewardAmount", "token"]
+  }
+)</code></pre>
+    <p>Six rows from the September 2026 test run, two unique listings after dedupe: Create Content for Breakpoint 2026 (8,000 USDG) and Solana Summit Serbia Content Bounty (10,000 USDG). That is the shape of the data your own aggregator would ingest.</p>
+  </section>
+
+  <section aria-label="Side by side">
+    <h2>Tracker vs dataset, side by side</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Live tracker versus dataset comparison"><table><thead><tr><th scope="col">Need</th><th scope="col">Live tracker (platform)</th><th scope="col">Dataset approach</th></tr></thead><tbody>
+      <tr><td>New listings as they post</td><td>Yes, real-time feed</td><td>No, snapshot only</td></tr>
+      <tr><td>Deadline alerts</td><td>Yes, notifications</td><td>No, you check the live site</td></tr>
+      <tr><td>Submitting work and payouts</td><td>Yes, full workflow</td><td>Not in scope</td></tr>
+      <tr><td>Loading rows into your own DB</td><td>No documented API</td><td>Yes, JSON/CSV with 18 documented fields</td></tr>
+      <tr><td>Offline analysis and backtesting</td><td>No</td><td>Yes, full files</td></tr>
+      <tr><td>Endpoint reference for tooling</td><td>Not public</td><td>Yes, 186 routes documented</td></tr>
+      <tr><td>Agent queries without a browser</td><td>No</td><td>Yes, MCP server, read-only</td></tr>
+    </tbody></table></div>
+    <p>Read the table as two tools for two jobs, not a ranking. The tracker wins on freshness and workflow. The dataset wins anywhere you need the data as data.</p>
+  </section>
+
+  <section aria-label="Who the dataset is for">
+    <h2>Who the dataset approach fits</h2>
+    <ul>
+      <li><b>Aggregator builders.</b> The card schema doubles as a starting table design, and the endpoint map shows which routes a production platform leans on. Prototype the ingest pipeline against real rows before you wire up any live source.</li>
+      <li><b>Alerting logic developers.</b> Deadlines, statuses, and submission counters as rows let you build and test the notification half of a tracker: which listings close soonest, how fast a feed rotates. The 12 aged-out descriptions show what rotation looks like in practice.</li>
+      <li><b>Market researchers.</b> Reward distributions, the bounty-to-project split, and the 45 HUMAN_ONLY / 6 AGENT_ALLOWED agentAccess split are baselines for studying the Solana work market in September 2026.</li>
+      <li><b>Agent developers.</b> The MCP calls run headless, so an agent can filter, dedupe, and pass a clean table to the next pipeline step.</li>
+    </ul>
+    <p>For a fuller walk through the files themselves, see the <a href="solana-bounties-data-guide.html">Superteam Earn data guide</a> and the <a href="web3-bounty-data.html">web3 bounty listings data guide</a>.</p>
+  </section>
+
+  <section aria-label="Limits">
+    <h2>Honest limits</h2>
+    <ul>
+      <li><b>A snapshot, not a feed.</b> Every row reflects 2026-09-04. No live endpoint, no push updates. A paid refresh of the same files is planned so you can re-pull later snapshots, but nothing here updates itself, and deadlines should always be verified against the live site.</li>
+      <li><b>One board.</b> Superteam Earn covers much of the Solana ecosystem, but a multi-platform aggregator still needs hackathon boards and grant portals as separate sources.</li>
+      <li><b>Harvest-day counts.</b> 51 card records, 17 unique live listings, 28 full descriptions: these are facts about harvest day, not totals for the platform's history.</li>
+      <li><b>Duplicate rows in the raw cards file.</b> Each listing appears once per API page, so count unique slugs before reporting any number.</li>
+    </ul>
+    <p>Framing note: this pack is a research and tooling input. Nothing on this page predicts contest outcomes and nothing here is an income estimate.</p>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the bounty dataset</h2>
+    <p>Check the schema with the free 10-card sample, then take the full pack if the job fits: all 51 card records, all 28 full descriptions, the 186-route endpoint map, and the harvest README.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/earn-bounties/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/superteam-earn-28-live-listings-dataset-186-reverse-engineered-api-routes-mtmy11ny" rel="noopener">Get full data, $49</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Source: public Superteam Earn API, harvested 2026-09-04. Personal and commercial use; no resale of the files as-is.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

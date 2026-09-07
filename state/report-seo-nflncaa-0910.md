@@ -40,7 +40,7 @@ Repo: jayjex/data-vault (main). No AI self-reference on any page touched. No dol
 
 ## Verification
 - Local: JSON-LD parse, FAQ mirror, tag balance, canonical URL, keyword presence — all pass (script in session log)
-- Live: to be checked post-push (HTTP 200 on the deployed URL)
+- Live 2026-09-10 post-push: page URL HTTP 200; JSON-LD Article+BreadcrumbList+FAQPage(3) parsed from live HTML; canonical correct; 0 dollar signs live; cross-links confirmed live in both directions (nfl-data-apis.html contains the link, public-data-apis-list.html contains the link); sitemap.xml live = 127 urls; llms.txt live contains the new guide line
 
 ## Cost
 - $0. Research via free fetches + curl; no paid APIs.

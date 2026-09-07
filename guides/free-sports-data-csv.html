@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Sports Data CSV: Verified Sources, Licenses, and a 7,548-Game NFL Dataset | Data Vault</title>
+<meta name="description" content="Which free sports statistics datasets are actually downloadable as CSV: nflverse (CC BY 4.0), openfootball (CC0), MLB Stats API, and balldontlie's free tier. Includes a free 22-row NFL games sample with betting lines and free MCP queries; full pack $29.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/free-sports-data-csv.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Free Sports Data CSV: Verified Sources, Licenses, and a 7,548-Game NFL Dataset">
+<meta property="og:description" content="Free sports statistics datasets you can actually download: nflverse games.csv under CC BY 4.0, openfootball under CC0, and two no-key APIs. Free 22-row NFL sample; full pack $29.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/free-sports-data-csv.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Free Sports Data CSV: Verified Sources, Licenses, and How to Query Them", "description": "A review of free and legal sports statistics sources: nflverse games.csv (CC BY 4.0), openfootball (CC0), the MLB Stats API, and balldontlie's free tier, plus CSV vs API tradeoffs and free MCP query examples against a 7,548-game NFL file.", "datePublished": "2026-09-09", "dateModified": "2026-09-09", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/free-sports-data-csv.html", "about": {"@type": "Dataset", "name": "NFL Games & Betting Lines 1999-2026", "url": "https://jayjex.github.io/data-vault/datasets/nfl-games.html"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Free sports data CSV guide", "item": "https://jayjex.github.io/data-vault/guides/free-sports-data-csv.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+{"@type": "Question", "name": "Where can I download free sports data as CSV?", "acceptedAnswer": {"@type": "Answer", "text": "For NFL games, nflverse-data publishes one row per game since 1999 as a direct CSV download under CC BY 4.0. For soccer, openfootball publishes league results as CC0 JSON files. The Data Vault pack adds a free 22-row NFL games sample and the complete 27-row season-summaries.csv, both direct downloads with no signup. Most other sports sources are APIs, not CSVs."}},
+{"@type": "Question", "name": "Can I use free NFL game data commercially?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, with attribution. nflverse-data is licensed CC BY 4.0, which allows commercial use when you credit the source, for example: Data from nflverse, CC BY 4.0. openfootball is CC0, which needs no credit at all. The Data Vault pack carries the same CC BY 4.0 terms on its source rows and derived tables."}},
+{"@type": "Question", "name": "Can I query sports statistics without an API key?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. nflverse files and openfootball JSON are plain downloads, and the MLB Stats API answers without any key. The dataset-mcp server on this site also queries the full 7,548-row NFL games file for free with no key, 100 rows per call, filtering on any column."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../datasets/nfl-games.html">NFL dataset</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Free sports data CSV: what you can download, and what you can't</h1>
+  <p class="byline">Survey of free sports statistics sources · checked 2026-09-09 · covers the <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026</a> pack, with the full schema in the <a href="nfl-games-data-guide.html">games.csv column guide</a></p>
+
+  <section aria-label="Quick answer">
+    <p>Free sports statistics exist, but the format surprises people. The big leagues sell their feeds, and most of what you find labeled "free sports data" is an API with rate limits, not a file. The sources below are the exception: they publish results you can download and keep, under licenses that permit commercial work. Every fact on this page was verified on 2026-09-09, license and all.</p>
+    <p>The deepest CSV of the group is NFL games: <a href="../data/nfl-games/sample.csv" download>a free 22-row sample with betting lines</a> downloads here with no signup, the full 7,548-row file queries free over MCP, and the complete pack is a one-time $29.</p>
+  </section>
+
+  <section aria-label="Verified free sources">
+    <h2>Verified free sources, league by league</h2>
+    <p>Each row below was checked the day this page was published: the endpoint responded, and the license is stated by the source itself.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Free sports data sources"><table>
+      <thead><tr><th scope="col">Source</th><th scope="col">Sport</th><th scope="col">Format</th><th scope="col">License / terms</th><th scope="col">Verified</th></tr></thead>
+      <tbody>
+        <tr><td><a href="https://github.com/nflverse/nflverse-data" rel="noopener">nflverse-data</a></td><td>NFL games, 1999-2026</td><td>CSV, one row per game, direct download</td><td><a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>, commercial use with attribution</td><td>2026-09-09</td></tr>
+        <tr><td><a href="https://github.com/openfootball/football.json" rel="noopener">openfootball/football.json</a></td><td>Soccer, English Premier League, Bundesliga, Serie A, and more</td><td>JSON files, one per season</td><td><a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="noopener">CC0</a>, public domain</td><td>2026-09-09</td></tr>
+        <tr><td><a href="https://statsapi.mlb.com/api/v1/teams?sportIds=1" rel="noopener">MLB Stats API</a></td><td>MLB teams, players, schedules, game feeds</td><td>JSON over HTTP, no key</td><td>Free to query; content copyright MLB Advanced Media, terms posted with responses</td><td>2026-09-09</td></tr>
+        <tr><td><a href="https://www.balldontlie.io/" rel="noopener">balldontlie</a></td><td>NBA, MLB, NFL and 20+ leagues</td><td>JSON API, OpenAPI specs, MCP server</td><td>Free tier at 5 requests per minute; paid tiers above that</td><td>2026-09-09</td></tr>
+      </tbody>
+    </table></div>
+    <p>Two notes on that table. First, openfootball ships JSON, not CSV; it converts to CSV in one spreadsheet import if you need the flat format. Second, the MLB Stats API has no formal reuse license beyond its copyright notice, so treat it as fine for personal analysis and check the posted terms before redistributing. nflverse and openfootball are the two with clean commercial licenses.</p>
+    <p>Sports Reference sites (Pro-Football-Reference and siblings) come up in every search for sports statistics. They are excellent for reading a stat in a browser, but their terms do not permit bulk scraping or redistribution, so they are not a dataset download. We left them out of the table for that reason.</p>
+  </section>
+
+  <section aria-label="CSV vs API">
+    <h2>CSV download vs API: what each format buys you</h2>
+    <p>The choice is less about preference and more about what the source publishes. nflverse releases CSV files weekly through GitHub Actions; openfootball commits JSON per season; MLB and balldontlie serve queries only. When a CSV exists, it tends to win for analysis work:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="CSV vs API"><table>
+      <thead><tr><th scope="col"></th><th scope="col">CSV file</th><th scope="col">API</th></tr></thead>
+      <tbody>
+        <tr><td>Access</td><td>One download, then offline</td><td>Network call per query, rate limits apply</td></tr>
+        <tr><td>Schema</td><td>Fixed and inspectable in a spreadsheet</td><td>Read from docs or OpenAPI spec</td></tr>
+        <tr><td>Freshness</td><td>As current as the last release</td><td>Live, best for scores in progress</td></tr>
+        <tr><td>Best for</td><td>Season-level analysis, models, joins across eras</td><td>Dashboards, live scores, single lookups</td></tr>
+        <tr><td>Reproducibility</td><td>Pin a version, rerun forever</td><td>Responses can change under you</td></tr>
+      </tbody>
+    </table></div>
+    <p>A concrete example of the reproducibility point: the nflverse games file on 2026-09-06 carries 7,548 rows and 46 columns, and a checksum recorded in the pack proves the copy never changed. Six months from now, that same file from the live repo will have moved on. An API response cannot offer you that anchor.</p>
+  </section>
+
+  <section aria-label="The NFL games CSV">
+    <h2>The NFL games CSV in detail</h2>
+    <p>The nflverse games file is the one source in the table that covers a whole league's history in a single flat file: 7,548 games, 1999 through the full 2026 schedule, 46 columns per row. Final scores sit next to the closing spread and total (from 1999), American-odds moneylines and spread/total odds (from 2006), rest days, starting quarterbacks, coaches, referee, stadium, roof, surface, and kickoff weather.</p>
+    <p>The Data Vault pack ships those rows as a checksummed copy plus two derived tables and a data dictionary. <a href="nfl-games-data-guide.html">The games.csv column guide</a> defines every column, including the spread sign convention (stored relative to the home team) and the push rules. If you are weighing the raw nflverse download against the preprocessed pack, <a href="nfl-data-alternative.html">that comparison is spelled out honestly</a>, including the cases where raw is enough.</p>
+    <p>The two derived tables: team-records-by-season.csv, 861 rows covering wins, losses, points, against-the-spread records with pushes broken out, and over/under records per team per season; and season-summaries.csv, 27 rows, one per season 1999-2025, <a href="../data/nfl-games/season-summaries.csv" download>free to download in full</a>.</p>
+  </section>
+
+  <section aria-label="MCP queries" id="query">
+    <h2>Query the full file over MCP, free, no key</h2>
+    <p>You can filter the full 7,548-row file without downloading it. The dataset-mcp server queries the released files directly: 100 rows per call, filters on any column, no API key, no cost. Start it with:</p>
+    <pre>npx --allow-git=all -y github:jayjex/dataset-mcp
+<span class="cm"># plain form works on npm 10/11: npx -y github:jayjex/dataset-mcp</span></pre>
+    <p>Example query, every 2025-season game, first page:</p>
+    <pre>query_dataset("nfl-games", {where: [{column: "season", op: "=", value: "2025"}], limit: 10})
+
+<span class="cm">total_matched: 285 | next_offset: 10</span>
+<span class="cm">2025_01_DAL_PHI  2025-09-04  DAL@PHI  20-24  spread=8.5  total=47.5</span>
+<span class="cm">2025_01_KC_LAC   2025-09-05  KC@LAC   21-27  spread=-3   total=47.5</span>
+<span class="cm">...</span></pre>
+    <p>The season filter returns 285 games for 2025: 272 regular-season games plus the 13 playoff games. Filter operators are <code>=</code>, <code>contains</code> (case-insensitive), <code>gt</code>, and <code>lt</code> (numeric-aware, with date handling for gameday). <code>columns</code> picks a subset, <code>offset</code> pages through large results, and <code>get_stats</code> returns row counts, numeric min/max/mean, and top-N values for any column. Setup details live on the <a href="../agents/">for agents</a> page, and other free datasets for agent pipelines are listed on the <a href="../free-datasets-for-ai-agents.html">free API datasets page</a>.</p>
+  </section>
+
+  <section aria-label="Download">
+    <h2>Free sample vs full pack</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Sample vs full"><table>
+      <thead><tr><th scope="col"></th><th scope="col">Free</th><th scope="col">Full pack, $29</th></tr></thead>
+      <tbody>
+        <tr><td>games.csv</td><td>22-row sample, 14 of 46 columns</td><td>all 7,548 rows, 46 columns</td></tr>
+        <tr><td>team-records-by-season.csv</td><td>not included</td><td>861 rows</td></tr>
+        <tr><td>season-summaries.csv</td><td>all 27 rows</td><td>all 27 rows</td></tr>
+        <tr><td>data dictionary</td><td>this page and the column guide</td><td>full dictionary + source checksums</td></tr>
+        <tr><td>MCP queries</td><td colspan="2">full file, free, 100 rows/call, no key</td></tr>
+      </tbody>
+    </table></div>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/nfl-games/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h" rel="noopener">Get full data, $29</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. The full pack is 3 CSVs (7,548 + 861 + 27 rows), data dictionary, source SHA-256 checksums.</p>
+  </section>
+
+  <section aria-label="What this data is not">
+    <h2>What this data is not</h2>
+    <p>Everything on this page is historical record: final results and the closing lines as they stood at each game. There are no picks, no predictions, no betting advice, and no model outputs anywhere in the pack or in these guides. Lines and odds are included as facts about each game, the way a box score reports the weather. Nothing here tells you what to wager on, and nothing here updates live; for current odds you would need a live feed, which none of these sources are.</p>
+    <p>What the data is good for: research and analysis of what already happened. Home win rates by decade, scoring trends across eras, how often favorites covered, weather effects on totals, training and testing models on a 27-season split. Analysts and fantasy players make up most of the audience for this kind of file, and none of those questions need a prediction engine.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>Where can I download free sports data as CSV?</h3>
+    <p>For NFL games, <a href="https://github.com/nflverse/nflverse-data" rel="noopener">nflverse-data</a> publishes one row per game since 1999 as a direct CSV download under CC BY 4.0. For soccer, <a href="https://github.com/openfootball/football.json" rel="noopener">openfootball</a> publishes league results as CC0 JSON files. Here, a <a href="../data/nfl-games/sample.csv" download>22-row NFL games sample</a> and the <a href="../data/nfl-games/season-summaries.csv" download>complete season-summaries.csv</a> are free downloads with no signup. Most other sports sources are APIs, not files.</p>
+    <h3>Can I use free NFL game data commercially?</h3>
+    <p>Yes, with attribution. nflverse-data is licensed CC BY 4.0, which permits commercial use when you credit the source, for example: "Data from nflverse, CC BY 4.0". openfootball is CC0, which needs no credit at all. The Data Vault pack carries the same CC BY 4.0 terms on its source rows and derived tables.</p>
+    <h3>Can I query sports statistics without an API key?</h3>
+    <p>Yes. nflverse files and openfootball JSON are plain downloads, and the MLB Stats API answers without any key. The <a href="../agents/">dataset-mcp server</a> also queries the full 7,548-row NFL games file for free with no key, 100 rows per call, filtering on any column.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

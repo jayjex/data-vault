@@ -41,6 +41,9 @@
     <p class="table-note">All 10 scripts. Full pack carries the runnable files plus a smoke test.</p>
     <div class="table-wrap" tabindex="0" role="region" aria-label="Sample data table"><table><thead><tr><th scope="col">File</th><th scope="col">What it does</th></tr></thead><tbody><tr><td>01-paginated-table-to-csv.js</td><td>Walks ?page=N or Next-button pagination, saves table rows to CSV</td></tr><tr><td>02-infinite-scroll-collector.js</td><td>Scrolls a feed to the end, dedupes, saves JSON</td></tr><tr><td>03-login-scrape-storagestate.js</td><td>Logs in once, saves the session, reuses it on later runs</td></tr><tr><td>04-price-stock-monitor.js</td><td>Diff-based product monitor, POSTs a Slack/Discord webhook on change</td></tr><tr><td>05-bulk-form-submitter.js</td><td>CSV rows in, one form submission per row, results report</td></tr><tr><td>06-job-board-scraper.js</td><td>Board/listing pages to JSON with cross-run dedupe</td></tr><tr><td>07-sitemap-crawler.js</td><td>Expands sitemap indexes, honors robots.txt and crawl-delay, writes JSONL</td></tr><tr><td>08-screenshot-diff-bot.js</td><td>sha256 change detection with archived previous shots</td></tr><tr><td>09-api-poller-jsonl.js</td><td>Polls a JSON endpoint, appends new records to JSONL</td></tr><tr><td>10-retry-fetch-wrapper.js</td><td>Exponential backoff, jitter, UA rotation, Retry-After aware</td></tr></tbody></table></div>
   </section>
+  <section aria-label="Cloud or self-hosted">
+    <p>Deciding between a hosted platform and running scripts yourself? The <a href="../tools/scraping-tools-alternative.html">web scraping tools comparison</a> covers cloud pricing models (Apify and similar) against this one-time pack.</p>
+  </section>
   <section aria-label="Sample files">
     <h2>Sample files</h2>
     <ul class="files">

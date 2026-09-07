@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Web Scraping Tools Comparison: Cloud Platforms vs Self-Hosted Scripts | Data Vault</title>
+<meta name="description" content="A factual web scraping tools comparison: how cloud platforms like Apify price (subscription plus metered compute, custodial runs) and how self-hosted script templates compare (one-time $15, you run the code, no lock-in). Honest when-a-platform-fits section included.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/tools/scraping-tools-alternative.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Web Scraping Tools Comparison: Cloud Platforms vs Self-Hosted Scripts">
+<meta property="og:description" content="How cloud scraping platforms price (subscription plus metered compute, custodial runs) and how self-hosted script templates compare: one-time $15, you run the code, no lock-in.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/tools/scraping-tools-alternative.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Web Scraping Script Pack (self-hosted)", "applicationCategory": "DeveloperTools", "operatingSystem": "Node.js 18+, Linux/macOS/Windows", "description": "Ten self-hosted Playwright scraping templates: pagination, infinite scroll, login sessions, price monitors, bulk forms, job boards, sitemap crawling, screenshot diffing, API polling, retry handling. One-time purchase, you run the scripts on your own machine.", "url": "https://jayjex.github.io/data-vault/tools/scraping-tools-alternative.html", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "offers": {"@type": "Offer", "price": "15.00", "priceCurrency": "USD", "url": "https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtn8em7k"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "ItemList", "name": "Cloud scraping platforms vs self-hosted templates: what each model covers", "itemListElement": [
+{"@type": "ListItem", "position": 1, "name": "Cloud platforms (Apify, ScrapingBee, Browserless): subscription plus metered usage, runs on their servers, custodial storage", "url": "https://apify.com/pricing"},
+{"@type": "ListItem", "position": 2, "name": "Self-hosted script templates: one-time price, full source, runs on your machine, your data stays local", "url": "https://jayjex.github.io/data-vault/tools/scraping-tools-alternative.html"},
+{"@type": "ListItem", "position": 3, "name": "Cloud platforms fit: heavy JavaScript targets at volume, managed proxies, scheduled runs without maintaining code", "url": "https://apify.com/pricing"},
+{"@type": "ListItem", "position": 4, "name": "Self-hosted templates fit: fixed cost, readable and editable code, no per-run metering, no platform lock-in", "url": "https://jayjex.github.io/data-vault/tools/scraping-tools-alternative.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Web scraping tools comparison: cloud platforms vs self-hosted scripts", "item": "https://jayjex.github.io/data-vault/tools/scraping-tools-alternative.html"}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../tools/scraping-scripts.html" aria-current="page">Tools</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Web scraping tools comparison: cloud platforms vs self-hosted scripts</h1>
+  <p class="byline">Comparison of cloud scraping platforms (Apify, ScrapingBee, Browserless) and the <a href="../tools/scraping-scripts.html">Web Scraping Scripts Pack</a> · platform pricing checked 2026-09-07</p>
+
+  <section aria-label="Quick answer">
+    <p>Cloud scraping platforms rent you infrastructure. You pay a subscription plus metered usage for every run that executes on their servers, and the scrapers, proxies, and collected data live in their account. Self-hosted script templates flip the model: one purchase, the code runs on your machine, and no meter counts your runs. This page compares the two on pricing, control, and maintenance, then ends with <a href="#when-cloud">when a cloud platform is the right choice</a>, because for some jobs it plainly is.</p>
+  </section>
+
+  <section aria-label="How cloud scraping platforms work and price">
+    <h2>How cloud platforms work and price</h2>
+    <p>Apify is the reference point, and it is a good product, so this is a description rather than a complaint. You build or rent an Actor, a packaged scraper. Runs execute on Apify's servers. Billing has two layers: a <a href="https://apify.com/pricing" rel="noopener">subscription by plan tier</a> and <a href="https://docs.apify.com/platform/limits" rel="noopener">platform usage credits measured in compute units</a>. One compute unit is 1 GB of memory held for one hour, so a run's memory footprint and duration feed directly into the bill. Actor authors set their own rental prices on top, monthly or per result.</p>
+    <p>Other platforms shape the same idea differently. ScrapingBee meters API calls, Browserless meters browser sessions, and both sit in front of headless infrastructure you never see. The shared properties of the cloud model:</p>
+    <ul>
+      <li>Every run consumes metered units on someone else's account, so cost scales with usage and never drops to zero.</li>
+      <li>Scrapers and results live in platform storage under the retention limits of your plan until you export them.</li>
+      <li>Scaling means upgrading a tier or burning more credits, which you can do without touching infrastructure.</li>
+    </ul>
+    <p>That trade, no ops work in exchange for variable billing and custodial data, is exactly what many teams want. The question is whether it is what you want.</p>
+  </section>
+
+  <section aria-label="Side-by-side comparison">
+    <h2>Side by side</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Comparison table"><table>
+      <thead><tr><th scope="col">Dimension</th><th scope="col">Cloud platform (Apify and similar)</th><th scope="col">Self-hosted templates (this pack)</th></tr></thead>
+      <tbody>
+        <tr><td>Cost model</td><td>Subscription tier plus metered compute units or API calls; spend varies with run volume</td><td>One-time $15, then $0 per run</td></tr>
+        <tr><td>Where code runs</td><td>Platform servers, under platform limits and logs</td><td>Your machine or your own server</td></tr>
+        <tr><td>Where data lives</td><td>Platform storage, plan-based retention, export to get it out</td><td>Local files: CSV, JSON, JSONL you write where you point the script</td></tr>
+        <tr><td>Source access</td><td>Actors you rent are black boxes; your own actors are editable but run only on the platform</td><td>Full JavaScript source, readable and editable, no runtime dependency on the seller</td></tr>
+        <tr><td>Setup</td><td>Account, plan, Actor config or no-code editor</td><td>Node 18+, one <code>npm install</code>, one chromium download</td></tr>
+        <tr><td>Scaling up</td><td>Upgrade tier, add credits; heavy concurrency handled for you</td><td>You manage concurrency, proxies, and scheduling yourself</td></tr>
+        <tr><td>Lock-in</td><td>Actors, schedules, and stored results are tied to the platform account</td><td>None; plain Node.js files that run anywhere Node runs</td></tr>
+        <tr><td>Good fit</td><td>Volume jobs, no-code teams, managed anti-bot infrastructure</td><td>Developers who want fixed cost, control, and code they can change</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section aria-label="What the self-hosted pack is">
+    <h2>The self-hosted side: what $15 buys</h2>
+    <p>The <a href="../tools/scraping-scripts.html">Web Scraping Scripts Pack</a> is ten self-contained Node.js scripts built on Playwright: paginated tables to CSV, infinite-scroll collection, login sessions with saved storage state, price and stock monitors with webhook alerts, bulk form submission, job board scraping with cross-run dedupe, a robots-aware sitemap crawler, screenshot diffing, API polling to JSONL, and a retry wrapper with backoff and user-agent rotation. The <a href="../data/scraper-pack/scripts-manifest.json" download>manifest is a free download</a> if you want the full inventory first.</p>
+    <p>You run every script yourself. That is the whole point: no account, no API key, no per-run meter, and no upload of anything you collect. Each file opens with a how-to-run comment and marks the selectors to edit with an <code>EDIT</code> constant. If a site changes its markup, you fix the selector in your own copy instead of waiting for a third-party Actor's maintainer to notice.</p>
+    <p>The honest cost of that control is maintenance. You patch selectors when sites change, you supply proxies if a target blocks your IP, and you schedule runs with cron or your own scheduler. The pack hands you the patterns; operating them stays your job.</p>
+  </section>
+
+  <section aria-label="When a cloud platform is the right choice" id="when-cloud">
+    <h2>When a cloud platform is the right choice</h2>
+    <p>For these situations, pay for the platform and skip this pack:</p>
+    <ul>
+      <li>You scrape heavy JavaScript sites at real volume and want managed browsers, proxies, and anti-bot handling that someone else keeps alive.</li>
+      <li>Your team is not made of developers, and a no-code editor plus hosted schedules beats editing JavaScript files.</li>
+      <li>You need hundreds of concurrent runs and billing that flexes with usage instead of hardware you own.</li>
+      <li>You rely on a specific marketplace Actor that already does the job well, and renting it costs less than building and maintaining your own.</li>
+    </ul>
+    <p>At steady heavy volume, a platform's unit pricing can also land below the engineering time of self-hosting. If your monthly bill is $50 and replacing it would eat ten hours of work, the platform is winning. That is a legitimate outcome, and the subscription is buying real operations.</p>
+  </section>
+
+  <section aria-label="When self-hosted scripts make more sense">
+    <h2>When self-hosted scripts make more sense</h2>
+    <p>Choose the pack when most of these hold:</p>
+    <ul>
+      <li>Your targets are modest: a few sites, a few thousand pages, daily or hourly refreshes rather than millions of requests.</li>
+      <li>You write code already, and you want scrapers you can read, diff in git, and change without asking a platform for permission.</li>
+      <li>Predictable cost matters more than elasticity. $15 once beats a subscription that rises with every successful run.</li>
+      <li>The data should not pass through a third party: client work, internal monitoring, or anything where you would rather keep collection local.</li>
+      <li>You have been burned by an Actor breaking or a plan tier changing under you, and you want the failure modes in your own hands.</li>
+    </ul>
+    <p>One line sums the trade: the platform sells operations, the pack sells the code, and only you know which one you are short of.</p>
+  </section>
+
+  <section aria-label="Questions people ask before choosing">
+    <h2>Common questions</h2>
+    <h3>Is this pack an Apify alternative?</h3>
+    <p>For developers running their own scrapers at small to medium scale, yes: it replaces the per-run metering and custodial storage with local files and a one-time price. It does not replace Apify's managed proxies, no-code editor, or marketplace of ready Actors. If those are what you are paying for, keep paying for them.</p>
+    <h3>What does it cost to run after buying?</h3>
+    <p>Nothing per run. The scripts execute on your machine against your own Node.js install. Costs beyond the $15 purchase are whatever you already pay for hardware and, if a target requires them, proxies.</p>
+    <h3>Can I modify the scripts?</h3>
+    <p>Yes. You get the full source, personal and commercial use, and no restriction on editing for your own projects. The one limit is redistribution of the files as-is, stated on the <a href="../tools/scraping-scripts.html">tooling page</a>.</p>
+  </section>
+
+  <section aria-label="Get the pack">
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../tools/scraping-scripts.html">See the 10 scripts in detail</a>
+      <a class="btn" href="https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtn8em7k" rel="noopener">Get the pack, $15 one-time</a>
+    </div>
+    <p class="btn-note">Checkout through Getly. Full source included; you run everything on your own machine.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

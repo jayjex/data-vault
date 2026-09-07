@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Airbnb Data by Country: Where Coverage Comes From, Why It's Uneven | Data Vault</title>
+<meta name="description" content="Airbnb data by country: no official country-level dataset exists, so coverage comes from Inside Airbnb city files, Eurostat nights, and national statistics offices. A map of what exists per country and why quality differs.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/airbnb-data-by-country.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Airbnb Data by Country: Where Coverage Comes From, Why It's Uneven | Data Vault">
+<meta property="og:description" content="Where country-level Airbnb data comes from: Inside Airbnb city files, Eurostat nights, and national statistics offices, plus why regulation, scraping rules, and GDPR make quality uneven.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/airbnb-data-by-country.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Airbnb Data by Country: Where Coverage Comes From, Why It's Uneven", "description": "No official Airbnb country-level dataset exists. This guide maps the sources that stand in for it, Inside Airbnb city files, Eurostat nights, and national statistics offices, and explains why regulation, scraping legality, and GDPR make quality differ by country.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/airbnb-data-by-country.html", "about": {"@type": "Dataset", "name": "Airbnb Listings, 6 US Cities", "url": "https://jayjex.github.io/data-vault/datasets/airbnb-six-cities.html"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Airbnb data by country", "item": "https://jayjex.github.io/data-vault/guides/airbnb-data-by-country.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+{"@type": "Question", "name": "Is there Airbnb data for every country?", "acceptedAnswer": {"@type": "Answer", "text": "No. Airbnb publishes no official country-level dataset. The closest thing is Inside Airbnb, which in September 2026 listed 123 city-level regions across 37 countries, with 34 of those regions in the United States alone. Much of Asia, Africa, and Eastern Europe has no regularly updated coverage at all. For EU countries, Eurostat tourism statistics are the reliable fallback, though they count all tourist accommodation, not Airbnb listings."}},
+{"@type": "Question", "name": "What is the best free source for Airbnb data by country?", "acceptedAnswer": {"@type": "Answer", "text": "Inside Airbnb's get-the-data page for listing-level city files (CC BY 4.0), and the Eurostat databrowser for EU-wide nights spent in tourist accommodation per country. Both are free. National statistics offices such as INE (Spain), ISTAT (Italy), INSEE (France), and Destatis (Germany) publish tourism accommodation series that go back further than any scraping project, but without Airbnb-specific detail."}},
+{"@type": "Question", "name": "Why does Airbnb data quality differ so much between countries?", "acceptedAnswer": {"@type": "Answer", "text": "Three reasons. Regulation: registration schemes and short-stay bans change what is even listed on the platform, so a country's listing count measures its rules as much as its market. Scraping legality: US courts have treated public-page scraping as mostly permissible since hiQ Labs v. LinkedIn, while EU jurisdictions weigh the same act against GDPR, so private scraping projects thin out in Europe. Privacy law: GDPR treats host names and contact details as personal data, which is why public sources for European cities ship anonymized summaries only."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../datasets/airbnb-six-cities.html">Airbnb dataset</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Airbnb data by country: what exists and where it comes from</h1>
+  <p class="byline">Country-level view around the <a href="../datasets/airbnb-six-cities.html">Airbnb Listings, 6 US Cities</a> pack &middot; source counts from Inside Airbnb, September 2026 &middot; verified links only.</p>
+
+  <section aria-label="Quick answer">
+    <p>There is no official Airbnb dataset by country. Airbnb publishes nothing at the country level, and the company's terms of service bar scraping, so every country-level picture is stitched together from three kinds of sources: city files scraped and republished by <a href="https://insideairbnb.com/get-the-data.html" rel="noopener">Inside Airbnb</a>, tourism nights counted by Eurostat for EU countries, and national statistics offices for the rest. Coverage follows those sources, and the sources follow the law. The United States has 34 Inside Airbnb regions because US case law tolerates scraping public pages; much of Asia and Africa has none because no volunteer has taken on the work.</p>
+    <p>This catalog ships a 6-city US pack, so its own coverage stops at six cities. The map above points to the other countries; the granularity example below shows what good data looks like once you get there.</p>
+  </section>
+
+  <section aria-label="What by-country data exists">
+    <h2>The three grains of "by country"</h2>
+    <p><strong>Listing-level rows.</strong> Inside Airbnb publishes listings.csv-style files per city, one snapshot per release. A "country" dataset built from these is a folder of city files with a country column you add yourself. This is the only grain that carries room types, minimum nights, and availability.</p>
+    <p><strong>Aggregated city counts.</strong> Press coverage, academic papers, and commercial trackers roll city snapshots up to country totals. Fine for a headline, useless for analysis, because snapshot dates rarely match across cities.</p>
+    <p><strong>National tourism statistics.</strong> Eurostat's <a href="https://ec.europa.eu/eurostat/databrowser/view/tour_occ_ninat/default/table" rel="noopener">tour_occ_ninat</a> dataset counts nights spent at tourist accommodation establishments per country, residents and non-residents, monthly. Official, comparable, free, and not Airbnb-specific: hotels and campsites are in the same total. National offices such as INE (Spain), ISTAT (Italy), INSEE (France), and Destatis (Germany) run the same kind of series domestically.</p>
+  </section>
+
+  <section aria-label="Country coverage map">
+    <h2>Where Inside Airbnb is strong</h2>
+    <p class="table-note">Counted from insideairbnb.com/get-the-data in September 2026: 123 city-level regions across 37 countries.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Inside Airbnb coverage by country table"><table>
+      <thead><tr><th scope="col">Country</th><th scope="col">Regions</th><th scope="col">Examples</th></tr></thead>
+      <tbody>
+        <tr><td>United States</td><td>34</td><td>Austin, NYC, Denver, Nashville, San Diego, Clark County (the six in this pack), plus 28 more</td></tr>
+        <tr><td>Australia</td><td>11</td><td>Sydney, Melbourne, Brisbane</td></tr>
+        <tr><td>Italy</td><td>10</td><td>Rome, Milan, Florence, Bologna</td></tr>
+        <tr><td>Spain</td><td>9</td><td>Barcelona, Madrid, Mallorca, Menorca</td></tr>
+        <tr><td>Canada</td><td>8</td><td>Toronto, Montreal, Vancouver</td></tr>
+        <tr><td>France</td><td>4</td><td>Paris, Bordeaux, Lyon</td></tr>
+        <tr><td>Greece</td><td>4</td><td>Athens, Crete</td></tr>
+        <tr><td>United Kingdom</td><td>4</td><td>London, Edinburgh, Bristol</td></tr>
+        <tr><td>Netherlands</td><td>3</td><td>Amsterdam, Rotterdam, The Hague</td></tr>
+        <tr><td>Belgium</td><td>3</td><td>Brussels, Antwerp, Ghent</td></tr>
+        <tr><td>Switzerland</td><td>3</td><td>Geneva, Zurich, Vaud</td></tr>
+        <tr><td>Germany</td><td>2</td><td>Berlin, Munich</td></tr>
+        <tr><td>Ireland</td><td>2</td><td>Dublin</td></tr>
+        <tr><td>Portugal</td><td>2</td><td>Lisbon</td></tr>
+        <tr><td>Brazil</td><td>2</td><td>Rio de Janeiro</td></tr>
+        <tr><td>22 other countries</td><td>1 each</td><td>Bangkok, Cape Town, Buenos Aires, Mexico City, Tokyo, Istanbul</td></tr>
+      </tbody>
+    </table></div>
+    <p>The skew matters for anything country-level. A view assembled from these files reflects where scraping volunteers live and where the law lets them work, roughly as much as it reflects short-term rental markets. Also note the shape inside each region: some cities publish full detailed listings, others ship summary files only, and some drop to quarterly archived data.</p>
+  </section>
+
+  <section aria-label="Why quality differs by country">
+    <h2>Why data quality differs by country</h2>
+
+    <h3>Regulation changes what is listed</h3>
+    <p>A scraped dataset measures the platform after local law has filtered it. New York City's Local Law 18 removed most short-term rentals from Airbnb's platform starting September 2023, and our NYC snapshot reflects the residue: 30,234 rows where 42% are private rooms, a mix unlike any other US market in the pack. Amsterdam caps whole-home rentals at 30 nights a year and requires registration numbers, which shows up as thinner supply in the Amsterdam file. Where short stays are lightly regulated, such as many US markets, the same scraping method returns far denser data. Comparing countries without reading their rules compares rulebooks first.</p>
+
+    <h3>Scraping legality runs on different tracks</h3>
+    <p>In the United States, the Ninth Circuit's hiQ Labs v. LinkedIn decision (2022) left scraping publicly viewable pages on solid ground for now, and combined with no national privacy statute for public business data, Inside Airbnb's 34 US regions keep updating. In the EU, the same act gets weighed against GDPR and unfair-competition law, and individual host data is the sensitive part. Some countries with big Airbnb markets, Turkey, Thailand, Kenya among the 37, are covered by exactly one city region, which says more about volunteer effort and legal comfort than about rental volume.</p>
+
+    <h3>GDPR shapes what European data can contain</h3>
+    <p>GDPR treats host names, photos, and contact details as personal data, so republishing them for EU hosts carries real exposure. That is why public sources for European cities ship anonymized summary fields, and why Airbnb pushed Inside Airbnb to drop some city releases over the years. Our own pack carries zero host identity columns even for US rows: <code>id</code>, <code>neighbourhood</code> as a ZIP area, room type, nightly price, and availability are what a safe public dataset contains. The <a href="airbnb-data-guide.html">Airbnb data guide</a> walks the full 12-column schema.</p>
+  </section>
+
+  <section aria-label="Granularity example">
+    <h2>What good granularity looks like: the 6 US cities</h2>
+    <p>Country stats stop at nights and stays. Listing-level data lets you slice by room type, geography, and booking rules inside one city, which is the whole gap. Taken straight from <a href="../data/airbnb-six-cities/cities-index.csv">cities-index.csv</a>, the per-city index that ships with the pack:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Per-city granularity example table"><table>
+      <thead><tr><th scope="col">City</th><th scope="col">Snapshot date</th><th scope="col">Listings</th><th scope="col">Entire home/apt</th><th scope="col">Private room</th></tr></thead>
+      <tbody>
+        <tr><td>Austin, TX</td><td>2026-06-22</td><td>11,295</td><td>82%</td><td>14%</td></tr>
+        <tr><td>Nashville, TN</td><td>2026-06-26</td><td>10,242</td><td>90%</td><td>8%</td></tr>
+        <tr><td>Denver, CO</td><td>2026-06-30</td><td>4,939</td><td>85%</td><td>12%</td></tr>
+        <tr><td>New York City, NY</td><td>2026-08-10</td><td>30,234</td><td>55%</td><td>42%</td></tr>
+        <tr><td>Las Vegas (Clark County), NV</td><td>2026-06-27</td><td>20,234</td><td>69%</td><td>28%</td></tr>
+        <tr><td>San Diego, CA</td><td>2026-06-27</td><td>13,225</td><td>83%</td><td>14%</td></tr>
+      </tbody>
+    </table></div>
+    <p>Each row is one snapshot of one market, 90,169 listings total in one shared 12-column schema, so an entire-home share or a minimum-nights distribution is one filter away per city. The <a href="airbnb-data-by-city.html">Airbnb data by city</a> guide runs one query per market over the MCP server, and the <a href="airbnb-data-methodology.html">methodology page</a> covers snapshot limits.</p>
+    <p>Pull the same per-city index without downloading anything:</p>
+    <pre>query_dataset("airbnb-six-cities", {columns: ["city", "snapshot_date", "rows", "room_type_mix"], limit: 6})</pre>
+    <p>Start the server with <code>npx --allow-git=all -y github:jayjex/dataset-mcp</code>. Full endpoint docs: <a href="../agents/">For agents</a>.</p>
+  </section>
+
+  <section aria-label="FAQ">
+    <h2>FAQ</h2>
+    <h3>Is there Airbnb data for every country?</h3>
+    <p>No. Airbnb publishes no official country-level dataset. The closest thing is Inside Airbnb, which in September 2026 listed 123 city-level regions across 37 countries, with 34 of those regions in the United States alone. Much of Asia, Africa, and Eastern Europe has no regularly updated coverage at all. For EU countries, Eurostat tourism statistics are the reliable fallback, though they count all tourist accommodation, not Airbnb listings.</p>
+    <h3>What is the best free source for Airbnb data by country?</h3>
+    <p>Inside Airbnb's <a href="https://insideairbnb.com/get-the-data.html" rel="noopener">get-the-data page</a> for listing-level city files (CC BY 4.0), and the <a href="https://ec.europa.eu/eurostat/databrowser/view/tour_occ_ninat/default/table" rel="noopener">Eurostat databrowser</a> for EU-wide nights spent in tourist accommodation per country. Both are free. National statistics offices such as INE (Spain), ISTAT (Italy), INSEE (France), and Destatis (Germany) publish tourism accommodation series that go back further than any scraping project, but without Airbnb-specific detail.</p>
+    <h3>Why does Airbnb data quality differ so much between countries?</h3>
+    <p>Three reasons. Regulation: registration schemes and short-stay bans change what is even listed on the platform, so a country's listing count measures its rules as much as its market. Scraping legality: US courts have treated public-page scraping as mostly permissible since hiQ Labs v. LinkedIn (2022), while EU jurisdictions weigh the same act against GDPR, so private scraping projects thin out in Europe. Privacy law: GDPR treats host names and contact details as personal data, which is why public sources for European cities ship anonymized summaries only.</p>
+  </section>
+
+  <section aria-label="More from the catalog">
+    <h2>Keep reading</h2>
+    <ul>
+      <li><a href="airbnb-data-by-city.html">Airbnb data by city</a>: the 6 US markets side by side, one MCP query per city</li>
+      <li><a href="airbnb-data-guide.html">Airbnb data download guide</a>: the 12 columns explained, snapshot dates, MCP queries</li>
+      <li><a href="airbnb-occupancy-data.html">Airbnb occupancy data</a>: what a listings snapshot can and cannot tell you about occupancy</li>
+      <li><a href="airbnb-data-methodology.html">Airbnb data methodology</a>: how the snapshots are collected and what they miss</li>
+      <li><a href="inside-airbnb-alternative.html">Inside Airbnb alternative</a>: what the 6-city pack adds over the raw per-city files</li>
+      <li><a href="../datasets/airbnb-six-cities.html">Airbnb Listings, 6 US Cities</a>: dataset page with preview and stats</li>
+    </ul>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

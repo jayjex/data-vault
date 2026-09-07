@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Sell Datasets: Our Public-Data Pipeline, End to End | Data Vault</title>
+<meta name="description" content="How we sell datasets online: license-checked public sources, documented CSVs, free samples, GitHub releases, MCP queries, Getly checkout. Real numbers throughout.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/how-we-sell-public-data.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="How to Sell Datasets: Our Public-Data Pipeline, End to End">
+<meta property="og:description" content="License checks, normalization, free samples, GitHub releases, MCP queries, and Getly checkout. The whole data-selling pipeline with real numbers.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/how-we-sell-public-data.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "How to Sell Datasets: Our Public-Data Pipeline, End to End", "description": "License checks on public sources, normalization with data dictionaries, free samples, GitHub releases, an MCP query layer, and Getly checkout, with real numbers from a running catalog.", "datePublished": "2026-09-09", "dateModified": "2026-09-09", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/how-we-sell-public-data.html", "about": {"@type": "DataCatalog", "name": "Data Vault", "url": "https://jayjex.github.io/data-vault/"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "How we sell public datasets", "item": "https://jayjex.github.io/data-vault/guides/how-we-sell-public-data.html"}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>How we sell public datasets, end to end</h1>
+  <p class="byline">Published 2026-09-09 by Matchbook Labs. Every number below comes from the live catalog and its state files.</p>
+
+  <div class="herostats">
+    <span><b>5</b> data packs</span>
+    <span><b>149,673</b> rows</span>
+    <span><b>19 MB</b> full release</span>
+    <span><b>$0</b> data acquisition</span>
+  </div>
+
+  <section aria-label="What this walkthrough covers">
+    <p class="lead">Data Vault sells CSV packs built from public sources: NFL games with betting lines, HUD fair market rents, Airbnb listings in six cities, Superteam Earn bounty snapshots, and a Playwright scraper pack. People ask how the lane works, so this post documents the whole process: where the data comes from, how licensing gets checked, what normalization means in practice, how the free sample layer is hosted, how the full files ship, and where checkout happens. If you are figuring out how to sell datasets online, this is one complete worked example with the numbers left in.</p>
+  </section>
+
+  <section aria-label="Source selection and license checks">
+    <h2>Step 1: pick public sources, read the license first</h2>
+    <p>Every pack starts with a source that publishes its data openly. The license check happens before any pack is built, and the result is written on the dataset page so buyers can verify it themselves.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Source and license table"><table><thead><tr><th scope="col">Source</th><th scope="col">What we take</th><th scope="col">Upstream license</th></tr></thead><tbody>
+      <tr><td>nflverse</td><td>Game results, spreads, totals, moneylines, weather, 1999-2026</td><td>CC BY 4.0</td></tr>
+      <tr><td>HUD (huduser.gov)</td><td>FY2026 Fair Market Rent files</td><td>Public domain (US government work)</td></tr>
+      <tr><td>Inside Airbnb</td><td>Listings snapshots, 6 US cities, 90,169 rows</td><td>CC BY 4.0</td></tr>
+      <tr><td>superteam.fun</td><td>Live bounty listings via the public API, harvested 2026-09-04</td><td>Public API data</td></tr>
+    </tbody></table></div>
+    <p>The license decides two things. First, whether the pack can exist at all: no terms, no pack. Second, what credit the repack owes: our samples carry CC BY 4.0 with the upstream source named on each dataset page, and the HUD pack notes that the underlying numbers are public domain. Nothing here touches scraping behind logins or terms that forbid redistribution.</p>
+  </section>
+
+  <section aria-label="Normalization and documentation">
+    <h2>Step 2: normalize, then document every column</h2>
+    <p>Raw government and community files arrive with mixed formats. Normalization makes one pack behave like one table family. The HUD pack shows what that means with real counts: the ZIP file holds 51,895 rows, one per ZIP code; the county rollup holds 3,229 rows with an <code>area_rows</code> column recording how many source rows were aggregated where a county maps to more than one HUD area; the state summary holds 52 rows. Dollar amounts stay integers, rounded the way HUD published them, so nothing changes value in transit.</p>
+    <p>Documentation ships inside the download, not on a wiki. Each full pack includes a data dictionary plus a README with source checksums, so a buyer can confirm the file they received matches the file that was described. A dataset nobody can interpret is a spreadsheet; a dataset with a dictionary is a product.</p>
+  </section>
+
+  <section aria-label="Free samples first">
+    <h2>Step 3: free samples before anything is paid</h2>
+    <p>Every pack exposes a sample: the first 10 to 25 rows as both CSV and JSON, downloadable with no email wall. The dataset page renders the same rows as a preview table, so a buyer can see the schema, the column names, and the shape of the data before paying for anything.</p>
+    <p>Machines get the same door. <a href="../catalog.json">catalog.json</a> lists every pack with its stats and sample URLs, and <a href="../llms.txt">llms.txt</a> gives crawlers a plain-text map of the site. The whole sample layer weighs under 100 KB because the repo carries samples only. See the <a href="../free-datasets-for-ai-agents.html">free datasets for AI agents</a> page for the access patterns.</p>
+  </section>
+
+  <section aria-label="Hosting the free layer">
+    <h2>Step 4: host the free layer on GitHub Pages</h2>
+    <p>The catalog is a static site: vanilla HTML, no build step, served from GitHub Pages at jayjex.github.io/data-vault. Static hosting keeps the sample layer cheap to run and fast to fetch, and the repo itself becomes the documentation. Pages, sitemap, and catalog all deploy from the same branch, so a new dataset means one commit.</p>
+  </section>
+
+  <section aria-label="Shipping full files">
+    <h2>Step 5: full files ship as a GitHub release</h2>
+    <p>Full packs never live in the public repo. They go into a GitHub release on the dataset-mcp repo, tag <code>data-v1</code>: 22 files, 19 MB, covering all five table packs. The MCP server verifies each file's SHA-256 checksum on every load, which means a query against the full 90,169-row Airbnb table runs on bytes the server has already checked. Buyers who purchase a pack get the raw CSVs directly for local work.</p>
+  </section>
+
+  <section aria-label="The MCP query layer">
+    <h2>Step 6: let anyone query the full data for free</h2>
+    <p>The query layer is the part most data sellers skip, and it costs us nothing per call. <a href="https://github.com/jayjex/dataset-mcp" rel="noopener">dataset-mcp</a>, an MIT-licensed MCP server listed in the public registry as <code>io.github.jayjex/dataset-mcp</code>, runs with one command:</p>
+    <pre><code>npx -y github:jayjex/dataset-mcp</code></pre>
+    <p>It exposes <code>list_datasets</code>, <code>get_dataset_info</code>, and <code>get_sample</code> for the free layer, plus <code>query_dataset</code> against the full release: 100 rows per call, filters for <code>=</code>, <code>contains</code>, <code>gt</code>, and <code>lt</code>, and a <code>get_stats</code> tool for unique counts, min and max, and top values per column. A September 2026 test run of v1.1.0 filtered the HUD ZIP file for Texas and matched 3,247 rows. The cold call, including the one-time download, took 367ms; the next page came back in 265ms from cache. Setup is on the <a href="../agents/mcp-dataset-server.html">MCP server page</a>.</p>
+    <p>Why give this away? A buyer who can test-drive the full dataset through a query interface stops guessing what is inside the CSV. Samples prove the schema; the query layer proves the content.</p>
+  </section>
+
+  <section aria-label="Payment rails">
+    <h2>Step 7: checkout through Getly, more rails planned</h2>
+    <p>Checkout and download run through <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">the Getly store</a> today, with one-time prices per pack:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Price table"><table><thead><tr><th scope="col">Pack</th><th scope="col">Rows</th><th scope="col">Price</th></tr></thead><tbody>
+      <tr><td><a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026</a></td><td>7,548</td><td>$29</td></tr>
+      <tr><td><a href="../datasets/hud-fmr-2026.html">HUD Fair Market Rents FY2026</a></td><td>51,895</td><td>$24</td></tr>
+      <tr><td><a href="../datasets/airbnb-six-cities.html">Airbnb Listings, 6 US Cities</a></td><td>90,169</td><td>$39</td></tr>
+      <tr><td><a href="../datasets/earn-bounties.html">Superteam Earn Live Listings</a></td><td>28 cards</td><td>$49</td></tr>
+      <tr><td><a href="../datasets/scraper-pack.html">Web Scraping Script Pack</a></td><td>10 scripts</td><td>$15</td></tr>
+    </tbody></table></div>
+    <p>Two more rails are planned, neither wired up yet: Gumroad for card-heavy buyers, and x402 so an agent could pay per query over plain HTTP. When either goes live, this page gets updated with the same numbers-first format.</p>
+  </section>
+
+  <section aria-label="Advice for builders">
+    <h2>If you want to sell datasets, start here</h2>
+    <p>Three things carried this lane. License checks came first, before a single row was cleaned, and every credit line is public on the dataset pages. Documentation got treated like API docs: a data dictionary in every download, checksums on every file. And the query layer went out free, because a buyer who can interrogate the data does not need convincing.</p>
+    <p>The pattern generalizes past this catalog. Public source, clear license, clean table, documented schema, free sample, free query access, one-time price. Each step is small enough to finish in an evening; the catalog is the sum of those evenings.</p>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <p>Browse the catalog with its per-pack previews, or start from the machine-readable index if you are a script or an agent.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../catalog.json">Read catalog.json</a>
+      <a class="btn" href="https://www.getly.store/store/mtmw06l2" rel="noopener">Visit the store</a>
+    </div>
+    <p class="btn-note">Samples are CC BY 4.0 with upstream credit per dataset page; full packs are licensed per purchase. Related reads: the <a href="hud-rent-data-explained.html">HUD rent data guide</a>, the <a href="solana-bounties-data-guide.html">Superteam Earn data guide</a>, and the <a href="../agents/">agent docs</a>.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

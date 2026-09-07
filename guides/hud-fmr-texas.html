@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD FMR Texas: Fair Market Rent Data for Texas, FY2026 | Data Vault</title>
+<meta name="description" content="HUD fair market rent data for Texas: 3,247 ZIP rows in the FY2026 file, metro examples for Houston, Dallas, Austin and San Antonio, a real state=TX MCP query, and the county file count. Free sample, full pack.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fmr-texas.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="HUD FMR Texas: Fair Market Rent Data for Texas, FY2026">
+<meta property="og:description" content="HUD fair market rent data for Texas: 3,247 ZIP rows in the FY2026 file, metro examples for Houston, Dallas, Austin and San Antonio, a real state=TX MCP query, and the county file count.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fmr-texas.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "HUD FMR Texas: Fair Market Rent Data for Texas, FY2026", "description": "HUD fair market rent data for Texas: 3,247 ZIP rows in the FY2026 file, metro examples for Houston, Dallas, Austin and San Antonio, a real state=TX MCP query, and the county file count.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fmr-texas.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How many Texas rows are in the HUD FMR data?", "acceptedAnswer": {"@type": "Answer", "text": "The FY2026 ZIP file holds 3,247 Texas rows out of 51,895 total, one row per Texas ZIP code. The county file adds 254 Texas county rows, and the 52-row state summary carries one Texas row with the state-wide median, the highest county, and the lowest county."}}, {"@type": "Question", "name": "Why do Dallas and Fort Worth carry different FMRs if they are one metroplex?", "acceptedAnswer": {"@type": "Answer", "text": "HUD splits the Dallas-Fort Worth metroplex into separate HUD Metro FMR Areas. In FY2026 the Dallas area covers 260 Texas ZIPs with 2BR FMRs from 1,030 to 2,900, while Fort Worth-Arlington covers 126 ZIPs with 2BR values from 970 to 2,800. Each ZIP takes the FMR of the HUD area it belongs to, so the two sides of the metroplex are priced apart in the file."}}, {"@type": "Question", "name": "What is the cheapest and most expensive 2BR FMR in Texas for FY2026?", "acceptedAnswer": {"@type": "Answer", "text": "Texas ZIP-level 2BR FMRs run from 970 dollars at the low end to 2,900 at the high end. The state summary names Rockwall County as the highest-rent county at a 2BR of 1,931 and Bailey County as the lowest at 973. The state-wide median across the 3,247 Texas ZIP rows is 1,190."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>HUD FMR Texas: fair market rent data for Texas, FY2026</h1>
+  <p class="byline">FY2026 edition, published 2026-09-10. Data source: HUD, public domain. Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <section aria-label="Texas in the FY2026 FMR files">
+    <h2>Texas in the FY2026 FMR files</h2>
+    <p>Texas is the second-largest state in the <a href="../datasets/hud-fmr-2026.html">HUD FMR FY2026 pack</a> by row count. Filtering the ZIP file on <code>state = TX</code> matches 3,247 of the 51,895 rows, about 6 percent of the file. The county file adds 254 Texas county rows, and the 52-row state summary carries one Texas row. Together the three files give you the state at three levels: ZIP, county, and one-line summary.</p>
+    <p>Inside the ZIP file, the 3,247 Texas rows break down into 215 distinct HUD areas. 47 of them are metro FMR areas, where HUD publishes ZIP-level Small Area FMRs, and the other 168 are nonmetro counties that carry a county-level value. That split shows up in the values. Metro ZIPs vary within a metro, and nonmetro ZIPs repeat their county number.</p>
+  </section>
+
+  <section aria-label="Texas metros in the file">
+    <h2>Texas metros, examples from the FY2026 CSV</h2>
+    <p>The biggest metros dominate the row count. Houston, Dallas, San Antonio, Austin, and Fort Worth together account for 983 of the 3,247 Texas rows, and each one spans a wide 2BR range because ZIP-level values replace the old metro-wide single number. Every figure below comes straight from fmr-by-zip-2026.csv:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Texas metro FMR areas by ZIP count and 2BR spread"><table><thead><tr><th scope="col">HUD area</th><th scope="col">ZIP rows</th><th scope="col">2BR range</th></tr></thead><tbody>
+      <tr><td>Houston-The Woodlands-Sugar Land</td><td>327</td><td>970 to 2,360</td></tr>
+      <tr><td>Dallas</td><td>260</td><td>1,030 to 2,900</td></tr>
+      <tr><td>San Antonio-New Braunfels</td><td>138</td><td>970 to 2,140</td></tr>
+      <tr><td>Austin-Round Rock-San Marcos</td><td>132</td><td>1,120 to 2,780</td></tr>
+      <tr><td>Fort Worth-Arlington</td><td>126</td><td>970 to 2,800</td></tr>
+      <tr><td>El Paso</td><td>60</td><td>1,080 to 1,790</td></tr>
+      <tr><td>Corpus Christi</td><td>48</td><td>1,260 to 2,050</td></tr>
+      <tr><td>Killeen-Temple</td><td>42</td><td>1,060 to 1,940</td></tr>
+      <tr><td>Lubbock</td><td>42</td><td>1,080 to 1,390</td></tr>
+      <tr><td>Abilene</td><td>33</td><td>1,090 to 1,900</td></tr>
+      <tr><td>McAllen-Edinburg-Mission</td><td>33</td><td>970 to 1,320</td></tr>
+      <tr><td>Midland</td><td>15</td><td>1,690 to 1,960</td></tr>
+    </tbody></table></div>
+    <p>A few reads fall out of the table. Midland has the highest floor in the state: its cheapest ZIP sits at a 2BR of 1,690, above the state-wide median of 1,190, and its 15 ZIPs stay inside a 270-dollar band. McAllen runs the cheapest of the border metros, with no ZIP above 1,320. Dallas and Fort Worth price apart even though they share a metroplex, because HUD splits them into two FMR areas. The metro-level geography behind this table is covered in <a href="hud-metro-list.html">HUD metro area list</a>, which ranks all 649 FY2026 areas by ZIP count.</p>
+  </section>
+
+  <section aria-label="Query the file for Texas">
+    <h2>Query the file for Texas</h2>
+    <p>Filtering on the state column is the fastest way in. In a spreadsheet, filter the state column for TX. For scripts and agents, the <a href="https://github.com/jayjex/dataset-mcp" rel="noopener">dataset-mcp</a> server takes a where clause, setup on the <a href="../agents/">For agents</a> page. This query runs against the full ZIP file:</p>
+    <pre><code>query_dataset(
+  "hud-fmr-2026",
+  {
+    "where": [{ "column": "state", "op": "=", "value": "TX" }],
+    "columns": ["zip", "area_name", "fmr_2br"],
+    "limit": 5
+  }
+)</code></pre>
+    <p>Output from a September 2026 test run of server v1.1.0, matching 3,247 Texas ZIP rows:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Query result table"><table><thead><tr><th scope="col">zip</th><th scope="col">area_name</th><th scope="col">fmr_2br</th></tr></thead><tbody>
+      <tr><td>76437</td><td>Abilene, TX MSA</td><td>1090</td></tr>
+      <tr><td>76443</td><td>Abilene, TX MSA</td><td>1090</td></tr>
+      <tr><td>76464</td><td>Abilene, TX MSA</td><td>1090</td></tr>
+      <tr><td>76469</td><td>Abilene, TX MSA</td><td>1090</td></tr>
+      <tr><td>79501</td><td>Abilene, TX MSA</td><td>1140</td></tr>
+    </tbody></table></div>
+    <p>The cold call, including the one-time file download, took 367ms and the next page came back in 265ms from cache. Results start in Abilene because rows return in file order, not alphabetical order. A filter on both state and metro narrows it to one metro, for example Houston, and the <a href="csv-vs-api.html">CSV vs API decision guide</a> covers when querying beats downloading the whole file.</p>
+  </section>
+
+  <section aria-label="Texas at a glance">
+    <h2>Texas at a glance, from the state summary row</h2>
+    <p>The state summary file condenses Texas to one row. In FY2026 the state-wide 2BR median across Texas ZIPs is 1,190, the cheapest ZIP values out at 970, and the priciest ZIP reaches 2,900. The summary also names the extremes at the county level: Rockwall County holds the highest 2BR in the state at 1,931, and Bailey County the lowest at 973. The full 52-row file, Texas included, is available as a <a href="../data/hud-fmr-2026/state-summary.csv" download>free CSV download</a>, so you can put Texas next to the other 51 states without paying anything.</p>
+    <p>For the row-by-row work behind these numbers, <a href="hud-fmr-by-zip.html">HUD FMR by ZIP code</a> walks one ZIP lookup end to end and <a href="hud-fmr-by-county.html">HUD FMR by county</a> explains the county rollup, including why some counties report both a median and a max.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>HUD FMR Texas questions</h2>
+    <dl>
+      <dt>How many Texas rows are in the HUD FMR data?</dt>
+      <dd>The FY2026 ZIP file holds 3,247 Texas rows out of 51,895 total, one row per Texas ZIP code. The county file adds 254 Texas county rows, and the 52-row state summary carries one Texas row with the state-wide median, the highest county, and the lowest county.</dd>
+      <dt>Why do Dallas and Fort Worth carry different FMRs if they are one metroplex?</dt>
+      <dd>HUD splits the Dallas-Fort Worth metroplex into separate HUD Metro FMR Areas. In FY2026 the Dallas area covers 260 Texas ZIPs with 2BR FMRs from 1,030 to 2,900, while Fort Worth-Arlington covers 126 ZIPs with 2BR values from 970 to 2,800. Each ZIP takes the FMR of the HUD area it belongs to, so the two sides of the metroplex are priced apart in the file.</dd>
+      <dt>What is the cheapest and most expensive 2BR FMR in Texas for FY2026?</dt>
+      <dd>Texas ZIP-level 2BR FMRs run from 970 dollars at the low end to 2,900 at the high end. The state summary names Rockwall County as the highest-rent county at a 2BR of 1,931 and Bailey County as the lowest at 973. The state-wide median across the 3,247 Texas ZIP rows is 1,190.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the dataset">
+    <h2>Get the full dataset</h2>
+    <p>The free 22-row sample shows the schema. The full pack carries all 3,247 Texas ZIP rows inside the 51,895-row ZIP file, the county file (3,229 rows), the state summary (52 rows), the data dictionary, and source checksums.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">Get the full dataset</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release, huduser.gov. US government data, public domain.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

@@ -81,6 +81,7 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - [SAFMR vs FMR: Small Area Fair Market Rent vs Metro FMR](https://jayjex.github.io/data-vault/guides/safmr-vs-fmr.html): ZIP-level vs metro-level rents
 - [HUD FMR Texas: Fair Market Rent Data for Texas, FY2026](https://jayjex.github.io/data-vault/guides/hud-fmr-texas.html): state=TX filter, 3,247 ZIP rows, metro split
 - [Airbnb Data Download: 6-City Listings CSV (90,169 Rows)](https://jayjex.github.io/data-vault/guides/airbnb-data-guide.html): schema and cities in the Airbnb pack
+- [Airbnb Price Data: Mean and Median Nightly Price in 6 US Cities](https://jayjex.github.io/data-vault/guides/airbnb-price-data.html): per-city means and medians, snapshot vs live
 - [Airbnb Data by City: 6 US Markets, Rows and Median Prices](https://jayjex.github.io/data-vault/guides/airbnb-data-by-city.html): per-city row counts and medians
 - [Airbnb Dataset Sample: Free CSV Data Download (20 Rows, 12 Columns)](https://jayjex.github.io/data-vault/guides/airbnb-data-sample.html): free sample rows
 - [Airbnb Rental Analysis: Screen 6 US Markets With One Dataset](https://jayjex.github.io/data-vault/guides/airbnb-investment-analysis.html): screening workflow with real queries
@@ -91,6 +92,7 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - [What Is a Data Dictionary? Structure and Real CSV Examples](https://jayjex.github.io/data-vault/guides/data-dictionary-explained.html): column-code documentation format
 - [CSV vs API for Data: Which One You Need, With a Decision Table](https://jayjex.github.io/data-vault/guides/csv-vs-api.html): worked decision example
 - [Scrape Without Coding: 10 Editable Template Scripts](https://jayjex.github.io/data-vault/guides/scrape-without-coding.html): edit-one-config workflow
+- [Python Scraping Template: 10 Ready-to-Edit Patterns](https://jayjex.github.io/data-vault/guides/scraping-python-templates.html): patterns mapped to Python, self-host angle
 - [How to Sell Datasets: Our Public-Data Pipeline, End to End](https://jayjex.github.io/data-vault/guides/how-we-sell-public-data.html): pipeline documentation, license to checkout
 - [Public Domain Datasets: Licenses, Commercial Use, Credit Lines](https://jayjex.github.io/data-vault/guides/public-domain-datasets.html): license table for public data
 - [MCP Server for Claude Desktop: Install dataset-mcp, Config JSON, Real Outputs](https://jayjex.github.io/data-vault/guides/mcp-claude-desktop.html): Claude Desktop config walkthrough

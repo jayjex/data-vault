@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSV Encoding: UTF-8, the Excel BOM, and Windows-1252, With Real Files | Data Vault</title>
+<meta name="description" content="CSV encoding explained with real files: why UTF-8 is the right default, what the Excel BOM does to your header row, how Windows-1252 turns emoji into mojibake, and how to detect and fix encoding in pandas and jq.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/csv-encoding-utf8.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="CSV Encoding: UTF-8, the Excel BOM, and Windows-1252, With Real Files">
+<meta property="og:description" content="Why UTF-8 is the right encoding for CSV, what the Excel BOM does to header rows, how Windows-1252 turns emoji into mojibake, and how to detect and fix encoding in pandas and jq.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/csv-encoding-utf8.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "CSV Encoding: UTF-8, the Excel BOM, and Windows-1252, With Real Files", "description": "CSV encoding explained with real files: why UTF-8 is the right default, what the Excel BOM does to your header row, how Windows-1252 turns emoji into mojibake, and how to detect and fix encoding in pandas and jq.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/csv-encoding-utf8.html", "about": {"@type": "Thing", "name": "CSV encoding"}, "mentions": [{"@type": "Thing", "name": "UTF-8"}, {"@type": "Thing", "name": "Windows-1252"}, {"@type": "Thing", "name": "Byte order mark"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "CSV encoding and UTF-8", "item": "https://jayjex.github.io/data-vault/guides/csv-encoding-utf8.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What encoding should a CSV file use?", "acceptedAnswer": {"@type": "Answer", "text": "UTF-8. It represents every language, currency sign, and emoji, Python 3, pandas, jq, and modern databases default to it, and it needs no BOM. The one exception is feeding a CSV back into older Excel on Windows, which expects the Windows-1252 codepage or a UTF-8 file with a BOM; save as 'CSV UTF-8' and keep the BOM in that case."}}, {"@type": "Question", "name": "Why does my CSV show weird characters like \u00f0\u0178\u0178\u00a2 instead of an emoji?", "acceptedAnswer": {"@type": "Answer", "text": "The file is UTF-8 but the program reading it assumed Windows-1252, so each byte of the multi-byte emoji becomes a separate Latin character. This mojibake is a decode mismatch, not corruption: reopening the file with the correct encoding (utf-8, or utf-8-sig if it starts with an Excel BOM) restores the original characters. The reverse mismatch, saving UTF-8 text as Windows-1252, really does destroy data when the characters are outside the codepage."}}, {"@type": "Question", "name": "How do I fix a UnicodeDecodeError when reading a CSV in pandas?", "acceptedAnswer": {"@type": "Answer", "text": "Identify the real encoding first with file --mime or by reading the first bytes, then pass it to read_csv as encoding='cp1252' (Windows exports), 'utf-8-sig' (strips the Excel BOM if present, works on plain UTF-8 too), or 'latin-1', which always succeeds because it maps all 256 byte values. pandas also accepts encoding_errors='replace' for imports where a few bad rows are acceptable."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../tools/scraping-scripts.html">Tools</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>CSV encoding and UTF-8: the traps, with real files</h1>
+  <p class="byline">Published 2026-09-10. Every output block on this page is what the command actually printed on 2026-09-10 against sample files you can download from this site.</p>
+  <p class="lead">Encoding breaks CSV imports in two directions. A UTF-8 file read with the wrong assumption shows mojibake or a <code>UnicodeDecodeError</code>; a file saved by Windows tools carries a BOM that renames your first column or Windows-1252 endings that glue a carriage return to your last field. This page runs all four traps against real CSVs published on this site, shows what each error looks like verbatim, and gives the fix in pandas, the Python standard library, and jq.</p>
+
+  <section aria-label="What encoding means for a CSV">
+    <h2>What encoding means for a CSV</h2>
+    <p>A CSV file is bytes on disk. Encoding is the table that maps those bytes to characters. ASCII covers 127 characters and fits in one byte each, which is why an all-ASCII CSV works everywhere. UTF-8 keeps ASCII byte-for-byte identical and extends it with multi-byte sequences, so one file can hold English, Japanese, currency symbols, and emoji. Windows-1252 is a single-byte codepage for Western European languages that cannot represent anything outside its 256 characters.</p>
+    <p>The practical rule: publish and read UTF-8, expect the two Excel quirks (BOM and Windows-1252 exports), and check line endings once. Our own files sit exactly on this fault line, which is why the examples below are not invented.</p>
+  </section>
+
+  <section aria-label="Trap one: emoji force UTF-8">
+    <h2>Trap one: emoji force UTF-8</h2>
+    <p>Four of the five sample CSVs on this site are plain ASCII. The fifth, the <a href="../datasets/earn-bounties.html">Superteam Earn bounty listings</a> sample, cannot be: bounty titles arrive with emoji in them. One row of the real file:</p>
+<pre>e92e317b-0d0f-49f4-9937-0623d4816df6,zns-sol,🟢 ZNS Solana Creator Challenge,bounty,500,USDC,,,2026-09-09,OPEN,AGENT_ALLOWED,0,ZNS Connect,11,17</pre>
+    <p>The green circle is four bytes in UTF-8 (<code>f0 9f 9f a2</code>). That single cell decides the whole file's encoding: save it as Windows-1252 and the character does not exist. Saving from Python shows the failure verbatim:</p>
+<pre>UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f7e2' in position 6: character maps to <undefined>
+encoding with 'cp1252' codec failed</pre>
+    <p>This is the direction where data is truly destroyed. Excel and older tools respond to that same condition differently, by substituting <code>?</code> or dropping the character, and the original is gone. If your data holds names in any script beyond Western European, a single-byte encoding will eat them the same way.</p>
+  </section>
+
+  <section aria-label="Trap two: the Excel BOM">
+    <h2>Trap two: the Excel BOM renames your first column</h2>
+    <p>Excel's "CSV UTF-8" save option writes a byte order mark, three bytes (<code>ef bb bf</code>) before the header row. The BOM tells Excel itself "this file is UTF-8", but most Python code does not expect it, and it lands on the first column name. Reproduced against a copy of the <a href="../datasets/hud-fmr-2026.html">HUD FMR sample</a> with the BOM prepended:</p>
+<pre>import csv
+with open("boms.csv", newline="", encoding="utf-8") as f:
+    rows = list(csv.DictReader(f))
+rows[0]["zip"]</pre>
+<pre>Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 4, in &lt;module&gt;
+KeyError: 'zip'</pre>
+    <p>The column exists. Its name starts with an invisible character, which is why the lookup fails and why this trap survives most debugging sessions. Printing the real key:</p>
+<pre>'\ufeffzip'</pre>
+    <p>The fix is one string: <code>utf-8-sig</code> means "UTF-8, and strip a BOM if one is present", and it reads plain UTF-8 without a BOM just fine, so it is a safe default for any file an Excel user might have touched.</p>
+<pre>with open("boms.csv", newline="", encoding="utf-8-sig") as f:
+    rows = list(csv.DictReader(f))
+print(rows[0]["zip"], rows[0]["metro"])</pre>
+<pre>76437 metro</pre>
+    <p>jq is immune here: it strips the BOM from input automatically. Python's <code>json</code> module refuses files with a BOM, so the same three bytes behave differently one file format over.</p>
+  </section>
+
+  <section aria-label="Trap three: Windows-1252 mojibake">
+    <h2>Trap three: Windows-1252 turns UTF-8 into mojibake</h2>
+    <p>The reverse read is quieter: no error, just wrong text. Decode the UTF-8 bounty sample as Windows-1252 and the green circle becomes three Latin characters:</p>
+<pre>ðŸŸ¢ ZNS Solana Creator Challenge</pre>
+    <p>Four UTF-8 bytes, four single-byte characters. Nothing raised an exception, so a script that only checks for errors now stores garbage in a database and nobody notices for weeks. That asymmetry is worth internalizing: wrong decoding of a UTF-8 file usually fails silently, while wrong decoding of a Windows-1252 file as UTF-8 fails loudly with <code>UnicodeDecodeError</code> on the first high byte.</p>
+    <p>The fix for existing mojibake is the same reopen, not a find-and-replace over the broken text: re-encoding the garbled string back through cp1252 to bytes, then decoding as UTF-8, recovers <code>🟢</code>. The fix for imports is knowing the encoding before you read, which is the next section.</p>
+  </section>
+
+  <section aria-label="Trap four: CRLF line endings">
+    <h2>Trap four: CRLF line endings glue <code>\r</code> to your last field</h2>
+    <p>Windows tools end lines with two bytes, carriage return plus line feed, and Unix tools expect one. Our <a href="../datasets/scraper-pack.html">scraper pack manifest</a> sample ships with CRLF endings, honestly detectable in the file listing:</p>
+<pre>file data/scraper-pack/sample.csv data/earn-bounties/sample.csv</pre>
+<pre>data/scraper-pack/sample.csv:   ASCII text, with CRLF line terminators
+data/earn-bounties/sample.csv:  CSV Unicode text, UTF-8 text</pre>
+    <p><code>csv</code> and pandas handle CRLF when the file is opened with <code>newline=""</code>. Hand-rolled <code>split("\n")</code> parsers do not. Same file, both ways:</p>
+<pre>text = open("data/scraper-pack/sample.csv").read()
+last = text.split("\n")[2].split(",")
+print(repr(last[-1]))</pre>
+<pre>' saves JSON"'</pre>
+<pre>with open("data/scraper-pack/sample.csv", newline="") as f:
+    rows = list(csv.reader(f))
+print(repr(rows[2][-1]))</pre>
+<pre>'Scrolls a feed to the end, dedupes, saves JSON'</pre>
+    <p>The hand-rolled version kept the closing quote and the trailing <code>\r</code>, so the field compares unequal to <code>Scrolls a feed to the end, dedupes, saves JSON</code>, and any join or dedup on that column misses. Splitting on commas also breaks here because the field contains a quoted comma; that is <a href="../tools/csv-to-json.html">CSV to JSON in Python</a> territory.</p>
+  </section>
+
+  <section aria-label="How to detect the encoding">
+    <h2>How to detect a CSV's encoding, and why one detector lies</h2>
+    <p>The <code>file</code> command inspects actual bytes and gets it right:</p>
+<pre>file --mime data/earn-bounties/sample.csv</pre>
+<pre>data/earn-bounties/sample.csv: text/csv; charset=utf-8</pre>
+    <p>Statistical guessers do worse on small files. chardet, the library people reach for first, examined the same 1.9 KB emoji file and reported:</p>
+<pre>data/earn-bounties/sample.csv: Windows-1252 with confidence 0.6792384105960264</pre>
+    <p>That guess is wrong, and at 68 percent confidence. UTF-8 emoji bytes look like high Windows-1252 characters to any frequency-based detector without enough data. On a 50 MB file chardet would nail it; on a 20-row sample it will steer you wrong. Its maintained successor <code>charset_normalizer</code> guesses more reliably, but for small files the honest order is: documentation first, <code>file --mime</code> second, raw bytes third:</p>
+<pre>head -c 20 data/earn-bounties/sample.csv | xxd</pre>
+<pre>00000000: 6964 2c73 6c75 672c 7469 746c 652c 7479  id,slug,title,ty
+00000010: 7065 2c72                                pe,r</pre>
+    <p>No <code>ef bb bf</code> at the start, so no BOM; ASCII header, so the interesting bytes sit deeper in the file. Detection settles the question in three commands, which is cheaper than a botched import every time.</p>
+  </section>
+
+  <section aria-label="Fixes in pandas and jq">
+    <h2>Fixes in pandas and the jq gotcha</h2>
+    <p>pandas takes the same codec names as the standard library in <code>read_csv</code>. The two worth memorizing:</p>
+<pre>import pandas as pd
+
+df = pd.read_csv("boms.csv", encoding="utf-8-sig")   # strips the Excel BOM if present
+df = pd.read_csv("win1252.csv", encoding="cp1252")   # Windows-exported files</pre>
+    <p><code>encoding="latin-1"</code> is the never-fails escape hatch: it maps all 256 byte values, so it always opens the file, though characters outside its table come out as neighbors. For messy imports where a few bad rows are acceptable, pandas also takes <code>encoding_errors="replace"</code> and continues with <code>U+FFFD</code> markers in place of undecodable bytes. All of this assumes you identified the encoding first; <code>latin-1</code> on a UTF-8 file is mojibake by construction.</p>
+    <p>jq rarely trips on encoding itself: it reads UTF-8 natively, strips a BOM, and writes emoji back untouched. The jq gotcha on this site is structural instead. Our JSON files use an envelope, <code>{slug, name, columns[], records[]}</code>, and the obvious first query fails:</p>
+<pre>jq -r '.[0].title' data/earn-bounties/sample.json</pre>
+<pre>jq: error (at .../data/earn-bounties/sample.json:193): Cannot index object with number</pre>
+<pre>jq -r '.records[0].title' data/earn-bounties/sample.json</pre>
+<pre>🟢 ZNS Solana Creator Challenge</pre>
+    <p>Same emoji round-trips through <code>jq -r</code> and <code>hexdump</code> shows the original four bytes, <code>f0 9f 9f a2</code>, which is the end-to-end proof that the file was UTF-8 all along.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>CSV encoding FAQ</h2>
+    <h3>What encoding should a CSV file use?</h3>
+    <p>UTF-8. It represents every language, currency sign, and emoji, Python 3, pandas, jq, and modern databases default to it, and it needs no BOM. The one exception is feeding a CSV back into older Excel on Windows, which expects the Windows-1252 codepage or a UTF-8 file with a BOM; save as "CSV UTF-8" and keep the BOM in that case.</p>
+    <h3>Why does my CSV show weird characters like ðŸŸ¢ instead of an emoji?</h3>
+    <p>The file is UTF-8 but the program reading it assumed Windows-1252, so each byte of the multi-byte emoji becomes a separate Latin character. This mojibake is a decode mismatch, not corruption: reopening the file with the correct encoding (utf-8, or utf-8-sig if it starts with an Excel BOM) restores the original characters. The reverse mismatch, saving UTF-8 text as Windows-1252, really does destroy data when the characters are outside the codepage.</p>
+    <h3>How do I fix a UnicodeDecodeError when reading a CSV in pandas?</h3>
+    <p>Identify the real encoding first with <code>file --mime</code> or by reading the first bytes, then pass it to <code>read_csv</code> as <code>encoding="cp1252"</code> (Windows exports), <code>"utf-8-sig"</code> (strips the Excel BOM if present, works on plain UTF-8 too), or <code>"latin-1"</code>, which always succeeds because it maps all 256 byte values. pandas also accepts <code>encoding_errors="replace"</code> for imports where a few bad rows are acceptable.</p>
+  </section>
+
+  <section aria-label="Where to go next">
+    <h2>Where to go next</h2>
+    <p>Every sample file quoted on this page is downloadable: the <a href="../tools/sample-data-downloads.html">sample data downloads</a> page lists all five with sizes, columns, and the encoding notes above. Encoding is one of the four checks worth running on any free sample; <a href="what-is-a-csv-sample.html">what a CSV sample is</a> covers the other three. Once the file reads cleanly, <a href="../tools/csv-to-json.html">CSV to JSON in Python</a> handles the conversion with real output from the same HUD sample, and <a href="csv-vs-api.html">CSV vs API for data</a> decides whether you want the file at all.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

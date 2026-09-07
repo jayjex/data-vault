@@ -33,7 +33,7 @@
 
   <section aria-label="What llms.txt is">
     <h2>What llms.txt is, and what it is not</h2>
-    <p>A file named <code>llms.txt</code> at the root of a website lists the pages and endpoints an LLM or agent should read, written in plain markdown. The format came out of a 2024 proposal at <a href="https://llmstxt.org" rel="noopener">llmstxt.org</a>.</p>
+    <p>A file named <code>llms.txt</code> at the root of a website lists the pages and endpoints an LLM or agent should read, written in plain markdown. The format came out of a 2024 proposal at <a href="https://llmstxt.org" rel="noopener">llmstxt.org</a>. If you want the concept before the structure, the <a href="../guides/what-is-llms-txt.html">what is llms.txt</a> explainer covers the definition and how agents read the file.</p>
     <p>Be clear on its status: there is no RFC, no standards body, and no required discovery mechanism. It is a convention sites adopt voluntarily. Anthropic's documentation site publishes one (<a href="https://docs.anthropic.com/llms.txt" rel="noopener">docs.anthropic.com/llms.txt</a>), which is where many teams copy their first structure from. Whether an agent looks for the file depends on the crawler; publishing it costs one static file and removes guesswork for the agents that do check.</p>
     <p>Where it fits next to the files you already have: robots.txt tells crawlers what to skip, sitemap.xml lists every page for search engines, and llms.txt suggests what an LLM should read, with a short description per link. The descriptions are the part a sitemap lacks.</p>
   </section>
@@ -147,7 +147,7 @@ Ten self-contained Playwright scripts for pagination, infinite scroll, login ses
 
   <section aria-label="Where to go next">
     <h2>Use this catalog as an agent</h2>
-    <p>Start from the <a href="./">agent access page</a> for curl and Python examples, or read <a href="../catalog.json">catalog.json</a> directly. The <a href="mcp-dataset-server.html">MCP server page</a> covers querying full files without downloading them. The <a href="../free-datasets-for-ai-agents.html">free datasets index</a> lists every pack with row counts.</p>
+    <p>Start from the <a href="./">agent access page</a> for curl and Python examples, or read <a href="../catalog.json">catalog.json</a> directly. The <a href="mcp-dataset-server.html">MCP server page</a> covers querying full files without downloading them. The <a href="../free-datasets-for-ai-agents.html">free datasets index</a> lists every pack with row counts. For the definition and the format's status, start from the <a href="../guides/what-is-llms-txt.html">what is llms.txt</a> explainer.</p>
   </section>
 </main>
 

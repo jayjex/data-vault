@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What Is llms.txt? Definition, Status, and a Live Example | Data Vault</title>
+<meta name="description" content="llms.txt is a markdown file at your site root that tells an LLM which pages and endpoints to read, one line per link. The definition, the 2024 origin, the honest status, and a live file to fetch.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/what-is-llms-txt.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="What Is llms.txt? Definition, Status, and a Live Example">
+<meta property="og:description" content="llms.txt is a markdown file at your site root that tells an LLM which pages and endpoints to read, one line per link. The definition, the 2024 origin, the honest status, and a live file to fetch.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/what-is-llms-txt.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "What Is llms.txt? Definition, Status, and a Live Example", "description": "llms.txt is a markdown file at your site root that tells an LLM which pages and endpoints to read, one line per link. The definition, the 2024 origin, the honest status, and a live file to fetch.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/what-is-llms-txt.html", "about": {"@type": "Thing", "name": "llms.txt"}, "mentions": [{"@type": "WebPage", "name": "Data Vault llms.txt", "url": "https://jayjex.github.io/data-vault/llms.txt"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "What is llms.txt", "item": "https://jayjex.github.io/data-vault/guides/what-is-llms-txt.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is llms.txt in simple terms?", "acceptedAnswer": {"@type": "Answer", "text": "llms.txt is a markdown file at the root of a website that lists the pages and endpoints an AI model should read, one link per line, each with a short description. It works like a map written for machines: an agent that lands on the domain with no menus and no nav can fetch one predictable URL and get the curated tour instead of crawling."}}, {"@type": "Question", "name": "Is llms.txt a real standard?", "acceptedAnswer": {"@type": "Answer", "text": "No. It is a voluntary convention from a 2024 proposal published at llmstxt.org. There is no RFC, no standards body, and no rule that says an agent must look for the file. Sites adopt it because publishing costs one static file and the agents that do check get a better map."}}, {"@type": "Question", "name": "Do AI agents actually read llms.txt?", "acceptedAnswer": {"@type": "Answer", "text": "Some do. Reading the file has to be built into the crawler: the agent looks for llms.txt at the conventional location, same idea as checking robots.txt. When a checking agent arrives, it gets your curated link list in one fetch; when no checking agent ever comes, you have lost one static file. Discovery is not guaranteed, which is why the file is cheap to publish rather than a dependency."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>What is llms.txt?</h1>
+  <p class="byline">Published 2026-09-10. Every example below is fetchable: the live file sits at <a href="../llms.txt">jayjex.github.io/data-vault/llms.txt</a>.</p>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>llms.txt is a markdown file that lives at the root of a website and lists the pages and endpoints an LLM should read, one link per line, each with a short description. An agent that lands on your domain has no menus, no navigation, and no way to know which of your pages matter. The file hands it the curated tour in one fetch.</p>
+    <p>The name comes from large language models, and the format came out of a 2024 proposal by Jeremy Howard, published at <a href="https://llmstxt.org" rel="noopener">llmstxt.org</a>. Sites adopted it voluntarily from there. Nothing enforces it, but the location is predictable (<code>https://yourdomain.com/llms.txt</code>) and the format is plain markdown that any tool can parse, which is enough for a convention to work.</p>
+    <p>An agent fetching our file sees this, verbatim from the live version:</p>
+<pre><code># Data Vault
+
+&gt; Sample-first data catalog by Matchbook Labs. Free CSV/JSON samples for every dataset, machine-readable index for agents, full packs sold via Getly.
+
+Base URL: https://jayjex.github.io/data-vault
+Catalog (start here): https://jayjex.github.io/data-vault/catalog.json</code></pre>
+    <p>Everything after those lines is link lists grouped under headings: agent docs, one section per dataset pack, and the access rules. The <a href="../agents/llms-txt-guide.html">llms.txt structure guide</a> annotates the full file line by line.</p>
+  </section>
+
+  <section aria-label="How an agent uses the file">
+    <h2>How an agent uses the file</h2>
+    <p>The fetch chain is short. The agent resolves the domain, requests <code>/llms.txt</code> the way it would request <code>robots.txt</code>, and reads the blockquote first. That one paragraph decides relevance: if the site has nothing to do with the task, the agent stops there and spent one request finding out. If the site is relevant, the agent picks links from the sections and fetches them.</p>
+    <p>On this catalog the chain looks like this. The blockquote says sample-first data catalog, so an agent hunting for rent data reads one more line and finds <a href="../catalog.json">catalog.json</a>. The dataset sections carry row counts, so it can pick the <a href="../datasets/hud-fmr-2026.html">HUD rent pack</a> over 90,000-row Airbnb listings without opening a page. The sample URLs point at JSON, so the next fetch returns structured rows instead of markup. And the header carries the MCP install command, so a tool-using agent can go from one text file to querying the full released data with no human in the loop.</p>
+    <p>That is the value in one sentence: the file turns a blind crawl into a directed read. Descriptions are the part a URL list lacks, and they are what the agent reasons over.</p>
+  </section>
+
+  <section aria-label="Where it sits next to robots.txt and sitemap.xml">
+    <h2>Where it sits next to robots.txt and sitemap.xml</h2>
+    <p>A site root can carry three files with three audiences. <code>robots.txt</code> tells crawlers what to skip. <code>sitemap.xml</code> lists every URL for search engines, exhaustively and without descriptions. <code>llms.txt</code> suggests what an LLM should read, curated, with a one-line summary per link. Keeping all three is normal because each does a job the others don't. The <a href="llms-txt-vs-sitemap.html">llms.txt vs sitemap.xml comparison</a> shows the two files side by side on this site.</p>
+  </section>
+
+  <section aria-label="The honest status of the format">
+    <h2>The honest status of the format</h2>
+    <p>Three facts keep expectations calibrated. First, it is a convention: no RFC, no standards body, no registry. Adoption is real but partial; Anthropic's documentation site publishes one (<a href="https://docs.anthropic.com/llms.txt" rel="noopener">docs.anthropic.com/llms.txt</a>), and many sites have never heard of the format.</p>
+    <p>Second, discovery is up to each crawler. A tool only reads the file if its developers built that check in. When a checking agent arrives, it gets your map in one fetch. When none ever comes, you have lost one static file.</p>
+    <p>Third, the mechanism differs from robots.txt in direction. robots.txt is exclusion: it tells compliant crawlers where they may not go. llms.txt is an invitation: it suggests where an automated reader should go. Nothing forces an agent to follow either one, but publishing the invitation costs nothing and removes guesswork for the tools that look.</p>
+  </section>
+
+  <section aria-label="Three misconceptions">
+    <h2>Three misconceptions, corrected</h2>
+    <p><b>"It's a standard now."</b> There is no RFC and no governing body. It is a proposal from 2024 that enough sites adopted to make the location and format predictable. Treat it that way: free to publish, cheap to keep current, safe to rely on as a courtesy channel rather than a guarantee.</p>
+    <p><b>"It replaces my sitemap."</b> The audiences are different. Search engines want the exhaustive URL list; LLMs want the curated shortlist with context. Deleting your sitemap for an llms.txt trades a working channel for an experimental one. Run both, as this site does.</p>
+    <p><b>"More links make the file better."</b> Curation is the point. A file that lists every page is a second sitemap with worse tooling behind it, and it spends the agent's context window on pages that never mattered. The <a href="../tools/llms-txt-howto.html">how-to guide</a> covers the editorial decisions: which pages earn a slot, what each one does in a line.</p>
+  </section>
+
+  <section aria-label="FAQ">
+    <h2>FAQ</h2>
+    <dl>
+      <dt>What is llms.txt in simple terms?</dt>
+      <dd>llms.txt is a markdown file at the root of a website that lists the pages and endpoints an AI model should read, one link per line, each with a short description. It works like a map written for machines: an agent that lands on the domain with no menus and no nav can fetch one predictable URL and get the curated tour instead of crawling.</dd>
+      <dt>Is llms.txt a real standard?</dt>
+      <dd>No. It is a voluntary convention from a 2024 proposal published at llmstxt.org. There is no RFC, no standards body, and no rule that says an agent must look for the file. Sites adopt it because publishing costs one static file and the agents that do check get a better map.</dd>
+      <dt>Do AI agents actually read llms.txt?</dt>
+      <dd>Some do. Reading the file has to be built into the crawler: the agent looks for llms.txt at the conventional location, the same way it checks robots.txt. When a checking agent arrives, it gets your curated link list in one fetch; when no checking agent ever comes, you have lost one static file. Discovery is not guaranteed, which is why the file is cheap to publish rather than a dependency.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Where to go next">
+    <h2>Read ours, then go deeper</h2>
+    <p>Fetch <a href="../llms.txt">the live file</a> to see the whole format in use. The <a href="../agents/llms-txt-guide.html">llms.txt guide for AI agents</a> covers the minimal structure and annotates our full file section by section. The <a href="../tools/llms-txt-howto.html">how-to</a> walks writing your own in six steps, no generator needed. For how the file differs from the sitemap next to it, read the <a href="llms-txt-vs-sitemap.html">side-by-side comparison</a>, and the <a href="../agents/">agent access page</a> shows what our links route to.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

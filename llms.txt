@@ -12,6 +12,7 @@ Free printables index (223 free printable pages from the Matchbook Labs funnel, 
 Free printables by use case (same 223 pages regrouped into budget, moving, study and worksheet use cases): https://jayjex.github.io/data-vault/printable-index-roundup.html
 MCP full query: query_dataset(slug, {where, columns, limit, offset}) filters and paginates the FULL released files, 100 rows/call. Example: query_dataset("hud-fmr-2026", {where: [{column: "state", op: "=", value: "TX"}], limit: 5}) returns 3,247 matched Texas rent rows. Full data release: https://github.com/jayjex/dataset-mcp/releases/tag/data-v1
 FMR calculator guide (the math behind FMRs + MCP lookup, no official HUD calculator exists): https://jayjex.github.io/data-vault/guides/hud-fair-market-rent-calculator.html
+What is llms.txt (plain-English definition of the format, how agents read the file, honest status): https://jayjex.github.io/data-vault/guides/what-is-llms-txt.html
 
 ## Datasets
 
@@ -58,6 +59,62 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - Page: https://jayjex.github.io/data-vault/datasets/printable-engineering-bundle.html
 - Free printables index: https://jayjex.github.io/data-vault/free-printables-index.html
 - Full bundle: [Get the bundle](https://www.getly.store/store/matchbook-labs-mtmw06l2)
+
+## Guides
+
+- [NFL Games Dataset CSV: 7,548 Games with Betting Lines (1999-2026)](https://jayjex.github.io/data-vault/guides/nfl-games-data-guide.html): column guide for the games table, betting-line glossary
+- [Free Sports Data CSV: Verified Sources, Licenses, and a 7,548-Game NFL Dataset](https://jayjex.github.io/data-vault/guides/free-sports-data-csv.html): licensed sources for sports CSVs
+- [NFL Data in Excel or Google Sheets: Import the CSV, Step by Step](https://jayjex.github.io/data-vault/guides/nfl-dataset-excel.html): spreadsheet import walkthrough
+- [NFL Data in Python: Load the Games CSV with pandas](https://jayjex.github.io/data-vault/guides/nfl-dataset-python.html): pandas quickstart on the 22-row sample
+- [NFL Data API in Python: requests Examples with Live Endpoints](https://jayjex.github.io/data-vault/guides/nfl-data-api-python.html): live ESPN + nflverse endpoint examples
+- [ESPN API in Python: requests Examples for the Free Site Endpoints](https://jayjex.github.io/data-vault/guides/espn-api-python.html): undocumented ESPN endpoints, scoreboard and teams
+- [Free NFL Historical Data: nflverse Raw vs a Preprocessed CSV Pack](https://jayjex.github.io/data-vault/guides/nfl-data-alternative.html): raw releases vs preprocessed trade-offs
+- [Open Data API: Free Sample Endpoints and an MCP Query Layer](https://jayjex.github.io/data-vault/guides/open-data-api-alternative.html): no-key endpoints plus query_dataset
+- [HUD Fair Market Rent Data by ZIP Code, Explained (FY2026 CSV)](https://jayjex.github.io/data-vault/guides/hud-rent-data-explained.html): schema walkthrough of the HUD pack
+- [HUD FMR by ZIP Code: Fair Market Rent by ZIP, FY2026](https://jayjex.github.io/data-vault/guides/hud-fmr-by-zip.html): single-ZIP lookup methods
+- [HUD FMR by County: Fair Market Rent by County, FY2026](https://jayjex.github.io/data-vault/guides/hud-fmr-by-county.html): 3,229 county rows, rollup explainer
+- [HUD Metro Area List: Every FY2026 Metro FMR Area](https://jayjex.github.io/data-vault/guides/hud-metro-list.html): metro area names and codes
+- [Fair Market Rent Calculator: How FMR Math Works, FY2026 Examples](https://jayjex.github.io/data-vault/guides/hud-fair-market-rent-calculator.html): the math behind FMRs + MCP lookup
+- [HUD Fair Market Rent Lookup: FMR by ZIP Code, One at a Time or in Bulk](https://jayjex.github.io/data-vault/guides/fmr-lookup-alternatives.html): manual vs bulk lookup compared
+- [FMR vs Actual Rent: What Each Number Measures and Why They Differ](https://jayjex.github.io/data-vault/guides/fmr-vs-rent-actuals.html): benchmark vs market rent
+- [SAFMR vs FMR: Small Area Fair Market Rent vs Metro FMR](https://jayjex.github.io/data-vault/guides/safmr-vs-fmr.html): ZIP-level vs metro-level rents
+- [HUD FMR Texas: Fair Market Rent Data for Texas, FY2026](https://jayjex.github.io/data-vault/guides/hud-fmr-texas.html): state=TX filter, 3,247 ZIP rows, metro split
+- [Airbnb Data Download: 6-City Listings CSV (90,169 Rows)](https://jayjex.github.io/data-vault/guides/airbnb-data-guide.html): schema and cities in the Airbnb pack
+- [Airbnb Data by City: 6 US Markets, Rows and Median Prices](https://jayjex.github.io/data-vault/guides/airbnb-data-by-city.html): per-city row counts and medians
+- [Airbnb Dataset Sample: Free CSV Data Download (20 Rows, 12 Columns)](https://jayjex.github.io/data-vault/guides/airbnb-data-sample.html): free sample rows
+- [Airbnb Rental Analysis: Screen 6 US Markets With One Dataset](https://jayjex.github.io/data-vault/guides/airbnb-investment-analysis.html): screening workflow with real queries
+- [Inside Airbnb Alternative: 6 Cities, One Schema, 90,169 Rows](https://jayjex.github.io/data-vault/guides/inside-airbnb-alternative.html): normalized schema vs per-city dumps
+- [Superteam Earn Data: the Solana Bounties Dataset and Its API Map](https://jayjex.github.io/data-vault/guides/solana-bounties-data-guide.html): bounty schema and 186+ API routes
+- [Solana Bounty Tracker Data: Web3 Bounty Listings Without an Official API](https://jayjex.github.io/data-vault/guides/web3-bounty-data.html): harvesting bounty listings
+- [Superteam Earn Alternative: Solana Bounty Tracker vs Dataset Approach](https://jayjex.github.io/data-vault/guides/bounty-tracker-alternative.html): dashboards vs raw rows
+- [What Is a Data Dictionary? Structure and Real CSV Examples](https://jayjex.github.io/data-vault/guides/data-dictionary-explained.html): column-code documentation format
+- [CSV vs API for Data: Which One You Need, With a Decision Table](https://jayjex.github.io/data-vault/guides/csv-vs-api.html): worked decision example
+- [Scrape Without Coding: 10 Editable Template Scripts](https://jayjex.github.io/data-vault/guides/scrape-without-coding.html): edit-one-config workflow
+- [How to Sell Datasets: Our Public-Data Pipeline, End to End](https://jayjex.github.io/data-vault/guides/how-we-sell-public-data.html): pipeline documentation, license to checkout
+- [Public Domain Datasets: Licenses, Commercial Use, Credit Lines](https://jayjex.github.io/data-vault/guides/public-domain-datasets.html): license table for public data
+- [MCP Server for Claude Desktop: Install dataset-mcp, Config JSON, Real Outputs](https://jayjex.github.io/data-vault/guides/mcp-claude-desktop.html): Claude Desktop config walkthrough
+
+## Tools
+
+- [Sample Data Downloads: Free CSV and JSON Test Files](https://jayjex.github.io/data-vault/tools/sample-data-downloads.html): every free sample with columns and row counts
+- [Web Scraping Tools Comparison: Cloud Platforms vs Self-Hosted Scripts](https://jayjex.github.io/data-vault/tools/scraping-tools-alternative.html): Apify-class platforms vs scripts
+- [Web Scraping Scripts Pack: 10 Ready-to-Run Playwright Templates](https://jayjex.github.io/data-vault/tools/scraping-scripts.html): the script pack landing
+- [How to Create an llms.txt File (No Generator Needed)](https://jayjex.github.io/data-vault/tools/llms-txt-howto.html): build one by hand, live example
+- [Free API Datasets for AI Agents, 5 packs with JSON samples](https://jayjex.github.io/data-vault/free-datasets-for-ai-agents.html): agent-oriented dataset index
+
+## Agents
+
+- [Agent access: catalog.json & sample endpoints](https://jayjex.github.io/data-vault/agents/): start here for machine access
+- [MCP server for datasets: query full packs from Claude Desktop or pi](https://jayjex.github.io/data-vault/agents/mcp-dataset-server.html): v1.1.0, five tools
+- [llms.txt for AI Agents: Structure and a Live Example](https://jayjex.github.io/data-vault/agents/llms-txt-guide.html): the format, explained
+- [Free Tools for AI Agents: catalog, MCP server, sample endpoints](https://jayjex.github.io/data-vault/agents/free-agent-tools.html): full free toolkit
+- [MCP Tools for Claude: 3 Free Servers, Config JSON, Registry](https://jayjex.github.io/data-vault/agents/mcp-tools-for-claude.html): server comparison with configs
+
+## Printables
+
+- [Free Printables Index: 223 printable trackers, planners and worksheets](https://jayjex.github.io/data-vault/free-printables-index.html)
+- [Free Printable Packs by Use Case: budget, moving, study and worksheets](https://jayjex.github.io/data-vault/printable-index-roundup.html)
+- [Free Printable PDF Templates: 223 Tracker Sheets, Planners and Worksheets by Category](https://jayjex.github.io/data-vault/printables/free-printable-templates.html)
 
 ## Access rules
 - Fetch catalog.json and every sample endpoint freely. No API keys, no auth.

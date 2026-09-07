@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD FMR Data Download: Every Official Source, Compared (FY2026) | Data Vault</title>
+<meta name="description" content="Every way to download HUD fair market rent data: huduser.gov Excel workbooks, Census Reporter ACS tables, and the FY2026 CSV pack on this site, 51,895 ZIP rows queried free over MCP. Links checked, formats compared, use cases matched.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fmr-data-downloads.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="HUD FMR Data Download: Every Official Source, Compared (FY2026)">
+<meta property="og:description" content="huduser.gov Excel workbooks, Census Reporter ACS tables, and the FY2026 CSV pack on this site: what each download gives you and which one fits your workflow.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fmr-data-downloads.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "HUD FMR Data Download: Every Official Source, Compared (FY2026)", "description": "Every way to download HUD fair market rent data: huduser.gov Excel workbooks, Census Reporter ACS tables, and the FY2026 CSV pack on this site.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fmr-data-downloads.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "HUD FMR data download", "item": "https://jayjex.github.io/data-vault/guides/hud-fmr-data-downloads.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Where can I download HUD FMR data for free?", "acceptedAnswer": {"@type": "Answer", "text": "Three places, all free. HUD publishes the FY2026 workbooks on huduser.gov: FY26_FMRs.xlsx at the county level (4,764 rows, 368 KB) and fy2026_safmrs.xlsx at the ZIP level (one SAFMRs sheet, about 51,900 rows, 4.2 MB). Census Reporter serves ACS rent tables such as B25031 with no API key, but those are census medians, not FMRs. Data Vault serves the FY2026 ZIP data as a clean CSV: a free 22-row sample download, free full-file queries over MCP, and the complete 51,895-row pack on Getly."}}, {"@type": "Question", "name": "Is there an official CSV version of the HUD FMR dataset?", "acceptedAnswer": {"@type": "Answer", "text": "No. HUD ships FY2026 FMRs as Excel workbooks only, and the ZIP-level numbers live in a separate SAFMR workbook from the county-level file. Anyone who wants CSV has to read the xlsx with a library like pandas plus openpyxl, skip the extra sheet, rename the 14 source columns, and watch the fips and ZIP columns for lost leading zeros. The fmr-by-zip-2026.csv on this site is that conversion, done once and checksummed: ten columns, 51,895 rows, integers rounded exactly as HUD published them."}}, {"@type": "Question", "name": "Should I work with FMR data in Excel, CSV, or an MCP query?", "acceptedAnswer": {"@type": "Answer", "text": "Excel fits a one-off look: open the workbook, filter a state, pivot. CSV fits anything you import more than once: pandas, a database load, a chart script, a demo app. An MCP query fits agents and pipelines that need specific rows on demand, because dataset-mcp filters the full 51,895-row file in memory and returns up to 100 rows per call with no file management. Most developers end up with the CSV as the source of truth and the MCP server for ad hoc pulls."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>HUD FMR data download: every official source, compared</h1>
+  <p class="byline">Published 2026-09-10. Documents the FY2026 Fair Market Rent release from huduser.gov, public domain. Every external link on this page returned HTTP 200 when checked on 2026-09-10. Data Vault is not affiliated with HUD or the Census Bureau. This page covers data and formats; it is not housing or legal advice.</p>
+
+  <section aria-label="The download options at a glance">
+    <h2>Every HUD FMR download option at a glance</h2>
+    <p>Fair Market Rent data comes from three places, and they answer different questions. HUD's own portal is the primary source, published as Excel workbooks. Census Reporter serves the census side of rent data, which people often mistake for FMR data. And this site republishes the FY2026 ZIP-level numbers as a clean CSV with free sample downloads and free query access over MCP. What each one hands you:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="HUD FMR download options table"><table><thead><tr><th scope="col">Source</th><th scope="col">What you get</th><th scope="col">Format</th><th scope="col">Link</th></tr></thead><tbody>
+      <tr><td>HUD FMR datasets page</td><td>FY2026 workbooks plus every prior year, payment standards, SAFMR documentation</td><td>Excel</td><td><a href="https://www.huduser.gov/portal/datasets/fmr.html" rel="noopener">huduser.gov/portal/datasets/fmr.html</a></td></tr>
+      <tr><td>Huduser county workbook</td><td>FY26_FMRs.xlsx: 4,764 county rows, 14 columns including pop2023 and fips, plus a Field_Descriptions sheet</td><td>Excel, 368 KB</td><td><a href="https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs.xlsx" rel="noopener">FY26_FMRs.xlsx</a></td></tr>
+      <tr><td>Huduser ZIP-level workbook</td><td>fy2026_safmrs.xlsx: one SAFMRs sheet, one row per ZIP area, the source for every ZIP-level dataset</td><td>Excel, 4.2 MB</td><td><a href="https://www.huduser.gov/portal/datasets/fmr/fmr2026/fy2026_safmrs.xlsx" rel="noopener">fy2026_safmrs.xlsx</a></td></tr>
+      <tr><td>HUD Small Area FMR page</td><td>SAFMR documentation and the ZIP-level publication index</td><td>Excel, PDF</td><td><a href="https://www.huduser.gov/portal/datasets/fmr/smallarea/index.html" rel="noopener">smallarea index</a></td></tr>
+      <tr><td>Census Reporter, table B25031</td><td>ACS median gross rent by bedrooms, exported per geography. ACS medians, not FMRs</td><td>CSV/JSON in browser</td><td><a href="https://censusreporter.org/data/table/?table=B25031" rel="noopener">censusreporter.org, B25031</a></td></tr>
+      <tr><td>Data Vault sample</td><td>22 real ZIP rows with the schema, free, no signup</td><td>CSV + JSON</td><td><a href="../data/hud-fmr-2026/sample.csv" download>sample.csv</a> &middot; <a href="../data/hud-fmr-2026/sample.json">sample.json</a></td></tr>
+      <tr><td>Data Vault full pack</td><td>fmr-by-zip-2026.csv (51,895 rows), county and state CSVs, data dictionary, checksums</td><td>CSV</td><td><a href="../datasets/hud-fmr-2026.html">dataset page</a> &middot; <a href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">on Getly</a></td></tr>
+      <tr><td>dataset-mcp server</td><td>Free queries against the full 51,895-row file, 100 rows per call, SHA-256 verified</td><td>MCP</td><td><a href="https://github.com/jayjex/dataset-mcp" rel="noopener">github.com/jayjex/dataset-mcp</a></td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section aria-label="Downloading from huduser.gov">
+    <h2>Downloading FMR data from huduser.gov</h2>
+    <p>HUD's <a href="https://www.huduser.gov/portal/datasets/fmr.html" rel="noopener">FMR datasets page</a> is the primary source and everything on this page traces back to it. For FY2026 there are two workbooks. <a href="https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs.xlsx" rel="noopener">FY26_FMRs.xlsx</a> holds 4,764 rows at the county level across 14 columns: state codes, <code>hud_area_code</code>, county names, a 10-digit <code>fips</code>, <code>pop2023</code>, and <code>fmr_0</code> through <code>fmr_4</code>. A second sheet, <code>Field_Descriptions</code>, defines those 14 columns. The ZIP-level detail lives in <a href="https://www.huduser.gov/portal/datasets/fmr/fmr2026/fy2026_safmrs.xlsx" rel="noopener">fy2026_safmrs.xlsx</a>, a 4.2 MB workbook with a single <code>SAFMRs</code> sheet, one row per ZIP area.</p>
+    <p>The workbooks are fine in Excel and painful everywhere else. They are real <code>.xlsx</code> files, so any script needs pandas plus openpyxl or an equivalent just to read them. The county file and the ZIP file ship separately, so ZIP-level work means a second download. The column names differ from the tidy convention (<code>fmr_0</code> not <code>fmr_0br</code>, <code>stusps</code> plus <code>state</code> as two columns, a numeric <code>metro</code> flag), so imports want a rename pass. And ZIP and FIPS columns read as numbers unless you format them as text, which strips leading zeros from the New England and Puerto Rico ranges. HUD publishes the data; the shape is up to you.</p>
+    <p>For context on what the numbers mean, <a href="hud-rent-data-explained.html">HUD rent data, explained</a> walks the FMR definition, the three CSVs in this pack, and a live MCP query. The full column set is documented in the <a href="hud-fmr-data-dictionary.html">HUD FMR data dictionary</a>.</p>
+  </section>
+
+  <section aria-label="Census Reporter as a rent data source">
+    <h2>Census Reporter: census rent data, not FMR data</h2>
+    <p><a href="https://censusreporter.org/data/table/?table=B25031" rel="noopener">Census Reporter</a> deserves a mention because it ranks well for rent data searches and trips people up. It serves American Community Survey tables with no API key and no signup: pick a table, pick geographies, export in the browser. Table <code>B25031</code> is median gross rent by bedroom count, and <code>B25064</code> is the overall median, which overlaps with the FMR's rent-plus-utilities basis.</p>
+    <p>These are census medians, not Fair Market Rents. The FMR sits at the 40th percentile and is tuned toward recent-mover rents; the ACS median is the 50th percentile across all renter-occupied units. Housing agencies set voucher payment standards from the FMR, never from the ACS median. When you need the official program number, huduser.gov is the source. When you want actual observed rents next to the FMR, Census Reporter is the fastest no-key route, and <a href="hud-fmr-vs-census-rent.html">HUD FMR vs census rent</a> works through the full comparison, gap and all.</p>
+  </section>
+
+  <section aria-label="The clean CSV and MCP route on this site">
+    <h2>The clean CSV route: sample, full pack, and free MCP queries</h2>
+    <p>This site does the xlsx-to-CSV conversion once and ships the result. <a href="../data/hud-fmr-2026/sample.csv" download>sample.csv</a> carries 22 real Abilene, TX ZIP rows, free to download with no signup, and <a href="../data/hud-fmr-2026/sample.json">sample.json</a> wraps the same rows with the schema. Ten columns, one row per ZIP: <code>zip</code>, <code>hud_area_code</code>, <code>metro</code>, <code>area_name</code>, <code>state</code>, and <code>fmr_0br</code> through <code>fmr_4br</code>. What a full download gets you is on the <a href="../datasets/hud-fmr-2026.html">HUD Fair Market Rents FY2026 dataset page</a>: the 51,895-row ZIP file, a 3,229-row county rollup, a 52-row state summary, the data dictionary, and SHA-256 checksums. More samples from other datasets live on <a href="../tools/sample-data-downloads.html">the sample data downloads page</a>.</p>
+    <p>For scripts and agents, downloading anything at all is optional. The <a href="https://github.com/jayjex/dataset-mcp" rel="noopener">dataset-mcp</a> server queries the full 51,895-row file in memory, free, with no API key:</p>
+    <pre><code>query_dataset(
+  "hud-fmr-2026",
+  {
+    "where": [{ "column": "state", "op": "=", "value": "TX" }],
+    "columns": ["zip", "area_name", "fmr_2br"],
+    "limit": 5
+  }
+)</code></pre>
+    <p>That call matches 3,247 Texas rows and returns up to 100 per call with a <code>next_offset</code> for paging. Setup is one npx command, and the <a href="../guides/mcp-claude-desktop.html">MCP server for Claude Desktop guide</a> walks the config with verified session output.</p>
+  </section>
+
+  <section aria-label="Which format fits which use case">
+    <h2>Excel, CSV, or MCP query: which one fits your use case</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Format comparison table"><table><thead><tr><th scope="col">Format</th><th scope="col">Who it fits</th><th scope="col">Why</th></tr></thead><tbody>
+      <tr><td>HUD's Excel workbook</td><td>Analysts working one market at a time</td><td>Open the file, filter to a state or county, pivot in place. The <code>Field_Descriptions</code> sheet documents the columns. No conversion step if you never leave Excel.</td></tr>
+      <tr><td>Clean CSV</td><td>Developers importing to pandas, a database, or a dashboard</td><td>One tidy header, no second sheet, no rename pass, ZIPs preserved as text. The file loads the same in Excel if you end up there anyway.</td></tr>
+      <tr><td>MCP query</td><td>Agents and pipelines that need specific rows on demand</td><td>No file management: filter, paginate, done. 100 rows per call with checksummed caching, so repeated pulls come back from memory in milliseconds.</td></tr>
+    </tbody></table></div>
+    <p>The one-off rule of thumb: an analyst asks "what is the 2BR FMR in this county" and Excel answers fastest. A developer asks "load all 51,895 rows and join on ZIP" and wants the CSV. An agent asks "give me the rows for these five ZIPs right now" and wants the query. Most working setups end up using two of the three: CSV as the source of truth, MCP for ad hoc pulls.</p>
+    <p>Deciding between static files and live queries in general is the subject of <a href="csv-vs-api.html">CSV vs API for data</a>, and the link between HUD's numbers and the census side is covered in <a href="hud-fmr-vs-census-rent.html">HUD FMR vs census rent</a>.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ: downloading HUD FMR data</h2>
+    <dl>
+      <dt>Where can I download HUD FMR data for free?</dt>
+      <dd>Three places, all free. HUD publishes the FY2026 workbooks on huduser.gov: <a href="https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs.xlsx" rel="noopener">FY26_FMRs.xlsx</a> at the county level (4,764 rows, 368 KB) and <a href="https://www.huduser.gov/portal/datasets/fmr/fmr2026/fy2026_safmrs.xlsx" rel="noopener">fy2026_safmrs.xlsx</a> at the ZIP level (one <code>SAFMRs</code> sheet, about 51,900 rows, 4.2 MB). Census Reporter serves ACS rent tables such as <code>B25031</code> with no API key, but those are census medians, not FMRs. Data Vault serves the FY2026 ZIP data as a clean CSV: a free 22-row <a href="../data/hud-fmr-2026/sample.csv" download>sample download</a>, free full-file queries over MCP, and the complete 51,895-row pack on Getly.</dd>
+      <dt>Is there an official CSV version of the HUD FMR dataset?</dt>
+      <dd>No. HUD ships FY2026 FMRs as Excel workbooks only, and the ZIP-level numbers live in a separate SAFMR workbook from the county-level file. Anyone who wants CSV has to read the xlsx with a library like pandas plus openpyxl, skip the extra sheet, rename the 14 source columns, and watch the <code>fips</code> and ZIP columns for lost leading zeros. <code>fmr-by-zip-2026.csv</code> on this site is that conversion, done once and checksummed: ten columns, 51,895 rows, integers rounded exactly as HUD published them.</dd>
+      <dt>Should I work with FMR data in Excel, CSV, or an MCP query?</dt>
+      <dd>Excel fits a one-off look: open the workbook, filter a state, pivot. CSV fits anything you import more than once: pandas, a database load, a chart script, a demo app. An MCP query fits agents and pipelines that need specific rows on demand, because dataset-mcp filters the full 51,895-row file in memory and returns up to 100 rows per call with no file management. Most developers end up with the CSV as the source of truth and the MCP server for ad hoc pulls.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the FY2026 FMR data</h2>
+    <p>Start with the <a href="../data/hud-fmr-2026/sample.csv" download>free 22-row sample</a> to check the schema, query the full file free over MCP, or take the complete pack with all three CSVs, the data dictionary, and source checksums from <a href="../datasets/hud-fmr-2026.html">the dataset page</a>.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">Get full data</a>
+    </div>
+    <p class="btn-note">Source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release, huduser.gov. US government data, public domain. ACS tables served by Census Reporter, US Census Bureau data, public domain.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NFL Stadium Weather: How Roof and Weather Show Up in Game Data | Data Vault</title>
+<meta name="description" content="NFL stadium weather as data: the roof, surface, temp, and wind columns in the free games CSV, dome vs outdoor scoring in a real 22-row sample, the hottest kickoffs of the sample, and what the columns can and cannot say about kicking.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/nfl-stadium-weather.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="NFL Stadium Weather: How Roof and Weather Show Up in Game Data">
+<meta property="og:description" content="The roof, surface, temp, and wind columns in the free NFL games CSV, with dome vs outdoor scoring and the hottest kickoffs from a real 22-row sample.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/nfl-stadium-weather.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "NFL stadium weather: how roof and weather show up in the game data", "description": "The roof, surface, temp, and wind columns in the free NFL games CSV, with dome vs outdoor scoring and the hottest kickoffs from a real 22-row sample.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/nfl-stadium-weather.html", "about": {"@type": "Dataset", "name": "NFL Games & Betting Lines 1999-2026", "url": "https://jayjex.github.io/data-vault/datasets/nfl-games.html"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "NFL stadium weather", "item": "https://jayjex.github.io/data-vault/guides/nfl-stadium-weather.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does the NFL games CSV include stadium weather data?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Four of the 46 columns describe conditions at kickoff: roof (dome or outdoors), surface (grass or turf), temp in Fahrenheit, and wind in mph. They sit next to the score columns in every row of the free 22-row sample and the full 7,548-row pack, 1999 through 2026. The one rule to expect: dome games have blank temp and wind cells, because with the roof closed the number was never recorded."}}, {"@type": "Question", "name": "Why are temp and wind blank for dome games?", "acceptedAnswer": {"@type": "Answer", "text": "Blank means missing, not zero. In a closed dome there is no outdoor temperature or wind at the field, so the source file leaves the cells empty. In pandas those blanks load as NaN, which is the correct reading: 0 mph wind and 0 degrees would both be false statements about the game. Filter with notna() before any temp or wind math so the dome rows stay out of the averages."}}, {"@type": "Question", "name": "What can the 22-row weather sample show that the full 7,548-row pack cannot?", "acceptedAnswer": {"@type": "Answer", "text": "Nothing. The sample is a slice of the full file, weeks 1 and 2 of the 1999 season, with the same 46 columns. Its roof split, 6 dome games averaging 38.0 combined points against 45.5 for 16 outdoor games, is small enough that it works as a pandas exercise rather than a finding. The full pack covers 27 seasons, including the December and January outdoor games where weather differences get big enough to study properly."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../datasets/nfl-games.html">NFL dataset</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>NFL stadium weather: how roof and weather show up in the game data</h1>
+  <p class="byline">Guide to the <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026</a> pack &middot; every column defined in the <a href="nfl-games-data-guide.html">games.csv column guide</a> &middot; loading the file in pandas is covered in the <a href="nfl-dataset-python.html">Python quickstart</a>.</p>
+
+  <section aria-label="Quick answer">
+    <p>Four of the 46 columns in the NFL games CSV describe the stadium at kickoff: <code>roof</code> (dome or outdoors), <code>surface</code> (grass or turf), <code>temp</code> (Fahrenheit), and <code>wind</code> (mph). They ride along with every game row, free in the 22-row <a href="../data/nfl-games/sample.csv" download>sample CSV</a> and in the full 7,548-row pack. This page runs a small analysis on the real sample to show what those columns change, and where they stop short.</p>
+  </section>
+
+  <section aria-label="What the weather columns record">
+    <h2>What the weather columns record</h2>
+    <p>The four condition columns sit between the odds columns and the quarterback columns in the schema:</p>
+<pre>roof,surface,temp,wind
+dome,astroturf,,            &larr; Georgia Dome, MIN @ ATL
+outdoors,grass,80,12        &larr; Soldier Field, KC @ CHI</pre>
+    <ul>
+      <li><code>roof</code> has two values in the sample: <code>dome</code> for 6 games and <code>outdoors</code> for 16. The full file also carries retractable-roof values, open and closed, from later seasons.</li>
+      <li><code>temp</code> and <code>wind</code> are blank for every dome game. With the roof closed there is no kickoff weather at the field, so the source file leaves the cells empty. Blank means missing, not zero.</li>
+      <li>Across the 16 outdoor rows, temp runs from 60 to 88 degrees and wind from 0 to 15 mph. That is an early-September window; the same columns in the full file dip far lower in December and January.</li>
+    </ul>
+  </section>
+
+  <section aria-label="Roof and scoring">
+    <h2>Roof and scoring in the sample</h2>
+    <p>Group the sample by <code>roof</code> and average the <code>total</code> column, which is combined points:</p>
+<pre>roof        count  mean
+dome            6  38.0
+outdoors       16  45.5</pre>
+    <p>The 6 dome games averaged 38.0 combined points, the 16 outdoor games 45.5. Every dome game in the sample was played with no wind at the field and no weather delay possible; the outdoor games ranged from dead calm (0 mph, DAL @ WAS) to 15 mph (SEA @ CHI).</p>
+    <p>The honesty clause that belongs under every number this size: 6 rows is a handful, and both groups come from weeks 1 and 2 of the 1999 season, so this is a demonstration of why the <code>roof</code> column earns its place, not a finding about scoring. The same one-line groupby on the full 7,548-row file is where that question gets a real answer, across 27 seasons of games.</p>
+    <table>
+      <caption>The six dome games in the sample</caption>
+      <tr><th>Game</th><th>Stadium</th><th>Total</th></tr>
+      <tr><td>MIN @ ATL</td><td>Georgia Dome</td><td>31</td></tr>
+      <tr><td>BUF @ IND</td><td>RCA Dome</td><td>45</td></tr>
+      <tr><td>CAR @ NO</td><td>Louisiana Superdome</td><td>29</td></tr>
+      <tr><td>DET @ SEA</td><td>Seattle Kingdome</td><td>48</td></tr>
+      <tr><td>BAL @ STL</td><td>TWA Dome</td><td>37</td></tr>
+      <tr><td>GB @ DET</td><td>Pontiac Silverdome</td><td>38</td></tr>
+    </table>
+  </section>
+
+  <section aria-label="The hottest kickoffs">
+    <h2>The hottest kickoffs and what those games scored</h2>
+    <p>Filter out the dome rows with <code>notna()</code> and sort by <code>temp</code>:</p>
+<pre>away_team home_team  temp  wind  total  stadium
+NYG        TB        88     8     30    Raymond James Stadium
+CIN        TEN       84    10     71    Adelphia Coliseum
+KC         CHI       80    12     37    Soldier Field</pre>
+    <p>Two of the three hottest kickoffs landed at opposite ends of the scoring range: 88 degrees in Tampa produced 30 combined points, 84 degrees in Nashville produced 71. The coldest game in the sample, MIA @ DEN at 60 degrees, hit 59. Temperature alone explains very little, which is exactly why the file carries the columns side by side instead of collapsing conditions into one number. Comparing actual totals against the closing <code>total_line</code> column is one of the standard joins the file supports, and the <a href="nfl-games-data-guide.html">column guide</a> documents how that line is stored.</p>
+  </section>
+
+  <section aria-label="Wind">
+    <h2>Wind in the sample</h2>
+    <p>The windiest game, SEA @ CHI at 15 mph, scored 27 combined points, the second-lowest total in the sample. The calmest, DAL @ WAS at 0 mph, scored 76 and went to overtime. Between those bookends sits KC @ CHI: 80 degrees, 12 mph wind, 37 points. Wind direction is absent from the file, only speed, so gusts and crosswinds that matter to the play on the field are invisible here. That is a source-data limit, and the full pack carries the same limit because nflverse records what the box scores recorded.</p>
+  </section>
+
+  <section aria-label="Kicking">
+    <h2>Kicking: what the columns can and cannot say</h2>
+    <p>Kicking is where roof and weather get cited most, and the CSV has no field-goal columns, so the honest framing is about inputs, not outcomes. A dome removes wind at the field entirely; the 6 dome rows in the sample are 27% of the file, and every kick in those games happened in still air. The 16 outdoor rows let you attach a measured wind speed and temperature to each game, which is what makes weather joins possible: analysts who study kicking accuracy pair the <code>roof</code>, <code>temp</code>, and <code>wind</code> columns from this file with play-by-play or kick logs from another source. The mechanism is ordinary physics, wind moves the ball and cold stiffens it, but the sample cannot quantify the effect, and neither can any single 22-row slice. The pack's role is to supply the condition columns for all 7,548 games so the join runs once instead of 27 seasons' worth of times.</p>
+  </section>
+
+  <section aria-label="From sample to full pack">
+    <h2>From the 22-row slice to the full 7,548-row file</h2>
+    <p>The sample is the first 22 rows of games.csv, weeks 1 and 2 of the 1999 season, 46 columns. Nothing about the weather columns changes in the full pack: same names, same units, same blank-for-dome convention, now covering 1999 through 2026 (results through the 2025 season, plus 272 scheduled 2026 rows). What grows is the range of conditions, from early-September heat like this sample to the December and January outdoor games where temp drops below freezing and wind becomes the story of the game. The pack also includes team-records-by-season.csv (861 rows) and season-summaries.csv (27 rows), a data dictionary, and SHA-256 checksums. Prefer working in a notebook? The <a href="nfl-dataset-python.html">pandas quickstart</a> loads this exact URL in two lines. Want the same file in a spreadsheet? The <a href="nfl-dataset-excel.html">Excel and Google Sheets guide</a> walks the import, and the <a href="free-sports-data-csv.html">free sports data sources review</a> covers where else this kind of weather data legally comes from.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/nfl-games/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h" rel="noopener">Get full data</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. The full pack is 3 CSVs (7,548 + 861 + 27 rows), data dictionary, source SHA-256 checksums. The sample and season-summaries download free here, no signup.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>NFL stadium weather data questions</h2>
+    <dl>
+      <dt>Does the NFL games CSV include stadium weather data?</dt>
+      <dd>Yes. Four of the 46 columns describe conditions at kickoff: <code>roof</code> (dome or outdoors), <code>surface</code> (grass or turf), <code>temp</code> in Fahrenheit, and <code>wind</code> in mph. They sit next to the score columns in every row of the free 22-row sample and the full 7,548-row pack, 1999 through 2026. The one rule to expect: dome games have blank temp and wind cells, because with the roof closed the number was never recorded.</dd>
+      <dt>Why are temp and wind blank for dome games?</dt>
+      <dd>Blank means missing, not zero. In a closed dome there is no outdoor temperature or wind at the field, so the source file leaves the cells empty. In pandas those blanks load as NaN, which is the correct reading: 0 mph wind and 0 degrees would both be false statements about the game. Filter with <code>notna()</code> before any temp or wind math so the dome rows stay out of the averages.</dd>
+      <dt>What can the 22-row weather sample show that the full 7,548-row pack cannot?</dt>
+      <dd>Nothing. The sample is a slice of the full file, weeks 1 and 2 of the 1999 season, with the same 46 columns. Its roof split, 6 dome games averaging 38.0 combined points against 45.5 for 16 outdoor games, is small enough that it works as a pandas exercise rather than a finding. The full pack covers 27 seasons, including the December and January outdoor games where weather differences get big enough to study properly.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Attribution">
+    <h2>Source and license</h2>
+    <p>All game rows come from the nflverse-data project, file <code>schedules/games.csv</code>, downloaded 2026-09-06 with the SHA-256 recorded in the pack. nflverse-data is released under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>; credit it as "Data from nflverse, CC BY 4.0". Samples on this site carry the same license. No logos or league marks appear anywhere in the pack; team and stadium names are factual data. This page and the pack describe data only and offer no betting advice, picks, or predictions.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

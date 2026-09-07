@@ -90,7 +90,7 @@ print(scoring)
 # roof
 # dome         6  38.0
 # outdoors    16  45.5</pre>
-    <p><code>total</code> is combined points. The 6 dome games averaged 38.0, the 16 outdoor games 45.5. The <code>count</code> column keeps the sample-size gap visible: 6 rows is a handful, so treat the gap as a pandas exercise, not a finding. On the full file the same groupby runs across 27 seasons.</p>
+    <p><code>total</code> is combined points. The 6 dome games averaged 38.0, the 16 outdoor games 45.5. The <code>count</code> column keeps the sample-size gap visible: 6 rows is a handful, so treat the gap as a pandas exercise, not a finding. On the full file the same groupby runs across 27 seasons. The roof split is one slice of the weather story; <a href="nfl-stadium-weather.html">NFL stadium weather, read from the same columns</a> covers temp, wind, and what the file can and cannot say about kicking.</p>
 
     <h3>3. The hottest kickoffs and what those games scored</h3>
 <pre>hot = games[games["temp"].notna()].sort_values("temp", ascending=False)

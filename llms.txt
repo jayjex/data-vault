@@ -15,6 +15,7 @@ FMR calculator guide (the math behind FMRs + MCP lookup, no official HUD calcula
 HUD income limits guide (AMI vs FMR, FY2026 30/50/80 percent limits parsed from huduser.gov files beside each metro's 2BR FMR): https://jayjex.github.io/data-vault/guides/hud-income-limits.html
 HUD payment standard guide (the 90%-110% PHA band around the FMR, FY2026 band table for six ZIPs): https://jayjex.github.io/data-vault/guides/hud-payment-standard.html
 Payment standard for Section 8 guide (90%-110% FMR band, band computed from the FY2026 Abilene TX rows, 40% move-in cap example): https://jayjex.github.io/data-vault/guides/fmr-payment-standard.html
+HUD FMR metro definition guide (how HUD defines a metro FMR area, MSA vs HUD Metro FMR Area across the 649 metros, widest intra-metro 2BR spread worked from San Diego): https://jayjex.github.io/data-vault/guides/hud-fmr-by-metro-area.html
 Rent affordability guide (the 30% rule vs the FMR, five metros against the US median household income, FY2026): https://jayjex.github.io/data-vault/guides/rent-affordability-calculator.html
 What is llms.txt (plain-English definition of the format, how agents read the file, honest status): https://jayjex.github.io/data-vault/guides/what-is-llms-txt.html
 Dataset DOIs: the NFL, HUD FMR, and Airbnb packs have permanent citable DOIs on Zenodo: https://doi.org/10.5281/zenodo.22643177 , https://doi.org/10.5281/zenodo.22643149 , https://doi.org/10.5281/zenodo.22643189
@@ -94,6 +95,7 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - [HUD SAFMR List: ZIP-Level FMR Lookup, FY2026](https://jayjex.github.io/data-vault/guides/hud-fmr-safmr-list.html): ZIP-vs-metro gap ranking, verbatim top-5 query output
 - [HUD FMR by County: Fair Market Rent by County, FY2026](https://jayjex.github.io/data-vault/guides/hud-fmr-by-county.html): 3,229 county rows, rollup explainer
 - [HUD Metro Area List: Every FY2026 Metro FMR Area](https://jayjex.github.io/data-vault/guides/hud-metro-list.html): metro area names and codes
+- [HUD FMR by Metro Area: How HUD Defines the Geography, FY2026](https://jayjex.github.io/data-vault/guides/hud-fmr-by-metro-area.html): MSA vs HUD Metro FMR Area, 649 metros, San Diego 3,040-dollar intra-metro spread
 - [Fair Market Rent Calculator: How FMR Math Works, FY2026 Examples](https://jayjex.github.io/data-vault/guides/hud-fair-market-rent-calculator.html): the math behind FMRs + MCP lookup
 - [Payment Standard for Section 8: The 90%-110% FMR Band, FY2026](https://jayjex.github.io/data-vault/guides/fmr-payment-standard.html): band math from the FMR, Abilene SAFMR bands, 40% move-in cap
 - [HUD Payment Standard: The 90%-110% Band Around the FMR, FY2026](https://jayjex.github.io/data-vault/guides/hud-payment-standard.html): PHA payment standard vs FMR, six-ZIP band table

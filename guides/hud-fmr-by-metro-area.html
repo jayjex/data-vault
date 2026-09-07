@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD FMR by Metro Area: How HUD Defines Metro Geography (FY2026) | Data Vault</title>
+<meta name="description" content="How HUD defines its metro FMR areas, FY2026: MSA vs HUD Metro FMR Area among the 649 metro areas, and why two ZIPs in one metro can carry different FMRs. Worked San Diego example.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fmr-by-metro-area.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="HUD FMR by Metro Area: How HUD Defines Metro Geography (FY2026)">
+<meta property="og:description" content="How HUD defines its metro FMR areas, FY2026: MSA vs HUD Metro FMR Area among the 649 metro areas, and why two ZIPs in one metro can carry different FMRs. Worked San Diego example.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fmr-by-metro-area.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "HUD FMR by Metro Area: How HUD Defines Metro Geography (FY2026)", "description": "How HUD defines its metro FMR areas, FY2026: MSA vs HUD Metro FMR Area among the 649 metro areas, and why two ZIPs in one metro can carry different FMRs. Worked San Diego example.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-metro-area.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "HUD FMR by metro area", "item": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-metro-area.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is a HUD metro FMR area, and how is it different from an MSA?", "acceptedAnswer": {"@type": "Answer", "text": "A metro FMR area is HUD's own unit of geography for setting Fair Market Rents, and it does not always match the Census MSA of the same name. In the FY2026 file, names ending in MSA (246 areas) mean HUD prices the whole Census metro together, while names ending in HUD Metro FMR Area (403 areas) mean HUD sets a separate FMR for that piece of a metro. ZIP 10001 in Manhattan falls in the New York, NY HUD Metro FMR Area; ZIP 07030 in Hoboken falls in the Jersey City, NJ HUD Metro FMR Area, a different area with its own FMR."}}, {"@type": "Question", "name": "Why do two ZIP codes in the same metro have different HUD FMRs?", "acceptedAnswer": {"@type": "Answer", "text": "Two reasons. First, Small Area FMRs: in metros HUD designates, many ZIPs carry their own ZIP-level values instead of the metro-wide number, so rows differ inside one hud_area_code. In the San Diego-Chula Vista-Carlsbad, CA MSA, 82 distinct 2BR values sit across 178 ZIP rows, from 1,460 in ZIP 92004 to 4,500 in ZIP 91914. Second, the HUD area boundary itself: a ZIP on the metro's edge can fall in a neighboring HUD area, metro or nonmetro, with its own FMR. The FY2026 file has no SAFMR flag column, so ZIP-level variation shows up only by comparing rows within one area code."}}, {"@type": "Question", "name": "How many metro areas are in the FY2026 HUD FMR data?", "acceptedAnswer": {"@type": "Answer", "text": "The FY2026 ZIP-level file covers 2,599 distinct HUD FMR area names, and 649 of them are metro areas holding 27,296 ZIP rows; the other 1,950 names are nonmetro areas with 24,599 rows. Metro names end in MSA or HUD Metro FMR Area. The median metro holds 22 ZIP rows, Washington-Arlington-Alexandria, DC-VA-MD is the largest at 488, and 648 of the 649 metros carry more than one distinct 2BR value in the file."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>HUD FMR by metro area: how HUD defines the geography, FY2026</h1>
+  <p class="byline">FY2026 edition, published 2026-09-10. Data source: HUD, public domain. Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>HUD sets one Fair Market Rent per FMR area, so the question "which FMR applies to my ZIP?" is really a geography question: which HUD area does the ZIP sit in. The FY2026 ZIP-level file in the <a href="../datasets/hud-fmr-2026.html">HUD FMR FY2026 pack</a> answers it with the <b>area_name</b> column: 51,895 ZIP rows across 2,599 distinct area names, of which 649 are metro areas holding 27,296 rows. The remaining 1,950 names are nonmetro areas with 24,599 rows. Each area carries one FMR set at the 40th percentile of gross rents, published in the Federal Register notice of August 22, 2025 (90 FR 41096), effective October 1, 2025.</p>
+    <p>HUD draws that map itself. The Census or OMB metro is the starting material, and in much of the country the HUD area matches it, but HUD also splits metros, recombines counties, and prices some pieces separately, which is why the file carries two different metro name endings. This page walks through what those endings mean, why ZIPs inside one metro can carry different FMRs, and the widest intra-metro spread in the whole file. For the price ranking, see <a href="fmr-by-metro.html">HUD FMR by metro</a>; for the name-by-name table of every area, see <a href="hud-metro-list.html">HUD metro area list</a>.</p>
+  </section>
+
+  <section aria-label="What counts as a metro">
+    <h2>What counts as a metro in the FMR file</h2>
+    <p>Every row of fmr-by-zip-2026.csv carries a <b>metro</b> column, and the values are plain: <b>metro</b> or <b>nonmetro</b>. Filtering metro gives 649 distinct area_name values. The names follow two patterns:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Metro name endings in the FY2026 file"><table><thead><tr><th scope="col">Name ending</th><th scope="col">Areas</th><th scope="col">Meaning</th></tr></thead><tbody>
+      <tr><td>, XX MSA</td><td>246</td><td>HUD prices the whole Census metro area as one FMR area: "Abilene, TX MSA", "Napa, CA MSA"</td></tr>
+      <tr><td>, XX HUD Metro FMR Area</td><td>403</td><td>HUD sets a separate FMR for this piece of a metro: "New York, NY HUD Metro FMR Area", "Oakland-Fremont, CA HUD Metro FMR Area"</td></tr>
+    </tbody></table></div>
+    <p>The numbers are from the file itself: 246 metro areas named MSA, 403 named HUD Metro FMR Area, 649 total. Behind the name sits the <b>hud_area_code</b> column, a stable ID in the METRO41740M41740 pattern that stays fixed even when rows inside the area carry different values. Sizes vary a lot: the median metro holds 22 ZIP rows, and Washington-Arlington-Alexandria, DC-VA-MD is the largest at 488.</p>
+  </section>
+
+  <section aria-label="MSA vs HUD Metro FMR Area">
+    <h2>MSA vs HUD Metro FMR Area</h2>
+    <p>An MSA is the Census and OMB unit: a core with adjacent counties tied to it by commuting. When HUD prices a whole MSA as one FMR area, the file's name ends in MSA and every county inside shares one rent number. When local rents differ enough inside one OMB metro, HUD carves it into pieces and prices each piece separately. Those pieces carry the HUD Metro FMR Area ending, and the area name usually keeps the parent metro's state list even when the piece sits in one state.</p>
+    <p>New York shows the split in action. The Census metro is the New York-Newark-Jersey City MSA, spanning New York and New Jersey. The FY2026 file breaks its footprint across several HUD areas: New York, NY HUD Metro FMR Area on the New York side, plus Newark, Jersey City, Bergen-Passaic, Middlesex-Somerset-Hunterdon, and Monmouth-Ocean on the New Jersey side, which holds ten metro FMR areas of its own. ZIP 10001 in Manhattan sits in the New York, NY area; ZIP 07030 across the Hudson in Hoboken sits in the Jersey City, NJ area, with its own FMR.</p>
+    <p>One data trap follows from this design: the <b>state</b> column records the area's primary state, and every row of an area carries the same value. Washington-Arlington-Alexandria, DC-VA-MD HUD Metro FMR Area holds 488 rows and every one says DC, including ZIP 22201 in Arlington, VA and ZIP 20814 in Bethesda, MD. The name's suffix lists the states inside the HUD area; the state column does not always track the ZIP's own state. Filter on state and you can silently drop the rows you wanted.</p>
+  </section>
+
+  <section aria-label="Why edge ZIPs differ">
+    <h2>Why ZIPs on the same metro can carry different FMRs</h2>
+    <p>The default is metro-wide: a ZIP with no ZIP-level value repeats its area's base FMR, so most rows in an area look identical. ZIP-level variation enters through Small Area FMRs. In metros HUD designates for SAFMRs, the designated ZIPs carry their own 40th percentile values, and the rows diverge inside the same hud_area_code. The variation is common: 648 of the 649 metro areas in the file carry more than one distinct 2BR value, and the average metro shows about 20 distinct 2BR values across its rows. <a href="safmr-vs-fmr.html">SAFMR vs FMR</a> covers the mechanism and HUD's designation rule; <a href="hud-fmr-safmr-list.html">the SAFMR list</a> carries the designated areas for FY2026.</p>
+    <p>The file has no SAFMR flag column, so the divergence is visible only by comparison: group rows on hud_area_code and the rows that differ from the group's most common values are the ZIP-level ones. HUD's SAFMR tables remain the official designation source; the CSV tells you where to look.</p>
+    <p>The boundary itself is the second way edge ZIPs diverge. HUD's area lines follow OMB metro definitions as their starting material and HUD's own splits on top, so a ZIP on a metro's edge can fall in a neighboring HUD area, another metro piece or a nonmetro area, whose FMR differs from the big city next door. The ZIP-to-area assignment is the lookup that settles it, not the city or county line on a general map.</p>
+  </section>
+
+  <section aria-label="San Diego worked example">
+    <h2>The widest intra-metro spread: San Diego, worked from the file</h2>
+    <p>Grouping the 649 metro areas by their max 2BR minus min 2BR across their own rows puts San Diego-Chula Vista-Carlsbad, CA MSA at the top: 178 ZIP rows inside one hud_area_code, with the 2BR running from 1,460 in ZIP 92004 (Borrego Springs) up to 4,500 in ZIP 91914. That is a 3,040-dollar spread inside a single metro, a 3.1x ratio, and it is the widest in the file. The next widest are Oxnard-Thousand Oaks-Ventura, CA at 2,370 (1,970 to 4,340) and Stockton-Lodi, CA at 2,350 (1,310 to 3,660).</p>
+    <p>Two rows, verbatim from fmr-by-zip-2026.csv, show the whole story in ten columns:</p>
+    <pre><code>92004,METRO41740M41740,metro,"San Diego-Chula Vista-Carlsbad, CA MSA",CA,1110,1200,1460,1950,2360
+91914,METRO41740M41740,metro,"San Diego-Chula Vista-Carlsbad, CA MSA",CA,3430,3690,4500,5990,7270</code></pre>
+    <p>Same area code, same metro, three times the rent: 92004 sits at 1,460 for a 2BR while 91914 sits at 4,500, and the same 3.1x stretch holds for every bedroom size, studio 1,110 to 3,430 and 4BR 2,360 to 7,270. The file carries 82 distinct 2BR values across San Diego's 178 rows, with the most common at 3,000, held by 69 of the rows; that 3,000 is the metro-wide base the undesignated ZIPs repeat, and the other values are ZIP-level ones. Under a metro-wide FMR alone, every San Diego ZIP would share 3,000, which is what the base column of the group shows. Confirm the official SAFMR designation for any specific ZIP against HUD's SAFMR tables before relying on it.</p>
+  </section>
+
+  <section aria-label="Find your metro">
+    <h2>Find your metro's rows</h2>
+    <p>The spread ranking above is a few lines of csv-module Python over the full file. Group by area_name, keep the metro rows, and sort by max 2BR minus min 2BR:</p>
+    <pre><code>import csv
+
+metros = {}
+with open("fmr-by-zip-2026.csv", newline="", encoding="utf-8") as f:
+    for row in csv.DictReader(f):
+        if row["metro"] == "metro":
+            metros.setdefault(row["area_name"], []).append(int(row["fmr_2br"]))
+
+spreads = sorted(
+    ((max(v) - min(v), name, len(v), min(v), max(v)) for name, v in metros.items()),
+    reverse=True,
+)
+print(spreads[0])
+# (3040, 'San Diego-Chula Vista-Carlsbad, CA MSA', 178, 1460, 4500)</code></pre>
+    <p>Swap the sort key for any bedroom column. Over the <a href="../agents/">dataset-mcp server</a>, one query pulls a single area's rows:</p>
+    <pre><code>query_dataset(
+  "hud-fmr-2026",
+  {
+    "where": [{ "column": "area_name", "op": "=", "value": "San Diego-Chula Vista-Carlsbad, CA MSA" }],
+    "columns": ["zip", "area_name", "state", "fmr_2br"]
+  }
+)</code></pre>
+    <p>Every area name in the file is listed in <a href="hud-metro-list.html">HUD metro area list</a>, the ranking of the priciest and cheapest is in <a href="fmr-by-metro.html">HUD FMR by metro</a>, and the column-level definitions are in <a href="hud-fmr-data-dictionary.html">the data dictionary</a>.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>HUD FMR metro area questions</h2>
+    <dl>
+      <dt>What is a HUD metro FMR area, and how is it different from an MSA?</dt>
+      <dd>A metro FMR area is HUD's own unit of geography for setting Fair Market Rents, and it does not always match the Census MSA of the same name. In the FY2026 file, names ending in MSA (246 areas) mean HUD prices the whole Census metro together, while names ending in HUD Metro FMR Area (403 areas) mean HUD sets a separate FMR for that piece of a metro. ZIP 10001 in Manhattan falls in the New York, NY HUD Metro FMR Area; ZIP 07030 in Hoboken falls in the Jersey City, NJ HUD Metro FMR Area, a different area with its own FMR.</dd>
+      <dt>Why do two ZIP codes in the same metro have different HUD FMRs?</dt>
+      <dd>Two reasons. First, Small Area FMRs: in metros HUD designates, many ZIPs carry their own ZIP-level values instead of the metro-wide number, so rows differ inside one hud_area_code. In the San Diego-Chula Vista-Carlsbad, CA MSA, 82 distinct 2BR values sit across 178 ZIP rows, from 1,460 in ZIP 92004 to 4,500 in ZIP 91914. Second, the HUD area boundary itself: a ZIP on the metro's edge can fall in a neighboring HUD area, metro or nonmetro, with its own FMR. The FY2026 file has no SAFMR flag column, so ZIP-level variation shows up only by comparing rows within one area code.</dd>
+      <dt>How many metro areas are in the FY2026 HUD FMR data?</dt>
+      <dd>The FY2026 ZIP-level file covers 2,599 distinct HUD FMR area names, and 649 of them are metro areas holding 27,296 ZIP rows; the other 1,950 names are nonmetro areas with 24,599 rows. Metro names end in MSA or HUD Metro FMR Area. The median metro holds 22 ZIP rows, Washington-Arlington-Alexandria, DC-VA-MD is the largest at 488, and 648 of the 649 metros carry more than one distinct 2BR value in the file.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the dataset">
+    <h2>Get the full dataset</h2>
+    <p>The free 22-row sample shows the schema behind every number on this page. The full pack adds the 51,895-row ZIP file, the county rollup (3,229 rows), the state summary, the data dictionary, and source checksums, so you can re-run the metro grouping with any bedroom column.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">Get the full dataset</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release, huduser.gov. US government data, public domain. Data Vault is not affiliated with HUD.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

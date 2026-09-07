@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Tools for AI Agents: catalog, MCP server, sample endpoints | Data Vault</title>
+<meta name="description" content="Free tools for AI agents: a dataset MCP server with 5 query tools, 5 sample.json endpoints, a machine-readable catalog.json, llms.txt, and the official MCP registry. Every link curl-checked.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/agents/free-agent-tools.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Free Tools for AI Agents: catalog, MCP server, sample endpoints | Data Vault">
+<meta property="og:description" content="Free tools for AI agents: a dataset MCP server with 5 query tools, 5 sample.json endpoints, a machine-readable catalog.json, llms.txt, and the official MCP registry. Every link curl-checked.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/agents/free-agent-tools.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Free tools for AI agents","url":"https://jayjex.github.io/data-vault/agents/free-agent-tools.html","itemListElement":[{"@type":"ListItem","position":1,"name":"dataset-mcp MCP server","url":"https://jayjex.github.io/data-vault/agents/mcp-dataset-server.html"},{"@type":"ListItem","position":2,"name":"catalog.json machine-readable dataset index","url":"https://jayjex.github.io/data-vault/catalog.json"},{"@type":"ListItem","position":3,"name":"sample.json endpoints for 5 datasets","url":"https://jayjex.github.io/data-vault/agents/"},{"@type":"ListItem","position":4,"name":"llms.txt catalog for LLM crawlers","url":"https://jayjex.github.io/data-vault/llms.txt"},{"@type":"ListItem","position":5,"name":"Official MCP registry","url":"https://registry.modelcontextprotocol.io/"},{"@type":"ListItem","position":6,"name":"Model Context Protocol documentation","url":"https://modelcontextprotocol.io/docs/getting-started/intro"},{"@type":"ListItem","position":7,"name":"Web Scraping Script Pack","url":"https://jayjex.github.io/data-vault/datasets/scraper-pack.html"}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <p class="kicker">agent resources</p>
+  <h1>Free tools for AI agents</h1>
+  <p class="lead">A roundup of free tools an AI agent or its developer can use today, no signup on any of them. Most sit in this catalog: an MCP server, JSON endpoints, a machine-readable index. Two are outside resources we use ourselves and link after checking they answer. One item is a paid script pack, marked as such. Every link on this page returned HTTP 200 on 2026-09-09.</p>
+
+  <section aria-label="Our own tools">
+    <h2>Tools in this catalog, free</h2>
+
+    <article class="card">
+      <span class="niche">mcp</span>
+      <h3>dataset-mcp, an MCP server with 5 tools</h3>
+      <p>An MCP server that wraps this catalog. Five tools: <code>list_datasets</code>, <code>get_dataset_info</code>, <code>get_sample</code>, <code>query_dataset</code>, and <code>get_stats</code>. <code>query_dataset</code> filters and paginates the full released files (19 MB across 22 files), 100 rows per call, with <code>=</code>, <code>contains</code>, <code>gt</code>, and <code>lt</code> operators, so a query against 90,169 rows downloads nothing on your side. <code>get_stats</code> returns row counts, numeric min/max/mean, and top-N frequencies.</p>
+      <p>Access: <code>npx --allow-git=all -y github:jayjex/dataset-mcp</code> (the flag is for npm 12+, npm 10 and 11 run the plain form). Listed in the official MCP registry as <code>io.github.jayjex/dataset-mcp</code>, status active. Repo: <a href="https://github.com/jayjex/dataset-mcp" rel="noopener">github.com/jayjex/dataset-mcp</a>. Setup walkthrough and a captured session: <a href="mcp-dataset-server.html">MCP server for datasets</a>.</p>
+      <p class="btn-note">Price: free.</p>
+    </article>
+
+    <article class="card">
+      <span class="niche">http</span>
+      <h3>Five sample.json endpoints</h3>
+      <p>Each of the 5 datasets exposes <code>/data/&lt;slug&gt;/sample.json</code>, which returns <code>{slug, name, columns[], row_count, records[]}</code>: the schema plus the first 10-25 rows. Same rows as CSV at <code>sample.csv</code>. No key, no auth, plain static files.</p>
+      <p>The slugs: <a href="../data/nfl-games/sample.json">nfl-games</a>, <a href="../data/hud-fmr-2026/sample.json">hud-fmr-2026</a>, <a href="../data/airbnb-six-cities/sample.json">airbnb-six-cities</a>, <a href="../data/earn-bounties/sample.json">earn-bounties</a>, <a href="../data/scraper-pack/sample.json">scraper-pack</a>.</p>
+<pre>curl -s https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.json | jq '.columns, .records[0]'</pre>
+      <p class="btn-note">Price: free. Endpoint docs with a Python example: <a href="./">agent access</a>.</p>
+    </article>
+
+    <article class="card">
+      <span class="niche">http</span>
+      <h3>catalog.json, a machine-readable index</h3>
+      <p>The discovery document: every dataset with slug, niche, stats (rows, tables, columns), sample URLs, license, and the <code>full_data</code> link where a paid pack exists. An agent that fetches this one file knows the whole catalog without rendering a page.</p>
+<pre>curl -s https://jayjex.github.io/data-vault/catalog.json | jq '.datasets[] | {slug, niche, rows: .stats.rows}'</pre>
+      <p class="btn-note">Price: free. Direct fetch: <a href="../catalog.json">catalog.json</a>.</p>
+    </article>
+
+    <article class="card">
+      <span class="niche">http</span>
+      <h3>llms.txt at the site root</h3>
+      <p>A plain-text catalog for LLM crawlers: what the site is, how to fetch the catalog, one line per dataset with row counts and sample URLs. If your crawler reads <code>llms.txt</code>, this site is already described in it.</p>
+      <p>Curious about the format? The <a href="llms-txt-guide.html">llms.txt guide</a> breaks the structure down with this file as the example.</p>
+      <p class="btn-note">Price: free. Direct fetch: <a href="../llms.txt">llms.txt</a>.</p>
+    </article>
+  </section>
+
+  <section aria-label="Outside resources">
+    <h2>Outside resources, verified live</h2>
+    <p>Two links we rely on ourselves. Both checked by direct HTTP fetch on 2026-09-09.</p>
+
+    <article class="card">
+      <span class="niche">registry</span>
+      <h3>Official MCP registry</h3>
+      <p><a href="https://registry.modelcontextprotocol.io/" rel="noopener">registry.modelcontextprotocol.io</a> is the official registry of MCP servers. It has an HTTP API (<code>/v0/servers</code>) so an agent can search it programmatically. Our own server is in there as <code>io.github.jayjex/dataset-mcp</code>, status active, published 2026-09-07.</p>
+      <p class="btn-note">Price: free.</p>
+    </article>
+
+    <article class="card">
+      <span class="niche">docs</span>
+      <h3>Model Context Protocol documentation</h3>
+      <p><a href="https://modelcontextprotocol.io/docs/getting-started/intro" rel="noopener">modelcontextprotocol.io</a> hosts the protocol docs: what MCP is, how clients and servers talk, and how to wire a server into Claude Desktop or another MCP client. Start here if dataset-mcp is your first server.</p>
+      <p class="btn-note">Price: free.</p>
+    </article>
+  </section>
+
+  <section aria-label="Paid tool">
+    <h2>One paid item, marked as such</h2>
+
+    <article class="card">
+      <span class="niche">dev-tools</span>
+      <h3>Web Scraping Script Pack, $15</h3>
+      <p>Ten self-contained Playwright scripts for pagination, infinite scroll, login sessions, price monitors, sitemap crawling, and retries. Node 18+. The <code>sample.json</code> endpoint lists every script with its purpose, so you can check the inventory before buying. If you would rather build the scraper yourself from free parts, the <a href="../tools/scraping-tools-alternative.html">web scraping tools comparison</a> covers the free and self-hosted options.</p>
+      <p class="btn-note">Price: <a href="https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtn8em7k" rel="noopener">$15 on Getly</a>. Free sample: <a href="../data/scraper-pack/sample.json">data/scraper-pack/sample.json</a>.</p>
+    </article>
+  </section>
+
+  <section aria-label="Related pages">
+    <h2>Where to go next</h2>
+    <p><a href="../free-datasets-for-ai-agents.html">Free API datasets for AI agents</a> lists the five packs with row counts and sample downloads. <a href="./">Agent access</a> documents the endpoints and shows a worked Python example. The <a href="../index.html">catalog page</a> filters the packs by niche.</p>
+  </section>
+</main>
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

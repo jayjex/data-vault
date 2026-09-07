@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solana Grants List: Mapping the Ecosystem's Funding Programs from Public Data | Data Vault</title>
+<meta name="description" content="How to build a Solana grants list from public data: the Superteam Earn API, a 51-row snapshot with 6 AGENT_ALLOWED listings, and the method for mapping sponsors, bounty types, and deadlines. Research framing, not investment advice.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/solana-grants-data.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Solana Grants List: Mapping the Ecosystem's Funding Programs from Public Data">
+<meta property="og:description" content="Build a Solana grants list from public data: the Superteam Earn API, a 51-row snapshot, and the method for mapping sponsors, types, and deadlines.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/solana-grants-data.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Solana grants list: mapping the ecosystem's funding programs from public data", "description": "Build a Solana grants list from public data: the Superteam Earn API, a 51-row snapshot, and the method for mapping sponsors, types, and deadlines.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/solana-grants-data.html", "about": {"@type": "Dataset", "name": "Superteam Earn Live Listings", "url": "https://jayjex.github.io/data-vault/datasets/earn-bounties.html"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Solana grants list data", "item": "https://jayjex.github.io/data-vault/guides/solana-grants-data.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Where can I find a list of Solana grants?", "acceptedAnswer": {"@type": "Answer", "text": "There is no single official list. Grant programs run separately per sponsor (foundation, L1 teams, protocols), while time-boxed bounties and projects concentrate on public work boards, Superteam Earn being the largest for the Solana ecosystem. The practical research route is to snapshot a board's API into rows (sponsor, type, deadline, status) and combine that with each program's own pages. The dataset documented here is the Superteam Earn slice: 51 card rows, 28 full descriptions, and a 186-route endpoint map that includes grant-application and hackathon route groups."}}, {"@type": "Question", "name": "What does AGENT_ALLOWED mean on Superteam Earn listings?", "acceptedAnswer": {"@type": "Answer", "text": "It is the listing's automation policy. AGENT_ALLOWED lets builders submit work through tooling and agents; HUMAN_ONLY requires a person to make the submission. In the 2026-09-04 snapshot the split was 6 of 51 card rows AGENT_ALLOWED and 45 HUMAN_ONLY. Because each live listing repeats once per API page, those 6 rows are 2 unique listings, found by grouping on the id or slug column."}}, {"@type": "Question", "name": "Is a grants list the same as a bounty list?", "acceptedAnswer": {"@type": "Answer", "text": "They overlap but differ in shape. Grants are program funding, usually milestone-based, with their own application routes; bounties are per-deliverable payouts with a deadline and submission counter. On Superteam Earn the type column carries this split (bounty vs project), and the endpoint map gives grants and hackathons their own route groups. A mapping built from this data should keep the two separated before comparing sponsors or deadlines."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../datasets/earn-bounties.html">Earn dataset</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Solana grants list: how to map the ecosystem's funding programs from public data</h1>
+  <p class="byline">Snapshot from 2026-09-04, published 2026-09-10. Source: the public Superteam Earn API. This is a research-method guide; it covers program mapping, and nothing on this page is investment, tax, or income advice.</p>
+
+  <section aria-label="What a Solana grants list means">
+    <h2>What people are actually looking for</h2>
+    <p>Search for a Solana grants list and the need behind it is usually one of three: a builder deciding where to apply, a researcher tracking which sponsors fund what, or an analyst watching how work markets in the ecosystem shift. No single page answers any of them, because the ecosystem funds work through separate channels: per-program grant tracks (application forms, milestone reviews), hackathon prize pools, and time-boxed bounties posted on public boards. The largest public board for the Solana ecosystem is Superteam Earn, where sponsors post bounties and projects with deadlines, token labels, and submission counts, all behind a readable public API.</p>
+    <p>The durable move is to stop hunting for someone else's static list and build the mapping from rows. A snapshot gives you the fields (sponsor, type, deadline, status, automation policy) and the history that a live board overwrites every week.</p>
+  </section>
+
+  <section aria-label="The data source">
+    <h2>The data source: the Superteam Earn API, flattened</h2>
+    <p>The <a href="../datasets/earn-bounties.html">Superteam Earn dataset</a> documented here was harvested from the public API on 2026-09-04 and ships three research files plus harvest notes:</p>
+    <ul>
+      <li><b>earn-listings-cards.json</b>, 51 card records: the raw paginated cards dump. The same live listings repeat once per API page, so 17 unique listings appear 3 times each. Count on the <code>id</code> column, not raw rows.</li>
+      <li><b>earn-listings-full-descriptions.json</b>, 28 listings with full description HTML. The cards API truncates this field; the descriptions carry scope, deliverables, and judging criteria. 16 of the 17 live listings appear here, plus 12 that had rotated off the live feed before harvest day.</li>
+      <li><b>earn-api-endpoints.txt</b>, 186+ reverse-engineered routes across 34 path groups: listings, comments, submissions, grants and tranches, hackathon feeds, homepage stats, sponsor operations. This is where the grants-shaped routes live, separate from the bounty routes.</li>
+      <li><b>earn-README.md</b>, the harvest notes: date, source, file inventory.</li>
+    </ul>
+    <p>Column reference for the cards file, with the fields a mapping needs: <code>title</code>, <code>type</code> (bounty or project), <code>token</code>, <code>deadline</code> (ISO 8601), <code>status</code>, <code>agentAccess</code> (HUMAN_ONLY or AGENT_ALLOWED), <code>sponsor</code>, and <code>_count</code> (comments and submissions). The full table is in the <a href="solana-bounties-data-guide.html">Superteam Earn data guide</a>.</p>
+  </section>
+
+  <section aria-label="The snapshot">
+    <h2>What the 2026-09-04 snapshot shows</h2>
+    <p>Seventeen unique listings were open on harvest day. The splits that matter for mapping, at row level and after dedupe:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Snapshot splits table"><table><thead><tr><th scope="col">Split</th><th scope="col">51 rows (raw)</th><th scope="col">17 listings (deduped)</th></tr></thead><tbody>
+      <tr><td>agentAccess: HUMAN_ONLY</td><td>45</td><td>15</td></tr>
+      <tr><td>agentAccess: AGENT_ALLOWED</td><td>6</td><td>2</td></tr>
+      <tr><td>type: bounty</td><td>45</td><td>15</td></tr>
+      <tr><td>type: project</td><td>6</td><td>2</td></tr>
+      <tr><td>token: USDC</td><td>39</td><td>13</td></tr>
+      <tr><td>token: USDG</td><td>12</td><td>4</td></tr>
+      <tr><td>status: OPEN</td><td>51</td><td>17</td></tr>
+    </tbody></table></div>
+    <p>Row-level and unique counts agree here because the two project-type listings are also the two AGENT_ALLOWED listings. The 6 AGENT_ALLOWED rows are 2 unique listings: the ZNS Solana Creator Challenge (ZNS Connect) and the Steve Agent Arena (OOBE Protocol). Both are automation-themed work, which is what the flag promises: listings where tooling-assisted submission is welcome.</p>
+  </section>
+
+  <section aria-label="The mapping method">
+    <h2>The mapping method, step by step</h2>
+    <ul>
+      <li><b>Dedupe on id or slug first.</b> Every analysis after this depends on one-row-per-listing. The 51/17 gap is page structure, not market depth.</li>
+      <li><b>Group by sponsor.</b> The sponsor field turns the listing pile into an ecosystem map: which teams and communities post work, how many listings each runs, and whether they favor bounties or projects. Track the same groupings across snapshots to see sponsor activity over time.</li>
+      <li><b>Keep type separated.</b> Bounties (per-deliverable, deadline-bound) and projects (longer engagements) are different funding shapes. Mixing them flattens the comparison the way mixing grants with bounties would.</li>
+      <li><b>Use deadlines for cadence.</b> ISO 8601 timestamps sort cleanly, so a week-over-week snapshot shows how long listings stay open and how deadline density moves around hackathon seasons.</li>
+      <li><b>Read submissions as crowding.</b> <code>_count.submission</code> next to each listing shows how contested each slot was on harvest day. As research, it is a baseline for comparing engagement tiers; it says nothing about which submission a sponsor will pick.</li>
+      <li><b>Flag the automation layer.</b> agentAccess is the field other Solana boards rarely publish. A mapping that tracks AGENT_ALLOWED listings over time is tracking where agent-friendly work concentrates in the ecosystem.</li>
+      <li><b>Go to the route map for the grants-shaped slice.</b> The 186-route endpoint map gives grants, tranches, and hackathons their own groups. Anyone extending this mapping beyond the bounty board starts there, against each program's own endpoints.</li>
+    </ul>
+  </section>
+
+  <section aria-label="Query the dataset">
+    <h2>Querying the snapshot without downloading it</h2>
+    <p>The <a href="https://github.com/jayjex/dataset-mcp" rel="noopener">dataset-mcp</a> server reads the full released files and filters them in memory; setup is one npx line on the <a href="../agents/">For agents</a> page. The layer question (MCP vs raw endpoints) is covered in the <a href="mcp-vs-api.html">MCP vs API guide</a>. One real call over the cards file:</p>
+    <pre><code>get_stats("earn-bounties", { file: "earn-listings-cards.json", column: "agentAccess" })</code></pre>
+    <p>Verbatim output from the September 2026 run of server v1.1.0:</p>
+    <pre><code>{
+  "slug": "earn-bounties",
+  "file": "earn-listings-cards.json",
+  "rows": 51,
+  "column": "agentAccess",
+  "non_empty": 51,
+  "unique_count": 2,
+  "top_values": [
+    { "value": "HUMAN_ONLY",     "count": 45 },
+    { "value": "AGENT_ALLOWED",  "count": 6 }
+  ]
+}</code></pre>
+    <p>query_dataset with a where clause on agentAccess returns the 6 AGENT_ALLOWED rows themselves; dedupe on id from there for the 2 unique listings.</p>
+  </section>
+
+  <section aria-label="Limits">
+    <h2>What this data cannot tell you</h2>
+    <p>A snapshot is one day. It records 17 open listings on 2026-09-04 and 12 descriptions that had already aged out; it does not capture listings posted after harvest, and the cards feed itself is a rolling window. Grants proper, the milestone-funded programs run by foundations and protocol teams, mostly live outside this board entirely: the endpoint map documents where those routes sit, but this dataset holds the bounty-board slice. Rewards are recorded as amounts and token labels for completeness; comparing them across sponsors or extrapolating them into earnings estimates is bad method, and the submission counts prove nothing about acceptance odds. This page maps funding programs for research. It is not investment advice, not a yield estimate, and not a recommendation to buy or sell anything.</p>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the snapshot</h2>
+    <p>Start with the free 10-card sample to check the schema, then take the full pack for all 51 card records, 28 full descriptions, the 186-route endpoint map, and the harvest README. Related reading: the <a href="solana-bounties-data-guide.html">full Superteam Earn data guide</a>, the <a href="web3-bounty-data.html">web3 bounty data overview</a>, and the tracker comparison in <a href="bounty-tracker-alternative.html">bounty tracker alternative</a>.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/earn-bounties/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/superteam-earn-28-live-listings-dataset-186-reverse-engineered-api-routes-mtmy11ny" rel="noopener">Get full data</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Source: public Superteam Earn API, harvested 2026-09-04. Personal and commercial use; no resale of the files as-is.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>Solana grants list questions</h2>
+    <div class="faq">
+      <h3>Where can I find a list of Solana grants?</h3>
+      <p>No single official list exists. Programs run per sponsor, and the public concentration point for bounties and projects is Superteam Earn. The research route is snapshots: this dataset gives the board's slice as rows, and the endpoint map's grants and hackathon route groups show where program-level funding lives. Combine both with each program's own pages for a full picture.</p>
+      <h3>What does AGENT_ALLOWED mean?</h3>
+      <p>The listing's automation policy: submissions through tooling and agents are welcome, versus HUMAN_ONLY where a person must submit. In the 2026-09-04 snapshot: 6 of 51 card rows, which dedupe to 2 unique listings, both automation-themed work.</p>
+      <h3>Is a grants list the same as a bounty list?</h3>
+      <p>No. Grants are program funding with application routes and usually milestones; bounties are per-deliverable payouts with deadlines and submission counters. The type column (bounty vs project) and the separate grants route groups in the endpoint map keep the two apart, and any serious mapping should keep them separated.</p>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

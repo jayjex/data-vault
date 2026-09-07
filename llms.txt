@@ -13,7 +13,6 @@ Free printables by use case (same 223 pages regrouped into budget, moving, study
 MCP full query: query_dataset(slug, {where, columns, limit, offset}) filters and paginates the FULL released files, 100 rows/call. Example: query_dataset("hud-fmr-2026", {where: [{column: "state", op: "=", value: "TX"}], limit: 5}) returns 3,247 matched Texas rent rows. Full data release: https://github.com/jayjex/dataset-mcp/releases/tag/data-v1
 FMR calculator guide (the math behind FMRs + MCP lookup, no official HUD calculator exists): https://jayjex.github.io/data-vault/guides/hud-fair-market-rent-calculator.html
 HUD payment standard guide (the 90%-110% PHA band around the FMR, FY2026 band table for six ZIPs): https://jayjex.github.io/data-vault/guides/hud-payment-standard.html
-HUD payment standard guide (the 90%-110% PHA band around the FMR, FY2026 band table for six ZIPs): https://jayjex.github.io/data-vault/guides/hud-payment-standard.html
 What is llms.txt (plain-English definition of the format, how agents read the file, honest status): https://jayjex.github.io/data-vault/guides/what-is-llms-txt.html
 
 ## Datasets
@@ -80,7 +79,6 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - [HUD Metro Area List: Every FY2026 Metro FMR Area](https://jayjex.github.io/data-vault/guides/hud-metro-list.html): metro area names and codes
 - [Fair Market Rent Calculator: How FMR Math Works, FY2026 Examples](https://jayjex.github.io/data-vault/guides/hud-fair-market-rent-calculator.html): the math behind FMRs + MCP lookup
 - [HUD Payment Standard: The 90%-110% Band Around the FMR, FY2026](https://jayjex.github.io/data-vault/guides/hud-payment-standard.html): PHA payment standard vs FMR, six-ZIP band table
-- [HUD Payment Standard: The 90%-110% Band Around the FMR, FY2026](https://jayjex.github.io/data-vault/guides/hud-payment-standard.html): PHA payment standard vs FMR, six-ZIP band table
 - [HUD Fair Market Rent Lookup: FMR by ZIP Code, One at a Time or in Bulk](https://jayjex.github.io/data-vault/guides/fmr-lookup-alternatives.html): manual vs bulk lookup compared
 - [FMR vs Actual Rent: What Each Number Measures and Why They Differ](https://jayjex.github.io/data-vault/guides/fmr-vs-rent-actuals.html): benchmark vs market rent
 - [SAFMR vs FMR: Small Area Fair Market Rent vs Metro FMR](https://jayjex.github.io/data-vault/guides/safmr-vs-fmr.html): ZIP-level vs metro-level rents
@@ -92,6 +90,7 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - [Airbnb Rental Analysis: Screen 6 US Markets With One Dataset](https://jayjex.github.io/data-vault/guides/airbnb-investment-analysis.html): screening workflow with real queries
 - [Inside Airbnb Alternative: 6 Cities, One Schema, 90,169 Rows](https://jayjex.github.io/data-vault/guides/inside-airbnb-alternative.html): normalized schema vs per-city dumps
 - [Superteam Earn Data: the Solana Bounties Dataset and Its API Map](https://jayjex.github.io/data-vault/guides/solana-bounties-data-guide.html): bounty schema and 186+ API routes
+- [Solana Grants List: Mapping the Ecosystem's Funding Programs from Public Data](https://jayjex.github.io/data-vault/guides/solana-grants-data.html): research method, 51-row snapshot splits, 6 AGENT_ALLOWED rows, grants-vs-bounty framing
 - [Solana Bounty Tracker Data: Web3 Bounty Listings Without an Official API](https://jayjex.github.io/data-vault/guides/web3-bounty-data.html): harvesting bounty listings
 - [Superteam Earn Alternative: Solana Bounty Tracker vs Dataset Approach](https://jayjex.github.io/data-vault/guides/bounty-tracker-alternative.html): dashboards vs raw rows
 - [What Is a Data Dictionary? Structure and Real CSV Examples](https://jayjex.github.io/data-vault/guides/data-dictionary-explained.html): column-code documentation format

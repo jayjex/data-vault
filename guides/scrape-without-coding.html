@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scrape Without Coding: 10 Editable Template Scripts | Data Vault</title>
+<meta name="description" content="How to scrape a website without writing code: run prebuilt scraping scripts, edit one config constant per site, and stay within robots.txt and crawl-delay. Honest limits included.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/scrape-without-coding.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Scrape Without Coding: 10 Editable Template Scripts">
+<meta property="og:description" content="Run prebuilt scraping scripts, edit one config constant per site, stay within robots.txt. Honest limits included.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/scrape-without-coding.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Scrape Without Coding: 10 Editable Template Scripts", "description": "How to scrape a website without writing code: run prebuilt scraping scripts, edit one config constant per site, and stay within robots.txt and crawl-delay. Honest limits included.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/scrape-without-coding.html", "about": {"@type": "Thing", "name": "web scraping without coding"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Scrape without coding", "item": "https://jayjex.github.io/data-vault/guides/scrape-without-coding.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can I scrape a website without coding?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, within limits. Prebuilt scripts already contain the logic: pagination, scrolling, retries, saving to CSV. Your part is editing a config block at the top of each file, the URL to scrape and the selectors that mark the data. That is editing text, not programming, but it is not zero-click either."}}, {"@type": "Question", "name": "Do no-code scrapers work on every site?", "acceptedAnswer": {"@type": "Answer", "text": "No. Sites behind logins, sites that load data from private APIs, and sites that change layout every week all need judgment and occasional tweaks. A site that blocks automated browsers needs a different approach entirely. Templates cover the common patterns: paginated tables, feeds, price pages, sitemaps."}}, {"@type": "Question", "name": "Is scraping legal?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on what you scrape and where the site operates. Check robots.txt and the terms of service, collect only public pages, keep request rates low, and never scrape personal data. Rules differ by country and site, so treat any checklist as a starting point, not legal advice."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Scrape without coding: templates you edit, not write</h1>
+  <p class="byline">Published 2026-09-10. Setup tested on Node 18 with one npm install and one chromium download.</p>
+
+  <section aria-label="What no-code scraping actually means">
+    <h2>What "scrape without coding" actually means</h2>
+    <p>The usual pitch is a point-and-click app. The practical version is different: the code already exists, and you never open it. Each script below ships with a config block at the top. You paste in a URL, paste in one or two selectors, save the file, and run one command. That is editing, not programming, and it covers most scraping jobs people actually have: a table split over 40 pages, a feed that loads on scroll, a price you want to watch.</p>
+    <p>Honest limit, up front: this is not one-click. If a script cannot find the data, you look at the page, find the selector, and fix one line. Five minutes, not a rewrite. Sites behind logins or sites that fight browsers need more than that, and no template fixes those on its own.</p>
+  </section>
+
+  <section aria-label="The three steps">
+    <h2>The whole workflow: install, configure, run</h2>
+    <pre><code>npm install
+npx playwright install chromium   # one-time browser download
+node 01-paginated-table-to-csv.js</code></pre>
+    <p>Every script opens with a comment that says exactly this. The config block sits at the top of the file and marks each value you are allowed to change with an <code>EDIT</code> constant:</p>
+    <pre><code>// EDIT: the page to start from
+const START_URL = "https://example.com/listings?page=1";
+// EDIT: each row of the results table
+const ROW_SELECTOR = "tr.listing";
+// EDIT: output file
+const OUT_FILE = "listings.csv";</code></pre>
+    <p>Change those three lines, save, run. The script walks the pagination, pulls each row, and writes a CSV you can open in Excel or Sheets. No other file in the project needs to exist for one script to run; each one is self-contained on purpose.</p>
+  </section>
+
+  <section aria-label="The 10 template scripts">
+    <h2>The 10 templates and what each one is for</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Template table"><table>
+      <thead><tr><th scope="col">Template</th><th scope="col">What it does</th><th scope="col">Typical job</th></tr></thead>
+      <tbody>
+        <tr><td>01-paginated-table-to-csv.js</td><td>Follows page numbers or a Next button, saves table rows to CSV</td><td>A listings or results table split over many pages</td></tr>
+        <tr><td>02-infinite-scroll-collector.js</td><td>Scrolls a feed to the bottom, dedupes, saves JSON</td><td>Collect every card in a feed that loads more on scroll</td></tr>
+        <tr><td>03-login-scrape-storagestate.js</td><td>Logs in once, saves the session, reuses it later</td><td>Pages behind a login on an account you own</td></tr>
+        <tr><td>04-price-stock-monitor.js</td><td>Compares runs, sends a webhook message on change</td><td>Watch a price or stock status and get pinged</td></tr>
+        <tr><td>05-bulk-form-submitter.js</td><td>Reads CSV rows, fills and submits one form per row</td><td>The same form, many records you already have</td></tr>
+        <tr><td>06-job-board-scraper.js</td><td>Scrapes listing pages, remembers what it saw before</td><td>Track new postings without re-collecting old ones</td></tr>
+        <tr><td>07-sitemap-crawler.js</td><td>Expands sitemap indexes, honors robots.txt and crawl-delay, writes JSONL</td><td>List every URL a site publishes in its sitemap</td></tr>
+        <tr><td>08-screenshot-diff-bot.js</td><td>Screenshots on a schedule, hashes, archives changes</td><td>Know exactly when a page layout or content changed</td></tr>
+        <tr><td>09-api-poller-jsonl.js</td><td>Calls a JSON endpoint on a timer, appends new records</td><td>Keep an append-only log of an endpoint over time</td></tr>
+        <tr><td>10-retry-fetch-wrapper.js</td><td>Exponential backoff, jitter, UA rotation, Retry-After aware</td><td>Wrap flaky requests so they back off instead of crashing</td></tr>
+      </tbody>
+    </table></div>
+    <p>You do not need all ten for one job. Pick the one that matches the page you are looking at, edit its config block, run it. The other nine stay in the folder for the next project.</p>
+  </section>
+
+  <section aria-label="Honest limits">
+    <h2>What templates cannot do</h2>
+    <p>Three situations outgrow templates. First, sites that load data from private APIs inside the page: the script can still work, but the selector you need may sit behind a delay or a scroll, and you will adjust the wait time. Second, sites that require an account: the login template (03) handles the mechanics, but only for an account you own or have written permission to use. Third, sites that change their layout often: each redesign breaks selectors, and fixing them is a two-minute edit per change, repeated.</p>
+    <p>None of that is hidden complexity; it is the actual shape of scraping work. Templates remove the 90 percent that is boilerplate: retries, pagination, session handling, file writing. The remaining 10 percent is judgment about the specific site, and that part never disappears.</p>
+  </section>
+
+  <section aria-label="Robots, terms of service, and rate limits">
+    <h2>Stay within robots.txt and the site's terms</h2>
+    <p>Four checks before any run. Read the site's <code>robots.txt</code> and follow what it disallows. Read the terms of service for a clause about automated access. Collect public pages only; the login template exists for your own accounts, not for getting around access controls. Keep the request rate low and let the site know who you are with a real user agent.</p>
+    <p>Script 07 reads robots.txt and crawl-delay for you. The other nine run at whatever pace you set, so set it slow: one page every few seconds is polite, ten per second is a problem for you and for the site. Laws on automated collection differ by country and site, so treat this section as a starting point, not legal advice.</p>
+  </section>
+
+  <section aria-label="Where to get the templates">
+    <h2>Get the templates</h2>
+    <p>The <a href="../tools/scraping-scripts.html">web scraping scripts pack</a> page documents all ten files, lists their use cases, and links a free manifest you can download before deciding anything. Setup is one npm install plus one chromium download, and nothing uploads anywhere.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/scraper-pack/scripts-manifest.json" download>Download manifest (free)</a>
+      <a class="btn" href="../tools/scraping-scripts.html">See the scripts pack</a>
+    </div>
+    <p class="btn-note">The manifest is free to download and lists every file with its pattern and runtime notes.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>Can I scrape a website without coding?</h3>
+    <p>Yes, within limits. Prebuilt scripts already contain the logic: pagination, scrolling, retries, saving to CSV. Your part is editing a config block at the top of each file, the URL to scrape and the selectors that mark the data. That is editing text, not programming, but it is not zero-click either.</p>
+    <h3>Do no-code scrapers work on every site?</h3>
+    <p>No. Sites behind logins, sites that load data from private APIs, and sites that change layout every week all need judgment and occasional tweaks. A site that blocks automated browsers needs a different approach entirely. Templates cover the common patterns: paginated tables, feeds, price pages, sitemaps.</p>
+    <h3>Is scraping legal?</h3>
+    <p>It depends on what you scrape and where the site operates. Check robots.txt and the terms of service, collect only public pages, keep request rates low, and never scrape personal data. Rules differ by country and site, so treat any checklist as a starting point, not legal advice.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

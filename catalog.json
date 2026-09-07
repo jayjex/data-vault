@@ -1,7 +1,7 @@
 {
  "name": "Data Vault",
  "url": "https://jayjex.github.io/data-vault/",
- "last_built": "2026-09-07",
+ "last_built": "2026-09-09",
  "description": "Sample-first data catalog by Matchbook Labs. Free CSV/JSON samples for every dataset; full packs sold via Getly.",
  "agent_docs": "https://jayjex.github.io/data-vault/agents/",
  "for_agents": "Fetch this file, pick a dataset, fetch its sample.json to learn the schema. Full data is linked per dataset, and the MCP server queries the full files for free (see mcp).",

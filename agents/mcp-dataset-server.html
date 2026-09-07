@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MCP server for datasets: query full packs from Claude Desktop or pi | Data Vault</title>
+<meta name="description" content="dataset-mcp is an MCP server for datasets: list, sample, query, and summarize 149,673 rows of NFL, HUD rent, Airbnb, and bounty data over the Model Context Protocol. One npx install, no API key.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/agents/mcp-dataset-server.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="MCP server for datasets: query full packs from Claude Desktop or pi | Data Vault">
+<meta property="og:description" content="dataset-mcp is an MCP server for datasets: list, sample, query, and summarize 149,673 rows of NFL, HUD rent, Airbnb, and bounty data over the Model Context Protocol. One npx install, no API key.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/agents/mcp-dataset-server.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"dataset-mcp","applicationCategory":"DeveloperApplication","operatingSystem":"Cross-platform, Node.js 18+","softwareVersion":"1.1.0","url":"https://jayjex.github.io/data-vault/agents/mcp-dataset-server.html","downloadUrl":"https://github.com/jayjex/dataset-mcp","codeRepository":"https://github.com/jayjex/dataset-mcp","description":"An MCP server for datasets: five tools (list_datasets, get_dataset_info, get_sample, query_dataset, get_stats) over 149,673 rows of NFL games, HUD fair market rents, Airbnb listings, and Superteam Earn bounties. Full released files are queryable and cached locally with SHA-256 verification.","featureList":["list_datasets","get_dataset_info","get_sample","query_dataset","get_stats"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"license":"https://opensource.org/licenses/MIT","publisher":{"@type":"Organization","name":"Matchbook Labs"}}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="./">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <p class="kicker">model context protocol data access</p>
+  <h1>MCP server for datasets</h1>
+  <p class="lead"><strong>dataset-mcp</strong> is an MCP server for datasets. Five tools, five data packs, 149,673 rows. Your Model Context Protocol client asks for rows, the server streams the full files from a public GitHub release, caches them locally, and answers. No API key, no auth, no CSV exports to babysit.</p>
+  <div class="herostats">
+    <span><b>5</b> tools</span>
+    <span><b>149,673</b> rows queryable</span>
+    <span><b>19 MB</b> full release</span>
+    <span>server <b>$0</b></span>
+  </div>
+
+  <section aria-label="Tools">
+    <h2>What the server exposes</h2>
+    <div class="table-wrap"><table class="ep">
+      <thead><tr><th scope="col">Tool</th><th scope="col">What it returns</th></tr></thead>
+      <tbody>
+        <tr><td><code>list_datasets()</code></td><td>every pack in the catalog with row counts, full-query availability, and release sizes</td></tr>
+        <tr><td><code>get_dataset_info(slug)</code></td><td>file list with rows, bytes, SHA-256, attribution, license, and query tips</td></tr>
+        <tr><td><code>get_sample(slug, format)</code></td><td>free preview rows, about 22 per pack, JSON or CSV</td></tr>
+        <tr><td><code>query_dataset(slug, {...})</code></td><td>filter and paginate the full file: <code>where</code> clauses with <code>=</code>, <code>contains</code>, <code>gt</code>, <code>lt</code>, column picking, 100 rows per call, <code>next_offset</code> paging</td></tr>
+        <tr><td><code>get_stats(slug, {...})</code></td><td>row count, non-empty and unique counts, numeric min/max/mean, top-N frequencies</td></tr>
+      </tbody>
+    </table></div>
+    <p>Where clauses compare numerically when both sides are numeric and fall back to lexicographic order for dates and strings. <code>format: "csv"</code> returns a page as raw CSV text if your pipeline prefers it.</p>
+  </section>
+
+  <section aria-label="Install">
+    <h2>Install</h2>
+<pre><span class="cm"># run it once to sanity-check (npm 12+ needs the allow-git flag)</span>
+npx --allow-git=all -y github:jayjex/dataset-mcp</pre>
+    <p>npm 12 refuses git-based installs by default (<code>EALLOWGIT</code>). npm 10 and 11 run the plain form: <code>npx -y github:jayjex/dataset-mcp</code>. Or set <code>allow-git=github.com</code> once in <code>~/.npmrc</code>.</p>
+
+    <h3>Claude Desktop</h3>
+    <p>Add to <code>claude_desktop_config.json</code>:</p>
+<pre>{
+  "mcpServers": {
+    "dataset-mcp": {
+      "command": "npx",
+      "args": ["--allow-git=all", "-y", "github:jayjex/dataset-mcp"]
+    }
+  }
+}</pre>
+
+    <h3>pi and other TOML-based agents</h3>
+<pre>[mcp_servers.dataset-mcp]
+command = "npx"
+args = ["--allow-git=all", "-y", "github:jayjex/dataset-mcp"]</pre>
+
+    <p>The server reads two URLs: <a href="../catalog.json">catalog.json</a> for the dataset index and the <a href="https://github.com/jayjex/dataset-mcp/releases/tag/data-v1" rel="noopener">data-v1 release</a> manifest for file hashes. First query of a file downloads it into <code>~/.cache/dataset-mcp/</code>; every later load re-verifies the SHA-256, so a stale cache triggers one fresh download instead of serving wrong rows. Warm calls run in 180 to 400 ms.</p>
+  </section>
+
+  <section aria-label="Real output">
+    <h2>Real output, end to end</h2>
+    <p>These blocks come from a live JSON-RPC session against server v1.1.0, not from docs.</p>
+
+    <h3>Texas rents from the 51,895-row ZIP table</h3>
+<pre>query_dataset("hud-fmr-2026", { where: [{ column: "state", op: "=", value: "TX" }], limit: 5 })
+
+total_matched: 3247 | next_offset: 5 | sha: 04ffb4597f37
+  76437  Abilene, TX MSA   2br=$1090
+  76443  Abilene, TX MSA   2br=$1090
+  76464  Abilene, TX MSA   2br=$1090
+  76469  Abilene, TX MSA   2br=$1090
+  79501  Abilene, TX MSA   2br=$1140</pre>
+
+    <h3>Every 2025 NFL game with closing lines</h3>
+<pre>query_dataset("nfl-games", { where: [{ column: "season", op: "=", value: 2025 }], limit: 5 })
+
+total_matched: 285 | next_offset: 5
+  2025_01_DAL_PHI  2025-09-04  DAL@PHI  20-24  spread=8.5  total=47.5
+  2025_01_KC_LAC   2025-09-05  KC@LAC   21-27  spread=-3   total=47.5</pre>
+
+    <h3>NYC Airbnb price distribution</h3>
+<pre>get_stats("airbnb-six-cities", { file: "airbnb-new-york-city.csv", column: "price" })
+
+rows: 30234 | non_empty: 20331 | unique: 12114
+numeric: min=4.58 max=31210.79 mean=267.35
+top: 59.11 x62, 61.01 x45, 209.00 x32, 279.00 x30, 165.93 x28</pre>
+
+    <p>Cold download of the 3.6 MB NYC file plus parse takes about 1.5 s; the same query from cache took 371 ms. Bad slugs and bad operators come back as proper tool errors with the valid values listed.</p>
+  </section>
+
+  <section aria-label="Registry">
+    <h2>Registry entry</h2>
+    <p>Listed in the official MCP registry as <code>io.github.jayjex/dataset-mcp</code>, version 1.1.0. Source and issues: <a href="https://github.com/jayjex/dataset-mcp" rel="noopener">github.com/jayjex/dataset-mcp</a>. The server code is MIT.</p>
+  </section>
+
+  <section aria-label="Licenses">
+    <h2>Licenses and attribution</h2>
+    <p>Licenses attach per dataset, not per server. They ship in the release manifest and in every <code>get_dataset_info</code> response. Keep the attribution lines when you republish.</p>
+    <div class="table-wrap"><table class="ep">
+      <thead><tr><th scope="col">Dataset</th><th scope="col">License</th><th scope="col">Source credit</th></tr></thead>
+      <tbody>
+        <tr><td>nfl-games</td><td>CC BY 4.0</td><td>nflverse</td></tr>
+        <tr><td>hud-fmr-2026</td><td>Public domain</td><td>US Department of Housing and Urban Development</td></tr>
+        <tr><td>airbnb-six-cities</td><td>CC BY 4.0</td><td>Inside Airbnb</td></tr>
+        <tr><td>earn-bounties</td><td>Public API aggregate, personal and commercial use, no resale of files as-is</td><td>Superteam Earn public API</td></tr>
+        <tr><td>scraper-pack</td><td>Personal and commercial use, no redistribution, samples only over MCP</td><td>Data Vault</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section aria-label="Full packs">
+    <h2>Get the full packs</h2>
+    <p>The server queries the full released files for free. If your project needs the raw CSVs in your own pipeline, the complete packs are sold per dataset:</p>
+    <div class="table-wrap"><table class="ep">
+      <thead><tr><th scope="col">Pack</th><th scope="col">Rows</th><th scope="col">Price</th></tr></thead>
+      <tbody>
+        <tr><td><a href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h" rel="noopener">NFL games and betting lines 1999-2026</a></td><td>7,548</td><td>$29</td></tr>
+        <tr><td><a href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">HUD Fair Market Rents FY2026</a></td><td>51,895</td><td>$24</td></tr>
+        <tr><td><a href="https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtpkvxdf" rel="noopener">Airbnb listings, 6 US cities</a></td><td>90,169</td><td>$39</td></tr>
+        <tr><td><a href="https://www.getly.store/product/superteam-earn-28-live-listings-dataset-186-reverse-engineered-api-routes-mtmy11ny" rel="noopener">Superteam Earn listings and API routes</a></td><td>51 cards</td><td>$49</td></tr>
+        <tr><td><a href="https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtn8em7k" rel="noopener">Playwright scraping script pack</a></td><td>10 scripts</td><td>$15</td></tr>
+      </tbody>
+    </table></div>
+    <p>Every pack also previews free over plain HTTP: see <a href="../free-datasets-for-ai-agents.html">free datasets for AI agents</a> and the <a href="./">agent endpoint docs</a>.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

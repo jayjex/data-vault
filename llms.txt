@@ -8,6 +8,7 @@ Agent docs: https://jayjex.github.io/data-vault/agents/
 MCP server: npx --allow-git=all -y github:jayjex/dataset-mcp (v1.1.0; tools: list_datasets, get_dataset_info, get_sample, query_dataset, get_stats; --allow-git=all needed on npm 12+, plain form on npm 10/11)
 MCP repo: https://github.com/jayjex/dataset-mcp
 MCP registry name: io.github.jayjex/dataset-mcp
+Free printables index (223 free printable pages from the Matchbook Labs funnel, one link per live page): https://jayjex.github.io/data-vault/free-printables-index.html
 MCP full query: query_dataset(slug, {where, columns, limit, offset}) filters and paginates the FULL released files, 100 rows/call. Example: query_dataset("hud-fmr-2026", {where: [{column: "state", op: "=", value: "TX"}], limit: 5}) returns 3,247 matched Texas rent rows. Full data release: https://github.com/jayjex/dataset-mcp/releases/tag/data-v1
 
 ## Datasets
@@ -46,6 +47,12 @@ Ten self-contained Playwright scripts for pagination, infinite scroll, login ses
 - Sample CSV: https://jayjex.github.io/data-vault/data/scraper-pack/sample.csv
 - Page: https://jayjex.github.io/data-vault/datasets/scraper-pack.html
 - Full data: [Get full data, $15](https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtn8em7k)
+
+### Printable Engineering Bundle (printable-engineering-bundle)
+Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (A4 + US Letter PDFs with answer keys, mazes, dot-to-dots) and 5 Web3 KPI spreadsheet templates (portfolio, airdrop, DeFi yield, bounty income, trading journal) with live formulas. Niche: printables. Stats: {"worksheets_pages": 120, "spreadsheets": 5, "paper_sizes": 2, "updated": "2026-09-06"}.
+- Page: https://jayjex.github.io/data-vault/datasets/printable-engineering-bundle.html
+- Free printables index: https://jayjex.github.io/data-vault/free-printables-index.html
+- Full bundle: [Get the bundle, $9](https://www.getly.store/store/matchbook-labs-mtmw06l2)
 
 ## Access rules
 - Fetch catalog.json and every sample endpoint freely. No API keys, no auth.

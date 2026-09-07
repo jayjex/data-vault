@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Airbnb Data in Tableau: Load a Listings CSV Into Tableau Public | Data Vault</title>
+<meta name="description" content="How to import an Airbnb CSV into Tableau Public: pandas dtype prep for listing IDs and ZIP codes, live connection versus extract, three viz ideas, and snapshot limits. Free 20-row sample.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/airbnb-data-in-tableau.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Airbnb Data in Tableau: Load a Listings CSV Into Tableau Public">
+<meta property="og:description" content="Import an Airbnb listings CSV into Tableau Public: pandas dtype prep for 19-digit IDs and ZIP codes, live connection versus extract, three viz ideas, and snapshot-bias limits.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/airbnb-data-in-tableau.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Airbnb Data in Tableau: Load a Listings CSV Into Tableau Public", "description": "Import an Airbnb listings CSV into Tableau Public: pandas dtype prep for 19-digit IDs and ZIP codes, live connection versus extract, three viz ideas, and snapshot-bias limits.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/airbnb-data-in-tableau.html", "about": {"@type": "Dataset", "name": "Airbnb Listings, 6 US Cities", "url": "https://jayjex.github.io/data-vault/datasets/airbnb-six-cities.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I import an Airbnb CSV into Tableau Public?", "acceptedAnswer": {"@type": "Answer", "text": "Open Tableau Public, choose Connect to Text file, and pick the CSV. Tableau infers every field type on its own, and that is where the trouble starts: 19-digit listing IDs arrive as numbers past float64 precision, ZIP codes arrive as integers, and dates arrive as text. Run the pandas prep first, save a cleaned copy, and point Tableau at that file. The free 20-row sample works end to end if you want a dry run."}}, {"@type": "Question", "name": "Why do Airbnb listing IDs look wrong in Tableau?", "acceptedAnswer": {"@type": "Answer", "text": "Airbnb listing IDs run up to 19 digits, and numeric fields in Tableau hold exact integers only up to 2 to the 53rd power, about 9 quadrillion. A 19-digit ID like 1690760048869752293 loses its last digits the moment Tableau parses it as a number, and joins or dedupes on that field misfire quietly. Cast the column to text in pandas before the CSV import and Tableau keeps it verbatim."}}, {"@type": "Question", "name": "Is Airbnb data in Tableau live?", "acceptedAnswer": {"@type": "Answer", "text": "No. The CSV is a snapshot: one scrape per city on one date between 2026-06-22 and 2026-08-10. Whatever you build in Tableau describes the market as it stood that day. Hosts reprice constantly and listings churn, so refresh by re-exporting a newer snapshot rather than expecting the workbook to update. The methodology page covers what a one-day capture can and cannot tell you."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Airbnb data in Tableau: load a listings CSV into Tableau Public</h1>
+  <p class="byline">Published 2026-09-10. Source: Inside Airbnb, CC BY 4.0. Data Vault is not affiliated with Airbnb or Inside Airbnb.</p>
+  <p class="byline">Honesty note: the pandas prep below was executed against the shipped sample file with pandas 3.0.5, and its output is copied verbatim. The Tableau steps describe Tableau Public menus as documented by Tableau; no Tableau install ran on this build box, so there are no screenshots.</p>
+
+  <section aria-label="What you need">
+    <p>Tableau Public is the free tier of Tableau, and it opens CSV files through the same Text file connector as the paid desktop. What it does not do is fix your types for you. An Airbnb listings CSV carries two fields that break under automatic type inference: a listing ID up to 19 digits long and a <code>neighbourhood</code> column that holds ZIP codes. Prep those in pandas first and the CSV import is boring, which is the goal.</p>
+    <p>The schema is 12 columns shared by all six cities in the pack: <code>id</code>, <code>name</code>, <code>neighbourhood</code>, <code>latitude</code>, <code>longitude</code>, <code>room_type</code>, <code>price</code>, <code>minimum_nights</code>, <code>availability_365</code>, <code>number_of_reviews</code>, <code>reviews_per_month</code>, <code>last_review</code>. The <a href="airbnb-data-guide.html">Airbnb data guide</a> explains each one.</p>
+    <p>Four real rows from the free <a href="../data/airbnb-six-cities/sample.csv">sample.csv</a> (Austin, snapshot 2026-06-22), copied verbatim:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Sample rows from sample.csv"><table>
+      <thead><tr><th scope="col">id</th><th scope="col">neighbourhood</th><th scope="col">room_type</th><th scope="col">price (USD)</th><th scope="col">availability_365</th><th scope="col">last_review</th></tr></thead>
+      <tbody>
+        <tr><td>934859141300145599</td><td>78757</td><td>Entire home/apt</td><td>61.00</td><td>364</td><td></td></tr>
+        <tr><td>944156894640610027</td><td>78703</td><td>Private room</td><td>149.00</td><td>360</td><td>2025-10-18</td></tr>
+        <tr><td>1308737991593278409</td><td>78704</td><td>Entire home/apt</td><td>593.00</td><td>339</td><td>2026-06-20</td></tr>
+        <tr><td>48867583</td><td>78701</td><td>Private room</td><td>208.00</td><td>157</td><td>2026-06-20</td></tr>
+      </tbody>
+    </table></div>
+    <p>The ID column carries both magnitudes. 48867583 has 8 digits, 1308737991593278409 has 19, and the long ones are the ones that break.</p>
+  </section>
+
+  <section aria-label="Prep the CSV in pandas">
+    <h2>Prep the CSV before Tableau touches it</h2>
+    <p>Tableau reads numeric fields as 64-bit floats, which hold exact integers only up to 2 to the 53rd power. Airbnb IDs pass that mark by seven digits. The other trap is the ZIP column: read as an integer, it sorts by value, joins against other ZIP fields as a number, and drops any leading zero the day your market has one (Boston ZIPs start 021; none of these six cities do, and the sample still should not depend on that luck).</p>
+    <p>This is the whole prep, executed against the shipped sample. It was run with pandas 3.0.5 and the output below is verbatim:</p>
+    <pre><code>import pandas as pd
+
+df = pd.read_csv("sample.csv")
+
+# 19-digit listing IDs: float64 rounds anything past 2**53
+df["id"] = df["id"].astype("string")
+# ZIP codes are labels, not numbers; text keeps any leading zero intact
+df["neighbourhood"] = df["neighbourhood"].astype("string")
+df["room_type"] = df["room_type"].astype("string")
+df["reviews_per_month"] = df["reviews_per_month"].fillna(0).astype("float64")
+df["last_review"] = pd.to_datetime(df["last_review"], errors="coerce")
+
+df.to_csv("sample-tableau.csv", index=False)
+print(df.shape)
+print(df.dtypes.to_string())</code></pre>
+    <pre><code>(20, 12)
+id                           string
+name                            str
+neighbourhood                string
+latitude                    float64
+longitude                    float64
+room_type                    string
+price                       float64
+minimum_nights               int64
+availability_365             int64
+number_of_reviews            int64
+reviews_per_month           float64
+last_review          datetime64[us]</code></pre>
+    <p>What each line buys you in Tableau: the <code>id</code> and <code>neighbourhood</code> casts make both fields text, so the CSV import keeps every digit and joins on exact strings. <code>room_type</code> as text gives clean filter values. Filling <code>reviews_per_month</code> with 0 handles the 4 rows in 20 that have no reviews (Tableau would otherwise plot them as null). The date parse turns <code>last_review</code> from loose text into a real date field Tableau can put on a time axis. Two date-null rows stay null on purpose: a listing with no reviews has no review date, and 0 would be a lie.</p>
+    <p>Run the same script against any full-pack city CSV before importing; nothing in it is sample-specific.</p>
+  </section>
+
+  <section aria-label="The Tableau Public CSV import">
+    <h2>The CSV import, step by step</h2>
+    <ol>
+      <li>Open Tableau Public and pick <strong>Text file</strong> under Connect. Select the cleaned CSV from the prep step.</li>
+      <li>On the data source screen, check each column's type icon. <code>id</code> and <code>neighbourhood</code> should read <strong>Abc</strong> (string); if either shows a number or globe icon, fix it before building anything.</li>
+      <li>Let the data interpreter run when Tableau offers it; it handles the sub-header quirks some exports carry. On this clean 12-column file it will find nothing to fix, which is the expected result.</li>
+      <li>Click <strong>Sheet 1</strong>. Drag <code>latitude</code> to Rows and <code>longitude</code> to Columns; Tableau builds a map axis pair automatically.</li>
+      <li>Sanity-check the row count in the bottom-left status bar: 20 for the sample, 11,295 for Austin, 90,169 for the whole pack across city files.</li>
+    </ol>
+    <p>If a step misbehaves, the cause is almost always the source file, and rereading the prep script beats debugging inside Tableau.</p>
+
+    <h3>Live connection or extract?</h3>
+    <p>A live connection re-reads the CSV on every interaction. On the 20-row sample that is instant, and it means every save to the file shows up in the workbook. On the full pack's 90,169 rows it stays workable, since a 12-column CSV of that size is small by Tableau standards, but every filter and zoom pays a disk read.</p>
+    <p>An extract is Tableau's compressed copy of the data in its own .hyper format. It renders faster and travels with the workbook when you save to Tableau Public, which matters because Tableau Public profiles need the data embedded. An extract freezes the data at creation time.</p>
+    <p>For this dataset the trade is cheap. The source is a snapshot anyway, frozen at its scrape date, so an extract freezes it a second time and loses nothing. Take the extract for anything you plan to publish, keep the live connection for a quick look at a single city file.</p>
+  </section>
+
+  <section aria-label="Three viz ideas">
+    <h2>Three viz ideas that work on this schema</h2>
+    <h3>1. Price map</h3>
+    <p>Longitude to Columns, latitude to Rows, average of <code>price</code> on Color, <code>room_type</code> on Filters. The sample gives 20 Austin points; the full pack gives all six cities in one view. One caution the <a href="airbnb-price-data.html">price data page</a> documents with real numbers: means ride the luxury tail. San Diego's mean is 483.80 dollars against a median of 322.92, and the same skew shows inside any city map as a few dark dots. Filter out the top of <code>price</code>, or bin it, and neighborhoods become comparable again.</p>
+    <h3>2. Availability histogram</h3>
+    <p><code>availability_365</code> to Columns with 30-day bins, COUNT of rows to Rows. In the 20-row sample the median is 285 open nights and half the listings show 300 or more, which is what open calendars with light bookings look like; the tail under 30 nights is where bookings and host blocks pile up. Compute the same histogram per city and the shape differences between markets read straight off the bars.</p>
+    <h3>3. Supply by city bar</h3>
+    <p>Use <code>cities-index.csv</code>, the 6-row per-city summary that ships with the sample: city on Rows, row count on Columns, <code>median_price_usd</code> on Color. New York City tops supply at 30,234 listings with the lowest median at 175 dollars, and the room mix explains it (42 percent private rooms, the highest of the six). Denver anchors the other end at 4,939 listings. The <a href="airbnb-data-by-city.html">by-city page</a> carries the full table behind this chart.</p>
+  </section>
+
+  <section aria-label="Gotchas">
+    <h2>Gotchas</h2>
+    <ul>
+      <li><strong>Snapshot bias.</strong> Every file is one scrape on one date: Austin 2026-06-22 through New York City 2026-08-10, a 49-day spread across peak season. A Tableau workbook built on these numbers describes those days, and no chart type fixes that. <a href="airbnb-data-methodology.html">The methodology page</a> covers what a one-day capture can and cannot support.</li>
+      <li><strong>ID precision.</strong> Numeric IDs past 2 to the 53rd lose digits silently. If a join or dedupe misfires, check whether both sides treat <code>id</code> as text.</li>
+      <li><strong>Nulls in review fields.</strong> Listings with zero reviews have empty <code>reviews_per_month</code> and <code>last_review</code>; 4 of the 20 sample rows. Fill the rate with 0, leave the date null.</li>
+      <li><strong>No occupancy column.</strong> A listings snapshot has no booked-nights field. The <a href="airbnb-occupancy-data.html">occupancy page</a> covers the proxies that work instead.</li>
+    </ul>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/airbnb-six-cities/sample.csv" download>Download free sample (CSV)</a>
+      <a class="btn" href="../datasets/airbnb-six-cities.html">Airbnb Listings, 6 US Cities</a>
+    </div>
+    <p class="btn-note">Full pack: 90,169 rows across 6 city files plus cities-index.csv, data dictionary, methodology, and source checksums. The 20-row sample carries the same 12 columns for dry runs.</p>
+  </section>
+
+  <section aria-label="More from the catalog">
+    <h2>More from the catalog</h2>
+    <ul>
+      <li><a href="airbnb-data-sample.html">Airbnb dataset sample</a>: what is in the free 20 rows and how to test an import against it</li>
+      <li><a href="airbnb-price-data.html">Airbnb price data</a>: mean versus median nightly price per city, computed from the shipped CSVs</li>
+      <li><a href="airbnb-data-by-city.html">Airbnb data by city</a>: row counts, snapshot dates, and medians for all six markets</li>
+      <li><a href="airbnb-data-methodology.html">Airbnb data methodology</a>: how snapshots are collected and their limits</li>
+      <li><a href="airbnb-occupancy-data.html">Airbnb occupancy data</a>: proxies for demand when the snapshot has no bookings column</li>
+      <li><a href="csv-encoding-utf8.html">CSV encoding and UTF-8</a>: why listing names with accents garble in some tools</li>
+    </ul>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>How do I import an Airbnb CSV into Tableau Public?</h3>
+    <p>Open Tableau Public, choose Connect to Text file, and pick the CSV. Tableau infers every field type on its own, and that is where the trouble starts: 19-digit listing IDs arrive as numbers past float64 precision, ZIP codes arrive as integers, and dates arrive as text. Run the pandas prep first, save a cleaned copy, and point Tableau at that file. The free 20-row sample works end to end if you want a dry run.</p>
+    <h3>Why do Airbnb listing IDs look wrong in Tableau?</h3>
+    <p>Airbnb listing IDs run up to 19 digits, and numeric fields in Tableau hold exact integers only up to 2 to the 53rd power, about 9 quadrillion. A 19-digit ID like 1690760048869752293 loses its last digits the moment Tableau parses it as a number, and joins or dedupes on that field misfire quietly. Cast the column to text in pandas before the CSV import and Tableau keeps it verbatim.</p>
+    <h3>Is Airbnb data in Tableau live?</h3>
+    <p>No. The CSV is a snapshot: one scrape per city on one date between 2026-06-22 and 2026-08-10. Whatever you build in Tableau describes the market as it stood that day. Hosts reprice constantly and listings churn, so refresh by re-exporting a newer snapshot rather than expecting the workbook to update. The methodology page covers what a one-day capture can and cannot tell you.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

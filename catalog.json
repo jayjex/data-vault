@@ -185,7 +185,8 @@
   }
  ],
  "mcp": {
-  "server": "npx -y github:jayjex/dataset-mcp",
+  "server": "npx --allow-git=all -y github:jayjex/dataset-mcp",
+ "server_npm10": "npx -y github:jayjex/dataset-mcp",
   "registry": "io.github.jayjex/dataset-mcp",
   "repo": "https://github.com/jayjex/dataset-mcp",
   "version": "1.1.0",

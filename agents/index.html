@@ -92,10 +92,11 @@ print(sample["records"][0])     <span class="cm"># first row</span></pre>
   "mcpServers": {
     "dataset-mcp": {
       "command": "npx",
-      "args": ["-y", "github:jayjex/dataset-mcp"]
+      "args": ["--allow-git=all", "-y", "github:jayjex/dataset-mcp"]
     }
   }
 }</pre>
+    <p>The <code>--allow-git=all</code> flag is for npm 12+, which refuses git-based installs by default; npm 10/11 run the plain form, and the upcoming npm package drops the flag. Or set <code>allow-git=github.com</code> in <code>~/.npmrc</code>.</p>
     <p>npm package <code>@jayjex/dataset-mcp</code> is coming; the <code>github:</code> form needs no publish.</p>
   </section>
 </main>

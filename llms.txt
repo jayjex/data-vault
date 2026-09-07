@@ -106,6 +106,7 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - [Inside Airbnb Alternative: 6 Cities, One Schema, 90,169 Rows](https://jayjex.github.io/data-vault/guides/inside-airbnb-alternative.html): normalized schema vs per-city dumps
 - [Airbnb Data Methodology: How Snapshot Datasets Are Built](https://jayjex.github.io/data-vault/guides/airbnb-data-methodology.html): collection pipeline, snapshot limits, two-snapshot bookings proxy
 - [Airbnb Data in Tableau: Load a Listings CSV Into Tableau Public](https://jayjex.github.io/data-vault/guides/airbnb-data-in-tableau.html): dtype-safe CSV prep for Tableau Public, live vs extract, three viz ideas
+- [Airbnb Data in Power BI: Load a Listings CSV Into Power BI Desktop (Free)](https://jayjex.github.io/data-vault/guides/airbnb-data-in-powerbi.html): Power Query type fixes, locale gotcha, DAX AVERAGE measure, three viz ideas
 - [Superteam Earn Data: the Solana Bounties Dataset and Its API Map](https://jayjex.github.io/data-vault/guides/solana-bounties-data-guide.html): bounty schema and 186+ API routes
 - [Solana Grants List: Mapping the Ecosystem's Funding Programs from Public Data](https://jayjex.github.io/data-vault/guides/solana-grants-data.html): research method, 51-row snapshot splits, 6 AGENT_ALLOWED rows, grants-vs-bounty framing
 - [Solana Ecosystem Data: Public Sources for Research, Tested Live](https://jayjex.github.io/data-vault/guides/solana-ecosystem-data.html): JSON-RPC validator stats, Superteam Earn snapshot, solana-research-library MCP, endpoint test log with honest statuses
@@ -115,6 +116,8 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - [FMR Dataset Download: Fair Market Rent CSV, Ready for pandas](https://jayjex.github.io/data-vault/guides/fmr-dataset-download.html): analysis-ready FMR dataset, real pd.read_csv output, live sample URL
 - [HUD FMR Excel: Work With the Official FMR Excel Files](https://jayjex.github.io/data-vault/guides/hud-fmr-excel.html): workbook structure, clean Excel/Sheets imports, leading-zero ZIP trap, VLOOKUP examples
 - [CSV vs API for Data: Which One You Need, With a Decision Table](https://jayjex.github.io/data-vault/guides/csv-vs-api.html): worked decision example
+- [Python Read CSV: A pandas read_csv Tutorial With Real Output](https://jayjex.github.io/data-vault/guides/python-read-csv-tutorial.html): usecols, dtype, parse_dates, na_values, chunksize, sep, header with verbatim output, the 3,533-row ZIP leading-zero bug
+- [CSV vs Excel: Which File Format for Data Analysis?](https://jayjex.github.io/data-vault/guides/csv-vs-excel-data-analysis.html): per-scenario decision matrix, HUD workbook war story, Excel round-trip trap (dates, leading zeros, encoding)
 - [Scrape Without Coding: 10 Editable Template Scripts](https://jayjex.github.io/data-vault/guides/scrape-without-coding.html): edit-one-config workflow
 - [Python Scraping Template: 10 Ready-to-Edit Patterns](https://jayjex.github.io/data-vault/guides/scraping-python-templates.html): patterns mapped to Python, self-host angle
 - [How to Sell Datasets: Our Public-Data Pipeline, End to End](https://jayjex.github.io/data-vault/guides/how-we-sell-public-data.html): pipeline documentation, license to checkout

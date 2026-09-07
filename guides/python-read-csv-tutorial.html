@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Python Read CSV: A pandas read_csv Tutorial With Real Output | Data Vault</title>
+<meta name="description" content="pandas read_csv tutorial with verbatim output: usecols, dtype, parse_dates, na_values, chunksize, sep, header and names against real CSV files, including the ZIP leading-zero bug that hits 3,533 rows of the full file.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/python-read-csv-tutorial.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Python Read CSV: A pandas read_csv Tutorial With Real Output">
+<meta property="og:description" content="The seven read_csv parameters that decide whether a load is correct, run against real files with verbatim output, plus the ZIP leading-zero bug that pandas does not warn about.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/python-read-csv-tutorial.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Python Read CSV: A pandas read_csv Tutorial With Real Output", "description": "pandas read_csv tutorial with verbatim output: usecols, dtype, parse_dates, na_values, chunksize, sep, header and names against real CSV files, including the ZIP leading-zero bug that hits 3,533 rows of the full file.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/python-read-csv-tutorial.html", "about": {"@type": "Thing", "name": "pandas read_csv"}, "mentions": [{"@type": "Thing", "name": "CSV"}, {"@type": "Thing", "name": "Python"}, {"@type": "Thing", "name": "pandas"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Python read CSV: a pandas read_csv tutorial", "item": "https://jayjex.github.io/data-vault/guides/python-read-csv-tutorial.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I read a CSV file in Python?", "acceptedAnswer": {"@type": "Answer", "text": "With pandas, one line: import pandas as pd, then df = pd.read_csv(\"file.csv\"). pandas infers the column types, so integers load as int64 and everything else as text. One inference to override on any file with postal or area codes: pass dtype={'zip': 'string'} so leading zeros survive. For file objects you want as lists and dicts instead of a dataframe, the csv module from the standard library does the same read; CSV to JSON in Python shows both converters on real output."}}, {"@type": "Question", "name": "Why does pandas turn my ZIP code into a number?", "acceptedAnswer": {"@type": "Answer", "text": "read_csv looks at the first rows, sees only digits in the zip column, and assigns int64. A ZIP like 00601 becomes the integer 601, and the zero is gone. In the 51,895-row FY2026 fair market rent file, 3,533 rows have ZIPs starting with 0, and none of them raises an error or a warning. Fix it at load time with dtype={'zip': 'string'}, which keeps the value as the text '00601'."}}, {"@type": "Question", "name": "How do I read a large CSV file in pandas without running out of memory?", "acceptedAnswer": {"@type": "Answer", "text": "Two parameters do the work. chunksize=N makes read_csv return an iterator of N-row dataframes, so you aggregate chunk by chunk and never hold the whole file: the same 51,895-row file that takes 15.3 MB in memory processes in 10,000-row pieces. usecols cuts what you keep: loading only zip and fmr_2br from that file takes 0.83 MB instead of 15.3 MB. Combine both for files bigger than RAM."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../tools/scraping-scripts.html">Tools</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Python read CSV: a pandas read_csv tutorial with real output</h1>
+  <p class="byline">Published 2026-09-10. Every output block on this page is what the command actually printed on 2026-09-10, pandas 3.0.5 on Python 3.12, against files you can download from this site.</p>
+  <p class="lead"><code>pd.read_csv</code> loads any well-formed CSV in one line, and on the way it makes a decision about every column: what type it is. The decision is a guess from the first rows, and when the guess is wrong it usually fails silently. A ZIP code loses its leading zero and every join on it misses. A header row you meant to name becomes data row zero. A date column stays a string. This page runs the parameters that control those decisions against real CSVs from this site, with the verbatim output of each run, and shows what a wrong default costs.</p>
+
+  <section aria-label="What the default does">
+    <h2>What the default does</h2>
+    <p>Start with the default call against the 22-row sample of the <a href="../datasets/hud-fmr-2026.html">HUD Fair Market Rents FY2026</a> file:</p>
+<pre>import pandas as pd
+
+df = pd.read_csv("sample.csv")
+print(df.shape)
+print(df.dtypes)</pre>
+<pre>(22, 10)
+zip              int64
+hud_area_code      str
+metro              str
+area_name          str
+state              str
+fmr_0br          int64
+fmr_1br          int64
+fmr_2br          int64
+fmr_3br          int64
+fmr_4br          int64
+dtype: object</pre>
+    <p>No download step needed; the same sample loads straight from its URL, which <a href="fmr-dataset-download.html">FMR dataset download</a> shows. The five fmr columns inferred <code>int64</code> correctly and need nothing. The column to argue with is <code>zip</code>.</p>
+  </section>
+
+  <section aria-label="dtype: the silent bug">
+    <h2><code>dtype</code>: the bug pandas never warns about</h2>
+    <p>Run the same default load against the full file, <code>fmr-by-zip-2026.csv</code>, 51,895 rows, and look at the smallest ZIP in it:</p>
+<pre>import pandas as pd
+
+df = pd.read_csv("fmr-by-zip-2026.csv")
+print(df["zip"].dtype)
+print(df["zip"].min())
+print(df.loc[df["zip"] == 601, "area_name"].iloc[0])</pre>
+<pre>int64
+601
+Puerto Rico HUD Nonmetro Area</pre>
+    <p>The ZIP is <code>00601</code> in the file. pandas turned it into the integer <code>601</code>, and the same happened to every ZIP in the 006xx Puerto Rico range and the 0xxxx New England range. Count them:</p>
+<pre>print((df["zip"] &lt; 10000).sum())</pre>
+<pre>3533</pre>
+    <p>3,533 of 51,895 rows silently corrupted. No exception, no warning column in the dataframe. The values still sort and group, so plots and medians look fine; the break only appears when you join against a geography table that has <code>"00601"</code> and find nothing. The fix is one argument:</p>
+<pre>df = pd.read_csv("fmr-by-zip-2026.csv", dtype={"zip": "string"})
+print(df["zip"].min())
+print(df.dtypes.iloc[0])</pre>
+<pre>00601
+string</pre>
+    <p>Every leading zero survives. Any column of codes, not quantities, deserves this: ZIPs, FIPS codes, phone numbers, invoice IDs. If the file went the other direction, wrong bytes instead of wrong types, that is the domain of <a href="csv-encoding-utf8.html">CSV encoding and UTF-8</a>, which reproduces the mojibake and BOM traps the same way. And once the dataframe is correct, <a href="../tools/csv-to-json.html">CSV to JSON in Python</a> covers converting it without losing the types you just set.</p>
+  </section>
+
+  <section aria-label="usecols: load less">
+    <h2><code>usecols</code>: load less, keep memory</h2>
+    <p>Most analysis touches a few columns. Load only those:</p>
+<pre>df = pd.read_csv("sample.csv", usecols=["zip", "area_name", "fmr_2br"])
+print(df.shape)
+print(df.head(3))</pre>
+<pre>(22, 3)
+     zip        area_name  fmr_2br
+0  76437  Abilene, TX MSA     1090
+1  76443  Abilene, TX MSA     1090
+2  76464  Abilene, TX MSA     1090</pre>
+    <p>On the sample the saving is trivial. On the full file it is measurable in bytes:</p>
+<pre>full = pd.read_csv("fmr-by-zip-2026.csv")
+small = pd.read_csv("fmr-by-zip-2026.csv", usecols=["zip", "fmr_2br"])
+print(full.memory_usage(deep=True).sum())
+print(small.memory_usage(deep=True).sum())</pre>
+<pre>15317674
+830452</pre>
+    <p>15.3 MB down to 0.83 MB, an 18x cut, from naming two columns. <code>usecols</code> also accepts callables (<code>usecols=lambda c: c.startswith("fmr")</code>) when you want all fmr sizes without listing them. One honest caveat: pandas still parses the whole file to reach the last column; <code>usecols</code> saves memory, not read time.</p>
+  </section>
+
+  <section aria-label="parse_dates: dates as dates">
+    <h2><code>parse_dates</code>: stop parsing dates by hand</h2>
+    <p>Date columns load as text by default. The 22-row sample of the <a href="../datasets/nfl-games.html">NFL games dataset</a> carries a <code>gameday</code> column in ISO format, which makes the change easy to see:</p>
+<pre>import pandas as pd
+
+df = pd.read_csv("nfl-games.csv")
+print(df["gameday"].dtype)
+df = pd.read_csv("nfl-games.csv", parse_dates=["gameday"])
+print(df["gameday"].dtype)
+print(df["gameday"].min().date(), df["gameday"].max().date())</pre>
+<pre>str
+datetime64[us]
+1999-09-12 1999-09-19</pre>
+    <p>Without <code>parse_dates</code>, the column is <code>str</code>, and the first date arithmetic you try fails loudly: <code>df["gameday"].dt.year</code> raises <code>AttributeError</code>. With it, real datetime operations work immediately:</p>
+<pre>print(df["gameday"].dt.year.unique().tolist())</pre>
+<pre>[1999]</pre>
+    <p>Unlike the ZIP bug, this one announces itself. That is the split worth keeping in mind across the whole parameter list: <code>dtype</code> mistakes are silent, <code>parse_dates</code> omissions are loud. Loud costs minutes; silent ships wrong numbers.</p>
+  </section>
+
+  <section aria-label="na_values: what counts as missing">
+    <h2><code>na_values</code>: what counts as missing</h2>
+    <p>Empty cells become <code>NaN</code> by default, along with <code>"NA"</code>, <code>"N/A"</code>, <code>"null"</code>, and a short list more. In the NFL sample every 1999 game has an empty <code>gametime</code> cell, and six rows have no <code>temp</code>:</p>
+<pre>df = pd.read_csv("nfl-games.csv")
+print(df["gametime"].isna().sum())
+print(df["temp"].isna().sum())</pre>
+<pre>22
+6</pre>
+    <p>Sometimes you want raw control, for example when a legitimate value in your data collides with the default list. <code>keep_default_na=False</code> turns all of it off, and then empty cells stay empty strings:</p>
+<pre>df = pd.read_csv("nfl-games.csv", keep_default_na=False)
+print(df["gametime"].dtype)
+print(repr(df.loc[3, "gametime"]))</pre>
+<pre>str
+''</pre>
+    <p>Build your own missing-value list with <code>na_values</code> on top:</p>
+<pre>df = pd.read_csv("nfl-games.csv", keep_default_na=False, na_values=[""])
+print(df["gametime"].isna().sum())
+print(df["temp"].isna().sum())</pre>
+<pre>22
+6</pre>
+    <p>Now exactly one string counts as missing, the empty cell, and a literal <code>"NA"</code> in some other column would survive as text instead of vanishing into NaN. The silent version of getting this wrong: a column of country codes containing <code>"NA"</code> for Namibia, which the default list converts to NaN, and half your Caribbean analysis disappears without an error.</p>
+  </section>
+
+  <section aria-label="chunksize: files bigger than memory">
+    <h2><code>chunksize</code>: process a file in pieces</h2>
+    <p>Hand <code>chunksize</code> to <code>read_csv</code> and it returns an iterator instead of a dataframe. Each pass gives you the next N rows. Run the full HUD file in 10,000-row chunks and track a running maximum:</p>
+<pre>import pandas as pd
+
+rows = 0
+high = 0
+for i, chunk in enumerate(pd.read_csv("fmr-by-zip-2026.csv", chunksize=10000)):
+    rows += len(chunk)
+    high = max(high, chunk["fmr_2br"].max())
+    print(f"chunk {i}: {len(chunk)} rows, running max fmr_2br {high}")
+print(rows, "rows total, max fmr_2br", high)</pre>
+<pre>chunk 0: 10000 rows, running max fmr_2br 4410
+chunk 1: 10000 rows, running max fmr_2br 4760
+chunk 2: 10000 rows, running max fmr_2br 5230
+chunk 3: 10000 rows, running max fmr_2br 5230
+chunk 4: 10000 rows, running max fmr_2br 5230
+chunk 5: 1895 rows, running max fmr_2br 5230
+51895 rows total, max fmr_2br 5230</pre>
+    <p>Six chunks, 51,895 rows counted, and the highest 2BR FMR in the file found without ever holding more than 10,000 rows. Only one thing changes when you go chunked: each chunk carries its own dtypes and its own NaN inference, so a column that looks numeric in early chunks can land as text in a later one. Pass explicit <code>dtype</code> values when you iterate, and the pieces behave like one load. The pattern for anything bigger than RAM: <code>chunksize</code> to iterate, <code>usecols</code> to shrink each piece, <code>dtype</code> to keep them consistent.</p>
+  </section>
+
+  <section aria-label="sep: when the separator is wrong">
+    <h2><code>sep</code>: when the separator is wrong</h2>
+    <p>Semicolon exports from European Excel, tab files, pipe-delimited dumps: <code>sep</code> takes any of them (<code>sep=";"</code>, <code>sep="\t"</code>, or its alias <code>delimiter</code>). What a wrong separator does is quiet:</p>
+<pre>df = pd.read_csv("sample.csv", sep="|")
+print(df.shape)
+print(df.columns[0])</pre>
+<pre>(22, 1)
+zip,hud_area_code,metro,area_name,state,fmr_0br,fmr_1br,fmr_2br,fmr_3br,fmr_4br</pre>
+    <p>22 rows, one column, and the whole header line as the column name. No error. The giveaway comes later, in <code>df.columns</code> or the first <code>KeyError</code> on a column that obviously exists. If you do not know the file, let pandas sniff it:</p>
+<pre>df = pd.read_csv("sample.csv", sep=None, engine="python")
+print(df.shape)
+print(df.columns.tolist()[:3])</pre>
+<pre>(22, 10)
+['zip', 'hud_area_code', 'metro']</pre>
+    <p><code>sep=None</code> requires the slower Python engine and inspects the first rows for the delimiter. It detected the comma and returned the full 10 columns. Use it once to learn the answer, then hardcode the real separator for speed.</p>
+  </section>
+
+  <section aria-label="header and names: who owns row zero">
+    <h2><code>header</code> and <code>names</code>: who owns row zero</h2>
+    <p>The last pair controls the top of the file, and its failure mode is a favorite of data pipelines: row counts that are off by one forever. Pass custom <code>names</code> to a file that already has a header, and pandas keeps the header row as data:</p>
+<pre>cols = ["zip", "hud_area_code", "metro", "area_name", "state",
+        "fmr_0br", "fmr_1br", "fmr_2br", "fmr_3br", "fmr_4br"]
+df = pd.read_csv("sample.csv", names=cols)
+print(len(df))
+print(df.iloc[0].tolist())</pre>
+<pre>23
+['zip', 'hud_area_code', 'metro', 'area_name', 'state', 'fmr_0br', 'fmr_1br', 'fmr_2br', 'fmr_3br', 'fmr_4br']</pre>
+    <p>23 rows, and row zero is the header line itself wearing your new column names. Everything downstream inherits the off-by-one. Add <code>header=0</code> to say the first line is a header to replace, and the count lands where it should:</p>
+<pre>df = pd.read_csv("sample.csv", names=cols, header=0)
+print(len(df))
+print(df.iloc[0].tolist())</pre>
+<pre>22
+[np.int64(76437), 'METRO10180M10180', 'metro', 'Abilene, TX MSA', 'TX', np.int64(850), np.int64(880), np.int64(1090), np.int64(1420), np.int64(1710)]</pre>
+    <p>The mirror case: a genuinely headerless file read with the default silently loses its first data row to become the column names. Force <code>header=None</code> when there is no header, and pandas numbers the columns 0 through 9:</p>
+<pre>df = pd.read_csv("sample.csv", header=None)
+print(df.shape)
+print(df.iloc[0].tolist()[:3])</pre>
+<pre>(23, 10)
+['zip', 'hud_area_code', 'metro']</pre>
+    <p>The rule in one line: <code>header=0</code> with <code>names</code> replaces an existing header; <code>header=None</code> declares there is none; anything else costs you one row and usually a week.</p>
+  </section>
+
+  <section aria-label="Parameter cheat sheet">
+    <h2>The parameters at a glance</h2>
+    <table>
+      <tr><th>Parameter</th><th>Does</th><th>When it matters</th></tr>
+      <tr><td><code>dtype</code></td><td>Forces a column's type</td><td>Codes and IDs. Silent corruption: 00601 becomes 601, no warning.</td></tr>
+      <tr><td><code>usecols</code></td><td>Loads named columns only</td><td>Memory: 15.3 MB to 0.83 MB on the full FMR file. Parse cost unchanged.</td></tr>
+      <tr><td><code>parse_dates</code></td><td>Parses date columns to datetime64</td><td>Loud failure if omitted: <code>.dt</code> raises AttributeError on str.</td></tr>
+      <tr><td><code>na_values</code></td><td>Extends the missing-value list</td><td>Sentinel text. Silent: "NA" country codes become NaN by default.</td></tr>
+      <tr><td><code>chunksize</code></td><td>Returns an N-row iterator</td><td>Files bigger than RAM. Pass dtype explicitly, chunks infer separately.</td></tr>
+      <tr><td><code>sep</code></td><td>Sets the field separator</td><td>Wrong separator = one column, no error. <code>sep=None</code> sniffs once.</td></tr>
+      <tr><td><code>header</code>, <code>names</code></td><td>Control the first row</td><td>Off-by-one row counts, header as data. Silent for weeks.</td></tr>
+    </table>
+    <p>Sort the table by failure mode and the pattern is blunt: the parameters that fail loudly waste minutes, the ones that fail silently poison the data. <code>dtype</code>, <code>sep</code>, and <code>header</code> belong in every load call for files you did not generate yourself; <code>usecols</code>, <code>parse_dates</code>, <code>na_values</code>, and <code>chunksize</code> come in as the file and analysis grow.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>Python read CSV FAQ</h2>
+    <h3>How do I read a CSV file in Python?</h3>
+    <p>With pandas, one line: <code>import pandas as pd</code>, then <code>df = pd.read_csv("file.csv")</code>. pandas infers the column types, so integers load as int64 and everything else as text. One inference to override on any file with postal or area codes: pass <code>dtype={'zip': 'string'}</code> so leading zeros survive. For file objects you want as lists and dicts instead of a dataframe, the csv module from the standard library does the same read; <a href="../tools/csv-to-json.html">CSV to JSON in Python</a> shows both converters on real output.</p>
+    <h3>Why does pandas turn my ZIP code into a number?</h3>
+    <p>read_csv looks at the first rows, sees only digits in the zip column, and assigns int64. A ZIP like 00601 becomes the integer 601, and the zero is gone. In the 51,895-row FY2026 fair market rent file, 3,533 rows have ZIPs starting with 0, and none of them raises an error or a warning. Fix it at load time with <code>dtype={'zip': 'string'}</code>, which keeps the value as the text <code>'00601'</code>.</p>
+    <h3>How do I read a large CSV file in pandas without running out of memory?</h3>
+    <p>Two parameters do the work. <code>chunksize=N</code> makes read_csv return an iterator of N-row dataframes, so you aggregate chunk by chunk and never hold the whole file: the same 51,895-row file that takes 15.3 MB in memory processes in 10,000-row pieces. <code>usecols</code> cuts what you keep: loading only zip and fmr_2br from that file takes 0.83 MB instead of 15.3 MB. Combine both for files bigger than RAM.</p>
+  </section>
+
+  <section aria-label="Where to go next">
+    <h2>Where to go next</h2>
+    <p>Both files used here are downloadable: the 22-row HUD sample and the NFL games sample sit with four others on the <a href="../tools/sample-data-downloads.html">sample data downloads</a> page, and the full 51,895-row FMR file is in the <a href="../datasets/hud-fmr-2026.html">HUD pack</a>. The load is half the fight; <a href="csv-encoding-utf8.html">CSV encoding and UTF-8</a> covers the bytes side with the same real-output format, and <a href="../tools/csv-to-json.html">CSV to JSON in Python</a> takes the loaded dataframe to JSON without losing the types. For what lives inside the HUD columns, <a href="hud-rent-data-explained.html">HUD rent data explained</a> walks the schema.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

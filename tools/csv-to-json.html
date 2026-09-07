@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSV to JSON in Python: Standard Library and pandas, With Real Output | Data Vault</title>
+<meta name="description" content="Convert CSV to JSON in Python two ways: csv and json from the standard library, then pandas. Real output from a live 22-row HUD rent sample, both output shapes shown.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/tools/csv-to-json.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="CSV to JSON in Python: Standard Library and pandas, With Real Output">
+<meta property="og:description" content="Convert CSV to JSON in Python two ways: csv and json from the standard library, then pandas. Real output from a live 22-row HUD rent sample, both output shapes shown.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/tools/csv-to-json.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "CSV to JSON in Python: Standard Library and pandas, With Real Output", "description": "Convert CSV to JSON in Python two ways: csv and json from the standard library, then pandas. Real output from a live 22-row HUD rent sample, both output shapes shown.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Data Vault"}, "publisher": {"@type": "Organization", "name": "Data Vault"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/tools/csv-to-json.html", "about": {"@type": "Thing", "name": "CSV to JSON conversion in Python"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "CSV to JSON in Python", "item": "https://jayjex.github.io/data-vault/tools/csv-to-json.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I convert a CSV file to JSON in Python?", "acceptedAnswer": {"@type": "Answer", "text": "With the standard library alone: open the file, pass it to csv.DictReader, wrap the reader in list(), then json.dump the result to a file or json.dumps it to a string. That produces an array of objects keyed by the header row. If you want an array of arrays instead, use csv.reader. pandas does the same job in two lines with pd.read_csv followed by to_json(orient='records')."}}, {"@type": "Question", "name": "Should CSV to JSON output be an array of arrays or an array of objects?", "acceptedAnswer": {"@type": "Answer", "text": "Array of objects for almost everything: each record names its own fields, consumers need no header logic, and adding or reordering columns cannot silently shift values. Array of arrays fits position-based formats and produces smaller files because field names appear once in the header instead of in every record. Whichever you pick, state the shape in your API or file docs, because a consumer who assumes the other shape gets a broken script, not an error message."}}, {"@type": "Question", "name": "How do I keep numbers as numbers when converting CSV to JSON?", "acceptedAnswer": {"@type": "Answer", "text": "The csv module reads every value as a string, so 850 arrives as \"850\"; cast the columns you need to int or float before dumping. pandas infers dtypes for you and its to_json writes numbers unquoted, but watch a real cost: a ZIP code like 02138 becomes the integer 2138. Keep ZIP and code columns as dtype='string' in read_csv when leading zeros matter."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../tools/scraping-scripts.html">Tools</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <p class="kicker">csv to json</p>
+  <h1>CSV to JSON in Python, with real output</h1>
+  <p class="byline">Published 2026-09-10. Every JSON block on this page is copy of what the code printed against a file you can download yourself.</p>
+  <p class="lead">Two ways to convert CSV to JSON in Python: the <code>csv</code> and <code>json</code> modules that ship with the standard library, and pandas. Both run below against the same live file, the 22-row <a href="../datasets/hud-fmr-2026.html">HUD fair market rent</a> sample, and each output block is what the command actually printed on 2026-09-10. Along the way: quoted commas that break naive splitting, the two output shapes and when each one is right, and the JSON shape our own dataset files use that breaks scripts written for the other shape.</p>
+
+  <section aria-label="Get the sample file">
+    <h2>Get the sample file</h2>
+    <p>The HUD rent sample is a static file on this site, no key needed. It returned HTTP 200 on 2026-09-10.</p>
+<pre>curl -s -o hud-sample.csv https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.csv
+head -3 hud-sample.csv</pre>
+<pre>zip,hud_area_code,metro,area_name,state,fmr_0br,fmr_1br,fmr_2br,fmr_3br,fmr_4br
+76437,METRO10180M10180,metro,"Abilene, TX MSA",TX,850,880,1090,1420,1710
+76443,METRO10180M10180,metro,"Abilene, TX MSA",TX,850,860,1090,1420,1710</pre>
+    <p>One header row, 22 data rows, 10 columns. Look at <code>"Abilene, TX MSA"</code>: the field holds a comma, so the file quotes it. A naive <code>line.split(",")</code> cuts that field in two and shifts every column after it. The <code>csv</code> module and pandas both handle the quoting, which is most of the reason to never parse CSV by hand.</p>
+  </section>
+
+  <section aria-label="Array of arrays">
+    <h2>Standard library, shape one: array of arrays</h2>
+    <p><code>csv.reader</code> treats every row as a list of strings, header included. Numbers stay strings: the rent values arrive as <code>"850"</code>, not <code>850</code>.</p>
+<pre>import csv, json
+
+with open("hud-sample.csv", newline="") as f:
+    rows = list(csv.reader(f))
+
+print(json.dumps(rows[:2]))</pre>
+<pre>[["zip", "hud_area_code", "metro", "area_name", "state", "fmr_0br", "fmr_1br", "fmr_2br", "fmr_3br", "fmr_4br"], ["76437", "METRO10180M10180", "metro", "Abilene, TX MSA", "TX", "850", "880", "1090", "1420", "1710"]]</pre>
+    <p>The first element is the header, so a consumer reads <code>rows[0]</code> for column names and <code>rows[1:]</code> for data, all position-based. Field names appear once instead of in every record, which makes this the smaller of the two shapes on disk.</p>
+  </section>
+
+  <section aria-label="Array of objects">
+    <h2>Standard library, shape two: array of objects</h2>
+    <p><code>csv.DictReader</code> uses the header row as keys and yields one dict per row. This is the shape most APIs and document stores want.</p>
+<pre>import csv, json
+
+with open("hud-sample.csv", newline="") as f:
+    records = list(csv.DictReader(f))
+
+print(len(records))
+print(json.dumps(records[0]))</pre>
+<pre>22
+{"zip": "76437", "hud_area_code": "METRO10180M10180", "metro": "metro", "area_name": "Abilene, TX MSA", "state": "TX", "fmr_0br": "850", "fmr_1br": "880", "fmr_2br": "1090", "fmr_3br": "1420", "fmr_4br": "1710"}</pre>
+    <p>Every value is still a string. If downstream code needs numbers, cast before dumping, for example <code>int(r["fmr_2br"])</code> per record, or let pandas do the inference in the next section.</p>
+  </section>
+
+  <section aria-label="pandas">
+    <h2>With pandas: dtype inference and to_json</h2>
+    <p><code>pd.read_csv</code> infers types, and <code>to_json</code> with <code>orient="records"</code> writes the array of objects with numbers unquoted.</p>
+<pre>import pandas as pd
+
+df = pd.read_csv("hud-sample.csv")
+print({k: str(v) for k, v in df.dtypes.items()})
+df.head(2).to_json("hud-sample.json", orient="records", indent=2)</pre>
+<pre>{'zip': 'int64', 'hud_area_code': 'str', 'metro': 'str', 'area_name': 'str', 'state': 'str', 'fmr_0br': 'int64', 'fmr_1br': 'int64', 'fmr_2br': 'int64', 'fmr_3br': 'int64', 'fmr_4br': 'int64'}</pre>
+<pre>[
+  {
+    "zip":76437,
+    "hud_area_code":"METRO10180M10180",
+    "metro":"metro",
+    "area_name":"Abilene, TX MSA",
+    "state":"TX",
+    "fmr_0br":850,
+    "fmr_1br":880,
+    "fmr_2br":1090,
+    "fmr_3br":1420,
+    "fmr_4br":1710
+  },
+  {
+    "zip":76443,
+    "hud_area_code":"METRO10180M10180",
+    "metro":"metro",
+    "area_name":"Abilene, TX MSA",
+    "state":"TX",
+    "fmr_0br":850,
+    "fmr_1br":860,
+    "fmr_2br":1090,
+    "fmr_3br":1420,
+    "fmr_4br":1710
+  }
+]</pre>
+    <p>Inference is a trade. Rent columns arriving as <code>int64</code> is what you want. But <code>zip</code> also became <code>int64</code>, and any ZIP starting with zero, all of New England, would turn 02138 into the integer 2138. Pass <code>dtype={"zip": "string"}</code> to <code>read_csv</code> when codes must keep leading zeros. One more trap: with NaN values in float columns, Python's <code>json.dumps</code> writes bare <code>NaN</code>, which strict JSON parsers reject; <code>to_json</code> emits <code>null</code> instead.</p>
+  </section>
+
+  <section aria-label="Which shape to pick">
+    <h2>Which shape to pick, and a shape gotcha from this site</h2>
+    <p>Array of objects for almost everything. Each record names its own fields, consumers need no header logic, and reordering or adding columns cannot silently shift values. Array of arrays suits position-based formats and saves bytes when a file has many rows and you control both ends.</p>
+    <p>Now the gotcha, from our own files. Every dataset JSON on this site, <a href="../data/hud-fmr-2026/sample.json">like the HUD sample</a>, follows one envelope: <code>{slug, name, columns[], row_count, records[]}</code>, where <code>records</code> is the array of objects. A script written for an array of arrays starts with <code>d[0]</code> and dies on the first line, because <code>d</code> is an object with named keys. The fix is one step: read <code>d["records"]</code> for the rows and <code>d["columns"]</code> for the schema. When you publish JSON yourself, state the shape at the top of the docs. A consumer who assumes the other shape gets a broken script, not an error message.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>How do I convert a CSV file to JSON in Python?</h3>
+    <p>With the standard library alone: open the file, pass it to <code>csv.DictReader</code>, wrap the reader in <code>list()</code>, then <code>json.dump</code> the result to a file or <code>json.dumps</code> it to a string. That produces an array of objects keyed by the header row. If you want an array of arrays instead, use <code>csv.reader</code>. pandas does the same job in two lines with <code>pd.read_csv</code> followed by <code>to_json(orient="records")</code>.</p>
+    <h3>Should CSV to JSON output be an array of arrays or an array of objects?</h3>
+    <p>Array of objects for almost everything: each record names its own fields, consumers need no header logic, and adding or reordering columns cannot silently shift values. Array of arrays fits position-based formats and produces smaller files because field names appear once in the header instead of in every record. Whichever you pick, state the shape in your API or file docs, because a consumer who assumes the other shape gets a broken script, not an error message.</p>
+    <h3>How do I keep numbers as numbers when converting CSV to JSON?</h3>
+    <p>The <code>csv</code> module reads every value as a string, so 850 arrives as <code>"850"</code>; cast the columns you need to <code>int</code> or <code>float</code> before dumping. pandas infers dtypes for you and its <code>to_json</code> writes numbers unquoted, but watch a real cost: a ZIP code like 02138 becomes the integer 2138. Keep ZIP and code columns as <code>dtype="string"</code> in <code>read_csv</code> when leading zeros matter.</p>
+  </section>
+
+  <section aria-label="Where to go next">
+    <h2>Where to go next</h2>
+    <p>The sample used here, plus four more in CSV and JSON, are listed with row counts and column lists on <a href="sample-data-downloads.html">sample data downloads</a>. Deciding between a file and a live query layer for your pipeline is the job of <a href="../guides/csv-vs-api.html">CSV vs API for data</a>. If you are documenting columns before converting them, <a href="../guides/data-dictionary-explained.html">what is a data dictionary</a> shows the five fields that matter with real entries from this same HUD file.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NFL vs College Football Statistics: Data Sources Compared | Data Vault</title>
+<meta name="description" content="NFL vs college football statistics, compared at the source level: the nflverse 7,548-game CSV against the CFBD API, Sports Reference, the NCAA stats portal, and ESPN's site API, with coverage, format, license, and free tier for each. Live checks on 2026-09-10.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/nfl-vs-college-football-data.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="NFL vs College Football Statistics: Data Sources Compared">
+<meta property="og:description" content="The NFL and college football data worlds barely overlap. Source-by-source comparison: nflverse releases, the CFBD API, Sports Reference, the NCAA stats portal, and ESPN's site API, with coverage, format, license, and free tier for each.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/nfl-vs-college-football-data.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "NFL vs college football statistics: the data sources, compared", "description": "NFL vs college football statistics, compared at the source level: the nflverse 7,548-game CSV against the CFBD API, Sports Reference, the NCAA stats portal, and ESPN's site API, with coverage, format, license, and free tier for each. Live checks on 2026-09-10.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/nfl-vs-college-football-data.html", "about": {"@type": "Dataset", "name": "NFL Games & Betting Lines 1999-2026", "url": "https://jayjex.github.io/data-vault/datasets/nfl-games.html"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "NFL vs college football statistics", "item": "https://jayjex.github.io/data-vault/guides/nfl-vs-college-football-data.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is there a free college football data API?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, the CFBD API at api.collegefootballdata.com. Key registration is free and authentication is a Bearer token on every request; a keyless call answered 401 Unauthorized with a pointer to the key page when we tested it on 2026-09-10. Tiers set the shared quota pool, and the terms allow commercial use inside an application while prohibiting selling the raw API data as a standalone dataset. On the NFL side, the nflverse releases are CSV files under CC BY 4.0 with no key at all."}}, {"@type": "Question", "name": "What is the difference between NFL and college football statistics?", "acceptedAnswer": {"@type": "Answer", "text": "Structure and sourcing. The NFL is one league of 32 clubs with identical schedule lengths and community-republished CSVs like the nflverse games.csv, 7,548 rows covering 1999 through 2026. College football spans more than 130 schools in the top division plus FCS, Division II, and Division III, schedules vary by school, the postseason mixes bowls with a playoff, and official statistics are school-reported to the NCAA. The stat tables look similar, but the college side needs more cleaning and normalization before analysis."}}, {"@type": "Question", "name": "Which college football data source should I use?", "acceptedAnswer": {"@type": "Answer", "text": "Match the source to the job. JSON queries and model building: the CFBD API with a free key and its officially supported Python client. Deep history in a browser: Sports Reference's college section, within its terms. Official records for a citation: the NCAA statistics portal. Quick current scores in a script: ESPN's keyless site API. Check each license before commercial use; the nflverse CC BY 4.0 license is the most permissive of the group, and it covers the NFL data only."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../datasets/nfl-games.html">NFL dataset</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>NFL vs college football statistics: the data sources, compared</h1>
+  <p class="byline">Guide to the <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026</a> pack &middot; the NFL-side tools get their own deep dive in the <a href="nfl-data-apis.html">NFL data APIs comparison</a> &middot; every status code and output on this page comes from a live run on 2026-09-10.</p>
+
+  <section aria-label="Quick answer">
+    <p>NFL and college football statistics come from entirely different data worlds. One has a league with central records and a community that republishes them as clean CSVs. The other is hundreds of schools, a school-reported stats system, and a mix of community APIs, HTML archives, and portals. The sources, compared:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Source comparison table"><table>
+      <thead><tr><th scope="col">Source</th><th scope="col">Coverage</th><th scope="col">Format</th><th scope="col">License</th><th scope="col">Free tier</th></tr></thead>
+      <tbody>
+      <tr><td><a href="nfl-data-apis.html">nflverse releases</a></td><td>NFL games 1999-2026, weekly refreshes in season (<code>games.csv</code> is 7,548 rows)</td><td>Static CSV on GitHub releases</td><td>CC BY 4.0, commercial use allowed with credit</td><td>Everything, no key, no signup</td></tr>
+      <tr><td><a href="#cfbd">CFBD API</a></td><td>College football, all divisions; games, teams, players, recruiting, ratings</td><td>JSON REST + Swagger docs</td><td>Custom terms: commercial use in an app allowed, redistribution prohibited</td><td>Free key, tiered quota pool</td></tr>
+      <tr><td><a href="#sportsref">Sports Reference CFB</a></td><td>Deep college history, all divisions, browsable</td><td>HTML tables, no API</td><td>Site terms; no scraping, no competing data store</td><td>Free to read in a browser</td></tr>
+      <tr><td><a href="#ncaa">NCAA stats portal</a></td><td>Official NCAA statistics, all sports and divisions</td><td>HTML pages, no API</td><td>NCAA site terms</td><td>Free to read in a browser</td></tr>
+      <tr><td><a href="#espn">ESPN site API</a></td><td>Current seasons, both NFL and college football</td><td>Nested JSON, undocumented</td><td>No documented contract</td><td>Keyless endpoints</td></tr>
+      </tbody>
+    </table></div>
+    <p>Verdict up front: for analysis over many seasons, NFL data is the cleaner starting point, and the college side costs more normalization work regardless of source. The sections below show why, source by source, with live evidence.</p>
+  </section>
+
+  <section aria-label="Why NFL data is cleaner">
+    <h2 id="nflverse">Why NFL data is cleaner for analysis</h2>
+    <p>The NFL side has one structural advantage: a community-maintained pipeline. The nflverse-data project takes league records, normalizes them, and republishes each data type as a single release file with a stable URL. One download of <code>games.csv</code> gives you every game from 1999 to 2026, 7,548 rows, with consistent column names for team codes, scores, and betting lines, all under CC BY 4.0 so commercial analysis needs nothing beyond a credit line.</p>
+    <p>What that buys you in practice:</p>
+    <ul>
+      <li>One schema. Every row since 1999 shares the same columns, so a pandas load is one line and a 27-season query runs without per-era patches.</li>
+      <li>One issuer. Team codes, game IDs, and stat definitions come from a single pipeline instead of three sources that disagree on abbreviations.</li>
+      <li>One license. CC BY 4.0 covers the whole file; no per-table terms to reconcile.</li>
+      <li>Open QA. The project is community-maintained, so errors surface in public and fixes ship in the next release. Each release directory carries a freshness stamp, and the <a href="nfl-data-apis.html">NFL data APIs comparison</a> shows the schedules stamp read live.</li>
+    </ul>
+    <p>The college side has no equivalent single file. A college analysis typically assembles rows from a community API, an HTML archive, and an official portal, each with its own team naming, its own license, and its own update schedule. That is the real NFL vs college football statistics difference: not the numbers themselves, but the distance between a download and a usable table.</p>
+  </section>
+
+  <section aria-label="College football data sources">
+    <h2>College football data sources, one by one</h2>
+
+    <h3 id="cfbd">CFBD API: the working programmer's option</h3>
+    <p><a href="https://collegefootballdata.com/" rel="noopener">CollegeFootballData.com</a> runs the closest thing college football has to an nflverse: a JSON REST API covering games, teams, players, drives, recruiting, ratings, and lines, with Swagger documentation and officially supported clients in Python, TypeScript, and C#. It is operated by Rad Sports Analytics LLC.</p>
+    <p>Keys became mandatory on every request. A keyless call answers 401 with the message pasted verbatim from our test on 2026-09-10:</p>
+<pre>curl -s "https://api.collegefootballdata.com/games?year=2024"
+# {"message":"Unauthorized. Did you forget to add \"Bearer \" before your key?
+#  Go to CollegeFootballData.com to register for your free API key. See the
+#  CFBD Blog for examples on usage:
+#  https://blog.collegefootballdata.com/using-api-keys-with-the-cfbd-api."}</pre>
+    <p>Registration is free and quick. Authentication is a Bearer token in the <code>Authorization</code> header, and the blog linked in that error message shows the exact pattern per language, including the Python client:</p>
+<pre>import os
+import cfbd
+
+configuration = cfbd.Configuration(access_token=os.environ["COLLEGE_FOOTBALL_API_KEY"])
+with cfbd.ApiClient(configuration) as api_client:
+    games = cfbd.GamesApi(api_client).get_games(year=2025)</pre>
+    <p>The terms matter as much as the endpoints. Tiers set a shared quota pool, and one subscription covers both the football and basketball APIs. Commercial use inside a product is allowed: the terms explicitly permit paid apps, dashboards, research, and model training on the data, plus publishing your own derived outputs. What they prohibit is redistribution, selling the raw API data as a standalone dataset or mirror. Attribution is appreciated but not required, and there is no SLA. For a "free college football data source" that means: free to build on, not free to republish.</p>
+
+    <h3 id="sportsref">Sports Reference CFB: the deep archive</h3>
+    <p><a href="https://www.sports-reference.com/cfb/" rel="noopener">Sports Reference's college section</a> is the deepest browsable college football archive around, and it is a website, not an API. The data lives in HTML tables on player, team, and conference pages. Scripts meet a wall; a plain curl from our box got a 403 Access Denied page on the checked date:</p>
+<pre>curl -s -o /dev/null -w "%{http_code}" "https://www.sports-reference.com/cfb/"
+# 403</pre>
+    <p>The <a href="https://www.sports-reference.com/data_use.html" rel="noopener">data use policy</a> is explicit: no automated access without written permission, no building a competing database from scraped pages, and no use for training AI models. Custom dataset requests carry a five-figure minimum fee, and some underlying licenses preclude redistribution entirely. The policy also notes the counterweight: copyright law does not cover facts, so reading the site and using what you learn is fair territory. Treat Sports Reference as a research browser and citation source, not a pipeline input.</p>
+
+    <h3 id="ncaa">The NCAA stats portal: official and HTML</h3>
+    <p><a href="https://stats.ncaa.org/" rel="noopener">stats.ncaa.org</a> is the official statistics home: school-reported records standardized by the association, across every division and sport. Browsers load it fine, but it is HTML with no public API, and scripted access gets blocked; our curl got the same shape of 403 Access Denied page. When you need an official record to cite in a paper or a story, this is the source of record. When you need bulk rows for a model, the HTML-only reality pushes you back to CFBD or manual work.</p>
+
+    <h3 id="espn">ESPN site API: quick scores, both footballs</h3>
+    <p>The same undocumented ESPN endpoints that serve NFL scores serve college football under a different sport path, keyless. Live on 2026-09-10:</p>
+<pre>curl -s -o /dev/null -w "%{http_code}" \
+  "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard"
+# 200   (25 events returned that day)
+
+curl -s "https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams" \
+  | python3 -c "import json,sys; d=json.load(sys.stdin); \
+print(len(d['sports'][0]['leagues'][0]['teams']), d['sports'][0]['leagues'][0]['teams'][0]['team']['displayName'])"
+# 50 Amherst Mammoths</pre>
+    <p>The teams payload mixes divisions, Amherst is a Division III program, and there is no documented classification filter, so it is a scores tool rather than a stats source. Same caveats as the NFL side: no schema promise, no rate-limit documentation, cache what you pull. The NFL flavor of these endpoints is tested endpoint-by-endpoint in the <a href="nfl-data-apis.html">NFL data APIs comparison</a>, and a dozen other keyless sources are listed in the <a href="public-data-apis-list.html">public data APIs list</a>.</p>
+  </section>
+
+  <section aria-label="Structural differences">
+    <h2>Why the two statistical worlds never line up</h2>
+    <p>Beyond sources, the underlying structures differ in ways that show up in every join and every comparison:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Structure comparison table"><table>
+      <thead><tr><th scope="col">Dimension</th><th scope="col">NFL</th><th scope="col">College football</th></tr></thead>
+      <tbody>
+      <tr><td>League structure</td><td>One league, 32 clubs</td><td>FBS, FCS, Division II, Division III; more than 130 schools in the top division alone</td></tr>
+      <tr><td>Schedules</td><td>Identical length for every team</td><td>Vary by school and conference; Hawaii's exemption is the classic edge case</td></tr>
+      <tr><td>Postseason</td><td>One playoff bracket</td><td>Bowls plus a top-division playoff; FCS runs its own bracket</td></tr>
+      <tr><td>Who records the stats</td><td>League-run records, republished by the community</td><td>School-reported to the NCAA; quality varies by program</td></tr>
+      <tr><td>Team naming</td><td>Stable 32-team set with fixed codes</td><td>Sources disagree on abbreviations, and conference membership shifts over time</td></tr>
+      <tr><td>Depth of machine-readable history</td><td>Single CSV back to 1999, one download</td><td>Split across an API, HTML archives, and a portal</td></tr>
+      </tbody>
+    </table></div>
+    <p>None of this makes college data unusable. It makes the cleaning step a design decision. Budget for a team-name normalization table, era flags around conference realignment and postseason changes, and an explicit decision about which divisions your analysis covers. Analysts who skip that step end up with Ohio State counted three ways and bowl games treated as regular season.</p>
+  </section>
+
+  <section aria-label="Which source for which job">
+    <h2>Which source for which job</h2>
+    <table>
+      <tr><th>If you need</th><th>Use</th></tr>
+      <tr><td>Multi-season NFL game analysis with betting lines</td><td>nflverse <code>games.csv</code>, or the preprocessed <a href="../datasets/nfl-games.html">pack</a></td></tr>
+      <tr><td>College football games, recruiting, or ratings in code</td><td>CFBD API with a free key and the <code>cfbd</code> Python client</td></tr>
+      <tr><td>An official record to cite</td><td>The NCAA stats portal</td></tr>
+      <tr><td>Browsing decades of college history by hand</td><td>Sports Reference CFB, within its terms</td></tr>
+      <tr><td>This week's scores in either sport</td><td>ESPN's keyless site API</td></tr>
+    </table>
+  </section>
+
+  <section aria-label="From live calls to a pinned dataset">
+    <h2>From live calls to a pinned dataset</h2>
+    <p>Everything above covers collection. Pinning is the other half: normalizing spread and moneyline columns, deriving season summaries, and keeping a schema stable between runs. For the NFL side, that work is done in the preprocessed pack. The <a href="../data/nfl-games/sample.csv" download>free 22-row sample</a> carries the same schema as the nflverse games.csv, and the <a href="../datasets/nfl-games.html">full pack</a> ships 7,548 games with derived tables, a <a href="nfl-games-data-guide.html">column guide</a>, and SHA-256 checksums. For a worked analysis over those rows, the <a href="nfl-home-field-advantage.html">home field advantage guide</a> counts 7,182 home-site games into era win rates. For how licensed downloads compare with scraping routes, the <a href="free-sports-data-csv.html">free sports data CSV guide</a> walks the licensing per source.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/nfl-games/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h" rel="noopener">Get full data</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. The full pack is 3 CSVs (7,548 + 861 + 27 rows), data dictionary, source SHA-256 checksums. The sample downloads free here, no signup.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>NFL vs college football data questions</h2>
+    <dl>
+      <dt>Is there a free college football data API?</dt>
+      <dd>Yes, the CFBD API at <code>api.collegefootballdata.com</code>. Key registration is free and authentication is a Bearer token on every request; a keyless call answered 401 Unauthorized with a pointer to the key page when we tested it on 2026-09-10. Tiers set the shared quota pool, and the terms allow commercial use inside an application while prohibiting selling the raw API data as a standalone dataset. On the NFL side, the nflverse releases are CSV files under CC BY 4.0 with no key at all.</dd>
+      <dt>What is the difference between NFL and college football statistics?</dt>
+      <dd>Structure and sourcing. The NFL is one league of 32 clubs with identical schedule lengths and community-republished CSVs like the nflverse games.csv, 7,548 rows covering 1999 through 2026. College football spans more than 130 schools in the top division plus FCS, Division II, and Division III, schedules vary by school, the postseason mixes bowls with a playoff, and official statistics are school-reported to the NCAA. The stat tables look similar, but the college side needs more cleaning and normalization before analysis.</dd>
+      <dt>Which college football data source should I use?</dt>
+      <dd>Match the source to the job. JSON queries and model building: the CFBD API with a free key and its officially supported Python client. Deep history in a browser: Sports Reference's college section, within its terms. Official records for a citation: the NCAA statistics portal. Quick current scores in a script: ESPN's keyless site API. Check each license before commercial use; the nflverse CC BY 4.0 license is the most permissive of the group, and it covers the NFL data only.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Attribution">
+    <h2>Sources and license</h2>
+    <p>NFL game rows trace back to the nflverse-data project, file <code>schedules/games.csv</code>, released under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>; credit it as "Data from nflverse, CC BY 4.0". CFBD API terms and key documentation were read at collegefootballdata.com/terms and the CFBD blog on 2026-09-10. Sports Reference policies were read at sports-reference.com/data_use.html. NCAA statistics live at stats.ncaa.org. Every status code shown on this page came from a live run on 2026-09-10. No logos or league marks appear anywhere in the pack; team names are factual data. This page and the pack describe data only and offer no betting advice, picks, or predictions.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

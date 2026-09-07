@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fair Market Rent Calculator: How FMR Math Works, FY2026 Examples | Data Vault</title>
+<meta name="description" content="HUD publishes no official FMR calculator. Here is the math behind the FY2026 fair market rents: the 40th percentile rule, worked payment-standard examples, and an MCP query that returns any ZIP's FMR like an API call.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fair-market-rent-calculator.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Fair Market Rent Calculator: How FMR Math Works, FY2026 Examples">
+<meta property="og:description" content="HUD publishes no official FMR calculator. The math behind the FY2026 fair market rents, worked examples, and an MCP query that returns any ZIP's FMR like an API call.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fair-market-rent-calculator.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Fair Market Rent Calculator: How FMR Math Works, FY2026 Examples", "description": "HUD publishes no official FMR calculator. Here is the math behind the FY2026 fair market rents: the 40th percentile rule, worked payment-standard examples, and an MCP query that returns any ZIP's FMR like an API call.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fair-market-rent-calculator.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is there an official fair market rent calculator?", "acceptedAnswer": {"@type": "Answer", "text": "No. HUD does not publish an FMR calculator; the annual FMR files on huduser.gov are the finished output of HUD's own estimation from American Community Survey data. What people call an FMR calculator in practice is one of two things: the arithmetic that derives numbers from a published FMR, such as payment standards at 90% and 110% of the FMR, or a lookup that returns the published FMR for an area. This page shows both, and the dataset-mcp server answers the lookup over MCP."}}, {"@type": "Question", "name": "How do I calculate payment standards from an FMR?", "acceptedAnswer": {"@type": "Answer", "text": "Multiply. Public housing agencies set payment standards between 90% and 110% of the FMR, so the low end is the FMR times 0.90 and the high end is the FMR times 1.10. For the Houston metro 2-bedroom FY2026 FMR of 2,360 dollars, the range is 2,124 to 2,596 dollars. The FMR itself already includes utilities, since it is a gross rent estimate."}}, {"@type": "Question", "name": "Can I calculate an FMR myself from rent listings?", "acceptedAnswer": {"@type": "Answer", "text": "Not the official number. HUD computes each FMR from American Community Survey microdata as the 40th percentile gross rent, shelter rent plus utilities, with its own adjustments and update rules. An average over your own rent listings is a different measure: different data, different percentile, different treatment of utilities. If you need the number agencies use, take the published FMR for the area; your own listing analysis is better treated as a separate market check alongside it."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Fair market rent calculator: the math, the examples, and a query that does the lookup</h1>
+  <p class="byline">FY2026 edition, published 2026-09-10. Data source: HUD, public domain. Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <section aria-label="Is there an FMR calculator">
+    <h2>There is no official FMR calculator, and that is fine</h2>
+    <p>Search for a fair market rent calculator and you will not find one from HUD. There is a reason: the FMR is not something you compute from inputs you have. HUD estimates each year's FMR from American Community Survey microdata, takes the 40th percentile gross rent for standard-quality units, applies bedroom-size and regional adjustments, and publishes the result on huduser.gov. The published files are the calculator output. How the estimate is defined: <a href="hud-rent-data-explained.html">HUD fair market rent data, explained</a>.</p>
+    <p>What people actually want when they search for a calculator comes down to two jobs. One: get the published FMR for an area, fast. Two: turn that FMR into the derived numbers the voucher program uses, mainly payment standards at 90% and 110%. Both are doable with plain arithmetic and the right row of data. This page shows the math on real FY2026 rows, then the lookup.</p>
+  </section>
+
+  <section aria-label="The math people actually do with an FMR">
+    <h2>The FMR math: payment standards, worked on real rows</h2>
+    <p>Under the voucher program, a public housing agency sets its payment standard between 90% and 110% of the FMR for the area. Two multiplications per row:</p>
+    <pre><code>payment standard low  = FMR × 0.90
+payment standard high = FMR × 1.10</code></pre>
+    <p>Worked on three FY2026 2-bedroom FMRs from the <a href="../datasets/hud-fmr-2026.html">HUD FMR pack</a>, monthly US dollars:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Payment standard worked examples"><table><thead><tr><th scope="col">Area</th><th scope="col">FMR 2BR</th><th scope="col">90% (low)</th><th scope="col">110% (high)</th></tr></thead><tbody>
+      <tr><td>Houston-The Woodlands-Sugar Land, TX (ZIP 77002)</td><td>2,360</td><td>2,124</td><td>2,596</td></tr>
+      <tr><td>Phoenix-Mesa-Chandler, AZ (ZIP 85001)</td><td>1,840</td><td>1,656</td><td>2,024</td></tr>
+      <tr><td>Chicago-Joliet-Naperville, IL (ZIP 60601)</td><td>2,670</td><td>2,403</td><td>2,937</td></tr>
+    </tbody></table></div>
+    <p>One caution the math hides: the FMR is a gross rent, shelter rent plus utilities. Comparing it against an asking rent that excludes utilities understates what the voucher covers. Rent reasonableness screening across a portfolio works the same way, one multiplication per row, and ZIP-level variation inside a metro is the subject of <a href="safmr-vs-fmr.html">SAFMR vs FMR, explained</a>.</p>
+  </section>
+
+  <section aria-label="Calculator output example, six ZIPs">
+    <h2>What the lookup returns: six ZIP rows, verbatim</h2>
+    <p>However you run the lookup, the result is a row like these, straight from the FY2026 ZIP file. Five bedroom sizes per ZIP, monthly dollars as HUD published them:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="FMR rows for six ZIP codes"><table><thead><tr><th scope="col">zip</th><th scope="col">area_name</th><th scope="col">fmr_0br</th><th scope="col">fmr_1br</th><th scope="col">fmr_2br</th><th scope="col">fmr_3br</th><th scope="col">fmr_4br</th></tr></thead><tbody>
+      <tr><td>77002</td><td>Houston-The Woodlands-Sugar Land, TX HUD Metro FMR Area</td><td>1,920</td><td>1,980</td><td>2,360</td><td>3,170</td><td>3,960</td></tr>
+      <tr><td>85001</td><td>Phoenix-Mesa-Chandler, AZ MSA</td><td>1,460</td><td>1,580</td><td>1,840</td><td>2,450</td><td>2,720</td></tr>
+      <tr><td>60601</td><td>Chicago-Joliet-Naperville, IL HUD Metro FMR Area</td><td>2,220</td><td>2,370</td><td>2,670</td><td>3,440</td><td>3,980</td></tr>
+      <tr><td>90001</td><td>Los Angeles-Long Beach-Glendale, CA HUD Metro FMR Area</td><td>1,590</td><td>1,780</td><td>2,220</td><td>2,810</td><td>3,130</td></tr>
+      <tr><td>33101</td><td>Miami-Miami Beach-Kendall, FL HUD Metro FMR Area</td><td>1,830</td><td>2,000</td><td>2,440</td><td>3,130</td><td>3,620</td></tr>
+      <tr><td>10001</td><td>New York, NY HUD Metro FMR Area</td><td>3,800</td><td>3,990</td><td>4,370</td><td>5,470</td><td>5,950</td></tr>
+    </tbody></table></div>
+    <p>The full file covers 51,895 ZIP codes. The free sample shows the schema on 22 rows before you take anything bigger.</p>
+  </section>
+
+  <section aria-label="The lookup as a calculator over MCP">
+    <h2>The calculator as a query: any ZIP over MCP</h2>
+    <p>For a handful of ZIPs, the math above plus a search through the file is enough. For anything repeated, a lookup beats a form: the <a href="../agents/">dataset-mcp server</a> queries the full 51,895-row file and answers like a calculator over an API. One ZIP, FY2026:</p>
+    <pre><code>query_dataset(
+  "hud-fmr-2026",
+  {
+    "where": [{ "column": "zip", "op": "=", "value": "77002" }],
+    "columns": ["zip", "area_name", "fmr_0br", "fmr_1br", "fmr_2br", "fmr_3br", "fmr_4br"]
+  }
+)</code></pre>
+    <p>That returns the Houston row from the table above. From Claude Desktop or any MCP client, a follow-up like "now the 90 to 110% band for that 2BR" gets computed from the returned row in the same conversation. Bulk variants work too: one where clause per metro, or a state-wide pull with <code>{ "column": "state", "op": "=", "value": "TX" }</code>, which matched 3,247 rows in the Texas test. Setup lives on the <a href="../agents/">For agents</a> page, and <a href="hud-fmr-by-zip.html">HUD FMR by ZIP code</a> covers the single-ZIP flow in more depth.</p>
+  </section>
+
+  <section aria-label="What this cannot do">
+    <h2>What an FMR calculator cannot do</h2>
+    <p>Three limits, stated plainly. First, nobody outside HUD can recompute the official FMR from scratch: it needs ACS microdata and HUD's estimation pipeline, so any tool claiming to calculate a new FMR is producing something other than the published number. Second, an FMR is not the market rent of your specific unit; it is a 40th percentile benchmark for the area, and <a href="fmr-lookup-alternatives.html">the lookup guide</a> covers what it does and does not answer for. Third, the numbers refresh every fiscal year, so a FY2025 row is stale for FY2026 paperwork. An average over your own rent listings is still a useful separate check on a specific deal, just not a substitute for the published figure.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FMR calculator questions</h2>
+    <dl>
+      <dt>Is there an official fair market rent calculator?</dt>
+      <dd>No. HUD does not publish an FMR calculator; the annual FMR files on huduser.gov are the finished output of HUD's own estimation from American Community Survey data. What people call an FMR calculator in practice is one of two things: the arithmetic that derives numbers from a published FMR, such as payment standards at 90% and 110% of the FMR, or a lookup that returns the published FMR for an area. This page shows both, and the dataset-mcp server answers the lookup over MCP.</dd>
+      <dt>How do I calculate payment standards from an FMR?</dt>
+      <dd>Multiply. Public housing agencies set payment standards between 90% and 110% of the FMR, so the low end is the FMR times 0.90 and the high end is the FMR times 1.10. For the Houston metro 2-bedroom FY2026 FMR of 2,360 dollars, the range is 2,124 to 2,596 dollars. The FMR itself already includes utilities, since it is a gross rent estimate.</dd>
+      <dt>Can I calculate an FMR myself from rent listings?</dt>
+      <dd>Not the official number. HUD computes each FMR from American Community Survey microdata as the 40th percentile gross rent, shelter rent plus utilities, with its own adjustments and update rules. An average over your own rent listings is a different measure: different data, different percentile, different treatment of utilities. If you need the number agencies use, take the published FMR for the area; your own listing analysis is better treated as a separate market check alongside it.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <p>Start with the free 22-row sample to check the schema, then take the full pack: all three CSVs (51,895 ZIP rows, 3,229 county rollups, 52 state rows), the data dictionary, and source checksums.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">Get the full dataset</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release, huduser.gov. US government data, public domain. Data Vault is not affiliated with HUD.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

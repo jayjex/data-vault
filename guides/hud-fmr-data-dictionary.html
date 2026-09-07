@@ -78,7 +78,7 @@
     <p><b>zip as text.</b> The column holds 5-character strings. Format it as text in your spreadsheet before pasting, or read it with <code>dtype={'zip': str}</code> in pandas. A ZIP that loses its leading zero stops matching HUD's own tables.</p>
     <p><b>Quoted area_name.</b> The comma inside <code>"Abilene, TX MSA"</code> is why the field sits in quotes. Any real CSV parser handles it. Splitting on commas by hand splits Abilene in half.</p>
     <p><b>Integers stay bare.</b> <code>1090</code>, never <code>$1,090</code>. Cast the fmr columns straight to int and skip the cleanup.</p>
-    <p><b>One row per ZIP.</b> No duplicates to dedupe, no year column, no bedroom column to melt: bedroom size lives in the column names, amounts in the cells. If you need a long format, melt the five fmr columns into bedroom-size rows yourself. Converting the whole thing: <a href="../tools/csv-to-json.html">CSV to JSON in Python</a> runs the conversion on this exact sample.</p>
+    <p><b>One row per ZIP.</b> No duplicates to dedupe, no year column, no bedroom column to melt: bedroom size lives in the column names, amounts in the cells. If you need a long format, melt the five fmr columns into bedroom-size rows yourself. Converting the whole thing: <a href="../tools/csv-to-json.html">CSV to JSON in Python</a> runs the conversion on this exact sample. Curious why the file is a CSV at all? <a href="fmr-dataset-download.html">FMR dataset download</a> shows how the official HUD workbooks behave in code and what the cleaned single-CSV version looks like under pd.read_csv.</p>
   </section>
 
   <section aria-label="Frequently asked questions">

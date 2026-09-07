@@ -103,6 +103,7 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - [Solana Bounty Tracker Data: Web3 Bounty Listings Without an Official API](https://jayjex.github.io/data-vault/guides/web3-bounty-data.html): harvesting bounty listings
 - [Superteam Earn Alternative: Solana Bounty Tracker vs Dataset Approach](https://jayjex.github.io/data-vault/guides/bounty-tracker-alternative.html): dashboards vs raw rows
 - [What Is a Data Dictionary? Structure and Real CSV Examples](https://jayjex.github.io/data-vault/guides/data-dictionary-explained.html): column-code documentation format
+- [FMR Dataset Download: Fair Market Rent CSV, Ready for pandas](https://jayjex.github.io/data-vault/guides/fmr-dataset-download.html): analysis-ready FMR dataset, real pd.read_csv output, live sample URL
 - [CSV vs API for Data: Which One You Need, With a Decision Table](https://jayjex.github.io/data-vault/guides/csv-vs-api.html): worked decision example
 - [Scrape Without Coding: 10 Editable Template Scripts](https://jayjex.github.io/data-vault/guides/scrape-without-coding.html): edit-one-config workflow
 - [Python Scraping Template: 10 Ready-to-Edit Patterns](https://jayjex.github.io/data-vault/guides/scraping-python-templates.html): patterns mapped to Python, self-host angle

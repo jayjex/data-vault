@@ -76,7 +76,7 @@
   }
 )</code></pre>
     <p>The filter matched 3,247 of 51,895 rows and returned the first 5 in 367ms on a cold call, 265ms from cache after that. Six percent of the file crossed the wire, in a form an agent can use directly.</p>
-    <p>The CSV path earns its keep on a different task. Computing a county-level rent summary for all 50 states means reading every row anyway, so the full zip is the right buy: download once, work offline, keep the file as the cited version.</p>
+    <p>The CSV path earns its keep on a different task. Computing a county-level rent summary for all 50 states means reading every row anyway, so the full zip is the right buy: download once, work offline, keep the file as the cited version. What that download looks like when the file is built for it: <a href="fmr-dataset-download.html">FMR dataset download</a> shows the fair market rent dataset under pd.read_csv with real output, next to the parsing problems the official HUD workbooks cause.</p>
   </section>
 
   <section aria-label="Using both together">

@@ -182,11 +182,48 @@
    },
    "license": "Personal + commercial use, no redistribution",
    "page": "https://jayjex.github.io/data-vault/datasets/scraper-pack.html"
+  },
+  {
+   "slug": "printable-engineering-bundle",
+   "name": "Printable Engineering Bundle",
+   "niche": "printables",
+   "tags": [
+    "printables",
+    "worksheets",
+    "spreadsheets",
+    "kids",
+    "crypto-tracking"
+   ],
+   "description": "Aggregated pack of 120 printable kindergarten worksheets (A4 + US Letter PDFs with answer keys, mazes, dot-to-dots) plus 5 Web3 KPI spreadsheet templates (portfolio, airdrop, DeFi yield, bounty income, trading journal) with live formulas.",
+   "stats": {
+    "worksheets_pages": 120,
+    "spreadsheets": 5,
+    "paper_sizes": 2,
+    "updated": "2026-09-06"
+   },
+   "sample": {
+    "csv": "https://jayjex.github.io/data-vault/data/nfl-games/sample.csv",
+    "json": "https://jayjex.github.io/data-vault/data/nfl-games/sample.json",
+    "rows": 22,
+    "shape": "This bundle ships as printable PDFs and XLSX/CSV, not tables. Use any other sample endpoint to learn the sample format, or read the free printables index."
+   },
+   "free_index": {
+    "url": "https://jayjex.github.io/data-vault/free-printables-index.html",
+    "note": "223 free printable pages, one card per funnel page with its own free version."
+   },
+   "full_data": {
+    "status": "available",
+    "price_usd": 9,
+    "url": "https://www.getly.store/store/matchbook-labs-mtmw06l2",
+    "note": "One-time $9. Direct product link added after the Getly publish lands (gate: canonical URL 200 first)."
+   },
+   "license": "Personal and commercial use. No reselling the pack as-is or with minor changes.",
+   "page": "https://jayjex.github.io/data-vault/datasets/printable-engineering-bundle.html"
   }
  ],
  "mcp": {
   "server": "npx --allow-git=all -y github:jayjex/dataset-mcp",
- "server_npm10": "npx -y github:jayjex/dataset-mcp",
+  "server_npm10": "npx -y github:jayjex/dataset-mcp",
   "registry": "io.github.jayjex/dataset-mcp",
   "repo": "https://github.com/jayjex/dataset-mcp",
   "version": "1.1.0",

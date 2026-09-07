@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Web Scraping Scripts Pack: 10 Ready-to-Run Playwright Templates | Data Vault</title>
+<meta name="description" content="A web scraping scripts pack with 10 self-contained templates: paginated tables, infinite scroll, login sessions, price monitors, sitemap crawling, retry logic. $15, manifest free.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/tools/scraping-scripts.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Web Scraping Scripts Pack: 10 Ready-to-Run Playwright Templates | Data Vault">
+<meta property="og:description" content="10 self-contained scraping scripts: pagination, infinite scroll, login sessions, price monitors, sitemap crawler, retry wrapper. $15 with a free manifest.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/tools/scraping-scripts.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Web Scraping Script Pack", "applicationCategory": "DeveloperTools", "operatingSystem": "Node.js 18+, Linux/macOS/Windows", "description": "Ten self-contained Playwright scripts for pagination, infinite scroll, login sessions, price monitoring, bulk form submission, job board scraping, sitemap crawling, screenshot diffing, API polling, and retry handling.", "url": "https://jayjex.github.io/data-vault/tools/scraping-scripts.html", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "offers": {"@type": "Offer", "price": "15.00", "priceCurrency": "USD", "url": "https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtn8em7k"}}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../tools/scraping-scripts.html" aria-current="page">Tools</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Web scraping scripts pack: 10 Playwright templates</h1>
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>10</b> scripts</span><span class="stat">Node 18+ / Playwright</span><span class="stat"><b>$15</b> full pack</span></div>
+
+  <section aria-label="What you get">
+    <p>This is the tooling page for the <a href="../datasets/scraper-pack.html">Web Scraping Script Pack</a>: ten self-contained Node.js scripts built on Playwright. Each file handles one scraping pattern you would otherwise rewrite per project. Every script runs on its own, opens with a how-to-run comment, and marks the selectors to edit with an <code>EDIT</code> constant.</p>
+    <p>Setup is one <code>npm install</code> plus one chromium download. Scripts use built-in fetch on Node 18+. Nothing uploads anywhere and no script needs an account or API key.</p>
+    <p>If you write scrapers in Python, the same patterns map directly: requests + BeautifulSoup or Scrapy cover pagination, polling, and retry logic the same way Playwright does here. The structure of each script (fetch, parse, dedupe, persist) is the transferable part.</p>
+  </section>
+
+  <section aria-label="The 10 scripts and their use cases">
+    <h2>The 10 scripts, with use cases</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Script table"><table>
+      <thead><tr><th scope="col">File</th><th scope="col">Function</th><th scope="col">Use case</th></tr></thead>
+      <tbody>
+        <tr><td>01-paginated-table-to-csv.js</td><td>Walks ?page=N or Next-button pagination, saves table rows to CSV</td><td>Pull a listings or results table that spans many pages into one flat file</td></tr>
+        <tr><td>02-infinite-scroll-collector.js</td><td>Scrolls a feed to the end, dedupes, saves JSON</td><td>Collect everything from a feed that loads more on scroll instead of paginating</td></tr>
+        <tr><td>03-login-scrape-storagestate.js</td><td>Logs in once, saves the session, reuses it on later runs</td><td>Scrape pages behind a login on your own account without re-authenticating each run</td></tr>
+        <tr><td>04-price-stock-monitor.js</td><td>Diff-based product monitor, POSTs a Slack/Discord webhook on change</td><td>Watch product prices or stock status and get pinged when the page changes</td></tr>
+        <tr><td>05-bulk-form-submitter.js</td><td>CSV rows in, one form submission per row, results report</td><td>Fill and submit the same form for a batch of records you already have</td></tr>
+        <tr><td>06-job-board-scraper.js</td><td>Board/listing pages to JSON with cross-run dedupe</td><td>Track new postings across runs without re-collecting entries from last time</td></tr>
+        <tr><td>07-sitemap-crawler.js</td><td>Expands sitemap indexes, honors robots.txt and crawl-delay, writes JSONL</td><td>Enumerate every URL in a site's sitemap at a pace its robots.txt asks for</td></tr>
+        <tr><td>08-screenshot-diff-bot.js</td><td>sha256 change detection with archived previous shots</td><td>Screenshot a page on a schedule and know exactly when its layout or content changed</td></tr>
+        <tr><td>09-api-poller-jsonl.js</td><td>Polls a JSON endpoint, appends new records to JSONL</td><td>Build an append-only record of an endpoint's output over time</td></tr>
+        <tr><td>10-retry-fetch-wrapper.js</td><td>Exponential backoff, jitter, UA rotation, Retry-After aware</td><td>Wrap flaky requests so transient failures back off instead of crashing a run</td></tr>
+      </tbody>
+    </table></div>
+    <p>The download also includes <code>package.json</code>, a <code>smoke-test.js</code> that verifies the install, and a README with a quick start.</p>
+  </section>
+
+  <section aria-label="Responsible use">
+    <h2>Scrape within the rules</h2>
+    <p>The pack targets publicly accessible data. Two scripts, the login session script (03) and the bulk form submitter (05), are meant for sites you own or have written permission to use, and the pack's README says so next to each file.</p>
+    <p>Whatever you collect: check the site's robots.txt and terms of service first, keep request rates low, and identify your bot with a real user agent. Script 07 reads robots.txt and crawl-delay for you; the rest expect you to apply the same limits to the target you point them at. Rules differ by site and jurisdiction, so treat this note as a starting point, not legal advice.</p>
+  </section>
+
+  <section aria-label="Sample manifest">
+    <h2>Sample manifest, free</h2>
+    <p>The full <a href="../data/scraper-pack/scripts-manifest.json" download>scripts-manifest.json</a> lists every file with its pattern and runtime notes. The <a href="../data/scraper-pack/sample.json" download>sample.json</a> and <a href="../data/scraper-pack/sample.csv" download>sample.csv</a> previews carry the same 10-row table in agent-readable form. Download them before buying to see the full inventory.</p>
+  </section>
+
+  <section aria-label="Get the pack">
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/scraper-pack/scripts-manifest.json" download>Download manifest (free)</a>
+      <a class="btn" href="https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtn8em7k" rel="noopener">Get the full pack, $15</a>
+    </div>
+    <p class="btn-note">$15, one-time, through Getly checkout. Personal and commercial use; no redistribution of the files as-is.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

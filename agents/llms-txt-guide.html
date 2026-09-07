@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>llms.txt for AI Agents: Structure and a Live Example | Data Vault</title>
+<meta name="description" content="What llms.txt is (a voluntary convention, no RFC status), the minimal structure that works, and a live example from a data catalog agents fetch today.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/agents/llms-txt-guide.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="llms.txt for AI Agents: Structure and a Live Example">
+<meta property="og:description" content="What llms.txt is (a voluntary convention, no RFC status), the minimal structure that works, and a live example from a data catalog agents fetch today.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/agents/llms-txt-guide.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "llms.txt for AI Agents: Structure and a Live Example", "description": "What llms.txt is (a voluntary convention, no RFC status), the minimal structure that works, and a live example from a data catalog agents fetch today.", "datePublished": "2026-09-09", "dateModified": "2026-09-09", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/agents/llms-txt-guide.html", "about": {"@type": "WebPage", "name": "llms.txt", "url": "https://jayjex.github.io/data-vault/llms.txt"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "For agents", "item": "https://jayjex.github.io/data-vault/agents/"}, {"@type": "ListItem", "position": 3, "name": "llms.txt guide", "item": "https://jayjex.github.io/data-vault/agents/llms-txt-guide.html"}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="./">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="./">&larr; For agents</a>
+  <h1>llms.txt for AI agents: the structure, with a live example</h1>
+  <p class="byline">Published 2026-09-09. The example file is live at <a href="../llms.txt">jayjex.github.io/data-vault/llms.txt</a>; fetch it while you read.</p>
+
+  <section aria-label="What llms.txt is">
+    <h2>What llms.txt is, and what it is not</h2>
+    <p>A file named <code>llms.txt</code> at the root of a website lists the pages and endpoints an LLM or agent should read, written in plain markdown. The format came out of a 2024 proposal at <a href="https://llmstxt.org" rel="noopener">llmstxt.org</a>.</p>
+    <p>Be clear on its status: there is no RFC, no standards body, and no required discovery mechanism. It is a convention sites adopt voluntarily. Anthropic's documentation site publishes one (<a href="https://docs.anthropic.com/llms.txt" rel="noopener">docs.anthropic.com/llms.txt</a>), which is where many teams copy their first structure from. Whether an agent looks for the file depends on the crawler; publishing it costs one static file and removes guesswork for the agents that do check.</p>
+    <p>Where it fits next to the files you already have: robots.txt tells crawlers what to skip, sitemap.xml lists every page for search engines, and llms.txt suggests what an LLM should read, with a short description per link. The descriptions are the part a sitemap lacks.</p>
+  </section>
+
+  <section aria-label="Minimal structure">
+    <h2>Minimal structure that works</h2>
+    <p>Three parts cover most sites:</p>
+    <ul>
+      <li><b>An H1 title</b> and a one-paragraph blockquote saying what the site offers.</li>
+      <li><b>A docs list</b> under H2 headings: the pages worth reading, as markdown links with one-line descriptions.</li>
+      <li><b>An endpoints list</b> for anything machine-readable: JSON indexes, APIs, downloads.</li>
+    </ul>
+<pre><code># Site name
+
+&gt; One paragraph: what this site offers and to whom.
+
+## Docs
+
+- [Agent access](https://example.com/agents/): endpoints, auth rules, examples
+
+## Endpoints
+
+- [catalog.json](https://example.com/catalog.json): machine-readable index of every item
+- [sitemap.xml](https://example.com/sitemap.xml): all HTML pages</code></pre>
+    <p>Keep every link absolute. Agents may read the file without ever loading the site that served it, so relative paths break.</p>
+  </section>
+
+  <section aria-label="Real example">
+    <h2>A real example: this catalog's llms.txt</h2>
+    <p>Our file below is the reference implementation for a data catalog. It is unedited and live at <a href="../llms.txt">/llms.txt</a>:</p>
+<pre><code># Data Vault
+
+&gt; Sample-first data catalog by Matchbook Labs. Free CSV/JSON samples for every dataset, machine-readable index for agents, full packs sold via Getly.
+
+Base URL: https://jayjex.github.io/data-vault
+Catalog (start here): https://jayjex.github.io/data-vault/catalog.json
+Agent docs: https://jayjex.github.io/data-vault/agents/
+MCP server: npx --allow-git=all -y github:jayjex/dataset-mcp (v1.1.0; tools: list_datasets, get_dataset_info, get_sample, query_dataset, get_stats; --allow-git=all needed on npm 12+, plain form on npm 10/11)
+MCP repo: https://github.com/jayjex/dataset-mcp
+MCP registry name: io.github.jayjex/dataset-mcp
+MCP full query: query_dataset(slug, {where, columns, limit, offset}) filters and paginates the FULL released files, 100 rows/call. Example: query_dataset("hud-fmr-2026", {where: [{column: "state", op: "=", value: "TX"}], limit: 5}) returns 3,247 matched Texas rent rows. Full data release: https://github.com/jayjex/dataset-mcp/releases/tag/data-v1
+
+## Datasets
+
+### NFL Games &amp; Betting Lines 1999-2026 (nfl-games)
+7,548 NFL games with scores, closing spreads, totals, moneylines, odds, rest days, QBs, coaches, and stadium weather. Niche: sports. Stats: {"rows": 7548, "tables": 3, "columns": 46, "updated": "2026-09-06"}.
+- Sample JSON: https://jayjex.github.io/data-vault/data/nfl-games/sample.json
+- Sample CSV: https://jayjex.github.io/data-vault/data/nfl-games/sample.csv
+- Page: https://jayjex.github.io/data-vault/datasets/nfl-games.html
+- Full data: [Get full data, $29](https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h)
+
+### HUD Fair Market Rents FY2026 (hud-fmr-2026)
+FY2026 fair market rents for 51,895 ZIP codes, 3,229 counties, and 52 states. Five bedroom sizes per row. Niche: gov-data. Stats: {"rows": 51895, "tables": 3, "columns": 11, "updated": "FY2026"}.
+- Sample JSON: https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.json
+- Sample CSV: https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.csv
+- Page: https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html
+- Full data: [Get full data, $24](https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm)
+
+### Airbnb Listings, 6 US Cities (airbnb-six-cities)
+90,169 Airbnb listings across Austin, Nashville, Denver, New York City, Las Vegas, and San Diego in one normalized schema. Niche: real-estate. Stats: {"rows": 90169, "tables": 8, "columns": 12, "updated": "2026-08-10"}.
+- Sample JSON: https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.json
+- Sample CSV: https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.csv
+- Page: https://jayjex.github.io/data-vault/datasets/airbnb-six-cities.html
+- Full data: [Get full data, $39](https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtpkvxdf)
+
+### Superteam Earn Live Listings (earn-bounties)
+28 open Superteam Earn listings with full description HTML, the raw cards dump, and 186+ reverse-engineered API routes. Niche: ai-agents. Stats: {"rows": 28, "tables": 3, "columns": 15, "updated": "2026-09-04"}.
+- Sample JSON: https://jayjex.github.io/data-vault/data/earn-bounties/sample.json
+- Sample CSV: https://jayjex.github.io/data-vault/data/earn-bounties/sample.csv
+- Page: https://jayjex.github.io/data-vault/datasets/earn-bounties.html
+- Full data: [Get full data, $49](https://www.getly.store/product/superteam-earn-28-live-listings-dataset-186-reverse-engineered-api-routes-mtmy11ny)
+
+### Web Scraping Script Pack (scraper-pack)
+Ten self-contained Playwright scripts for pagination, infinite scroll, login sessions, price monitors, sitemap crawling, and retries. Niche: dev-tools. Stats: {"rows": 10, "tables": 1, "columns": 0, "updated": "2026-09-07", "unit": "scripts"}.
+- Sample JSON: https://jayjex.github.io/data-vault/data/scraper-pack/sample.json
+- Sample CSV: https://jayjex.github.io/data-vault/data/scraper-pack/sample.csv
+- Page: https://jayjex.github.io/data-vault/datasets/scraper-pack.html
+- Full data: [Get full data, $15](https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtn8em7k)
+
+## Access rules
+- Fetch catalog.json and every sample endpoint freely. No API keys, no auth.
+- sample.json returns {slug, name, columns[], row_count, records[]}.
+- Samples are CC BY 4.0 (nflverse, Inside Airbnb, HUD per dataset). Credit "Data Vault (jayjex.github.io/data-vault), CC BY 4.0" when republishing.
+- Full packs are licensed per purchase through the Getly links above.</code></pre>
+    <p>What each part earns:</p>
+    <ul>
+      <li>The <b>blockquote</b> gives an agent enough to decide relevance in one line: samples free, index machine-readable, full packs paid.</li>
+      <li>The <b>header lines</b> before the first H2 carry the entry points (catalog, agent docs) plus the MCP install command, so a tool that only reads this file still knows how to query the data.</li>
+      <li>Each <b>dataset section</b> states row counts and column counts. An agent can pick a pack by size without opening any HTML page.</li>
+      <li><b>Sample URLs per dataset</b> route to JSON, so the next fetch is structured data instead of a page to parse.</li>
+      <li><b>Access rules</b> state the license and attribution in the same payload, which settles reuse questions before they are asked.</li>
+    </ul>
+  </section>
+
+  <section aria-label="Why publish one">
+    <h2>Why a data platform publishes one</h2>
+    <p>Agents arrive without a browser session. They fetch a URL, read text, and follow links. A single markdown file that names the machine-readable entry points saves them a crawl of HTML pages built for people. On this site the payoff is direct: the llms.txt routes to <a href="../catalog.json">catalog.json</a> and the sample endpoints, which return JSON an agent can use immediately.</p>
+    <p>The second reason is rules. A data catalog has licensing terms that matter to anyone republishing rows. Putting them in llms.txt means the agent reads the attribution requirement at planning time, before it has already copied data.</p>
+    <p>The third is upstream tooling. Our <a href="mcp-dataset-server.html">MCP server</a> exposes the same catalog as queryable tables, and the llms.txt carries the install command. A human pastes one line into Claude Desktop; an agent reading the file gets the same path.</p>
+  </section>
+
+  <section aria-label="Test your file">
+    <h2>Check yours before shipping</h2>
+    <p>Two checks catch most problems. First, every link must resolve, because the file may be read far from your site:</p>
+<pre><code>curl -s https://jayjex.github.io/data-vault/llms.txt \
+  | grep -oE 'https://[^ )"]+' \
+  | sort -u \
+  | while read u; do printf '%s %s\n' "$(curl -s -o /dev/null -w '%{http_code}' "$u")" "$u"; done</code></pre>
+    <p>Second, read it as an agent would: one fetch, no context from your site. If the blockquote alone does not tell you what the site offers, or any link is relative or dead, fix those first. Everything else is optional.</p>
+  </section>
+
+  <section aria-label="Where to go next">
+    <h2>Use this catalog as an agent</h2>
+    <p>Start from the <a href="./">agent access page</a> for curl and Python examples, or read <a href="../catalog.json">catalog.json</a> directly. The <a href="mcp-dataset-server.html">MCP server page</a> covers querying full files without downloading them. The <a href="../free-datasets-for-ai-agents.html">free datasets index</a> lists every pack with row counts.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

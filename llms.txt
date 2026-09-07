@@ -19,6 +19,7 @@ HUD FMR metro definition guide (how HUD defines a metro FMR area, MSA vs HUD Met
 Rent affordability guide (the 30% rule vs the FMR, five metros against the US median household income, FY2026): https://jayjex.github.io/data-vault/guides/rent-affordability-calculator.html
 What is llms.txt (plain-English definition of the format, how agents read the file, honest status): https://jayjex.github.io/data-vault/guides/what-is-llms-txt.html
 Dataset DOIs: the NFL, HUD FMR, and Airbnb packs have permanent citable DOIs on Zenodo: https://doi.org/10.5281/zenodo.22643177 , https://doi.org/10.5281/zenodo.22643149 , https://doi.org/10.5281/zenodo.22643189
+FY2027 HUD FMR DOI (rates effective October 1, 2026): https://doi.org/10.5281/zenodo.22649503
 Paid per-call API (x402 protocol, USDC on Base): the NFL scores and HUD FMR datasets are also queryable as paid x402 endpoints, $0.01/call NFL and $0.001/call HUD FMR, curl challenge replay + SDK snippet: https://gist.github.com/jayjex/9cb7cd0612b3192e06915f784e6d6e4a
 
 ## Datasets
@@ -38,6 +39,12 @@ FY2026 fair market rents for 51,895 ZIP codes, 3,229 counties, and 52 states. Fi
 - Texas guide: https://jayjex.github.io/data-vault/guides/hud-fmr-texas.html (state=TX filter, 3,247 ZIP rows, metro table, free state-summary.csv)
 - County guide: https://jayjex.github.io/data-vault/guides/hud-fmr-by-county.html (3,229 county rows, Harris County TX query example, median/max rollup explainer)
 - Full data: [Get full data](https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm)
+
+### HUD Fair Market Rents FY2027 (hud-fmr-2027)
+FY2027 fair market rents for 51,871 ZIP codes, 3,229 counties, and 52 states, effective October 1, 2026. Five bedroom sizes per row, same ten-column schema as the FY2026 file. Citable DOI: https://doi.org/10.5281/zenodo.22649503 (full CSVs on Zenodo, CC BY 4.0). Niche: gov-data. Stats: {"rows": 51871, "tables": 3, "columns": 11, "updated": "FY2027"}.
+- Zenodo record (all files): https://zenodo.org/records/22649503/latest
+- FY2026 pack (prior year, for anything dated before October): https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html
+- Full data: coming to Getly with the FY2027 pack pages
 
 ### Airbnb Listings, 6 US Cities (airbnb-six-cities)
 90,169 Airbnb listings across Austin, Nashville, Denver, New York City, Las Vegas, and San Diego in one normalized schema. Niche: real-estate. Stats: {"rows": 90169, "tables": 8, "columns": 12, "updated": "2026-08-10"}.

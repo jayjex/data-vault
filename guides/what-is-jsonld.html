@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What Is JSON-LD? Structured Data for SEO, With Real Blocks From This Site | Data Vault</title>
+<meta name="description" content="JSON-LD is the script format Google prefers for structured data. What it is, the four schema.org types that matter for SEO (Article, FAQPage, BreadcrumbList, ItemList), how to validate it, and the 85 JSON-LD blocks this site ships.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/what-is-jsonld.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="What Is JSON-LD? Structured Data for SEO, With Real Blocks From This Site">
+<meta property="og:description" content="JSON-LD is the script format Google prefers for structured data. The four schema.org types that matter for SEO, how to validate, and real blocks from this site.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/what-is-jsonld.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "What Is JSON-LD? Structured Data for SEO, With Real Blocks From This Site", "description": "JSON-LD is the script format Google prefers for structured data. What it is, the four schema.org types that matter for SEO (Article, FAQPage, BreadcrumbList, ItemList), how to validate it, and the 85 JSON-LD blocks this site ships.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/what-is-jsonld.html", "about": {"@type": "Thing", "name": "JSON-LD"}, "mentions": [{"@type": "WebPage", "name": "Google Rich Results Test", "url": "https://search.google.com/test/rich-results"}, {"@type": "WebPage", "name": "Schema.org validator", "url": "https://validator.schema.org"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "What is JSON-LD", "item": "https://jayjex.github.io/data-vault/guides/what-is-jsonld.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is JSON-LD in simple terms?", "acceptedAnswer": {"@type": "Answer", "text": "JSON-LD is a block of JSON that describes what a page is about in machine-readable form, using the schema.org vocabulary. It sits in one script tag in the page head, separate from the visible HTML, and crawlers read it to identify the page type, publish dates, author, questions the page answers, and the page's position in the site structure."}}, {"@type": "Question", "name": "Does JSON-LD help SEO?", "acceptedAnswer": {"@type": "Answer", "text": "Structured data does not directly change rankings. Its value is eligibility: pages with valid markup can appear as rich results, so a FAQPage can show expandable questions under the listing and a BreadcrumbList can replace the raw URL with a section trail. It also removes ambiguity for crawlers, which matters on large sites with thousands of pages. Treat it as a cheap qualification step, not a ranking lever."}}, {"@type": "Question", "name": "How do I validate my JSON-LD?", "acceptedAnswer": {"@type": "Answer", "text": "Run the page through Google's Rich Results Test at search.google.com/test/rich-results. It lists every rich result type the markup qualifies for and flags errors per block. For vocabulary checks beyond Google's supported types, use validator.schema.org. Both tools accept a live URL or pasted code, so you can validate before deploying."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>What is JSON-LD?</h1>
+  <p class="byline">Published 2026-09-10. Every block below is copied from pages live on this site: all 85 HTML pages carry at least one JSON-LD block, most carry three.</p>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>JSON-LD (JavaScript Object Notation for Linked Data) is a way to describe what a page is about in a machine-readable block, using vocabulary from <a href="https://schema.org" rel="noopener">schema.org</a>. You write it as a JSON object inside one tag, <code>&lt;script type="application/ld+json"&gt;</code>, in the page head. A crawler reading that block learns: this page is an article, published on this date, updated on that one, by this organization. These three questions appear on it. This URL belongs to this section of this site.</p>
+    <p>Google recommends JSON-LD over the two older structured data formats. The older ones, microdata and RDFa, wrap attributes around the visible HTML, so a sitewide change means editing markup everywhere. JSON-LD keeps the data in one block per page, apart from the content. That single design choice is why it became the practical default: one place to write, one place to maintain, and a format any JSON parser can read.</p>
+  </section>
+
+  <section aria-label="What JSON-LD does in search">
+    <h2>What JSON-LD does in search</h2>
+    <p>Structured data does not raise rankings. It qualifies pages for rich results, the enhanced listings Google shows when markup matches a supported type. A page with valid <code>FAQPage</code> markup can show its questions as expandable entries under the search listing. A page with <code>BreadcrumbList</code> shows a section trail instead of a raw URL. An <code>Article</code> block feeds the headline, dates, and publisher into how Google understands and sometimes displays the page.</p>
+    <p>The second effect is quieter but bigger on large sites: disambiguation. A crawler that lands on a URL with no markup has to infer what the page is from title and text. The markup removes the inference. On a catalog like this one, where guide pages, dataset pages, and tool pages all live close together, the type declarations tell the crawler which page belongs to which category without guessing.</p>
+  </section>
+
+  <section aria-label="The four schema.org types that earn their keep">
+    <h2>The four schema.org types that earn their keep</h2>
+    <p>Hundreds of schema.org types exist. Four cover most of what a content site needs, and this page itself ships all four:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Four schema.org types compared"><table><thead><tr><th scope="col">Type</th><th scope="col">What it declares</th><th scope="col">What it can do in search</th></tr></thead><tbody>
+      <tr><td><code>Article</code></td><td>Headline, description, publish and modify dates, author, publisher</td><td>Helps Google read the page as an article and keep dates fresh in listings</td></tr>
+      <tr><td><code>FAQPage</code></td><td>A list of questions with their answers, matching visible page content</td><td>Qualifies the page for FAQ rich results; Google requires the same Q&amp;A to be visible on the page</td></tr>
+      <tr><td><code>BreadcrumbList</code></td><td>The page's position as an ordered chain from the site root</td><td>Replaces the raw URL in listings with a section trail</td></tr>
+      <tr><td><code>ItemList</code></td><td>An ordered list of things, each with a position and optional URL</td><td>Describes list pages and anchor tables so crawlers get the structure in one read</td></tr>
+    </tbody></table></div>
+    <p>The FAQPage rule is the one people break most: the questions and answers in the markup must appear on the visible page. Markup that describes questions the page never shows fails eligibility, because Google treats the markup as a description of the page, not extra content.</p>
+  </section>
+
+  <section aria-label="How this site uses JSON-LD">
+    <h2>How this site uses it: real blocks</h2>
+    <p>All 85 HTML pages on this site carry JSON-LD, and every guide ships the same three blocks: <code>Article</code>, <code>BreadcrumbList</code>, and <code>FAQPage</code>. Here is what that looks like in practice.</p>
+    <p>Our <a href="hud-fmr-by-state.html">HUD FMR by state</a> guide has a 52-row table of per-state rent medians, one row per state, each row an anchor. The <code>ItemList</code> block mirrors that table with one <code>ListItem</code> per state. The real block, abridged:</p>
+<pre><code>{"@context": "https://schema.org", "@type": "ItemList",
+ "name": "HUD FMR by state, FY2026 2BR medians", "numberOfItems": 52,
+ "itemListElement": [
+   {"@type": "ListItem", "position": 1, "name": "California (CA)",
+    "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#CA"},
+   {"@type": "ListItem", "position": 2, "name": "Hawaii (HI)",
+    "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html#HI"},
+   ...]}</code></pre>
+    <p>Fifty-two rows of markup is boring to write and worth the boredom: a crawler gets the full state-to-anchor map without parsing a table.</p>
+    <p>The FAQPage pattern is a mirror rule. We write the visible FAQ first, then copy the exact question and answer text into the JSON-LD block. The <a href="what-is-llms-txt.html">llms.txt guide</a> shows the result: the markup's answer text and the page's visible answer text are identical, because one was copied from the other. One source of truth means the markup never claims content the page does not show, which is the failure mode that kills FAQ eligibility.</p>
+    <p>Every page also carries the <code>BreadcrumbList</code> block, two items deep here: Data Vault, then the page. This page is no exception. And the <code>Article</code> block on each guide carries <code>dateModified</code>, which we bump whenever a page changes, so listings keep showing a current date.</p>
+  </section>
+
+  <section aria-label="How to validate JSON-LD">
+    <h2>How to validate</h2>
+    <p>Two tools cover it. Google's <a href="https://search.google.com/test/rich-results" rel="noopener">Rich Results Test</a> takes a URL or pasted code and reports every rich result type the page qualifies for, with errors and warnings per block. The <a href="https://validator.schema.org" rel="noopener">Schema Markup Validator</a> checks the vocabulary itself, which matters for types Google has no rich result for: an <code>ItemList</code> of state anchors earns no rich result but can still be wrong.</p>
+    <p>The loop we run on every page here: paste the deployed URL into the Rich Results Test, confirm all three blocks are detected, fix any errors, re-test. The errors we have actually hit are mundane. A date in the wrong format instead of <code>YYYY-MM-DD</code>. A missing <code>mainEntityOfPage</code>. One trailing comma, which is invalid JSON and kills the entire block rather than the one item it sits on. None need a debugging session; all show up in the validator if you run it before shipping.</p>
+    <p>Worth one extra check after deploy: fetch the live page and confirm the script tags are in the served HTML, since a template change can drop a block without breaking anything visible.</p>
+  </section>
+
+  <section aria-label="FAQ">
+    <h2>FAQ</h2>
+    <dl>
+      <dt>What is JSON-LD in simple terms?</dt>
+      <dd>JSON-LD is a block of JSON that describes what a page is about in machine-readable form, using the schema.org vocabulary. It sits in one script tag in the page head, separate from the visible HTML, and crawlers read it to identify the page type, publish dates, author, questions the page answers, and the page's position in the site structure.</dd>
+      <dt>Does JSON-LD help SEO?</dt>
+      <dd>Structured data does not directly change rankings. Its value is eligibility: pages with valid markup can appear as rich results, so a FAQPage can show expandable questions under the listing and a BreadcrumbList can replace the raw URL with a section trail. It also removes ambiguity for crawlers, which matters on large sites with thousands of pages. Treat it as a cheap qualification step, not a ranking lever.</dd>
+      <dt>How do I validate my JSON-LD?</dt>
+      <dd>Run the page through Google's Rich Results Test at search.google.com/test/rich-results. It lists every rich result type the markup qualifies for and flags errors per block. For vocabulary checks beyond Google's supported types, use validator.schema.org. Both tools accept a live URL or pasted code, so you can validate before deploying.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Where to go next">
+    <h2>Read next</h2>
+    <p>Structured data describes a page; a <a href="data-dictionary-explained.html">data dictionary</a> describes a dataset, column by column, and we document every CSV pack we ship with one. JSON-LD speaks to search crawlers; <a href="what-is-llms-txt.html">llms.txt</a> speaks to AI agents, and our live file shows the format in use. For how the two machine-facing files at a site root differ, see the <a href="llms-txt-vs-sitemap.html">llms.txt vs sitemap.xml comparison</a>.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD Small Area FMR: SAFMR by ZIP Code, Explained | Data Vault</title>
+<meta name="description" content="A HUD Small Area FMR (SAFMR) sets the fair market rent at ZIP level inside a metro. When HUD uses SAFMRs, how the ZIP values relate to the metro FMR, and real FY2026 numbers.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fmr-small-areas.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="HUD Small Area FMR: SAFMR by ZIP Code, Explained">
+<meta property="og:description" content="A HUD Small Area FMR (SAFMR) sets the fair market rent at ZIP level inside a metro. When HUD uses SAFMRs, how the ZIP values relate to the metro FMR, and real FY2026 numbers.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fmr-small-areas.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "HUD Small Area FMR: SAFMR by ZIP Code, Explained", "description": "A HUD Small Area FMR (SAFMR) sets the fair market rent at ZIP level inside a metro. When HUD uses SAFMRs, how the ZIP values relate to the metro FMR, and real FY2026 numbers.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fmr-small-areas.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is a HUD Small Area FMR?", "acceptedAnswer": {"@type": "Answer", "text": "A Small Area Fair Market Rent (SAFMR) is a fair market rent computed for a single ZIP code inside a metro area instead of for the metro as a whole. It is the same 40th percentile gross rent estimate, shelter rent plus utilities for standard-quality units, just calculated at ZIP level so the value reflects that ZIP's rents rather than a metro-wide average."}}, {"@type": "Question", "name": "When does HUD use SAFMRs instead of the metro FMR?", "acceptedAnswer": {"@type": "Answer", "text": "In metro areas HUD designates, housing agencies base voucher payment standards on the ZIP-level SAFMRs rather than the metro-wide FMR. HUD makes the designations each fiscal year for metros with wide rent spreads between neighborhoods, publishing the list with the annual FMR release. Outside designated metros, the metro FMR governs by default, and agencies elsewhere can set separate payment standards for parts of their area under 24 CFR 982.505(c)(2)."}}, {"@type": "Question", "name": "How do I find the SAFMR for a specific ZIP code?", "acceptedAnswer": {"@type": "Answer", "text": "HUD publishes the current-year SAFMR tables by ZIP on huduser.gov, alongside the Federal Register notice listing designated metro areas. The FY2026 CSV pack on this site keeps FMR columns only and has no SAFMR flag, but ZIPs whose values differ from their metro's base row are the candidates to confirm against HUD's tables."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>HUD Small Area FMR: how SAFMRs work, ZIP by ZIP</h1>
+  <p class="byline">FY2026 edition, published 2026-09-10. Data source: HUD, public domain. Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>A Small Area Fair Market Rent (SAFMR) is a fair market rent set for one ZIP code inside a metro instead of for the metro as a whole. Same math as the regular FMR, the 40th percentile of gross rent for standard-quality units, just computed on ZIP-level rents. Where HUD has designated a metro for SAFMR use, the ZIP value is the benchmark that applies in that ZIP; everywhere else, the metro-wide FMR applies to all of its ZIPs.</p>
+  </section>
+
+  <section aria-label="Why rents need ZIP-level values">
+    <h2>Why one number per metro stops working</h2>
+    <p>A metro FMR averages over every neighborhood in the market. Where rents move together across the metro, one number serves fine. Where a metro contains both expensive and cheap neighborhoods, the single value misses both ends: too high for the cheap ZIPs, too low for the expensive ones. For the voucher program, that shape of error concentrates voucher use in low-rent ZIPs and locks families out of high-rent ones.</p>
+    <p>The FY2026 free sample shows the spread pattern at small scale. All 22 rows are in the Abilene, TX MSA and share one HUD area code, METRO10180M10180, yet their ZIP-level 2-bedroom FMRs run from 1090 up to 1900. That top ZIP sits 74 percent above the floor of its own metro. The 4-bedroom range runs 1710 to 2960, a similar gap.</p>
+    <p>HUD's answer to this pattern is the SAFMR: keep the metro FMR, but in designated metros replace it, ZIP by ZIP, with values computed on each ZIP's own rents. Abilene itself is an illustration of spread, not a designation; HUD lists the designated metros with each year's FMR release, and that list is what decides where SAFMRs govern.</p>
+  </section>
+
+  <section aria-label="When SAFMRs apply">
+    <h2>When a SAFMR applies instead of the metro FMR</h2>
+    <p>HUD ran the idea as a demonstration starting with Dallas in 2012, proposed it as a rule in June 2016, and finalized it that November (<a href="https://www.federalregister.gov/citation/81-FR-80673" rel="noopener">81 FR 80673</a>). Since fiscal year 2018, HUD has designated metro areas each year where agencies base payment standards on the ZIP-level SAFMRs, with an exception path in the rule. Designations target metros with wide rent spreads and substantial voucher use, which is where the metro-wide number does the most damage.</p>
+    <p>Outside the designated list, the metro FMR remains the default, and an agency can still set a separate payment standard for a designated part of its FMR area under <a href="https://www.ecfr.gov/current/title-24/section-982.505" rel="noopener">24 CFR 982.505(c)(2)</a>. Payment standards sit within a band around whatever FMR or SAFMR applies, 90 to 110 percent under <a href="https://www.ecfr.gov/current/title-24/section-982.503" rel="noopener">24 CFR 982.503</a>, unless HUD approves an exception. The definitions behind both numbers are in <a href="safmr-vs-fmr.html">SAFMR vs FMR, explained</a>.</p>
+  </section>
+
+  <section aria-label="Reading the spread in real numbers">
+    <h2>The spread in real numbers: four ZIPs, one metro</h2>
+    <p>From the free 22-row sample, four Abilene, TX MSA ZIPs, straight out of the CSV:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Abilene ZIPs compared"><table><thead><tr><th scope="col">zip</th><th scope="col">hud_area_code</th><th scope="col">fmr_2br</th><th scope="col">fmr_4br</th></tr></thead><tbody>
+      <tr><td>76437</td><td>METRO10180M10180</td><td>1090</td><td>1710</td></tr>
+      <tr><td>79508</td><td>METRO10180M10180</td><td>1240</td><td>1930</td></tr>
+      <tr><td>79536</td><td>METRO10180M10180</td><td>1460</td><td>1890</td></tr>
+      <tr><td>79562</td><td>METRO10180M10180</td><td>1900</td><td>2960</td></tr>
+    </tbody></table></div>
+    <p>Same metro, same area code, four different 2-bedroom values. A metro-wide FMR set near the middle would undershoot ZIP 79562 by hundreds of dollars per month while overshooting most of the other 18 ZIPs in the sample, which sit between 1090 and 1300. That is the exact failure mode SAFMRs exist to fix, and it scales up to the metros where rent spreads run much wider than Abilene's.</p>
+    <p>At the state level, the pack's state-summary table puts Texas ZIP-level 2-bedroom FMRs between 970 at the low end and 2900 at the high end, median 1190, across 3,247 ZIP rows. Statewide ranges mix metro effects with SAFMR-style ZIP variation; the ZIP-level rows are where the neighborhood differences live.</p>
+  </section>
+
+  <section aria-label="SAFMR by ZIP in the dataset">
+    <h2>SAFMR by ZIP in the FY2026 pack</h2>
+    <p>The <a href="../datasets/hud-fmr-2026.html">HUD FMR FY2026 pack</a> ships a ZIP-level table, fmr-by-zip-2026.csv, one row per ZIP code with columns zip, hud_area_code, metro, area_name, state, and fmr_0br through fmr_4br. The pack carries FMR columns only; there is no SAFMR flag column. Most ZIPs in a metro repeat their metro's base values, so a row that differs from its metro's base row inside one hud_area_code marks ZIP-level variation, the same pattern the Abilene table shows.</p>
+    <p>That variation is a hint worth checking, nothing more. ZIP-level values in the file reflect SAFMRs and other HUD area rules, and the official designation lives in HUD's annual notices. Workflow: scan the CSV for divergent ZIPs, confirm each against HUD's <a href="https://www.huduser.gov/portal/datasets/fmr/smallarea/index.html" rel="noopener">SAFMR tables</a> on huduser.gov. A step-by-step lookup walkthrough is in <a href="hud-fmr-by-zip.html">HUD FMR by ZIP code</a>.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>Small area FMR questions</h2>
+    <dl>
+      <dt>What is a HUD Small Area FMR?</dt>
+      <dd>A Small Area Fair Market Rent (SAFMR) is a fair market rent computed for a single ZIP code inside a metro area instead of for the metro as a whole. It is the same 40th percentile gross rent estimate, shelter rent plus utilities for standard-quality units, just calculated at ZIP level so the value reflects that ZIP's rents rather than a metro-wide average.</dd>
+      <dt>When does HUD use SAFMRs instead of the metro FMR?</dt>
+      <dd>In metro areas HUD designates, housing agencies base voucher payment standards on the ZIP-level SAFMRs rather than the metro-wide FMR. HUD makes the designations each fiscal year for metros with wide rent spreads between neighborhoods, publishing the list with the annual FMR release. Outside designated metros, the metro FMR governs by default, and agencies elsewhere can set separate payment standards for parts of their area under 24 CFR 982.505(c)(2).</dd>
+      <dt>How do I find the SAFMR for a specific ZIP code?</dt>
+      <dd>HUD publishes the current-year SAFMR tables by ZIP on huduser.gov, alongside the Federal Register notice listing designated metro areas. The FY2026 CSV pack on this site keeps FMR columns only and has no SAFMR flag, but ZIPs whose values differ from their metro's base row are the candidates to confirm against HUD's tables.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <p>Start with the free 22-row sample to check the schema, then take the full pack when it fits. The full pack carries all three CSVs (51,895 + 3,229 + 52 rows), the data dictionary, and source checksums.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">Get full data</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release, huduser.gov. US government data, public domain. Data Vault is not affiliated with HUD.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

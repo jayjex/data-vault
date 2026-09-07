@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What Is a CSV Sample? How to Judge One Before You Commit | Data Vault</title>
+<meta name="description" content="A CSV sample is a small slice of a dataset published free so you can check the schema, encoding, and data types before downloading the full file. How to judge one, with real examples from five sample CSVs on this site.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/what-is-a-csv-sample.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="What Is a CSV Sample? How to Judge One Before You Commit">
+<meta property="og:description" content="A CSV sample is a small slice of a dataset that publishers give away so you can check the schema, encoding, and data types before downloading the full file. What good samples include, and how to judge one.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/what-is-a-csv-sample.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "What Is a CSV Sample? How to Judge One Before You Commit", "description": "A CSV sample is a small slice of a dataset published free so you can check the schema, encoding, and data types before downloading the full file. How to judge one, with real examples from five sample CSVs on this site.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/what-is-a-csv-sample.html", "about": {"@type": "Thing", "name": "CSV sample data"}, "mentions": [{"@type": "Dataset", "name": "NFL Games & Betting Lines 1999-2026", "url": "https://jayjex.github.io/data-vault/datasets/nfl-games.html"}, {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "What is a CSV sample", "item": "https://jayjex.github.io/data-vault/guides/what-is-a-csv-sample.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is a CSV sample?", "acceptedAnswer": {"@type": "Answer", "text": "A CSV sample is a small file of real rows cut from a larger dataset, published free so you can inspect the columns, data types, and value formats before committing to the full download or purchase. It is a snapshot slice, usually 10 to 25 rows: enough to learn the schema and value formats, too small to compute statistics from."}}, {"@type": "Question", "name": "Why do dataset publishers give samples away for free?", "acceptedAnswer": {"@type": "Answer", "text": "Three reasons: buyers can evaluate the schema before paying or downloading, a 1-6 KB file costs the publisher almost nothing in bandwidth compared with serving full multi-megabyte files to people who will not use them, and a sample settles format questions (CSV versus JSON versus an API, encoding, quoting rules) before anyone writes import code against the wrong assumption. Every dataset on this site ships a free sample.csv and sample.json for exactly these reasons."}}, {"@type": "Question", "name": "How do I judge whether a sample is good?", "acceptedAnswer": {"@type": "Answer", "text": "Check four things: the sample carries the full column set of the real file (not a shortened preview), the rows are honest about what they are (usually the first rows, which can skew geography or time), the encoding is stated or detectable (UTF-8 handles names and symbols, and watch for empty cells that mean 'no data' rather than zero), and the data types survive a real import (leading-zero ZIP codes need to stay text, dates need a consistent format). If the publisher documents what the sample does and does not cover, that is a good sign in itself."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../tools/scraping-scripts.html">Tools</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>What is a CSV sample?</h1>
+  <p class="byline">Published 2026-09-10. Examples taken from the five sample CSVs this site publishes free, checked 2026-09-10.</p>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>A CSV sample is a small file of real rows cut from a larger dataset, published free so you can inspect the columns, data types, and value formats before committing to the full download or purchase. It is a snapshot slice, usually 10 to 25 rows: enough to learn the schema and value formats, too small to compute statistics from.</p>
+    <p>The CSV sample and the sample dataset page are the same idea at different sizes. A <em>sample</em> is the file itself; a <em>sample dataset</em> is a small complete dataset published for practice, demos, and tests. Publishers of large paid or gated datasets ship the first kind. Teaching sites ship the second. This page is about the first kind, because that is the decision you face before downloading anything big: is the full file worth pulling?</p>
+  </section>
+
+  <section aria-label="Why publishers give samples away">
+    <h2>Why publishers give samples away</h2>
+    <p>Free samples look like lost revenue. They are the opposite, for three concrete reasons:</p>
+    <p><strong>Evaluation before commitment.</strong> Nobody buys a 51,895-row dataset blind. The sample answers the questions that decide the purchase: does the file have the columns I need, do the values look maintained, will it load into my stack? Every full pack on this site links a free sample.csv and sample.json for exactly that check. A data dictionary documents the columns; <a href="data-dictionary-explained.html">what a data dictionary is</a> covers that side. The sample shows the columns themselves, with real values in them.</p>
+    <p><strong>Bandwidth.</strong> A 22-row CSV is 1.7 to 6.1 KB. The full files behind the samples on this site run from thousands to tens of thousands of rows, tens of kilobytes to megabytes per table. If every curious visitor pulled full files, a static host eats the transfer and most of it goes to people who wanted a look, not the data. The sample absorbs the browsing traffic; the checkout links serve the committed users.</p>
+    <p><strong>Format check.</strong> Delimiter, quoting, encoding, date format, empty-cell convention: these trip imports more often than row counts do. A sample settles them in seconds. If the publisher also ships the sample as JSON (this site does, with the same rows), you can see both serializations before writing a single line of import code, and decide whether you want a file download at all or an API-style query instead.</p>
+  </section>
+
+  <section aria-label="How to judge a sample">
+    <h2>How to judge whether a sample is good</h2>
+    <p>Any publisher can throw ten rows into a file. Four checks separate a useful sample from a decorative one:</p>
+    <p><strong>1. Full column set.</strong> The sample should carry every column of the real file, not a hand-picked preview. Our NFL sample has all 46 columns of games.csv, including the awkward ones: <code>away_moneyline</code> arrives empty on 1999 rows because moneylines only exist from 2006 onward, and <code>temp</code> is empty for dome games. A sample that hides those empties is a preview, and previews rot trust fast.</p>
+    <p><strong>2. Rows that admit what they are.</strong> Most samples are the first N rows of the file, and first rows skew. Ours are no exception, and it is worth seeing how: the HUD sample is the first 22 ZIP rows of the file, all inside the Abilene, TX metro. The Airbnb sample is 20 rows, all Austin. The NFL sample is 22 games, all from weeks 1-2 of the 1999 season. That is fine for schema evaluation and wrong for judging coverage. A good sample page says so plainly; this one does. If you need geographic spread from a publisher that ships only a first-rows slice, ask whether a wider sample exists before buying.</p>
+    <p><strong>3. Encoding you can verify.</strong> Every sample on this site is plain ASCII except one: the bounty listings sample is UTF-8, and it has to be, because token names arrive with emoji in them. That is the kind of thing you want to learn from a 1.9 KB file, not from a 90,000-row import that fails halfway. One line of a checker settles it:</p>
+<pre>file *.csv            # or: python3 -c "print(open('sample.csv','rb').read()[:400])"
+</pre>
+    <p>Also check line endings: our scraper-pack sample uses CRLF (Windows-style) endings, the rest use LF. Pandas and most importers handle both; hand-rolled parsers sometimes do not. Encoding and line endings belong in the publisher's documentation; ours are in the <a href="../agents/">agent docs</a> and the files themselves.</p>
+    <p><strong>4. Data types that survive import.</strong> Read the sample into your actual target before writing loader code. Two traps from our own files: the HUD <code>zip</code> column must stay text, because a numeric parse turns ZIP <code>07601</code> into <code>7601</code> and breaks the join, and the Airbnb sample carries empty <code>reviews_per_month</code> and <code>last_review</code> for listings with zero reviews, which must become NULL rather than zero or the averages lie. If the sample survives a dry run into pandas, Sheets, or a database table, the full file will too.</p>
+  </section>
+
+  <section aria-label="Our own samples as a case study">
+    <h2>Case study: the five samples on this site</h2>
+    <p>Every dataset here ships a <code>sample.json</code> (schema plus rows) and a <code>sample.csv</code> (same rows with a header). The <a href="../tools/sample-data-downloads.html">sample data downloads</a> page lists each one with exact columns and row counts; the honest summary:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Sample files on this site"><table><thead><tr><th scope="col">Dataset</th><th scope="col">Sample</th><th scope="col">File size</th><th scope="col">What the slice covers, honestly</th></tr></thead><tbody>
+      <tr><td>NFL games 1999-2026</td><td>22 rows &times; 46 cols</td><td>6.1 KB</td><td>Weeks 1-2 of 1999 only; moneylines empty pre-2006</td></tr>
+      <tr><td>HUD FMR FY2026</td><td>22 rows &times; 10 cols</td><td>1.7 KB</td><td>Abilene, TX metro ZIPs only; full file spans 51,895 ZIPs</td></tr>
+      <tr><td>Airbnb, 6 US cities</td><td>20 rows &times; 12 cols</td><td>2.6 KB</td><td>Austin listings only; five other cities absent from the sample</td></tr>
+      <tr><td>Superteam Earn listings</td><td>10 rows &times; 15 cols</td><td>1.9 KB</td><td>UTF-8 with emoji in token names; full file is 28 listings</td></tr>
+      <tr><td>Scraping script pack</td><td>10 rows &times; 2 cols</td><td>0.9 KB</td><td>CRLF line endings; one row per script in the pack</td></tr>
+    </tbody></table></div>
+    <p>Read that middle column as the real lesson: a sample tells you the schema perfectly and the coverage barely at all. The HUD sample looks like a Texas rent dataset; the full file covers the country. The Airbnb sample looks like an Austin dataset; the full pack spans six cities. Both samples did their actual job (columns, types, formats) flawlessly. Neither should be used for geography or statistics, and neither claims otherwise.</p>
+  </section>
+
+  <section aria-label="When a sample is not enough">
+    <h2>When a sample is not enough</h2>
+    <p>Sometimes 22 rows cannot answer the question, and the sample's job is to send you to the right next step. This site runs that ladder in three rungs, all free:</p>
+    <p><strong>Complete small tables, direct download.</strong> Where a dataset has a natural aggregate small enough to give away whole, it ships free: the 52-row <a href="../data/hud-fmr-2026/state-summary.csv" download>HUD state summary</a> (one row per state, complete), the 27-row <a href="../data/nfl-games/season-summaries.csv" download>NFL season summary</a> (complete), and the 6-row <a href="../data/airbnb-six-cities/cities-index.csv" download>Airbnb cities index</a> (complete). These are whole tables, not slices, so statistics drawn from them hold.</p>
+    <p><strong>Query the full file free.</strong> The MCP server reads the full released files and answers filters without checkout: 100 rows per call. A <code>state = TX</code> filter on the HUD file matches all 3,247 Texas ZIP rows, which is a bigger slice of real data than any sample CSV will give you, paged through free. Setup lives in the <a href="../agents/">agent access docs</a>.</p>
+    <p><strong>The full pack.</strong> When evaluation is done and the volume requirement is real, checkout on Getly gets the complete files. The samples stay free either way; nothing on this page is gated.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>CSV sample questions</h2>
+    <dl>
+      <dt>What is a CSV sample?</dt>
+      <dd>A CSV sample is a small file of real rows cut from a larger dataset, published free so you can inspect the columns, data types, and value formats before committing to the full download or purchase. It is a snapshot slice, usually 10 to 25 rows: enough to learn the schema and value formats, too small to compute statistics from.</dd>
+      <dt>Why do dataset publishers give samples away for free?</dt>
+      <dd>Three reasons: buyers can evaluate the schema before paying or downloading, a 1-6 KB file costs the publisher almost nothing in bandwidth compared with serving full multi-megabyte files to people who will not use them, and a sample settles format questions (CSV versus JSON versus an API, encoding, quoting rules) before anyone writes import code against the wrong assumption. Every dataset on this site ships a free sample.csv and sample.json for exactly these reasons.</dd>
+      <dt>How do I judge whether a sample is good?</dt>
+      <dd>Check four things: the sample carries the full column set of the real file (not a shortened preview), the rows are honest about what they are (usually the first rows, which can skew geography or time), the encoding is stated or detectable (UTF-8 handles names and symbols, and watch for empty cells that mean "no data" rather than zero), and the data types survive a real import (leading-zero ZIP codes need to stay text, dates need a consistent format). If the publisher documents what the sample does and does not cover, that is a good sign in itself.</dd>
+    </dl>
+    <p>Next reads: <a href="../tools/sample-data-downloads.html">sample data downloads</a> lists every free sample file with columns and row counts, and <a href="data-dictionary-explained.html">what a data dictionary is</a> covers the documentation that should sit next to a sample. Working at state level on rent data? <a href="hud-fmr-texas.html">HUD FMR for Texas</a> runs 3,247 rows end to end.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

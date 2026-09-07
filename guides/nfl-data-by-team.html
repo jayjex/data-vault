@@ -114,7 +114,7 @@ query_dataset("nfl-games", {file: "nfl-team-records-by-season.csv", where: [{col
 
 query_dataset("nfl-games", {where: [{column: "season", op: "=", value: 2024}, {column: "away_team", op: "=", value: "KC"}], limit: 5})
 <span class="cm">total_matched: 10 | next_offset: 5</span></pre>
-    <p>Ten home games, ten away games, 20 total: the playoff games count too. Compare those call outputs against the single KC 2024 row in the team table and the whole derivation checks out in a browser tab.</p>
+    <p>Ten home games, ten away games, 20 total: the playoff games count too. Compare those call outputs against the single KC 2024 row in the team table and the whole derivation checks out in a browser tab. For the live side of the same abbreviations, the <a href="espn-api-python.html">ESPN API in Python guide</a> pulls all 32 club codes from ESPN's teams endpoint and shows how they join back to this file.</p>
 
     <h3>In pandas, on the full CSV</h3>
     <p>After loading the table from the pack:</p>

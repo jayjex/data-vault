@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ESPN API in Python: requests Examples for the Free Site Endpoints | Data Vault</title>
+<meta name="description" content="The ESPN API in Python works with plain requests and no key: working examples for the NFL scoreboard and team endpoints, output verbatim from a live run, plus the honest limits of an undocumented API.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/espn-api-python.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="ESPN API in Python: requests Examples for the Free Site Endpoints">
+<meta property="og:description" content="The ESPN API in Python works with plain requests and no key: working examples for the NFL scoreboard and team endpoints, output verbatim from a live run on 2026-09-10, with the limits of an undocumented API spelled out.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/espn-api-python.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "ESPN API in Python: requests examples for the free site endpoints", "description": "The ESPN API in Python works with plain requests and no key: working examples for the NFL scoreboard and team endpoints, output verbatim from a live run, plus the honest limits of an undocumented API.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/espn-api-python.html", "about": {"@type": "Dataset", "name": "NFL Games & Betting Lines 1999-2026", "url": "https://jayjex.github.io/data-vault/datasets/nfl-games.html"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "ESPN API in Python", "item": "https://jayjex.github.io/data-vault/guides/espn-api-python.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the ESPN API free to use from Python?", "acceptedAnswer": {"@type": "Answer", "text": "Yes for the site endpoints. The scoreboard and team URLs under site.api.espn.com answer a plain requests.get call with no account, no key, and no headers, and both returned 200 on 2026-09-10. ESPN sells developer products with licensed feeds on top, but the site API itself costs nothing to call."}}, {"@type": "Question", "name": "Does the ESPN API need an API key?", "acceptedAnswer": {"@type": "Answer", "text": "Not for the endpoints shown here. The scoreboard, teams, and per-team calls all returned 200 with an unauthenticated requests.get on the checked date. The flip side of no key is no contract. There is no published rate limit, so keep a timeout on every call, cache responses you already have, and back off on errors instead of retrying in a tight loop."}}, {"@type": "Question", "name": "Is the ESPN site API official and stable?", "acceptedAnswer": {"@type": "Answer", "text": "It is public and served by ESPN, but it is undocumented: there is no published schema, no versioning promise, and the response shape can change without notice. Scores arrive as strings, nesting runs deep, and fields like a team's record summary reset with the season calendar. For analysis you rerun over months, pair the live calls with a pinned snapshot CSV so joins and columns hold between runs."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../datasets/nfl-games.html">NFL dataset</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>ESPN API in Python: requests examples for the free site endpoints</h1>
+  <p class="byline">Guide to the <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026</a> pack &middot; the live-API side of the <a href="nfl-data-api-python.html">NFL data API in Python guide</a> &middot; every status code and output comment on this page comes from a live run on 2026-09-10.</p>
+
+  <section aria-label="Quick answer">
+    <p>One <code>requests</code> call pulls a week of NFL results out of ESPN's public site API. No key, no signup:</p>
+<pre>import requests
+
+r = requests.get(
+    "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+    params={"seasonType": 2, "week": 1, "dates": 2025},
+    timeout=30,
+)
+r.raise_for_status()
+events = r.json()["events"]
+print(len(events))          # 16
+print(events[0]["name"])    # Dallas Cowboys at Philadelphia Eagles</pre>
+    <p>That ran on 2026-09-10 against the real endpoint, output verbatim. The API powers ESPN's own site and apps, and its public endpoints answer to any client. The sections below map the endpoints worth calling from Python, show working examples, and list the limits of an undocumented API.</p>
+  </section>
+
+  <section aria-label="The endpoints">
+    <h2>The endpoints, checked live</h2>
+    <p>All of them live under <code>https://site.api.espn.com/apis/site/v2/sports/</code>. The league segment, <code>football/nfl</code> in the URLs below, is the only part that changes when you move between sports. Each row was hit on the checked date:</p>
+    <table>
+      <tr><th>Endpoint</th><th>What it returns</th><th>Auth</th><th>Checked 2026-09-10</th></tr>
+      <tr><td><code>/football/nfl/scoreboard</code></td><td>One week of fixtures and results, nested JSON</td><td>none</td><td>200, 16 events, 138 KB</td></tr>
+      <tr><td><code>/football/nfl/teams</code></td><td>All 32 clubs with name, colors, and logos</td><td>none</td><td>200, 148 KB</td></tr>
+      <tr><td><code>/football/nfl/teams/kc</code></td><td>One club, same team object</td><td>none</td><td>200</td></tr>
+      <tr><td><code>/basketball/nba/scoreboard</code></td><td>Same shape, different league</td><td>none</td><td>200, 1 upcoming event</td></tr>
+    </table>
+    <p>The NBA row is the same URL with <code>basketball/nba</code> swapped in, and it returned the October 3 preseason opener on the checked date. Other leagues follow the same pattern; only the two above are claimed here because only those two were tested.</p>
+  </section>
+
+  <section aria-label="Example 1, scoreboard">
+    <h2>Example 1: the scoreboard, with scores</h2>
+    <p>The quick-answer call again, with the score lines pulled out. Competitors sit under each event's <code>competitions</code> list, and the <code>homeAway</code> key is the only reliable way to tell the two sides apart, because the array order is not guaranteed:</p>
+<pre>import requests
+
+r = requests.get(
+    "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+    params={"seasonType": 2, "week": 1, "dates": 2025},
+    timeout=30,
+)
+r.raise_for_status()
+for e in r.json()["events"][:2]:
+    comp = e["competitions"][0]["competitors"]
+    home = next(c for c in comp if c["homeAway"] == "home")
+    away = next(c for c in comp if c["homeAway"] == "away")
+    print(f'{away["team"]["abbreviation"]} {away["score"]} at '
+          f'{home["team"]["abbreviation"]} {home["score"]}')
+# DAL 20 at PHI 24
+# KC 21 at LAC 27</pre>
+    <p>Week 1 of the 2025 season returned 16 events, and those two games closed 24-20 and 27-21. Swap <code>params</code> for <code>{"seasonType": 2, "week": 1, "dates": 2026}</code> to see the current season's opening week fill in as results land. Two field facts that save debugging time: <code>score</code> arrives as a string, not a number, and the deep nesting is a display feed, built for ESPN's pages, so read the fields you need instead of assuming the whole structure stays put.</p>
+  </section>
+
+  <section aria-label="Example 2, teams">
+    <h2>Example 2: the teams list and one club</h2>
+    <p>The <code>teams</code> endpoint returns every club in one call. The 32 abbreviations it hands back are worth keeping around:</p>
+<pre>import requests
+
+BASE = "https://site.api.espn.com/apis/site/v2/sports/football/nfl"
+
+r = requests.get(f"{BASE}/teams", timeout=30)
+r.raise_for_status()
+teams = r.json()["sports"][0]["leagues"][0]["teams"]
+abbrs = [t["team"]["abbreviation"] for t in teams]
+print(r.status_code, len(abbrs))    # 200 32
+print(" ".join(abbrs))
+# ARI ATL BAL BUF CAR CHI CIN CLE DAL DEN DET GB HOU IND JAX KC LV
+# LAC LAR MIA MIN NE NO NYG NYJ PHI PIT SF SEA TB TEN WSH</pre>
+    <p>That list matches the <code>home_team</code> and <code>away_team</code> columns in the nflverse <code>games.csv</code>, and the abbreviations inside scoreboard output, so live results and historical rows join without a mapping table. A single club comes back from the same path with an abbreviation appended:</p>
+<pre>r = requests.get(f"{BASE}/teams/kc", timeout=30)
+r.raise_for_status()
+kc = r.json()["team"]
+print(kc["displayName"], kc["abbreviation"])    # Kansas City Chiefs KC
+print(kc["color"])                              # e31837</pre>
+    <p>The color hex arrives without the <code>#</code> prefix, and the same team object carries logos, links, and a record summary that resets with the season calendar; it read <code>0-0</code> on the checked date, between seasons. Treat anything on this object as current state, not history.</p>
+  </section>
+
+  <section aria-label="The honest limits">
+    <h2>The honest limits</h2>
+    <p>The scoreboard and teams endpoints are free and open, and three caveats decide whether they fit your project:</p>
+    <p>First, the API is undocumented. There is no published schema and no versioning promise, so ESPN can change field names, nesting, or response size without notice. The examples here ran clean on 2026-09-10, and the same shape held across every call, but that is an observation, not a contract.</p>
+    <p>Second, no key does not mean no limits. The endpoint publishes no rate limit, so the safe pattern is a <code>timeout</code> on every call, caching responses you already have, and backing off on errors instead of hammering retries. A scoreboard pull per script run is a fraction of a request per minute; a scraping loop is how undocumented endpoints get shut.</p>
+    <p>Third, the API covers now, not history. The scoreboard returns weeks, the teams endpoint returns current state, and neither gives you 1999-2026 game rows with closing lines. For that, the pinned snapshot routes in the <a href="nfl-data-api-python.html">NFL data API in Python guide</a> cover the gap, and the next section shows where the snapshot lives.</p>
+  </section>
+
+  <section aria-label="From live calls to a pinned dataset">
+    <h2>From live calls to a pinned dataset</h2>
+    <p>A common shape for a working script: ESPN for this week's scoreboard, a pinned CSV for every game before this season. The <a href="../data/nfl-games/sample.csv" download>free 22-row sample</a> on this site carries the same schema as the full games.csv, and the <a href="../datasets/nfl-games.html">full pack</a> ships 7,548 games with spreads, totals, and moneylines, plus derived tables and a <a href="nfl-games-data-guide.html">column guide</a>.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/nfl-games/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h" rel="noopener">Get full data</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. The full pack is 3 CSVs (7,548 + 861 + 27 rows), data dictionary, source SHA-256 checksums. The sample downloads free here, no signup.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>ESPN API questions</h2>
+    <dl>
+      <dt>Is the ESPN API free to use from Python?</dt>
+      <dd>Yes for the site endpoints. The scoreboard and team URLs under <code>site.api.espn.com</code> answer a plain <code>requests.get</code> call with no account, no key, and no headers, and both returned 200 on 2026-09-10. ESPN sells developer products with licensed feeds on top, but the site API itself costs nothing to call.</dd>
+      <dt>Does the ESPN API need an API key?</dt>
+      <dd>Not for the endpoints shown here. The scoreboard, teams, and per-team calls all returned 200 with an unauthenticated <code>requests.get</code> on the checked date. The flip side of no key is no contract. There is no published rate limit, so keep a timeout on every call, cache responses you already have, and back off on errors instead of retrying in a tight loop.</dd>
+      <dt>Is the ESPN site API official and stable?</dt>
+      <dd>It is public and served by ESPN, but it is undocumented: there is no published schema, no versioning promise, and the response shape can change without notice. Scores arrive as strings, nesting runs deep, and fields like a team's record summary reset with the season calendar. For analysis you rerun over months, pair the live calls with a pinned snapshot CSV so joins and columns hold between runs.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Attribution">
+    <h2>Sources and license</h2>
+    <p>The ESPN site API is a public, undocumented endpoint served by ESPN; this page makes no claim on its content or continued availability. Game rows referenced as history trace back to the nflverse-data project, file <code>schedules/games.csv</code>, released under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>; credit it as "Data from nflverse, CC BY 4.0". Team names are factual data; no logos or league marks appear anywhere in the pack. This page and the pack describe data only and offer no betting advice, picks, or predictions.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

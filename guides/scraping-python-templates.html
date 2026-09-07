@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Python Scraping Template: 10 Ready-to-Edit Patterns | Data Vault</title>
+<meta name="description" content="10 scraping templates you edit instead of write: pagination, infinite scroll, login sessions, price monitors, sitemap crawling, retry logic. How each pattern maps to Python, honest limits, robots.txt rules.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/scraping-python-templates.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Python Scraping Template: 10 Ready-to-Edit Patterns">
+<meta property="og:description" content="10 scraping templates you edit instead of write, how each pattern maps to Python, honest limits, and robots.txt rules.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/scraping-python-templates.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Python Scraping Template: 10 Ready-to-Edit Patterns", "description": "10 scraping templates you edit instead of write, how each pattern maps to Python, honest limits, and robots.txt rules.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/scraping-python-templates.html", "about": {"@type": "Thing", "name": "python scraping template"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is there a Python scraping template I can just edit?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, though the ones documented here ship as Node.js and Playwright scripts. The structure is what you are borrowing: a config block at the top, one loop per pattern, a save step at the end. In Python the same templates map to requests plus BeautifulSoup for static pages, Playwright for Python when a page needs a real browser, and the csv or json modules for output. Porting one template is usually under an hour."}}, {"@type": "Question", "name": "What should a Python scraping template include?", "acceptedAnswer": {"@type": "Answer", "text": "Five parts: an EDIT config block at the top with the start URL and selectors, a retry with exponential backoff for failed requests, a loop that handles the page pattern (pagination, scroll, or poll), a dedupe step so reruns do not duplicate rows, and a plain output writer to CSV or JSONL. A real user agent string belongs in the headers of every request."}}, {"@type": "Question", "name": "Is scraping with Python legal?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on what you scrape and where the site operates. Check robots.txt and the terms of service, collect public pages only, keep request rates low, and never scrape personal data. Login-protected pages need an account you own or written permission. Rules differ by country and site, so treat any checklist as a starting point, not legal advice."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Python scraping template: 10 patterns you edit, not write</h1>
+  <p class="byline">Published 2026-09-10. The reference templates run on Node 18 with Playwright; the Python mappings below are 1:1. This page documents patterns and limits, not legal advice.</p>
+
+  <section aria-label="What a scraping template gives you">
+    <p>Most searches for a python scraping template end at a 40-line tutorial snippet that breaks on the second page of results. What actually saves time is a template per scraping pattern, already handling the boring parts: pagination, retries, dedupe, file output. This page lists the ten patterns we ship as ready-to-edit scripts, shows what each looks like in Python, and is straight about where templates stop helping.</p>
+    <p>One thing to know up front: the <a href="../tools/scraping-scripts.html">script pack</a> behind this guide is written in Node.js, not Python. The structure ports line for line, and the mapping section below shows exactly which Python libraries replace which parts. If you would rather run the files as-is without porting, they work on their own; nothing in them needs Python.</p>
+  </section>
+
+  <section aria-label="The 10 templates">
+    <h2>The 10 templates and what each one is for</h2>
+    <p>Each file is self-contained, opens with a how-to-run comment, and marks everything you are allowed to change with an <code>EDIT</code> constant. The full inventory with runtime notes ships as a <a href="../data/scraper-pack/scripts-manifest.json" download>free manifest JSON</a>:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Template table"><table>
+      <thead><tr><th scope="col">Template</th><th scope="col">What it does</th><th scope="col">Typical job</th></tr></thead>
+      <tbody>
+        <tr><td>01-paginated-table-to-csv.js</td><td>Follows page numbers or a Next button, saves table rows to CSV</td><td>A listings or results table split over many pages</td></tr>
+        <tr><td>02-infinite-scroll-collector.js</td><td>Scrolls a feed to the bottom, dedupes, saves JSON</td><td>Collect every card in a feed that loads more on scroll</td></tr>
+        <tr><td>03-login-scrape-storagestate.js</td><td>Logs in once, saves the session, reuses it later</td><td>Pages behind a login on an account you own</td></tr>
+        <tr><td>04-price-stock-monitor.js</td><td>Compares runs, sends a webhook message on change</td><td>Watch a price or stock status and get pinged</td></tr>
+        <tr><td>05-bulk-form-submitter.js</td><td>Reads CSV rows, fills and submits one form per row</td><td>The same form, many records you already have</td></tr>
+        <tr><td>06-job-board-scraper.js</td><td>Scrapes listing pages, remembers what it saw before</td><td>Track new postings without re-collecting old ones</td></tr>
+        <tr><td>07-sitemap-crawler.js</td><td>Expands sitemap indexes, honors robots.txt and crawl-delay, writes JSONL</td><td>List every URL a site publishes in its sitemap</td></tr>
+        <tr><td>08-screenshot-diff-bot.js</td><td>Screenshots on a schedule, hashes, archives changes</td><td>Know exactly when a page layout or content changed</td></tr>
+        <tr><td>09-api-poller-jsonl.js</td><td>Calls a JSON endpoint on a timer, appends new records</td><td>Keep an append-only log of an endpoint over time</td></tr>
+        <tr><td>10-retry-fetch-wrapper.js</td><td>Exponential backoff, jitter, UA rotation, Retry-After aware</td><td>Wrap flaky requests so they back off instead of crashing</td></tr>
+      </tbody>
+    </table></div>
+    <p>You need one template per job, the one that matches the page in front of you. The other nine stay in the folder for the next project.</p>
+  </section>
+
+  <section aria-label="Mapping the patterns to Python">
+    <h2>How each pattern maps to Python</h2>
+    <p>The transferable part of any template is its shape: fetch, parse, dedupe, persist. Each shape translates directly:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Node to Python mapping table"><table>
+      <thead><tr><th scope="col">Part in the template</th><th scope="col">Python equivalent</th></tr></thead>
+      <tbody>
+        <tr><td>Playwright (browser fetch)</td><td>playwright for Python, same API surface; requests + BeautifulSoup when the page is static</td></tr>
+        <tr><td>Built-in fetch for plain JSON</td><td>requests.get() or urllib</td></tr>
+        <tr><td>CSV writing</td><td>the csv module, csv.DictWriter</td></tr>
+        <tr><td>JSONL append</td><td>open(out, "a") with json.dumps per line</td></tr>
+        <tr><td>Sleep between requests</td><td>time.sleep(seconds)</td></tr>
+        <tr><td>Exponential backoff retries</td><td>a while loop over tenacity, or 10 lines of hand-rolled retry</td></tr>
+        <tr><td>storageState session reuse</td><td>playwright for Python's storage_state, or a requests.Session with saved cookies</td></tr>
+      </tbody>
+    </table></div>
+    <p>The retry wrapper shows the pattern in its smallest form. The shipped version adds jitter and reads the server's Retry-After header; this is the skeleton:</p>
+    <pre><code>import time, requests
+
+def fetch_retry(url, tries=5):
+    delay = 1
+    for _ in range(tries):
+        r = requests.get(url, headers={"User-Agent": "my-scraper/1.0 (contact: me@example.com)"})
+        if r.status_code == 200:
+            return r
+        if r.status_code in (429, 503):
+            time.sleep(delay)
+            delay *= 2
+        else:
+            r.raise_for_status()
+    raise RuntimeError(f"gave up on {url} after {tries} tries")</code></pre>
+    <p>Swap the fetch line for a BeautifulSoup parse or a Playwright page and the rest of a ported template stays identical across all ten patterns.</p>
+  </section>
+
+  <section aria-label="Why self-hosted templates">
+    <h2>Why self-hosted scripts instead of a hosted scraper</h2>
+    <p>Hosted scraping platforms rent you the same patterns by the month and keep your runs on their infrastructure. Self-hosted templates trade convenience for control: the files live on your machine, run on your schedule, and stop costing anything the day you stop using them. The data lands in your own CSVs, so nothing about your pipeline depends on another company's uptime or pricing changes.</p>
+    <p>The cost shows up as maintenance. A hosted platform absorbs layout changes behind its own tooling; with your own templates, you fix a selector when a site redesigns. The <a href="../tools/scraping-tools-alternative.html">cloud vs self-hosted comparison</a> walks both sides with numbers. For a handful of sites you check weekly, templates win on effort. For dozens of sites on tight schedules, the platform math changes.</p>
+  </section>
+
+  <section aria-label="Honest limits">
+    <h2>What templates cannot do</h2>
+    <p>Three situations outgrow templates, in Python or any language. Sites that load data from private APIs inside the page work, but the selector you need may sit behind a delay or scroll, and you will adjust the wait. Sites that require an account: the login template handles the mechanics, but only for an account you own or have written permission to use. Sites that redesign often: each change breaks selectors, and fixing them is a two-minute edit per change, repeated forever.</p>
+    <p>Templates remove the 90 percent that is boilerplate. The remaining 10 percent is judgment about the specific site, and no template removes that part.</p>
+  </section>
+
+  <section aria-label="Robots, terms of service, and rate limits">
+    <h2>Stay within robots.txt and the site's terms</h2>
+    <p>Four checks before any run. Read the site's <code>robots.txt</code> and follow what it disallows. Read the terms of service for a clause about automated access. Collect public pages only; the login template exists for your own accounts, not for getting around access controls. Keep the request rate low and send a real user agent so site owners can reach you.</p>
+    <p>Template 07 reads robots.txt and crawl-delay for you. The other nine run at whatever pace you set, so set it slow: one page every few seconds is polite, ten per second is a problem for you and for the site. In Python, <code>time.sleep()</code> between requests does the same job. Laws on automated collection differ by country and site, so treat this section as a starting point, not legal advice.</p>
+  </section>
+
+  <section aria-label="Where to get the templates">
+    <h2>Get the templates</h2>
+    <p>The <a href="../tools/scraping-scripts.html">web scraping scripts pack</a> page documents every file, lists use cases per script, and links the free manifest plus sample files. Setup is one npm install and one chromium download, and nothing uploads anywhere. The <a href="../guides/scrape-without-coding.html">scrape without coding guide</a> shows the edit-one-config workflow step by step if this is your first template.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/scraper-pack/scripts-manifest.json" download>Download manifest (free)</a>
+      <a class="btn" href="../tools/scraping-scripts.html">See the scripts pack</a>
+    </div>
+    <p class="btn-note">The manifest lists all 10 files with their pattern and runtime notes, free to download.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>Is there a Python scraping template I can just edit?</h3>
+    <p>Yes, though the ones documented here ship as Node.js and Playwright scripts. The structure is what you are borrowing: a config block at the top, one loop per pattern, a save step at the end. In Python the same templates map to requests plus BeautifulSoup for static pages, Playwright for Python when a page needs a real browser, and the csv or json modules for output. Porting one template is usually under an hour.</p>
+    <h3>What should a Python scraping template include?</h3>
+    <p>Five parts: an EDIT config block at the top with the start URL and selectors, a retry with exponential backoff for failed requests, a loop that handles the page pattern (pagination, scroll, or poll), a dedupe step so reruns do not duplicate rows, and a plain output writer to CSV or JSONL. A real user agent string belongs in the headers of every request.</p>
+    <h3>Is scraping with Python legal?</h3>
+    <p>It depends on what you scrape and where the site operates. Check robots.txt and the terms of service, collect public pages only, keep request rates low, and never scrape personal data. Login-protected pages need an account you own or written permission. Rules differ by country and site, so treat any checklist as a starting point, not legal advice.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

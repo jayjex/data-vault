@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>What Is JSON-LD? Structured Data for SEO, With Real Blocks From This Site | Data Vault</title>
-<meta name="description" content="JSON-LD is the script format Google prefers for structured data. What it is, the four schema.org types that matter for SEO (Article, FAQPage, BreadcrumbList, ItemList), how to validate it, and the 85 JSON-LD blocks this site ships.">
+<meta name="description" content="JSON-LD is the script format Google prefers for structured data. What it is, the four schema.org types that matter for SEO (Article, FAQPage, BreadcrumbList, ItemList), how to validate it, and the JSON-LD blocks this site ships on all 119 pages.">
 <link rel="canonical" href="https://jayjex.github.io/data-vault/guides/what-is-jsonld.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Data Vault">
@@ -13,7 +13,7 @@
 <meta property="og:url" content="https://jayjex.github.io/data-vault/guides/what-is-jsonld.html">
 <meta name="twitter:card" content="summary">
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "Article", "headline": "What Is JSON-LD? Structured Data for SEO, With Real Blocks From This Site", "description": "JSON-LD is the script format Google prefers for structured data. What it is, the four schema.org types that matter for SEO (Article, FAQPage, BreadcrumbList, ItemList), how to validate it, and the 85 JSON-LD blocks this site ships.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/what-is-jsonld.html", "about": {"@type": "Thing", "name": "JSON-LD"}, "mentions": [{"@type": "WebPage", "name": "Google Rich Results Test", "url": "https://search.google.com/test/rich-results"}, {"@type": "WebPage", "name": "Schema.org validator", "url": "https://validator.schema.org"}]}
+{"@context": "https://schema.org", "@type": "Article", "headline": "What Is JSON-LD? Structured Data for SEO, With Real Blocks From This Site", "description": "JSON-LD is the script format Google prefers for structured data. What it is, the four schema.org types that matter for SEO (Article, FAQPage, BreadcrumbList, ItemList), how to validate it, and the JSON-LD blocks this site ships on all 119 pages.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/what-is-jsonld.html", "about": {"@type": "Thing", "name": "JSON-LD"}, "mentions": [{"@type": "WebPage", "name": "Google Rich Results Test", "url": "https://search.google.com/test/rich-results"}, {"@type": "WebPage", "name": "Schema.org validator", "url": "https://validator.schema.org"}]}
 </script>
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "What is JSON-LD", "item": "https://jayjex.github.io/data-vault/guides/what-is-jsonld.html"}]}
@@ -36,7 +36,7 @@
 <main id="main" class="wrap page">
   <a class="crumb" href="..">&larr; Catalog</a>
   <h1>What is JSON-LD?</h1>
-  <p class="byline">Published 2026-09-10. Every block below is copied from pages live on this site: all 85 HTML pages carry at least one JSON-LD block, most carry three.</p>
+  <p class="byline">Published 2026-09-10. Every block below is copied from pages live on this site: all 119 HTML pages carry at least one JSON-LD block, most carry three.</p>
 
   <section aria-label="The short answer">
     <h2>The short answer</h2>
@@ -64,7 +64,7 @@
 
   <section aria-label="How this site uses JSON-LD">
     <h2>How this site uses it: real blocks</h2>
-    <p>All 85 HTML pages on this site carry JSON-LD, and every guide ships the same three blocks: <code>Article</code>, <code>BreadcrumbList</code>, and <code>FAQPage</code>. Here is what that looks like in practice.</p>
+    <p>All 119 HTML pages on this site carry JSON-LD, and every guide ships the same three blocks: <code>Article</code>, <code>BreadcrumbList</code>, and <code>FAQPage</code>. Here is what that looks like in practice.</p>
     <p>Our <a href="hud-fmr-by-state.html">HUD FMR by state</a> guide has a 52-row table of per-state rent medians, one row per state, each row an anchor. The <code>ItemList</code> block mirrors that table with one <code>ListItem</code> per state. The real block, abridged:</p>
 <pre><code>{"@context": "https://schema.org", "@type": "ItemList",
  "name": "HUD FMR by state, FY2026 2BR medians", "numberOfItems": 52,
@@ -100,7 +100,7 @@
 
   <section aria-label="Where to go next">
     <h2>Read next</h2>
-    <p>Structured data describes a page; a <a href="data-dictionary-explained.html">data dictionary</a> describes a dataset, column by column, and we document every CSV pack we ship with one. JSON-LD speaks to search crawlers; <a href="what-is-llms-txt.html">llms.txt</a> speaks to AI agents, and our live file shows the format in use. For how the two machine-facing files at a site root differ, see the <a href="llms-txt-vs-sitemap.html">llms.txt vs sitemap.xml comparison</a>.</p>
+    <p>Structured data describes a page; a <a href="data-dictionary-explained.html">data dictionary</a> describes a dataset, column by column, and we document every CSV pack we ship with one. JSON-LD speaks to search crawlers; <a href="what-is-llms-txt.html">llms.txt</a> speaks to AI agents, and our live file shows the format in use. For how the two machine-facing files at a site root differ, see the <a href="llms-txt-vs-sitemap.html">llms.txt vs sitemap.xml comparison</a>. For a page that ships all three blocks over live-tested API outputs, read the <a href="weather-data-api.html">weather data API guide for analysts</a>.</p>
   </section>
 </main>
 

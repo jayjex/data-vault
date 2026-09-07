@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weather Data APIs for Analysts: Open-Meteo, NWS, NOAA NCEI Tested Live | Data Vault</title>
+<meta name="description" content="Free weather data APIs for analyst work, tested live: Open-Meteo forecast and Archive endpoints, the National Weather Service points API, and NOAA NCEI station records, with verbatim outputs and the job each one fits.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/weather-data-api.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Weather Data APIs for Analysts: Open-Meteo, NWS, NOAA NCEI Tested Live">
+<meta property="og:description" content="Free weather data endpoints for analyst work, tested live from our box: Open-Meteo forecast and archive, NWS gridpoints, and NOAA NCEI station records, with verbatim outputs.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/weather-data-api.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Weather Data APIs for Analysts: Open-Meteo, NWS, and NOAA NCEI Tested Live", "description": "Free weather data APIs for analyst work, tested live: Open-Meteo forecast and Archive endpoints, the National Weather Service points API, and NOAA NCEI station records, with verbatim outputs and the job each one fits.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/weather-data-api.html", "about": {"@type": "Thing", "name": "weather data API"}, "mentions": [{"@type": "WebPage", "name": "Open-Meteo API documentation", "url": "https://open-meteo.com/en/docs"}, {"@type": "WebPage", "name": "National Weather Service API", "url": "https://www.weather.gov/documentation/services-web-api"}, {"@type": "WebPage", "name": "NOAA NCEI Access Data Service", "url": "https://www.ncei.noaa.gov/support/access-data-service-api-user-documentation"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Weather data APIs for analysts", "item": "https://jayjex.github.io/data-vault/guides/weather-data-api.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the best free weather data API?", "acceptedAnswer": {"@type": "Answer", "text": "For most analyst work, Open-Meteo: one keyless platform serves current conditions, a 16-day forecast, and the Archive API with daily history back to 1940, on a documented 10,000-calls-per-day free tier. Inside the US, add the National Weather Service API for official forecasts and alerts and NOAA NCEI when you need station-level history for climate research. All three returned live data with no key when we tested them from our box on 2026-09-07."}}, {"@type": "Question", "name": "Can I get historical weather data for free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, two ways. The Open-Meteo Archive API serves reanalysis data back to 1940 with no key; one request pulled a full year of daily highs, lows, and precipitation for New York in about 10 KB of JSON. NOAA NCEI serves station records from the GHCN-Daily network, also keyless on the endpoint we tested, and many stations hold decades of daily readings. Reanalysis covers anywhere on earth; station records carry the thermometer's actual readings."}}, {"@type": "Question", "name": "Which weather API should analysts use for long-term US research?", "acceptedAnswer": {"@type": "Answer", "text": "NOAA NCEI for anything you plan to cite. Its daily-summaries dataset returns station observations such as TMAX, TMIN, and PRCP straight from instruments at stations like LaGuardia Airport (USW00014732), and the test call needed no key. Open-Meteo's Archive API works better when you need gridded data for arbitrary points or international comparisons. The National Weather Service API covers forecasts and warnings, not long-term records."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../datasets/nfl-games.html">NFL dataset</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Weather data APIs for analysts: tested live</h1>
+  <p class="byline">Published 2026-09-10 &middot; every request below ran live from our test box on 2026-09-07 &middot; outputs are pasted exactly as returned.</p>
+
+  <section aria-label="Which API fits which job">
+    <p>Analysts reach for weather data in three situations: today's numbers and the next two weeks, a historical record to backtest against, and long-run station data for a climate or research question. Commercial aggregators wrap all three behind one monthly bill. The free endpoints below already do the job, and each returned HTTP 200 with no API key when we tested it.</p>
+    <div class="table-scroll"><table>
+      <thead><tr><th>Job</th><th>Best source</th><th>Why it wins</th><th>What we pulled</th></tr></thead>
+      <tbody>
+        <tr><td>Current conditions + 16-day forecast</td><td>Open-Meteo forecast API</td><td>no key, 10,000 calls/day, global</td><td>NYC live: 24.8 &deg;C</td></tr>
+        <tr><td>Historical daily data for backtests</td><td>Open-Meteo Archive API</td><td>ERA5 reanalysis, daily back to 1940</td><td>365 days of NYC 2025</td></tr>
+        <tr><td>US official forecasts and alerts</td><td>NWS api.weather.gov</td><td>US government source of record</td><td>DC gridpoint LWX 97,71</td></tr>
+        <tr><td>US long-term station records</td><td>NOAA NCEI daily-summaries</td><td>instrument readings, keyless</td><td>5 days from LaGuardia</td></tr>
+      </tbody></table></div>
+  </section>
+
+  <section aria-label="Open-Meteo forecast">
+    <h2>Live weather: Open-Meteo forecast API</h2>
+    <p>Open-Meteo runs on <a href="https://open-meteo.com/en/docs" rel="noopener">documented</a> models (GFS, ECMWF, ICON) and serves them without a key on a free tier of 10,000 calls per day for non-commercial use. One GET returns current conditions for any coordinate on earth. We first ran this endpoint for the <a href="public-data-apis-list.html">public data APIs list</a>; the schema has not moved since. The call:</p>
+    <pre>curl -s "https://api.open-meteo.com/v1/forecast?latitude=40.71&amp;longitude=-74.01&amp;current=temperature_2m,wind_speed_10m"</pre>
+    <p>The response, 372 bytes, pretty-printed for this page:</p>
+    <pre>{
+ "latitude": 40.710335,
+ "longitude": -73.99308,
+ "generationtime_ms": 0.032782554626464844,
+ "utc_offset_seconds": 0,
+ "timezone": "GMT",
+ "timezone_abbreviation": "GMT",
+ "elevation": 27.0,
+ "current_units": {"time": "iso8601", "interval": "seconds", "temperature_2m": "&deg;C", "wind_speed_10m": "km/h"},
+ "current": {"time": "2026-09-07T15:45", "interval": 900, "temperature_2m": 24.8, "wind_speed_10m": 13.7}
+}</pre>
+    <p>24.8 &deg;C and 13.7 km/h wind at Lower Manhattan, timestamped 2026-09-07T15:45. Two details analysts should notice. First, the API snaps your coordinates to its model grid: we sent 40.71, -74.01 and it echoed back 40.710335, -73.99308 at elevation 27.0 m, the cell it actually evaluated. Second, the <code>current</code> block is one slice. Add <code>&amp;daily=temperature_2m_max,temperature_2m_min&amp;forecast_days=16</code> and the same endpoint returns 16 days of daily highs and lows in one call, which is usually what a forecast-driven report actually needs.</p>
+  </section>
+
+  <section aria-label="Open-Meteo Archive">
+    <h2>The historical weather API: Open-Meteo Archive</h2>
+    <p>Forecast endpoints only see the future. For backward-looking work such as backtests, seasonality curves, and features for a model, Open-Meteo runs a second API at archive-api.open-meteo.com. It serves ERA5 reanalysis on daily and hourly steps, with most variables reaching back to January 1940, under the same no-key, 10,000-calls-per-day policy. Our test asked for one city, one full year of daily highs, lows, and precipitation, in local days:</p>
+    <pre>import json, urllib.request
+
+url = ("https://archive-api.open-meteo.com/v1/archive"
+       "?latitude=40.71&amp;longitude=-74.01"
+       "&amp;start_date=2025-01-01&amp;end_date=2025-12-31"
+       "&amp;daily=temperature_2m_max,temperature_2m_min,precipitation_sum"
+       "&amp;timezone=America/New_York")
+daily = json.load(urllib.request.urlopen(url))["daily"]
+
+days = daily["time"]
+highs = daily["temperature_2m_max"]
+lows = daily["temperature_2m_min"]
+rain = daily["precipitation_sum"]
+
+hottest = highs.index(max(highs))
+coldest = lows.index(min(lows))
+wettest = rain.index(max(rain))
+
+print(f"days={len(days)} mean_high={sum(highs)/len(highs):.1f}C")
+print(f"hottest={highs[hottest]}C on {days[hottest]}")
+print(f"coldest={lows[coldest]}C on {days[coldest]}")
+print(f"wettest={rain[wettest]}mm on {days[wettest]}")
+print(f"total_precip={sum(rain):.1f}mm")</pre>
+    <p>The script's printed output:</p>
+    <pre>days=365 mean_high=17.0C
+hottest=40.4C on 2025-06-24
+coldest=-16.7C on 2025-01-22
+wettest=48.6mm on 2025-09-25
+total_precip=1116.1mm</pre>
+    <p>That is New York's 2025 in five lines: mean daily high 17.0 &deg;C, a 40.4 &deg;C peak on June 24, a -16.7 &deg;C floor on January 22, and 1,116.1 mm of precipitation spread across the year. The raw response was 10,462 bytes with 365 rows; the arrays start at <code>"2025-01-01"</code> with a high of 11.0 &deg;C and end at <code>"2025-12-31"</code> with 7.4 &deg;C. One wrinkle: the archive resolved our point to grid cell 40.738136, -74.04254 near LaGuardia Airport rather than the forecast API's cell. ERA5 is a model on a roughly 9 km grid, so a "point" value is always the nearest cell. Pass <code>timezone=America/New_York</code> as we did, or daily boundaries follow UTC.</p>
+  </section>
+
+  <section aria-label="National Weather Service">
+    <h2>US official forecasts: NWS api.weather.gov</h2>
+    <p>The National Weather Service's API (<a href="https://www.weather.gov/documentation/services-web-api" rel="noopener">docs</a>) needs no key, but it does want a User-Agent header that identifies your application; keyless requests without one get throttled first. Its structure is a router: you give the <code>points</code> endpoint a coordinate, it returns the forecast office and grid cell everything else hangs off. The call we made for Washington, DC:</p>
+    <pre>curl -s -H "User-Agent: matchbook-labs-data-vault-test/1.0" \
+  "https://api.weather.gov/points/38.8894,-77.0352"</pre>
+    <p>The full response runs 3,921 bytes; these are the fields worth reading, values verbatim:</p>
+    <pre>{
+ "cwa": "LWX",
+ "forecastOffice": "https://api.weather.gov/offices/LWX",
+ "gridId": "LWX",
+ "gridX": 97,
+ "gridY": 71,
+ "forecast": "https://api.weather.gov/gridpoints/LWX/97,71/forecast",
+ "relativeLocation": {"city": "Washington", "state": "DC"},
+ "timeZone": "America/New_York",
+ "radarStation": "KLWX"
+}</pre>
+    <p><code>cwa</code> LWX names the forecast office (Baltimore/Washington), <code>gridId</code>/<code>gridX</code>/<code>gridY</code> pin the model cell, and the <code>relativeLocation</code> block confirms the nearest place it resolved to: Washington, DC. The <code>forecast</code> URL is the next hop; fetch it and you get the official 7-day narrative for that exact grid cell. When a report needs the US government's numbers rather than a model aggregator's, this is the source to cite.</p>
+  </section>
+
+  <section aria-label="NOAA NCEI station records">
+    <h2>Climate research: NOAA NCEI station records</h2>
+    <p>For anything you plan to cite in a paper, NOAA NCEI's <a href="https://www.ncei.noaa.gov/support/access-data-service-api-user-documentation" rel="noopener">Access Data Service</a> returns daily summaries from the GHCN-Daily network of instrument stations. The endpoint is keyless. Station <code>USW00014732</code> is LaGuardia Airport; our call asked for five days of daily max, min, and precipitation in metric:</p>
+    <pre>curl -s "https://www.ncei.noaa.gov/access/services/data/v1?dataset=daily-summaries&amp;dataTypes=TMAX,TMIN,PRCP&amp;stations=USW00014732&amp;startDate=2025-07-01&amp;endDate=2025-07-05&amp;format=json&amp;units=metric"</pre>
+    <p>The response, all 443 bytes verbatim:</p>
+    <pre>[
+{"DATE":"2025-07-01","STATION":"USW00014732","TMAX":"33.9","TMIN":"22.2","PRCP":"7.6"}
+,{"DATE":"2025-07-02","STATION":"USW00014732","TMAX":"28.9","TMIN":"22.8","PRCP":"0.0"}
+,{"DATE":"2025-07-03","STATION":"USW00014732","TMAX":"33.3","TMIN":"21.7","PRCP":"0.3"}
+,{"DATE":"2025-07-04","STATION":"USW00014732","TMAX":"28.9","TMIN":"20.6","PRCP":"0.0"}
+,{"DATE":"2025-07-05","STATION":"USW00014732","TMAX":"31.1","TMIN":"21.1","PRCP":"0.0"}
+]</pre>
+    <p>Legal JSON, but not the shape most parsers expect to see: one object per row, with the second row comma-prefixed after a newline. A pandas <code>read_json</code> or a quick regex over the commas handles it. The values themselves are what the instruments recorded: July 1 hit 33.9 &deg;C with 7.6 mm of rain.</p>
+    <p>One quirk worth knowing before you build a request: ask this station for <code>TAVG</code> and you get rows with no <code>value</code> field at all, because LaGuardia reports TMAX/TMIN/PRCP but no daily mean, and the API stays silent about the gap. Check which dataTypes a station actually records before your script loops over a list of them. Many GHCN-Daily stations hold decades of readings, which is exactly what makes this the source for extreme-value analysis and trend work.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <dl>
+      <dt>What is the best free weather data API?</dt>
+      <dd>For most analyst work, Open-Meteo: one keyless platform serves current conditions, a 16-day forecast, and the Archive API with daily history back to 1940, on a documented 10,000-calls-per-day free tier. Inside the US, add the National Weather Service API for official forecasts and alerts and NOAA NCEI when you need station-level history for climate research. All three returned live data with no key when we tested them from our box on 2026-09-07.</dd>
+      <dt>Can I get historical weather data for free?</dt>
+      <dd>Yes, two ways. The Open-Meteo Archive API serves reanalysis data back to 1940 with no key; one request pulled a full year of daily highs, lows, and precipitation for New York in about 10 KB of JSON. NOAA NCEI serves station records from the GHCN-Daily network, also keyless on the endpoint we tested, and many stations hold decades of daily readings. Reanalysis covers anywhere on earth; station records carry the thermometer's actual readings.</dd>
+      <dt>Which weather API should analysts use for long-term US research?</dt>
+      <dd>NOAA NCEI for anything you plan to cite. Its daily-summaries dataset returns station observations such as TMAX, TMIN, and PRCP straight from instruments at stations like LaGuardia Airport (USW00014732), and the test call needed no key. Open-Meteo's Archive API works better when you need gridded data for arbitrary points or international comparisons. The National Weather Service API covers forecasts and warnings, not long-term records.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Where to go next">
+    <h2>Where to go next</h2>
+    <p>The forecast and NWS calls above first appeared, in shorter form, on our <a href="public-data-apis-list.html">free public data APIs list</a>, which tests twelve keyless endpoints in one sitting. For parsing responses with nested objects and two different error shapes, the <a href="json-api-tutorial.html">JSON API tutorial</a> walks them with verbatim output. The <a href="what-is-jsonld.html">JSON-LD guide</a> covers the structured data markup this page itself ships. And when weather matters as a column in a dataset rather than a live endpoint, the <a href="nfl-stadium-weather.html">NFL stadium weather guide</a> shows how roof, temp, and wind behave in a real games CSV.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

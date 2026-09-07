@@ -65,7 +65,7 @@
 
   <section aria-label="Weather APIs">
     <h2>Weather data APIs</h2>
-    <p>Two weather sources that need no key and cover each other's gaps: Open-Meteo for global point forecasts, NWS for official US warnings and grid data.</p>
+    <p>Two weather sources that need no key and cover each other's gaps: Open-Meteo for global point forecasts, NWS for official US warnings and grid data. The <a href="weather-data-api.html">weather data API guide for analysts</a> tests both against their historical counterparts, Open-Meteo Archive and NOAA NCEI station records, with verbatim outputs from the same box.</p>
     <div class="table-wrap" tabindex="0" role="region" aria-label="Weather API table"><table><thead><tr><th scope="col">API</th><th scope="col">Endpoint</th><th scope="col">Auth</th><th scope="col">Rate limit</th><th scope="col">Live output</th></tr></thead><tbody>
       <tr><td>Open-Meteo</td><td><code>GET https://api.open-meteo.com/v1/forecast?latitude=40.71&amp;longitude=-74.01&amp;current=temperature_2m,wind_speed_10m</code></td><td>none</td><td>10,000 requests/day documented free tier</td><td><code>{"temperature_2m":20.3,"wind_speed_10m":12.0}</code></td></tr>
       <tr><td>National Weather Service</td><td><code>GET https://api.weather.gov/points/38.8894,-77.0352</code></td><td>none</td><td>limits exist; NWS states the rate limit is not public</td><td><code>{"cwa":"LWX","forecastOffice":"https://api.weather.gov/offices/LWX"}</code></td></tr>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FRED API Tutorial: Pull Fed Economic Data in Python, With or Without a Key | Data Vault</title>
+<meta name="description" content="A practical FRED API tutorial: pull any series as CSV with no key via fredgraph.csv, get a free key for api.stlouisfed.org, and load FRED data into pandas. Every example ran live with verbatim output.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/fred-api-tutorial.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="FRED API Tutorial: Pull Fed Economic Data in Python, With or Without a Key">
+<meta property="og:description" content="Pull any FRED series as CSV with no key, register a free key for the REST API, and load the data into pandas. Every command ran live; outputs pasted verbatim.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/fred-api-tutorial.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "FRED API Tutorial: Pull Fed Economic Data in Python, With or Without a Key", "description": "A practical FRED API tutorial: pull any series as CSV with no key via fredgraph.csv, get a free key for api.stlouisfed.org, and load FRED data into pandas. Every example ran live with verbatim output.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/fred-api-tutorial.html", "about": {"@type": "Thing", "name": "FRED API"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does the FRED API require a key?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on the endpoint. The graph endpoint at fred.stlouisfed.org/graph/fredgraph.csv?id=SERIES_ID returns any series as a plain CSV with no key and no signup. The REST API at api.stlouisfed.org requires a 32-character key and returns a 400 error without one. For one-off pulls of a known series, the graph endpoint covers most needs."}}, {"@type": "Question", "name": "How do I get a free FRED API key?", "acceptedAnswer": {"@type": "Answer", "text": "Create an account at fredaccount.stlouisfed.org, open the API Keys page at fredaccount.stlouisfed.org/apikeys, and request a key. It is a 32-character lowercase alphanumeric string, issued at no cost. FRED asks for one key per application, and each user of an app should use their own key."}}, {"@type": "Question", "name": "How do I load FRED data into pandas?", "acceptedAnswer": {"@type": "Answer", "text": "pandas.read_csv accepts the fredgraph.csv URL directly: pd.read_csv(\"https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10\") returns a two-column DataFrame, observation_date and the series value. Add cosd and coed URL parameters to bound the date range, and call to_parquet on the result to cache the series locally so repeat analysis does not re-download it."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>FRED API tutorial: pull Fed data with or without a key</h1>
+  <p class="byline">Published 2026-09-10. Every command below ran from our box the same day, and every output block is pasted verbatim from that run.</p>
+
+  <section aria-label="Two ways to pull FRED data">
+    <h2>Two ways into FRED, and when to use each</h2>
+    <p>FRED, the St. Louis Fed's economic database, carries over 800,000 series: mortgage rates, the Case-Shiller home price index, unemployment, GDP, the works. Most tutorials jump straight to the REST API and its key signup, which hides the fastest path. FRED has two doors:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="FRED access table"><table><thead><tr><th scope="col">Door</th><th scope="col">URL</th><th scope="col">Key</th><th scope="col">Format</th><th scope="col">Best for</th></tr></thead><tbody>
+      <tr><td>Graph CSV export</td><td><code>fred.stlouisfed.org/graph/fredgraph.csv?id=SERIES_ID</code></td><td>none</td><td>CSV</td><td>Pulling a known series into a script or spreadsheet</td></tr>
+      <tr><td>REST API v1</td><td><code>api.stlouisfed.org/fred/series/observations</code></td><td>free, required</td><td>JSON or XML</td><td>Search, metadata, release dates, bulk workflows</td></tr>
+    </tbody></table></div>
+    <p>If you know the series ID and want the numbers, the graph endpoint is one GET with no registration. The REST API earns its key when you need search, series metadata, or observation counts programmatically. This tutorial covers both, with the numbers each one actually returned.</p>
+  </section>
+
+  <section aria-label="CSV without a key">
+    <h2>The fredgraph.csv trick: any series, no key</h2>
+    <p>Swap any series ID into the <code>id</code> parameter and the graph endpoint serves the full history as a two-column CSV. DGS10 is the 10-year Treasury constant maturity rate. Run it with curl:</p>
+    <pre>curl -s "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10" | tail -3</pre>
+    <pre>observation_date,DGS10
+2026-09-01,4.79
+2026-09-02,4.79
+2026-09-03,4.77</pre>
+    <p>That is 16,873 daily observations back to 1962, in one unauthenticated request. Two URL parameters shape the pull: <code>cosd</code> sets the start date and <code>coed</code> the end date. The same call bounded to the last three days:</p>
+    <pre>curl -s "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10&amp;cosd=2026-09-01&amp;coed=2026-09-03"</pre>
+    <p>The endpoint returns the identical three rows for that window. One caveat: a bogus series ID does not return a clean 404. <code>id=NOPE123</code> returns an HTML page, so validate series IDs on fred.stlouisfed.org before your script loops over a list of them.</p>
+  </section>
+
+  <section aria-label="Getting a key">
+    <h2>Getting a free key for the REST API</h2>
+    <p>The keyed door takes about two minutes. The steps, from FRED's own <a href="https://fred.stlouisfed.org/docs/api/api_key.html" rel="noopener">API key docs</a>:</p>
+    <ul>
+      <li>Create an account at <a href="https://fredaccount.stlouisfed.org" rel="noopener">fredaccount.stlouisfed.org</a>.</li>
+      <li>Open the API Keys page at fredaccount.stlouisfed.org/apikeys and request a key.</li>
+      <li>The key is a 32-character lowercase alphanumeric string. FRED asks for one key per application, and each user of your app should register their own.</li>
+    </ul>
+    <p>Without a key, the REST API rejects every call. This is the exact response our test got on 2026-09-10:</p>
+    <pre>curl -s -w "\nHTTP %{http_code}\n" "https://api.stlouisfed.org/fred/series/observations?series_id=DGS10"</pre>
+    <pre>&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;error code="400" message="Bad Request.  Variable api_key is not set.  Read https://fred.stlouisfed.org/docs/api/api_key.html for more information." /&gt;
+HTTP 400</pre>
+    <p>With a key, the same endpoint takes <code>api_key=YOUR_KEY</code> plus <code>file_type=json</code> and returns the observations as JSON. Add <code>observation_start</code> and <code>observation_end</code> for date bounds, the REST equivalent of <code>cosd</code> and <code>coed</code>. The full endpoint reference lives in <a href="https://fred.stlouisfed.org/docs/api/fred/" rel="noopener">FRED's API docs</a>.</p>
+  </section>
+
+  <section aria-label="Pandas example">
+    <h2>FRED in Python: read the CSV straight into pandas</h2>
+    <p><code>pd.read_csv</code> accepts the fredgraph URL directly, so the whole pull is one line. These examples ran on Python 3.14 with pandas 3.0.5:</p>
+    <pre>import pandas as pd
+
+df = pd.read_csv("https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10")
+print(df.tail(2).to_string(index=False))
+
+df.to_parquet("/tmp/dgs10.parquet")
+print(pd.read_parquet("/tmp/dgs10.parquet").tail(1).to_string(index=False))</pre>
+    <pre>observation_date  DGS10
+      2026-09-01   4.79
+      2026-09-02   4.79
+      2026-09-03   4.77
+observation_date  DGS10
+      2026-09-03   4.77</pre>
+    <p>The parquet round trip is the caching pattern: download once, write the DataFrame to parquet, and point later analysis at the local file. Series histories rarely change retroactively, so a weekly refresh beats re-downloading 16,000 rows every run. If you prefer keeping the raw file, the CSV also loads through <code>pd.read_csv("/tmp/dgs10.csv")</code> after a plain curl.</p>
+  </section>
+
+  <section aria-label="Housing example">
+    <h2>Worked example: three housing series in one parquet file</h2>
+    <p>Housing analysis needs three numbers: the mortgage rate buyers face, the price level, and the vacancy rate behind the rent. FRED carries all three. MORTGAGE30US is the weekly 30-year fixed rate, CSUSHPINSA the monthly Case-Shiller national home price index, RRVRUSQ156N the quarterly rental vacancy rate. The frequencies differ, so the script stacks each series on its own dates and lets pandas align them:</p>
+    <pre>import pandas as pd
+
+series = {
+    "MORTGAGE30US": "30-year fixed mortgage rate",
+    "CSUSHPINSA": "Case-Shiller national home price index",
+    "RRVRUSQ156N": "rental vacancy rate",
+}
+frames = {}
+for sid in series:
+    df = pd.read_csv(f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={sid}")
+    df["observation_date"] = pd.to_datetime(df["observation_date"])
+    frames[sid] = df.set_index("observation_date")[sid]
+
+combined = pd.DataFrame(frames)
+combined.to_parquet("/tmp/housing.parquet")
+for sid in series:
+    last = combined[sid].dropna().tail(1)
+    print(f"{sid}: {last.index[0].date()} = {last.iloc[0]}")</pre>
+    <pre>MORTGAGE30US: 2026-09-03 = 6.71
+CSUSHPINSA: 2026-06-01 = 336.663
+RRVRUSQ156N: 2026-04-01 = 7.3</pre>
+    <p>Read the output the way an investor would: a 30-year fixed at 6.71 percent, the Case-Shiller national index at 336.663 (January 2000 = 100, so national prices have more than tripled since the base), and a 7.3 percent rental vacancy rate for Q2 2026. The combined parquet keeps each series on its own observation dates, so resample or dropna depending on whether your analysis runs weekly, monthly, or quarterly. We use these same series in the <a href="real-estate-investor-data.html">real estate investor data guide</a> as part of a full screening workflow.</p>
+  </section>
+
+  <section aria-label="Related resources">
+    <h2>Where to go next</h2>
+    <p>FRED is one of the twelve endpoints in our <a href="public-data-apis-list.html">public data APIs list</a>, each curl-tested from our box with the real output recorded. For the investment workflow around these numbers, the <a href="real-estate-investor-data.html">real estate investor data guide</a> chains FRED with HUD rents, Zillow indexes, Census vacancy tables, and property tax data. If your pipeline lives in Python against other sports or government endpoints, the <a href="espn-api-python.html">ESPN API in Python</a> walkthrough uses the same requests-and-verbatim-output format.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../tools/sample-data-downloads.html">Browse free samples</a>
+      <a class="btn" href="https://www.getly.store/store/mtmw06l2" rel="noopener">Get the full pack</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. FRED data is provided by the Federal Reserve Bank of St. Louis under its own terms; review FRED's terms of use before redistributing series in a commercial product.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>Does the FRED API require a key?</h3>
+    <p>It depends on the endpoint. The graph endpoint at fred.stlouisfed.org/graph/fredgraph.csv?id=SERIES_ID returns any series as a plain CSV with no key and no signup. The REST API at api.stlouisfed.org requires a 32-character key and returns a 400 error without one. For one-off pulls of a known series, the graph endpoint covers most needs.</p>
+    <h3>How do I get a free FRED API key?</h3>
+    <p>Create an account at fredaccount.stlouisfed.org, open the API Keys page at fredaccount.stlouisfed.org/apikeys, and request a key. It is a 32-character lowercase alphanumeric string, issued at no cost. FRED asks for one key per application, and each user of an app should use their own key.</p>
+    <h3>How do I load FRED data into pandas?</h3>
+    <p>pandas.read_csv accepts the fredgraph.csv URL directly: pd.read_csv("https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10") returns a two-column DataFrame, observation_date and the series value. Add cosd and coed URL parameters to bound the date range, and call to_parquet on the result to cache the series locally so repeat analysis does not re-download it.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

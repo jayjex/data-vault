@@ -79,7 +79,7 @@ https://files.zillowstatic.com/research/public_csvs/zhvi/Metro_zhvi_uc_sfrcondo_
     <h2 id="fred">Prices, rates, and macro context: FRED</h2>
     <p>The St. Louis Fed's FRED database hosts the long-run series investors quote: the Case-Shiller national home price index, 30-year mortgage rates, the rental vacancy rate, and the shelter component of CPI. The ordinary FRED web UI exports CSVs but sends you through a chart page first, and the REST API needs a key. The graph endpoint skips both:</p>
     <pre>https://fred.stlouisfed.org/graph/fredgraph.csv?id=CSUSHPINSA</pre>
-    <p>One URL per series, two columns, no key. Live responses on 2026-09-10: CSUSHPINSA returned the Case-Shiller index from 1987-01-01 through 2026-06-01 at 336.66; MORTGAGE30US returned the weekly 30-year fixed rate through 2026-09-03 at 6.71 percent; RRVRUSQ156N returned the quarterly rental vacancy rate through 2026-04-01 at 7.3 percent. The same pattern works for any of FRED's 800,000-plus series, so a five-line script can pull the full macro picture for a memo.</p>
+    <p>One URL per series, two columns, no key. Live responses on 2026-09-10: CSUSHPINSA returned the Case-Shiller index from 1987-01-01 through 2026-06-01 at 336.66; MORTGAGE30US returned the weekly 30-year fixed rate through 2026-09-03 at 6.71 percent; RRVRUSQ156N returned the quarterly rental vacancy rate through 2026-04-01 at 7.3 percent. The same pattern works for any of FRED's 800,000-plus series, so a five-line script can pull the full macro picture for a memo. The <a href="fred-api-tutorial.html">FRED API tutorial</a> covers the keyed REST endpoint, the key signup, and a pandas workflow that caches all three series into one parquet file.</p>
   </section>
 
   <section aria-label="Vacancy data">

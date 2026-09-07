@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NFL Data by Conference: AFC vs NFC Stats From Real Game Rows | Data Vault</title>
+<meta name="description" content="How to split NFL game data by conference: the 1999 AFC/NFC team map, real AFC vs NFC head-to-head results, points per game, and win counts computed from a free 22-row games sample with pandas.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/nfl-data-by-conference.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="NFL Data by Conference: AFC vs NFC Stats From Real Game Rows">
+<meta property="og:description" content="The 1999 AFC/NFC team map, 7 real inter-conference games from the free sample, points per game and win counts, plus the pandas script that reproduces every number.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/nfl-data-by-conference.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "NFL Data by Conference: AFC vs NFC Stats From Real Game Rows", "description": "How to split NFL game data by conference: the 1999 AFC/NFC team map, real AFC vs NFC head-to-head results, points per game, and win counts computed from a free 22-row games sample with pandas.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/nfl-data-by-conference.html", "about": {"@type": "Dataset", "name": "NFL Games & Betting Lines 1999-2026", "url": "https://jayjex.github.io/data-vault/datasets/nfl-games.html"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "NFL data by conference", "item": "https://jayjex.github.io/data-vault/guides/nfl-data-by-conference.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+{"@type": "Question", "name": "How do I split NFL game data by conference?", "acceptedAnswer": {"@type": "Answer", "text": "The games CSV stores 3-letter team abbreviations and no conference column, so the split is a two-step join: load a small dictionary that maps each abbreviation to AFC or NFC for its season, map both home_team and away_team through it, then group or filter. A game is inter-conference when the two mapped values differ. The full script in this guide runs on the free 22-row sample and carries the complete 1999 map inline."}},
+{"@type": "Question", "name": "Who won AFC vs NFC games in the sample data?", "acceptedAnswer": {"@type": "Answer", "text": "The 22-row sample holds 7 inter-conference games from weeks 1 and 2 of the 1999 season. The NFC won 4 and the AFC won 3. AFC teams averaged 21.1 points in those games against 19.9 for NFC teams, and the average winning margin was 10.4 points. With 7 games the split is a demonstration of the method, not a season-level finding."}},
+{"@type": "Question", "name": "Can I get AFC vs NFC stats for all seasons, not just the sample?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The full pack carries all 7,548 games from 1999 through 2026 with the same columns, so the same script produces conference splits for 27 seasons. Two things change when the years move: the Texans joined the AFC in 2002, and Seattle moved from the AFC West to the NFC West in 2002, so the conference map needs a season column. The data is historical record for research and analysis, not betting advice."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../datasets/nfl-games.html">NFL dataset</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>NFL data by conference: AFC vs NFC from real game rows</h1>
+  <p class="byline">Guide to the <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026</a> pack &middot; every number on this page was computed from the free <a href="../data/nfl-games/sample.csv" download>games sample</a> &middot; per-team season records live in the <a href="nfl-data-by-team.html">stats-by-team guide</a>.</p>
+
+  <section aria-label="Quick answer">
+    <p>"NFL data by conference" is a join problem, because the games CSV has no conference column. Each row names the teams by 3-letter abbreviation (<code>home_team</code>, <code>away_team</code>), so the split works in two steps: map every abbreviation to AFC or NFC, then group. The mapping is public record and it changes only twice in this dataset's span, which is why a small dictionary is enough.</p>
+    <p>Everything below runs on the free sample: 22 rows, weeks 1 and 2 of the 1999 season, the first two weeks of a file that covers all 7,548 games from 1999 through 2026. The sample is too small for any conclusion about which conference is better; it is exactly the right size for showing the method end to end, with real numbers you can recompute in a minute.</p>
+  </section>
+
+  <section aria-label="Conference map">
+    <h2>The 1999 conference map: 31 teams</h2>
+    <p>The dataset starts in 1999, the season Cleveland returned as an expansion team and two seasons before Houston joined, so it opens with 31 teams: 16 AFC and 15 NFC. Seattle is the one franchise whose conference later changes, AFC West in 1999, NFC West from 2002 on.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="1999 conference membership"><table>
+      <thead><tr><th scope="col">Division</th><th scope="col">Teams (3-letter codes)</th></tr></thead>
+      <tbody>
+        <tr><td>AFC East</td><td>BUF, MIA, NE, NYJ, IND</td></tr>
+        <tr><td>AFC Central</td><td>BAL, CIN, CLE, JAX, PIT, TEN</td></tr>
+        <tr><td>AFC West</td><td>DEN, KC, OAK, SD, SEA</td></tr>
+        <tr><td>NFC East</td><td>ARI, DAL, NYG, PHI, WAS</td></tr>
+        <tr><td>NFC Central</td><td>CHI, DET, GB, MIN, TB</td></tr>
+        <tr><td>NFC West</td><td>ATL, CAR, NO, SF, STL</td></tr>
+      </tbody>
+    </table></div>
+    <p>All 22 sample rows use only these 31 codes, and the dictionary maps all of them. If you extend past 2001, add the two changes above and keep the map keyed by season.</p>
+  </section>
+
+  <section aria-label="Sample results">
+    <h2>AFC vs NFC in the 22-row sample</h2>
+    <p>The sample holds 22 games, 7 of them inter-conference and 15 within one conference. Here is every inter-conference game, straight from the joined data:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Inter-conference games in the sample"><table>
+      <thead><tr><th scope="col">Game</th><th scope="col">Away</th><th scope="col">Score</th><th scope="col">Home</th><th scope="col">Winner's conference</th></tr></thead>
+      <tbody>
+        <tr><td>Week 1</td><td>KC (AFC)</td><td>17&ndash;20</td><td>CHI (NFC)</td><td>NFC</td></tr>
+        <tr><td>Week 1</td><td>OAK (AFC)</td><td>24&ndash;28</td><td>GB (NFC)</td><td>NFC</td></tr>
+        <tr><td>Week 1</td><td>SF (NFC)</td><td>3&ndash;41</td><td>JAX (AFC)</td><td>AFC</td></tr>
+        <tr><td>Week 1</td><td>DET (NFC)</td><td>28&ndash;20</td><td>SEA (AFC)</td><td>NFC</td></tr>
+        <tr><td>Week 1</td><td>BAL (AFC)</td><td>10&ndash;27</td><td>STL (NFC)</td><td>NFC</td></tr>
+        <tr><td>Week 2</td><td>JAX (AFC)</td><td>22&ndash;20</td><td>CAR (NFC)</td><td>AFC</td></tr>
+        <tr><td>Week 2</td><td>SEA (AFC)</td><td>14&ndash;13</td><td>CHI (NFC)</td><td>AFC</td></tr>
+      </tbody>
+    </table></div>
+    <p>The counts and averages from those 22 rows:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Conference scoring summary"><table>
+      <thead><tr><th scope="col">Split</th><th scope="col">AFC</th><th scope="col">NFC</th></tr></thead>
+      <tbody>
+        <tr><td>Inter-conference wins (7 games)</td><td>3</td><td>4</td></tr>
+        <tr><td>Points per team-game, inter-conference</td><td>21.1</td><td>19.9</td></tr>
+        <tr><td>Points per team-game, all 22 games</td><td>22.6 (25 team-games)</td><td>20.6 (19 team-games)</td></tr>
+        <tr><td>Wins overall (22 games, no ties)</td><td>12</td><td>10</td></tr>
+      </tbody>
+    </table></div>
+    <p>Three things in the sample are worth reading closely. Jacksonville beat NFC opponents twice, 41&ndash;3 over San Francisco and 22&ndash;20 at Carolina, and the 38-point win over the 49ers is the sample's widest margin. San Francisco managed 3 points, the lowest single-game score on either side. And the average total fell to 41.0 in inter-conference play against 44.6 in the 15 intra-conference games, a 3.6-point gap produced mostly by those two one-sided results rather than by any conference pattern. With 7 inter-conference rows, none of these numbers carry weight beyond the example.</p>
+    <p>One more quirk from the same rows: road teams won 12 of the 22 games, including Dallas winning 41&ndash;35 in overtime at Washington. A 22-game sample can tilt either way, which is part of the lesson about small slices.</p>
+  </section>
+
+  <section aria-label="Reproduce">
+    <h2>Reproduce every number with pandas</h2>
+    <p>The script below computes each table on this page from the free sample. It loads the CSV straight from the site, so you can paste it into a notebook and run it as is.</p>
+    <pre>import pandas as pd
+
+url = "https://jayjex.github.io/data-vault/data/nfl-games/sample.csv"
+df = pd.read_csv(url)
+
+# 1999 conference map, 31 teams (public record)
+afc = ["BAL","BUF","CIN","CLE","DEN","IND","JAX","KC","MIA","NE",
+       "NYJ","OAK","PIT","SD","SEA","TEN"]
+nfc = ["ARI","ATL","CAR","CHI","DAL","DET","GB","MIN","NO",
+       "NYG","PHI","SF","STL","TB","WAS"]
+conf = {t: "AFC" for t in afc} | {t: "NFC" for t in nfc}
+
+df["home_conf"] = df.home_team.map(conf)
+df["away_conf"] = df.away_team.map(conf)
+
+# inter-conference head-to-head
+inter = df[df.home_conf != df.away_conf].copy()
+inter["winner_conf"] = inter.apply(
+    lambda g: g.home_conf if g.home_score &gt; g.away_score else g.away_conf, axis=1)
+
+print(len(inter))                       # 7
+print(inter.winner_conf.value_counts()) # NFC 4, AFC 3
+
+# points per team-game by conference, all 22 games
+rows = []
+for _, g in df.iterrows():
+    rows.append((g.home_conf, g.home_score))
+    rows.append((g.away_conf, g.away_score))
+side = pd.DataFrame(rows, columns=["conf", "pts"])
+print(side.groupby("conf").pts.mean())  # AFC 22.56, NFC 20.63
+
+# average winning margin and totals in inter-conference play
+inter["margin"] = (inter.home_score - inter.away_score).abs()
+print(inter.margin.mean())                          # 10.43
+print(inter.total.mean())                           # 41.0
+intra = df[df.home_conf == df.away_conf]
+print((intra.home_score + intra.away_score).mean()) # 44.6</pre>
+    <p>Every printed value matches the tables above. The same three-step pattern, map, join, group, is all that changes when you move to the full file: the script keeps running once the conference dictionary grows a season key for 2002.</p>
+  </section>
+
+  <section aria-label="Sample to full pack">
+    <h2>From the 22-row slice to all 7,548 games</h2>
+    <p>The sample is the first 22 rows of games.csv, weeks 1 and 2 of 1999, 46 columns. The full pack carries the same schema across 1999 through 2026 (results through the 2025 season, plus 272 scheduled 2026 rows), so the conference split above becomes a per-season AFC vs NFC table with real sample sizes: about 55 inter-conference games per 17-game regular season now, and years of history behind each number. The pack also includes team-records-by-season.csv (861 rows) and season-summaries.csv (27 rows), a data dictionary, and SHA-256 checksums. The <a href="nfl-dataset-python.html">pandas quickstart</a> loads the sample in two lines, and the <a href="nfl-stadium-weather.html">stadium weather guide</a> splits the same rows by roof and temperature instead of conference.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/nfl-games/sample.csv" download>Download sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/store/mtmw06l2" rel="noopener">Get the full pack</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. The full pack is 3 CSVs (7,548 + 861 + 27 rows), the derivation script, a data dictionary, and source SHA-256 checksums.</p>
+  </section>
+
+  <section aria-label="Attribution">
+    <h2>Source and license</h2>
+    <p>The sample and the full games table derive from nflverse's <code>schedules/games.csv</code>, downloaded 2026-09-06 with the SHA-256 recorded in the pack. nflverse-data is released under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>, and the free sample carries the same terms. If you publish conference splits built on this data, credit it like this: "Data from nflverse, CC BY 4.0". The conference membership map is public record. Team names are factual data; no logos or league marks appear in the pack.</p>
+  </section>
+
+  <section aria-label="Scope">
+    <h2>What this data is for</h2>
+    <p>Conference splits answer historical questions: which conference won a given season's inter-conference slate, how scoring varied by side of the league, which divisions produced the biggest margins. The numbers here describe games already played, and this page makes no predictions or betting claims of any kind.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>How do I split NFL game data by conference?</h3>
+    <p>The games CSV stores 3-letter team abbreviations and no conference column, so the split is a two-step join: load a dictionary that maps each abbreviation to AFC or NFC for its season, map both <code>home_team</code> and <code>away_team</code> through it, then group or filter. A game is inter-conference when the two mapped values differ. The full script above runs on the free sample and carries the complete 1999 map inline.</p>
+    <h3>Who won AFC vs NFC games in the sample data?</h3>
+    <p>The 22-row sample holds 7 inter-conference games from weeks 1 and 2 of the 1999 season. The NFC won 4 and the AFC won 3. AFC teams averaged 21.1 points in those games against 19.9 for NFC teams, and the average winning margin was 10.4 points. With 7 games, the split shows the method working on real rows rather than ranking the conferences.</p>
+    <h3>Can I get AFC vs NFC stats for all seasons, not just the sample?</h3>
+    <p>Yes. The <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">full pack</a> carries all 7,548 games from 1999 through 2026 with the same columns, so the same script produces conference splits for 27 seasons. Two changes matter when the years move: the Texans joined the AFC in 2002, and Seattle moved from the AFC West to the NFC West in 2002, so the conference map needs a season column. The data is historical record for research and analysis, not betting advice.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

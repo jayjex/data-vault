@@ -220,7 +220,7 @@ LLM oracle final + probabilistic ... Treat as submit-only, never deposit, expect
     }
   }
 }</pre>
-    <p>On npm 12, dataset-mcp needs <code>--allow-git=all</code> before <code>-y</code>; see the <a href="../guides/mcp-claude-desktop.html">MCP server for Claude Desktop guide</a> for that and the full walkthrough.</p>
+    <p>On npm 12, dataset-mcp needs <code>--allow-git=all</code> before <code>-y</code>; see the <a href="../guides/mcp-claude-desktop.html">MCP server for Claude Desktop guide</a> for that and the full walkthrough. A Claude-focused index of the same three servers, with each README's config JSON and registry entry: <a href="../agents/mcp-tools-for-claude.html">MCP tools for Claude</a>.</p>
     <p>To verify a server's tool list yourself, the raw JSON-RPC over stdio is three lines: an <code>initialize</code> request, <code>notifications/initialized</code>, then <code>{"jsonrpc":"2.0","id":2,"method":"tools/list"}</code>. The response is the same list a client shows in its tools menu.</p>
   </section>
 

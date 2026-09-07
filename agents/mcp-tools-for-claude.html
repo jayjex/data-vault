@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MCP Tools for Claude: 3 Free Servers, Config JSON, Registry | Data Vault</title>
+<meta name="description" content="MCP tools for Claude Desktop: dataset-mcp, earn-bounty-scanner, and solana-research-library. Three free servers with claude_desktop_config.json snippets from the READMEs, official MCP registry entries, and a verified tools/list handshake.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/agents/mcp-tools-for-claude.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="MCP Tools for Claude: 3 Free Servers, Config JSON, Registry | Data Vault">
+<meta property="og:description" content="MCP tools for Claude Desktop: dataset-mcp, earn-bounty-scanner, and solana-research-library. Three free servers with claude_desktop_config.json snippets from the READMEs and official MCP registry entries.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/agents/mcp-tools-for-claude.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"MCP tools for Claude","url":"https://jayjex.github.io/data-vault/agents/mcp-tools-for-claude.html","itemListElement":[{"@type":"ListItem","position":1,"name":"dataset-mcp, an MCP server for datasets","url":"https://jayjex.github.io/data-vault/agents/mcp-dataset-server.html"},{"@type":"ListItem","position":2,"name":"earn-bounty-scanner, a live Superteam Earn MCP server","url":"https://github.com/jayjex/earn-bounty-scanner"},{"@type":"ListItem","position":3,"name":"solana-research-library, a Solana earning-rail research MCP server","url":"https://github.com/jayjex/solana-research-library"},{"@type":"ListItem","position":4,"name":"Official MCP registry","url":"https://registry.modelcontextprotocol.io/"},{"@type":"ListItem","position":5,"name":"MCP tools list: all 12 tools with real outputs","url":"https://jayjex.github.io/data-vault/tools/mcp-tools-list.html"},{"@type":"ListItem","position":6,"name":"MCP server for Claude Desktop guide","url":"https://jayjex.github.io/data-vault/guides/mcp-claude-desktop.html"}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="./">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <p class="kicker">claude desktop config, three servers</p>
+  <h1>MCP tools for Claude</h1>
+  <p class="lead">Our three MCP servers, wired for Claude Desktop. <strong>dataset-mcp</strong> queries 149,673 rows of NFL, rent, Airbnb, and bounty data. <strong>earn-bounty-scanner</strong> reads the live Superteam Earn feed. <strong>solana-research-library</strong> answers from a 25-platform Solana earning-rail database. All three are MIT-licensed, run locally over stdio, and need no API key. Every <code>claude_desktop_config.json</code> snippet below is copied from the server's README, and every MCP registry entry read active on 2026-09-10.</p>
+
+  <section aria-label="The servers">
+    <h2>The three servers</h2>
+
+    <article class="card">
+      <span class="niche">mcp</span>
+      <h3>dataset-mcp: five tools over the dataset catalog</h3>
+      <p>The server behind this catalog. Five tools: <code>list_datasets</code>, <code>get_dataset_info</code>, <code>get_sample</code>, <code>query_dataset</code>, and <code>get_stats</code>. <code>query_dataset</code> filters and paginates the full released files (149,673 rows across five datasets), 100 rows per call, with <code>=</code>, <code>contains</code>, <code>gt</code>, and <code>lt</code> operators. <code>get_stats</code> returns row counts, numeric min/max/mean, and top-N frequencies. Files download once from a public GitHub release into <code>~/.cache/dataset-mcp/</code> and are re-verified against SHA-256 on every load.</p>
+      <p>The README's config for <code>claude_desktop_config.json</code>, plain form (npm 10 and 11):</p>
+<pre>{
+  "mcpServers": {
+    "dataset-mcp": {
+      "command": "npx",
+      "args": ["-y", "github:jayjex/dataset-mcp"]
+    }
+  }
+}</pre>
+      <p>npm 12 refuses git-based installs (<code>EALLOWGIT</code>), so the README also ships the flag-carrying form:</p>
+<pre>{
+  "mcpServers": {
+    "dataset-mcp": {
+      "command": "npx",
+      "args": ["--allow-git=all", "-y", "github:jayjex/dataset-mcp"]
+    }
+  }
+}</pre>
+      <p class="btn-note">Registry: <code>io.github.jayjex/dataset-mcp</code>, version 1.1.0, active. Repo: <a href="https://github.com/jayjex/dataset-mcp" rel="noopener">github.com/jayjex/dataset-mcp</a>. Full tool docs with a captured session: <a href="mcp-dataset-server.html">MCP server for datasets</a>.</p>
+    </article>
+
+    <article class="card">
+      <span class="niche">mcp</span>
+      <h3>earn-bounty-scanner: three tools over the live Earn feed</h3>
+      <p>Reads superteam.fun at call time, so rewards and deadlines are current. <code>search_bounties(query)</code> matches keywords and returns the full bounty description text, not a teaser. <code>get_bounty(id)</code> pulls one listing's complete details. <code>recent_bounties()</code> lists currently OPEN bounties, newest first. Every response carries <code>agentAccess</code>: <code>AGENT_ALLOWED</code> means an agent may submit, <code>HUMAN_ONLY</code> means bot submitters are barred.</p>
+      <p>The README's config for <code>claude_desktop_config.json</code>:</p>
+<pre>{
+  "mcpServers": {
+    "earn-bounty-scanner": {
+      "command": "npx",
+      "args": ["-y", "earn-bounty-scanner"]
+    }
+  }
+}</pre>
+      <p>That entry expects the npm package, which is not on the registry yet. Until it ships, build from the repo (<code>git clone</code>, <code>npm install</code>, <code>npm run build</code>) and point the config at the local build, the same shape our other READMEs use:</p>
+<pre>{
+  "mcpServers": {
+    "earn-bounty-scanner": {
+      "command": "node",
+      "args": ["/absolute/path/to/earn-bounty-scanner/dist/index.js"]
+    }
+  }
+}</pre>
+      <p class="btn-note">Registry: <code>io.github.jayjex/earn-bounty-scanner</code>, version 1.0.0, active. Repo: <a href="https://github.com/jayjex/earn-bounty-scanner" rel="noopener">github.com/jayjex/earn-bounty-scanner</a>.</p>
+    </article>
+
+    <article class="card">
+      <span class="niche">mcp</span>
+      <h3>solana-research-library: four tools over a Solana research database</h3>
+      <p>25 Solana and web3 earning platforms, each field-probed with a verdict (<code>LIVE-RAIL</code>, <code>USER-GATED</code>, <code>CONDITIONAL-PASS</code>, <code>WATCHLIST</code>, <code>DEAD</code>), the exact payout rail, and the KYC gate. Four tools: <code>list_topics</code>, <code>get_topic</code>, <code>search_topics</code>, and <code>stats</code>. The database ships inside the package, so tools answer instantly and an upstream outage cannot fail a call.</p>
+      <p>The README's config for <code>claude_desktop_config.json</code>:</p>
+<pre>{
+  "mcpServers": {
+    "solana-research-library": {
+      "command": "node",
+      "args": ["/absolute/path/to/solana-research-library/dist/index.js"]
+    }
+  }
+}</pre>
+      <p><code>dist/</code> is committed to the repo, so after <code>git clone</code> and <code>npm install</code> the path above exists even before a build.</p>
+      <p class="btn-note">Registry: <code>io.github.jayjex/solana-research-library</code>, version 1.0.0, active. Repo: <a href="https://github.com/jayjex/solana-research-library" rel="noopener">github.com/jayjex/solana-research-library</a>.</p>
+    </article>
+  </section>
+
+  <section aria-label="Registry">
+    <h2>The official MCP registry</h2>
+    <p>All three are listed in the official registry at <a href="https://registry.modelcontextprotocol.io/" rel="noopener">registry.modelcontextprotocol.io</a>, which answers search queries over HTTP: <code>/v0.1/servers?search=io.github.jayjex</code>. All three names read active on 2026-09-10.</p>
+    <div class="table-wrap"><table class="ep">
+      <thead><tr><th scope="col">Registry name</th><th scope="col">Version</th><th scope="col">Status</th></tr></thead>
+      <tbody>
+        <tr><td><code>io.github.jayjex/dataset-mcp</code></td><td>1.1.0</td><td>active</td></tr>
+        <tr><td><code>io.github.jayjex/earn-bounty-scanner</code></td><td>1.0.0</td><td>active</td></tr>
+        <tr><td><code>io.github.jayjex/solana-research-library</code></td><td>1.0.0</td><td>active</td></tr>
+      </tbody>
+    </table></div>
+    <p>A fourth entry, <code>io.github.jayjex/earn-dataset-mcp</code>, is the earlier 28-listing snapshot server that dataset-mcp superseded.</p>
+  </section>
+
+  <section aria-label="Verification">
+    <h2>What was checked on 2026-09-10</h2>
+    <p>A <code>tools/list</code> handshake over stdio JSON-RPC came back with 5, 3, and 4 tools for dataset-mcp, earn-bounty-scanner, and solana-research-library respectively. The registry search returned all three names active. All three repo URLs answered HTTP 200.</p>
+  </section>
+
+  <section aria-label="Where to go next">
+    <h2>Where to go next</h2>
+    <p>The <a href="../tools/mcp-tools-list.html">MCP tools list</a> indexes all 12 tools with real output captured over JSON-RPC. The <a href="../guides/mcp-claude-desktop.html">MCP server for Claude Desktop guide</a> walks through the dataset-mcp install step by step, with troubleshooting. Deeper docs: <a href="mcp-dataset-server.html">the dataset-mcp server page</a>, the <a href="./">agent endpoint docs</a>, and the <a href="free-agent-tools.html">free tools for AI agents</a> roundup.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

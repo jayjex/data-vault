@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inside Airbnb Alternative: 6 Cities, One Schema, 90,169 Rows | Data Vault</title>
+<meta name="description" content="Inside Airbnb publishes free per-city CSVs under CC BY 4.0. See what the 6-city pack adds on top of the same source rows: one shared 12-column schema, cities index, summary stats, MCP query access, and a data dictionary.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/inside-airbnb-alternative.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Inside Airbnb Alternative: 6 Cities, One Schema, 90,169 Rows | Data Vault">
+<meta property="og:description" content="Inside Airbnb publishes free per-city CSVs under CC BY 4.0. See what the 6-city pack adds on top of the same source rows: one shared 12-column schema, cities index, MCP query access, and a data dictionary.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/inside-airbnb-alternative.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Inside Airbnb alternative: 6-city Airbnb listings in one schema","description":"Inside Airbnb publishes free per-city CSVs under CC BY 4.0. See what the 6-city pack adds on top of the same source rows: one shared 12-column schema, cities index, summary stats, MCP query access, and a data dictionary.","datePublished":"2026-09-09","dateModified":"2026-09-09","author":{"@type":"Organization","name":"Matchbook Labs"},"publisher":{"@type":"Organization","name":"Matchbook Labs"},"mainEntityOfPage":"https://jayjex.github.io/data-vault/guides/inside-airbnb-alternative.html"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Airbnb Listings, 6 US Cities (2026 snapshots)","url":"https://jayjex.github.io/data-vault/guides/inside-airbnb-alternative.html","itemListElement":[{"@type":"ListItem","position":1,"name":"Austin, TX (snapshot 2026-06-22, 11,295 listings)"},{"@type":"ListItem","position":2,"name":"Nashville, TN (snapshot 2026-06-26, 10,242 listings)"},{"@type":"ListItem","position":3,"name":"Denver, CO (snapshot 2026-06-30, 4,939 listings)"},{"@type":"ListItem","position":4,"name":"New York City, NY (snapshot 2026-08-10, 30,234 listings)"},{"@type":"ListItem","position":5,"name":"Las Vegas, Clark County NV (snapshot 2026-06-27, 20,234 listings)"},{"@type":"ListItem","position":6,"name":"San Diego, CA (snapshot 2026-06-27, 13,225 listings)"}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Inside Airbnb alternative: 6-city listings in one schema</h1>
+
+  <section aria-label="What this page compares">
+    <p>Inside Airbnb is the first stop for most people hunting Airbnb listings data, and it is a good one: free CSV snapshots for cities worldwide, published under CC BY 4.0. This page compares it with the 6-city pack sold here. The rows come from the same source and carry the same license. The pack adds normalization, an index, and query access on top. Read both columns and pick what fits your project.</p>
+  </section>
+
+  <section aria-label="What Inside Airbnb gives you">
+    <h2>What Inside Airbnb gives you</h2>
+    <ul>
+      <li>Free, public snapshot files. Downloads need no account.</li>
+      <li>CC BY 4.0 license, so reuse and republishing work with attribution.</li>
+      <li>Per-city file sets for dozens of cities, with snapshot dates documented on the site.</li>
+      <li>Coordinates blurred by about 11 meters and host names removed from summary files, which makes the data safer to share.</li>
+    </ul>
+    <p>For a single-city project, the source files cover it. Download there and skip any purchase.</p>
+  </section>
+
+  <section aria-label="What the 6-city pack adds">
+    <h2>What the 6-city pack adds</h2>
+    <p>Six Inside Airbnb snapshots ship as six separate files. Cross-city work then starts with an ETL step: rename columns, align types, check each snapshot date, stitch rows together. The pack does that once and ships the result:</p>
+    <ul>
+      <li><strong>One schema, 12 columns, all 6 cities.</strong> A query written for Austin runs unchanged against San Diego.</li>
+      <li><strong>cities-index.csv.</strong> Six rows, one per city: snapshot date, listing count, median nightly price, room-type mix.</li>
+      <li><strong>Summary stats and a data dictionary.</strong> Every column documented, per-city stats included, source checksums shipped with the files.</li>
+      <li><strong>Snapshot dates written out.</strong> Each date appears on the product page, in the data dictionary, and next to the files.</li>
+      <li><strong>MCP query access.</strong> <code>query_dataset</code> and <code>get_stats</code> filter and paginate all 90,169 rows, 100 rows per call, from a script or an agent. No ETL on your side.</li>
+      <li><strong>Host fields dropped everywhere.</strong> The files load safely into a shared database or a classroom exercise.</li>
+    </ul>
+  </section>
+
+  <section aria-label="Side-by-side comparison">
+    <h2>Side by side</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Comparison table, Inside Airbnb versus the 6-city pack"><table>
+      <thead><tr><th scope="col"></th><th scope="col">Inside Airbnb</th><th scope="col">6-city pack</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Price</th><td>Free</td><td>$39 full pack, free sample and free MCP queries</td></tr>
+        <tr><th scope="row">License</th><td>CC BY 4.0</td><td>CC BY 4.0, same rows and same license</td></tr>
+        <tr><th scope="row">Coverage</th><td>Dozens of cities worldwide</td><td>6 US cities, 90,169 listings</td></tr>
+        <tr><th scope="row">Schema</th><td>Per-city files, schemas documented per city</td><td>12 shared columns across all 6 cities</td></tr>
+        <tr><th scope="row">Cross-city work</th><td>You normalize and join the files</td><td>Done; cities-index.csv ships with it</td></tr>
+        <tr><th scope="row">Query access</th><td>Download CSVs, load your own tools</td><td>Same CSVs, plus MCP tools over the full rows</td></tr>
+        <tr><th scope="row">Snapshot dates</th><td>Documented on the site</td><td>Written on the page and in the files</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section aria-label="Snapshot dates in the pack">
+    <h2>Snapshot dates, written out</h2>
+    <p>Every city was captured on one date, so each row is a picture of that market that day. The dates below ship with the $39 bundle and appear in the data dictionary:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Per-city snapshot dates and counts"><table>
+      <thead><tr><th scope="col">City</th><th scope="col">Snapshot date</th><th scope="col">Listings</th></tr></thead>
+      <tbody>
+        <tr><td>Austin, TX</td><td>2026-06-22</td><td>11,295</td></tr>
+        <tr><td>Nashville, TN</td><td>2026-06-26</td><td>10,242</td></tr>
+        <tr><td>Denver, CO</td><td>2026-06-30</td><td>4,939</td></tr>
+        <tr><td>New York City, NY</td><td>2026-08-10</td><td>30,234</td></tr>
+        <tr><td>Las Vegas (Clark County), NV</td><td>2026-06-27</td><td>20,234</td></tr>
+        <tr><td>San Diego, CA</td><td>2026-06-27</td><td>13,225</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section aria-label="Free files to try first">
+    <h2>Try the free files first</h2>
+    <ul>
+      <li><a href="../data/airbnb-six-cities/sample.csv">sample.csv</a>: 20 real Austin rows, all 12 columns.</li>
+      <li><a href="../data/airbnb-six-cities/cities-index.csv">cities-index.csv</a>: the complete 6-row index with per-city stats.</li>
+      <li>MCP queries over the full 90,169 rows, free: <pre>npx --allow-git=all -y github:jayjex/dataset-mcp</pre></li>
+    </ul>
+    <p>Those files stay free. If they answer your question, no purchase needed. Worked examples live on the <a href="../agents/">For agents</a> page.</p>
+  </section>
+
+  <section aria-label="When the source files are enough">
+    <h2>When the source files are enough</h2>
+    <p>Three cases where downloading from Inside Airbnb directly is the better move: you study one city, you need a file type the pack leaves out (calendar, reviews, neighborhood geometry), or you want a fresher snapshot and can normalize it yourself. The pack fits when the job is comparing cities in one schema, feeding rows to an agent over MCP, or cutting the normalization step out of your pipeline.</p>
+  </section>
+
+  <section aria-label="Get the full bundle">
+    <h2>Get the full 6-city bundle</h2>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/airbnb-six-cities/sample.csv" download>Download free sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtpkvxdf" rel="noopener">Get full data, $39</a>
+    </div>
+    <p class="btn-note">$39 pack: per-city CSVs, cities-index.csv, data dictionary, methodology, source checksums. Checkout and download run through Getly. Data from Inside Airbnb, CC BY 4.0.</p>
+  </section>
+
+  <section aria-label="More datasets">
+    <h2>More from the catalog</h2>
+    <ul>
+      <li><a href="airbnb-data-guide.html">Airbnb data download guide</a>: the 12 columns explained, with MCP query examples</li>
+      <li><a href="../datasets/airbnb-six-cities.html">Airbnb Listings, 6 US Cities</a>: dataset page with preview table and stats</li>
+      <li><a href="../datasets/hud-fmr-2026.html">HUD Fair Market Rents FY2026</a>: 51,895 ZIP codes, pairs well with Airbnb pricing</li>
+      <li><a href="../free-datasets-for-ai-agents.html">Free datasets for AI agents</a>: free paths into every dataset here</li>
+    </ul>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

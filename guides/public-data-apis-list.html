@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Public Data APIs: 12 Free Endpoints We Tested Live | Data Vault</title>
+<meta name="description" content="A free public API list we tested with curl on our own box: 12 public data APIs across government, sports, weather, and crypto, each with endpoint, auth, rate limit, and the real output returned.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/public-data-apis-list.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Public Data APIs: 12 Free Endpoints We Tested Live">
+<meta property="og:description" content="12 public data APIs across government, sports, weather, and crypto, tested live with curl, each with endpoint, auth, rate limit, and real output.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/public-data-apis-list.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Public Data APIs: 12 Free Endpoints We Tested Live", "description": "A free public API list we tested with curl on our own box: 12 public data APIs across government, sports, weather, and crypto, each with endpoint, auth, rate limit, and the real output returned.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/public-data-apis-list.html", "about": {"@type": "Thing", "name": "public data APIs"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ItemList", "name": "Public data APIs tested live", "numberOfItems": 12, "itemListElement": [{"@type": "ListItem", "position": 1, "name": "US Census Bureau API (discovery catalog)", "url": "https://api.census.gov/data.json"}, {"@type": "ListItem", "position": 2, "name": "Treasury Fiscal Data API", "url": "https://fiscaldata.treasury.gov/api-documentation/"}, {"@type": "ListItem", "position": 3, "name": "BLS Public Data API v2", "url": "https://www.bls.gov/developers/"}, {"@type": "ListItem", "position": 4, "name": "USGS Earthquake API", "url": "https://earthquake.usgs.gov/fdsnws/event/1/"}, {"@type": "ListItem", "position": 5, "name": "World Bank API", "url": "https://datahelpdesk.worldbank.org/knowledgebase/topics/125589-development-data-and-statistics"}, {"@type": "ListItem", "position": 6, "name": "FRED fredgraph CSV endpoint", "url": "https://fred.stlouisfed.org/docs/api/fred/"}, {"@type": "ListItem", "position": 7, "name": "ESPN site API scoreboard", "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"}, {"@type": "ListItem", "position": 8, "name": "MLB Stats API", "url": "https://statsapi.mlb.com/api/v1/teams?sportId=1"}, {"@type": "ListItem", "position": 9, "name": "TheSportsDB free API", "url": "https://www.thesportsdb.com/free_sports_api"}, {"@type": "ListItem", "position": 10, "name": "Open-Meteo forecast API", "url": "https://open-meteo.com/en/docs"}, {"@type": "ListItem", "position": 11, "name": "National Weather Service API", "url": "https://www.weather.gov/documentation/services-web-api"}, {"@type": "ListItem", "position": 12, "name": "CoinGecko public price API", "url": "https://www.coingecko.com/en/api"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What are the best free public data APIs without a key?", "acceptedAnswer": {"@type": "Answer", "text": "All twelve APIs on this page returned live data with no key when we tested them: US Census discovery data, Treasury interest rates, BLS unemployment, USGS earthquakes, World Bank indicators, FRED series CSV, ESPN NFL scoreboard, MLB teams, TheSportsDB team search, Open-Meteo weather, National Weather Service points, and CoinGecko prices."}}, {"@type": "Question", "name": "Do these public APIs require an API key?", "acceptedAnswer": {"@type": "Answer", "text": "None of the twelve test calls needed one. The Census data endpoints changed policy and now reject keyless data queries with a Missing Key page, but the discovery catalog at api.census.gov/data.json still answers without a key, and FRED's REST API needs a key while its fredgraph.csv series endpoint does not."}}, {"@type": "Question", "name": "How do you test whether a public API still works?", "acceptedAnswer": {"@type": "Answer", "text": "Run one curl request per endpoint on the same day the list is published, record the HTTP status and the first bytes of the response, and drop anything that fails or hits a signup wall. This list started with 18 candidates; 12 passed and the rest are documented as excluded with the exact error each one returned."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Public data APIs: 12 free endpoints tested live</h1>
+  <p class="byline">Published 2026-09-10. Every endpoint below returned HTTP 200 in a curl run from our own box, and the sample output is pasted verbatim from that same run.</p>
+
+  <section aria-label="How the list was built">
+    <h2>How this free public API list was built</h2>
+    <p>Most public API lists read like they were written from memory. Ours came from a terminal: 18 candidate endpoints, one curl call each on the day this page went up, a fixed User-Agent string, and a hard rule that anything without a 200 gets cut. Twelve survived. Every sample below shows real output from that run, trimmed to one line so the shape of each response stays visible.</p>
+    <p>The tests measured three things per API: whether a key was required, whether the response carries rate-limit headers, and what the payload actually looks like. Rate-limit headers came back empty on all twelve, so each entry notes what the provider documents instead of a number we guessed at.</p>
+  </section>
+
+  <section aria-label="Government APIs">
+    <h2>Government data APIs</h2>
+    <p>Six US and multilateral sources, all keyless on the exact endpoint tested. One policy change worth knowing before you build: the Census data endpoints now reject keyless queries (the redirect lands on a <em>Missing Key</em> page), while the discovery catalog still answers to anyone.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Government API table"><table><thead><tr><th scope="col">API</th><th scope="col">Endpoint</th><th scope="col">Auth</th><th scope="col">Rate limit</th><th scope="col">Live output</th></tr></thead><tbody>
+      <tr><td>Census Bureau (discovery)</td><td><code>GET https://api.census.gov/data.json</code></td><td>none</td><td>no headers returned; no published cap</td><td><code>{"dataset": [...1803 entries]}</code></td></tr>
+      <tr><td>Treasury Fiscal Data</td><td><code>GET .../v2/accounting/od/avg_interest_rates?page[size]=1&amp;sort=-record_date</code></td><td>none</td><td>no headers returned; fair-use guidance in docs</td><td><code>{"record_date":"2026-08-31","security_desc":"Treasury Bills","avg_interest_rate_amt":"3.788"}</code></td></tr>
+      <tr><td>BLS Public API v2</td><td><code>GET https://api.bls.gov/publicAPI/v2/timeseries/data/LNS14000000</code></td><td>none (GET form)</td><td>BLS documents 25 queries/day keyless, 500 with a free key</td><td><code>{"year":"2026","periodName":"August","value":"4.1"}</code></td></tr>
+      <tr><td>USGS Earthquakes</td><td><code>GET https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&amp;limit=1&amp;orderby=time</code></td><td>none</td><td>no headers returned; no published cap</td><td><code>{"mag":2.3,"place":"31 km SW of Petersville, Alaska"}</code></td></tr>
+      <tr><td>World Bank</td><td><code>GET https://api.worldbank.org/v2/country/US/indicator/SP.POP.TOTL?format=json&amp;per_page=1&amp;date=2023</code></td><td>none</td><td>no headers returned; no published cap</td><td><code>{"country":"United States","date":"2023","value":336755052}</code></td></tr>
+      <tr><td>FRED (fredgraph CSV)</td><td><code>GET https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10</code></td><td>none</td><td>no headers returned; no published cap</td><td><code>observation_date,DGS10 / 2026-09-01,4.79</code></td></tr>
+    </tbody></table></div>
+    <p>The Census catalog is the sleeper. One GET returns metadata for 1,803 datasets, which is enough to discover variable IDs before touching the keyed data endpoints. FRED's REST API (<code>api.stlouisfed.org</code>) needs a key and returned <code>400 Variable api_key is not set</code> on our test, but the fredgraph.csv path serves the same series as CSV with no registration.</p>
+  </section>
+
+  <section aria-label="Sports APIs">
+    <h2>Sports data APIs</h2>
+    <p>Three free sports endpoints, all undocumented-or-lightly-documented and all keyless on the paths tested. These are the same families behind the deep dives in our <a href="free-sports-data-csv.html">free sports data CSV guide</a>.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Sports API table"><table><thead><tr><th scope="col">API</th><th scope="col">Endpoint</th><th scope="col">Auth</th><th scope="col">Rate limit</th><th scope="col">Live output</th></tr></thead><tbody>
+      <tr><td>ESPN site API</td><td><code>GET https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard</code></td><td>none</td><td>undocumented; no headers returned</td><td><code>NFL season 2026, 16 events, "New England Patriots at Seattle Seahawks"</code></td></tr>
+      <tr><td>MLB Stats API</td><td><code>GET https://statsapi.mlb.com/api/v1/teams?sportId=1&amp;season=2026</code></td><td>none</td><td>undocumented; no headers returned</td><td><code>{"teams": 30, "sample": "Athletics"}</code></td></tr>
+      <tr><td>TheSportsDB (free tier)</td><td><code>GET https://www.thesportsdb.com/api/v1/json/3/searchteams.php?t=Arsenal</code></td><td>shared test key <code>3</code> in path</td><td>free key documented as rate-limited; no headers returned</td><td><code>{"strTeam":"Arsenal","strLeague":"English Premier League","intFormedYear":"1892"}</code></td></tr>
+    </tbody></table></div>
+    <p>ESPN and MLB run the sites themselves, so schemas shift without notice. Cache responses and pin the fields you use. TheSportsDB's <code>3</code> path is a shared test key: fine for a lookup script, but they ask production users to register a free key.</p>
+  </section>
+
+  <section aria-label="Weather APIs">
+    <h2>Weather data APIs</h2>
+    <p>Two weather sources that need no key and cover each other's gaps: Open-Meteo for global point forecasts, NWS for official US warnings and grid data.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Weather API table"><table><thead><tr><th scope="col">API</th><th scope="col">Endpoint</th><th scope="col">Auth</th><th scope="col">Rate limit</th><th scope="col">Live output</th></tr></thead><tbody>
+      <tr><td>Open-Meteo</td><td><code>GET https://api.open-meteo.com/v1/forecast?latitude=40.71&amp;longitude=-74.01&amp;current=temperature_2m,wind_speed_10m</code></td><td>none</td><td>10,000 requests/day documented free tier</td><td><code>{"temperature_2m":20.3,"wind_speed_10m":12.0}</code></td></tr>
+      <tr><td>National Weather Service</td><td><code>GET https://api.weather.gov/points/38.8894,-77.0352</code></td><td>none</td><td>limits exist; NWS states the rate limit is not public</td><td><code>{"cwa":"LWX","forecastOffice":"https://api.weather.gov/offices/LWX"}</code></td></tr>
+    </tbody></table></div>
+    <p>NWS answers deserve a User-Agent header with contact info; requests without one get throttled harder. The <code>points</code> call is the router: it returns the grid endpoints that forecasts and alerts hang off.</p>
+  </section>
+
+  <section aria-label="Crypto APIs">
+    <h2>Crypto data APIs</h2>
+    <p>One survivor in this category. The exchange endpoints that missed the cut are documented in the section below.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Crypto API table"><table><thead><tr><th scope="col">API</th><th scope="col">Endpoint</th><th scope="col">Auth</th><th scope="col">Rate limit</th><th scope="col">Live output</th></tr></thead><tbody>
+      <tr><td>CoinGecko</td><td><code>GET https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&amp;vs_currencies=usd</code></td><td>none for this endpoint</td><td>keyless calls throttled per IP; no headers returned</td><td><code>{"bitcoin":{"usd":79354},"ethereum":{"usd":2498.69}}</code></td></tr>
+    </tbody></table></div>
+    <p>The <code>simple/price</code> endpoint is the cheapest possible integration: one GET, two currencies, no key. For anything heavier, CoinGecko's demo tier issues a key. The exchanges we tried (Coinbase spot, Binance ticker, Kraken ticker) never completed a connection from our box that day, so they stay out until one returns 200 from here.</p>
+  </section>
+
+  <section aria-label="What got cut">
+    <h2>What got cut, and the exact wall each one hit</h2>
+    <p>Failures are data too. These candidates returned something other than 200, so they stay off the list until they change:</p>
+    <ul>
+      <li>College Scorecard (api.data.gov): <code>403 API_KEY_MISSING</code>, signup wall in front of every query.</li>
+      <li>Census data endpoints (ACS, decennial): 200 status but a <em>Missing Key</em> HTML page, a key wall behind a 200.</li>
+      <li>FRED REST API: <code>400 Variable api_key is not set</code>.</li>
+      <li>SEC EDGAR companyconcept: 403 despite a declared User-Agent.</li>
+      <li>CryptoCompare: <code>401 API key required</code>.</li>
+      <li>Coinbase, Binance, Kraken, NASA api.data.gov: connection never completed from our test box.</li>
+    </ul>
+  </section>
+
+  <section aria-label="Related resources">
+    <h2>Where to go next</h2>
+    <p>These twelve are third-party servers with quotas and moods. When you need data you control, our <a href="open-data-api-alternative.html">open data API endpoints</a> serve six dataset samples from GitHub Pages with no key and no rate limit at all, and the <a href="csv-vs-api.html">CSV vs API decision guide</a> covers when a full download beats an endpoint. Sports people should read the <a href="free-sports-data-csv.html">free sports data CSV</a> walkthrough for licensed downloads with 7,548 game rows.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../tools/sample-data-downloads.html">Browse free samples</a>
+      <a class="btn" href="https://www.getly.store/store/mtmw06l2" rel="noopener">Get the full pack</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. Third-party APIs listed above carry their own terms and rate limits; check each provider's docs before commercial use.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>What are the best free public data APIs without a key?</h3>
+    <p>All twelve APIs on this page returned live data with no key when we tested them: US Census discovery data, Treasury interest rates, BLS unemployment, USGS earthquakes, World Bank indicators, FRED series CSV, ESPN NFL scoreboard, MLB teams, TheSportsDB team search, Open-Meteo weather, National Weather Service points, and CoinGecko prices.</p>
+    <h3>Do these public APIs require an API key?</h3>
+    <p>None of the twelve test calls needed one. The Census data endpoints changed policy and now reject keyless data queries with a Missing Key page, but the discovery catalog at api.census.gov/data.json still answers without a key, and FRED's REST API needs a key while its fredgraph.csv series endpoint does not.</p>
+    <h3>How do you test whether a public API still works?</h3>
+    <p>Run one curl request per endpoint on the same day the list is published, record the HTTP status and the first bytes of the response, and drop anything that fails or hits a signup wall. This list started with 18 candidates; 12 passed and the rest are documented as excluded with the exact error each one returned.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

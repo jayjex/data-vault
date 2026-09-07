@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sports Data for Apps: Free APIs Tested Live, Licenses, and the Cache Architecture | Data Vault</title>
+<meta name="description" content="Building an app on free sports data: ESPN's site API, nflverse, and TheSportsDB's free tier, every endpoint tested live on 2026-09-10, with license terms per source, a poll-cache-serve architecture diagram, and rate limit strategy.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/sports-data-for-apps.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Sports Data for Apps: Free APIs Tested Live, Licenses, and the Cache Architecture">
+<meta property="og:description" content="Free sports data sources for app developers: ESPN site API, nflverse, TheSportsDB free tier. Live tests 2026-09-10, licensing per source, poll-cache-serve architecture, rate limit strategy.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/sports-data-for-apps.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Sports data for apps: free APIs tested live, licenses, and the cache architecture", "description": "Building an app on free sports data: ESPN's site API, nflverse, and TheSportsDB's free tier, every endpoint tested live on 2026-09-10, with license terms per source, a poll-cache-serve architecture diagram, and rate limit strategy.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/sports-data-for-apps.html", "about": {"@type": "Thing", "name": "Free sports data APIs for app development"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Sports data for apps", "item": "https://jayjex.github.io/data-vault/guides/sports-data-for-apps.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the best free sports data API for an app?", "acceptedAnswer": {"@type": "Answer", "text": "Match the source to what the app shows. ESPN's site API for current scores and fixtures, keyless and tested at 200 across NFL, NBA, MLB, and NHL on 2026-09-10. nflverse for complete NFL game history as CSV under CC BY 4.0, 7,548 games from 1999. TheSportsDB's free tier for multi-league team and event lookups at 30 requests per minute. Many apps combine all three: ESPN for the live layer, nflverse for history, TheSportsDB for coverage ESPN does not carry."}}, {"@type": "Question", "name": "Can I use ESPN's API in a commercial app?", "acceptedAnswer": {"@type": "Answer", "text": "There is no contract that says you can. The site.api.espn.com endpoints are undocumented, carry no published terms for programmatic reuse, no schema guarantee, and no published rate limit. Apps do use them and the endpoints answer any client, but the content is ESPN's and the endpoints can change or close without notice. The practical position: keep your own cache so an outage degrades your app gracefully instead of breaking it, and treat a commercial launch as the point to evaluate a licensed feed."}}, {"@type": "Question", "name": "How do I avoid rate limit problems in a sports app?", "acceptedAnswer": {"@type": "Answer", "text": "Never call the source APIs from your app process. Run one poller that fetches on a schedule, writes normalized rows into your own cache, and serves users from the cache. Set a freshness target per table: scores need 30 to 60 second polls during game windows, schedules change once a day, historical records never change. Honor 429 responses by waiting, as TheSportsDB documents for its 30 requests per minute free tier, and back off with jitter on any 5xx."}}]}
+</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../datasets/nfl-games.html">NFL dataset</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Sports data for apps: free APIs tested live, licenses, and the cache architecture</h1>
+  <p class="byline">App-developer view of free sports data sources &middot; companion to the <a href="nfl-data-apis.html">NFL data APIs comparison</a> and the <a href="free-sports-data-csv.html">free sports data CSV survey</a> &middot; every status code and output comment below comes from a live run on 2026-09-10.</p>
+
+  <section aria-label="Quick answer">
+    <p>Three free sources cover most of what a sports app needs, and they behave very differently in production:</p>
+    <table>
+      <tr><th>Source</th><th>What it gives the app</th><th>Checked 2026-09-10</th><th>License standing</th></tr>
+      <tr><td><a href="#espn">ESPN site API</a></td><td>Live scores, fixtures, teams, every major league</td><td><code>nfl/scoreboard</code> 200, 16 events &middot; <code>nba</code> 200, <code>mlb</code> 200, <code>nhl</code> 200</td><td>undocumented, no reuse guarantee</td></tr>
+      <tr><td><a href="#nflverse">nflverse releases</a></td><td>Full NFL game history as CSV, weekly in season</td><td><code>games.csv</code> 200, 7,548 rows &middot; stamp <code>2026-09-07 09:51:20 EDT</code></td><td><a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>, commercial OK with credit</td></tr>
+      <tr><td><a href="#tsdb">TheSportsDB free tier</a></td><td>Multi-league teams, events, schedules, artwork</td><td><code>eventsday.php</code> 200, 3 events &middot; <code>eventsnextleague.php</code> 200, 1 event</td><td>free tier documented at 30 req/min, premium gates several methods</td></tr>
+    </table>
+    <p>The short version: ESPN for the live layer, nflverse for the history layer, TheSportsDB when you need leagues ESPN's feed makes awkward or a second opinion on fixtures. None of them should be called from your app process directly; the architecture section shows where they belong instead.</p>
+  </section>
+
+  <section aria-label="ESPN site API">
+    <h2 id="espn">ESPN site API: the live layer</h2>
+    <p>ESPN serves the JSON its own site and apps render, under <code>site.api.espn.com</code>, keyless. The scoreboard endpoint worked for all four major leagues on the checked date:</p>
+<pre>import requests
+
+r = requests.get(
+    "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+    timeout=30,
+)
+r.raise_for_status()
+print(r.status_code, len(r.content))    # 200 200379
+print(len(r.json()["events"]))          # 16
+print(r.json()["events"][0]["name"])    # New England Patriots at Seattle Seahawks
+
+for sport, league in [("basketball","nba"), ("baseball","mlb"), ("hockey","nhl")]:
+    r = requests.get(f"https://site.api.espn.com/apis/site/v2/sports/{sport}/{league}/scoreboard", timeout=30)
+    print(sport, r.status_code, len(r.json().get("events", [])))
+    # basketball 200 1 | baseball 200 15 | hockey 200 7</pre>
+    <p>The <code>teams</code> endpoint returned all 32 NFL clubs the same day (200, 148,848 bytes). What an app gets: nested JSON with event status, odds when posted, venue, and broadcast info, one call per league per day window.</p>
+    <p>The catch is the contract. This is an undocumented site API: no published schema, no versioning promise, no published rate limit, and no reuse terms for commercial apps. It has been stable for years and every hobby project leans on it, but your launcher or store review is not the place to discover a breaking change. Cache responses (the architecture below does), pin your parser to the fields you actually use, and keep timeouts on. For endpoint-by-endpoint examples, the <a href="espn-api-python.html">ESPN API in Python guide</a>.</p>
+  </section>
+
+  <section aria-label="nflverse releases">
+    <h2 id="nflverse">nflverse releases: the history layer</h2>
+    <p>The nflverse-data project publishes complete NFL game data as static GitHub release files. This is the cleanest license in the space: <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>, commercial use allowed with credit as "Data from nflverse, CC BY 4.0". A single file carries every game since 1999:</p>
+<pre>url = "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv"
+r = requests.get(url, timeout=120)
+r.raise_for_status()
+print(r.status_code, len(r.content))    # 200 2178569
+print(r.content.count(b"\n"))           # 7549  (7548 rows + header)
+print(r.content.split(b"\n")[0][:46])   # game_id,season,game_type,week,gameday,weekday,
+
+stamp = requests.get(
+    "https://github.com/nflverse/nflverse-data/releases/download/schedules/timestamp.json",
+    timeout=30,
+).json()
+print(stamp)    # {'last_updated': '2026-09-07 09:51:20 EDT'}</pre>
+    <p>For an app, the pattern is a sync job, not a query: download the file, diff it against your cache, load the new rows. The <code>timestamp.json</code> stamp tells the sync whether anything changed, so a daily download that sees the same stamp costs you nothing. Releases include schedules, play-by-play, rosters, and weekly player stats, each with its own stamp. Usage terms per source sit in the licensing section below; the full column-by-column breakdown is in the <a href="nfl-games-data-guide.html">games.csv column guide</a>.</p>
+  </section>
+
+  <section aria-label="TheSportsDB free tier">
+    <h2 id="tsdb">TheSportsDB free tier: wide coverage, hard caps</h2>
+    <p>TheSportsDB is a community-built database of teams, players, events, and artwork across dozens of sports. The free tier uses the public key <code>123</code> right in the URL, documented on the site's API page along with the limit: <strong>30 requests per minute</strong>, enforced with a 429 and a one-minute cooldown. Tests on the checked date, verbatim:</p>
+<pre>K = "123"
+base = f"https://www.thesportsdb.com/api/v1/json/{K}"
+
+r = requests.get(f"{base}/searchteams.php?t=Arsenal", timeout=30)
+print(r.status_code, len(r.content))          # 200 17209
+print(r.json()["teams"][0]["idTeam"])         # 133604
+
+r2 = requests.get(f"{base}/eventsnextleague.php?id=4328", timeout=30)
+evs = r2.json()["events"]
+print(r2.status_code, len(r2.content), len(evs))   # 200 1684 1
+print(evs[0]["strEvent"])                          # Bournemouth vs Brentford
+
+r3 = requests.get(f"{base}/eventsday.php?d=2026-09-10&s=Ice%20Hockey", timeout=30)
+print(r3.status_code, len(r3.json()["events"]))   # 200 3
+print(r3.json()["events"][0]["strEvent"])         # Sibir Novosibirsk vs Amur Khabarovsk</pre>
+    <p>The free tier trims results, and the trims are visible in the responses above. <code>eventsnextleague.php</code> for the English Premier League returned 1 upcoming event; premium keys return the full next-5 list. <code>eventsseason.php?id=4328&amp;s=2025-2026</code> answered 200 but with 5 events where the real season has 380. <code>search_all_teams.php?l=NFL</code> returned 10 of 32 clubs. The livescore methods answer <code>[null]</code> on the free key (<code>latestsoccer.php</code> returned exactly that), and the v2 API rejects non-premium keys outright (404 on a plain test). None of that makes the free tier useless: team lookups, venue data, artwork, and day-level event listings all work, and 30 req/min is enough for a poller that syncs once or twice a minute.</p>
+    <p>Licensing sits in the site's database terms: the data is community-contributed, the free tier is for development and light use, and heavy or commercial use is what the premium tier funds. Read their current terms before shipping; they are stricter than a CC license.</p>
+  </section>
+
+  <section aria-label="Licensing table">
+    <h2>Licensing per source, in plain terms</h2>
+    <table>
+      <tr><th>Source</th><th>Contract</th><th>Commercial use</th><th>What you owe</th></tr>
+      <tr><td>ESPN site API</td><td>undocumented, no published reuse terms</td><td>no guarantee; content remains ESPN's</td><td>nothing formal &mdash; and nothing promised in return; cache so an endpoint change is not an outage</td></tr>
+      <tr><td>nflverse releases</td><td><a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a></td><td>explicitly allowed</td><td>credit line: "Data from nflverse, CC BY 4.0"</td></tr>
+      <tr><td>TheSportsDB free tier</td><td>site database terms, free tier for development and light use</td><td>limited; premium tier covers heavier use</td><td>stay inside 30 req/min and their terms; check before launch</td></tr>
+    </table>
+    <p>The practical reading: nflverse is the only one of the three where a lawyer would shrug. ESPN works until it doesn't, and TheSportsDB's free tier is a development allowance more than a data license. A preprocessed, checksummed copy of the nflverse game file with the attribution already handled is in the <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines pack</a>, with a <a href="../data/nfl-games/sample.csv" download>free 22-row sample</a>.</p>
+  </section>
+
+  <section aria-label="App architecture">
+    <h2>Typical app architecture: poll, cache, serve</h2>
+    <p>The mistake every first sports app makes is calling source APIs from the request path. One user spike burns the rate limit, and when ESPN's endpoint hiccups, your app is down with it. The standard fix is three processes with one boundary between them:</p>
+<pre>  source APIs            poll worker              cache            app API
+ (ESPN, nflverse,  ──▶  (cron / scheduler)  ──▶  (SQLite /   ◀──  (serves users;
+  TheSportsDB)          poll per freshness        Postgres)        never calls sources)
+                        target per table          normalized
+                                                  rows + TTL</pre>
+    <p>Or as one rule: <strong>the app API only ever reads your cache.</strong> The poller is the single client of the outside world. Concretely:</p>
+    <ul>
+      <li><strong>Poll worker.</strong> One scheduled job per table, cadence set by how fast the data actually changes (table below). It calls the source, maps the response into your own schema, and writes. Normalization lives here, so ESPN's nested <code>competitions[0].competitors</code> never leaks past this box.</li>
+      <li><strong>Cache.</strong> Any database you like. Two things matter: rows in your schema, not the source's, and a TTL or <code>updated_at</code> per table so the app knows how fresh each read is. This is also your outage shield: if ESPN goes down at kickoff, the cache still serves the last good poll.</li>
+      <li><strong>App API.</strong> Reads the cache, answers users, scales horizontally without touching a rate limit. Version your own API; the sources behind it can change without a user-visible release.</li>
+    </ul>
+    <p>Update schedule that matched the sources on the checked date:</p>
+    <table>
+      <tr><th>Table</th><th>How fast it changes</th><th>Poll cadence</th></tr>
+      <tr><td>Live scores (ESPN scoreboard)</td><td>seconds, during game windows</td><td>every 30-60s while games are on, hourly otherwise</td></tr>
+      <tr><td>Schedules and fixtures (ESPN, TSDB <code>eventsday</code>)</td><td>days, with occasional league reshuffles</td><td>once or twice daily</td></tr>
+      <tr><td>Game history (nflverse <code>games.csv</code>)</td><td>weekly in season, never for past seasons</td><td>daily, skip if <code>timestamp.json</code> stamp unchanged</td></tr>
+      <tr><td>Teams, venues, artwork (TSDB lookups)</td><td>months</td><td>weekly, or on cache miss</td></tr>
+    </table>
+  </section>
+
+  <section aria-label="Rate limit strategy">
+    <h2>Rate limit strategy, per source</h2>
+    <p>The poller makes rate limits a solved problem, but the numbers still decide your cadence:</p>
+    <table>
+      <tr><th>Source</th><th>Published limit</th><th>What it means for the poller</th></tr>
+      <tr><td>ESPN site API</td><td>none published</td><td>act like there is one: keep total calls modest, cache everything, back off on 5xx. A 16-game NFL Sunday polled every 60s is about 180 calls across a 3-hour window, trivially safe</td></tr>
+      <tr><td>TheSportsDB free tier</td><td>30 req/min, 429 then one-minute cooldown (documented)</td><td>budget ~25/min to leave headroom; on 429, sleep 60s. One league's daily sync is a handful of calls, so the limit binds only if you fan out across dozens of leagues</td></tr>
+      <tr><td>nflverse releases</td><td>none (GitHub asset downloads)</td><td>stamp check first, download only on change; a daily sync is 1-2 requests</td></tr>
+    </table>
+    <p>Three habits cover the rest. Back off with jitter on any 429 or 5xx rather than retrying on a fixed interval, or your poller becomes the outage. Log the byte size of each response; a sudden change usually means a schema change landed. And record each poll's stamp or <code>ETag</code> so unchanged days cost nothing.</p>
+  </section>
+
+  <section aria-label="Where the pack fits">
+    <h2>Where a preprocessed dataset fits</h2>
+    <p>The architecture above handles freshness. History is a different job: loading 7,548 games through a poller makes no sense when the file never changes. The <a href="../datasets/nfl-games.html">NFL Games &amp; Betting Lines 1999-2026 pack</a> ships the nflverse game file as a checksummed copy plus derived tables (team records by season, season summaries) and a data dictionary, so the history layer of your app is one import instead of a pipeline. The <a href="../data/nfl-games/sample.csv" download>free 22-row sample</a> carries the same schema. For the source-by-source NFL API comparison behind this page, the <a href="nfl-data-apis.html">NFL data APIs guide</a>; for what's downloadable as flat files across leagues, the <a href="free-sports-data-csv.html">free sports data CSV survey</a>.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>Sports data for apps: FAQ</h2>
+    <dl>
+      <dt>What is the best free sports data API for an app?</dt>
+      <dd>Match the source to what the app shows. ESPN's site API for current scores and fixtures, keyless and tested at 200 across NFL, NBA, MLB, and NHL on 2026-09-10. nflverse for complete NFL game history as CSV under CC BY 4.0, 7,548 games from 1999. TheSportsDB's free tier for multi-league team and event lookups at 30 requests per minute. Many apps combine all three: ESPN for the live layer, nflverse for history, TheSportsDB for coverage ESPN does not carry.</dd>
+      <dt>Can I use ESPN's API in a commercial app?</dt>
+      <dd>There is no contract that says you can. The <code>site.api.espn.com</code> endpoints are undocumented, carry no published terms for programmatic reuse, no schema guarantee, and no published rate limit. Apps do use them and the endpoints answer any client, but the content is ESPN's and the endpoints can change or close without notice. Keep your own cache so an outage degrades your app gracefully instead of breaking it, and treat a commercial launch as the point to evaluate a licensed feed.</dd>
+      <dt>How do I avoid rate limit problems in a sports app?</dt>
+      <dd>Never call the source APIs from your app process. Run one poller that fetches on a schedule, writes normalized rows into your own cache, and serve users from the cache. Set a freshness target per table: scores need 30 to 60 second polls during game windows, schedules change once a day, historical records never change. Honor 429 responses by waiting, as TheSportsDB documents for its 30 requests per minute free tier, and back off with jitter on any 5xx.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Attribution">
+    <h2>Sources and attribution</h2>
+    <p>Endpoints tested live on 2026-09-10 with plain <code>requests</code> calls; outputs above are verbatim from those runs. nflverse game data: nflverse-data project, <code>schedules/games.csv</code>, <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>. TheSportsDB free tier tests used the public key documented on the site's own API page. ESPN endpoints are public site APIs with no documentation contract behind them. Team and league names are factual data; no logos or league marks appear on this page. Nothing here is betting advice, picks, or predictions.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

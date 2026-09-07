@@ -75,8 +75,9 @@
     }
    ],
    "full_data": {
-    "status": "coming",
-    "store_url": "https://www.getly.store/store/mtmw06l2"
+    "status": "available",
+    "price_usd": 24,
+    "url": "https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm"
    },
    "license": "Public domain (US government data)",
    "page": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"

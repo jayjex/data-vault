@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Public Bookcase Map Worldwide: Fountains and Bike Repair Stations Counted in 16 Cities | Data Vault</title>
-<meta name="description" content="Public bookcase, drinking water fountain, and bike repair station counts for 16 cities across four regions: 11,543 OpenStreetMap nodes as free CSV. Seattle leads bookcases at 497, Tokyo tops fountains at 2,163, Warsaw holds 188 repair stands.">
+<title>Public Bookcase Map Worldwide: Fountains and Bike Repair Stations Counted in 19 Cities | Data Vault</title>
+<meta name="description" content="Public bookcase, drinking water fountain, and bike repair station counts for 19 cities across six regions: 13,783 OpenStreetMap nodes as free CSV. Seattle leads bookcases at 497, Nairobi tops fountains at 2,174, Warsaw holds 188 repair stands.">
 <link rel="canonical" href="https://jayjex.github.io/data-vault/guides/worldwide-civic-amenities-map.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Data Vault">
-<meta property="og:title" content="Public Bookcase Map Worldwide: Fountains and Bike Repair Stations in 16 Cities">
-<meta property="og:description" content="Public bookcase, drinking water fountain, and bike repair station counts for 16 cities across four regions: 11,543 OpenStreetMap nodes as free CSV.">
+<meta property="og:title" content="Public Bookcase Map Worldwide: Fountains and Bike Repair Stations in 19 Cities">
+<meta property="og:description" content="Public bookcase, drinking water fountain, and bike repair station counts for 19 cities across six regions: 13,783 OpenStreetMap nodes as free CSV.">
 <meta property="og:url" content="https://jayjex.github.io/data-vault/guides/worldwide-civic-amenities-map.html">
 <meta name="twitter:card" content="summary">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Public Bookcase, Drinking Water Fountain, and Bike Repair Station Maps Worldwide: 16 Cities Counted","description":"Public bookcase, drinking water fountain, and bike repair station counts for 16 cities across four regions: 11,543 OpenStreetMap nodes as free CSV. Seattle leads bookcases at 497, Tokyo tops fountains at 2,163, Warsaw holds 188 repair stands.","datePublished":"2026-09-10","dateModified":"2026-09-10","author":{"@type":"Organization","name":"Matchbook Labs"},"publisher":{"@type":"Organization","name":"Matchbook Labs"},"mainEntityOfPage":"https://jayjex.github.io/data-vault/guides/worldwide-civic-amenities-map.html"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Public Bookcase, Drinking Water Fountain, and Bike Repair Station Maps Worldwide: 19 Cities Counted","description":"Public bookcase, drinking water fountain, and bike repair station counts for 19 cities across six regions: 13,783 OpenStreetMap nodes as free CSV. Seattle leads bookcases at 497, Nairobi tops fountains at 2,174, Warsaw holds 188 repair stands.","datePublished":"2026-09-10","dateModified":"2026-09-10","author":{"@type":"Organization","name":"Matchbook Labs"},"publisher":{"@type":"Organization","name":"Matchbook Labs"},"mainEntityOfPage":"https://jayjex.github.io/data-vault/guides/worldwide-civic-amenities-map.html"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Data Vault","item":"https://jayjex.github.io/data-vault/"},{"@type":"ListItem","position":2,"name":"Worldwide civic amenities map","item":"https://jayjex.github.io/data-vault/guides/worldwide-civic-amenities-map.html"}]}</script>
 <link rel="stylesheet" href="../assets/style.css">
 </head>
@@ -28,15 +28,15 @@
 </div></header>
 <main id="main" class="wrap page">
   <a class="crumb" href="..">&larr; Catalog</a>
-  <h1>Public bookcase, drinking water fountain, and bike repair station maps: 16 cities worldwide</h1>
+  <h1>Public bookcase, drinking water fountain, and bike repair station maps: 19 cities worldwide</h1>
 
   <section aria-label="What this covers">
-    <p>Most map apps treat street-level civic infrastructure as an afterthought. OpenStreetMap does not: contributors tag drinking fountains (<span class="mono">amenity=drinking_water</span>), public bookcases (<span class="mono">amenity=public_bookcase</span>), and bike repair stations (<span class="mono">amenity=bicycle_repair_station</span>) point by point. This guide counts those three tags across 16 cities in four regions &mdash; 11,543 nodes in total &mdash; and publishes the numbers as free CSV, so a public bookcase map worldwide, a drinking water fountain map, or a bike repair station map app can start from real coverage numbers instead of guesswork. The query-level walkthrough lives in the <a href="osm-civic-data-guide.html">OSM civic data guide</a>; this page stays at the worldwide view.</p>
+    <p>Most map apps treat street-level civic infrastructure as an afterthought. OpenStreetMap does not: contributors tag drinking fountains (<span class="mono">amenity=drinking_water</span>), public bookcases (<span class="mono">amenity=public_bookcase</span>), and bike repair stations (<span class="mono">amenity=bicycle_repair_station</span>) point by point. This guide counts those three tags across 19 cities in six regions &mdash; 13,783 nodes in total &mdash; and publishes the numbers as free CSV, so a public bookcase map worldwide, a drinking water fountain map, or a bike repair station map app can start from real coverage numbers instead of guesswork. The query-level walkthrough lives in the <a href="osm-civic-data-guide.html">OSM civic data guide</a>; this page stays at the worldwide view.</p>
   </section>
 
   <section aria-label="Coverage table">
-    <h2>16 cities, four regions, 11,543 nodes</h2>
-    <p>The set covers five US cities, five EU cities, three Asian cities, and three Latin American cities. Every number is the count of OSM nodes carrying that amenity tag inside the city on the snapshot date; the last column sums the three:</p>
+    <h2>19 cities, six regions, 13,783 nodes</h2>
+    <p>The set covers five US cities, five EU cities, three Asian cities, three Latin American cities, and three African cities. Every number is the count of OSM elements carrying that amenity tag inside the city on the snapshot date; the last column sums the three:</p>
     <div class="table-wrap" tabindex="0" role="region" aria-label="Civic amenity counts per city worldwide"><table>
       <thead><tr><th scope="col">City</th><th scope="col">Region</th><th scope="col">Water fountains</th><th scope="col">Public bookcases</th><th scope="col">Bike repair stations</th><th scope="col">All three</th></tr></thead>
       <tbody>
@@ -56,28 +56,31 @@
         <tr><td>Sao Paulo</td><td>LatAm</td><td>105</td><td>4</td><td>7</td><td>116</td></tr>
         <tr><td>Buenos Aires</td><td>LatAm</td><td>182</td><td>1</td><td>2</td><td>185</td></tr>
         <tr><td>Mexico City</td><td>LatAm</td><td>61</td><td>0</td><td>23</td><td>84</td></tr>
+        <tr><td>Lagos</td><td>Africa</td><td>60</td><td>0</td><td>0</td><td>60</td></tr>
+        <tr><td>Nairobi</td><td>Africa</td><td>2,174</td><td>0</td><td>1</td><td>2,175</td></tr>
+        <tr><td>Addis Ababa</td><td>Africa</td><td>5</td><td>0</td><td>0</td><td>5</td></tr>
       </tbody>
     </table></div>
-    <p class="table-note">Regional totals: US 4,000 nodes, EU 4,669, Asia 2,489, LatAm 385. Theme totals: 9,657 fountains, 1,334 bookcases, 552 bike repair stations, 11,543 overall.</p>
-    <p>The full tables ship as CSV on the dataset pages: the <a href="../datasets/osm-us-civic-amenities.html">US five-city counts</a>, the <a href="../datasets/osm-eu-civic-amenities.html">EU five-city counts</a>, the <a href="../datasets/osm-asia-civic-amenities.html">Tokyo-Jakarta-Seoul counts</a>, and the <a href="../datasets/osm-latam-civic-amenities.html">Sao Paulo-Buenos Aires-Mexico City counts</a>. Each download is free; ODbL covers the source data.</p>
+    <p class="table-note">Regional totals: US 4,000 nodes, EU 4,669, Asia 2,489, LatAm 385, Africa 2,240. Theme totals: 11,896 fountains, 1,334 bookcases, 553 bike repair stations, 13,783 overall.</p>
+    <p>The full tables ship as CSV on the dataset pages: the <a href="../datasets/osm-us-civic-amenities.html">US five-city counts</a>, the <a href="../datasets/osm-eu-civic-amenities.html">EU five-city counts</a>, the <a href="../datasets/osm-asia-civic-amenities.html">Tokyo-Jakarta-Seoul counts</a>, the <a href="../datasets/osm-latam-civic-amenities.html">Sao Paulo-Buenos Aires-Mexico City counts</a>, and the <a href="../datasets/osm-africa-civic-amenities.html">Lagos-Nairobi-Addis Ababa counts</a>. Each download is free; ODbL covers the source data.</p>
   </section>
 
   <section aria-label="Standout counts">
     <h2>Where the counts cluster</h2>
-    <p>Seattle owns the bookcase count: 497 of the 1,334 counted in this set, more than double second-place New York City's 221. That tracks with the Little Free Library movement running strongest in the US Pacific Northwest. Paris leads the EU at 165, while Amsterdam's 0 and Jakarta's 1 are mapping-culture gaps rather than empty streets; the <span class="mono">public_bookcase</span> tag never caught on there.</p>
-    <p>Fountains concentrate in two capitals. Tokyo maps 2,163 drinking-water points and Madrid 2,058; together they hold 44% of the set's 9,657 fountains, consistent with the public-fountain networks both cities maintain. Paris adds 1,045. Bike repair stations flip the pattern: Warsaw's 188 stands top every other city, and no second city crosses 100 (Berlin, 71).</p>
-    <p>LatAm counts run small across every theme &mdash; Buenos Aires 185 nodes, Sao Paulo 116, Mexico City 84 &mdash; and fountains carry 90% of the region's 385 nodes. Whether that reflects fewer amenities or thinner tagging is what a second snapshot would settle.</p>
+    <p>Seattle owns the bookcase count: 497 of the 1,334 counted in this set, more than double second-place New York City's 221. That tracks with the Little Free Library movement running strongest in the US Pacific Northwest. Paris leads the EU at 165, while Amsterdam's 0, Jakarta's 1, and all nine Africa bookcase cells at 0 are mapping-culture gaps rather than empty streets; the <span class="mono">public_bookcase</span> tag never caught on there.</p>
+    <p>Fountains now concentrate in three capitals. Nairobi maps 2,174 drinking-water points, mostly unnamed taps with a dense Kibera cluster, the largest single-city count in the series. Tokyo follows at 2,163 and Madrid at 2,058; together they hold 54% of this table's 11,896 fountains, consistent with the public-fountain networks both cities maintain. Paris adds 1,045. Bike repair stations flip the pattern: Warsaw's 188 stands top every other city, and no second city crosses 100 (Berlin, 71).</p>
+    <p>LatAm counts run small across every theme &mdash; Buenos Aires 185 nodes, Sao Paulo 116, Mexico City 84 &mdash; and fountains carry 90% of the region's 385 nodes. Whether that reflects fewer amenities or thinner tagging is what a second snapshot would settle. Africa's 2,240 features ride almost entirely on Nairobi's water points; outside that column the region counts one repair stand and zero bookcases.</p>
   </section>
 
   <section aria-label="Use cases">
     <h2>From counts to a worldwide map or an app</h2>
-    <p>A per-city count answers the first question any map project should ask: is there enough content to map? Seattle's 497 bookcases give a public bookcase map real material; Amsterdam's 0 means the layer would start empty, and the fix is fieldwork, not code. The same check applies to a bike repair station map app, where Warsaw's 188 stands and Madrid's 3 sit at opposite ends, and to a drinking water fountain map, where even the smallest city in the set (Jakarta, 39 nodes across all three tags) has enough fountains to plot a walking route.</p>
+    <p>A per-city count answers the first question any map project should ask: is there enough content to map? Seattle's 497 bookcases give a public bookcase map real material; Amsterdam's 0 means the layer would start empty, and the fix is fieldwork, not code. The same check applies to a bike repair station map app, where Warsaw's 188 stands and Madrid's 3 sit at opposite ends, and to a drinking water fountain map, where even the smallest city in the set (Addis Ababa, 5 nodes across all three tags) has enough fountains to plot a walking route.</p>
     <p>Counts also give a data pipeline or an LLM a stable table instead of rendered tiles: one row per city, fixed columns, no JavaScript to run. To go from counts to coordinates, query the Overpass API with the same three amenity tags inside one city area; the <a href="../datasets/osm-asia-civic-amenities.html">Asia counts file ships one example location per amenity</a> with name, latitude, and longitude, which shows what a single row of that output looks like.</p>
   </section>
 
   <section aria-label="How the counts were queried">
     <h2>Method and snapshot date</h2>
-    <p>All counts ran on 2026-09-10 against the Overpass API, so they are snapshots of a database that changes daily. The EU, Asia, and LatAm counts filter by administrative boundary, with Nominatim relation lookups (Madrid R5326784, Tokyo R1543125, Buenos Aires R3082668, and the rest) converted to Overpass area IDs, so the numbers follow exact city limits. The US counts filter by city bounding box, close enough for the five cities chosen because their boxes stay inside the city proper. The latest region added to this set is covered in the <a href="mena-city-amenities-guide.html">Istanbul-Cairo-Mumbai guide</a>, with 359 more features counted inside exact admin boundaries. The query syntax, relation IDs, and retry logic are documented in the <a href="osm-civic-data-guide.html">OSM civic data guide</a>.</p>
+    <p>All counts ran on 2026-09-10 against the Overpass API, so they are snapshots of a database that changes daily. The EU, Asia, and LatAm counts filter by administrative boundary, with Nominatim relation lookups (Madrid R5326784, Tokyo R1543125, Buenos Aires R3082668, and the rest) converted to Overpass area IDs, so the numbers follow exact city limits. The US counts filter by city bounding box, close enough for the five cities chosen because their boxes stay inside the city proper. The Africa counts resolve Lagos State (R3718182), Nairobi County (R3492709), and the Addis Ababa city administration (R1707699) to Overpass area IDs the same way. The Oceania set is not in this table: it counts a different trio (toilets and benches instead of bookcases and repair stands), 27,231 features covered in the <a href="osm-civic-data-guide.html">OSM civic data guide</a>. The latest region added to this table is covered in the <a href="mena-city-amenities-guide.html">Istanbul-Cairo-Mumbai guide</a>, with 359 more features counted inside exact admin boundaries. The query syntax, relation IDs, and retry logic are documented in the <a href="osm-civic-data-guide.html">OSM civic data guide</a>.</p>
   </section>
 
   <section aria-label="Files and license">
@@ -87,6 +90,7 @@
       <li><a href="../data/osm-eu-civic/eu-civic-amenities.csv" download>eu-civic-amenities.csv</a><span class="sz">15 rows, Berlin/Amsterdam/Paris/Madrid/Warsaw &middot; free</span></li>
       <li><a href="../data/osm-asia-civic/counts-2026-09.csv" download>counts-2026-09.csv</a><span class="sz">9 rows, Tokyo/Jakarta/Seoul &middot; free</span></li>
       <li><a href="../data/osm-latam-civic/latam-civic-amenities.csv" download>latam-civic-amenities.csv</a><span class="sz">9 rows, Sao Paulo/Buenos Aires/Mexico City &middot; free</span></li>
+      <li><a href="../data/osm-africa-civic/africa-civic-amenities.csv" download>africa-civic-amenities.csv</a><span class="sz">9 rows, Lagos/Nairobi/Addis Ababa &middot; free</span></li>
     </ul>
     <p class="byline">The data included in this document is from www.openstreetmap.org. The data is made available under ODbL. &copy; OpenStreetMap contributors. Republishing a derivative? The <a href="dataset-license-guide.html">license guide</a> covers ODbL attribution format.</p>
   </section>

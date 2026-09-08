@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eurostat Unemployment Data: EU Rate Dataset Download (CSV, 2003-2025) | Data Vault</title>
+<meta name="description" content="Eurostat labour market data as one flat CSV: harmonised unemployment rates for EU-27, the euro area, and 8 countries, 3,768 rows, 2003-2025, seven age bands. Download the full file free, no key or registration.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/labor-market-data-guide.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Eurostat Unemployment Data: EU Rate Dataset Download (CSV, 2003-2025)">
+<meta property="og:description" content="Harmonised unemployment rates for EU-27, the euro area, and 8 countries as one flat CSV: 3,768 rows, 2003-2025, seven age bands. Free download, no key.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/labor-market-data-guide.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Eurostat Unemployment Data: EU Rate Dataset Download (CSV, 2003-2025)","description":"Harmonised unemployment rates for EU-27, the euro area, and 8 countries as one flat CSV: 3,768 rows, 2003-2025, seven age bands. Free download, no key.","datePublished":"2026-09-10","dateModified":"2026-09-10","author":{"@type":"Organization","name":"Matchbook Labs"},"publisher":{"@type":"Organization","name":"Matchbook Labs"},"mainEntityOfPage":"https://jayjex.github.io/data-vault/guides/labor-market-data-guide.html"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Data Vault","item":"https://jayjex.github.io/data-vault/"},{"@type":"ListItem","position":2,"name":"Eurostat Unemployment Data","item":"https://jayjex.github.io/data-vault/guides/labor-market-data-guide.html"}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Eurostat unemployment data: the EU labour-market dataset, ready to download</h1>
+
+  <section aria-label="What this covers">
+    <p>Eurostat publishes the EU's official unemployment numbers in table <span class="mono">une_rt_a</span> ("Unemployment by sex and age - annual data"), harmonised to the ILO labour-force survey definition so rates compare across member states. Downloading it from the source means the Eurostat dissemination API or a multi-sheet TSV export; both need parsing before the numbers land in one table. This guide starts from the parsed result: one flat CSV with 3,768 rows covering the EU-27 aggregate, the euro area, and eight countries, annual rates from 2003 to 2025, both sexes plus male/female splits, and seven age bands from Y15-24 to Y55-74. The full file is a free download below, no key and no registration.</p>
+  </section>
+
+  <section aria-label="Coverage table">
+    <h2>Ten geos, one CSV</h2>
+    <p>The file carries two aggregates and eight countries. Every row is a percentage of the labour force (unit <span class="mono">PC_ACT</span>), and the table below shows the 2025 headline rate for each geo (age Y15-74, both sexes) next to where that series started. France goes back to 2003 and Sweden to 2005; the rest start in 2009, because the EU-27 aggregate and most national series in this slice only begin once every member state's data exists.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Unemployment coverage by geo"><table>
+      <thead><tr><th scope="col">Geo</th><th scope="col">2025 headline rate</th><th scope="col">2013 headline (crisis peak)</th><th scope="col">Series starts</th></tr></thead>
+      <tbody>
+        <tr><td>EU-27 aggregate</td><td>6.0%</td><td>11.6%</td><td>2009</td></tr>
+        <tr><td>Euro area (EA20)</td><td>6.4%</td><td>12.2%</td><td>2009</td></tr>
+        <tr><td>Germany (DE)</td><td>3.8%</td><td>4.9%</td><td>2009</td></tr>
+        <tr><td>Greece (EL)</td><td>8.9%</td><td>27.8%</td><td>2009</td></tr>
+        <tr><td>Spain (ES)</td><td>10.5%</td><td>26.1%</td><td>2009</td></tr>
+        <tr><td>France (FR)</td><td>7.7%</td><td>10.3%</td><td>2003</td></tr>
+        <tr><td>Italy (IT)</td><td>6.1%</td><td>12.4%</td><td>2009</td></tr>
+        <tr><td>Netherlands (NL)</td><td>3.9%</td><td>8.2%</td><td>2009</td></tr>
+        <tr><td>Poland (PL)</td><td>3.1%</td><td>10.6%</td><td>2009</td></tr>
+        <tr><td>Sweden (SE)</td><td>8.8%</td><td>8.1%</td><td>2005</td></tr>
+      </tbody>
+    </table></div>
+    <p class="table-note">Headline = age Y15-74, both sexes, straight from the CSV. 2013 is the file's highest year for the EU-27 aggregate; individual countries peaked in different years.</p>
+  </section>
+
+  <section aria-label="What the numbers show">
+    <h2>What the numbers show</h2>
+    <p>The EU-27 headline rate sat at 6.0% in 2025, half its 2013 crisis peak of 11.6%. Spread across the eight countries: Poland lowest at 3.1%, Spain highest at 10.5%, and Spain is the only one of the eight still above 10%. The sex split runs slightly female-heavy in 2025 (EU-27 female 6.2% vs male 5.8%), and the gap held through most of the series.</p>
+    <p>Youth tells a sharper story. In 2013, the worst year in the file, Greek youth (Y15-24) unemployment hit 64.6% for women and 59.2% for both sexes combined; Spain's youth rate reached 55.5% that same year. By 2025 the EU-27 youth rate is down to 15.2%, though Sweden (24.3%) and Spain (24.9%) still run youth rates above one in five. Italy's youth peak landed a year after the EU aggregate, 42.7% in 2014, worth remembering when you sort by year instead of eyeballing 2013.</p>
+    <p>One structural note for anyone charting trends: a few countries recovered before the aggregates. Germany's headline rate peaked back in 2009 at 4.9% and fell from there, so filtering the CSV to 2013-only troughs hides the German case. The Netherlands halved from 8.2% (2013) to 3.9% (2025); Poland went 10.6% to 3.1% over the same stretch.</p>
+  </section>
+
+  <section aria-label="Columns">
+    <h2>Columns in the file</h2>
+    <p>Eight columns per row: <span class="mono">year</span> (2003-2025), <span class="mono">geo</span> (EU27, EA20, or an ISO 2-letter country code), <span class="mono">sex</span> (T / F / M), <span class="mono">age</span> (the band code), <span class="mono">value</span> (the rate in percent), plus Eurostat's own labels for geo, sex, and age. Missing cells are absent rows, not nulls, so a pivot on year &times; geo with a headline filter yields 17 series points for most countries and 23 for France. The <a href="../data/eurostat/unemployment/schema.md" download>schema.md</a> file next to the CSV documents the caveats: break-in-series flags exist in Eurostat's TSV export but not in this JSON-stat-derived file, and annual rates need no seasonal adjustment.</p>
+  </section>
+
+  <section aria-label="Download">
+    <h2>Download</h2>
+    <ul class="files">
+      <li><a href="../data/eurostat/unemployment/unemployment-rate.csv" download>unemployment-rate.csv</a><span class="sz">3,768 rows, complete &middot; 233 KB</span></li>
+      <li><a href="../data/eurostat/unemployment/sample.csv" download>sample.csv</a><span class="sz">22 rows &middot; 1.3 KB</span></li>
+      <li><a href="../data/eurostat/unemployment/sample.json" download>sample.json</a><span class="sz">22 records &middot; 4.9 KB</span></li>
+      <li><a href="../data/eurostat/unemployment/schema.md" download>schema.md</a><span class="sz">column definitions, coverage, caveats</span></li>
+    </ul>
+    <p>Full details and the per-row preview table live on the <a href="../datasets/eurostat-unemployment.html">Eurostat unemployment dataset page</a>. The raw source is Eurostat table <a href="https://ec.europa.eu/eurostat/databrowser/view/une_rt_a/default/table" rel="noopener">une_rt_a</a>, last updated 2026-06-11; this file was pulled 2026-09-10 via the dissemination API, no key needed. License is CC BY 4.0 (&copy; European Union), so republishing a derivative is fine with attribution; the <a href="dataset-license-guide.html">license guide</a> covers the format.</p>
+  </section>
+
+  <section aria-label="Related Eurostat files">
+    <h2>Pair it with the housing files</h2>
+    <p>Labour and housing cycle together, and the other two Eurostat files in this catalog cover the housing side: the <a href="../datasets/eurostat-house-prices.html">house price index (HPI) dataset</a> (342 rows, NL + EU-27, three unit variants) and the <a href="../datasets/eurostat-rents.html">HICP actual rents dataset</a>. Both read the same indexes the HPI page works through: the Netherlands and EU-27 start at 100.0 in 2015, and by 2025 Dutch prices sit at 215.15 against the EU aggregate's 161.93. Join key is the same in all three files (year &times; geo), so a two-line pandas merge lines up Spanish youth unemployment against Spanish price growth. For US rent context, the <a href="../datasets/hud-fmr-2026.html">HUD FMR dataset</a> covers the same question at ZIP level.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

@@ -382,6 +382,45 @@
    "page": "https://jayjex.github.io/data-vault/datasets/osm-us-civic-amenities.html"
   },
   {
+   "slug": "osm-eu-civic-amenities",
+   "name": "OpenStreetMap Civic Amenities, Berlin-Amsterdam-Paris-Madrid-Warsaw, 2026-09",
+   "niche": "open-data",
+   "tags": [
+    "openstreetmap",
+    "osm",
+    "civic-amenities",
+    "eu-cities"
+   ],
+   "description": "Counts of amenity=drinking_water, amenity=public_bookcase, and amenity=bicycle_repair_station nodes inside the administrative boundaries of Berlin, Amsterdam, Paris, Madrid, and Warsaw: 4,669 nodes across 15 city-amenity pairs, Overpass API snapshot 2026-09-10, license line carried verbatim per row.",
+   "stats": {
+    "rows": 15,
+    "tables": 1,
+    "columns": 4,
+    "updated": "2026-09-10"
+   },
+   "sample": {
+    "csv": "https://jayjex.github.io/data-vault/data/osm-eu-civic/sample.csv",
+    "json": "https://jayjex.github.io/data-vault/data/osm-eu-civic/sample.json",
+    "rows": 15,
+    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+   },
+   "extra_files": [
+    {
+     "name": "eu-civic-amenities.csv",
+     "url": "https://jayjex.github.io/data-vault/data/osm-eu-civic/eu-civic-amenities.csv",
+     "rows": 15,
+     "note": "complete table, 15 rows, includes verbatim OSM license column"
+    }
+   ],
+   "full_data": {
+    "status": "free",
+    "url": "https://jayjex.github.io/data-vault/data/osm-eu-civic/eu-civic-amenities.csv",
+    "note": "Source is ODbL OpenStreetMap data (\u00a9 OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
+   },
+   "license": "ODbL 1.0 (source data OpenStreetMap, \u00a9 OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
+   "page": "https://jayjex.github.io/data-vault/datasets/osm-eu-civic-amenities.html"
+  },
+  {
    "slug": "printable-engineering-bundle",
    "name": "Printable Engineering Bundle",
    "niche": "printables",

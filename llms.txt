@@ -105,6 +105,14 @@ Counts of three civic amenity types inside city bounding boxes: amenity=drinking
 - Full data (free): https://jayjex.github.io/data-vault/data/osm-civic/us-civic-amenities.csv
 - License: ODbL 1.0 (© OpenStreetMap contributors, Overpass API snapshot)
 
+### OpenStreetMap Civic Amenities, Berlin-Amsterdam-Paris-Madrid-Warsaw, 2026-09 (osm-eu-civic-amenities)
+Counts of three civic amenity types inside exact administrative boundaries: amenity=drinking_water, amenity=public_bookcase, amenity=bicycle_repair_station for Berlin (265 fountains, 114 bookcases, 71 repair stands), Amsterdam (540 fountains, zero bookcases - the tag never caught on there), Paris (1,045 fountains, 165 bookcases), Madrid (2,058 fountains, more than the other four combined), and Warsaw (188 repair stands, more than the other four combined). Overpass API snapshot 2026-09-10, 4,669 nodes across 15 city-amenity pairs, license line carried verbatim per row. Niche: open-data. Stats: {"rows": 15, "tables": 1, "columns": 4, "updated": "2026-09-10"}.
+- Sample JSON: https://jayjex.github.io/data-vault/data/osm-eu-civic/sample.json
+- Sample CSV: https://jayjex.github.io/data-vault/data/osm-eu-civic/sample.csv
+- Page: https://jayjex.github.io/data-vault/datasets/osm-eu-civic-amenities.html
+- Full data (free): https://jayjex.github.io/data-vault/data/osm-eu-civic/eu-civic-amenities.csv
+- License: ODbL 1.0 (© OpenStreetMap contributors, Overpass API snapshot)
+
 ### Printable Engineering Bundle (printable-engineering-bundle)
 Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (A4 + US Letter PDFs with answer keys, mazes, dot-to-dots) and 5 Web3 KPI spreadsheet templates (portfolio, airdrop, DeFi yield, bounty income, trading journal) with live formulas. Niche: printables. Stats: {"worksheets_pages": 120, "spreadsheets": 5, "paper_sizes": 2, "updated": "2026-09-06"}.
 - Page: https://jayjex.github.io/data-vault/datasets/printable-engineering-bundle.html

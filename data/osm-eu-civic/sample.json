@@ -1,0 +1,103 @@
+{
+ "slug": "osm-eu-civic-amenities",
+ "name": "OpenStreetMap Civic Amenities, Berlin-Amsterdam-Paris-Madrid-Warsaw, 2026-09",
+ "columns": [
+  "city",
+  "theme",
+  "count",
+  "osm_license"
+ ],
+ "row_count": 15,
+ "records": [
+  {
+   "city": "Berlin",
+   "theme": "water fountains",
+   "count": 265,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Amsterdam",
+   "theme": "water fountains",
+   "count": 540,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Paris",
+   "theme": "water fountains",
+   "count": 1045,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Madrid",
+   "theme": "water fountains",
+   "count": 2058,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Warsaw",
+   "theme": "water fountains",
+   "count": 122,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Berlin",
+   "theme": "public bookcases",
+   "count": 114,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Amsterdam",
+   "theme": "public bookcases",
+   "count": 0,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Paris",
+   "theme": "public bookcases",
+   "count": 165,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Madrid",
+   "theme": "public bookcases",
+   "count": 9,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Warsaw",
+   "theme": "public bookcases",
+   "count": 33,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Berlin",
+   "theme": "bike repair stations",
+   "count": 71,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Amsterdam",
+   "theme": "bike repair stations",
+   "count": 4,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Paris",
+   "theme": "bike repair stations",
+   "count": 52,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Madrid",
+   "theme": "bike repair stations",
+   "count": 3,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Warsaw",
+   "theme": "bike repair stations",
+   "count": 188,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  }
+ ]
+}

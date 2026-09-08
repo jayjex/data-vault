@@ -199,6 +199,7 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - [Free Printables vs Paid Packs: When Free Is Enough and When a Bundle Wins](https://jayjex.github.io/data-vault/printables/free-printables-vs-paid.html): one-print rule for choosing
 - [Free Printable PDF Templates: 223 Tracker Sheets, Planners and Worksheets by Category](https://jayjex.github.io/data-vault/printables/free-printable-templates.html)
 - [3D Printed Desk Organizers and Printable Tools: 10 Parametric MakerWorld Models](https://jayjex.github.io/data-vault/guides/print-in-use-organizers.html): cable clips, phone stand, bit holder, rulers, hex gauge; flat no-support prints, CC BY 4.0; 1 live, 9 in MakerWorld review, renders only
+- [Parametric 3D Printed Tools: 10 MakerWorld Models You Can Rebuild at Your Own Dimensions](https://jayjex.github.io/data-vault/guides/printable-tools-parametric.html): generator scripts ship in the files, edit dims and rerun, no CAD skills; parameter table per model, renders only
 
 ## Access rules
 - Fetch catalog.json and every sample endpoint freely. No API keys, no auth.

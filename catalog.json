@@ -429,6 +429,8 @@
     "url": "https://jayjex.github.io/data-vault/datasets/worldbank-g20-population.html",
     "note": "Source is World Bank Open Data, CC BY 4.0, so the full 1,320-row CSV is a free download from the dataset page; no Getly pack."
    },
+   "doi": "10.5281/zenodo.22667477",
+   "zenodo_record": "https://zenodo.org/records/22667477/latest",
    "license": "CC BY 4.0 (population series from World Bank Open Data, CC BY 4.0)",
    "page": "https://jayjex.github.io/data-vault/datasets/worldbank-g20-population.html"
   },

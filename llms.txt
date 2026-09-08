@@ -118,6 +118,7 @@ Total population (WDI indicator SP.POP.TOTL) for the 19 national G20 members plu
 - Sample CSV: https://jayjex.github.io/data-vault/data/worldbank-g20-population/sample.csv
 - Page: https://jayjex.github.io/data-vault/datasets/worldbank-g20-population.html
 - Full data (free): https://jayjex.github.io/data-vault/data/worldbank-g20-population/g20-population.csv
+- Citable DOI: https://doi.org/10.5281/zenodo.22667477 (Zenodo record: https://zenodo.org/records/22667477/latest)
 - License: CC BY 4.0 (World Bank Open Data, CC BY 4.0)
 
 ### OpenStreetMap Civic Amenities, Tokyo-Jakarta-Seoul, 2026-09 (osm-asia-civic-amenities)

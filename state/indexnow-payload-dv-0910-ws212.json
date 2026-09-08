@@ -1,0 +1,11 @@
+{
+  "host": "jayjex.github.io",
+  "key": "78e095195f1e3c98ed5e6c17474dc1b6",
+  "keyLocation": "https://jayjex.github.io/data-vault/78e095195f1e3c98ed5e6c17474dc1b6.txt",
+  "urlList": [
+    "https://jayjex.github.io/data-vault/guides/world-population-milestones-g20.html",
+    "https://jayjex.github.io/data-vault/datasets/worldbank-g20-population.html",
+    "https://jayjex.github.io/data-vault/datasets/eurostat-unemployment.html",
+    "https://jayjex.github.io/data-vault/guides/index.html"
+  ]
+}

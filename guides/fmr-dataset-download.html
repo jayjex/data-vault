@@ -109,7 +109,7 @@ df["zip"].str.len().unique()  # [5]</code></pre>
     <p>On the sample, that shows the Abilene metro with a 2BR median of 1,090 and a ZIP-level max of 1,900, the spread HUD's Small Area FMRs create inside one metro. Or join the state summary, a 52-row aggregate that ships in the same pack:</p>
     <pre><code>ss = pd.read_csv("https://jayjex.github.io/data-vault/data/hud-fmr-2026/state-summary.csv")
 df.merge(ss[["state", "fmr_2br_median"]], on="state")</code></pre>
-    <p>When a download is enough and when a query layer wins instead: <a href="csv-vs-api.html">CSV vs API for data</a>. Working with the new fiscal year? <a href="hud-fmr-2027.html">HUD FMR 2027</a> covers the FY2027 file and the full year-over-year diff against this one.</p>
+    <p>When a download is enough and when a query layer wins instead: <a href="csv-vs-api.html">CSV vs API for data</a>. Working with the new fiscal year? <a href="hud-fmr-2027.html">HUD FMR 2027</a> covers the FY2027 file and the full year-over-year diff against this one. And when the question is how these FMR numbers sit next to market rents from the census and Zillow, <a href="hud-fmr-vs-market-rent.html">HUD FMR vs market rent</a> lines up the three benchmarks for one metro.</p>
   </section>
 
   <section aria-label="Get the dataset">

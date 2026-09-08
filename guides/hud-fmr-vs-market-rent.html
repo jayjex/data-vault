@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD FMR vs Market Rent: Three Numbers, One Metro (San Diego) | Data Vault</title>
+<meta name="description" content="FMR vs market rent, side by side: HUD's 40th percentile FMR for San Diego at 3,000, the ACS 2BR median gross rent at 2,379, and Zillow's ZORI asking rent at 1,962 nationally. What each number measures and which one to use.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fmr-vs-market-rent.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="HUD FMR vs Market Rent: Three Numbers, One Metro (San Diego)">
+<meta property="og:description" content="FMR vs market rent, side by side: HUD's 40th percentile FMR for San Diego at 3,000, the ACS 2BR median gross rent at 2,379, and Zillow's ZORI asking rent at 1,962 nationally. What each number measures and which one to use.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fmr-vs-market-rent.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "HUD FMR vs Market Rent: Three Numbers, One Metro (San Diego)", "description": "FMR vs market rent, side by side: HUD's 40th percentile FMR for San Diego at 3,000, the ACS 2BR median gross rent at 2,379, and Zillow's ZORI asking rent at 1,962 nationally. What each number measures and which one to use.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fmr-vs-market-rent.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "HUD FMR vs Market Rent", "item": "https://jayjex.github.io/data-vault/guides/hud-fmr-vs-market-rent.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the difference between HUD FMR and market rent?", "acceptedAnswer": {"@type": "Answer", "text": "The FMR is a defined number and market rent is not. HUD sets the FMR at the 40th percentile of gross rent, shelter rent plus utilities, for standard-quality units in a HUD area, separately by bedroom size, once each fiscal year. Market rent has no single definition: it can mean the asking rent on a listing, a median across observed leases, or an index like Zillow's ZORI. In San Diego, the three candidates land 1,038 dollars apart: the FY2026 2BR FMR is 3,000 a month for the San Diego-Chula Vista-Carlsbad MSA, the 2024 ACS 2BR median gross rent is 2,379 for San Diego County, and Zillow's ZORI put the typical US asking rent at 1,962 in July 2026. Which number is the market depends on the question."}}, {"@type": "Question", "name": "Why is the San Diego FMR higher than the census median gross rent?", "acceptedAnswer": {"@type": "Answer", "text": "The percentile rule points the other way. Nationally the pattern holds: the FY2026 2BR FMR median is 1,150 across all 51,895 ZIP rows, 340 dollars below the 2024 ACS 2BR median gross rent of 1,490, because a 40th percentile estimate sits under a 50th. San Diego reverses it: the metro 2BR FMR of 3,000 sits 621 dollars above the county ACS median of 2,379. The percentile is only one part of each definition, and the rest of the machinery differs: the FMR is built from a multi-year ACS survey file adjusted forward to the fiscal year, tuned toward recent movers and standard-quality units, and published for a HUD metro area, while the ACS median counts every renter-occupied unit paying cash rent in the county, at whatever rent they negotiated years ago. A fast-moving market like San Diego stretches those gaps until they can run past the percentile effect."}}, {"@type": "Question", "name": "Where can I download FMR, ACS rent, and ZORI numbers?", "acceptedAnswer": {"@type": "Answer", "text": "The FMR is the easiest: HUD publishes it as public-domain data, and the FY2026 ZIP-level file is on this site as a free 22-row sample plus a 52-row state summary, with the full 51,895-row pack for bulk work. The ACS tables are free too: table B25031 downloads from data.census.gov with a free API key, or without one through Census Reporter, as our census data API tutorial walks through. ZORI is the restrictive one: Zillow publishes it as a research series governed by Zillow's terms, and its data pages returned HTTP 403 to a plain command-line fetch. For anything that needs to be redistributed or pipelined, the FMR is the number you can move freely."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>HUD FMR vs market rent: three numbers, one metro</h1>
+  <p class="byline">Published 2026-09-10. Sources: HUD FY2026 Fair Market Rent release, huduser.gov, public domain; US Census Bureau 2024 American Community Survey one-year estimates, table B25031, retrieved via Census Reporter on 2026-09-10; Zillow press release, August 18, 2026. Data Vault is not affiliated with HUD, the Census Bureau, or Zillow. This page covers data and measurement; it is not housing or legal advice.</p>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>Search for the market rent of almost any metro and three numbers show up, each claiming to describe the same market. The HUD FMR is a 40th percentile gross rent estimate built for the voucher program. The ACS median gross rent is the 50th percentile across every renter household the Census survey touches. Zillow's ZORI tracks asking rents on listings. They answer different questions, so they land in different places, and the spread between them is the whole story of what the word market hides.</p>
+    <p>San Diego makes the spread concrete. For a 2-bedroom, the FY2026 FMR for the San Diego-Chula Vista-Carlsbad, CA MSA is 3,000 dollars a month. The 2024 ACS median gross rent for San Diego County is 2,379. Zillow's ZORI put the typical US asking rent at 1,962 in July 2026. Same metro, same bedroom count where the sources allow it, a 1,038-dollar range from top to bottom.</p>
+    <p>Definition detail on each number, including how HUD computes the FMR from ACS microdata, is in <a href="hud-fair-market-rent-explained.html">what is fair market rent</a>.</p>
+  </section>
+
+  <section aria-label="The three numbers side by side">
+    <h2>The three numbers, side by side</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="San Diego three-number comparison"><table><thead><tr><th scope="col">Number</th><th scope="col">Value</th><th scope="col">What it is</th></tr></thead><tbody>
+      <tr><td>HUD FMR, 2BR, San Diego-Chula Vista-Carlsbad, CA MSA (FY2026)</td><td>3,000 monthly</td><td>40th percentile gross rent estimate, shelter rent plus utilities, standard-quality units, the metro-wide base repeated across undesignated ZIPs</td></tr>
+      <tr><td>ACS 2024 2BR median gross rent, San Diego County</td><td>2,379 ±37</td><td>50th percentile of gross rent across every renter-occupied unit paying cash rent in the county</td></tr>
+      <tr><td>Zillow ZORI, typical US asking rent, July 2026</td><td>1,962</td><td>Asking-rent index across Zillow listings, all bedroom sizes, shelter rent only, weighted toward large listing markets</td></tr>
+    </tbody></table></div>
+    <p>Two caveats keep the table honest. The FMR row is a metro number and the ACS row is a county number; for San Diego the two geographies coincide, because the San Diego-Chula Vista-Carlsbad MSA is San Diego County under another name, so the gap here is definition, not boundaries. And the ZORI release is a national figure: Zillow publishes a San Diego metro ZORI series on its research data page, but those pages returned HTTP 403 to this site's plain command-line fetch, a restriction documented in <a href="hud-fmr-vs-zillow-rent.html">HUD FMR vs Zillow rent data</a>, so the table carries only the number Zillow itself announced.</p>
+    <p>Inside the metro FMR there is more spread than the single base value shows. The 178 San Diego ZIP rows in the FY2026 file run from 1,460 in ZIP 92004 to 4,500 in ZIP 91914 for a 2BR, a 3,040-dollar intra-metro range, the widest in the file. The 3,000 base is also the median across those 178 rows. The ZIP-level values are Small Area FMRs, and <a href="hud-fmr-by-metro-area.html">HUD FMR by metro area</a> works the San Diego spread row by row.</p>
+    <p>The same three-way comparison at the national level: the FY2026 2BR FMR median is 1,150 across all 51,895 ZIP rows, the ACS 2BR median gross rent is 1,490, and ZORI is 1,962. There the FMR sits 23 percent below the ACS median, the direction the percentile ordering predicts.</p>
+  </section>
+
+  <section aria-label="Why the San Diego numbers reverse">
+    <h2>Why San Diego runs the opposite way from the nation</h2>
+    <p>Nationally, FMR below ACS median is what the percentile math predicts: a 40th percentile estimate starts ten points under a median before anything else differs. San Diego inverts it, with the metro FMR of 3,000 sitting 621 dollars above the county ACS median of 2,379. The percentile did not stop working. The rest of each definition took over.</p>
+    <p><b>Vintage.</b> The FY2026 FMRs grow out of a multi-year ACS survey file collected before the release, then adjusted forward for inflation and local rent movement. The ACS 2024 medians come straight from households answering during 2024. In a market where rents moved hard between those two vintages, the adjustment HUD applies can push the FMR above where the older survey base put it.</p>
+    <p><b>Universe.</b> The FMR is tuned toward what recent movers pay and covers standard-quality units. The ACS median counts every renter-occupied unit paying cash rent, including long-tenure tenants on leases signed years ago at below-market rents. A market with a lot of sitting tenants at old rents drags its ACS median down relative to its recent-mover rent, and San Diego has both fast rent growth and a long-tenure stock.</p>
+    <p><b>Geography and weighting.</b> The FMR is set for a HUD metro area; the ACS figure is a county median with a margin of error of ±37, where every household weighs the same. The metro-to-county boundary mismatch and the difference between household weighting and HUD's area construction each move the numbers on their own.</p>
+    <p>None of these parts is a mistake, and the same forces run everywhere, which <a href="hud-fmr-vs-census-rent.html">HUD FMR vs census rent</a> shows across five states where the gap runs from 3 dollars to 285. San Diego just happens to be a market where the non-percentile forces overwhelm the percentile itself.</p>
+  </section>
+
+  <section aria-label="What each number measures">
+    <h2>What each number measures</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="FMR vs ACS vs ZORI methodology table"><table><thead><tr><th scope="col"></th><th scope="col">HUD FMR (FY2026)</th><th scope="col">ACS median gross rent (2024 one-year)</th><th scope="col">Zillow ZORI</th></tr></thead><tbody>
+      <tr><td>Who publishes it</td><td>HUD, once each fiscal year</td><td>Census Bureau, once a year</td><td>Zillow, monthly</td></tr>
+      <tr><td>Percentile</td><td>40th percentile of gross rent</td><td>50th percentile, the median</td><td>None; a weighted typical asking rent</td></tr>
+      <tr><td>Rent basis</td><td>Shelter rent plus utilities, monthly</td><td>Same: gross rent = contract rent plus a utility allowance</td><td>Asking rent on listings, utilities usually excluded</td></tr>
+      <tr><td>Universe</td><td>Standard-quality units, tuned toward recent movers; new construction excluded</td><td>Every renter-occupied unit paying cash rent</td><td>Zillow listings, weighted toward large markets</td></tr>
+      <tr><td>Geography</td><td>Metro area, or ZIP where SAFMRs apply</td><td>State, county, place, and more, one- and five-year releases</td><td>Metro, plus a national headline</td></tr>
+      <tr><td>Vintage</td><td>Multi-year ACS file adjusted forward to the fiscal year</td><td>2024 responses, published 2025</td><td>Current month</td></tr>
+      <tr><td>Access</td><td>Public domain, free download</td><td>Public domain, free via Census API or Census Reporter</td><td>Research series under Zillow's terms; data pages block scripted fetches</td></tr>
+      <tr><td>Primary use</td><td>Payment standards for Housing Choice Vouchers</td><td>Research, demographics, trend lines</td><td>Market tracking and rent momentum</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section aria-label="Which number to use">
+    <h2>Which number for which job</h2>
+    <p><b>Program work takes the FMR, always.</b> Public housing agencies set payment standards between 90 and 110 percent of the FMR, so voucher dollars follow it and nothing else. <a href="fmr-payment-standard.html">Payment standard for Section 8</a> walks the band arithmetic on real FY2026 rows.</p>
+    <p><b>Research and cross-market comparison take the ACS median.</b> It is household-weighted, consistent year over year, free for nearly any geography, and built on a median that resists outlier distortion. Its weakness is the same long-tenure universe that pulled the San Diego median down: it lags a fast market by design.</p>
+    <p><b>Asking-rent momentum takes ZORI.</b> It is the only one of the three that moves monthly, and it describes the listed market rather than the occupied one. Its weaknesses are the mirror image: asking rents run above contract rents, big metros dominate the weighting, and the terms of use make it the hardest of the three to move into a pipeline. For redistribution-friendly rent data, the FMR file is the one that travels, which <a href="fmr-dataset-download.html">FMR dataset download</a> covers end to end.</p>
+    <p><b>Benchmark them against each other.</b> The gaps are the information. A metro where the FMR runs 26 percent above the county median, as in San Diego, is telling you rents moved after the survey base was collected. A metro where the two nearly touch, as in Mississippi, is telling you the opposite. Either way, one number alone hides the movement.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FMR vs market rent questions</h2>
+    <dl>
+      <dt>What is the difference between HUD FMR and market rent?</dt>
+      <dd>The FMR is a defined number and market rent is not. HUD sets the FMR at the 40th percentile of gross rent, shelter rent plus utilities, for standard-quality units in a HUD area, separately by bedroom size, once each fiscal year. Market rent has no single definition: it can mean the asking rent on a listing, a median across observed leases, or an index like Zillow's ZORI. In San Diego, the three candidates land 1,038 dollars apart: the FY2026 2BR FMR is 3,000 a month for the San Diego-Chula Vista-Carlsbad MSA, the 2024 ACS 2BR median gross rent is 2,379 for San Diego County, and Zillow's ZORI put the typical US asking rent at 1,962 in July 2026. Which number is the market depends on the question.</dd>
+      <dt>Why is the San Diego FMR higher than the census median gross rent?</dt>
+      <dd>The percentile rule points the other way. Nationally the pattern holds: the FY2026 2BR FMR median is 1,150 across all 51,895 ZIP rows, 340 dollars below the 2024 ACS 2BR median gross rent of 1,490, because a 40th percentile estimate sits under a 50th. San Diego reverses it: the metro 2BR FMR of 3,000 sits 621 dollars above the county ACS median of 2,379. The percentile is only one part of each definition, and the rest of the machinery differs: the FMR is built from a multi-year ACS survey file adjusted forward to the fiscal year, tuned toward recent movers and standard-quality units, and published for a HUD metro area, while the ACS median counts every renter-occupied unit paying cash rent in the county, at whatever rent they negotiated years ago. A fast-moving market like San Diego stretches those gaps until they can run past the percentile effect.</dd>
+      <dt>Where can I download FMR, ACS rent, and ZORI numbers?</dt>
+      <dd>The FMR is the easiest: HUD publishes it as public-domain data, and the FY2026 ZIP-level file is on this site as a free 22-row sample plus a 52-row state summary, with the full 51,895-row pack for bulk work. The ACS tables are free too: table B25031 downloads from data.census.gov with a free API key, or without one through Census Reporter, as our census data API tutorial walks through. ZORI is the restrictive one: Zillow publishes it as a research series governed by Zillow's terms, and its data pages returned HTTP 403 to a plain command-line fetch. For anything that needs to be redistributed or pipelined, the FMR is the number you can move freely.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <p>The FMR side of the table downloads free: the 22-row sample to check the schema, and the 52-row state summary for the medians. The full HUD pack carries all three CSVs (51,895 + 3,229 + 52 rows), the data dictionary, and source checksums. The ACS table B25031 stays free on Census Reporter and data.census.gov; pulling it yourself is a short pandas call, and the <a href="census-data-api-tutorial.html">census data API tutorial</a> covers the keyless route.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>Download FMR sample (CSV)</a>
+      <a class="btn" href="https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm" rel="noopener">Get full FMR data</a>
+    </div>
+    <p class="btn-note">Checkout and download run through Getly. FMR source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release, huduser.gov, public domain. ACS source: US Census Bureau, 2024 American Community Survey one-year estimates, table B25031, retrieved via Census Reporter on 2026-09-10, public domain. ZORI source: Zillow press release, August 18, 2026. Data Vault is not affiliated with HUD, the Census Bureau, or Zillow.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

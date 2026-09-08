@@ -1,0 +1,56 @@
+{
+  "_meta": {
+    "purpose": "Catalog delta from data-vault ETL batch 7 (etl7, HUD FMR county). catalog.json was locked by ETL batch 6 coordination (do-not-touch until etl6 commits), so the entry is staged here. Merge: append the object below to catalog.json 'datasets' (making the count 16), then add the sitemap URL and the llms.txt section listed here.",
+    "created": "2026-09-10",
+    "lane": "data-vault ETL batch 7",
+    "sitemap_url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-county-2026.html",
+    "sitemap_lastmod": "2026-09-10",
+    "sitemap_count": "152 -> 153",
+    "llms_txt_line": "- Full county FMR table (free): https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/fmr-county-2026.csv (3,229 county-equivalents, FY2026, median+max for 0-4BR; page: https://jayjex.github.io/data-vault/datasets/hud-fmr-county-2026.html)"
+  },
+  "entry": {
+    "slug": "hud-fmr-county-2026",
+    "name": "HUD Fair Market Rents FY2026 by County: completeness & spread",
+    "niche": "gov-data",
+    "tags": ["hud", "fmr", "county", "rent", "real-estate", "gov-data"],
+    "description": "County-level FY2026 Fair Market Rents: 3,229 county-equivalents across 56 states and territories, five bedroom sizes with median and max per row, 67 multi-FMR-area counties flagged with an area_rows count, and a derived table of the 8 counties where the 2BR max exceeds the median (Bristol County MA +47.5%). Zero empty cells.",
+    "stats": {
+      "rows": 3229,
+      "tables": 2,
+      "columns": 15,
+      "updated": "2026-09-10"
+    },
+    "sample": {
+      "csv": "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/sample.csv",
+      "json": "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/sample.json",
+      "rows": 22,
+      "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+    },
+    "extra_files": [
+      {
+        "name": "fmr-county-2026.csv (full, free)",
+        "url": "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/fmr-county-2026.csv",
+        "rows": 3229,
+        "note": "complete dataset, free download"
+      },
+      {
+        "name": "spread-counties.csv",
+        "url": "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/spread-counties.csv",
+        "rows": 8,
+        "note": "derived: counties where fmr_2br_max > fmr_2br_median, with gap columns"
+      },
+      {
+        "name": "schema.md",
+        "url": "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/schema.md",
+        "note": "columns, coverage, completeness findings, caveats"
+      }
+    ],
+    "full_data": {
+      "status": "free",
+      "url": "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/fmr-county-2026.csv",
+      "note": "Source is US government data (HUD FY2026 FMR release), public domain, so the full table is a free download, not a Getly pack."
+    },
+    "license": "Public domain (US government data, HUD FY2026 Fair Market Rent release)",
+    "page": "https://jayjex.github.io/data-vault/datasets/hud-fmr-county-2026.html"
+  }
+}

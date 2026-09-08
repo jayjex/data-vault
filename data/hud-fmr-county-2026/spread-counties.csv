@@ -1,0 +1,9 @@
+state,state_name,county,metro,fmr_2br_median,fmr_2br_max,gap_2br,gap_pct_2br,area_rows
+MA,Massachusetts,Bristol County,metro,1729,2550,821,47.5,20
+NH,New Hampshire,Rockingham County,metro,2220,2941,721,32.5,37
+MA,Massachusetts,Plymouth County,metro,2311,2941,630,27.3,27
+ME,Maine,York County,metro,1716,2202,486,28.3,29
+RI,Rhode Island,Newport County,metro,2021,2314,293,14.5,6
+ME,Maine,Penobscot County,metro,1392,1659,267,19.2,67
+MA,Massachusetts,Worcester County,metro,2056,2166,110,5.4,60
+NH,New Hampshire,Hillsborough County,metro,2037,2127,90,4.4,31

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD FMR FY2026 by County: Completeness &amp; Spread (3,229 Counties, Free CSV) | Data Vault</title>
+<meta name="description" content="All 3,229 county-equivalent FMR rows for FY2026: five bedroom sizes, median and max, zero empty cells. Plus the 8 counties where HUD publishes a rent range. Free full CSV.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/datasets/hud-fmr-county-2026.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="HUD FMR FY2026 by County: Completeness &amp; Spread | Data Vault">
+<meta property="og:description" content="All 3,229 county-equivalent FMR rows for FY2026: five bedroom sizes, median and max, zero empty cells. Plus the 8 counties where HUD publishes a rent range. Free full CSV.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/datasets/hud-fmr-county-2026.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "HUD Fair Market Rents FY2026 by County: completeness & spread", "description": "County-level FY2026 Fair Market Rents: 3,229 county-equivalents across 56 states and territories, five bedroom sizes with median and max per row, 67 multi-FMR-area counties flagged with an area_rows count, and a derived table of the 8 counties where the 2BR max exceeds the median.", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-county-2026.html", "keywords": ["hud", "fmr", "county", "rent", "gov-data", "real-estate"], "creator": {"@type": "Organization", "name": "Matchbook Labs"}, "isAccessibleForFree": true, "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/fmr-county-2026.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/spread-counties.csv"}, {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/sample.json"}, {"@type": "DataDownload", "encodingFormat": "text/markdown", "contentUrl": "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/schema.md"}], "license": "https://creativecommons.org/publicdomain/zero/1.0/", "isBasedOn": "https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs.xlsx"}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>HUD FMR FY2026 by County: Completeness &amp; Spread</h1>
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>3,229</b> counties</span><span class="stat"><b>56</b> states &amp; territories</span><span class="stat"><b>0</b> empty cells</span><span class="stat"><b>8</b> range counties</span><span class="stat"><b>free</b> full CSV</span></div>
+  <section aria-label="About this dataset">
+    <p>Every county-level row from HUD's FY2026 Fair Market Rent release: 3,229 county-equivalents across 56 states and territories, each with median and max FMR for studios through 4-bedroom units, plus metro status and an <span class="mono">area_rows</span> count of how many FMR areas the county covers in HUD's raw file. Zero empty cells anywhere. California contributes 58 counties, Texas 254, and Puerto Rico, Guam, the Virgin Islands, American Samoa and the Northern Marianas are all in the file.</p>
+
+    <p>The completeness check is the useful part. In 3,221 of the 3,229 counties, the 2BR max equals the 2BR median exactly, because HUD publishes a single rent per bedroom size whenever a county sits in one FMR area. Only 8 counties carry a real range, and all 8 are metro counties in Maine, New Hampshire, Massachusetts and Rhode Island, where HUD splits the county into multiple FMR areas. The widest is Bristol County, MA: 2BR median $1,729, max $2,550, a 47.5% gap. Neighboring Plymouth County runs $2,311 to $2,941.</p>
+    <p>What the file shows elsewhere: the national county median for a 2BR is $1,018. Santa Cruz County, CA tops the table at $4,214, and the cheapest 2BRs are Puerto Rico municipios at $475. The typical county's 4BR median runs 1.95 times its studio median, with the ladder flattest at 1.52x and steepest at 2.43x.</p>
+    <p>The medians and maxes are HUD's own county aggregates, straight from the release file; the gaps, the completeness counts and the ladder ratios are computed from those rows. When you compare a county here with a ZIP-level rent in the <a href="hud-fmr-2026.html">FY2026 ZIP dataset</a>, expect small differences: ZIP rents roll up to the county median, they don't reproduce it.</p>
+    <p>Use it to screen county rent ceilings for voucher work, spot multi-FMR-area counties before you join ZIP data, or sanity-check any county against the 3,229-row distribution. For the ZIP-level version with 51,895 rows, see the <a href="hud-fmr-2026.html">HUD FMR FY2026 dataset</a>; the <a href="../guides/hud-fmr-by-county.html">HUD FMR by county guide</a> walks the county rollup column by column, and <a href="../guides/hud-fmr-small-areas.html">small-area FMRs</a> explains when HUD rents by ZIP instead. The full data dictionary lives in <a href="../data/hud-fmr-county-2026/schema.md">schema.md</a>.</p>
+    <p>Source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release (FY26_FMRs.xlsx on huduser.gov). US government data, public domain.</p>
+    <p class="byline">Public domain, US government data.</p>
+  </section>
+  <section aria-label="Sample preview">
+    <h2>Sample preview</h2>
+    <p class="table-note">The 8 counties with a real 2BR range, sorted by gap. Full column list is in the CSV; first 22 raw rows are in sample.csv.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Sample data table"><table><thead><tr><th scope="col">county</th><th scope="col">state</th><th scope="col">fmr_2br_median</th><th scope="col">fmr_2br_max</th><th scope="col">gap</th><th scope="col">area_rows</th></tr></thead><tbody><tr><td>Bristol County</td><td>MA</td><td>1729</td><td>2550</td><td>+821 (+47.5%)</td><td>20</td></tr><tr><td>Rockingham County</td><td>NH</td><td>2220</td><td>2941</td><td>+721 (+32.5%)</td><td>37</td></tr><tr><td>Plymouth County</td><td>MA</td><td>2311</td><td>2941</td><td>+630 (+27.3%)</td><td>27</td></tr><tr><td>York County</td><td>ME</td><td>1716</td><td>2202</td><td>+486 (+28.3%)</td><td>29</td></tr><tr><td>Newport County</td><td>RI</td><td>2021</td><td>2314</td><td>+293 (+14.5%)</td><td>6</td></tr><tr><td>Penobscot County</td><td>ME</td><td>1392</td><td>1659</td><td>+267 (+19.2%)</td><td>67</td></tr><tr><td>Worcester County</td><td>MA</td><td>2056</td><td>2166</td><td>+110 (+5.4%)</td><td>60</td></tr><tr><td>Hillsborough County</td><td>NH</td><td>2037</td><td>2127</td><td>+90 (+4.4%)</td><td>31</td></tr></tbody></table></div>
+  </section>
+  <section aria-label="Files">
+    <h2>Files</h2>
+    <ul class="files">
+      <li><a href="../data/hud-fmr-county-2026/fmr-county-2026.csv" download>fmr-county-2026.csv</a><span class="sz">3,229 rows, complete · 266 KB</span></li>
+      <li><a href="../data/hud-fmr-county-2026/spread-counties.csv" download>spread-counties.csv</a><span class="sz">8 rows, derived gaps · 565 B</span></li>
+      <li><a href="../data/hud-fmr-county-2026/sample.csv" download>sample.csv</a><span class="sz">22 rows · 2.2 KB</span></li>
+      <li><a href="../data/hud-fmr-county-2026/sample.json" download>sample.json</a><span class="sz">22 records · 9.2 KB</span></li>
+      <li><a href="../data/hud-fmr-county-2026/schema.md" download>schema.md</a><span class="sz">column definitions, coverage, caveats</span></li>
+    </ul>
+  </section>
+  <section aria-label="Get the data">
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-county-2026/fmr-county-2026.csv" download>Download full CSV (free)</a>
+      <a class="btn" href="hud-fmr-2026.html">ZIP-level FY2026 dataset &rarr;</a>
+    </div>
+    <p class="btn-note">The full county table is the free CSV above; nothing paywalled here. The <a href="hud-fmr-2026.html">HUD FMR FY2026 pack</a> adds the ZIP-level file, state summary and data dictionary, and the <a href="hud-fmr-2027.html">FY2027 dataset</a> carries next year's rates. For other formats, see the <a href="../guides/fmr-dataset-download.html">FMR dataset download guide</a> or browse the rest of the catalog on the <a href="../portfolio.html">portfolio page</a>. Republishing the rows? The <a href="../guides/dataset-license-guide.html">dataset license guide</a> covers the public domain terms.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

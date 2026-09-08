@@ -543,6 +543,51 @@
    },
    "license": "ODbL 1.0 (source data OpenStreetMap, © OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
    "page": "https://jayjex.github.io/data-vault/datasets/osm-latam-civic-amenities.html"
+  },
+  {
+   "slug": "osm-mena-civic-amenities",
+   "name": "OpenStreetMap Civic Amenities, Istanbul-Cairo-Mumbai, 2026-09",
+   "niche": "open-data",
+   "tags": [
+    "openstreetmap",
+    "osm",
+    "civic-amenities",
+    "mena",
+    "south-asia"
+   ],
+   "description": "Counts of amenity=drinking_water, amenity=public_bookcase, and amenity=bicycle_repair_station features inside the Istanbul province, Cairo Governorate, and Mumbai district (Suburban + City) boundaries: 359 features across 9 city-amenity pairs, Overpass API snapshot 2026-09-10, license line verbatim per row.",
+   "stats": {
+    "rows": 9,
+    "tables": 1,
+    "columns": 4,
+    "updated": "2026-09-10"
+   },
+   "sample": {
+    "csv": "https://jayjex.github.io/data-vault/data/osm-mena-civic/sample.csv",
+    "json": "https://jayjex.github.io/data-vault/data/osm-mena-civic/sample.json",
+    "rows": 9,
+    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+   },
+   "extra_files": [
+    {
+     "name": "mena-civic-amenities.csv (full, free)",
+     "url": "https://jayjex.github.io/data-vault/data/osm-mena-civic/mena-civic-amenities.csv",
+     "rows": 9,
+     "note": "complete dataset, free download"
+    },
+    {
+     "name": "schema.md",
+     "url": "https://jayjex.github.io/data-vault/data/osm-mena-civic/schema.md",
+     "note": "columns, Overpass query form, boundary relations, example nodes, snapshot caveats"
+    }
+   ],
+   "full_data": {
+    "status": "free",
+    "url": "https://jayjex.github.io/data-vault/data/osm-mena-civic/mena-civic-amenities.csv",
+    "note": "Source is ODbL OpenStreetMap data (© OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
+   },
+   "license": "ODbL 1.0 (source data OpenStreetMap, © OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
+   "page": "https://jayjex.github.io/data-vault/datasets/osm-mena-civic-amenities.html"
   }
  ],
  "mcp": {

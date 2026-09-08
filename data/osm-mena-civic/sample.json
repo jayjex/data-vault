@@ -1,0 +1,67 @@
+{
+ "slug": "osm-mena-civic-amenities",
+ "name": "OpenStreetMap Civic Amenities, Istanbul-Cairo-Mumbai, 2026-09",
+ "columns": [
+  "city",
+  "theme",
+  "count",
+  "osm_license"
+ ],
+ "row_count": 9,
+ "records": [
+  {
+   "city": "Istanbul",
+   "theme": "water fountains",
+   "count": 194,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Istanbul",
+   "theme": "public bookcases",
+   "count": 1,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Istanbul",
+   "theme": "bike repair stations",
+   "count": 16,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Cairo",
+   "theme": "water fountains",
+   "count": 78,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Cairo",
+   "theme": "public bookcases",
+   "count": 0,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Cairo",
+   "theme": "bike repair stations",
+   "count": 0,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Mumbai",
+   "theme": "water fountains",
+   "count": 67,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Mumbai",
+   "theme": "public bookcases",
+   "count": 0,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Mumbai",
+   "theme": "bike repair stations",
+   "count": 3,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  }
+ ]
+}

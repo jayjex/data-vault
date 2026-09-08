@@ -51,6 +51,14 @@ FY2027 fair market rents for 51,871 ZIP codes, 3,229 counties, and 52 states, ef
 - FY2026 pack (prior year, for anything dated before October): https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html
 - Full data: coming to Getly with the FY2027 pack pages
 
+### HUD Fair Market Rents FY2026 by County: completeness & spread (hud-fmr-county-2026)
+County-level FY2026 Fair Market Rents: 3,229 county-equivalents across 56 states and territories, five bedroom sizes with median and max per row, 67 multi-FMR-area counties flagged with an area_rows count, and a derived table of the 8 counties where the 2BR max exceeds the median (Bristol County MA +47.5%). Zero empty cells. Niche: gov-data. Stats: {"rows": 3229, "tables": 2, "columns": 15, "updated": "2026-09-10"}.
+- Sample JSON: https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/sample.json
+- Sample CSV: https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/sample.csv
+- Page: https://jayjex.github.io/data-vault/datasets/hud-fmr-county-2026.html
+- Full county FMR table (free): https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/fmr-county-2026.csv (3,229 county-equivalents, FY2026, median+max for 0-4BR; page: https://jayjex.github.io/data-vault/datasets/hud-fmr-county-2026.html)
+- License: Public domain (US government data, HUD FY2026 Fair Market Rent release)
+
 ### Airbnb Listings, 6 US Cities (airbnb-six-cities)
 90,169 Airbnb listings across Austin, Nashville, Denver, New York City, Las Vegas, and San Diego in one normalized schema. Niche: real-estate. Stats: {"rows": 90169, "tables": 8, "columns": 12, "updated": "2026-08-10"}.
 - Sample JSON: https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.json
@@ -136,6 +144,14 @@ Counts of three civic amenity types inside exact administrative boundaries: amen
 - Sample CSV: https://jayjex.github.io/data-vault/data/osm-mena-civic/sample.csv
 - Page: https://jayjex.github.io/data-vault/datasets/osm-mena-civic-amenities.html
 - Full data (free): https://jayjex.github.io/data-vault/data/osm-mena-civic/mena-civic-amenities.csv
+- License: ODbL 1.0 (© OpenStreetMap contributors, Overpass API snapshot)
+
+### OpenStreetMap Civic Amenities, Lagos-Nairobi-Addis Ababa, 2026-09 (osm-africa-civic-amenities)
+Counts of three civic amenity types inside exact administrative boundaries: amenity=drinking_water, amenity=public_bookcase, amenity=bicycle_repair_station for Lagos (60 fountains, mostly one branded Clean Water tap cluster), Nairobi (2,174 fountains, the largest single-city count in the series, mostly unnamed Kibera water points, plus 1 bike repair stand), and Addis Ababa (5 fountains). Overpass API snapshot 2026-09-10, 2,240 features across 9 city-amenity pairs, license line carried verbatim per row. Niche: open-data. Stats: {"rows": 9, "tables": 1, "columns": 4, "updated": "2026-09-10"}.
+- Sample JSON: https://jayjex.github.io/data-vault/data/osm-africa-civic/sample.json
+- Sample CSV: https://jayjex.github.io/data-vault/data/osm-africa-civic/sample.csv
+- Page: https://jayjex.github.io/data-vault/datasets/osm-africa-civic-amenities.html
+- Full data (free): https://jayjex.github.io/data-vault/data/osm-africa-civic/africa-civic-amenities.csv
 - License: ODbL 1.0 (© OpenStreetMap contributors, Overpass API snapshot)
 
 ### Printable Engineering Bundle (printable-engineering-bundle)

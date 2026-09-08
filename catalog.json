@@ -590,6 +590,103 @@
    },
    "license": "ODbL 1.0 (source data OpenStreetMap, © OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
    "page": "https://jayjex.github.io/data-vault/datasets/osm-mena-civic-amenities.html"
+  },
+  {
+   "slug": "osm-africa-civic-amenities",
+   "name": "OpenStreetMap Civic Amenities, Lagos-Nairobi-Addis Ababa, 2026-09",
+   "niche": "open-data",
+   "tags": [
+    "openstreetmap",
+    "osm",
+    "civic-amenities",
+    "africa",
+    "water-access"
+   ],
+   "description": "Counts of amenity=drinking_water, amenity=public_bookcase, and amenity=bicycle_repair_station features inside the Lagos State, Nairobi County, and Addis Ababa city boundaries: 2,240 features across 9 city-amenity pairs, Overpass API snapshot 2026-09-10, license line verbatim per row.",
+   "stats": {
+    "rows": 9,
+    "tables": 1,
+    "columns": 4,
+    "updated": "2026-09-10"
+   },
+   "sample": {
+    "csv": "https://jayjex.github.io/data-vault/data/osm-africa-civic/sample.csv",
+    "json": "https://jayjex.github.io/data-vault/data/osm-africa-civic/sample.json",
+    "rows": 9,
+    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+   },
+   "extra_files": [
+    {
+     "name": "africa-civic-amenities.csv (full, free)",
+     "url": "https://jayjex.github.io/data-vault/data/osm-africa-civic/africa-civic-amenities.csv",
+     "rows": 9,
+     "note": "complete dataset, free download"
+    },
+    {
+     "name": "schema.md",
+     "url": "https://jayjex.github.io/data-vault/data/osm-africa-civic/schema.md",
+     "note": "columns, Overpass query form, boundary relations, example nodes, mirror cross-check, snapshot caveats"
+    }
+   ],
+   "full_data": {
+    "status": "free",
+    "url": "https://jayjex.github.io/data-vault/data/osm-africa-civic/africa-civic-amenities.csv",
+    "note": "Source is ODbL OpenStreetMap data (© OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
+   },
+   "license": "ODbL 1.0 (source data OpenStreetMap, © OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
+   "page": "https://jayjex.github.io/data-vault/datasets/osm-africa-civic-amenities.html"
+  },
+  {
+   "slug": "hud-fmr-county-2026",
+   "name": "HUD Fair Market Rents FY2026 by County: completeness & spread",
+   "niche": "gov-data",
+   "tags": [
+    "hud",
+    "fmr",
+    "county",
+    "rent",
+    "real-estate",
+    "gov-data"
+   ],
+   "description": "County-level FY2026 Fair Market Rents: 3,229 county-equivalents across 56 states and territories, five bedroom sizes with median and max per row, 67 multi-FMR-area counties flagged with an area_rows count, and a derived table of the 8 counties where the 2BR max exceeds the median (Bristol County MA +47.5%). Zero empty cells.",
+   "stats": {
+    "rows": 3229,
+    "tables": 2,
+    "columns": 15,
+    "updated": "2026-09-10"
+   },
+   "sample": {
+    "csv": "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/sample.csv",
+    "json": "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/sample.json",
+    "rows": 22,
+    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+   },
+   "extra_files": [
+    {
+     "name": "fmr-county-2026.csv (full, free)",
+     "url": "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/fmr-county-2026.csv",
+     "rows": 3229,
+     "note": "complete dataset, free download"
+    },
+    {
+     "name": "spread-counties.csv",
+     "url": "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/spread-counties.csv",
+     "rows": 8,
+     "note": "derived: counties where fmr_2br_max > fmr_2br_median, with gap columns"
+    },
+    {
+     "name": "schema.md",
+     "url": "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/schema.md",
+     "note": "columns, coverage, completeness findings, caveats"
+    }
+   ],
+   "full_data": {
+    "status": "free",
+    "url": "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/fmr-county-2026.csv",
+    "note": "Source is US government data (HUD FY2026 FMR release), public domain, so the full table is a free download, not a Getly pack."
+   },
+   "license": "Public domain (US government data, HUD FY2026 Fair Market Rent release)",
+   "page": "https://jayjex.github.io/data-vault/datasets/hud-fmr-county-2026.html"
   }
  ],
  "mcp": {

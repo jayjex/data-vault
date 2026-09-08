@@ -1,0 +1,67 @@
+{
+ "slug": "osm-africa-civic-amenities",
+ "name": "OpenStreetMap Civic Amenities, Lagos-Nairobi-Addis Ababa, 2026-09",
+ "columns": [
+  "city",
+  "theme",
+  "count",
+  "osm_license"
+ ],
+ "row_count": 9,
+ "records": [
+  {
+   "city": "Lagos",
+   "theme": "water fountains",
+   "count": 60,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Lagos",
+   "theme": "public bookcases",
+   "count": 0,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Lagos",
+   "theme": "bike repair stations",
+   "count": 0,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Nairobi",
+   "theme": "water fountains",
+   "count": 2174,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Nairobi",
+   "theme": "public bookcases",
+   "count": 0,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Nairobi",
+   "theme": "bike repair stations",
+   "count": 1,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Addis Ababa",
+   "theme": "water fountains",
+   "count": 5,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Addis Ababa",
+   "theme": "public bookcases",
+   "count": 0,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Addis Ababa",
+   "theme": "bike repair stations",
+   "count": 0,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  }
+ ]
+}

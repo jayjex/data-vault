@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenStreetMap Civic Amenities: Lagos, Nairobi, Addis Ababa (CSV) | Data Vault</title>
+<meta name="description" content="Water fountains, public bookcases, and bicycle repair stations in Lagos, Nairobi, and Addis Ababa: 2,240 mapped features from OpenStreetMap, counted via the Overpass API. Free CSV, ODbL.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/datasets/osm-africa-civic-amenities.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="OpenStreetMap Civic Amenities: Lagos, Nairobi, Addis Ababa (CSV) | Data Vault">
+<meta property="og:description" content="Water fountains, public bookcases, and bicycle repair stations in Lagos, Nairobi, and Addis Ababa: 2,240 mapped features from OpenStreetMap, counted via the Overpass API. Free CSV, ODbL.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/datasets/osm-africa-civic-amenities.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "OpenStreetMap Civic Amenities, Lagos-Nairobi-Addis Ababa, 2026-09", "description": "Counts of three civic amenity types (amenity=drinking_water, amenity=public_bookcase, amenity=bicycle_repair_station) inside the administrative boundaries of Lagos State, Nairobi County, and the Addis Ababa city administration: 2,240 mapped features across 9 city-amenity pairs, queried from the Overpass API on 2026-09-10.", "url": "https://jayjex.github.io/data-vault/datasets/osm-africa-civic-amenities.html", "keywords": ["openstreetmap", "osm", "drinking water", "public bookcase", "bicycle repair station", "lagos", "nairobi", "addis ababa", "africa", "civic amenities"], "creator": {"@type": "Organization", "name": "Matchbook Labs"}, "isAccessibleForFree": true, "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/osm-africa-civic/africa-civic-amenities.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/osm-africa-civic/sample.csv"}, {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://jayjex.github.io/data-vault/data/osm-africa-civic/sample.json"}], "license": "https://opendatacommons.org/licenses/odbl/1-0/", "isBasedOn": "https://wiki.openstreetmap.org/wiki/Overpass_API"}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>OpenStreetMap Civic Amenities: Lagos, Nairobi, Addis Ababa</h1>
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>2,240</b> features, 3 cities</span><span class="stat"><b>3</b> amenity types</span><span class="stat"><b>2026-09-10</b> counted</span><span class="stat"><b>free</b> CSV</span></div>
+  <section aria-label="About this dataset">
+    <p>One CSV, nine rows: Lagos, Nairobi, and Addis Ababa &times; three civic amenity types. Each row is the count of OpenStreetMap features carrying that amenity tag inside the city's administrative boundary, queried from the Overpass API in one run, with the license line carried verbatim in a fourth column.</p>
+    <p>The amenity tags are <span class="mono">amenity=drinking_water</span> (fountains and public tap points), <span class="mono">amenity=public_bookcase</span> (street-side book-sharing shelves), and <span class="mono">amenity=bicycle_repair_station</span> (public stands with tools or an air pump). The query shape is <span class="mono">area(id)-&gt;.a; nwr["amenity"="drinking_water"](area.a); out count;</span>, one call per theme per city, area-filtered rather than bbox-filtered, so the numbers follow exact city limits.</p>
+    <p>Nairobi owns this comparison: 2,174 mapped drinking-water features, the largest single-city count in the catalog's whole OSM civic series, ahead of Tokyo (2,163) and Madrid (2,058). These are not ornamental fountains. Most are unnamed tap points, with a dense cluster through Kibera mapped by water and sanitation projects, which is exactly what public tap mapping looks like when the infrastructure is scarce. Addis Ababa has 5 water points and Lagos 60, most of the Lagos count one branded "Clean Water" tap cluster. Not one public bookcase is mapped in any of the three boundaries, and bicycle repair stands appear exactly once, a shop in Nairobi called gitonga bicycle services.</p>
+    <p>Counts ran on 2026-09-10 against the Overpass API (maps.mail.ru mirror, keyless, base snapshot 2026-09-08T19:24:39Z), so the numbers are a snapshot of a database that moves daily. A parallel run on the kumi.systems mirror (four months staler) matched 8 of 9 counts exactly; Nairobi drinking_water differed by one edit. Boundaries are Nominatim administrative relations, each passed to Overpass as its 3600000000-offset area ID: Lagos State R3718182, Nairobi County R3492709, and the Addis Ababa city administration R1707699.</p>
+    <p>For the same three amenity types elsewhere in the catalog, see the <a href="osm-us-civic-amenities.html">OSM US civic amenities dataset</a> (New York, Los Angeles, Chicago, Austin, Seattle), the <a href="osm-asia-civic-amenities.html">OSM Asia civic amenities dataset</a> (Tokyo, Jakarta, Seoul), the <a href="osm-eu-civic-amenities.html">OSM EU civic amenities dataset</a> (Berlin, Amsterdam, Paris, Madrid, Warsaw), the <a href="osm-latam-civic-amenities.html">OSM Latin America civic amenities dataset</a> (S&atilde;o Paulo, Buenos Aires, Mexico City), and the <a href="osm-mena-civic-amenities.html">OSM MENA civic amenities dataset</a> (Istanbul, Cairo, Mumbai).</p>
+    <p class="byline">The data included in this document is from www.openstreetmap.org. The data is made available under ODbL. &copy; OpenStreetMap contributors. License: Open Data Commons Open Database License (ODbL) 1.0, https://opendatacommons.org/licenses/odbl/1-0/</p>
+    <p class="byline">Reused from OpenStreetMap via the Overpass API (maps.mail.ru mirror, base snapshot 2026-09-08T19:24:39Z). OSM is not responsible for the transformations we applied (boundary filtering, amenity-type aggregation, count rollup, license column added).</p>
+  </section>
+  <section aria-label="Sample preview">
+    <h2>Sample preview</h2>
+    <p class="table-note">All nine rows, since the dataset is one small table. The CSVs below carry identical rows plus the license column.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Sample data table"><table><thead><tr><th scope="col">city</th><th scope="col">water fountains</th><th scope="col">public bookcases</th><th scope="col">bike repair stations</th></tr></thead><tbody><tr><td>Lagos</td><td>60</td><td>0</td><td>0</td></tr><tr><td>Nairobi</td><td>2,174</td><td>0</td><td>1</td></tr><tr><td>Addis Ababa</td><td>5</td><td>0</td><td>0</td></tr></tbody></table></div>
+  </section>
+  <section aria-label="Files">
+    <h2>Files</h2>
+    <ul class="files">
+      <li><a href="../data/osm-africa-civic/africa-civic-amenities.csv" download>africa-civic-amenities.csv</a><span class="sz">9 rows, complete &middot; 1.3 KB</span></li>
+      <li><a href="../data/osm-africa-civic/sample.csv" download>sample.csv</a><span class="sz">9 rows &middot; 1.3 KB</span></li>
+      <li><a href="../data/osm-africa-civic/sample.json" download>sample.json</a><span class="sz">9 records &middot; 2 KB</span></li>
+</ul>
+  </section>
+  <section aria-label="Get the data">
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/osm-africa-civic/africa-civic-amenities.csv" download>Download counts CSV (free)</a>
+      <a class="btn" href="osm-mena-civic-amenities.html">MENA counterpart &rarr;</a>
+    </div>
+    <p class="btn-note">Source data is ODbL, so the full table is the free CSV above; the share-alike clause carries over if you build a derivative database. Compare against the <a href="osm-eu-civic-amenities.html">five EU capitals</a> and the <a href="osm-us-civic-amenities.html">five US cities</a>, or browse the rest of the catalog on the <a href="../portfolio.html">portfolio page</a>. Republishing? The <a href="../guides/dataset-license-guide.html">license guide</a> covers ODbL attribution format.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples ODbL &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

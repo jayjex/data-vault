@@ -161,6 +161,7 @@ Counts of three civic amenity types inside exact administrative boundaries: amen
 - Sample CSV: https://jayjex.github.io/data-vault/data/osm-oceania-civic/sample.csv
 - Page: https://jayjex.github.io/data-vault/datasets/osm-oceania-civic-amenities.html
 - Full data (free): https://jayjex.github.io/data-vault/data/osm-oceania-civic/oceania-civic-amenities.csv
+- Citable DOI: https://doi.org/10.5281/zenodo.22666640 (Zenodo record: https://zenodo.org/records/22666640/latest)
 - License: ODbL 1.0 (© OpenStreetMap contributors, Overpass API snapshot)
 
 ### Printable Engineering Bundle (printable-engineering-bundle)

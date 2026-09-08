@@ -1,0 +1,17 @@
+{
+  "host": "jayjex.github.io",
+  "key": "78e095195f1e3c98ed5e6c17474dc1b6",
+  "keyLocation": "https://jayjex.github.io/data-vault/78e095195f1e3c98ed5e6c17474dc1b6.txt",
+  "urlList": [
+    "https://jayjex.github.io/data-vault/datasets/osm-africa-civic-amenities.html",
+    "https://jayjex.github.io/data-vault/data/osm-africa-civic/africa-civic-amenities.csv",
+    "https://jayjex.github.io/data-vault/data/osm-africa-civic/sample.csv",
+    "https://jayjex.github.io/data-vault/data/osm-africa-civic/sample.json",
+    "https://jayjex.github.io/data-vault/data/osm-africa-civic/schema.md",
+    "https://jayjex.github.io/data-vault/datasets/hud-fmr-county-2026.html",
+    "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/fmr-county-2026.csv",
+    "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/spread-counties.csv",
+    "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/sample.json",
+    "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/schema.md"
+  ]
+}

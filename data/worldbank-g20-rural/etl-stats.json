@@ -1,0 +1,117 @@
+{
+ "rows_long": 1320,
+ "rows_2025": 20,
+ "wdi_lastupdated": "2026-07-13",
+ "top_2025": [
+  [
+   "India",
+   "IND",
+   64.31
+  ],
+  [
+   "Indonesia",
+   "IDN",
+   40.61
+  ],
+  [
+   "South Africa",
+   "ZAF",
+   36.18
+  ],
+  [
+   "China",
+   "CHN",
+   33.66
+  ],
+  [
+   "Italy",
+   "ITA",
+   30.32
+  ]
+ ],
+ "still_majority_rural": [
+  "India"
+ ],
+ "first_year_below_50": {
+  "Brazil": 1967,
+  "Saudi Arabia": 1971,
+  "Korea, Rep.": 1977,
+  "South Africa": 1987,
+  "Turkiye": 1989,
+  "China": 2011,
+  "Indonesia": 2011
+ },
+ "relative_decline_1960_2025_pct": [
+  [
+   "Turkiye",
+   86.3
+  ],
+  [
+   "Japan",
+   79.0
+  ],
+  [
+   "Brazil",
+   78.6
+  ],
+  [
+   "Saudi Arabia",
+   77.6
+  ],
+  [
+   "Korea, Rep.",
+   74.0
+  ]
+ ],
+ "largest_pp_drop_1960_2025": [
+  [
+   "Turkiye",
+   66.06
+  ],
+  [
+   "Korea, Rep.",
+   53.49
+  ],
+  [
+   "Saudi Arabia",
+   53.17
+  ],
+  [
+   "China",
+   46.6
+  ],
+  [
+   "Indonesia",
+   44.79
+  ]
+ ],
+ "smallest_pp_drop_1960_2025": [
+  [
+   "United Kingdom",
+   4.77
+  ],
+  [
+   "Australia",
+   6.13
+  ],
+  [
+   "Germany",
+   6.44
+  ]
+ ],
+ "korea_rebound": {
+  "min_year": 2010,
+  "min_pct": 18.03,
+  "pct_2025": 18.83
+ },
+ "china_peak_year": 1963,
+ "uk_peak_year": 1971,
+ "india_2025_rural_people_derived": 941424277,
+ "china_2025_rural_people_derived": 473414440,
+ "national_sum_rural_2025_derived": 1815877646,
+ "usa_2025": 19.8078266972131,
+ "euu_2025": 24.8261389416855,
+ "ind_2025": 64.310844227604,
+ "arg_2025": 7.64807783848271,
+ "jpn_2025": 7.6998550579214
+}

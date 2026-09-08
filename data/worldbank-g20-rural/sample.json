@@ -1,0 +1,133 @@
+{
+ "slug": "worldbank-g20-rural",
+ "name": "World Bank Rural Population Share, G20 Countries + EU27, 1960-2025",
+ "columns": [
+  "entity",
+  "iso3",
+  "year",
+  "rural_pct"
+ ],
+ "row_count": 20,
+ "records": [
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1960,
+   "rural_pct": 28.2761106197353
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1961,
+   "rural_pct": 27.5645255058373
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1962,
+   "rural_pct": 26.8271212225193
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1963,
+   "rural_pct": 26.0726264581332
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1964,
+   "rural_pct": 25.3120371330865
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1965,
+   "rural_pct": 24.5563491677868
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1966,
+   "rural_pct": 23.8165584826414
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1967,
+   "rural_pct": 23.1036609980578
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1968,
+   "rural_pct": 22.4286526344435
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1969,
+   "rural_pct": 21.802529312206
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1970,
+   "rural_pct": 21.2381602940259
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1971,
+   "rural_pct": 20.7307835656388
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1972,
+   "rural_pct": 20.2635039154628
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1973,
+   "rural_pct": 19.827408997879
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1974,
+   "rural_pct": 19.4164095668493
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1975,
+   "rural_pct": 19.0244163763358
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1976,
+   "rural_pct": 18.6453401803006
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1977,
+   "rural_pct": 18.2730917327056
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1978,
+   "rural_pct": 17.901581787513
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1979,
+   "rural_pct": 17.5247210986848
+  }
+ ]
+}

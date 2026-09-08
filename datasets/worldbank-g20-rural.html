@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>World Bank Rural Population Share, G20 + EU27, 1,320 rows 1960-2025 (Free CSV) | Data Vault</title>
+<meta name="description" content="Rural population as a share of total population for the 19 national G20 members plus the EU27 aggregate, one row per entity-year, 1960 through 2025. Free CSV from the World Bank WDI indicator SP.RUR.TOTL.ZS, CC BY 4.0.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/datasets/worldbank-g20-rural.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="World Bank Rural Population Share, G20 + EU27, 1960-2025 (Free CSV) | Data Vault">
+<meta property="og:description" content="Rural population share for the 19 national G20 members plus the EU27 aggregate, 1960-2025. Free long-format CSV, CC BY 4.0.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/datasets/worldbank-g20-rural.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "World Bank Rural Population Share, G20 Countries + EU27, 1960-2025", "description": "Rural population as a percent of total population (World Bank indicator SP.RUR.TOTL.ZS) for the 19 national G20 members plus the European Union (EU27) aggregate, one row per entity-year from 1960 through 2025, 1,320 rows in a four-column long format. Sourced keyless from the World Bank API v2; 2025 values reflect the WDI update of 2026-07-13.", "url": "https://jayjex.github.io/data-vault/datasets/worldbank-g20-rural.html", "keywords": ["rural-population", "world-bank", "g20", "demographics", "urbanization", "time-series", "free"], "creator": {"@type": "Organization", "name": "Matchbook Labs"}, "isAccessibleForFree": true, "license": "https://creativecommons.org/licenses/by/4.0/", "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/worldbank-g20-rural/g20-rural-population.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/worldbank-g20-rural/g20-rural-2025.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/worldbank-g20-rural/sample.csv"}, {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://jayjex.github.io/data-vault/data/worldbank-g20-rural/sample.json"}, {"@type": "DataDownload", "encodingFormat": "text/markdown", "contentUrl": "https://jayjex.github.io/data-vault/data/worldbank-g20-rural/schema.md"}], "isBasedOn": "https://api.worldbank.org/v2/country/ARG;AUS;BRA;CAN;CHN;FRA;DEU;IND;IDN;ITA;JPN;MEX;RUS;SAU;ZAF;KOR;TUR;GBR;USA;EUU/indicator/SP.RUR.TOTL.ZS?format=json"}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>World Bank Rural Population Share, G20 Countries + EU27</h1>
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>1,320</b> rows</span><span class="stat"><b>20</b> entities</span><span class="stat"><b>66</b> years</span><span class="stat"><b>free</b> full data</span></div>
+  <section aria-label="About this dataset">
+    <p>The rural share of total population for the 19 national G20 members plus the European Union aggregate, from the World Bank's WDI indicator SP.RUR.TOTL.ZS. One row per entity-year, 1960 through 2025, four columns: entity name, ISO3 code, year, and rural_pct. It pairs with the <a href="worldbank-g20-population.html">World Bank population pack</a> on the same entity list: multiply rural_pct by that pack's population to get rural headcounts.</p>
+    <p>India is the one G20 member still majority rural in 2025, at 64.31%, about 941 million people against its 1.46 billion total. Its share has drifted down slowly, 69.1% in 2010 to 64.31% now, under half a point a year, so the file ends before its rural majority does.</p>
+    <p>China crossed below 50% rural in 2011 and has since fallen to 33.66%, roughly 473 million people still rural in absolute terms. The widest movers since 1960: Turkiye dropped 66.1 points (76.57 to 10.51), Korea 53.5, Saudi Arabia 53.2, China 46.6, Indonesia 44.8. Relative to their 1960 shares, Japan and Brazil both shed about 79% of their rural percentage. The smallest moves are Australia (6.1 points), Germany (6.4), and the United Kingdom (4.8).</p>
+    <p>Two quirks worth knowing before you model this. Korea's rural share bottomed at 18.03% in 2010 and has crept back up to 18.83%, one of the few reversals in the set. And peak rural share is 1960 for 18 of 20 entities; China peaked in 1963 and the UK in 1971, so treating 1960 as the baseline is safe for all but those two.</p>
+    <p>The source is one keyless call to the World Bank API v2, and the pack keeps the API's values verbatim: no rounding, no imputation, entity names as the Bank spells them ("Korea, Rep.", "Turkiye", "Russian Federation"). The Bank's "rural" follows each country's own census definition, so the threshold is not harmonized across countries. The full column dictionary and caveats are in <a href="../data/worldbank-g20-rural/schema.md">schema.md</a>.</p>
+    <p class="byline">Source: World Bank World Development Indicators via api.worldbank.org, indicator SP.RUR.TOTL.ZS, retrieved 2026-09-10, WDI last updated 2026-07-13. License CC BY 4.0.</p>
+  </section>
+  <section aria-label="Latest year">
+    <h2>Latest year per entity</h2>
+    <p class="table-note">All 20 rows from g20-rural-2025.csv, sorted by rural share. The full 1,320-row series starts in sample.csv.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="2025 rural population share table"><table><thead><tr><th scope="col">entity</th><th scope="col">iso3</th><th scope="col">rural_pct</th></tr></thead><tbody><tr><td>India</td><td>IND</td><td>64.31</td></tr><tr><td>Indonesia</td><td>IDN</td><td>40.61</td></tr><tr><td>South Africa</td><td>ZAF</td><td>36.18</td></tr><tr><td>China</td><td>CHN</td><td>33.66</td></tr><tr><td>Italy</td><td>ITA</td><td>30.32</td></tr><tr><td>European Union</td><td>EUU</td><td>24.83</td></tr><tr><td>Russian Federation</td><td>RUS</td><td>24.75</td></tr><tr><td>France</td><td>FRA</td><td>21.16</td></tr><tr><td>Mexico</td><td>MEX</td><td>19.96</td></tr><tr><td>United States</td><td>USA</td><td>19.81</td></tr><tr><td>Korea, Rep.</td><td>KOR</td><td>18.83</td></tr><tr><td>Germany</td><td>DEU</td><td>17.86</td></tr><tr><td>Canada</td><td>CAN</td><td>17.12</td></tr><tr><td>United Kingdom</td><td>GBR</td><td>16.68</td></tr><tr><td>Saudi Arabia</td><td>SAU</td><td>15.39</td></tr><tr><td>Australia</td><td>AUS</td><td>12.28</td></tr><tr><td>Brazil</td><td>BRA</td><td>11.82</td></tr><tr><td>Turkiye</td><td>TUR</td><td>10.51</td></tr><tr><td>Japan</td><td>JPN</td><td>7.70</td></tr><tr><td>Argentina</td><td>ARG</td><td>7.65</td></tr></tbody></table></div>
+  </section>
+  <section aria-label="Files">
+    <h2>Files</h2>
+    <ul class="files">
+      <li><a href="../data/worldbank-g20-rural/g20-rural-population.csv" download>g20-rural-population.csv</a><span class="sz">1,320 rows, long format · 48 KB</span></li>
+      <li><a href="../data/worldbank-g20-rural/g20-rural-2025.csv" download>g20-rural-2025.csv</a><span class="sz">20 rows, latest year per entity · 657 B</span></li>
+      <li><a href="../data/worldbank-g20-rural/sample.csv" download>sample.csv</a><span class="sz">20 rows, Argentina 1960-1979 · 765 B</span></li>
+      <li><a href="../data/worldbank-g20-rural/sample.json" download>sample.json</a><span class="sz">20 records · 2.3 KB</span></li>
+      <li><a href="../data/worldbank-g20-rural/schema.md" download>schema.md</a><span class="sz">column dictionary, normalization, caveats</span></li>
+    </ul>
+  </section>
+  <section aria-label="Get the data">
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/worldbank-g20-rural/g20-rural-population.csv" download>Download full CSV (free)</a>
+      <a class="btn" href="worldbank-g20-population.html">World Bank population &rarr;</a>
+    </div>
+    <p class="btn-note">Everything downloads free under CC BY 4.0; the World Bank open data terms carry the same license, so republished rows keep their attribution. The <a href="worldbank-g20-population.html">population pack</a> has the matching SP.POP.TOTL counts for rural headcount math, the <a href="eurostat-unemployment.html">Eurostat unemployment pack</a> covers the EU27 plus nine countries monthly since 2000, and the rest of the catalog lives on the <a href="../portfolio.html">portfolio page</a>.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

@@ -25,7 +25,7 @@
 {"@type": "Question", "name": "Can I get NFL scores for free without an API key?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The nflverse games.csv is a plain file download with no account. ESPN's scoreboard endpoint at site.api.espn.com answers without a key and returns the current week as nested JSON, 16 events when tested for week 1 of the 2026 season. The dataset-mcp server on this site also queries the full 7,548-row NFL file for free, 100 rows per call, no key."}}]}
 </script>
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "Dataset", "name": "NFL Games & Betting Lines 1999-2026", "description": "7,548 NFL games with scores, closing spreads, totals, moneylines, odds, rest days, QBs, coaches, and stadium weather.", "url": "https://jayjex.github.io/data-vault/datasets/nfl-games.html", "keywords": ["sports", "betting", "nfl"], "creator": {"@type": "Organization", "name": "Matchbook Labs"}, "isAccessibleForFree": true, "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/nfl-games/sample.csv"}, {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://jayjex.github.io/data-vault/data/nfl-games/sample.json"}], "offers": {"@type": "Offer", "url": "https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h"}}
+{"@context": "https://schema.org", "@type": "Dataset", "name": "NFL Games & Betting Lines 1999-2026", "description": "7,548 NFL games with scores, closing spreads, totals, moneylines, odds, rest days, QBs, coaches, and stadium weather.", "url": "https://jayjex.github.io/data-vault/datasets/nfl-games.html", "keywords": ["sports", "betting", "nfl"], "creator": {"@type": "Organization", "name": "Matchbook Labs"}, "isAccessibleForFree": true, "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/nfl-games/sample.csv"}, {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://jayjex.github.io/data-vault/data/nfl-games/sample.json"}], "offers": {"@type": "Offer", "url": "https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtrfvdt7"}}
 </script>
 <link rel="stylesheet" href="../assets/style.css">
 </head>
@@ -37,7 +37,7 @@
   <a href="..">Catalog</a>
   <a href="../datasets/nfl-games.html">NFL dataset</a>
   <a href="../agents/">For agents</a>
-  <a href="https://www.getly.store/store/mtmw06l2" rel="noopener">Store</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
 </nav>
 </div></header>
 <main id="main" class="wrap page">
@@ -128,11 +128,11 @@ print(blowouts[["gameday", "away_team", "away_score",
     <ul>
       <li><strong>Free sample.</strong> <a href="../data/nfl-games/sample.csv" download>sample.csv</a> (22 rows) and <a href="../data/nfl-games/season-summaries.csv" download>season-summaries.csv</a> (27 rows) download here with no signup.</li>
       <li><strong>Free over MCP.</strong> The <a href="../agents/mcp-dataset-server.html">dataset-mcp server</a> queries the full 7,548-row games.csv for free, 100 rows per call, filters on any column, and <code>get_stats</code> computes distributions like the ones above on the whole file. Setup in the <a href="mcp-claude-desktop.html">Claude Desktop MCP guide</a>.</li>
-      <li><strong>Full pack.</strong> The complete <a href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h" rel="noopener">NFL Games &amp; Betting Lines 1999-2026</a> pack on Getly: 3 CSVs (7,548 + 861 + 27 rows), data dictionary, SHA-256 checksums. Checkout and download run through Getly.</li>
+      <li><strong>Full pack.</strong> The complete <a href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtrfvdt7" rel="noopener">NFL Games &amp; Betting Lines 1999-2026</a> pack on Getly: 3 CSVs (7,548 + 861 + 27 rows), data dictionary, SHA-256 checksums. Checkout and download run through Getly.</li>
     </ul>
     <div class="btnrow">
       <a class="btn-ghost btn" href="../data/nfl-games/sample.csv" download>Download sample (CSV)</a>
-      <a class="btn" href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h" rel="noopener">Get full data</a>
+      <a class="btn" href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtrfvdt7" rel="noopener">Get full data</a>
     </div>
     <p class="btn-note">Opening the sample in a spreadsheet instead? The <a href="nfl-dataset-excel.html">Excel and Google Sheets import guide</a> walks the 22-row CSV step by step. Need this week's scores over HTTP? The <a href="nfl-data-api-python.html">NFL data API examples</a> run requests against ESPN and nflverse release files.</p>
   </section>

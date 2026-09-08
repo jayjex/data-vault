@@ -46,7 +46,7 @@ INTROS = {
 }
 
 CTAS = {
-    "uc-budget": ('Want packs instead of single sheets? The <a href="datasets/printable-engineering-bundle.html">printable engineering bundle</a> collects the full packs in one download, and the <a href="https://www.getly.store/store/matchbook-labs-mtmw06l2" rel="noopener">Getly store</a> sells each pack separately.',),
+    "uc-budget": ('Want packs instead of single sheets? The <a href="datasets/printable-engineering-bundle.html">printable engineering bundle</a> collects the full packs in one download, and the <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Getly store</a> sells each pack separately.',),
     "uc-move": ('Moving this month? Start with the move-in inspection checklist, keep the move-out cleaning checklist for the last day, and grab the <a href="datasets/printable-engineering-bundle.html">full packs in the printable engineering bundle</a> when the free pages run out of rows.',),
     "uc-study": ('Pick one sheet per habit, print a stack on Sunday, and bin the app that keeps nagging you. The <a href="printables/free-printable-templates.html">PDF templates hub</a> sorts these same sheets by topic.',),
     "uc-worksheet": ('Print the kindergarten worksheets for the weekend and keep the maze stack for rainy days. Every sheet prints free, and the <a href="datasets/printable-engineering-bundle.html">printable engineering bundle</a> holds the full packs with answer keys.',),
@@ -133,7 +133,7 @@ w('  <a href="index.html">Catalog</a>')
 w('  <a href="free-printables-index.html">Free printables</a>')
 w('  <a href="printables/free-printable-templates.html">PDF templates</a>')
 w('  <a href="agents/">For agents</a>')
-w('  <a href="https://www.getly.store/store/matchbook-labs-mtmw06l2" rel="noopener">Store</a>')
+w('  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>')
 w('</nav>')
 w('</div></header>')
 w('<main id="main" class="wrap page">')

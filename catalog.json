@@ -38,7 +38,7 @@
    ],
    "full_data": {
     "status": "available",
-    "url": "https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h"
+    "url": "https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtrfvdt7"
    },
    "license": "CC BY 4.0 (game data from nflverse, CC BY 4.0)",
    "page": "https://jayjex.github.io/data-vault/datasets/nfl-games.html"
@@ -75,7 +75,7 @@
    ],
    "full_data": {
     "status": "available",
-    "url": "https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm"
+    "url": "https://www.getly.store/store/matchbook-labs-mtrfh66f"
    },
    "license": "Public domain (US government data)",
    "page": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"
@@ -112,7 +112,7 @@
    ],
    "full_data": {
     "status": "available",
-    "url": "https://www.getly.store/store/matchbook-labs-mtmw06l2",
+    "url": "https://www.getly.store/store/matchbook-labs-mtrfh66f",
     "note": "FY2027 Getly pack in prep; until it lands the full FY2027 files are free via the bundled MCP server (query_dataset \"hud-fmr-2027\") or the data-v1 GitHub release."
    },
    "license": "Public domain (US government data)",
@@ -150,7 +150,7 @@
    ],
    "full_data": {
     "status": "available",
-    "url": "https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtpkvxdf"
+    "url": "https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtrfuvf3"
    },
    "license": "CC BY 4.0 (listing data from Inside Airbnb, CC BY 4.0)",
    "page": "https://jayjex.github.io/data-vault/datasets/airbnb-six-cities.html"
@@ -180,7 +180,7 @@
    "extra_files": [],
    "full_data": {
     "status": "available",
-    "url": "https://www.getly.store/product/superteam-earn-28-live-listings-dataset-186-reverse-engineered-api-routes-mtmy11ny"
+    "url": "https://www.getly.store/product/superteam-earn-28-live-listings-dataset-186-reverse-engineered-api-routes-mtrfumk0"
    },
    "license": "Personal + commercial use, no resale of files as-is",
    "page": "https://jayjex.github.io/data-vault/datasets/earn-bounties.html"
@@ -211,7 +211,7 @@
    "extra_files": [],
    "full_data": {
     "status": "available",
-    "url": "https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtn8em7k"
+    "url": "https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtrfwfcd"
    },
    "license": "Personal + commercial use, no redistribution",
    "page": "https://jayjex.github.io/data-vault/datasets/scraper-pack.html"
@@ -246,7 +246,7 @@
    },
    "full_data": {
     "status": "available",
-    "url": "https://www.getly.store/store/matchbook-labs-mtmw06l2",
+    "url": "https://www.getly.store/store/matchbook-labs-mtrfh66f",
     "note": "One-time purchase. Direct product link added after the Getly publish lands (gate: canonical URL 200 first)."
    },
    "license": "Personal and commercial use. No reselling the pack as-is or with minor changes.",

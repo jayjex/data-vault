@@ -33,7 +33,7 @@ Paid per-call API (x402 protocol, USDC on Base): the NFL scores and HUD FMR data
 - Sample JSON: https://jayjex.github.io/data-vault/data/nfl-games/sample.json
 - Sample CSV: https://jayjex.github.io/data-vault/data/nfl-games/sample.csv
 - Page: https://jayjex.github.io/data-vault/datasets/nfl-games.html
-- Full data: [Get full data](https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtpl017h)
+- Full data: [Get full data](https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtrfvdt7)
 
 ### HUD Fair Market Rents FY2026 (hud-fmr-2026)
 FY2026 fair market rents for 51,895 ZIP codes, 3,229 counties, and 52 states. Five bedroom sizes per row. Niche: gov-data. Stats: {"rows": 51895, "tables": 3, "columns": 11, "updated": "FY2026"}.
@@ -42,7 +42,7 @@ FY2026 fair market rents for 51,895 ZIP codes, 3,229 counties, and 52 states. Fi
 - Page: https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html
 - Texas guide: https://jayjex.github.io/data-vault/guides/hud-fmr-texas.html (state=TX filter, 3,247 ZIP rows, metro table, free state-summary.csv)
 - County guide: https://jayjex.github.io/data-vault/guides/hud-fmr-by-county.html (3,229 county rows, Harris County TX query example, median/max rollup explainer)
-- Full data: [Get full data](https://www.getly.store/product/usa-rent-benchmark-fy2026-fair-market-rent-by-zip-code-county-mtqsf1xm)
+- Full data: [Get full data](https://www.getly.store/store/matchbook-labs-mtrfh66f)
 
 ### HUD Fair Market Rents FY2027 (hud-fmr-2027)
 FY2027 fair market rents for 51,871 ZIP codes, 3,229 counties, and 52 states, effective October 1, 2026. Five bedroom sizes per row, same ten-column schema as the FY2026 file. Citable DOI: https://doi.org/10.5281/zenodo.22649503 (full CSVs on Zenodo, CC BY 4.0). Niche: gov-data. Stats: {"rows": 51871, "tables": 3, "columns": 11, "updated": "FY2027"}.
@@ -56,27 +56,27 @@ FY2027 fair market rents for 51,871 ZIP codes, 3,229 counties, and 52 states, ef
 - Sample CSV: https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.csv
 - Page: https://jayjex.github.io/data-vault/datasets/airbnb-six-cities.html
 - Guide (per-city view): https://jayjex.github.io/data-vault/guides/airbnb-data-by-city.html
-- Full data: [Get full data](https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtpkvxdf)
+- Full data: [Get full data](https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtrfuvf3)
 
 ### Superteam Earn Live Listings (earn-bounties)
 28 open Superteam Earn listings with full description HTML, the raw cards dump, and 186+ reverse-engineered API routes. Niche: ai-agents. Stats: {"rows": 28, "tables": 3, "columns": 15, "updated": "2026-09-04"}.
 - Sample JSON: https://jayjex.github.io/data-vault/data/earn-bounties/sample.json
 - Sample CSV: https://jayjex.github.io/data-vault/data/earn-bounties/sample.csv
 - Page: https://jayjex.github.io/data-vault/datasets/earn-bounties.html
-- Full data: [Get full data](https://www.getly.store/product/superteam-earn-28-live-listings-dataset-186-reverse-engineered-api-routes-mtmy11ny)
+- Full data: [Get full data](https://www.getly.store/product/superteam-earn-28-live-listings-dataset-186-reverse-engineered-api-routes-mtrfumk0)
 
 ### Web Scraping Script Pack (scraper-pack)
 Ten self-contained Playwright scripts for pagination, infinite scroll, login sessions, price monitors, sitemap crawling, and retries. Niche: dev-tools. Stats: {"rows": 10, "tables": 1, "columns": 0, "updated": "2026-09-07", "unit": "scripts"}.
 - Sample JSON: https://jayjex.github.io/data-vault/data/scraper-pack/sample.json
 - Sample CSV: https://jayjex.github.io/data-vault/data/scraper-pack/sample.csv
 - Page: https://jayjex.github.io/data-vault/datasets/scraper-pack.html
-- Full data: [Get full data](https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtn8em7k)
+- Full data: [Get full data](https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtrfwfcd)
 
 ### Printable Engineering Bundle (printable-engineering-bundle)
 Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (A4 + US Letter PDFs with answer keys, mazes, dot-to-dots) and 5 Web3 KPI spreadsheet templates (portfolio, airdrop, DeFi yield, bounty income, trading journal) with live formulas. Niche: printables. Stats: {"worksheets_pages": 120, "spreadsheets": 5, "paper_sizes": 2, "updated": "2026-09-06"}.
 - Page: https://jayjex.github.io/data-vault/datasets/printable-engineering-bundle.html
 - Free printables index: https://jayjex.github.io/data-vault/free-printables-index.html
-- Full bundle: [Get the bundle](https://www.getly.store/store/matchbook-labs-mtmw06l2)
+- Full bundle: [Get the bundle](https://www.getly.store/store/matchbook-labs-mtrfh66f)
 
 ## Guides
 

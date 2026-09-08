@@ -1,0 +1,11 @@
+{
+ "host": "jayjex.github.io",
+ "key": "78e095195f1e3c98ed5e6c17474dc1b6",
+ "keyLocation": "https://jayjex.github.io/data-vault/78e095195f1e3c98ed5e6c17474dc1b6.txt",
+ "urlList": [
+  "https://jayjex.github.io/data-vault/datasets/osm-oceania-civic-amenities.html",
+  "https://jayjex.github.io/data-vault/data/osm-oceania-civic/oceania-civic-amenities.csv",
+  "https://jayjex.github.io/data-vault/data/osm-oceania-civic/sample.csv",
+  "https://jayjex.github.io/data-vault/data/osm-oceania-civic/sample.json"
+ ]
+}

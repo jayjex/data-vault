@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenStreetMap Civic Amenities: São Paulo, Buenos Aires, Mexico City (CSV) | Data Vault</title>
+<meta name="description" content="Water fountains, public bookcases, and bicycle repair stations in three Latin American megacities: 385 mapped nodes from OpenStreetMap, counted via the Overpass API. Free CSV, ODbL.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/datasets/osm-latam-civic-amenities.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="OpenStreetMap Civic Amenities: São Paulo, Buenos Aires, Mexico City (CSV) | Data Vault">
+<meta property="og:description" content="Water fountains, public bookcases, and bicycle repair stations in three Latin American megacities: 385 mapped nodes from OpenStreetMap, counted via the Overpass API. Free CSV, ODbL.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/datasets/osm-latam-civic-amenities.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "OpenStreetMap Civic Amenities, Sao Paulo-Buenos Aires-Mexico City, 2026-09", "description": "Counts of three civic amenity types (amenity=drinking_water, amenity=public_bookcase, amenity=bicycle_repair_station) inside the administrative boundaries of São Paulo, Buenos Aires (Ciudad Autónoma de Buenos Aires), and Mexico City: 385 mapped nodes across 9 city-amenity pairs, queried from the Overpass API on 2026-09-10.", "url": "https://jayjex.github.io/data-vault/datasets/osm-latam-civic-amenities.html", "keywords": ["openstreetmap", "osm", "drinking water", "public bookcase", "bicycle repair station", "sao paulo", "buenos aires", "mexico city", "latin america", "civic amenities"], "creator": {"@type": "Organization", "name": "Matchbook Labs"}, "isAccessibleForFree": true, "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/osm-latam-civic/latam-civic-amenities.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/osm-latam-civic/sample.csv"}, {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://jayjex.github.io/data-vault/data/osm-latam-civic/sample.json"}], "license": "https://opendatacommons.org/licenses/odbl/1-0/", "isBasedOn": "https://wiki.openstreetmap.org/wiki/Overpass_API"}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>OpenStreetMap Civic Amenities: São Paulo, Buenos Aires, Mexico City</h1>
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>385</b> nodes, 3 cities</span><span class="stat"><b>3</b> amenity types</span><span class="stat"><b>2026-09-10</b> counted</span><span class="stat"><b>free</b> CSV</span></div>
+  <section aria-label="About this dataset">
+    <p>One CSV, nine rows: São Paulo, Buenos Aires, and Mexico City &times; three civic amenity types. Each row is the count of OpenStreetMap nodes carrying that amenity tag inside the city's administrative boundary, queried from the Overpass API in one run, with the license line carried verbatim in a fourth column.</p>
+    <p>The amenity tags are <span class="mono">amenity=drinking_water</span> (fountains and public tap points), <span class="mono">amenity=public_bookcase</span> (street-side book-sharing shelves), and <span class="mono">amenity=bicycle_repair_station</span> (public stands with tools or an air pump). The query shape is <span class="mono">area(id)-&gt;.a; nwr["amenity"="drinking_water"](area.a); out count;</span>, one call per theme per city, area-filtered rather than bbox-filtered, so the numbers follow exact city limits.</p>
+    <p>Buenos Aires leads drinking water at 182 mapped nodes, followed by São Paulo at 105 and Mexico City at 61. The bookcase tag barely exists in Latin America so far: five nodes across all three cities, with Mexico City at zero (nobody has mapped one in the Distrito Federal boundary yet, not an absence of shelves). Bike repair stands concentrate in Mexico City, whose 23 stands are more than the other two cities combined.</p>
+    <p>Counts ran on 2026-09-10 against the Overpass API (kumi.systems mirror, keyless), so the numbers are a snapshot of a database that moves daily. Boundaries are Nominatim administrative relations (São Paulo R298285, Buenos Aires R3082668 for the Ciudad Autónoma, Mexico City R1376330), each passed to Overpass as its 3600000000-offset area ID.</p>
+    <p>For the same three amenity types elsewhere in the catalog, see the <a href="osm-us-civic-amenities.html">OSM US civic amenities dataset</a> (New York, Los Angeles, Chicago, Austin, Seattle), the <a href="osm-asia-civic-amenities.html">OSM Asia civic amenities dataset</a> (Tokyo, Jakarta, Seoul), and the <a href="osm-eu-civic-amenities.html">OSM EU civic amenities dataset</a> (Berlin, Amsterdam, Paris, Madrid, Warsaw). For open housing data, the <a href="eurostat-house-prices.html">Eurostat house price index dataset</a> covers EU-27 metro areas.</p>
+    <p class="byline">The data included in this document is from www.openstreetmap.org. The data is made available under ODbL. &copy; OpenStreetMap contributors. License: Open Data Commons Open Database License (ODbL) 1.0, https://opendatacommons.org/licenses/odbl/1-0/</p>
+    <p class="byline">Reused from OpenStreetMap via the Overpass API (kumi.systems mirror, base snapshots 2026-05-06 through 2026-07-24). OSM is not responsible for the transformations we applied (boundary filtering, amenity-type aggregation, count rollup, license column added).</p>
+  </section>
+  <section aria-label="Sample preview">
+    <h2>Sample preview</h2>
+    <p class="table-note">All nine rows, since the dataset is one small table. The CSVs below carry identical rows plus the license column.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Sample data table"><table><thead><tr><th scope="col">city</th><th scope="col">water fountains</th><th scope="col">public bookcases</th><th scope="col">bike repair stations</th></tr></thead><tbody><tr><td>São Paulo</td><td>105</td><td>4</td><td>7</td></tr><tr><td>Buenos Aires</td><td>182</td><td>1</td><td>2</td></tr><tr><td>Mexico City</td><td>61</td><td>0</td><td>23</td></tr></tbody></table></div>
+  </section>
+  <section aria-label="Files">
+    <h2>Files</h2>
+    <ul class="files">
+      <li><a href="../data/osm-latam-civic/latam-civic-amenities.csv" download>latam-civic-amenities.csv</a><span class="sz">9 rows, complete &middot; 1.3 KB</span></li>
+      <li><a href="../data/osm-latam-civic/sample.csv" download>sample.csv</a><span class="sz">9 rows &middot; 1.3 KB</span></li>
+      <li><a href="../data/osm-latam-civic/sample.json" download>sample.json</a><span class="sz">9 records &middot; 2.1 KB</span></li>
+</ul>
+  </section>
+  <section aria-label="Get the data">
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/osm-latam-civic/latam-civic-amenities.csv" download>Download counts CSV (free)</a>
+      <a class="btn" href="osm-us-civic-amenities.html">US counterpart &rarr;</a>
+    </div>
+    <p class="btn-note">Source data is ODbL, so the full table is the free CSV above; the share-alike clause carries over if you build a derivative database. Compare against the <a href="osm-asia-civic-amenities.html">Tokyo-Jakarta-Seoul counts</a> and the <a href="osm-eu-civic-amenities.html">five EU capitals</a>, or browse the rest of the catalog on the <a href="../portfolio.html">portfolio page</a>. Republishing? The <a href="../guides/dataset-license-guide.html">license guide</a> covers ODbL attribution format.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples ODbL &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

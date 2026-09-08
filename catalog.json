@@ -337,9 +337,9 @@
    "full_data": {
     "status": "free",
     "url": "https://jayjex.github.io/data-vault/data/osm-asia-civic/counts-2026-09.csv",
-    "note": "Source is ODbL OpenStreetMap data (\u00a9 OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
+    "note": "Source is ODbL OpenStreetMap data (© OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
    },
-   "license": "ODbL 1.0 (source data OpenStreetMap, \u00a9 OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
+   "license": "ODbL 1.0 (source data OpenStreetMap, © OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
    "page": "https://jayjex.github.io/data-vault/datasets/osm-asia-civic-amenities.html"
   },
   {
@@ -376,9 +376,9 @@
    "full_data": {
     "status": "free",
     "url": "https://jayjex.github.io/data-vault/data/osm-civic/us-civic-amenities.csv",
-    "note": "Source is ODbL OpenStreetMap data (\u00a9 OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
+    "note": "Source is ODbL OpenStreetMap data (© OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
    },
-   "license": "ODbL 1.0 (source data OpenStreetMap, \u00a9 OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
+   "license": "ODbL 1.0 (source data OpenStreetMap, © OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
    "page": "https://jayjex.github.io/data-vault/datasets/osm-us-civic-amenities.html"
   },
   {
@@ -415,9 +415,9 @@
    "full_data": {
     "status": "free",
     "url": "https://jayjex.github.io/data-vault/data/osm-eu-civic/eu-civic-amenities.csv",
-    "note": "Source is ODbL OpenStreetMap data (\u00a9 OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
+    "note": "Source is ODbL OpenStreetMap data (© OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
    },
-   "license": "ODbL 1.0 (source data OpenStreetMap, \u00a9 OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
+   "license": "ODbL 1.0 (source data OpenStreetMap, © OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
    "page": "https://jayjex.github.io/data-vault/datasets/osm-eu-civic-amenities.html"
   },
   {
@@ -455,6 +455,50 @@
    },
    "license": "Personal and commercial use. No reselling the pack as-is or with minor changes.",
    "page": "https://jayjex.github.io/data-vault/datasets/printable-engineering-bundle.html"
+  },
+  {
+   "slug": "osm-latam-civic-amenities",
+   "name": "OpenStreetMap Civic Amenities, Sao Paulo-Buenos Aires-Mexico City, 2026-09",
+   "niche": "open-data",
+   "tags": [
+    "openstreetmap",
+    "osm",
+    "civic-amenities",
+    "latin-america"
+   ],
+   "description": "Counts of amenity=drinking_water, amenity=public_bookcase, and amenity=bicycle_repair_station nodes inside the São Paulo municipality, Ciudad Autónoma de Buenos Aires, and Ciudad de México boundaries: 385 nodes across 9 city-amenity pairs, Overpass API snapshot 2026-09-10, license line verbatim per row.",
+   "stats": {
+    "rows": 9,
+    "tables": 1,
+    "columns": 4,
+    "updated": "2026-09-10"
+   },
+   "sample": {
+    "csv": "https://jayjex.github.io/data-vault/data/osm-latam-civic/sample.csv",
+    "json": "https://jayjex.github.io/data-vault/data/osm-latam-civic/sample.json",
+    "rows": 9,
+    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+   },
+   "extra_files": [
+    {
+     "name": "latam-civic-amenities.csv (full, free)",
+     "url": "https://jayjex.github.io/data-vault/data/osm-latam-civic/latam-civic-amenities.csv",
+     "rows": 9,
+     "note": "complete dataset, free download"
+    },
+    {
+     "name": "schema.md",
+     "url": "https://jayjex.github.io/data-vault/data/osm-latam-civic/schema.md",
+     "note": "columns, Overpass query form, boundary relations, example nodes, snapshot caveats"
+    }
+   ],
+   "full_data": {
+    "status": "free",
+    "url": "https://jayjex.github.io/data-vault/data/osm-latam-civic/latam-civic-amenities.csv",
+    "note": "Source is ODbL OpenStreetMap data (© OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
+   },
+   "license": "ODbL 1.0 (source data OpenStreetMap, © OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
+   "page": "https://jayjex.github.io/data-vault/datasets/osm-latam-civic-amenities.html"
   }
  ],
  "mcp": {

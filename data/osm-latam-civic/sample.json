@@ -1,0 +1,67 @@
+{
+ "slug": "osm-latam-civic-amenities",
+ "name": "OpenStreetMap Civic Amenities, Sao Paulo-Buenos Aires-Mexico City, 2026-09",
+ "columns": [
+  "city",
+  "theme",
+  "count",
+  "osm_license"
+ ],
+ "row_count": 9,
+ "records": [
+  {
+   "city": "Sao Paulo",
+   "theme": "water fountains",
+   "count": 105,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Sao Paulo",
+   "theme": "public bookcases",
+   "count": 4,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Sao Paulo",
+   "theme": "bike repair stations",
+   "count": 7,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Buenos Aires",
+   "theme": "water fountains",
+   "count": 182,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Buenos Aires",
+   "theme": "public bookcases",
+   "count": 1,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Buenos Aires",
+   "theme": "bike repair stations",
+   "count": 2,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Mexico City",
+   "theme": "water fountains",
+   "count": 61,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Mexico City",
+   "theme": "public bookcases",
+   "count": 0,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Mexico City",
+   "theme": "bike repair stations",
+   "count": 23,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  }
+ ]
+}

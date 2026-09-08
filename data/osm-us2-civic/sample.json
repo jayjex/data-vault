@@ -1,0 +1,67 @@
+{
+  "slug": "osm-us2-civic-amenities",
+  "name": "OpenStreetMap Civic Amenities, New York-Chicago-Seattle, 2026-09",
+  "columns": [
+    "city",
+    "theme",
+    "count",
+    "osm_license"
+  ],
+  "row_count": 9,
+  "records": [
+    {
+      "city": "New York City",
+      "theme": "drinking water",
+      "count": 1531,
+      "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+    },
+    {
+      "city": "New York City",
+      "theme": "public toilets",
+      "count": 774,
+      "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+    },
+    {
+      "city": "New York City",
+      "theme": "benches",
+      "count": 18991,
+      "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+    },
+    {
+      "city": "Chicago",
+      "theme": "drinking water",
+      "count": 252,
+      "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+    },
+    {
+      "city": "Chicago",
+      "theme": "public toilets",
+      "count": 301,
+      "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+    },
+    {
+      "city": "Chicago",
+      "theme": "benches",
+      "count": 1905,
+      "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+    },
+    {
+      "city": "Seattle",
+      "theme": "drinking water",
+      "count": 193,
+      "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+    },
+    {
+      "city": "Seattle",
+      "theme": "public toilets",
+      "count": 231,
+      "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+    },
+    {
+      "city": "Seattle",
+      "theme": "benches",
+      "count": 3446,
+      "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+    }
+  ]
+}

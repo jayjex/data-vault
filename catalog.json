@@ -685,6 +685,50 @@
    "page": "https://jayjex.github.io/data-vault/datasets/osm-oceania-civic-amenities.html"
   },
   {
+   "slug": "osm-us2-civic-amenities",
+   "name": "OpenStreetMap Civic Amenities, New York-Chicago-Seattle, 2026-09",
+   "niche": "open-data",
+   "tags": [
+    "openstreetmap",
+    "osm",
+    "civic-amenities",
+    "united-states"
+   ],
+   "description": "Counts of amenity=drinking_water, amenity=toilets, and amenity=bench features inside the exact City of New York, City of Chicago, and City of Seattle boundaries: 27,624 features across 9 city-amenity pairs, Overpass API snapshot 2026-09-10, license line verbatim per row.",
+   "stats": {
+    "rows": 9,
+    "tables": 1,
+    "columns": 4,
+    "updated": "2026-09-10"
+   },
+   "sample": {
+    "csv": "https://jayjex.github.io/data-vault/data/osm-us2-civic/sample.csv",
+    "json": "https://jayjex.github.io/data-vault/data/osm-us2-civic/sample.json",
+    "rows": 9,
+    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+   },
+   "extra_files": [
+    {
+     "name": "us2-civic-amenities.csv (full, free)",
+     "url": "https://jayjex.github.io/data-vault/data/osm-us2-civic/us2-civic-amenities.csv",
+     "rows": 9,
+     "note": "complete dataset, free download"
+    },
+    {
+     "name": "schema.md",
+     "url": "https://jayjex.github.io/data-vault/data/osm-us2-civic/schema.md",
+     "note": "columns, Overpass query form, boundary relations, example nodes, mirror cross-check, caveats"
+    }
+   ],
+   "full_data": {
+    "status": "free",
+    "url": "https://jayjex.github.io/data-vault/data/osm-us2-civic/us2-civic-amenities.csv",
+    "note": "Source is ODbL OpenStreetMap data (© OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
+   },
+   "license": "ODbL 1.0 (source data OpenStreetMap, © OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
+   "page": "https://jayjex.github.io/data-vault/datasets/osm-us2-civic-amenities.html"
+  },
+  {
    "slug": "hud-fmr-county-2026",
    "name": "HUD Fair Market Rents FY2026 by County: completeness & spread",
    "niche": "gov-data",

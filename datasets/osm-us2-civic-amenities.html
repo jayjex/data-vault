@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenStreetMap Civic Amenities: New York, Chicago, Seattle (CSV) | Data Vault</title>
+<meta name="description" content="Drinking water, public toilets, and benches in New York City, Chicago, and Seattle: 27,624 mapped features from OpenStreetMap, counted inside exact city boundaries via the Overpass API. Free CSV, ODbL.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/datasets/osm-us2-civic-amenities.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="OpenStreetMap Civic Amenities: New York, Chicago, Seattle (CSV) | Data Vault">
+<meta property="og:description" content="Drinking water, public toilets, and benches in New York City, Chicago, and Seattle: 27,624 mapped features from OpenStreetMap, counted inside exact city boundaries via the Overpass API. Free CSV, ODbL.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/datasets/osm-us2-civic-amenities.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "OpenStreetMap Civic Amenities, New York-Chicago-Seattle, 2026-09", "description": "Counts of three civic amenity types (amenity=drinking_water, amenity=toilets, amenity=bench) inside the exact administrative boundaries of New York City, Chicago, and Seattle: 27,624 mapped features across 9 city-amenity pairs, queried from the Overpass API on 2026-09-10.", "url": "https://jayjex.github.io/data-vault/datasets/osm-us2-civic-amenities.html", "keywords": ["openstreetmap", "osm", "drinking water", "public toilets", "benches", "new york", "chicago", "seattle", "civic amenities"], "creator": {"@type": "Organization", "name": "Matchbook Labs"}, "isAccessibleForFree": true, "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/osm-us2-civic/us2-civic-amenities.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/osm-us2-civic/sample.csv"}, {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://jayjex.github.io/data-vault/data/osm-us2-civic/sample.json"}], "license": "https://opendatacommons.org/licenses/odbl/1-0/", "isBasedOn": "https://wiki.openstreetmap.org/wiki/Overpass_API"}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>OpenStreetMap Civic Amenities: New York, Chicago, Seattle</h1>
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>27,624</b> features, 3 cities</span><span class="stat"><b>3</b> amenity types</span><span class="stat"><b>2026-09-10</b> counted</span><span class="stat"><b>free</b> CSV</span></div>
+  <section aria-label="About this dataset">
+    <p>One CSV, nine rows: New York City, Chicago, and Seattle &times; three civic amenity types. Each row is the count of OpenStreetMap features carrying that amenity tag inside the city's exact boundary, queried from the Overpass API in one run, with the license line carried verbatim in a fourth column. An earlier US dataset on this site (five cities, bounding-box counts of fountains, bookcases, and repair stations) shares the three cities with this table; the themes and boundary method differ, and the series' recent regions use the same toilets-and-benches set as this one.</p>
+    <p>The amenity tags are <span class="mono">amenity=drinking_water</span> (fountains and tap points), <span class="mono">amenity=toilets</span> (public and customer facilities, mapped as nodes and building ways), and <span class="mono">amenity=bench</span> (park, transit, and street seats). The query shape is <span class="mono">area(id)-&gt;.a; nwr["amenity"="bench"](area.a); out count;</span>, one call per theme per city, so the numbers follow city limits and match the <a href="osm-oceania-civic-amenities.html">Sydney-Melbourne-Auckland table</a> theme for theme.</p>
+    <p>New York's 18,991 mapped benches top the whole series by more than five thousand (Sydney's 13,573 held the record before), more than ten times Chicago's 1,905. NYC Parks maps drinking fountains and comfort stations systematically; the toilets sample carries operator=NYC Parks tags. Chicago's 252 fountains include sculptural pieces like the Vienna Drinking Fountain in Humboldt Park, and its toilet count is mostly Park District comfort stations mapped as buildings. Seattle's fountains are sparse at 193, but its 3,446 benches and 231 toilets carry the region's Parks and Recreation survey attributes, wheelchair flags included.</p>
+    <p>Counts ran on 2026-09-10 against the Overpass API (maps.mail.ru mirror, keyless, base snapshot 2026-09-08T21:00:20Z), so the numbers are a snapshot of a database that moves daily. A parallel run on the overpass-api.de mirror matched all 9 counts exactly. Boundaries are Nominatim administrative relations, each re-verified through OSM API tags and passed to Overpass as its 3600000000-offset area ID: New York City R175905 (City of New York, admin_level 5), Chicago R122604 (City of Chicago, admin_level 8), and Seattle R237385 (City of Seattle, admin_level 8). Draft R-ids that circulated for this batch (R2552842, R129221, R858925) failed tag verification, resolving to a Ukrainian village council, an Iowa town of 842 people, and an empty relation, and were discarded.</p>
+    <p>For civic amenity counts elsewhere in the catalog, see the <a href="osm-us-civic-amenities.html">OSM US civic amenities dataset</a> (five cities, bounding-box counts), the <a href="osm-oceania-civic-amenities.html">OSM Oceania civic amenities dataset</a> (Sydney, Melbourne, Auckland), the <a href="osm-asia-civic-amenities.html">OSM Asia civic amenities dataset</a> (Tokyo, Jakarta, Seoul), the <a href="osm-eu-civic-amenities.html">OSM EU civic amenities dataset</a> (Berlin, Amsterdam, Paris, Madrid, Warsaw), the <a href="osm-latam-civic-amenities.html">OSM Latin America civic amenities dataset</a> (S&atilde;o Paulo, Buenos Aires, Mexico City), the <a href="osm-mena-civic-amenities.html">OSM MENA civic amenities dataset</a> (Istanbul, Cairo, Mumbai), and the <a href="osm-africa-civic-amenities.html">OSM Africa civic amenities dataset</a> (Lagos, Nairobi, Addis Ababa).</p>
+    <p class="byline">The data included in this document is from www.openstreetmap.org. The data is made available under ODbL. &copy; OpenStreetMap contributors. License: Open Data Commons Open Database License (ODbL) 1.0, https://opendatacommons.org/licenses/odbl/1-0/</p>
+    <p class="byline">Reused from OpenStreetMap via the Overpass API (maps.mail.ru mirror, base snapshot 2026-09-08T21:00:20Z). OSM is not responsible for the transformations we applied (boundary filtering, amenity-type aggregation, count rollup, license column added).</p>
+  </section>
+  <section aria-label="Sample preview">
+    <h2>Sample preview</h2>
+    <p class="table-note">All nine rows, since the dataset is one small table. The CSVs below carry identical rows plus the license column.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Sample data table"><table><thead><tr><th scope="col">city</th><th scope="col">drinking water</th><th scope="col">public toilets</th><th scope="col">benches</th></tr></thead><tbody><tr><td>New York City</td><td>1,531</td><td>774</td><td>18,991</td></tr><tr><td>Chicago</td><td>252</td><td>301</td><td>1,905</td></tr><tr><td>Seattle</td><td>193</td><td>231</td><td>3,446</td></tr></tbody></table></div>
+  </section>
+  <section aria-label="Files">
+    <h2>Files</h2>
+    <ul class="files">
+      <li><a href="../data/osm-us2-civic/us2-civic-amenities.csv" download>us2-civic-amenities.csv</a><span class="sz">9 rows, complete &middot; 1.2 KB</span></li>
+      <li><a href="../data/osm-us2-civic/sample.csv" download>sample.csv</a><span class="sz">9 rows &middot; 1.2 KB</span></li>
+      <li><a href="../data/osm-us2-civic/sample.json" download>sample.json</a><span class="sz">9 records &middot; 2.2 KB</span></li>
+      <li><a href="../data/osm-us2-civic/schema.md" download>schema.md</a><span class="sz">columns, boundaries, example nodes, mirror cross-check</span></li>
+    </ul>
+  </section>
+  <section aria-label="Get the data">
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/osm-us2-civic/us2-civic-amenities.csv" download>Download counts CSV (free)</a>
+      <a class="btn" href="osm-oceania-civic-amenities.html">Oceania counterpart &rarr;</a>
+    </div>
+    <p class="btn-note">Source data is ODbL, so the full table is the free CSV above; the share-alike clause carries over if you build a derivative database. Compare against the <a href="osm-oceania-civic-amenities.html">Sydney-Melbourne-Auckland counts</a> and the <a href="osm-us-civic-amenities.html">five-city US table</a>, or browse the rest of the catalog on the <a href="../portfolio.html">portfolio page</a>. Republishing? The <a href="../guides/dataset-license-guide.html">license guide</a> covers ODbL attribution format.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples ODbL &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

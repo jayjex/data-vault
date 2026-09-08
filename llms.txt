@@ -130,6 +130,7 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 ## Guides
 
 - [Open Street Map Civic Data: Fountains, Bookcases, Bike Repair Stations in 13 Cities](https://jayjex.github.io/data-vault/guides/osm-civic-data-guide.html): 11,158 OSM nodes counted per city, Seattle 497 bookcases, Madrid 2,058 fountains, free CSV
+- [Public Bookcase Map Worldwide: Fountains and Bike Repair Stations in 16 Cities](https://jayjex.github.io/data-vault/guides/worldwide-civic-amenities-map.html): 11,543 OSM nodes across US, EU, Asia, LatAm; Seattle 497 bookcases, Tokyo 2,163 fountains, Warsaw 188 repair stands, free CSV
 - [NFL Games Dataset CSV: 7,548 Games with Betting Lines (1999-2026)](https://jayjex.github.io/data-vault/guides/nfl-games-data-guide.html): column guide for the games table, betting-line glossary
 - [NFL Stadium Weather: How Roof and Weather Show Up in Game Data](https://jayjex.github.io/data-vault/guides/nfl-stadium-weather.html): roof/temp/wind columns, dome vs outdoor scoring on the 22-row sample, hottest kickoffs
 - [NFL Data by Conference: AFC vs NFC From Real Game Rows](https://jayjex.github.io/data-vault/guides/nfl-data-by-conference.html): 1999 AFC/NFC map, 7 inter-conference games, points and win counts, pandas script

@@ -152,6 +152,7 @@ Counts of three civic amenity types inside exact administrative boundaries: amen
 - Sample CSV: https://jayjex.github.io/data-vault/data/osm-africa-civic/sample.csv
 - Page: https://jayjex.github.io/data-vault/datasets/osm-africa-civic-amenities.html
 - Full data (free): https://jayjex.github.io/data-vault/data/osm-africa-civic/africa-civic-amenities.csv
+- Citable DOI: https://doi.org/10.5281/zenodo.22665925 (Zenodo record: https://zenodo.org/records/22665925/latest)
 - License: ODbL 1.0 (© OpenStreetMap contributors, Overpass API snapshot)
 
 ### Printable Engineering Bundle (printable-engineering-bundle)

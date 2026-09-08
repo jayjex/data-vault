@@ -633,6 +633,8 @@
     "url": "https://jayjex.github.io/data-vault/data/osm-africa-civic/africa-civic-amenities.csv",
     "note": "Source is ODbL OpenStreetMap data (© OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
    },
+   "doi": "10.5281/zenodo.22665925",
+   "zenodo_record": "https://zenodo.org/records/22665925/latest",
    "license": "ODbL 1.0 (source data OpenStreetMap, © OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
    "page": "https://jayjex.github.io/data-vault/datasets/osm-africa-civic-amenities.html"
   },

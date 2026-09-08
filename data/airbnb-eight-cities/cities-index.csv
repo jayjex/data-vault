@@ -1,0 +1,9 @@
+city,snapshot_date,rows,file,median_price_usd,room_type_mix
+"Boston, MA",2026-06-15,4414,airbnb-boston.csv,279,"Entire home/apt 3003 (68%), Private room 1312 (30%), Hotel room 95 (2%), Shared room 4 (0%)"
+"Chicago, IL",2026-06-24,8704,airbnb-chicago.csv,223,"Entire home/apt 6663 (77%), Private room 1939 (22%), Hotel room 70 (1%), Shared room 32 (0%)"
+"Los Angeles, CA",2026-06-15,43932,airbnb-los-angeles.csv,224,"Entire home/apt 32454 (74%), Private room 10771 (25%), Hotel room 415 (1%), Shared room 292 (1%)"
+"New Orleans, LA",2026-06-16,7254,airbnb-new-orleans.csv,192,"Entire home/apt 5730 (79%), Private room 1329 (18%), Hotel room 190 (3%), Shared room 5 (0%)"
+"Portland, OR",2026-06-15,4210,airbnb-portland.csv,160,"Entire home/apt 3537 (84%), Private room 612 (15%), Hotel room 57 (1%), Shared room 4 (0%)"
+"San Francisco, CA",2026-06-14,7422,airbnb-san-francisco.csv,252,"Entire home/apt 4477 (60%), Private room 2669 (36%), Hotel room 243 (3%), Shared room 33 (0%)"
+"Seattle, WA",2026-06-15,7814,airbnb-seattle.csv,281,"Entire home/apt 6438 (82%), Private room 1297 (17%), Hotel room 46 (1%), Shared room 33 (0%)"
+"Washington, DC",2026-06-24,6996,airbnb-washington-dc.csv,221,"Entire home/apt 5224 (75%), Private room 1473 (21%), Hotel room 255 (4%), Shared room 44 (1%)"

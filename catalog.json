@@ -156,6 +156,50 @@
    "page": "https://jayjex.github.io/data-vault/datasets/airbnb-six-cities.html"
   },
   {
+   "slug": "airbnb-eight-cities",
+   "name": "Airbnb Listings, 8 More US Cities (free)",
+   "niche": "real-estate",
+   "tags": [
+    "real-estate",
+    "airbnb",
+    "str",
+    "free"
+   ],
+   "description": "90,746 Airbnb listings across Boston, Chicago, Los Angeles, New Orleans, Portland, San Francisco, Seattle, and Washington DC, June 2026 snapshots, same 12-column schema as airbnb-six-cities. Full per-city CSVs are free downloads.",
+   "stats": {
+    "rows": 90746,
+    "tables": 12,
+    "columns": 12,
+    "updated": "2026-06-24"
+   },
+   "sample": {
+    "csv": "https://jayjex.github.io/data-vault/data/airbnb-eight-cities/sample.csv",
+    "json": "https://jayjex.github.io/data-vault/data/airbnb-eight-cities/sample.json",
+    "rows": 20,
+    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+   },
+   "extra_files": [
+    {
+     "name": "cities-index.csv",
+     "url": "https://jayjex.github.io/data-vault/data/airbnb-eight-cities/cities-index.csv",
+     "rows": 8,
+     "note": "complete per-city index, 8 rows"
+    },
+    {
+     "name": "schema.md",
+     "url": "https://jayjex.github.io/data-vault/data/airbnb-eight-cities/schema.md",
+     "note": "column dictionary, normalization, caveats"
+    }
+   ],
+   "full_data": {
+    "status": "free",
+    "url": "https://jayjex.github.io/data-vault/datasets/airbnb-eight-cities.html",
+    "note": "Source is Inside Airbnb, CC BY 4.0, so all 8 per-city CSVs are free downloads from the dataset page; no Getly pack."
+   },
+   "license": "CC BY 4.0 (listing data from Inside Airbnb, CC BY 4.0)",
+   "page": "https://jayjex.github.io/data-vault/datasets/airbnb-eight-cities.html"
+  },
+  {
    "slug": "earn-bounties",
    "name": "Superteam Earn Live Listings",
    "niche": "ai-agents",

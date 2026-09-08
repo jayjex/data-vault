@@ -67,6 +67,13 @@ County-level FY2026 Fair Market Rents: 3,229 county-equivalents across 56 states
 - Guide (per-city view): https://jayjex.github.io/data-vault/guides/airbnb-data-by-city.html
 - Full data: [Get full data](https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtrfuvf3)
 
+### Airbnb Listings, 8 More US Cities (airbnb-eight-cities)
+90,746 Airbnb listings across Boston, Chicago, Los Angeles, New Orleans, Portland, San Francisco, Seattle, and Washington DC, June 2026 snapshots, same 12-column schema as airbnb-six-cities. Niche: real-estate. Stats: {"rows": 90746, "tables": 12, "columns": 12, "updated": "2026-06-24"}.
+- Sample JSON: https://jayjex.github.io/data-vault/data/airbnb-eight-cities/sample.json
+- Sample CSV: https://jayjex.github.io/data-vault/data/airbnb-eight-cities/sample.csv
+- Page: https://jayjex.github.io/data-vault/datasets/airbnb-eight-cities.html
+- Full data (free): https://jayjex.github.io/data-vault/datasets/airbnb-eight-cities.html
+
 ### Superteam Earn Live Listings (earn-bounties)
 28 open Superteam Earn listings with full description HTML, the raw cards dump, and 186+ reverse-engineered API routes. Niche: ai-agents. Stats: {"rows": 28, "tables": 3, "columns": 15, "updated": "2026-09-04"}.
 - Sample JSON: https://jayjex.github.io/data-vault/data/earn-bounties/sample.json

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Airbnb Listings in 8 More US Cities, 90,746 rows (Free CSV) | Data Vault</title>
+<meta name="description" content="90,746 Airbnb listings across Boston, Chicago, Los Angeles, New Orleans, Portland, San Francisco, Seattle, and Washington DC, June 2026 snapshots. Free per-city CSVs, same schema as the six-city pack, CC BY 4.0.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/datasets/airbnb-eight-cities.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Airbnb Listings in 8 More US Cities, 90,746 rows (Free CSV) | Data Vault">
+<meta property="og:description" content="90,746 Airbnb listings across Boston, Chicago, LA, New Orleans, Portland, San Francisco, Seattle, and Washington DC, June 2026 snapshots. Free per-city CSVs, CC BY 4.0.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/datasets/airbnb-eight-cities.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "Airbnb Listings, 8 More US Cities", "description": "90,746 Airbnb listings across Boston, Chicago, Los Angeles, New Orleans, Portland, San Francisco, Seattle, and Washington DC in one normalized 12-column schema, June 2026 snapshots. Host fields stripped, one free CSV per city plus a per-city index with row counts, medians, and room-type mix.", "url": "https://jayjex.github.io/data-vault/datasets/airbnb-eight-cities.html", "keywords": ["real-estate", "airbnb", "str", "free"], "creator": {"@type": "Organization", "name": "Matchbook Labs"}, "isAccessibleForFree": true, "license": "https://creativecommons.org/licenses/by/4.0/", "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/airbnb-eight-cities/airbnb-boston.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/airbnb-eight-cities/airbnb-chicago.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/airbnb-eight-cities/airbnb-los-angeles.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/airbnb-eight-cities/airbnb-new-orleans.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/airbnb-eight-cities/airbnb-portland.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/airbnb-eight-cities/airbnb-san-francisco.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/airbnb-eight-cities/airbnb-seattle.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/airbnb-eight-cities/airbnb-washington-dc.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/airbnb-eight-cities/cities-index.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/airbnb-eight-cities/sample.csv"}, {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://jayjex.github.io/data-vault/data/airbnb-eight-cities/sample.json"}, {"@type": "DataDownload", "encodingFormat": "text/markdown", "contentUrl": "https://jayjex.github.io/data-vault/data/airbnb-eight-cities/schema.md"}], "isBasedOn": "https://insideairbnb.com/get-the-data/"}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Airbnb Listings, 8 More US Cities</h1>
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>90,746</b> rows</span><span class="stat"><b>8</b> cities</span><span class="stat"><b>12</b> columns</span><span class="stat"><b>free</b> full data</span></div>
+  <section aria-label="About this dataset">
+    <p>Eight US short-term-rental markets the <a href="airbnb-six-cities.html">six-city pack</a> doesn't cover: Boston, Chicago, Los Angeles, New Orleans, Portland, San Francisco, Seattle, and Washington DC. Same 12 columns per listing as the first pack: price, room type, neighborhood, approximate location, minimum nights, availability for the next 365 days, review count and rate, and last review date. Snapshots are Inside Airbnb releases from June 14 to 24, 2026, and the full CSVs download free, one file per city.</p>
+    <p>The two packs are nearly twins in size: 90,746 rows here against 90,169 there. Los Angeles is the biggest single-city file on the site at 43,932 listings, ahead of New York City's 30,234; Portland is the smallest here at 4,210. City medians run from USD 160 in Portland to USD 281 in Seattle; the combined median across all 8 cities is USD 226.</p>
+    <p>Room mix: Entire home/apt 67,526 (74%), Private room 21,402 (24%), Hotel room 1,371 (2%), Shared room 447. Boston's rows skew hotel-style private rooms, which is why its median (279) sits above Los Angeles (224) despite LA's long tail of 20,000-plus outliers. San Francisco's 99,999 top price is a source artifact; nothing is edited out. 11,594 rows (13%) carry no price, and every median here counts price-bearing rows only.</p>
+    <p>Built from the Inside Airbnb summary files: host id, host name, and licence columns dropped, everything else kept verbatim. The full column dictionary, per-city snapshot dates, and caveats are in <a href="../data/airbnb-eight-cities/schema.md">schema.md</a>.</p>
+    <p class="byline">Source: Inside Airbnb, CC BY 4.0. Snapshots: Boston 2026-06-15, Chicago 2026-06-24, Los Angeles 2026-06-15, New Orleans 2026-06-16, Portland 2026-06-15, San Francisco 2026-06-14, Seattle 2026-06-15, Washington DC 2026-06-24.</p>
+  </section>
+  <section aria-label="City index">
+    <h2>City index</h2>
+    <p class="table-note">One row per city, from cities-index.csv. Raw listing rows start in sample.csv.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="City index table"><table><thead><tr><th scope="col">city</th><th scope="col">snapshot_date</th><th scope="col">rows</th><th scope="col">median_price_usd</th><th scope="col">room_type_mix</th></tr></thead><tbody><tr><td>Boston, MA</td><td>2026-06-15</td><td>4,414</td><td>279</td><td>Entire home/apt 3,003 (68%), Private room 1,312 (30%), Hotel room 95 (2%), Shared room 4 (0%)</td></tr><tr><td>Chicago, IL</td><td>2026-06-24</td><td>8,704</td><td>223</td><td>Entire home/apt 6,663 (77%), Private room 1,939 (22%), Hotel room 70 (1%), Shared room 32 (0%)</td></tr><tr><td>Los Angeles, CA</td><td>2026-06-15</td><td>43,932</td><td>224</td><td>Entire home/apt 32,454 (74%), Private room 10,771 (25%), Hotel room 415 (1%), Shared room 292 (1%)</td></tr><tr><td>New Orleans, LA</td><td>2026-06-16</td><td>7,254</td><td>192</td><td>Entire home/apt 5,730 (79%), Private room 1,329 (18%), Hotel room 190 (3%), Shared room 5 (0%)</td></tr><tr><td>Portland, OR</td><td>2026-06-15</td><td>4,210</td><td>160</td><td>Entire home/apt 3,537 (84%), Private room 612 (15%), Hotel room 57 (1%), Shared room 4 (0%)</td></tr><tr><td>San Francisco, CA</td><td>2026-06-14</td><td>7,422</td><td>252</td><td>Entire home/apt 4,477 (60%), Private room 2,669 (36%), Hotel room 243 (3%), Shared room 33 (0%)</td></tr><tr><td>Seattle, WA</td><td>2026-06-15</td><td>7,814</td><td>281</td><td>Entire home/apt 6,438 (82%), Private room 1,297 (17%), Hotel room 46 (1%), Shared room 33 (0%)</td></tr><tr><td>Washington, DC</td><td>2026-06-24</td><td>6,996</td><td>221</td><td>Entire home/apt 5,224 (75%), Private room 1,473 (21%), Hotel room 255 (4%), Shared room 44 (1%)</td></tr></tbody></table></div>
+  </section>
+  <section aria-label="Files">
+    <h2>Files</h2>
+    <ul class="files">
+      <li><a href="../data/airbnb-eight-cities/cities-index.csv" download>cities-index.csv</a><span class="sz">8 rows, complete per-city index · 1.3 KB</span></li>
+      <li><a href="../data/airbnb-eight-cities/airbnb-boston.csv" download>airbnb-boston.csv</a><span class="sz">4,414 rows · 572 KB</span></li>
+      <li><a href="../data/airbnb-eight-cities/airbnb-chicago.csv" download>airbnb-chicago.csv</a><span class="sz">8,704 rows · 1.13 MB</span></li>
+      <li><a href="../data/airbnb-eight-cities/airbnb-los-angeles.csv" download>airbnb-los-angeles.csv</a><span class="sz">43,932 rows · 5.6 MB</span></li>
+      <li><a href="../data/airbnb-eight-cities/airbnb-new-orleans.csv" download>airbnb-new-orleans.csv</a><span class="sz">7,254 rows · 971 KB</span></li>
+      <li><a href="../data/airbnb-eight-cities/airbnb-portland.csv" download>airbnb-portland.csv</a><span class="sz">4,210 rows · 547 KB</span></li>
+      <li><a href="../data/airbnb-eight-cities/airbnb-san-francisco.csv" download>airbnb-san-francisco.csv</a><span class="sz">7,422 rows · 974 KB</span></li>
+      <li><a href="../data/airbnb-eight-cities/airbnb-seattle.csv" download>airbnb-seattle.csv</a><span class="sz">7,814 rows · 1.02 MB</span></li>
+      <li><a href="../data/airbnb-eight-cities/airbnb-washington-dc.csv" download>airbnb-washington-dc.csv</a><span class="sz">6,996 rows · 1.14 MB</span></li>
+      <li><a href="../data/airbnb-eight-cities/sample.csv" download>sample.csv</a><span class="sz">20 rows, Boston · 2.0 KB</span></li>
+      <li><a href="../data/airbnb-eight-cities/sample.json" download>sample.json</a><span class="sz">20 records · 7.0 KB</span></li>
+      <li><a href="../data/airbnb-eight-cities/schema.md" download>schema.md</a><span class="sz">column dictionary, coverage, caveats</span></li>
+    </ul>
+  </section>
+  <section aria-label="Get the data">
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/airbnb-eight-cities/airbnb-los-angeles.csv" download>Download biggest CSV (free)</a>
+      <a class="btn" href="airbnb-six-cities.html">Six-city pack &rarr;</a>
+    </div>
+    <p class="btn-note">All 8 city files are free CSVs above; nothing paywalled here. The <a href="airbnb-six-cities.html">six-city pack</a> adds Austin, Nashville, Denver, New York City, Las Vegas, and San Diego under the same schema, so the 14 files join on id. For column meanings and MCP queries, see the <a href="../guides/airbnb-data-guide.html">Airbnb data download guide</a>; for per-city counts and medians, <a href="../guides/airbnb-data-by-city.html">Airbnb data by city</a>; for how snapshot medians compare with live prices, the <a href="../guides/airbnb-price-data-exploration.html">Airbnb price data exploration</a>. Running these nightly rates against long-term rents? <a href="../guides/airbnb-vs-long-term-rent.html">Airbnb vs long-term rent</a> has the method. Republishing rows: the <a href="../guides/dataset-license-guide.html">dataset license guide</a> covers CC BY 4.0 attribution, or browse the rest of the catalog on the <a href="../portfolio.html">portfolio page</a>.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

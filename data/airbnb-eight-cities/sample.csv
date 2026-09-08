@@ -1,0 +1,21 @@
+id,name,neighbourhood,latitude,longitude,room_type,price,minimum_nights,availability_365,number_of_reviews,reviews_per_month,last_review
+1513909061895084083,Premium plus queen room,South Boston Waterfront,42.35232,-71.04685,Private room,269,1,122,7,3.62,2026-07-01
+1650777631739075411,1 King bed executive,Beacon Hill,42.36058,-71.07131,Private room,529,1,320,0,,
+1132565660790734612,Club room,Downtown,42.3564,-71.05731,Private room,221,1,360,0,,
+1674570506864454087,"The Verb Hotel, Stadium queen",Fenway,42.34508,-71.09674,Private room,242,1,218,0,,
+1448020069042823191,Back bay king,South End,42.34692,-71.07065,Private room,243,1,361,85,7.89,2026-06-18
+1096275433310259386,Accessible queen bed plus bath down the hall room,South End,42.346155,-71.070907,Private room,179,1,253,27,0.94,2026-06-13
+1101474534813491613,Accessible standard king,Downtown,42.36079,-71.05584,Private room,337,1,354,27,6.14,2026-06-29
+1081878885561334396,Premium queen room,South Boston Waterfront,42.352323,-71.0468488,Private room,269,1,243,87,3.00,2026-06-25
+1674813620215712100,Premier king room,Allston,42.36367,-71.12162,Private room,415,1,354,0,,
+1674813621045250787,Atlas suite ADA shower,Allston,42.36367,-71.12162,Private room,484,1,335,0,,
+1674570250474818464,"The Verb Hotel, Stadium king",Fenway,42.34508,-71.09674,Private room,269,1,216,0,,
+1132565369385985939,Standard room,Downtown,42.3564,-71.05731,Private room,221,1,360,24,0.89,2026-06-03
+1650777632116148794,1 King bed hearing accessible classic,Beacon Hill,42.36058,-71.07131,Private room,749,1,318,0,,
+1039836988066158736,Two queen room,Longwood Medical Area,42.3383407,-71.1066156,Private room,349,1,353,12,0.48,2025-10-14
+1628291019285301117,Harbor view room king bed,South Boston Waterfront,42.34925,-71.04144,Private room,254,1,362,1,0.43,2026-04-29
+1096276285946258499,Revolution loft junior suite,South End,42.346155,-71.070907,Private room,574,1,170,0,,
+1101474911521710374,Studio suite,Downtown,42.36079,-71.05584,Private room,337,1,362,4,0.16,2026-04-19
+1513908407487220663,Premium queen partial harbor view room,South Boston Waterfront,42.35232,-71.04685,Private room,269,1,147,1,0.28,2026-03-22
+1674813761048247077,Premier king room ADA tub,Allston,42.36367,-71.12162,Private room,319,1,345,0,,
+1650777632061391868,1 King bed beacon hill city view,Beacon Hill,42.36058,-71.07131,Private room,799,1,306,0,,

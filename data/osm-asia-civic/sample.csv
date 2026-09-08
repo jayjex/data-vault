@@ -1,0 +1,10 @@
+city,amenity,total,tags,lat,lon,source
+Tokyo,drinking_water,2163,fountain,35.56829,139.45574,OpenStreetMap (Overpass API snapshot)
+Tokyo,public_bookcase,3,音楽ライブラリー,35.68241,139.71942,OpenStreetMap (Overpass API snapshot)
+Tokyo,bicycle_repair_station,25,自転車修理いむら商会 (Imura Shokai),35.72883,139.68391,OpenStreetMap (Overpass API snapshot)
+Jakarta,drinking_water,38,galon c2,-6.09890,106.96190,OpenStreetMap (Overpass API snapshot)
+Jakarta,public_bookcase,0,,-6.20000,106.81667,OpenStreetMap (Overpass API snapshot)
+Jakarta,bicycle_repair_station,1,,-6.14521,106.80475,OpenStreetMap (Overpass API snapshot)
+Seoul,drinking_water,253,아리수 (Arisu),37.55575,126.89504,OpenStreetMap (Overpass API snapshot)
+Seoul,public_bookcase,1,,37.52226,127.10874,OpenStreetMap (Overpass API snapshot)
+Seoul,bicycle_repair_station,5,서울자전거,37.51372,127.10091,OpenStreetMap (Overpass API snapshot)

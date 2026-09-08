@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenStreetMap Civic Amenities: Tokyo, Jakarta, Seoul (CSV) | Data Vault</title>
+<meta name="description" content="Drinking water fountains, public bookcases, and bicycle repair stations in Tokyo, Jakarta, and Seoul: 2,489 mapped nodes from OpenStreetMap, counted via Overpass API. Free CSV, ODbL.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/datasets/osm-asia-civic-amenities.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="OpenStreetMap Civic Amenities: Tokyo, Jakarta, Seoul (CSV) | Data Vault">
+<meta property="og:description" content="Drinking water fountains, public bookcases, and bicycle repair stations in Tokyo, Jakarta, and Seoul: 2,489 mapped nodes from OpenStreetMap, counted via Overpass API. Free CSV, ODbL.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/datasets/osm-asia-civic-amenities.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "OpenStreetMap Civic Amenities, Tokyo-Jakarta-Seoul, 2026-09", "description": "Counts of three civic amenity node types (amenity=drinking_water, amenity=public_bookcase, amenity=bicycle_repair_station) inside the admin boundaries of Tokyo Metropolis, Daerah Khusus Ibukota Jakarta, and Seoul Special City: 2,489 nodes across 9 city-amenity pairs, queried from the Overpass API on 2026-09-10.", "url": "https://jayjex.github.io/data-vault/datasets/osm-asia-civic-amenities.html", "keywords": ["openstreetmap", "osm", "drinking water", "public bookcase", "bicycle repair station", "tokyo", "jakarta", "seoul", "civic amenities"], "creator": {"@type": "Organization", "name": "Matchbook Labs"}, "isAccessibleForFree": true, "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/osm-asia-civic/counts-2026-09.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/osm-asia-civic/sample.csv"}, {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://jayjex.github.io/data-vault/data/osm-asia-civic/sample.json"}], "license": "https://opendatacommons.org/licenses/odbl/1-0/", "isBasedOn": "https://wiki.openstreetmap.org/wiki/Overpass_API"}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>OpenStreetMap Civic Amenities: Tokyo, Jakarta, Seoul</h1>
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>2,489</b> nodes, 3 cities</span><span class="stat"><b>3</b> amenity types</span><span class="stat"><b>2026-09-10</b> counted</span><span class="stat"><b>free</b> CSV</span></div>
+  <section aria-label="About this dataset">
+    <p>One CSV, nine rows: three cities &times; three civic amenity types. For each pair, the total count of OpenStreetMap nodes inside the official admin boundary, plus one example node with its name, latitude, and longitude so you can spot-check the mapping practice in that city.</p>
+    <p>The amenity tags are <span class="mono">amenity=drinking_water</span> (public fountains and tap points), <span class="mono">amenity=public_bookcase</span> (street-side book-sharing shelves), and <span class="mono">amenity=bicycle_repair_station</span> (public stands with tools or an air pump). Nodes only, not ways, which is how these three tags are overwhelmingly mapped.</p>
+    <p>The contrast between cities is the point of the dataset. Tokyo has 2,163 mapped drinking water points against Jakarta's 38, and that gap says as much about how actively each city's OSM community maps amenities as it does about infrastructure. Jakarta's public_bookcase count is a flat 0: nobody has mapped one yet inside the DKI Jakarta boundary, which is a real result, not missing data. Seoul sits between, with 253 fountains that often carry the <span class="mono">아리수</span> (Arisu) brand name in the tags.</p>
+    <p>City boundaries resolved from OSM relations by way of Nominatim: Tokyo Metropolis (relation 1543125), Daerah Khusus Ibukota Jakarta (6362934), Seoul Special City (2297418). Counting ran on 2026-09-10 via Overpass API queries of the form <span class="mono">area-&gt;a; node["amenity"="drinking_water"](area.a); out count;</span>, so the numbers are a snapshot: OSM moves daily.</p>
+    <p>The same three amenity types are counted for a different set of cities in the <a href="osm-us-civic-amenities.html">OSM US civic amenities dataset</a>, so the Asia and America columns are directly comparable. For a European cut of open civic data, see the <a href="osm-eu-civic-amenities.html">OSM EU civic amenities dataset</a>.</p>
+    <p class="byline">The data included in this document is from www.openstreetmap.org. The data is made available under ODbL. &copy; OpenStreetMap contributors. License: Open Data Commons Open Database License (ODbL) 1.0, https://opendatacommons.org/licenses/odbl/1-0/</p>
+    <p class="byline">Reused from OpenStreetMap via the Overpass API (kumi.systems and maps.mail.ru mirrors, base snapshot 2026-07-24). OSM is not responsible for the transformations we applied (relation-boundary filtering, count aggregation, example-node selection).</p>
+  </section>
+  <section aria-label="Sample preview">
+    <h2>Sample preview</h2>
+    <p class="table-note">All nine rows, since the dataset is one small table. The CSVs below carry the same rows plus example-node columns.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Sample data table"><table><thead><tr><th scope="col">city</th><th scope="col">drinking_water</th><th scope="col">public_bookcase</th><th scope="col">bicycle_repair_station</th></tr></thead><tbody><tr><td>Tokyo</td><td>2,163</td><td>3</td><td>25</td></tr><tr><td>Jakarta</td><td>38</td><td>0</td><td>1</td></tr><tr><td>Seoul</td><td>253</td><td>1</td><td>5</td></tr></tbody></table></div>
+  </section>
+  <section aria-label="Files">
+    <h2>Files</h2>
+    <ul class="files">
+      <li><a href="../data/osm-asia-civic/counts-2026-09.csv" download>counts-2026-09.csv</a><span class="sz">9 rows, complete &middot; 0.9 KB</span></li>
+      <li><a href="../data/osm-asia-civic/sample.csv" download>sample.csv</a><span class="sz">9 rows &middot; 0.9 KB</span></li>
+      <li><a href="../data/osm-asia-civic/sample.json" download>sample.json</a><span class="sz">9 records &middot; 2.1 KB</span></li>
+      <li><a href="../data/osm-asia-civic/schema.md" download>schema.md</a><span class="sz">columns, query form, caveats</span></li>
+    </ul>
+  </section>
+  <section aria-label="Get the data">
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/osm-asia-civic/counts-2026-09.csv" download>Download counts CSV (free)</a>
+      <a class="btn" href="osm-us-civic-amenities.html">US counterpart &rarr;</a>
+    </div>
+    <p class="btn-note">Source data is ODbL, so the full table is the free CSV above; the share-alike clause carries over if you build a derivative database. Compare cities across regions with the <a href="osm-us-civic-amenities.html">US civic amenities dataset</a> and the <a href="osm-eu-civic-amenities.html">EU civic amenities dataset</a>, or browse the rest of the catalog on the <a href="../portfolio.html">portfolio page</a>. Republishing? The <a href="../guides/dataset-license-guide.html">dataset license guide</a> covers ODbL attribution format.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples ODbL &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

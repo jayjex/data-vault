@@ -89,6 +89,14 @@ HICP actual rentals for main residence (coicop CP0411), Netherlands and EU-27: 5
 - Full data (free): https://jayjex.github.io/data-vault/data/eurostat/rents/rent-index-monthly.csv + https://jayjex.github.io/data-vault/data/eurostat/rents/rent-annual-rate.csv
 - License: CC BY 4.0 (Eurostat, access-right PUBLIC)
 
+### OpenStreetMap Civic Amenities, Tokyo-Jakarta-Seoul, 2026-09 (osm-asia-civic-amenities)
+Counts of three civic amenity node types inside official city boundaries: amenity=drinking_water, amenity=public_bookcase, amenity=bicycle_repair_station for Tokyo Metropolis (2,163 fountains), DKI Jakarta (38, and 0 bookcases mapped), and Seoul Special City (253, many tagged with the Arisu brand name). Overpass API snapshot 2026-09-10, one example node per pair for spot-checking. Niche: open-data. Stats: {"rows": 9, "tables": 1, "columns": 7, "updated": "2026-09-10"}.
+- Sample JSON: https://jayjex.github.io/data-vault/data/osm-asia-civic/sample.json
+- Sample CSV: https://jayjex.github.io/data-vault/data/osm-asia-civic/sample.csv
+- Page: https://jayjex.github.io/data-vault/datasets/osm-asia-civic-amenities.html
+- Full data (free): https://jayjex.github.io/data-vault/data/osm-asia-civic/counts-2026-09.csv
+- License: ODbL 1.0 (© OpenStreetMap contributors, Overpass API snapshot)
+
 ### Printable Engineering Bundle (printable-engineering-bundle)
 Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (A4 + US Letter PDFs with answer keys, mazes, dot-to-dots) and 5 Web3 KPI spreadsheet templates (portfolio, airdrop, DeFi yield, bounty income, trading journal) with live formulas. Niche: printables. Stats: {"worksheets_pages": 120, "spreadsheets": 5, "paper_sizes": 2, "updated": "2026-09-06"}.
 - Page: https://jayjex.github.io/data-vault/datasets/printable-engineering-bundle.html

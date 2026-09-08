@@ -1,0 +1,97 @@
+{
+ "slug": "osm-asia-civic-amenities",
+ "name": "OpenStreetMap Civic Amenities, Tokyo-Jakarta-Seoul, 2026-09",
+ "columns": [
+  "city",
+  "amenity",
+  "total",
+  "tags",
+  "lat",
+  "lon",
+  "source"
+ ],
+ "row_count": 9,
+ "records": [
+  {
+   "city": "Tokyo",
+   "amenity": "drinking_water",
+   "total": "2163",
+   "tags": "fountain",
+   "lat": "35.56829",
+   "lon": "139.45574",
+   "source": "OpenStreetMap (Overpass API snapshot)"
+  },
+  {
+   "city": "Tokyo",
+   "amenity": "public_bookcase",
+   "total": "3",
+   "tags": "音楽ライブラリー",
+   "lat": "35.68241",
+   "lon": "139.71942",
+   "source": "OpenStreetMap (Overpass API snapshot)"
+  },
+  {
+   "city": "Tokyo",
+   "amenity": "bicycle_repair_station",
+   "total": "25",
+   "tags": "自転車修理いむら商会 (Imura Shokai)",
+   "lat": "35.72883",
+   "lon": "139.68391",
+   "source": "OpenStreetMap (Overpass API snapshot)"
+  },
+  {
+   "city": "Jakarta",
+   "amenity": "drinking_water",
+   "total": "38",
+   "tags": "galon c2",
+   "lat": "-6.09890",
+   "lon": "106.96190",
+   "source": "OpenStreetMap (Overpass API snapshot)"
+  },
+  {
+   "city": "Jakarta",
+   "amenity": "public_bookcase",
+   "total": "0",
+   "tags": "",
+   "lat": "-6.20000",
+   "lon": "106.81667",
+   "source": "OpenStreetMap (Overpass API snapshot)"
+  },
+  {
+   "city": "Jakarta",
+   "amenity": "bicycle_repair_station",
+   "total": "1",
+   "tags": "",
+   "lat": "-6.14521",
+   "lon": "106.80475",
+   "source": "OpenStreetMap (Overpass API snapshot)"
+  },
+  {
+   "city": "Seoul",
+   "amenity": "drinking_water",
+   "total": "253",
+   "tags": "아리수 (Arisu)",
+   "lat": "37.55575",
+   "lon": "126.89504",
+   "source": "OpenStreetMap (Overpass API snapshot)"
+  },
+  {
+   "city": "Seoul",
+   "amenity": "public_bookcase",
+   "total": "1",
+   "tags": "",
+   "lat": "37.52226",
+   "lon": "127.10874",
+   "source": "OpenStreetMap (Overpass API snapshot)"
+  },
+  {
+   "city": "Seoul",
+   "amenity": "bicycle_repair_station",
+   "total": "5",
+   "tags": "서울자전거",
+   "lat": "37.51372",
+   "lon": "127.10091",
+   "source": "OpenStreetMap (Overpass API snapshot)"
+  }
+ ]
+}

@@ -168,6 +168,7 @@ Counts of three civic amenity types inside exact administrative boundaries: amen
 - Sample CSV: https://jayjex.github.io/data-vault/data/osm-us2-civic/sample.csv
 - Page: https://jayjex.github.io/data-vault/datasets/osm-us2-civic-amenities.html
 - Full data (free): https://jayjex.github.io/data-vault/data/osm-us2-civic/us2-civic-amenities.csv
+- Citable DOI: https://doi.org/10.5281/zenodo.22667164 (Zenodo record: https://zenodo.org/records/22667164/latest)
 - License: ODbL 1.0 (© OpenStreetMap contributors, Overpass API snapshot)
 
 ### OpenStreetMap Civic Amenities, Sydney-Melbourne-Auckland, 2026-09 (osm-oceania-civic-amenities)

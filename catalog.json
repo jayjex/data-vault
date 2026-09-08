@@ -769,6 +769,8 @@
     "url": "https://jayjex.github.io/data-vault/data/osm-us2-civic/us2-civic-amenities.csv",
     "note": "Source is ODbL OpenStreetMap data (© OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
    },
+   "doi": "10.5281/zenodo.22667164",
+   "zenodo_record": "https://zenodo.org/records/22667164/latest",
    "license": "ODbL 1.0 (source data OpenStreetMap, © OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
    "page": "https://jayjex.github.io/data-vault/datasets/osm-us2-civic-amenities.html"
   },

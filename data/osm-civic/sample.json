@@ -1,0 +1,87 @@
+{
+ "slug": "osm-us-civic-amenities",
+ "name": "OpenStreetMap Civic Amenities, New York-Los Angeles-Chicago-Austin-Seattle, 2026-09",
+ "columns": [
+  "city",
+  "theme",
+  "count"
+ ],
+ "row_count": 15,
+ "records": [
+  {
+   "city": "New York City",
+   "theme": "water fountains",
+   "count": 1599
+  },
+  {
+   "city": "New York City",
+   "theme": "public bookcases",
+   "count": 221
+  },
+  {
+   "city": "New York City",
+   "theme": "bike repair stations",
+   "count": 31
+  },
+  {
+   "city": "Los Angeles",
+   "theme": "water fountains",
+   "count": 450
+  },
+  {
+   "city": "Los Angeles",
+   "theme": "public bookcases",
+   "count": 148
+  },
+  {
+   "city": "Los Angeles",
+   "theme": "bike repair stations",
+   "count": 44
+  },
+  {
+   "city": "Chicago",
+   "theme": "water fountains",
+   "count": 298
+  },
+  {
+   "city": "Chicago",
+   "theme": "public bookcases",
+   "count": 103
+  },
+  {
+   "city": "Chicago",
+   "theme": "bike repair stations",
+   "count": 40
+  },
+  {
+   "city": "Austin",
+   "theme": "water fountains",
+   "count": 265
+  },
+  {
+   "city": "Austin",
+   "theme": "public bookcases",
+   "count": 35
+  },
+  {
+   "city": "Austin",
+   "theme": "bike repair stations",
+   "count": 28
+  },
+  {
+   "city": "Seattle",
+   "theme": "water fountains",
+   "count": 213
+  },
+  {
+   "city": "Seattle",
+   "theme": "public bookcases",
+   "count": 497
+  },
+  {
+   "city": "Seattle",
+   "theme": "bike repair stations",
+   "count": 28
+  }
+ ]
+}

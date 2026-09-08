@@ -97,6 +97,14 @@ Counts of three civic amenity node types inside official city boundaries: amenit
 - Full data (free): https://jayjex.github.io/data-vault/data/osm-asia-civic/counts-2026-09.csv
 - License: ODbL 1.0 (© OpenStreetMap contributors, Overpass API snapshot)
 
+### OpenStreetMap Civic Amenities, US five cities, 2026-09 (osm-us-civic-amenities)
+Counts of three civic amenity types inside city bounding boxes: amenity=drinking_water, amenity=public_bookcase, amenity=bicycle_repair_station for New York City (1,599 fountains), Los Angeles (450), Chicago (298), Austin (265), and Seattle (213 fountains and 497 bookcases, nearly half the five-city bookcase total). Overpass API snapshot 2026-09-10, 4,000 elements across 15 city-amenity pairs. Niche: open-data. Stats: {"rows": 15, "tables": 1, "columns": 3, "updated": "2026-09-10"}.
+- Sample JSON: https://jayjex.github.io/data-vault/data/osm-civic/sample.json
+- Sample CSV: https://jayjex.github.io/data-vault/data/osm-civic/sample.csv
+- Page: https://jayjex.github.io/data-vault/datasets/osm-us-civic-amenities.html
+- Full data (free): https://jayjex.github.io/data-vault/data/osm-civic/us-civic-amenities.csv
+- License: ODbL 1.0 (© OpenStreetMap contributors, Overpass API snapshot)
+
 ### Printable Engineering Bundle (printable-engineering-bundle)
 Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (A4 + US Letter PDFs with answer keys, mazes, dot-to-dots) and 5 Web3 KPI spreadsheet templates (portfolio, airdrop, DeFi yield, bounty income, trading journal) with live formulas. Niche: printables. Stats: {"worksheets_pages": 120, "spreadsheets": 5, "paper_sizes": 2, "updated": "2026-09-06"}.
 - Page: https://jayjex.github.io/data-vault/datasets/printable-engineering-bundle.html

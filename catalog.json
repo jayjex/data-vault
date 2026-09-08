@@ -302,7 +302,12 @@
    "slug": "osm-asia-civic-amenities",
    "name": "OpenStreetMap Civic Amenities, Tokyo-Jakarta-Seoul, 2026-09",
    "niche": "open-data",
-   "tags": ["openstreetmap", "osm", "civic-amenities", "asia"],
+   "tags": [
+    "openstreetmap",
+    "osm",
+    "civic-amenities",
+    "asia"
+   ],
    "description": "Counts of amenity=drinking_water, amenity=public_bookcase, and amenity=bicycle_repair_station nodes inside the Tokyo Metropolis, DKI Jakarta, and Seoul Special City boundaries: 2,489 nodes across 9 city-amenity pairs, Overpass API snapshot 2026-09-10, one example node per pair for spot-checking.",
    "stats": {
     "rows": 9,
@@ -332,10 +337,49 @@
    "full_data": {
     "status": "free",
     "url": "https://jayjex.github.io/data-vault/data/osm-asia-civic/counts-2026-09.csv",
-    "note": "Source is ODbL OpenStreetMap data (© OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
+    "note": "Source is ODbL OpenStreetMap data (\u00a9 OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
    },
-   "license": "ODbL 1.0 (source data OpenStreetMap, © OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
+   "license": "ODbL 1.0 (source data OpenStreetMap, \u00a9 OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
    "page": "https://jayjex.github.io/data-vault/datasets/osm-asia-civic-amenities.html"
+  },
+  {
+   "slug": "osm-us-civic-amenities",
+   "name": "OpenStreetMap Civic Amenities, New York-Los Angeles-Chicago-Austin-Seattle, 2026-09",
+   "niche": "open-data",
+   "tags": [
+    "openstreetmap",
+    "osm",
+    "civic-amenities",
+    "us-cities"
+   ],
+   "description": "Counts of amenity=drinking_water, amenity=public_bookcase, and amenity=bicycle_repair_station elements inside the New York City, Los Angeles, Chicago, Austin, and Seattle bounding boxes: 4,000 elements across 15 city-amenity pairs, Overpass API snapshot 2026-09-10.",
+   "stats": {
+    "rows": 15,
+    "tables": 1,
+    "columns": 3,
+    "updated": "2026-09-10"
+   },
+   "sample": {
+    "csv": "https://jayjex.github.io/data-vault/data/osm-civic/sample.csv",
+    "json": "https://jayjex.github.io/data-vault/data/osm-civic/sample.json",
+    "rows": 15,
+    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+   },
+   "extra_files": [
+    {
+     "name": "us-civic-amenities.csv (full, free)",
+     "url": "https://jayjex.github.io/data-vault/data/osm-civic/us-civic-amenities.csv",
+     "rows": 15,
+     "note": "complete dataset, free download"
+    }
+   ],
+   "full_data": {
+    "status": "free",
+    "url": "https://jayjex.github.io/data-vault/data/osm-civic/us-civic-amenities.csv",
+    "note": "Source is ODbL OpenStreetMap data (\u00a9 OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
+   },
+   "license": "ODbL 1.0 (source data OpenStreetMap, \u00a9 OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
+   "page": "https://jayjex.github.io/data-vault/datasets/osm-us-civic-amenities.html"
   },
   {
    "slug": "printable-engineering-bundle",

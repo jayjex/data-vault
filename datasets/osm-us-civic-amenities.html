@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenStreetMap Civic Amenities: New York, Los Angeles, Chicago, Austin, Seattle (CSV) | Data Vault</title>
+<meta name="description" content="Drinking water fountains, public bookcases, and bicycle repair stations in five big US cities: 4,000 mapped elements from OpenStreetMap, counted via the Overpass API. Free CSV, ODbL.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/datasets/osm-us-civic-amenities.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="OpenStreetMap Civic Amenities: New York, Los Angeles, Chicago, Austin, Seattle (CSV) | Data Vault">
+<meta property="og:description" content="Drinking water fountains, public bookcases, and bicycle repair stations in five big US cities: 4,000 mapped elements from OpenStreetMap, counted via the Overpass API. Free CSV, ODbL.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/datasets/osm-us-civic-amenities.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "OpenStreetMap Civic Amenities, New York-Los Angeles-Chicago-Austin-Seattle, 2026-09", "description": "Counts of three civic amenity types (amenity=drinking_water, amenity=public_bookcase, amenity=bicycle_repair_station) inside the bounding boxes of New York City, Los Angeles, Chicago, Austin, and Seattle: 4,000 mapped elements across 15 city-amenity pairs, queried from the Overpass API on 2026-09-10.", "url": "https://jayjex.github.io/data-vault/datasets/osm-us-civic-amenities.html", "keywords": ["openstreetmap", "osm", "drinking water", "public bookcase", "bicycle repair station", "new york", "los angeles", "chicago", "austin", "seattle", "civic amenities"], "creator": {"@type": "Organization", "name": "Matchbook Labs"}, "isAccessibleForFree": true, "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/osm-civic/us-civic-amenities.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/osm-civic/sample.csv"}, {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://jayjex.github.io/data-vault/data/osm-civic/sample.json"}], "license": "https://opendatacommons.org/licenses/odbl/1-0/", "isBasedOn": "https://wiki.openstreetmap.org/wiki/Overpass_API"}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>OpenStreetMap Civic Amenities: New York, Los Angeles, Chicago, Austin, Seattle</h1>
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>4,000</b> elements, 5 cities</span><span class="stat"><b>3</b> amenity types</span><span class="stat"><b>2026-09-10</b> counted</span><span class="stat"><b>free</b> CSV</span></div>
+  <section aria-label="About this dataset">
+    <p>One CSV, fifteen rows: five big US cities &times; three civic amenity types. Each row is the total count of OpenStreetMap elements with that amenity tag inside the city's bounding box, queried from the Overpass API in one snapshot.</p>
+    <p>The amenity tags are <span class="mono">amenity=drinking_water</span> (public fountains and tap points), <span class="mono">amenity=public_bookcase</span> (street-side book-sharing shelves), and <span class="mono">amenity=bicycle_repair_station</span> (public stands with tools or an air pump). Queries match nodes, ways, and relations (<span class="mono">nwr</span>), since fountains are sometimes mapped as ways and repair stations as small way polygons.</p>
+    <p>The spread is the story. New York City has 1,599 mapped drinking water points, more than the other four cities combined. Seattle leads public bookcases at 497, nearly half of the five-city total of 1,004, which fits a city where Little Free Library-style shelves became a civic habit. Bike repair stations are rare everywhere, from 28 in Austin to 44 in Los Angeles, the sort of tag mapped only where a city or advocacy group installed stands deliberately.</p>
+    <p>Counts ran on 2026-09-10 via Overpass queries of the form <span class="mono">nwr(south,west,north,east)["amenity"="drinking_water"]; out count;</span>, using city bounding boxes rather than exact admin boundaries, so the numbers include small overhangs into neighboring municipalities and are a snapshot of a database that moves daily.</p>
+    <p>For the same three amenity types in Tokyo, Jakarta, and Seoul, see the <a href="osm-asia-civic-amenities.html">OSM Asia civic amenities dataset</a> &mdash; same query shape, so the two tables compare directly. For open civic-adjacent macro data on the European side, the <a href="eurostat-house-prices.html">Eurostat house price index dataset</a> and the <a href="eurostat-rents.html">Eurostat actual rents dataset</a> cover NL and EU-27 housing.</p>
+    <p class="byline">The data included in this document is from www.openstreetmap.org. The data is made available under ODbL. &copy; OpenStreetMap contributors. License: Open Data Commons Open Database License (ODbL) 1.0, https://opendatacommons.org/licenses/odbl/1-0/</p>
+    <p class="byline">Reused from OpenStreetMap via the Overpass API (kumi.systems mirror, base snapshot 2026-05-31, plus overpass-api.de for two counts). OSM is not responsible for the transformations we applied (bounding-box filtering, amenity-type aggregation, count rollup).</p>
+  </section>
+  <section aria-label="Sample preview">
+    <h2>Sample preview</h2>
+    <p class="table-note">All fifteen rows, since the dataset is one small table. The CSVs below carry identical rows.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Sample data table"><table><thead><tr><th scope="col">city</th><th scope="col">water fountains</th><th scope="col">public bookcases</th><th scope="col">bike repair stations</th></tr></thead><tbody><tr><td>New York City</td><td>1,599</td><td>221</td><td>31</td></tr><tr><td>Los Angeles</td><td>450</td><td>148</td><td>44</td></tr><tr><td>Chicago</td><td>298</td><td>103</td><td>40</td></tr><tr><td>Austin</td><td>265</td><td>35</td><td>28</td></tr><tr><td>Seattle</td><td>213</td><td>497</td><td>28</td></tr></tbody></table></div>
+  </section>
+  <section aria-label="Files">
+    <h2>Files</h2>
+    <ul class="files">
+      <li><a href="../data/osm-civic/us-civic-amenities.csv" download>us-civic-amenities.csv</a><span class="sz">15 rows, complete &middot; 0.5 KB</span></li>
+      <li><a href="../data/osm-civic/sample.csv" download>sample.csv</a><span class="sz">15 rows &middot; 0.5 KB</span></li>
+      <li><a href="../data/osm-civic/sample.json" download>sample.json</a><span class="sz">15 records &middot; 1.4 KB</span></li>
+    </ul>
+  </section>
+  <section aria-label="Get the data">
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/osm-civic/us-civic-amenities.csv" download>Download counts CSV (free)</a>
+      <a class="btn" href="osm-asia-civic-amenities.html">Asia counterpart &rarr;</a>
+    </div>
+    <p class="btn-note">Source data is ODbL, so the full table is the free CSV above; the share-alike clause carries over if you build a derivative database. Compare against the <a href="osm-asia-civic-amenities.html">Tokyo-Jakarta-Seoul counts</a>, or browse the rest of the catalog on the <a href="../portfolio.html">portfolio page</a>. Republishing? The <a href="../guides/dataset-license-guide.html">dataset license guide</a> covers ODbL attribution format.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples ODbL &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

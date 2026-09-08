@@ -1,0 +1,133 @@
+{
+ "slug": "worldbank-g20-population",
+ "name": "World Bank Population, G20 Countries + EU27, 1960-2025",
+ "columns": [
+  "entity",
+  "iso3",
+  "year",
+  "population"
+ ],
+ "row_count": 1320,
+ "records": [
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1960,
+   "population": 20386045
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1961,
+   "population": 20726276
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1962,
+   "population": 21072538
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1963,
+   "population": 21421705
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1964,
+   "population": 21769453
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1965,
+   "population": 22112629
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1966,
+   "population": 22453893
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1967,
+   "population": 22799059
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1968,
+   "population": 23150583
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1969,
+   "population": 23508711
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1970,
+   "population": 23878327
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1971,
+   "population": 24257208
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1972,
+   "population": 24644328
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1973,
+   "population": 25046005
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1974,
+   "population": 25461351
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1975,
+   "population": 25874107
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1976,
+   "population": 26282283
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1977,
+   "population": 26701805
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1978,
+   "population": 27132158
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1979,
+   "population": 27568895
+  }
+ ]
+}

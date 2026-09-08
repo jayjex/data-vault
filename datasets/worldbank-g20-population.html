@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>World Bank Population, G20 + EU27, 1,320 rows 1960-2025 (Free CSV) | Data Vault</title>
+<meta name="description" content="Total population for the 19 national G20 members plus the EU27 aggregate, one row per country-year, 1960 through 2025. Free CSV from the World Bank WDI series, CC BY 4.0.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/datasets/worldbank-g20-population.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="World Bank Population, G20 + EU27, 1,320 rows 1960-2025 (Free CSV) | Data Vault">
+<meta property="og:description" content="Total population for the 19 national G20 members plus the EU27 aggregate, 1960-2025. Free long-format CSV, CC BY 4.0.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/datasets/worldbank-g20-population.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "World Bank Population, G20 Countries + EU27, 1960-2025", "description": "Total population (World Bank indicator SP.POP.TOTL) for the 19 national G20 members plus the European Union (EU27) aggregate, one row per entity-year from 1960 through 2025, 1,320 rows in a four-column long format. Sourced keyless from the World Bank API v2; 2025 values reflect the WDI update of 2026-07-13.", "url": "https://jayjex.github.io/data-vault/datasets/worldbank-g20-population.html", "keywords": ["population", "world-bank", "g20", "demographics", "time-series", "free"], "creator": {"@type": "Organization", "name": "Matchbook Labs"}, "isAccessibleForFree": true, "license": "https://creativecommons.org/licenses/by/4.0/", "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/worldbank-g20-population/g20-population.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/worldbank-g20-population/g20-population-2025.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/worldbank-g20-population/sample.csv"}, {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://jayjex.github.io/data-vault/data/worldbank-g20-population/sample.json"}, {"@type": "DataDownload", "encodingFormat": "text/markdown", "contentUrl": "https://jayjex.github.io/data-vault/data/worldbank-g20-population/schema.md"}], "isBasedOn": "https://api.worldbank.org/v2/country/ARG;AUS;BRA;CAN;CHN;FRA;DEU;IND;IDN;ITA;JPN;MEX;RUS;SAU;ZAF;KOR;TUR;GBR;USA;EUU/indicator/SP.POP.TOTL?format=json"}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>World Bank Population, G20 Countries + EU27</h1>
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>1,320</b> rows</span><span class="stat"><b>20</b> entities</span><span class="stat"><b>66</b> years</span><span class="stat"><b>free</b> full data</span></div>
+  <section aria-label="About this dataset">
+    <p>Total population for the 19 national G20 members plus the European Union aggregate, from the World Bank's WDI indicator SP.POP.TOTL. One row per entity-year, 1960 through 2025, four columns: entity name, ISO3 code, year, and population. Every entity carries a complete 66-year run, so the file joins cleanly against any year-sliced series.</p>
+    <p>2025 ranking: India 1,463,865,525 leads China 1,406,585,000, and the crossover is visible in the data itself (India passed China in 2021). The EU27 aggregate (451,127,411) sits third and is marked EUU in the ISO3 column, so exclude it when summing national members; the 19 countries together count 4,744,611,663 people. Australia is the smallest member at 27,614,411.</p>
+    <p>Six of the twenty entities already peaked. Japan topped out in 2010 (128,070,000, now 123,366,734), Russia in 1992 (148,538,197, now 143,513,328), Italy in 2014, Korea in 2020, China in 2021 (1,412,360,000, now 1,406,585,000), Germany in 2024. On the other end, Saudi Arabia has multiplied 15.2x since 1960, the fastest growth in the set ahead of South Africa (3.9x) and Mexico (3.6x).</p>
+    <p>The source is one keyless call to the World Bank API v2, and the pack keeps the API's values verbatim: no rounding, no imputation, entity names as the Bank spells them ("Korea, Rep.", "Turkiye", "Russian Federation"). Years where the Bank reports no value are dropped, and there are none in this window. The full column dictionary and caveats are in <a href="../data/worldbank-g20-population/schema.md">schema.md</a>.</p>
+    <p class="byline">Source: World Bank World Development Indicators via api.worldbank.org, indicator SP.POP.TOTL, retrieved 2026-09-10, WDI last updated 2026-07-13. License CC BY 4.0.</p>
+  </section>
+  <section aria-label="Latest year">
+    <h2>Latest year per entity</h2>
+    <p class="table-note">All 20 rows from g20-population-2025.csv, sorted by population. The full 1,320-row series starts in sample.csv.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="2025 population table"><table><thead><tr><th scope="col">entity</th><th scope="col">iso3</th><th scope="col">population</th></tr></thead><tbody><tr><td>India</td><td>IND</td><td>1,463,865,525</td></tr><tr><td>China</td><td>CHN</td><td>1,406,585,000</td></tr><tr><td>European Union</td><td>EUU</td><td>451,127,411</td></tr><tr><td>United States</td><td>USA</td><td>341,784,857</td></tr><tr><td>Indonesia</td><td>IDN</td><td>285,721,236</td></tr><tr><td>Brazil</td><td>BRA</td><td>212,812,405</td></tr><tr><td>Russian Federation</td><td>RUS</td><td>143,513,328</td></tr><tr><td>Mexico</td><td>MEX</td><td>131,946,900</td></tr><tr><td>Japan</td><td>JPN</td><td>123,366,734</td></tr><tr><td>Turkiye</td><td>TUR</td><td>85,878,556</td></tr><tr><td>Germany</td><td>DEU</td><td>83,491,249</td></tr><tr><td>United Kingdom</td><td>GBR</td><td>69,487,000</td></tr><tr><td>France</td><td>FRA</td><td>68,720,337</td></tr><tr><td>South Africa</td><td>ZAF</td><td>64,747,319</td></tr><tr><td>Italy</td><td>ITA</td><td>58,915,656</td></tr><tr><td>Korea, Rep.</td><td>KOR</td><td>51,684,564</td></tr><tr><td>Argentina</td><td>ARG</td><td>45,851,378</td></tr><tr><td>Canada</td><td>CAN</td><td>41,651,653</td></tr><tr><td>Saudi Arabia</td><td>SAU</td><td>36,973,555</td></tr><tr><td>Australia</td><td>AUS</td><td>27,614,411</td></tr></tbody></table></div>
+  </section>
+  <section aria-label="Files">
+    <h2>Files</h2>
+    <ul class="files">
+      <li><a href="../data/worldbank-g20-population/g20-population.csv" download>g20-population.csv</a><span class="sz">1,320 rows, long format · 38 KB</span></li>
+      <li><a href="../data/worldbank-g20-population/g20-population-2025.csv" download>g20-population-2025.csv</a><span class="sz">20 rows, latest year per entity · 621 B</span></li>
+      <li><a href="../data/worldbank-g20-population/sample.csv" download>sample.csv</a><span class="sz">20 rows, Argentina 1960-1979 · 609 B</span></li>
+      <li><a href="../data/worldbank-g20-population/sample.json" download>sample.json</a><span class="sz">20 records · 2.1 KB</span></li>
+      <li><a href="../data/worldbank-g20-population/schema.md" download>schema.md</a><span class="sz">column dictionary, normalization, caveats</span></li>
+    </ul>
+  </section>
+  <section aria-label="Get the data">
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/worldbank-g20-population/g20-population.csv" download>Download full CSV (free)</a>
+      <a class="btn" href="eurostat-unemployment.html">Eurostat unemployment &rarr;</a>
+    </div>
+    <p class="btn-note">Everything downloads free under CC BY 4.0; the World Bank open data terms carry the same license, so republished rows keep their attribution. For another long-run official series, the <a href="eurostat-unemployment.html">Eurostat unemployment pack</a> covers the EU27 plus nine countries monthly since 2000, and the <a href="eurostat-house-prices.html">Eurostat house price index</a> runs 2005-2025 on the same entity logic. The <a href="../guides/dataset-license-guide.html">dataset license guide</a> explains what CC BY 4.0 attribution requires when you build on these files, and the rest of the catalog lives on the <a href="../portfolio.html">portfolio page</a>.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

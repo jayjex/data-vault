@@ -387,6 +387,52 @@
    "page": "https://jayjex.github.io/data-vault/datasets/eurostat-unemployment.html"
   },
   {
+   "slug": "worldbank-g20-population",
+   "name": "World Bank Population, G20 Countries + EU27, 1960-2025 (free)",
+   "niche": "econ-data",
+   "tags": [
+    "population",
+    "world-bank",
+    "g20",
+    "demographics",
+    "time-series",
+    "free"
+   ],
+   "description": "Total population (World Bank indicator SP.POP.TOTL) for the 19 national G20 members plus the EU27 aggregate (EUU), one row per entity-year from 1960 through 2025: 1,320 rows, 4 columns, values kept verbatim from the API. Full CSV free download.",
+   "stats": {
+    "rows": 1320,
+    "tables": 2,
+    "columns": 4,
+    "updated": "2026-07-13"
+   },
+   "sample": {
+    "csv": "https://jayjex.github.io/data-vault/data/worldbank-g20-population/sample.csv",
+    "json": "https://jayjex.github.io/data-vault/data/worldbank-g20-population/sample.json",
+    "rows": 20,
+    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+   },
+   "extra_files": [
+    {
+     "name": "g20-population-2025.csv",
+     "url": "https://jayjex.github.io/data-vault/data/worldbank-g20-population/g20-population-2025.csv",
+     "rows": 20,
+     "note": "latest year per entity, sorted by population"
+    },
+    {
+     "name": "schema.md",
+     "url": "https://jayjex.github.io/data-vault/data/worldbank-g20-population/schema.md",
+     "note": "column dictionary, normalization, caveats"
+    }
+   ],
+   "full_data": {
+    "status": "free",
+    "url": "https://jayjex.github.io/data-vault/datasets/worldbank-g20-population.html",
+    "note": "Source is World Bank Open Data, CC BY 4.0, so the full 1,320-row CSV is a free download from the dataset page; no Getly pack."
+   },
+   "license": "CC BY 4.0 (population series from World Bank Open Data, CC BY 4.0)",
+   "page": "https://jayjex.github.io/data-vault/datasets/worldbank-g20-population.html"
+  },
+  {
    "slug": "osm-asia-civic-amenities",
    "name": "OpenStreetMap Civic Amenities, Tokyo-Jakarta-Seoul, 2026-09",
    "niche": "open-data",

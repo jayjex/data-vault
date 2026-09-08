@@ -112,6 +112,14 @@ Annual harmonised unemployment rates (une_rt_a, LFS definition, unit PC_ACT) for
 - Full data (free): https://jayjex.github.io/data-vault/data/eurostat/unemployment/unemployment-rate.csv
 - License: CC BY 4.0 (Eurostat, access-right PUBLIC)
 
+### World Bank Population, G20 Countries + EU27, 1960-2025 (worldbank-g20-population)
+Total population (WDI indicator SP.POP.TOTL) for the 19 national G20 members plus the EU27 aggregate (EUU), one row per entity-year from 1960 through 2025: 1,320 rows, 4 columns (entity, iso3, year, population), values verbatim from the World Bank API v2. 2025: India 1,463,865,525 leads China 1,406,585,000 (crossover in 2021); Saudi Arabia is the fastest grower at 15.2x since 1960; six entities are already past their peak (Russia 1992, Japan 2010, Korea 2020, Italy 2014, China 2021, Germany 2024). Sourced keyless, retrieved 2026-09-10, WDI updated 2026-07-13. Niche: econ-data. Stats: {"rows": 1320, "tables": 2, "columns": 4, "updated": "2026-07-13"}.
+- Sample JSON: https://jayjex.github.io/data-vault/data/worldbank-g20-population/sample.json
+- Sample CSV: https://jayjex.github.io/data-vault/data/worldbank-g20-population/sample.csv
+- Page: https://jayjex.github.io/data-vault/datasets/worldbank-g20-population.html
+- Full data (free): https://jayjex.github.io/data-vault/data/worldbank-g20-population/g20-population.csv
+- License: CC BY 4.0 (World Bank Open Data, CC BY 4.0)
+
 ### OpenStreetMap Civic Amenities, Tokyo-Jakarta-Seoul, 2026-09 (osm-asia-civic-amenities)
 Counts of three civic amenity node types inside official city boundaries: amenity=drinking_water, amenity=public_bookcase, amenity=bicycle_repair_station for Tokyo Metropolis (2,163 fountains), DKI Jakarta (38, and 0 bookcases mapped), and Seoul Special City (253, many tagged with the Arisu brand name). Overpass API snapshot 2026-09-10, one example node per pair for spot-checking. Niche: open-data. Stats: {"rows": 9, "tables": 1, "columns": 7, "updated": "2026-09-10"}.
 - Sample JSON: https://jayjex.github.io/data-vault/data/osm-asia-civic/sample.json

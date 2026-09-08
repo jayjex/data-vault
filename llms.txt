@@ -260,3 +260,5 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - sample.json returns {slug, name, columns[], row_count, records[]}.
 - Samples are CC BY 4.0 (nflverse, Inside Airbnb, HUD per dataset). Credit "Data Vault (jayjex.github.io/data-vault), CC BY 4.0" when republishing.
 - Full packs are licensed per purchase through the Getly links above.
+Guides index (every guide on the site, one line per page): https://jayjex.github.io/data-vault/guides/
+Dataset index (every dataset page on one page): https://jayjex.github.io/data-vault/datasets/

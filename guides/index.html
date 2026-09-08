@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data guides index, one line per guide | Data Vault</title>
+<meta name="description" content="Index of all data guides on Data Vault: HUD fair market rents, Airbnb listings, NFL game data, public APIs, CSV and scraping how-tos, MCP agent setup. One line per guide.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Data guides index, one line per guide | Data Vault">
+<meta property="og:description" content="Index of all data guides on Data Vault: HUD fair market rents, Airbnb listings, NFL game data, public APIs, CSV and scraping how-tos, MCP agent setup. One line per guide.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "Data guides index, one line per guide", "url": "https://jayjex.github.io/data-vault/guides/", "description": "Index of all data guides on Data Vault: HUD fair market rents, Airbnb listings, NFL game data, public APIs, CSV and scraping how-tos, MCP agent setup. One line per guide.", "publisher": {"@type": "Organization", "name": "Matchbook Labs"}}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/index.html">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Every guide, one line each</h1>
+  <p class="lead">All 114 guides on this site, grouped by topic and described in one line pulled from the page itself. Read the math, then download the CSV it uses. Datasets live on the <a href="../datasets/index.html">dataset index</a>.</p>
+  <section aria-label="HUD rent data (FMR and SAFMR)">
+    <h2>HUD rent data (FMR and SAFMR)</h2>
+    <ul class="hublist">
+      <li><a href="hud-fair-market-rent-calculator.html">Fair Market Rent Calculator: How FMR Math Works, FY2026 Examples</a> HUD publishes no official FMR calculator. Here is the math behind the FY2026 fair market rents: the 40th percentile rule, worked payment-standard…</li>
+      <li><a href="fmr-dataset-download.html">FMR Dataset Download: Fair Market Rent CSV, Ready for pandas</a> The FY2026 fair market rent dataset as one analysis-ready CSV: 51,895 ZIP rows, ten typed columns, UTF-8.</li>
+      <li><a href="fmr-vs-rent-actuals.html">FMR vs Actual Rent: What Each Number Measures and Why They Differ</a> FMR vs actual rent: HUD&#x27;s FMR is a 40th percentile gross rent estimate; actual rents are asking prices.</li>
+      <li><a href="rent-vs-income-affordability.html">How Much Rent Can I Afford? The 30% Rule Tested on FMR and Census Data, FY2027</a> How much rent can I afford: the 30% rule and rent-to-income ratio tested on FY2027 HUD FMR and 2024 ACS data. National 17.5%, New York 39.6%, Miami 38.1%.</li>
+      <li><a href="hud-rent-data-explained.html">HUD Fair Market Rent Data by ZIP Code, Explained (FY2026 CSV)</a> What HUD fair market rent means, every column in the FY2026 ZIP-level CSV, and how to query FMR by ZIP code free over MCP.</li>
+      <li><a href="fmr-lookup-alternatives.html">HUD Fair Market Rent Lookup: FMR by ZIP Code, One at a Time or in Bulk</a> How FMR lookup works: HUD&#x27;s site shows one area at a time.</li>
+      <li><a href="hud-fmr-2027.html">HUD FMR 2027: Fair Market Rents for FY2027, What Changed by ZIP</a> The 2027 fair market rents are out: 51,871 ZIP rows parsed from HUD&#x27;s FY27_FMRs.xlsx and SAFMR workbooks, effective October 1, 2026.</li>
+      <li><a href="hud-fmr-by-bedroom.html">HUD FMR by Bedroom Size: Studio to 4BR Medians, FY2026</a> HUD FMR by bedroom size from the FY2026 ZIP-level CSV: national medians for 0BR through 4BR, studio vs 4BR ratios in five big metros, and when the…</li>
+      <li><a href="hud-fmr-by-county.html">HUD FMR by County: Fair Market Rent by County, FY2026</a> HUD fair market rent by county: the FY2026 CSV holds 3,229 county rows with median and max FMRs for 0BR through 4BR.</li>
+      <li><a href="hud-fmr-by-metro-area.html">HUD FMR by Metro Area: How HUD Defines Metro Geography (FY2026)</a> How HUD defines its metro FMR areas, FY2026: MSA vs HUD Metro FMR Area among the 649 metro areas, and why two ZIPs in one metro can carry different…</li>
+      <li><a href="fmr-by-metro.html">HUD FMR by Metro: The Priciest and Cheapest Metro Areas, FY2026</a> HUD FMR by metro area, FY2026: the 15 priciest metros by 2BR median, from Santa Cruz-Watsonville at 4,350 to Boston at 2,690, against the 10 cheapest…</li>
+      <li><a href="hud-fmr-by-state.html">HUD FMR by State: FY2026 Fair Market Rent for All 50 States, DC and Puerto Rico</a> HUD fair market rent for every state, FY2026: a 52-row table of 2BR medians, ZIP-level lows and highs, and ZIP counts sorted from California at 2,635…</li>
+      <li><a href="hud-fmr-by-zip.html">HUD FMR by ZIP Code: Fair Market Rent by ZIP, FY2026</a> Look up HUD FMR by ZIP code: the FY2026 CSV holds 51,895 ZIP rows with FMRs for 0BR through 4BR.</li>
+      <li><a href="hud-fmr-data-dictionary.html">HUD FMR Data Dictionary: Every Column in the FY2026 ZIP Dataset</a> The FMR data dictionary for HUD&#x27;s FY2026 ZIP dataset: every column in fmr-by-zip-2026.csv, with data types, real first-row example values, and notes…</li>
+      <li><a href="hud-fmr-data-downloads.html">HUD FMR Data Download: Every Official Source, Compared (FY2026)</a> Every way to download HUD fair market rent data: huduser.gov Excel workbooks, Census Reporter ACS tables, and the FY2026 CSV pack on this site,…</li>
+      <li><a href="hud-fmr-excel.html">HUD FMR Excel: Work With the Official FMR Excel Files, FY2026</a> The official HUD FMR Excel files explained: FY26_FMRs.xlsx (4,764 county rows) and the SAFMR workbook (51,895 ZIP rows), header quirks, clean imports…</li>
+      <li><a href="hud-fmr-florida.html">HUD FMR Florida: Fair Market Rent Data for Florida, FY2026</a> HUD fair market rent data for Florida: 1,555 ZIP rows in the FY2026 file, metro examples for Tampa, Orlando, Miami and Jacksonville with real 2BR…</li>
+      <li><a href="hud-fmr-for-landlords.html">HUD FMR for Landlords: Section 8 Rent Limits and Voucher Budgets, FY2026</a> What HUD fair market rent means for landlords: how the voucher budget is built from the FMR, how to check your ZIP&#x27;s FMR in the FY2026 CSV, SAFMR vs…</li>
+      <li><a href="hud-fmr-history.html">HUD FMR History: How Fair Market Rent Methodology Changed (FY2001 to FY2026)</a> How HUD fair market rents got their current shape: the 40th percentile came from the 1998 housing act, ZIP-level SAFMRs came after a Dallas…</li>
+      <li><a href="hud-fmr-texas.html">HUD FMR Texas: Fair Market Rent Data for Texas, FY2026</a> HUD fair market rent data for Texas: 3,247 ZIP rows in the FY2026 file, metro examples for Houston, Dallas, Austin and San Antonio, a real state=TX…</li>
+      <li><a href="hud-fmr-vs-census-rent.html">HUD FMR vs Census Rent (ACS): Why the Two Numbers Differ</a> HUD FMR vs ACS rent: the FMR is a 40th percentile gross rent estimate, the ACS median gross rent is the 50th.</li>
+      <li><a href="hud-fmr-vs-cpi-rent.html">HUD FMR vs CPI Rent: Two Rent Numbers That Answer Different Questions</a> CPI rent data vs HUD FMR: the CPI rent index rose 2.9 percent over the 12 months ending July 2026, while the FY2026 FMR median sits at 1,150 dollars.</li>
+      <li><a href="hud-fmr-vs-market-rent.html">HUD FMR vs Market Rent: Three Numbers, One Metro (San Diego)</a> FMR vs market rent, side by side: HUD&#x27;s 40th percentile FMR for San Diego at 3,000, the ACS 2BR median gross rent at 2,379, and Zillow&#x27;s ZORI asking…</li>
+      <li><a href="hud-fmr-vs-zillow-rent.html">HUD FMR vs Zillow Rent Data: Why the Numbers Differ (FY2026 vs ZORI)</a> HUD FMR vs Zillow rent data: the FY2026 2BR FMR median is $1,150, Zillow&#x27;s ZORI typical US asking rent is $1,962.</li>
+      <li><a href="hud-income-limits.html">HUD Income Limits FY2026: AMI vs Fair Market Rent, With Real Numbers</a> HUD income limits and fair market rent come from two different datasets.</li>
+      <li><a href="hud-metro-list.html">HUD Metro Area List: Every FY2026 Metro FMR Area</a> The FY2026 HUD FMR files cover 2,599 metro and nonmetro areas: 649 metro, 1,950 nonmetro.</li>
+      <li><a href="hud-payment-standard.html">HUD Payment Standard: The 90%-110% Band Around the FMR, FY2026</a> The payment standard is the voucher number your public housing agency sets between 90% and 110% of the FMR.</li>
+      <li><a href="hud-fmr-safmr-list.html">HUD SAFMR List: ZIP-Level FMR Lookup, FY2026</a> A practical HUD SAFMR lookup: why metro averages miss real ZIPs, the five widest ZIP-vs-metro gaps in the FY2026 file with the query output verbatim,…</li>
+      <li><a href="hud-fmr-small-areas.html">HUD Small Area FMR: SAFMR by ZIP Code, Explained</a> A HUD Small Area FMR (SAFMR) sets the fair market rent at ZIP level inside a metro.</li>
+      <li><a href="fmr-payment-standard.html">Payment Standard for Section 8: The 90%-110% FMR Band, FY2026</a> How the Section 8 payment standard is set: 90% to 110% of HUD&#x27;s FMR.</li>
+      <li><a href="rent-affordability-calculator.html">Rent Affordability Calculator: The 30% Rule vs the HUD FMR Benchmark, FY2026</a> Run the 30% rule against real benchmarks: the FY2026 2BR FMR median of 1,150 dollars is 17.1% of the 80,610-dollar US median household income.</li>
+      <li><a href="rent-data-sources-compared.html">Rent Data Sources Compared: HUD FMR, Census ACS, CPI, Zillow ZORI, MLS</a> Five rent data sources compared side by side: HUD FMR (1,150 2BR median), Census ACS median gross rent (1,490), CPI rent (+2.9%), Zillow ZORI…</li>
+      <li><a href="safmr-vs-fmr.html">SAFMR vs FMR: Small Area Fair Market Rent vs Metro FMR</a> SAFMR vs FMR: both are HUD 40th percentile rent estimates. An FMR covers a metro area, a SAFMR covers ZIP codes.</li>
+      <li><a href="section-8-voucher-rent.html">Section 8 Voucher Rent: How Much Section 8 Pays, With FY2026 Numbers</a> How much does Section 8 pay toward rent? The voucher covers the gap between your 30% income share and the payment standard.</li>
+      <li><a href="safmr-small-area-fmr.html">Small Area Fair Market Rent: SAFMR Explained, ZIP by ZIP</a> Small Area Fair Market Rent explained: HUD&#x27;s ZIP-level FMR.</li>
+      <li><a href="hud-fair-market-rent-explained.html">What Is Fair Market Rent? HUD FMR Explained, With FY2026 Numbers</a> Fair market rent is HUD&#x27;s 40th percentile gross rent estimate, not the median.</li>
+    </ul>
+  </section>
+
+  <section aria-label="Airbnb listings and short-term rentals">
+    <h2>Airbnb listings and short-term rentals</h2>
+    <ul class="hublist">
+      <li><a href="airbnb-data-by-city.html">Airbnb Data by City: 6 US Markets, Rows and Median Prices</a> Airbnb data by city: per-city listing counts, snapshot dates, and median nightly prices for Austin, Nashville, Denver, New York City, Las Vegas, and…</li>
+      <li><a href="airbnb-data-by-country.html">Airbnb Data by Country: Where Coverage Comes From, Why It&#x27;s Uneven</a> Airbnb data by country: no official country-level dataset exists, so coverage comes from Inside Airbnb city files, Eurostat nights, and national…</li>
+      <li><a href="airbnb-data-guide.html">Airbnb Data Download: 6-City Listings CSV (90,169 Rows)</a> Where to download Airbnb listings data by city, what the 12 columns in a listings-summary.csv mean, and how to query 90,169 rows across Austin,…</li>
+      <li><a href="airbnb-data-in-powerbi.html">Airbnb Data in Power BI: Load a Listings CSV Into Power BI Desktop (Free)</a> How to import an Airbnb CSV into Power BI Desktop for free: Get Data to Text/CSV, Power Query type fixes, a DAX AVERAGE measure, three viz ideas, and…</li>
+      <li><a href="airbnb-data-in-tableau.html">Airbnb Data in Tableau: Load a Listings CSV Into Tableau Public</a> How to import an Airbnb CSV into Tableau Public: pandas dtype prep for listing IDs and ZIP codes, live connection versus extract, three viz ideas,…</li>
+      <li><a href="airbnb-data-methodology.html">Airbnb Data Methodology: How Snapshot Datasets Are Built</a> How Inside Airbnb snapshot data is collected: periodic scrapes, what availability_365 and the review columns record, the limits of one-day captures,…</li>
+      <li><a href="airbnb-data-sample.html">Airbnb Dataset Sample: Free CSV Data Download (20 Rows, 12 Columns)</a> Free Airbnb dataset sample in CSV and JSON: 20 real Austin listings, all 12 listings-summary columns, pulled from a 90,169-row pack covering 6 US…</li>
+      <li><a href="airbnb-market-analysis.html">Airbnb Market Analysis: A 5-Step Framework With Public Listing Data</a> An Airbnb market analysis framework built on public listing data: supply counts from cities-index.csv, mean and median nightly prices, competition…</li>
+      <li><a href="airbnb-occupancy-data.html">Airbnb Occupancy Data: What a Listings Snapshot Can and Cannot Tell You</a> Scraped Airbnb listings carry no occupancy column.</li>
+      <li><a href="airbnb-price-data-exploration.html">Airbnb Price Data Exploration: Medians, ZIPs, Percentiles, Outliers (Austin)</a> Explore Airbnb price data in an 11,295-row Austin dataset: median by room type, top ZIP codes, p25-p95 percentiles, availability buckets, and…</li>
+      <li><a href="airbnb-price-data.html">Airbnb Price Data: Mean and Median Nightly Price in 6 US Cities</a> Airbnb price data for 6 US cities from 90,169 listings: mean and median nightly price per city, why the two numbers differ, and what a snapshot date…</li>
+      <li><a href="airbnb-investment-analysis.html">Airbnb Rental Analysis: Screen 6 US Markets With One Dataset</a> An Airbnb rental analysis you can reproduce: screening six US markets with one CSV schema, a worked NYC example (mean nightly price 267.35 over…</li>
+      <li><a href="airbnb-data-scraper.html">Airbnb Scraper: Why It Fails, and the Legal Way to Get Airbnb Data</a> Planning to scrape Airbnb data? Airbnb&#x27;s Terms of Service prohibit it, there is no official API, and scrapers break constantly.</li>
+      <li><a href="airbnb-vs-long-term-rent.html">Airbnb vs Long-Term Rent: Nightly × 30 vs Monthly Rent (90,169 Listings)</a> Airbnb vs long term rent: median nightly price × 30 against HUD FMR and ACS 2BR monthly rents in Austin, New York City, and San Diego.</li>
+      <li><a href="inside-airbnb-alternative.html">Inside Airbnb Alternative: 6 Cities, One Schema, 90,169 Rows</a> Inside Airbnb publishes free per-city CSVs under CC BY 4.0.</li>
+    </ul>
+  </section>
+
+  <section aria-label="NFL and sports data">
+    <h2>NFL and sports data</h2>
+    <ul class="hublist">
+      <li><a href="espn-api-python.html">ESPN API in Python: requests Examples for the Free Site Endpoints</a> The ESPN API in Python works with plain requests and no key: working examples for the NFL scoreboard and team endpoints, output verbatim from a live…</li>
+      <li><a href="nfl-data-alternative.html">Free NFL Historical Data: nflverse Raw vs a Preprocessed CSV Pack</a> nflverse publishes free NFL game data under CC BY 4.0.</li>
+      <li><a href="free-sports-data-csv.html">Free Sports Data CSV: Verified Sources, Licenses, and a 7,548-Game NFL Dataset</a> Which free sports statistics datasets are actually downloadable as CSV: nflverse (CC BY 4.0), openfootball (CC0), MLB Stats API, and balldontlie&#x27;s…</li>
+      <li><a href="nfl-betting-data.html">NFL Betting Data: Spreads, Results, Totals, and Weather in One Dataset</a> What a sports betting dataset contains: closing spreads, final scores, totals, and kickoff weather, one row per game.</li>
+      <li><a href="nfl-data-api-python.html">NFL Data API in Python: requests Examples with Live Endpoints</a> NFL data API in Python: two requests examples that ran against live endpoints today, ESPN&#x27;s scoreboard JSON and the nflverse games.csv release file,…</li>
+      <li><a href="nfl-data-apis.html">NFL Data APIs Compared: ESPN, nflverse, nfl_data_py, and the Official NFL API</a> Four NFL data APIs compared side by side: ESPN&#x27;s site API, the nflverse CSV releases, the nfl_data_py and nflreadpy packages, and the league&#x27;s own…</li>
+      <li><a href="nfl-data-by-conference.html">NFL Data by Conference: AFC vs NFC Stats From Real Game Rows</a> How to split NFL game data by conference: the 1999 AFC/NFC team map, real AFC vs NFC head-to-head results, points per game, and win counts computed…</li>
+      <li><a href="nfl-dataset-excel.html">NFL Data in Excel or Google Sheets: Import the CSV, Step by Step</a> Import the free 22-row NFL games CSV into Google Sheets or Excel step by step: the OPEN() formula, Excel&#x27;s From Text/CSV import, column formats to…</li>
+      <li><a href="nfl-dataset-python.html">NFL Data in Python: Load the Games CSV with pandas</a> NFL data in Python, quickstart style: one pd.read_csv call loads the free 22-row games CSV straight from its URL, then three small analyses run on…</li>
+      <li><a href="nfl-data-in-r.html">NFL Data in R: Load the Games CSV with readr and dplyr</a> NFL data in R: one read_csv call loads the free 22-row games CSV straight from its URL, then dplyr filter, group_by, and summarise answer three…</li>
+      <li><a href="nfl-games-data-guide.html">NFL Games Dataset CSV: 7,548 Games with Betting Lines (1999-2026)</a> The games.csv schema explained column by column, season coverage 1999-2026, and free MCP query examples.</li>
+      <li><a href="nfl-home-field-advantage.html">NFL Home Field Advantage: Real Numbers From 7,548 Games (1999-2026)</a> Home field advantage in the NFL, counted from 7,182 home-site games: a 56.5% home win rate since 1999, the era-by-era decline from 58.2% to 55.0%,…</li>
+      <li><a href="nfl-spread-history.html">NFL Point Spread History: Lines, Covers, and Upsets Since 1999</a> NFL point spread history counted from 7,276 played games in the games CSV: average spread by era, home favorites in 65.0% of games, the nine biggest…</li>
+      <li><a href="nfl-roster-data.html">NFL Roster Data: Free Sources, ID Schemes, and a Live ESPN API Example</a> Where to get NFL roster and player-level data free: nflverse weekly roster CSVs (2002-2026, 36 columns), nfl_data_py&#x27;s import_weekly_rosters, and the…</li>
+      <li><a href="nfl-scores-dataset.html">NFL Scores Dataset: Download Scores as CSV, 1999-2026</a> Where to download NFL scores as a CSV: nflverse games.csv (7,548 rows, 46 columns, verbatim schema), the ESPN scoreboard API (16 events tested, no…</li>
+      <li><a href="nfl-spreads-history.html">NFL Spread History CSV: ATS Cover Data for Every Game Since 1999</a> NFL spread history as a CSV: what the spread_line column means, how ATS covers work, and 27 seasons of cover rates counted from 7,276 played games…</li>
+      <li><a href="nfl-stadium-weather.html">NFL Stadium Weather: How Roof and Weather Show Up in Game Data</a> NFL stadium weather as data: the roof, surface, temp, and wind columns in the free games CSV, dome vs outdoor scoring in a real 22-row sample, the…</li>
+      <li><a href="nfl-data-by-team.html">NFL Stats by Team CSV: 861 Team-Season Rows, 1999-2025</a> NFL stats by team in one CSV: 861 rows of W-L-T, points for and against, ATS records, and over/under counts per team per season, 1999-2025.</li>
+      <li><a href="nfl-vs-college-football-data.html">NFL vs College Football Statistics: Data Sources Compared</a> NFL vs college football statistics, compared at the source level: the nflverse 7,548-game CSV against the CFBD API, Sports Reference, the NCAA stats…</li>
+      <li><a href="sports-data-for-apps.html">Sports Data for Apps: Free APIs Tested Live, Licenses, and the Cache Architecture</a> Building an app on free sports data: ESPN&#x27;s site API, nflverse, and TheSportsDB&#x27;s free tier, every endpoint tested live on 2026-09-10, with license…</li>
+    </ul>
+  </section>
+
+  <section aria-label="Crypto, web3 and bounty data">
+    <h2>Crypto, web3 and bounty data</h2>
+    <ul class="hublist">
+      <li><a href="free-crypto-data-apis.html">Free Crypto Data APIs: 5 Price Sources Tested Live</a> Five free crypto price APIs tested with curl on the same day: CoinGecko, Coinbase, Binance, Kraken, and CoinPaprika.</li>
+      <li><a href="web3-bounty-data.html">Solana Bounty Tracker Data: Web3 Bounty Listings Without an Official API</a> Web3 bounty listings sit on scattered boards behind undocumented APIs, and trackers miss deadlines.</li>
+      <li><a href="solana-ecosystem-data.html">Solana Ecosystem Data: Public Sources for Research, Tested Live</a> Public Solana ecosystem data for research: the Superteam Earn snapshot (51 rows, 6 AGENT_ALLOWED), the solana-research-library MCP over 25 probed…</li>
+      <li><a href="solana-grants-data.html">Solana Grants List: Mapping the Ecosystem&#x27;s Funding Programs from Public Data</a> How to build a Solana grants list from public data: the Superteam Earn API, a 51-row snapshot with 6 AGENT_ALLOWED listings, and the method for…</li>
+      <li><a href="bounty-tracker-alternative.html">Superteam Earn Alternative: Solana Bounty Tracker vs Dataset Approach</a> A Solana bounty aggregator needs different inputs than a live tracker.</li>
+      <li><a href="solana-bounties-data-guide.html">Superteam Earn Data: the Solana Bounties Dataset and Its API Map</a> What a Superteam Earn dataset holds: 51 Solana bounty cards, 28 full descriptions, 186+ mapped API routes, and free MCP queries against the full…</li>
+      <li><a href="x402-data-api.html">x402 API: How HTTP 402 Pay-Per-Call Works, With a Live Challenge</a> x402 turns HTTP 402 into a working payment flow: an unpaid call gets a machine-readable challenge, the client pays in USDC on Base, a facilitator…</li>
+    </ul>
+  </section>
+
+  <section aria-label="Public data APIs and sources">
+    <h2>Public data APIs and sources</h2>
+    <ul class="hublist">
+      <li><a href="bls-api-tutorial.html">BLS API in Python: Working Examples for the Public v2 Endpoint</a> The BLS public data API v2 answers Python requests with no key: working GET and POST examples for unemployment (LNS14000000) and rent CPI…</li>
+      <li><a href="census-data-api-tutorial.html">Census Data API Tutorial: Discovery Catalog, Free Key, ACS Rent in Python</a> A Census data API tutorial: query the 1,803-dataset discovery catalog, register a free key, structure a year/dataset/variables query, and pull ACS…</li>
+      <li><a href="dataset-license-guide.html">Dataset License Guide: CC BY 4.0, CC0, ODbL, MIT, or No License</a> The five data license types compared: CC BY 4.0 for attribution, CC0 for public domain, ODbL for share-alike, MIT for data files in code projects,…</li>
+      <li><a href="labor-market-data-guide.html">Eurostat Unemployment Data: EU Rate Dataset Download (CSV, 2003-2025)</a> Eurostat labour market data as one flat CSV: harmonised unemployment rates for EU-27, the euro area, and 8 countries, 3,768 rows, 2003-2025, seven…</li>
+      <li><a href="fred-api-tutorial.html">FRED API Tutorial: Pull Fed Economic Data in Python, With or Without a Key</a> A practical FRED API tutorial: pull any series as CSV with no key via fredgraph.csv, get a free key for api.stlouisfed.org, and load FRED data into…</li>
+      <li><a href="free-real-estate-data.html">Free Real Estate Data Download: HUD Rent Benchmarks + Airbnb Listings (CSV)</a> Free real estate data you can actually download as CSV: HUD FY2026 fair market rents for 51,895 ZIP codes (public domain) and 90,169 Airbnb listings…</li>
+      <li><a href="how-we-sell-public-data.html">How to Sell Datasets: Our Public-Data Pipeline, End to End</a> How we sell datasets online: license-checked public sources, documented CSVs, free samples, GitHub releases, MCP queries, Getly checkout.</li>
+      <li><a href="json-api-tutorial.html">JSON API Tutorial: Read API Data in Python With Real Output</a> A practical JSON API tutorial for data analysts: parse nested responses with requests or urllib, walk arrays and objects, paginate, and handle both…</li>
+      <li><a href="open-data-api-alternative.html">Open Data API: Free Sample Endpoints and an MCP Query Layer</a> Free open data API access with no key and no signup: raw JSON and CSV endpoints for 6 datasets on GitHub Pages, plus the dataset-mcp server that…</li>
+      <li><a href="open-data-movement.html">Open Data: A Short History and Why Analysts Should Care</a> Open data is data published under an open license, free of charge, in machine-readable form.</li>
+      <li><a href="public-data-apis-list.html">Public Data APIs: 12 Free Endpoints We Tested Live</a> A free public API list we tested with curl on our own box: 12 public data APIs across government, sports, weather, and crypto, each with endpoint,…</li>
+      <li><a href="public-domain-datasets.html">Public Domain Datasets: Licenses, Commercial Use, Credit Lines</a> Which datasets are public domain and which need attribution: HUD rent data is US government public domain, nflverse and Inside Airbnb are CC BY 4.0.</li>
+      <li><a href="real-estate-investor-data.html">Real Estate Investor Data: Free Sources for Rent, Price, Vacancy and Tax Numbers</a> Real estate investor data sources you can pull free: HUD fair market rents, Zillow ZORI and ZHVI CSVs, FRED housing series, Census vacancy counts,…</li>
+      <li><a href="reddit-historical-data.html">Reddit Historical Data: What Still Works for Research After Pushshift</a> The official Reddit .json endpoints 403 from server IPs and Pushshift has been closed since 2023.</li>
+      <li><a href="weather-data-api.html">Weather Data APIs for Analysts: Open-Meteo, NWS, NOAA NCEI Tested Live</a> Free weather data APIs for analyst work, tested live: Open-Meteo forecast and Archive endpoints, the National Weather Service points API, and NOAA…</li>
+    </ul>
+  </section>
+
+  <section aria-label="OpenStreetMap civic amenities">
+    <h2>OpenStreetMap civic amenities</h2>
+    <ul class="hublist">
+      <li><a href="mena-city-amenities-guide.html">Istanbul Drinking Water Fountains Map Counts: Cairo and Mumbai Public Amenities Open Data (CSV)</a> Drinking water fountain and public amenity counts for Istanbul, Cairo, and Mumbai from OpenStreetMap: 194 fountains in Istanbul, 78 in Cairo, 67 in…</li>
+      <li><a href="osm-civic-data-guide.html">Open Street Map Civic Data: Fountains, Bookcases, Bike Repair Stations in 13 Cities</a> OpenStreetMap civic amenity counts for 13 cities: 11,158 nodes covering water fountains, public bookcases, and bike repair stations, free as CSV.</li>
+      <li><a href="worldwide-civic-amenities-map.html">Public Bookcase Map Worldwide: Fountains and Bike Repair Stations Counted in 16 Cities</a> Public bookcase, drinking water fountain, and bike repair station counts for 16 cities across four regions: 11,543 OpenStreetMap nodes as free CSV.</li>
+    </ul>
+  </section>
+
+  <section aria-label="CSV, scraping and data tools">
+    <h2>CSV, scraping and data tools</h2>
+    <ul class="hublist">
+      <li><a href="csv-encoding-utf8.html">CSV Encoding: UTF-8, the Excel BOM, and Windows-1252, With Real Files</a> CSV encoding explained with real files: why UTF-8 is the right default, what the Excel BOM does to your header row, how Windows-1252 turns emoji into…</li>
+      <li><a href="csv-vs-api.html">CSV vs API for Data: Which One You Need, With a Decision Table</a> When a CSV download is enough and when a query layer wins.</li>
+      <li><a href="csv-vs-excel-data-analysis.html">CSV vs Excel: Which File Format for Data Analysis?</a> CSV vs Excel for data work: a per-scenario decision matrix, the HUD workbook war story, and what an Excel round trip does to dates, ZIP codes, and…</li>
+      <li><a href="python-read-csv-tutorial.html">Python Read CSV: A pandas read_csv Tutorial With Real Output</a> pandas read_csv tutorial with verbatim output: usecols, dtype, parse_dates, na_values, chunksize, sep, header and names against real CSV files,…</li>
+      <li><a href="scraping-python-templates.html">Python Scraping Template: 10 Ready-to-Edit Patterns</a> 10 scraping templates you edit instead of write: pagination, infinite scroll, login sessions, price monitors, sitemap crawling, retry logic.</li>
+      <li><a href="scrape-without-coding.html">Scrape Without Coding: 10 Editable Template Scripts</a> How to scrape a website without writing code: run prebuilt scraping scripts, edit one config constant per site, and stay within robots.txt and…</li>
+      <li><a href="scraping-vs-dataset.html">Web Scraping vs Buying a Dataset: The 5-Factor Decision</a> Scrape or buy data? A 5-factor decision matrix, time, maintenance, legal/ToS, freshness, volume, tested against three real builds on this site: HUD…</li>
+      <li><a href="what-is-a-csv-sample.html">What Is a CSV Sample? How to Judge One Before You Commit</a> A CSV sample is a small slice of a dataset published free so you can check the schema, encoding, and data types before downloading the full file.</li>
+      <li><a href="data-dictionary-explained.html">What Is a Data Dictionary? Structure and Real CSV Examples</a> A data dictionary documents every column in a dataset: name, type, meaning, allowed values, and source.</li>
+    </ul>
+  </section>
+
+  <section aria-label="MCP and agent setup">
+    <h2>MCP and agent setup</h2>
+    <ul class="hublist">
+      <li><a href="mcp-server-build-tutorial.html">Build an MCP Server in Python: 76-Line Tutorial With Tested Output</a> An MCP server tutorial in plain Python over stdio: initialize, tools/list, tools/call, the three response shapes, error handling, and the npx github:…</li>
+      <li><a href="llms-txt-vs-sitemap.html">llms.txt vs sitemap.xml: What Each File Does, With a Live Example</a> llms.txt guides LLMs and agents to the pages and endpoints worth reading; sitemap.xml lists every URL for search crawlers.</li>
+      <li><a href="mcp-claude-desktop.html">MCP Server for Claude Desktop: Install dataset-mcp, Config JSON, Real Outputs</a> How to connect an MCP server to Claude Desktop with dataset-mcp: copy the config JSON, restart Claude, and query 149,673 rows of NFL, rent, Airbnb,…</li>
+      <li><a href="what-is-jsonld.html">What Is JSON-LD? Structured Data for SEO, With Real Blocks From This Site</a> JSON-LD is the script format Google prefers for structured data.</li>
+      <li><a href="what-is-llms-txt.html">What Is llms.txt? Definition, Status, and a Live Example</a> llms.txt is a markdown file at your site root that tells an LLM which pages and endpoints to read, one line per link.</li>
+    </ul>
+  </section>
+
+  <section aria-label="Printables and 3D print">
+    <h2>Printables and 3D print</h2>
+    <ul class="hublist">
+      <li><a href="printable-education-models.html">3D Printable Education Models: Math Manipulatives for Class and Home</a> 3D printable education models on MakerWorld: a 100-bead print-in-place abacus, a 0-99 number line in ten peg-joined tiles, and two insect pinning…</li>
+      <li><a href="print-in-use-organizers.html">3D Printed Desk Organizers and Printable Tools: 10 Parametric MakerWorld Models</a> 10 parametric 3D printed desk organizers and printable tools on MakerWorld: cable clips, phone stand, bit holder, seed ruler, hex key gauge.</li>
+      <li><a href="printable-gift-tags.html">3D Printed Gift Tags: 70 and 50 mm TO/FROM Engraved Set, No Supports</a> Two 3D printed gift tags in one file: 70 x 40 mm and 50 x 28 mm, TO and FROM engraved 0.8 mm deep, 4.5 mm string hole, prints flat with no supports.</li>
+      <li><a href="printable-tools-parametric.html">Parametric 3D Printed Tools: 10 MakerWorld Models You Can Rebuild at Your Own Dimensions</a> 10 parametric printable tools on MakerWorld, each with its generator script in the files: cable clips, phone stand, rulers, bit holder, bag clip, hex…</li>
+    </ul>
+  </section>
+
+  <section aria-label="Other sections">
+    <h2>Other sections</h2>
+    <p><a href="../datasets/index.html">Dataset pages</a> &middot; <a href="../agents/index.html">Agent and MCP docs</a> &middot; <a href="../index.html">Catalog home</a></p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+</div></footer>
+</body>
+</html>

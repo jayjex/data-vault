@@ -1,0 +1,23 @@
+year,geo,sex,age,value,geo_label,sex_label,age_label
+2003,FR,F,Y15-24,22.7,France,Females,From 15 to 24 years
+2003,FR,M,Y15-24,17.9,France,Males,From 15 to 24 years
+2003,FR,T,Y15-24,20.1,France,Total,From 15 to 24 years
+2003,FR,F,Y15-29,14.8,France,Females,From 15 to 29 years
+2003,FR,M,Y15-29,14.2,France,Males,From 15 to 29 years
+2003,FR,T,Y15-29,14.5,France,Total,From 15 to 29 years
+2003,FR,F,Y15-74,9.3,France,Females,From 15 to 74 years
+2003,FR,M,Y15-74,7.8,France,Males,From 15 to 74 years
+2003,FR,T,Y15-74,8.5,France,Total,From 15 to 74 years
+2003,FR,F,Y20-64,8.9,France,Females,From 20 to 64 years
+2003,FR,M,Y20-64,7.4,France,Males,From 20 to 64 years
+2003,FR,T,Y20-64,8.1,France,Total,From 20 to 64 years
+2003,FR,F,Y25-54,8.2,France,Females,From 25 to 54 years
+2003,FR,M,Y25-54,6.8,France,Males,From 25 to 54 years
+2003,FR,T,Y25-54,7.5,France,Total,From 25 to 54 years
+2003,FR,F,Y25-74,7.8,France,Females,From 25 to 74 years
+2003,FR,M,Y25-74,6.6,France,Males,From 25 to 74 years
+2003,FR,T,Y25-74,7.1,France,Total,From 25 to 74 years
+2003,FR,F,Y55-74,4.4,France,Females,From 55 to 74 years
+2003,FR,M,Y55-74,4.4,France,Males,From 55 to 74 years
+2003,FR,T,Y55-74,4.4,France,Total,From 55 to 74 years
+2004,FR,F,Y15-24,24.7,France,Females,From 15 to 24 years

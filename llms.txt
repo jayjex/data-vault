@@ -89,6 +89,14 @@ HICP actual rentals for main residence (coicop CP0411), Netherlands and EU-27: 5
 - Full data (free): https://jayjex.github.io/data-vault/data/eurostat/rents/rent-index-monthly.csv + https://jayjex.github.io/data-vault/data/eurostat/rents/rent-annual-rate.csv
 - License: CC BY 4.0 (Eurostat, access-right PUBLIC)
 
+### Eurostat Unemployment Rate by Sex and Age, EU27 + 9 Countries, 2003-2025 (eurostat-unemployment)
+Annual harmonised unemployment rates (une_rt_a, LFS definition, unit PC_ACT) for the EU-27 aggregate, the euro area, and eight countries (DE, EL, ES, FR, IT, NL, PL, SE): 3,768 rows, both sexes plus males and females, seven age bands from Y15-24 to Y55-74, 2003-2025. 2025 headline: EU-27 6.0% vs 11.6% at the 2013 peak; Spain 10.5% highest of the eight, Poland 3.1% lowest; Greece youth hit 64.6% in 2013, still the file's max. Source is public Eurostat data, so the full CSV is a free download. Niche: econ-data. Stats: {"rows": 3768, "tables": 1, "columns": 8, "updated": "2026-06-11"}.
+- Sample JSON: https://jayjex.github.io/data-vault/data/eurostat/unemployment/sample.json
+- Sample CSV: https://jayjex.github.io/data-vault/data/eurostat/unemployment/sample.csv
+- Page: https://jayjex.github.io/data-vault/datasets/eurostat-unemployment.html
+- Full data (free): https://jayjex.github.io/data-vault/data/eurostat/unemployment/unemployment-rate.csv
+- License: CC BY 4.0 (Eurostat, access-right PUBLIC)
+
 ### OpenStreetMap Civic Amenities, Tokyo-Jakarta-Seoul, 2026-09 (osm-asia-civic-amenities)
 Counts of three civic amenity node types inside official city boundaries: amenity=drinking_water, amenity=public_bookcase, amenity=bicycle_repair_station for Tokyo Metropolis (2,163 fountains), DKI Jakarta (38, and 0 bookcases mapped), and Seoul Special City (253, many tagged with the Arisu brand name). Overpass API snapshot 2026-09-10, one example node per pair for spot-checking. Niche: open-data. Stats: {"rows": 9, "tables": 1, "columns": 7, "updated": "2026-09-10"}.
 - Sample JSON: https://jayjex.github.io/data-vault/data/osm-asia-civic/sample.json

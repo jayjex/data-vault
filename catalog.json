@@ -299,6 +299,50 @@
    "page": "https://jayjex.github.io/data-vault/datasets/eurostat-rents.html"
   },
   {
+   "slug": "eurostat-unemployment",
+   "name": "Eurostat Unemployment Rate by Sex and Age, EU27 + 9 Countries, 2003-2025",
+   "niche": "econ-data",
+   "tags": [
+    "eurostat",
+    "unemployment",
+    "labour-market",
+    "eu"
+   ],
+   "description": "Annual harmonised unemployment rate (une_rt_a, LFS definition, percentage of the labour force) for EU-27, euro area, Germany, Spain, France, Italy, Greece, Netherlands, Poland, Sweden: 3,768 rows, unit PC_ACT, both sexes plus males and females, seven age bands from Y15-24 to Y55-74, 2003-2025 (some country/age combinations start 2005 or later).",
+   "stats": {
+    "rows": 3768,
+    "tables": 1,
+    "columns": 8,
+    "updated": "2026-06-11"
+   },
+   "sample": {
+    "csv": "https://jayjex.github.io/data-vault/data/eurostat/unemployment/sample.csv",
+    "json": "https://jayjex.github.io/data-vault/data/eurostat/unemployment/sample.json",
+    "rows": 22,
+    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+   },
+   "extra_files": [
+    {
+     "name": "unemployment-rate.csv (full, free)",
+     "url": "https://jayjex.github.io/data-vault/data/eurostat/unemployment/unemployment-rate.csv",
+     "rows": 3768,
+     "note": "complete dataset, free download"
+    },
+    {
+     "name": "schema.md",
+     "url": "https://jayjex.github.io/data-vault/data/eurostat/unemployment/schema.md",
+     "note": "column definitions, code lists, coverage notes, sanity ranges"
+    }
+   ],
+   "full_data": {
+    "status": "free",
+    "url": "https://jayjex.github.io/data-vault/data/eurostat/unemployment/unemployment-rate.csv",
+    "note": "Source is CC BY 4.0 public Eurostat data, so the full table is a free download, not a Getly pack."
+   },
+   "license": "CC BY 4.0 (source data Eurostat, une_rt_a, Creative Commons Attribution 4.0 International, access-right PUBLIC)",
+   "page": "https://jayjex.github.io/data-vault/datasets/eurostat-unemployment.html"
+  },
+  {
    "slug": "osm-asia-civic-amenities",
    "name": "OpenStreetMap Civic Amenities, Tokyo-Jakarta-Seoul, 2026-09",
    "niche": "open-data",

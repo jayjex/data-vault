@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eurostat Unemployment Rate by Sex and Age, EU27 + 9 Countries, 2003-2025 (CSV) | Data Vault</title>
+<meta name="description" content="Annual harmonised unemployment rates for EU-27, the euro area, and Germany, Greece, Spain, France, Italy, Netherlands, Poland, Sweden: 3,768 rows, both sexes plus male/female, seven age bands. Free full CSV, CC BY 4.0.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/datasets/eurostat-unemployment.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Eurostat Unemployment Rate by Sex and Age, EU27 + 9 Countries, 2003-2025 (CSV) | Data Vault">
+<meta property="og:description" content="Annual harmonised unemployment rates for EU-27, the euro area, and Germany, Greece, Spain, France, Italy, Netherlands, Poland, Sweden: 3,768 rows, both sexes plus male/female, seven age bands. Free full CSV, CC BY 4.0.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/datasets/eurostat-unemployment.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "Eurostat Unemployment Rate by Sex and Age, EU27 + 9 Countries, 2003-2025", "description": "Annual harmonised unemployment rate (une_rt_a, LFS definition) for the EU-27 aggregate, the euro area, and eight countries: 3,768 rows in unit PC_ACT (percentage of the labour force), both sexes plus males and females, seven age bands from Y15-24 to Y55-74, years 2003-2025 (some combinations start 2005 or later).", "url": "https://jayjex.github.io/data-vault/datasets/eurostat-unemployment.html", "keywords": ["eurostat", "unemployment", "labour-market", "eu27"], "creator": {"@type": "Organization", "name": "Matchbook Labs"}, "isAccessibleForFree": true, "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/eurostat/unemployment/unemployment-rate.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/eurostat/unemployment/sample.csv"}, {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://jayjex.github.io/data-vault/data/eurostat/unemployment/sample.json"}], "license": "https://creativecommons.org/licenses/by/4.0/", "isBasedOn": "https://ec.europa.eu/eurostat/databrowser/view/une_rt_a/default/table"}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Eurostat Unemployment Rate by Sex and Age, EU27 + 9 Countries</h1>
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>3,768</b> rows</span><span class="stat"><b>2003-2025</b> annual</span><span class="stat"><b>10</b> geos</span><span class="stat"><b>7</b> age bands</span><span class="stat"><b>free</b> full CSV</span></div>
+  <section aria-label="About this dataset">
+    <p>Eurostat's harmonised unemployment series (<span class="mono">une_rt_a</span>, LFS definition) as one flat CSV: annual rates in percent of the labour force (unit <span class="mono">PC_ACT</span>) for the EU-27 aggregate, the euro area, and eight countries, from 2003 to 2025. Eight columns per row: year, geo, sex, age band, value, plus Eurostat's labels for each code.</p>
+    <p>The slice covers both sexes plus males and females separately, across seven age bands from Y15-24 up to Y55-74. Not every combination exists for every year - the aggregates start in 2005, the Netherlands enters in 2009, and a few early youth series are thin - so missing cells are absent rows rather than nulls.</p>
+    <p>What the file shows: the EU-27 headline rate (Y15-74, total) sat at 6.0% in 2025, half its 2013 crisis peak of 11.6%. Spain is the outlier among the eight countries at 10.5% against Poland's 3.1%. The 2013 youth extremes are still the record values in the file: Greece Y15-24 hit 64.6% and Spain 55.5%, against an EU-27 youth rate of 15.2% in 2025. The sex split runs the other way in 2025: EU-27 female unemployment 6.2% vs male 5.8%.</p>
+    <p>Use it to benchmark the US employment side of the <a href="hud-fmr-2026.html">HUD FMR datasets</a>, feed macro models a long-run EU labour series, or compare unemployment with the housing cycle in the <a href="eurostat-house-prices.html">house price index dataset</a> and <a href="eurostat-rents.html">HICP rents dataset</a>. The ETL (<a href="https://github.com/jayjex/data-vault/blob/main/tools/etl-eurostat-une.py" rel="noopener">tools/etl-eurostat-une.py</a>) is a stdlib-only JSON-stat 2.0 parser, rerunnable against any Eurostat table code.</p>
+    <p>Source: Eurostat, dataset une_rt_a (Unemployment by sex and age - annual data), last updated 2026-06-11, pulled 2026-09-10 via the Eurostat dissemination API. No key, no registration.</p>
+    <p class="byline">License: Creative Commons Attribution 4.0 International (CC BY 4.0) &copy; European Union, 1995-2026. Source: Eurostat (une_rt_a). Access-right: PUBLIC.</p>
+    <p class="byline">Reused from Eurostat. Eurostat is not responsible for the transformations we applied (dimension filtering to unit PC_ACT and ten geos, renaming EU27_2020 to EU27, flag-letter stripping, flat CSV reshaping).</p>
+  </section>
+  <section aria-label="Sample preview">
+    <h2>Sample preview</h2>
+    <p class="table-note">2025 headline rates (age Y15-74, sex T) for all ten geos, straight from the CSV.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Sample data table"><table><thead><tr><th scope="col">year</th><th scope="col">geo</th><th scope="col">sex</th><th scope="col">age</th><th scope="col">value</th></tr></thead><tbody><tr><td>2025</td><td>EU27</td><td>T</td><td>Y15-74</td><td>6.0</td></tr><tr><td>2025</td><td>EA20</td><td>T</td><td>Y15-74</td><td>6.4</td></tr><tr><td>2025</td><td>DE</td><td>T</td><td>Y15-74</td><td>3.8</td></tr><tr><td>2025</td><td>EL</td><td>T</td><td>Y15-74</td><td>8.9</td></tr><tr><td>2025</td><td>ES</td><td>T</td><td>Y15-74</td><td>10.5</td></tr><tr><td>2025</td><td>FR</td><td>T</td><td>Y15-74</td><td>7.7</td></tr><tr><td>2025</td><td>IT</td><td>T</td><td>Y15-74</td><td>6.1</td></tr><tr><td>2025</td><td>NL</td><td>T</td><td>Y15-74</td><td>3.9</td></tr><tr><td>2025</td><td>PL</td><td>T</td><td>Y15-74</td><td>3.1</td></tr><tr><td>2025</td><td>SE</td><td>T</td><td>Y15-74</td><td>8.8</td></tr></tbody></table></div>
+  </section>
+  <section aria-label="Files">
+    <h2>Files</h2>
+    <ul class="files">
+      <li><a href="../data/eurostat/unemployment/unemployment-rate.csv" download>unemployment-rate.csv</a><span class="sz">3,768 rows, complete · 233 KB</span></li>
+      <li><a href="../data/eurostat/unemployment/sample.csv" download>sample.csv</a><span class="sz">22 rows · 1.3 KB</span></li>
+      <li><a href="../data/eurostat/unemployment/sample.json" download>sample.json</a><span class="sz">22 records · 4.9 KB</span></li>
+      <li><a href="../data/eurostat/unemployment/schema.md" download>schema.md</a><span class="sz">column definitions, coverage, caveats</span></li>
+    </ul>
+  </section>
+  <section aria-label="Get the data">
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/eurostat/unemployment/unemployment-rate.csv" download>Download full CSV (free)</a>
+      <a class="btn" href="eurostat-rents.html">Rents dataset &rarr;</a>
+    </div>
+    <p class="btn-note">The full table is the free CSV above; nothing paywalled here. For US labour-side context, see the <a href="hud-fmr-2026.html">HUD FMR FY2026 dataset</a>, or browse the rest of the catalog on the <a href="../portfolio.html">portfolio page</a>. Republishing? The <a href="../guides/dataset-license-guide.html">dataset license guide</a> covers CC BY 4.0 attribution format.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

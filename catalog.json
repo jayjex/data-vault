@@ -639,6 +639,50 @@
    "page": "https://jayjex.github.io/data-vault/datasets/osm-africa-civic-amenities.html"
   },
   {
+   "slug": "osm-oceania-civic-amenities",
+   "name": "OpenStreetMap Civic Amenities, Sydney-Melbourne-Auckland, 2026-09",
+   "niche": "open-data",
+   "tags": [
+    "openstreetmap",
+    "osm",
+    "civic-amenities",
+    "oceania"
+   ],
+   "description": "Counts of amenity=drinking_water, amenity=toilets, and amenity=bench features inside the greater Sydney, City of Melbourne, and Auckland unitary authority boundaries: 27,231 features across 9 city-amenity pairs, Overpass API snapshot 2026-09-10, license line verbatim per row.",
+   "stats": {
+    "rows": 9,
+    "tables": 1,
+    "columns": 4,
+    "updated": "2026-09-10"
+   },
+   "sample": {
+    "csv": "https://jayjex.github.io/data-vault/data/osm-oceania-civic/sample.csv",
+    "json": "https://jayjex.github.io/data-vault/data/osm-oceania-civic/sample.json",
+    "rows": 9,
+    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+   },
+   "extra_files": [
+    {
+     "name": "oceania-civic-amenities.csv (full, free)",
+     "url": "https://jayjex.github.io/data-vault/data/osm-oceania-civic/oceania-civic-amenities.csv",
+     "rows": 9,
+     "note": "complete dataset, free download"
+    },
+    {
+     "name": "schema.md",
+     "url": "https://jayjex.github.io/data-vault/data/osm-oceania-civic/schema.md",
+     "note": "columns, Overpass query form, boundary relations, example nodes, mirror cross-check, snapshot caveats"
+    }
+   ],
+   "full_data": {
+    "status": "free",
+    "url": "https://jayjex.github.io/data-vault/data/osm-oceania-civic/oceania-civic-amenities.csv",
+    "note": "Source is ODbL OpenStreetMap data (© OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
+   },
+   "license": "ODbL 1.0 (source data OpenStreetMap, © OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
+   "page": "https://jayjex.github.io/data-vault/datasets/osm-oceania-civic-amenities.html"
+  },
+  {
    "slug": "hud-fmr-county-2026",
    "name": "HUD Fair Market Rents FY2026 by County: completeness & spread",
    "niche": "gov-data",

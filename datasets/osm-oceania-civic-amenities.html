@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenStreetMap Civic Amenities: Sydney, Melbourne, Auckland (CSV) | Data Vault</title>
+<meta name="description" content="Drinking water, public toilets, and benches in Sydney, Melbourne, and Auckland: 27,231 mapped features from OpenStreetMap, counted via the Overpass API. Free CSV, ODbL.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/datasets/osm-oceania-civic-amenities.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="OpenStreetMap Civic Amenities: Sydney, Melbourne, Auckland (CSV) | Data Vault">
+<meta property="og:description" content="Drinking water, public toilets, and benches in Sydney, Melbourne, and Auckland: 27,231 mapped features from OpenStreetMap, counted via the Overpass API. Free CSV, ODbL.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/datasets/osm-oceania-civic-amenities.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "OpenStreetMap Civic Amenities, Sydney-Melbourne-Auckland, 2026-09", "description": "Counts of three civic amenity types (amenity=drinking_water, amenity=toilets, amenity=bench) inside the administrative boundaries of greater Sydney, the City of Melbourne, and the Auckland unitary authority: 27,231 mapped features across 9 city-amenity pairs, queried from the Overpass API on 2026-09-10.", "url": "https://jayjex.github.io/data-vault/datasets/osm-oceania-civic-amenities.html", "keywords": ["openstreetmap", "osm", "drinking water", "public toilets", "benches", "sydney", "melbourne", "auckland", "oceania", "civic amenities"], "creator": {"@type": "Organization", "name": "Matchbook Labs"}, "isAccessibleForFree": true, "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/osm-oceania-civic/oceania-civic-amenities.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/osm-oceania-civic/sample.csv"}, {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://jayjex.github.io/data-vault/data/osm-oceania-civic/sample.json"}], "license": "https://opendatacommons.org/licenses/odbl/1-0/", "isBasedOn": "https://wiki.openstreetmap.org/wiki/Overpass_API"}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>OpenStreetMap Civic Amenities: Sydney, Melbourne, Auckland</h1>
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>27,231</b> features, 3 cities</span><span class="stat"><b>3</b> amenity types</span><span class="stat"><b>2026-09-10</b> counted</span><span class="stat"><b>free</b> CSV</span></div>
+  <section aria-label="About this dataset">
+    <p>One CSV, nine rows: Sydney, Melbourne, and Auckland &times; three civic amenity types. Each row is the count of OpenStreetMap features carrying that amenity tag inside the city's boundary, queried from the Overpass API in one run, with the license line carried verbatim in a fourth column.</p>
+    <p>The amenity tags are <span class="mono">amenity=drinking_water</span> (fountains and public tap points), <span class="mono">amenity=toilets</span> (public and customer toilets, mapped as nodes and ways), and <span class="mono">amenity=bench</span> (park seats and bus-stop benches). This is the first region in the series to count toilets and benches; drinking water keeps the series' common theme so the numbers line up with the other six regions. The query shape is <span class="mono">area(id)-&gt;.a; nwr["amenity"="toilets"](area.a); out count;</span>, one call per theme per city, area-filtered rather than bbox-filtered, so the numbers follow exact city limits.</p>
+    <p>Sydney owns this comparison. 13,573 benches, 2,501 toilets, and 2,479 drinking-water points inside the metro boundary &mdash; the largest single-city count of any amenity in the whole series (the previous high was Nairobi's 2,174 water points). The toilet count is the useful one for trip planning: Sydney councils map operators, wheelchair access, and changing tables, and many nodes link back to the national toilet map (toiletmap.gov.au). Melbourne looks thin by comparison (355 drinking fountains, 142 toilets) because its boundary is the 37 km&sup2; City of Melbourne municipality, not greater Melbourne &mdash; its count includes heritage pieces like the Temperance Fountain. Auckland's 992 toilets and 4,916 benches sit between the two, under the unitary authority that spans the whole region.</p>
+    <p>Counts ran on 2026-09-10 against the Overpass API (maps.mail.ru mirror, keyless, base snapshot 2026-09-08T20:07:04Z), so the numbers are a snapshot of a database that moves daily. A parallel run on the overpass-api.de mirror matched all 9 counts exactly. Boundaries are Nominatim administrative relations, each passed to Overpass as its 3600000000-offset area ID: Sydney R5750005, City of Melbourne R2404870, and the Auckland unitary authority R2094141. A brief that circulated for this batch suggested Sydney R7003490; verification showed that relation is a suburb of Rzesz&oacute;w, Poland, and it was discarded.</p>
+    <p>For civic amenity counts elsewhere in the catalog, see the <a href="osm-us-civic-amenities.html">OSM US civic amenities dataset</a> (New York, Los Angeles, Chicago, Austin, Seattle), the <a href="osm-asia-civic-amenities.html">OSM Asia civic amenities dataset</a> (Tokyo, Jakarta, Seoul), the <a href="osm-eu-civic-amenities.html">OSM EU civic amenities dataset</a> (Berlin, Amsterdam, Paris, Madrid, Warsaw), the <a href="osm-latam-civic-amenities.html">OSM Latin America civic amenities dataset</a> (S&atilde;o Paulo, Buenos Aires, Mexico City), the <a href="osm-mena-civic-amenities.html">OSM MENA civic amenities dataset</a> (Istanbul, Cairo, Mumbai), and the <a href="osm-africa-civic-amenities.html">OSM Africa civic amenities dataset</a> (Lagos, Nairobi, Addis Ababa).</p>
+    <p class="byline">The data included in this document is from www.openstreetmap.org. The data is made available under ODbL. &copy; OpenStreetMap contributors. License: Open Data Commons Open Database License (ODbL) 1.0, https://opendatacommons.org/licenses/odbl/1-0/</p>
+    <p class="byline">Reused from OpenStreetMap via the Overpass API (maps.mail.ru mirror, base snapshot 2026-09-08T20:07:04Z). OSM is not responsible for the transformations we applied (boundary filtering, amenity-type aggregation, count rollup, license column added).</p>
+  </section>
+  <section aria-label="Sample preview">
+    <h2>Sample preview</h2>
+    <p class="table-note">All nine rows, since the dataset is one small table. The CSVs below carry identical rows plus the license column.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Sample data table"><table><thead><tr><th scope="col">city</th><th scope="col">drinking water</th><th scope="col">public toilets</th><th scope="col">benches</th></tr></thead><tbody><tr><td>Sydney</td><td>2,479</td><td>2,501</td><td>13,573</td></tr><tr><td>Melbourne</td><td>355</td><td>142</td><td>1,845</td></tr><tr><td>Auckland</td><td>428</td><td>992</td><td>4,916</td></tr></tbody></table></div>
+  </section>
+  <section aria-label="Files">
+    <h2>Files</h2>
+    <ul class="files">
+      <li><a href="../data/osm-oceania-civic/oceania-civic-amenities.csv" download>oceania-civic-amenities.csv</a><span class="sz">9 rows, complete &middot; 1.4 KB</span></li>
+      <li><a href="../data/osm-oceania-civic/sample.csv" download>sample.csv</a><span class="sz">9 rows &middot; 1.4 KB</span></li>
+      <li><a href="../data/osm-oceania-civic/sample.json" download>sample.json</a><span class="sz">9 records &middot; 2.2 KB</span></li>
+</ul>
+  </section>
+  <section aria-label="Get the data">
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/osm-oceania-civic/oceania-civic-amenities.csv" download>Download counts CSV (free)</a>
+      <a class="btn" href="osm-africa-civic-amenities.html">Africa counterpart &rarr;</a>
+    </div>
+    <p class="btn-note">Source data is ODbL, so the full table is the free CSV above; the share-alike clause carries over if you build a derivative database. Compare against the <a href="osm-eu-civic-amenities.html">five EU capitals</a> and the <a href="osm-us-civic-amenities.html">five US cities</a>, or browse the rest of the catalog on the <a href="../portfolio.html">portfolio page</a>. Republishing? The <a href="../guides/dataset-license-guide.html">license guide</a> covers ODbL attribution format.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples ODbL &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

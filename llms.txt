@@ -155,6 +155,14 @@ Counts of three civic amenity types inside exact administrative boundaries: amen
 - Citable DOI: https://doi.org/10.5281/zenodo.22665925 (Zenodo record: https://zenodo.org/records/22665925/latest)
 - License: ODbL 1.0 (© OpenStreetMap contributors, Overpass API snapshot)
 
+### OpenStreetMap Civic Amenities, Sydney-Melbourne-Auckland, 2026-09 (osm-oceania-civic-amenities)
+Counts of three civic amenity types inside exact administrative boundaries: amenity=drinking_water, amenity=toilets, amenity=bench for Sydney (13,573 benches, 2,501 toilets, 2,479 drinking-water points — the largest single-city count in the series, under the metro place boundary), Melbourne (355 fountains including heritage pieces like the Temperance Fountain, 142 toilets — City of Melbourne municipality only), and Auckland (992 toilets, 4,916 benches under the unitary authority). Overpass API snapshot 2026-09-10, 27,231 features across 9 city-amenity pairs, license line carried verbatim per row. First region in the series to count toilets and benches. Niche: open-data. Stats: {"rows": 9, "tables": 1, "columns": 4, "updated": "2026-09-10"}.
+- Sample JSON: https://jayjex.github.io/data-vault/data/osm-oceania-civic/sample.json
+- Sample CSV: https://jayjex.github.io/data-vault/data/osm-oceania-civic/sample.csv
+- Page: https://jayjex.github.io/data-vault/datasets/osm-oceania-civic-amenities.html
+- Full data (free): https://jayjex.github.io/data-vault/data/osm-oceania-civic/oceania-civic-amenities.csv
+- License: ODbL 1.0 (© OpenStreetMap contributors, Overpass API snapshot)
+
 ### Printable Engineering Bundle (printable-engineering-bundle)
 Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (A4 + US Letter PDFs with answer keys, mazes, dot-to-dots) and 5 Web3 KPI spreadsheet templates (portfolio, airdrop, DeFi yield, bounty income, trading journal) with live formulas. Niche: printables. Stats: {"worksheets_pages": 120, "spreadsheets": 5, "paper_sizes": 2, "updated": "2026-09-06"}.
 - Page: https://jayjex.github.io/data-vault/datasets/printable-engineering-bundle.html

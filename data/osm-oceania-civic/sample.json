@@ -1,0 +1,67 @@
+{
+ "slug": "osm-oceania-civic-amenities",
+ "name": "OpenStreetMap Civic Amenities, Sydney-Melbourne-Auckland, 2026-09",
+ "columns": [
+  "city",
+  "theme",
+  "count",
+  "osm_license"
+ ],
+ "row_count": 9,
+ "records": [
+  {
+   "city": "Sydney",
+   "theme": "drinking water",
+   "count": 2479,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Sydney",
+   "theme": "public toilets",
+   "count": 2501,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Sydney",
+   "theme": "benches",
+   "count": 13573,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Melbourne",
+   "theme": "drinking water",
+   "count": 355,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Melbourne",
+   "theme": "public toilets",
+   "count": 142,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Melbourne",
+   "theme": "benches",
+   "count": 1845,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Auckland",
+   "theme": "drinking water",
+   "count": 428,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Auckland",
+   "theme": "public toilets",
+   "count": 992,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  {
+   "city": "Auckland",
+   "theme": "benches",
+   "count": 4916,
+   "osm_license": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  }
+ ]
+}

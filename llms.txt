@@ -103,6 +103,7 @@ Counts of three civic amenity node types inside official city boundaries: amenit
 - Sample CSV: https://jayjex.github.io/data-vault/data/osm-asia-civic/sample.csv
 - Page: https://jayjex.github.io/data-vault/datasets/osm-asia-civic-amenities.html
 - Full data (free): https://jayjex.github.io/data-vault/data/osm-asia-civic/counts-2026-09.csv
+- Citable DOI: https://doi.org/10.5281/zenodo.22665145 (Zenodo record: https://zenodo.org/records/22665145/latest)
 - License: ODbL 1.0 (© OpenStreetMap contributors, Overpass API snapshot)
 
 ### OpenStreetMap Civic Amenities, US five cities, 2026-09 (osm-us-civic-amenities)

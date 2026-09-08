@@ -1,0 +1,213 @@
+{
+ "slug": "eurostat-rents",
+ "name": "Eurostat HICP Actual Rents, NL & EU27, CP0411",
+ "columns": [
+  "month",
+  "geo",
+  "unit",
+  "value",
+  "geo_label",
+  "unit_label"
+ ],
+ "row_count": 278,
+ "records": [
+  {
+   "time_label": "2017-12",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "RCH_A",
+   "unit_label": "Annual rate of change",
+   "value": 1.3,
+   "month": "2017-12"
+  },
+  {
+   "time_label": "2018-01",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "RCH_A",
+   "unit_label": "Annual rate of change",
+   "value": 1.3,
+   "month": "2018-01"
+  },
+  {
+   "time_label": "2018-02",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "RCH_A",
+   "unit_label": "Annual rate of change",
+   "value": 1.3,
+   "month": "2018-02"
+  },
+  {
+   "time_label": "2018-03",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "RCH_A",
+   "unit_label": "Annual rate of change",
+   "value": 1.3,
+   "month": "2018-03"
+  },
+  {
+   "time_label": "2018-04",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "RCH_A",
+   "unit_label": "Annual rate of change",
+   "value": 1.3,
+   "month": "2018-04"
+  },
+  {
+   "time_label": "2018-05",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "RCH_A",
+   "unit_label": "Annual rate of change",
+   "value": 1.4,
+   "month": "2018-05"
+  },
+  {
+   "time_label": "2018-06",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "RCH_A",
+   "unit_label": "Annual rate of change",
+   "value": 1.1,
+   "month": "2018-06"
+  },
+  {
+   "time_label": "2018-07",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "RCH_A",
+   "unit_label": "Annual rate of change",
+   "value": 1.2,
+   "month": "2018-07"
+  },
+  {
+   "time_label": "2018-08",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "RCH_A",
+   "unit_label": "Annual rate of change",
+   "value": 1.2,
+   "month": "2018-08"
+  },
+  {
+   "time_label": "2018-09",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "RCH_A",
+   "unit_label": "Annual rate of change",
+   "value": 1.2,
+   "month": "2018-09"
+  },
+  {
+   "time_label": "2018-10",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "RCH_A",
+   "unit_label": "Annual rate of change",
+   "value": 1.2,
+   "month": "2018-10"
+  },
+  {
+   "time_label": "2018-11",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "RCH_A",
+   "unit_label": "Annual rate of change",
+   "value": 1.2,
+   "month": "2018-11"
+  },
+  {
+   "time_label": "2018-12",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "RCH_A",
+   "unit_label": "Annual rate of change",
+   "value": 1.2,
+   "month": "2018-12"
+  },
+  {
+   "time_label": "2019-01",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "RCH_A",
+   "unit_label": "Annual rate of change",
+   "value": 1.2,
+   "month": "2019-01"
+  },
+  {
+   "time_label": "2019-02",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "RCH_A",
+   "unit_label": "Annual rate of change",
+   "value": 1.3,
+   "month": "2019-02"
+  },
+  {
+   "time_label": "2019-03",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "RCH_A",
+   "unit_label": "Annual rate of change",
+   "value": 1.3,
+   "month": "2019-03"
+  },
+  {
+   "time_label": "2019-04",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "RCH_A",
+   "unit_label": "Annual rate of change",
+   "value": 1.3,
+   "month": "2019-04"
+  },
+  {
+   "time_label": "2019-05",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "RCH_A",
+   "unit_label": "Annual rate of change",
+   "value": 1.3,
+   "month": "2019-05"
+  },
+  {
+   "time_label": "2019-06",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "RCH_A",
+   "unit_label": "Annual rate of change",
+   "value": 1.6,
+   "month": "2019-06"
+  },
+  {
+   "time_label": "2019-07",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "RCH_A",
+   "unit_label": "Annual rate of change",
+   "value": 1.6,
+   "month": "2019-07"
+  },
+  {
+   "time_label": "2019-08",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "RCH_A",
+   "unit_label": "Annual rate of change",
+   "value": 1.6,
+   "month": "2019-08"
+  },
+  {
+   "time_label": "2019-09",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "RCH_A",
+   "unit_label": "Annual rate of change",
+   "value": 1.6,
+   "month": "2019-09"
+  }
+ ]
+}

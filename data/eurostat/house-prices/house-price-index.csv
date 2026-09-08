@@ -1,0 +1,343 @@
+year,geo,purchase,unit,value,geo_label,purchase_label,unit_label
+2010,EU27,DW_EXST,I15_A_AVG,100.01,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2015=100"
+2011,EU27,DW_EXST,I15_A_AVG,100.67,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2015=100"
+2012,EU27,DW_EXST,I15_A_AVG,98.72,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2015=100"
+2013,EU27,DW_EXST,I15_A_AVG,97.05,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2015=100"
+2014,EU27,DW_EXST,I15_A_AVG,97.78,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2015=100"
+2015,EU27,DW_EXST,I15_A_AVG,100.0,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2015=100"
+2016,EU27,DW_EXST,I15_A_AVG,104.49,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2015=100"
+2017,EU27,DW_EXST,I15_A_AVG,109.75,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2015=100"
+2018,EU27,DW_EXST,I15_A_AVG,115.28,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2015=100"
+2019,EU27,DW_EXST,I15_A_AVG,120.91,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2015=100"
+2020,EU27,DW_EXST,I15_A_AVG,127.81,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2015=100"
+2021,EU27,DW_EXST,I15_A_AVG,139.11,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2015=100"
+2022,EU27,DW_EXST,I15_A_AVG,149.73,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2015=100"
+2023,EU27,DW_EXST,I15_A_AVG,147.42,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2015=100"
+2024,EU27,DW_EXST,I15_A_AVG,151.08,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2015=100"
+2025,EU27,DW_EXST,I15_A_AVG,159.65,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2015=100"
+2005,NL,DW_EXST,I15_A_AVG,106.44,Netherlands,Purchases of existing dwellings,"Annual average index, 2015=100"
+2006,NL,DW_EXST,I15_A_AVG,111.29,Netherlands,Purchases of existing dwellings,"Annual average index, 2015=100"
+2007,NL,DW_EXST,I15_A_AVG,115.97,Netherlands,Purchases of existing dwellings,"Annual average index, 2015=100"
+2008,NL,DW_EXST,I15_A_AVG,119.45,Netherlands,Purchases of existing dwellings,"Annual average index, 2015=100"
+2009,NL,DW_EXST,I15_A_AVG,115.39,Netherlands,Purchases of existing dwellings,"Annual average index, 2015=100"
+2010,NL,DW_EXST,I15_A_AVG,112.77,Netherlands,Purchases of existing dwellings,"Annual average index, 2015=100"
+2011,NL,DW_EXST,I15_A_AVG,110.03,Netherlands,Purchases of existing dwellings,"Annual average index, 2015=100"
+2012,NL,DW_EXST,I15_A_AVG,102.95,Netherlands,Purchases of existing dwellings,"Annual average index, 2015=100"
+2013,NL,DW_EXST,I15_A_AVG,96.15,Netherlands,Purchases of existing dwellings,"Annual average index, 2015=100"
+2014,NL,DW_EXST,I15_A_AVG,97.05,Netherlands,Purchases of existing dwellings,"Annual average index, 2015=100"
+2015,NL,DW_EXST,I15_A_AVG,100.0,Netherlands,Purchases of existing dwellings,"Annual average index, 2015=100"
+2016,NL,DW_EXST,I15_A_AVG,105.51,Netherlands,Purchases of existing dwellings,"Annual average index, 2015=100"
+2017,NL,DW_EXST,I15_A_AVG,114.06,Netherlands,Purchases of existing dwellings,"Annual average index, 2015=100"
+2018,NL,DW_EXST,I15_A_AVG,124.57,Netherlands,Purchases of existing dwellings,"Annual average index, 2015=100"
+2019,NL,DW_EXST,I15_A_AVG,133.34,Netherlands,Purchases of existing dwellings,"Annual average index, 2015=100"
+2020,NL,DW_EXST,I15_A_AVG,143.85,Netherlands,Purchases of existing dwellings,"Annual average index, 2015=100"
+2021,NL,DW_EXST,I15_A_AVG,165.5,Netherlands,Purchases of existing dwellings,"Annual average index, 2015=100"
+2022,NL,DW_EXST,I15_A_AVG,187.52,Netherlands,Purchases of existing dwellings,"Annual average index, 2015=100"
+2023,NL,DW_EXST,I15_A_AVG,182.18,Netherlands,Purchases of existing dwellings,"Annual average index, 2015=100"
+2024,NL,DW_EXST,I15_A_AVG,198.1,Netherlands,Purchases of existing dwellings,"Annual average index, 2015=100"
+2025,NL,DW_EXST,I15_A_AVG,215.1,Netherlands,Purchases of existing dwellings,"Annual average index, 2015=100"
+2010,EU27,DW_EXST,I25_A_AVG,62.65,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2025=100"
+2011,EU27,DW_EXST,I25_A_AVG,63.06,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2025=100"
+2012,EU27,DW_EXST,I25_A_AVG,61.84,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2025=100"
+2013,EU27,DW_EXST,I25_A_AVG,60.79,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2025=100"
+2014,EU27,DW_EXST,I25_A_AVG,61.25,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2025=100"
+2015,EU27,DW_EXST,I25_A_AVG,62.64,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2025=100"
+2016,EU27,DW_EXST,I25_A_AVG,65.45,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2025=100"
+2017,EU27,DW_EXST,I25_A_AVG,68.74,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2025=100"
+2018,EU27,DW_EXST,I25_A_AVG,72.21,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2025=100"
+2019,EU27,DW_EXST,I25_A_AVG,75.74,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2025=100"
+2020,EU27,DW_EXST,I25_A_AVG,80.07,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2025=100"
+2021,EU27,DW_EXST,I25_A_AVG,87.14,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2025=100"
+2022,EU27,DW_EXST,I25_A_AVG,93.79,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2025=100"
+2023,EU27,DW_EXST,I25_A_AVG,92.34,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2025=100"
+2024,EU27,DW_EXST,I25_A_AVG,94.63,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2025=100"
+2025,EU27,DW_EXST,I25_A_AVG,100.0,European Union - 27 countries (from 2020),Purchases of existing dwellings,"Annual average index, 2025=100"
+2005,NL,DW_EXST,I25_A_AVG,49.48,Netherlands,Purchases of existing dwellings,"Annual average index, 2025=100"
+2006,NL,DW_EXST,I25_A_AVG,51.74,Netherlands,Purchases of existing dwellings,"Annual average index, 2025=100"
+2007,NL,DW_EXST,I25_A_AVG,53.91,Netherlands,Purchases of existing dwellings,"Annual average index, 2025=100"
+2008,NL,DW_EXST,I25_A_AVG,55.54,Netherlands,Purchases of existing dwellings,"Annual average index, 2025=100"
+2009,NL,DW_EXST,I25_A_AVG,53.65,Netherlands,Purchases of existing dwellings,"Annual average index, 2025=100"
+2010,NL,DW_EXST,I25_A_AVG,52.43,Netherlands,Purchases of existing dwellings,"Annual average index, 2025=100"
+2011,NL,DW_EXST,I25_A_AVG,51.16,Netherlands,Purchases of existing dwellings,"Annual average index, 2025=100"
+2012,NL,DW_EXST,I25_A_AVG,47.86,Netherlands,Purchases of existing dwellings,"Annual average index, 2025=100"
+2013,NL,DW_EXST,I25_A_AVG,44.7,Netherlands,Purchases of existing dwellings,"Annual average index, 2025=100"
+2014,NL,DW_EXST,I25_A_AVG,45.12,Netherlands,Purchases of existing dwellings,"Annual average index, 2025=100"
+2015,NL,DW_EXST,I25_A_AVG,46.49,Netherlands,Purchases of existing dwellings,"Annual average index, 2025=100"
+2016,NL,DW_EXST,I25_A_AVG,49.05,Netherlands,Purchases of existing dwellings,"Annual average index, 2025=100"
+2017,NL,DW_EXST,I25_A_AVG,53.03,Netherlands,Purchases of existing dwellings,"Annual average index, 2025=100"
+2018,NL,DW_EXST,I25_A_AVG,57.92,Netherlands,Purchases of existing dwellings,"Annual average index, 2025=100"
+2019,NL,DW_EXST,I25_A_AVG,61.99,Netherlands,Purchases of existing dwellings,"Annual average index, 2025=100"
+2020,NL,DW_EXST,I25_A_AVG,66.88,Netherlands,Purchases of existing dwellings,"Annual average index, 2025=100"
+2021,NL,DW_EXST,I25_A_AVG,76.94,Netherlands,Purchases of existing dwellings,"Annual average index, 2025=100"
+2022,NL,DW_EXST,I25_A_AVG,87.18,Netherlands,Purchases of existing dwellings,"Annual average index, 2025=100"
+2023,NL,DW_EXST,I25_A_AVG,84.69,Netherlands,Purchases of existing dwellings,"Annual average index, 2025=100"
+2024,NL,DW_EXST,I25_A_AVG,92.1,Netherlands,Purchases of existing dwellings,"Annual average index, 2025=100"
+2025,NL,DW_EXST,I25_A_AVG,100.0,Netherlands,Purchases of existing dwellings,"Annual average index, 2025=100"
+2011,EU27,DW_EXST,RCH_A_AVG,0.7,European Union - 27 countries (from 2020),Purchases of existing dwellings,Annual average rate of change
+2012,EU27,DW_EXST,RCH_A_AVG,-1.9,European Union - 27 countries (from 2020),Purchases of existing dwellings,Annual average rate of change
+2013,EU27,DW_EXST,RCH_A_AVG,-1.7,European Union - 27 countries (from 2020),Purchases of existing dwellings,Annual average rate of change
+2014,EU27,DW_EXST,RCH_A_AVG,0.7,European Union - 27 countries (from 2020),Purchases of existing dwellings,Annual average rate of change
+2015,EU27,DW_EXST,RCH_A_AVG,2.3,European Union - 27 countries (from 2020),Purchases of existing dwellings,Annual average rate of change
+2016,EU27,DW_EXST,RCH_A_AVG,4.5,European Union - 27 countries (from 2020),Purchases of existing dwellings,Annual average rate of change
+2017,EU27,DW_EXST,RCH_A_AVG,5.0,European Union - 27 countries (from 2020),Purchases of existing dwellings,Annual average rate of change
+2018,EU27,DW_EXST,RCH_A_AVG,5.0,European Union - 27 countries (from 2020),Purchases of existing dwellings,Annual average rate of change
+2019,EU27,DW_EXST,RCH_A_AVG,4.9,European Union - 27 countries (from 2020),Purchases of existing dwellings,Annual average rate of change
+2020,EU27,DW_EXST,RCH_A_AVG,5.7,European Union - 27 countries (from 2020),Purchases of existing dwellings,Annual average rate of change
+2021,EU27,DW_EXST,RCH_A_AVG,8.8,European Union - 27 countries (from 2020),Purchases of existing dwellings,Annual average rate of change
+2022,EU27,DW_EXST,RCH_A_AVG,7.6,European Union - 27 countries (from 2020),Purchases of existing dwellings,Annual average rate of change
+2023,EU27,DW_EXST,RCH_A_AVG,-1.5,European Union - 27 countries (from 2020),Purchases of existing dwellings,Annual average rate of change
+2024,EU27,DW_EXST,RCH_A_AVG,2.5,European Union - 27 countries (from 2020),Purchases of existing dwellings,Annual average rate of change
+2025,EU27,DW_EXST,RCH_A_AVG,5.7,European Union - 27 countries (from 2020),Purchases of existing dwellings,Annual average rate of change
+2006,NL,DW_EXST,RCH_A_AVG,4.6,Netherlands,Purchases of existing dwellings,Annual average rate of change
+2007,NL,DW_EXST,RCH_A_AVG,4.2,Netherlands,Purchases of existing dwellings,Annual average rate of change
+2008,NL,DW_EXST,RCH_A_AVG,3.0,Netherlands,Purchases of existing dwellings,Annual average rate of change
+2009,NL,DW_EXST,RCH_A_AVG,-3.4,Netherlands,Purchases of existing dwellings,Annual average rate of change
+2010,NL,DW_EXST,RCH_A_AVG,-2.3,Netherlands,Purchases of existing dwellings,Annual average rate of change
+2011,NL,DW_EXST,RCH_A_AVG,-2.4,Netherlands,Purchases of existing dwellings,Annual average rate of change
+2012,NL,DW_EXST,RCH_A_AVG,-6.4,Netherlands,Purchases of existing dwellings,Annual average rate of change
+2013,NL,DW_EXST,RCH_A_AVG,-6.6,Netherlands,Purchases of existing dwellings,Annual average rate of change
+2014,NL,DW_EXST,RCH_A_AVG,0.9,Netherlands,Purchases of existing dwellings,Annual average rate of change
+2015,NL,DW_EXST,RCH_A_AVG,3.0,Netherlands,Purchases of existing dwellings,Annual average rate of change
+2016,NL,DW_EXST,RCH_A_AVG,5.5,Netherlands,Purchases of existing dwellings,Annual average rate of change
+2017,NL,DW_EXST,RCH_A_AVG,8.1,Netherlands,Purchases of existing dwellings,Annual average rate of change
+2018,NL,DW_EXST,RCH_A_AVG,9.2,Netherlands,Purchases of existing dwellings,Annual average rate of change
+2019,NL,DW_EXST,RCH_A_AVG,7.0,Netherlands,Purchases of existing dwellings,Annual average rate of change
+2020,NL,DW_EXST,RCH_A_AVG,7.9,Netherlands,Purchases of existing dwellings,Annual average rate of change
+2021,NL,DW_EXST,RCH_A_AVG,15.1,Netherlands,Purchases of existing dwellings,Annual average rate of change
+2022,NL,DW_EXST,RCH_A_AVG,13.3,Netherlands,Purchases of existing dwellings,Annual average rate of change
+2023,NL,DW_EXST,RCH_A_AVG,-2.9,Netherlands,Purchases of existing dwellings,Annual average rate of change
+2024,NL,DW_EXST,RCH_A_AVG,8.7,Netherlands,Purchases of existing dwellings,Annual average rate of change
+2025,NL,DW_EXST,RCH_A_AVG,8.6,Netherlands,Purchases of existing dwellings,Annual average rate of change
+2010,EU27,DW_NEW,I15_A_AVG,101.17,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2015=100"
+2011,EU27,DW_NEW,I15_A_AVG,101.63,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2015=100"
+2012,EU27,DW_NEW,I15_A_AVG,98.89,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2015=100"
+2013,EU27,DW_NEW,I15_A_AVG,97.09,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2015=100"
+2014,EU27,DW_NEW,I15_A_AVG,97.64,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2015=100"
+2015,EU27,DW_NEW,I15_A_AVG,100.0,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2015=100"
+2016,EU27,DW_NEW,I15_A_AVG,103.52,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2015=100"
+2017,EU27,DW_NEW,I15_A_AVG,107.4,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2015=100"
+2018,EU27,DW_NEW,I15_A_AVG,112.79,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2015=100"
+2019,EU27,DW_NEW,I15_A_AVG,118.19,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2015=100"
+2020,EU27,DW_NEW,I15_A_AVG,124.26,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2015=100"
+2021,EU27,DW_NEW,I15_A_AVG,132.67,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2015=100"
+2022,EU27,DW_NEW,I15_A_AVG,145.16,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2015=100"
+2023,EU27,DW_NEW,I15_A_AVG,152.38,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2015=100"
+2024,EU27,DW_NEW,I15_A_AVG,162.74,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2015=100"
+2025,EU27,DW_NEW,I15_A_AVG,170.66,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2015=100"
+2005,NL,DW_NEW,I15_A_AVG,104.34,Netherlands,Purchases of newly built dwellings,"Annual average index, 2015=100"
+2006,NL,DW_NEW,I15_A_AVG,107.72,Netherlands,Purchases of newly built dwellings,"Annual average index, 2015=100"
+2007,NL,DW_NEW,I15_A_AVG,115.29,Netherlands,Purchases of newly built dwellings,"Annual average index, 2015=100"
+2008,NL,DW_NEW,I15_A_AVG,114.38,Netherlands,Purchases of newly built dwellings,"Annual average index, 2015=100"
+2009,NL,DW_NEW,I15_A_AVG,104.7,Netherlands,Purchases of newly built dwellings,"Annual average index, 2015=100"
+2010,NL,DW_NEW,I15_A_AVG,105.5,Netherlands,Purchases of newly built dwellings,"Annual average index, 2015=100"
+2011,NL,DW_NEW,I15_A_AVG,105.47,Netherlands,Purchases of newly built dwellings,"Annual average index, 2015=100"
+2012,NL,DW_NEW,I15_A_AVG,97.03,Netherlands,Purchases of newly built dwellings,"Annual average index, 2015=100"
+2013,NL,DW_NEW,I15_A_AVG,93.83,Netherlands,Purchases of newly built dwellings,"Annual average index, 2015=100"
+2014,NL,DW_NEW,I15_A_AVG,93.87,Netherlands,Purchases of newly built dwellings,"Annual average index, 2015=100"
+2015,NL,DW_NEW,I15_A_AVG,100.0,Netherlands,Purchases of newly built dwellings,"Annual average index, 2015=100"
+2016,NL,DW_NEW,I15_A_AVG,104.03,Netherlands,Purchases of newly built dwellings,"Annual average index, 2015=100"
+2017,NL,DW_NEW,I15_A_AVG,112.28,Netherlands,Purchases of newly built dwellings,"Annual average index, 2015=100"
+2018,NL,DW_NEW,I15_A_AVG,123.46,Netherlands,Purchases of newly built dwellings,"Annual average index, 2015=100"
+2019,NL,DW_NEW,I15_A_AVG,133.76,Netherlands,Purchases of newly built dwellings,"Annual average index, 2015=100"
+2020,NL,DW_NEW,I15_A_AVG,145.51,Netherlands,Purchases of newly built dwellings,"Annual average index, 2015=100"
+2021,NL,DW_NEW,I15_A_AVG,161.57,Netherlands,Purchases of newly built dwellings,"Annual average index, 2015=100"
+2022,NL,DW_NEW,I15_A_AVG,182.43,Netherlands,Purchases of newly built dwellings,"Annual average index, 2015=100"
+2023,NL,DW_NEW,I15_A_AVG,189.21,Netherlands,Purchases of newly built dwellings,"Annual average index, 2015=100"
+2024,NL,DW_NEW,I15_A_AVG,195.13,Netherlands,Purchases of newly built dwellings,"Annual average index, 2015=100"
+2025,NL,DW_NEW,I15_A_AVG,210.87,Netherlands,Purchases of newly built dwellings,"Annual average index, 2015=100"
+2010,EU27,DW_NEW,I25_A_AVG,59.28,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2025=100"
+2011,EU27,DW_NEW,I25_A_AVG,59.55,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2025=100"
+2012,EU27,DW_NEW,I25_A_AVG,57.95,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2025=100"
+2013,EU27,DW_NEW,I25_A_AVG,56.89,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2025=100"
+2014,EU27,DW_NEW,I25_A_AVG,57.21,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2025=100"
+2015,EU27,DW_NEW,I25_A_AVG,58.6,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2025=100"
+2016,EU27,DW_NEW,I25_A_AVG,60.66,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2025=100"
+2017,EU27,DW_NEW,I25_A_AVG,62.94,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2025=100"
+2018,EU27,DW_NEW,I25_A_AVG,66.09,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2025=100"
+2019,EU27,DW_NEW,I25_A_AVG,69.26,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2025=100"
+2020,EU27,DW_NEW,I25_A_AVG,72.81,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2025=100"
+2021,EU27,DW_NEW,I25_A_AVG,77.74,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2025=100"
+2022,EU27,DW_NEW,I25_A_AVG,85.06,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2025=100"
+2023,EU27,DW_NEW,I25_A_AVG,89.29,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2025=100"
+2024,EU27,DW_NEW,I25_A_AVG,95.36,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2025=100"
+2025,EU27,DW_NEW,I25_A_AVG,100.0,European Union - 27 countries (from 2020),Purchases of newly built dwellings,"Annual average index, 2025=100"
+2005,NL,DW_NEW,I25_A_AVG,49.48,Netherlands,Purchases of newly built dwellings,"Annual average index, 2025=100"
+2006,NL,DW_NEW,I25_A_AVG,51.09,Netherlands,Purchases of newly built dwellings,"Annual average index, 2025=100"
+2007,NL,DW_NEW,I25_A_AVG,54.68,Netherlands,Purchases of newly built dwellings,"Annual average index, 2025=100"
+2008,NL,DW_NEW,I25_A_AVG,54.24,Netherlands,Purchases of newly built dwellings,"Annual average index, 2025=100"
+2009,NL,DW_NEW,I25_A_AVG,49.66,Netherlands,Purchases of newly built dwellings,"Annual average index, 2025=100"
+2010,NL,DW_NEW,I25_A_AVG,50.03,Netherlands,Purchases of newly built dwellings,"Annual average index, 2025=100"
+2011,NL,DW_NEW,I25_A_AVG,50.02,Netherlands,Purchases of newly built dwellings,"Annual average index, 2025=100"
+2012,NL,DW_NEW,I25_A_AVG,46.01,Netherlands,Purchases of newly built dwellings,"Annual average index, 2025=100"
+2013,NL,DW_NEW,I25_A_AVG,44.5,Netherlands,Purchases of newly built dwellings,"Annual average index, 2025=100"
+2014,NL,DW_NEW,I25_A_AVG,44.52,Netherlands,Purchases of newly built dwellings,"Annual average index, 2025=100"
+2015,NL,DW_NEW,I25_A_AVG,47.42,Netherlands,Purchases of newly built dwellings,"Annual average index, 2025=100"
+2016,NL,DW_NEW,I25_A_AVG,49.33,Netherlands,Purchases of newly built dwellings,"Annual average index, 2025=100"
+2017,NL,DW_NEW,I25_A_AVG,53.25,Netherlands,Purchases of newly built dwellings,"Annual average index, 2025=100"
+2018,NL,DW_NEW,I25_A_AVG,58.55,Netherlands,Purchases of newly built dwellings,"Annual average index, 2025=100"
+2019,NL,DW_NEW,I25_A_AVG,63.43,Netherlands,Purchases of newly built dwellings,"Annual average index, 2025=100"
+2020,NL,DW_NEW,I25_A_AVG,69.0,Netherlands,Purchases of newly built dwellings,"Annual average index, 2025=100"
+2021,NL,DW_NEW,I25_A_AVG,76.62,Netherlands,Purchases of newly built dwellings,"Annual average index, 2025=100"
+2022,NL,DW_NEW,I25_A_AVG,86.52,Netherlands,Purchases of newly built dwellings,"Annual average index, 2025=100"
+2023,NL,DW_NEW,I25_A_AVG,89.73,Netherlands,Purchases of newly built dwellings,"Annual average index, 2025=100"
+2024,NL,DW_NEW,I25_A_AVG,92.54,Netherlands,Purchases of newly built dwellings,"Annual average index, 2025=100"
+2025,NL,DW_NEW,I25_A_AVG,100.0,Netherlands,Purchases of newly built dwellings,"Annual average index, 2025=100"
+2011,EU27,DW_NEW,RCH_A_AVG,0.5,European Union - 27 countries (from 2020),Purchases of newly built dwellings,Annual average rate of change
+2012,EU27,DW_NEW,RCH_A_AVG,-2.7,European Union - 27 countries (from 2020),Purchases of newly built dwellings,Annual average rate of change
+2013,EU27,DW_NEW,RCH_A_AVG,-1.8,European Union - 27 countries (from 2020),Purchases of newly built dwellings,Annual average rate of change
+2014,EU27,DW_NEW,RCH_A_AVG,0.6,European Union - 27 countries (from 2020),Purchases of newly built dwellings,Annual average rate of change
+2015,EU27,DW_NEW,RCH_A_AVG,2.4,European Union - 27 countries (from 2020),Purchases of newly built dwellings,Annual average rate of change
+2016,EU27,DW_NEW,RCH_A_AVG,3.5,European Union - 27 countries (from 2020),Purchases of newly built dwellings,Annual average rate of change
+2017,EU27,DW_NEW,RCH_A_AVG,3.8,European Union - 27 countries (from 2020),Purchases of newly built dwellings,Annual average rate of change
+2018,EU27,DW_NEW,RCH_A_AVG,5.0,European Union - 27 countries (from 2020),Purchases of newly built dwellings,Annual average rate of change
+2019,EU27,DW_NEW,RCH_A_AVG,4.8,European Union - 27 countries (from 2020),Purchases of newly built dwellings,Annual average rate of change
+2020,EU27,DW_NEW,RCH_A_AVG,5.1,European Union - 27 countries (from 2020),Purchases of newly built dwellings,Annual average rate of change
+2021,EU27,DW_NEW,RCH_A_AVG,6.8,European Union - 27 countries (from 2020),Purchases of newly built dwellings,Annual average rate of change
+2022,EU27,DW_NEW,RCH_A_AVG,9.4,European Union - 27 countries (from 2020),Purchases of newly built dwellings,Annual average rate of change
+2023,EU27,DW_NEW,RCH_A_AVG,5.0,European Union - 27 countries (from 2020),Purchases of newly built dwellings,Annual average rate of change
+2024,EU27,DW_NEW,RCH_A_AVG,6.8,European Union - 27 countries (from 2020),Purchases of newly built dwellings,Annual average rate of change
+2025,EU27,DW_NEW,RCH_A_AVG,4.9,European Union - 27 countries (from 2020),Purchases of newly built dwellings,Annual average rate of change
+2006,NL,DW_NEW,RCH_A_AVG,3.2,Netherlands,Purchases of newly built dwellings,Annual average rate of change
+2007,NL,DW_NEW,RCH_A_AVG,7.0,Netherlands,Purchases of newly built dwellings,Annual average rate of change
+2008,NL,DW_NEW,RCH_A_AVG,-0.8,Netherlands,Purchases of newly built dwellings,Annual average rate of change
+2009,NL,DW_NEW,RCH_A_AVG,-8.5,Netherlands,Purchases of newly built dwellings,Annual average rate of change
+2010,NL,DW_NEW,RCH_A_AVG,0.8,Netherlands,Purchases of newly built dwellings,Annual average rate of change
+2011,NL,DW_NEW,RCH_A_AVG,0.0,Netherlands,Purchases of newly built dwellings,Annual average rate of change
+2012,NL,DW_NEW,RCH_A_AVG,-8.0,Netherlands,Purchases of newly built dwellings,Annual average rate of change
+2013,NL,DW_NEW,RCH_A_AVG,-3.3,Netherlands,Purchases of newly built dwellings,Annual average rate of change
+2014,NL,DW_NEW,RCH_A_AVG,0.0,Netherlands,Purchases of newly built dwellings,Annual average rate of change
+2015,NL,DW_NEW,RCH_A_AVG,6.5,Netherlands,Purchases of newly built dwellings,Annual average rate of change
+2016,NL,DW_NEW,RCH_A_AVG,4.0,Netherlands,Purchases of newly built dwellings,Annual average rate of change
+2017,NL,DW_NEW,RCH_A_AVG,7.9,Netherlands,Purchases of newly built dwellings,Annual average rate of change
+2018,NL,DW_NEW,RCH_A_AVG,10.0,Netherlands,Purchases of newly built dwellings,Annual average rate of change
+2019,NL,DW_NEW,RCH_A_AVG,8.3,Netherlands,Purchases of newly built dwellings,Annual average rate of change
+2020,NL,DW_NEW,RCH_A_AVG,8.8,Netherlands,Purchases of newly built dwellings,Annual average rate of change
+2021,NL,DW_NEW,RCH_A_AVG,11.0,Netherlands,Purchases of newly built dwellings,Annual average rate of change
+2022,NL,DW_NEW,RCH_A_AVG,12.9,Netherlands,Purchases of newly built dwellings,Annual average rate of change
+2023,NL,DW_NEW,RCH_A_AVG,3.7,Netherlands,Purchases of newly built dwellings,Annual average rate of change
+2024,NL,DW_NEW,RCH_A_AVG,3.1,Netherlands,Purchases of newly built dwellings,Annual average rate of change
+2025,NL,DW_NEW,RCH_A_AVG,8.1,Netherlands,Purchases of newly built dwellings,Annual average rate of change
+2005,EU27,TOTAL,I15_A_AVG,85.85,European Union - 27 countries (from 2020),Total,"Annual average index, 2015=100"
+2006,EU27,TOTAL,I15_A_AVG,94.31,European Union - 27 countries (from 2020),Total,"Annual average index, 2015=100"
+2007,EU27,TOTAL,I15_A_AVG,102.32,European Union - 27 countries (from 2020),Total,"Annual average index, 2015=100"
+2008,EU27,TOTAL,I15_A_AVG,103.67,European Union - 27 countries (from 2020),Total,"Annual average index, 2015=100"
+2009,EU27,TOTAL,I15_A_AVG,99.79,European Union - 27 countries (from 2020),Total,"Annual average index, 2015=100"
+2010,EU27,TOTAL,I15_A_AVG,100.26,European Union - 27 countries (from 2020),Total,"Annual average index, 2015=100"
+2011,EU27,TOTAL,I15_A_AVG,100.88,European Union - 27 countries (from 2020),Total,"Annual average index, 2015=100"
+2012,EU27,TOTAL,I15_A_AVG,98.76,European Union - 27 countries (from 2020),Total,"Annual average index, 2015=100"
+2013,EU27,TOTAL,I15_A_AVG,97.06,European Union - 27 countries (from 2020),Total,"Annual average index, 2015=100"
+2014,EU27,TOTAL,I15_A_AVG,97.75,European Union - 27 countries (from 2020),Total,"Annual average index, 2015=100"
+2015,EU27,TOTAL,I15_A_AVG,100.0,European Union - 27 countries (from 2020),Total,"Annual average index, 2015=100"
+2016,EU27,TOTAL,I15_A_AVG,104.31,European Union - 27 countries (from 2020),Total,"Annual average index, 2015=100"
+2017,EU27,TOTAL,I15_A_AVG,109.31,European Union - 27 countries (from 2020),Total,"Annual average index, 2015=100"
+2018,EU27,TOTAL,I15_A_AVG,114.81,European Union - 27 countries (from 2020),Total,"Annual average index, 2015=100"
+2019,EU27,TOTAL,I15_A_AVG,120.4,European Union - 27 countries (from 2020),Total,"Annual average index, 2015=100"
+2020,EU27,TOTAL,I15_A_AVG,127.14,European Union - 27 countries (from 2020),Total,"Annual average index, 2015=100"
+2021,EU27,TOTAL,I15_A_AVG,137.87,European Union - 27 countries (from 2020),Total,"Annual average index, 2015=100"
+2022,EU27,TOTAL,I15_A_AVG,148.86,European Union - 27 countries (from 2020),Total,"Annual average index, 2015=100"
+2023,EU27,TOTAL,I15_A_AVG,148.45,European Union - 27 countries (from 2020),Total,"Annual average index, 2015=100"
+2024,EU27,TOTAL,I15_A_AVG,153.45,European Union - 27 countries (from 2020),Total,"Annual average index, 2015=100"
+2025,EU27,TOTAL,I15_A_AVG,161.93,European Union - 27 countries (from 2020),Total,"Annual average index, 2015=100"
+2005,NL,TOTAL,I15_A_AVG,106.3,Netherlands,Total,"Annual average index, 2015=100"
+2006,NL,TOTAL,I15_A_AVG,110.82,Netherlands,Total,"Annual average index, 2015=100"
+2007,NL,TOTAL,I15_A_AVG,116.19,Netherlands,Total,"Annual average index, 2015=100"
+2008,NL,TOTAL,I15_A_AVG,118.74,Netherlands,Total,"Annual average index, 2015=100"
+2009,NL,TOTAL,I15_A_AVG,113.46,Netherlands,Total,"Annual average index, 2015=100"
+2010,NL,TOTAL,I15_A_AVG,111.48,Netherlands,Total,"Annual average index, 2015=100"
+2011,NL,TOTAL,I15_A_AVG,109.28,Netherlands,Total,"Annual average index, 2015=100"
+2012,NL,TOTAL,I15_A_AVG,101.96,Netherlands,Total,"Annual average index, 2015=100"
+2013,NL,TOTAL,I15_A_AVG,95.81,Netherlands,Total,"Annual average index, 2015=100"
+2014,NL,TOTAL,I15_A_AVG,96.61,Netherlands,Total,"Annual average index, 2015=100"
+2015,NL,TOTAL,I15_A_AVG,100.0,Netherlands,Total,"Annual average index, 2015=100"
+2016,NL,TOTAL,I15_A_AVG,105.29,Netherlands,Total,"Annual average index, 2015=100"
+2017,NL,TOTAL,I15_A_AVG,113.81,Netherlands,Total,"Annual average index, 2015=100"
+2018,NL,TOTAL,I15_A_AVG,124.4,Netherlands,Total,"Annual average index, 2015=100"
+2019,NL,TOTAL,I15_A_AVG,133.38,Netherlands,Total,"Annual average index, 2015=100"
+2020,NL,TOTAL,I15_A_AVG,144.07,Netherlands,Total,"Annual average index, 2015=100"
+2021,NL,TOTAL,I15_A_AVG,164.94,Netherlands,Total,"Annual average index, 2015=100"
+2022,NL,TOTAL,I15_A_AVG,186.84,Netherlands,Total,"Annual average index, 2015=100"
+2023,NL,TOTAL,I15_A_AVG,183.26,Netherlands,Total,"Annual average index, 2015=100"
+2024,NL,TOTAL,I15_A_AVG,198.24,Netherlands,Total,"Annual average index, 2015=100"
+2025,NL,TOTAL,I15_A_AVG,215.15,Netherlands,Total,"Annual average index, 2015=100"
+2005,EU27,TOTAL,I25_A_AVG,53.02,European Union - 27 countries (from 2020),Total,"Annual average index, 2025=100"
+2006,EU27,TOTAL,I25_A_AVG,58.24,European Union - 27 countries (from 2020),Total,"Annual average index, 2025=100"
+2007,EU27,TOTAL,I25_A_AVG,63.18,European Union - 27 countries (from 2020),Total,"Annual average index, 2025=100"
+2008,EU27,TOTAL,I25_A_AVG,64.02,European Union - 27 countries (from 2020),Total,"Annual average index, 2025=100"
+2009,EU27,TOTAL,I25_A_AVG,61.62,European Union - 27 countries (from 2020),Total,"Annual average index, 2025=100"
+2010,EU27,TOTAL,I25_A_AVG,61.91,European Union - 27 countries (from 2020),Total,"Annual average index, 2025=100"
+2011,EU27,TOTAL,I25_A_AVG,62.3,European Union - 27 countries (from 2020),Total,"Annual average index, 2025=100"
+2012,EU27,TOTAL,I25_A_AVG,60.98,European Union - 27 countries (from 2020),Total,"Annual average index, 2025=100"
+2013,EU27,TOTAL,I25_A_AVG,59.94,European Union - 27 countries (from 2020),Total,"Annual average index, 2025=100"
+2014,EU27,TOTAL,I25_A_AVG,60.36,European Union - 27 countries (from 2020),Total,"Annual average index, 2025=100"
+2015,EU27,TOTAL,I25_A_AVG,61.76,European Union - 27 countries (from 2020),Total,"Annual average index, 2025=100"
+2016,EU27,TOTAL,I25_A_AVG,64.42,European Union - 27 countries (from 2020),Total,"Annual average index, 2025=100"
+2017,EU27,TOTAL,I25_A_AVG,67.5,European Union - 27 countries (from 2020),Total,"Annual average index, 2025=100"
+2018,EU27,TOTAL,I25_A_AVG,70.9,European Union - 27 countries (from 2020),Total,"Annual average index, 2025=100"
+2019,EU27,TOTAL,I25_A_AVG,74.36,European Union - 27 countries (from 2020),Total,"Annual average index, 2025=100"
+2020,EU27,TOTAL,I25_A_AVG,78.51,European Union - 27 countries (from 2020),Total,"Annual average index, 2025=100"
+2021,EU27,TOTAL,I25_A_AVG,85.14,European Union - 27 countries (from 2020),Total,"Annual average index, 2025=100"
+2022,EU27,TOTAL,I25_A_AVG,91.92,European Union - 27 countries (from 2020),Total,"Annual average index, 2025=100"
+2023,EU27,TOTAL,I25_A_AVG,91.67,European Union - 27 countries (from 2020),Total,"Annual average index, 2025=100"
+2024,EU27,TOTAL,I25_A_AVG,94.76,European Union - 27 countries (from 2020),Total,"Annual average index, 2025=100"
+2025,EU27,TOTAL,I25_A_AVG,100.0,European Union - 27 countries (from 2020),Total,"Annual average index, 2025=100"
+2005,NL,TOTAL,I25_A_AVG,49.41,Netherlands,Total,"Annual average index, 2025=100"
+2006,NL,TOTAL,I25_A_AVG,51.51,Netherlands,Total,"Annual average index, 2025=100"
+2007,NL,TOTAL,I25_A_AVG,54.0,Netherlands,Total,"Annual average index, 2025=100"
+2008,NL,TOTAL,I25_A_AVG,55.19,Netherlands,Total,"Annual average index, 2025=100"
+2009,NL,TOTAL,I25_A_AVG,52.74,Netherlands,Total,"Annual average index, 2025=100"
+2010,NL,TOTAL,I25_A_AVG,51.81,Netherlands,Total,"Annual average index, 2025=100"
+2011,NL,TOTAL,I25_A_AVG,50.79,Netherlands,Total,"Annual average index, 2025=100"
+2012,NL,TOTAL,I25_A_AVG,47.39,Netherlands,Total,"Annual average index, 2025=100"
+2013,NL,TOTAL,I25_A_AVG,44.53,Netherlands,Total,"Annual average index, 2025=100"
+2014,NL,TOTAL,I25_A_AVG,44.91,Netherlands,Total,"Annual average index, 2025=100"
+2015,NL,TOTAL,I25_A_AVG,46.48,Netherlands,Total,"Annual average index, 2025=100"
+2016,NL,TOTAL,I25_A_AVG,48.94,Netherlands,Total,"Annual average index, 2025=100"
+2017,NL,TOTAL,I25_A_AVG,52.9,Netherlands,Total,"Annual average index, 2025=100"
+2018,NL,TOTAL,I25_A_AVG,57.82,Netherlands,Total,"Annual average index, 2025=100"
+2019,NL,TOTAL,I25_A_AVG,62.0,Netherlands,Total,"Annual average index, 2025=100"
+2020,NL,TOTAL,I25_A_AVG,66.96,Netherlands,Total,"Annual average index, 2025=100"
+2021,NL,TOTAL,I25_A_AVG,76.66,Netherlands,Total,"Annual average index, 2025=100"
+2022,NL,TOTAL,I25_A_AVG,86.84,Netherlands,Total,"Annual average index, 2025=100"
+2023,NL,TOTAL,I25_A_AVG,85.18,Netherlands,Total,"Annual average index, 2025=100"
+2024,NL,TOTAL,I25_A_AVG,92.14,Netherlands,Total,"Annual average index, 2025=100"
+2025,NL,TOTAL,I25_A_AVG,100.0,Netherlands,Total,"Annual average index, 2025=100"
+2006,EU27,TOTAL,RCH_A_AVG,9.9,European Union - 27 countries (from 2020),Total,Annual average rate of change
+2007,EU27,TOTAL,RCH_A_AVG,8.5,European Union - 27 countries (from 2020),Total,Annual average rate of change
+2008,EU27,TOTAL,RCH_A_AVG,1.3,European Union - 27 countries (from 2020),Total,Annual average rate of change
+2009,EU27,TOTAL,RCH_A_AVG,-3.7,European Union - 27 countries (from 2020),Total,Annual average rate of change
+2010,EU27,TOTAL,RCH_A_AVG,0.5,European Union - 27 countries (from 2020),Total,Annual average rate of change
+2011,EU27,TOTAL,RCH_A_AVG,0.6,European Union - 27 countries (from 2020),Total,Annual average rate of change
+2012,EU27,TOTAL,RCH_A_AVG,-2.1,European Union - 27 countries (from 2020),Total,Annual average rate of change
+2013,EU27,TOTAL,RCH_A_AVG,-1.7,European Union - 27 countries (from 2020),Total,Annual average rate of change
+2014,EU27,TOTAL,RCH_A_AVG,0.7,European Union - 27 countries (from 2020),Total,Annual average rate of change
+2015,EU27,TOTAL,RCH_A_AVG,2.3,European Union - 27 countries (from 2020),Total,Annual average rate of change
+2016,EU27,TOTAL,RCH_A_AVG,4.3,European Union - 27 countries (from 2020),Total,Annual average rate of change
+2017,EU27,TOTAL,RCH_A_AVG,4.8,European Union - 27 countries (from 2020),Total,Annual average rate of change
+2018,EU27,TOTAL,RCH_A_AVG,5.0,European Union - 27 countries (from 2020),Total,Annual average rate of change
+2019,EU27,TOTAL,RCH_A_AVG,4.9,European Union - 27 countries (from 2020),Total,Annual average rate of change
+2020,EU27,TOTAL,RCH_A_AVG,5.6,European Union - 27 countries (from 2020),Total,Annual average rate of change
+2021,EU27,TOTAL,RCH_A_AVG,8.4,European Union - 27 countries (from 2020),Total,Annual average rate of change
+2022,EU27,TOTAL,RCH_A_AVG,8.0,European Union - 27 countries (from 2020),Total,Annual average rate of change
+2023,EU27,TOTAL,RCH_A_AVG,-0.3,European Union - 27 countries (from 2020),Total,Annual average rate of change
+2024,EU27,TOTAL,RCH_A_AVG,3.4,European Union - 27 countries (from 2020),Total,Annual average rate of change
+2025,EU27,TOTAL,RCH_A_AVG,5.5,European Union - 27 countries (from 2020),Total,Annual average rate of change
+2006,NL,TOTAL,RCH_A_AVG,4.3,Netherlands,Total,Annual average rate of change
+2007,NL,TOTAL,RCH_A_AVG,4.8,Netherlands,Total,Annual average rate of change
+2008,NL,TOTAL,RCH_A_AVG,2.2,Netherlands,Total,Annual average rate of change
+2009,NL,TOTAL,RCH_A_AVG,-4.4,Netherlands,Total,Annual average rate of change
+2010,NL,TOTAL,RCH_A_AVG,-1.7,Netherlands,Total,Annual average rate of change
+2011,NL,TOTAL,RCH_A_AVG,-2.0,Netherlands,Total,Annual average rate of change
+2012,NL,TOTAL,RCH_A_AVG,-6.7,Netherlands,Total,Annual average rate of change
+2013,NL,TOTAL,RCH_A_AVG,-6.0,Netherlands,Total,Annual average rate of change
+2014,NL,TOTAL,RCH_A_AVG,0.8,Netherlands,Total,Annual average rate of change
+2015,NL,TOTAL,RCH_A_AVG,3.5,Netherlands,Total,Annual average rate of change
+2016,NL,TOTAL,RCH_A_AVG,5.3,Netherlands,Total,Annual average rate of change
+2017,NL,TOTAL,RCH_A_AVG,8.1,Netherlands,Total,Annual average rate of change
+2018,NL,TOTAL,RCH_A_AVG,9.3,Netherlands,Total,Annual average rate of change
+2019,NL,TOTAL,RCH_A_AVG,7.2,Netherlands,Total,Annual average rate of change
+2020,NL,TOTAL,RCH_A_AVG,8.0,Netherlands,Total,Annual average rate of change
+2021,NL,TOTAL,RCH_A_AVG,14.5,Netherlands,Total,Annual average rate of change
+2022,NL,TOTAL,RCH_A_AVG,13.3,Netherlands,Total,Annual average rate of change
+2023,NL,TOTAL,RCH_A_AVG,-1.9,Netherlands,Total,Annual average rate of change
+2024,NL,TOTAL,RCH_A_AVG,8.2,Netherlands,Total,Annual average rate of change
+2025,NL,TOTAL,RCH_A_AVG,8.5,Netherlands,Total,Annual average rate of change

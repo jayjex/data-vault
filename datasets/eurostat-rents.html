@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eurostat HICP Actual Rents, NL &amp; EU27, 2009-2025 (CSV) | Data Vault</title>
+<meta name="description" content="HICP actual rentals for the Netherlands and EU-27 (coicop CP0411): 580 rows across two tables, monthly index 2015=100 and annual rate of change. Free full CSVs, CC BY 4.0.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/datasets/eurostat-rents.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Eurostat HICP Actual Rents, NL &amp; EU27, 2009-2025 (CSV) | Data Vault">
+<meta property="og:description" content="HICP actual rentals for the Netherlands and EU-27 (coicop CP0411): 580 rows across two tables, monthly index 2015=100 and annual rate of change. Free full CSVs, CC BY 4.0.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/datasets/eurostat-rents.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "Eurostat HICP Actual Rents, NL and EU27, CP0411", "description": "HICP actual rentals for main residence (coicop CP0411) for the Netherlands and the EU-27 aggregate: 580 rows across two tables, a monthly index (prc_hicp_midx, 2015=100, 302 rows, 2009-12 to 2025-12) and an annual rate of change in percent (prc_hicp_manr, 278 rows, 2010-12 to 2025-12).", "url": "https://jayjex.github.io/data-vault/datasets/eurostat-rents.html", "keywords": ["eurostat", "hicp", "rents", "netherlands", "eu27"], "creator": {"@type": "Organization", "name": "Matchbook Labs"}, "isAccessibleForFree": true, "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/eurostat/rents/rent-index-monthly.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/eurostat/rents/rent-annual-rate.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/eurostat/rents/sample.csv"}, {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://jayjex.github.io/data-vault/data/eurostat/rents/sample.json"}], "license": "https://creativecommons.org/licenses/by/4.0/", "isBasedOn": "https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_midx/default/table"}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Eurostat HICP Actual Rents, NL &amp; EU27</h1>
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>580</b> rows, 2 tables</span><span class="stat"><b>2009-2025</b> monthly</span><span class="stat"><b>NL + EU27</b> geos</span><span class="stat"><b>free</b> full CSVs</span></div>
+  <section aria-label="About this dataset">
+    <p>Eurostat's Harmonised Index of Consumer Prices tracks actual rentals paid for a main residence under coicop code <span class="mono">CP0411</span>. This dataset pulls that slice for the Netherlands and the EU-27 aggregate into two flat CSVs. Both share the same six columns: month (YYYY-MM), geo, unit, value, plus labels for geo and unit.</p>
+    <p>rent-index-monthly.csv is the monthly index, 2015=100 (dataset code <span class="mono">prc_hicp_midx</span>): 302 rows, NL from 2009-12, EU-27 from 2016-12. rent-annual-rate.csv is the year-on-year rate of change in percent (<span class="mono">prc_hicp_manr</span>): 278 rows, NL from 2010-12, EU-27 from 2017-12. Eurostat computes the two series separately, so they don't share one start date.</p>
+    <p>The series show how sticky European rents are next to sale prices. December 2025 year-on-year: NL +4.9%, EU-27 +3.2%. Full index path: NL rents rose 32.4% since 2015 (index 132.36 at 2025-12) against 20.4% for EU-27 (120.36). Compare with the <a href="eurostat-house-prices.html">house price index dataset</a>, where NL prices more than doubled over the same decade: Dutch rents moved at less than a third of the pace of Dutch sale prices.</p>
+    <p>Use it to benchmark the US rent series in the <a href="hud-fmr-2026.html">HUD FMR datasets</a>, calibrate long-run rent-growth assumptions in models, or feed an LLM a compact EU rents table. The ETL (<a href="https://github.com/jayjex/data-vault/blob/main/tools/etl-eurostat.py" rel="noopener">tools/etl-eurostat.py</a>) is a stdlib-only JSON-stat 2.0 parser, rerunnable against any Eurostat table code.</p>
+    <p>Source: Eurostat, datasets prc_hicp_midx and prc_hicp_manr (HICP - monthly data, index / annual rate of change), coicop CP0411, last updated 2026-02-06, pulled 2026-09-10 via the Eurostat dissemination API. No key, no registration.</p>
+    <p class="byline">License: Creative Commons Attribution 4.0 International (CC BY 4.0) &copy; European Union, 1995-2026. Source: Eurostat (prc_hicp_midx, prc_hicp_manr). Access-right: PUBLIC.</p>
+    <p class="byline">Reused from Eurostat. Eurostat is not responsible for the transformations we applied (dimension filtering to CP0411, renaming EU27_2020 to EU27, flat CSV reshaping).</p>
+  </section>
+  <section aria-label="Sample preview">
+    <h2>Sample preview</h2>
+    <p class="table-note">Last 10 months of the annual-rate table, both geos. The full CSVs below carry all 6 columns.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Sample data table"><table><thead><tr><th scope="col">month</th><th scope="col">geo</th><th scope="col">unit</th><th scope="col">value</th></tr></thead><tbody><tr><td>2025-03</td><td>EU27</td><td>RCH_A</td><td>3.2</td></tr><tr><td>2025-03</td><td>NL</td><td>RCH_A</td><td>5.4</td></tr><tr><td>2025-06</td><td>EU27</td><td>RCH_A</td><td>3.2</td></tr><tr><td>2025-06</td><td>NL</td><td>RCH_A</td><td>5.4</td></tr><tr><td>2025-09</td><td>EU27</td><td>RCH_A</td><td>3.1</td></tr><tr><td>2025-09</td><td>NL</td><td>RCH_A</td><td>4.8</td></tr><tr><td>2025-12</td><td>EU27</td><td>RCH_A</td><td>3.2</td></tr><tr><td>2025-12</td><td>NL</td><td>RCH_A</td><td>4.9</td></tr></tbody></table></div>
+  </section>
+  <section aria-label="Files">
+    <h2>Files</h2>
+    <ul class="files">
+      <li><a href="../data/eurostat/rents/rent-index-monthly.csv" download>rent-index-monthly.csv</a><span class="sz">302 rows, complete · 19 KB</span></li>
+      <li><a href="../data/eurostat/rents/rent-annual-rate.csv" download>rent-annual-rate.csv</a><span class="sz">278 rows, complete · 19 KB</span></li>
+      <li><a href="../data/eurostat/rents/sample.csv" download>sample.csv</a><span class="sz">22 rows · 2.0 KB</span></li>
+      <li><a href="../data/eurostat/rents/sample.json" download>sample.json</a><span class="sz">22 records · 5.0 KB</span></li>
+    </ul>
+  </section>
+  <section aria-label="Get the data">
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/eurostat/rents/rent-index-monthly.csv" download>Download monthly index (free)</a>
+      <a class="btn" href="eurostat-house-prices.html">House prices dataset &rarr;</a>
+    </div>
+    <p class="btn-note">Both full tables are the free CSVs above; nothing paywalled here. For the US counterpart with rents per ZIP, see the <a href="hud-fmr-2026.html">HUD FMR FY2026 dataset</a>, or browse the rest of the catalog on the <a href="../portfolio.html">portfolio page</a>. Republishing? The <a href="../guides/dataset-license-guide.html">dataset license guide</a> covers CC BY 4.0 attribution format.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eurostat House Price Index, NL &amp; EU27, 2005-2025 (CSV) | Data Vault</title>
+<meta name="description" content="Eurostat house price index for the Netherlands and EU-27, 2005-2025: 342 rows, three unit variants, total / new / existing dwellings. Free 22-row sample, full CSV free, CC BY 4.0.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/datasets/eurostat-house-prices.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Eurostat House Price Index, NL &amp; EU27, 2005-2025 (CSV) | Data Vault">
+<meta property="og:description" content="Eurostat house price index for the Netherlands and EU-27, 2005-2025: 342 rows, three unit variants, total / new / existing dwellings. Free full CSV, CC BY 4.0.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/datasets/eurostat-house-prices.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "Eurostat House Price Index, NL and EU27, 2005-2025", "description": "Eurostat house price index (prc_hpi_a) for the Netherlands and the EU-27 aggregate, 2005-2025. 342 rows covering total, newly built, and existing dwellings in three unit variants: annual average index 2015=100, annual average index 2025=100, and annual rate of change in percent.", "url": "https://jayjex.github.io/data-vault/datasets/eurostat-house-prices.html", "keywords": ["eurostat", "house-price-index", "netherlands", "eu27", "real-estate"], "creator": {"@type": "Organization", "name": "Matchbook Labs"}, "isAccessibleForFree": true, "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/eurostat/house-prices/house-price-index.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/eurostat/house-prices/sample.csv"}, {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://jayjex.github.io/data-vault/data/eurostat/house-prices/sample.json"}], "license": "https://creativecommons.org/licenses/by/4.0/", "isBasedOn": "https://ec.europa.eu/eurostat/databrowser/view/prc_hpi_a/default/table"}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Eurostat House Price Index, NL &amp; EU27</h1>
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>342</b> rows</span><span class="stat"><b>2005-2025</b> annual</span><span class="stat"><b>NL + EU27</b> geos</span><span class="stat"><b>free</b> full CSV</span></div>
+  <section aria-label="About this dataset">
+    <p>Eurostat's annual house price index (dataset code <span class="mono">prc_hpi_a</span>) pulled for the Netherlands and the EU-27 aggregate, cleaned into one flat CSV. Six columns: year, geo, purchase (total / newly built / existing dwellings), unit, value, plus human-readable labels for geo, purchase, and unit.</p>
+    <p>Three unit variants per row group: annual average index 2015=100, annual average index 2025=100, and annual rate of change in percent. Read the 2015=100 total-dwelling series and the NL/EU gap jumps out: both sit at 100.0 in 2015, but by 2025 the Netherlands is at 215.15 while EU-27 is at 161.93. Dutch prices grew 115% over the decade against 62% for the EU aggregate; in 2021 the gap was widest, NL +14.5% against EU-27's +8.4%, and in 2025 NL rose 8.5% against 5.5%.</p>
+    <p>Use it to benchmark European housing against the US series in the <a href="hud-fmr-2026.html">HUD FMR datasets</a>, backtest rent-vs-price models against the <a href="eurostat-rents.html">Eurostat actual rents dataset</a>, or feed an LLM a compact EU housing table. The ETL that produced it (<a href="https://github.com/jayjex/data-vault/blob/main/tools/etl-eurostat.py" rel="noopener">tools/etl-eurostat.py</a>) is a stdlib-only JSON-stat 2.0 parser, rerunnable against any Eurostat table code.</p>
+    <p>Source: Eurostat, dataset prc_hpi_a (house price index - annual data), last updated 2026-07-02, pulled 2026-09-10 via the Eurostat dissemination API. No key, no registration.</p>
+    <p class="byline">License: Creative Commons Attribution 4.0 International (CC BY 4.0) &copy; European Union, 1995-2026. Source: Eurostat (prc_hpi_a). Access-right: PUBLIC.</p>
+    <p class="byline">Reused from Eurostat. Eurostat is not responsible for the transformations we applied (dimension filtering, renaming EU27_2020 to EU27, flat CSV reshaping).</p>
+  </section>
+  <section aria-label="Sample preview">
+    <h2>Sample preview</h2>
+    <p class="table-note">First 10 of 342 rows. The full CSV below carries all 8 columns.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Sample data table"><table><thead><tr><th scope="col">year</th><th scope="col">geo</th><th scope="col">purchase</th><th scope="col">unit</th><th scope="col">value</th></tr></thead><tbody><tr><td>2015</td><td>EU27</td><td>TOTAL</td><td>I15_A_AVG</td><td>100.0</td></tr><tr><td>2015</td><td>NL</td><td>TOTAL</td><td>I15_A_AVG</td><td>100.0</td></tr><tr><td>2016</td><td>EU27</td><td>TOTAL</td><td>I15_A_AVG</td><td>104.31</td></tr><tr><td>2016</td><td>NL</td><td>TOTAL</td><td>I15_A_AVG</td><td>105.29</td></tr><tr><td>2017</td><td>EU27</td><td>TOTAL</td><td>I15_A_AVG</td><td>109.31</td></tr><tr><td>2017</td><td>NL</td><td>TOTAL</td><td>I15_A_AVG</td><td>113.81</td></tr><tr><td>2018</td><td>EU27</td><td>TOTAL</td><td>I15_A_AVG</td><td>114.81</td></tr><tr><td>2018</td><td>NL</td><td>TOTAL</td><td>I15_A_AVG</td><td>124.4</td></tr><tr><td>2019</td><td>EU27</td><td>TOTAL</td><td>I15_A_AVG</td><td>120.4</td></tr><tr><td>2019</td><td>NL</td><td>TOTAL</td><td>I15_A_AVG</td><td>133.38</td></tr></tbody></table></div>
+  </section>
+  <section aria-label="Files">
+    <h2>Files</h2>
+    <ul class="files">
+      <li><a href="../data/eurostat/house-prices/house-price-index.csv" download>house-price-index.csv</a><span class="sz">342 rows, complete · 39 KB</span></li>
+      <li><a href="../data/eurostat/house-prices/sample.csv" download>sample.csv</a><span class="sz">22 rows · 3.0 KB</span></li>
+      <li><a href="../data/eurostat/house-prices/sample.json" download>sample.json</a><span class="sz">22 records · 6.8 KB</span></li>
+    </ul>
+  </section>
+  <section aria-label="Get the data">
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/eurostat/house-prices/house-price-index.csv" download>Download full CSV (free)</a>
+      <a class="btn" href="eurostat-rents.html">Rents dataset &rarr;</a>
+    </div>
+    <p class="btn-note">The full dataset is the free CSV above; nothing paywalled here. For the US counterpart with rents per ZIP, see the <a href="hud-fmr-2026.html">HUD FMR FY2026 dataset</a>, or browse the rest of the catalog on the <a href="../portfolio.html">portfolio page</a>. Republishing? The <a href="../guides/dataset-license-guide.html">dataset license guide</a> covers CC BY 4.0 attribution format.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

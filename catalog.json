@@ -217,6 +217,88 @@
    "page": "https://jayjex.github.io/data-vault/datasets/scraper-pack.html"
   },
   {
+   "slug": "eurostat-house-prices",
+   "name": "Eurostat House Price Index, NL & EU27, 2005-2025",
+   "niche": "econ-data",
+   "tags": [
+    "eurostat",
+    "real-estate",
+    "eu"
+   ],
+   "description": "Eurostat house price index (prc_hpi_a) for the Netherlands and the EU-27 aggregate, 2005-2025: 342 rows, total / new / existing dwellings, three unit variants (2015=100, 2025=100, annual rate of change).",
+   "stats": {
+    "rows": 342,
+    "tables": 1,
+    "columns": 8,
+    "updated": "2026-07-02"
+   },
+   "sample": {
+    "csv": "https://jayjex.github.io/data-vault/data/eurostat/house-prices/sample.csv",
+    "json": "https://jayjex.github.io/data-vault/data/eurostat/house-prices/sample.json",
+    "rows": 22,
+    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+   },
+   "extra_files": [
+    {
+     "name": "house-price-index.csv (full, free)",
+     "url": "https://jayjex.github.io/data-vault/data/eurostat/house-prices/house-price-index.csv",
+     "rows": 342,
+     "note": "complete dataset, free download"
+    }
+   ],
+   "full_data": {
+    "status": "free",
+    "url": "https://jayjex.github.io/data-vault/data/eurostat/house-prices/house-price-index.csv",
+    "note": "Source is CC BY 4.0 public Eurostat data, so the full table is a free download, not a Getly pack."
+   },
+   "license": "CC BY 4.0 (source data Eurostat, prc_hpi_a, Creative Commons Attribution 4.0 International, access-right PUBLIC)",
+   "page": "https://jayjex.github.io/data-vault/datasets/eurostat-house-prices.html"
+  },
+  {
+   "slug": "eurostat-rents",
+   "name": "Eurostat HICP Actual Rents, NL & EU27, CP0411",
+   "niche": "econ-data",
+   "tags": [
+    "eurostat",
+    "rent",
+    "eu"
+   ],
+   "description": "HICP actual rentals for main residence (coicop CP0411), Netherlands and EU-27: 580 rows across two tables, monthly index 2015=100 (302 rows, 2009-12 to 2025-12) and annual rate of change (278 rows, 2010-12 to 2025-12).",
+   "stats": {
+    "rows": 580,
+    "tables": 2,
+    "columns": 6,
+    "updated": "2026-02-06"
+   },
+   "sample": {
+    "csv": "https://jayjex.github.io/data-vault/data/eurostat/rents/sample.csv",
+    "json": "https://jayjex.github.io/data-vault/data/eurostat/rents/sample.json",
+    "rows": 22,
+    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+   },
+   "extra_files": [
+    {
+     "name": "rent-index-monthly.csv (full, free)",
+     "url": "https://jayjex.github.io/data-vault/data/eurostat/rents/rent-index-monthly.csv",
+     "rows": 302,
+     "note": "complete monthly index, free download"
+    },
+    {
+     "name": "rent-annual-rate.csv (full, free)",
+     "url": "https://jayjex.github.io/data-vault/data/eurostat/rents/rent-annual-rate.csv",
+     "rows": 278,
+     "note": "complete annual rates, free download"
+    }
+   ],
+   "full_data": {
+    "status": "free",
+    "url": "https://jayjex.github.io/data-vault/data/eurostat/rents/rent-index-monthly.csv",
+    "note": "Source is CC BY 4.0 public Eurostat data, so both full tables are free downloads, not a Getly pack."
+   },
+   "license": "CC BY 4.0 (source data Eurostat, prc_hicp_midx + prc_hicp_manr, Creative Commons Attribution 4.0 International, access-right PUBLIC)",
+   "page": "https://jayjex.github.io/data-vault/datasets/eurostat-rents.html"
+  },
+  {
    "slug": "printable-engineering-bundle",
    "name": "Printable Engineering Bundle",
    "niche": "printables",

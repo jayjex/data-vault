@@ -73,6 +73,22 @@ Ten self-contained Playwright scripts for pagination, infinite scroll, login ses
 - Page: https://jayjex.github.io/data-vault/datasets/scraper-pack.html
 - Full data: [Get full data](https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtrfwfcd)
 
+### Eurostat House Price Index, NL & EU27, 2005-2025 (eurostat-house-prices)
+Eurostat house price index (prc_hpi_a) for the Netherlands and the EU-27 aggregate, 2005-2025: 342 rows, total / new / existing dwellings, three unit variants (2015=100, 2025=100, annual rate of change). NL index 215.15 in 2025 vs EU-27 161.93 (2015=100). First European source in the catalog; source is public Eurostat data, so the full CSV is a free download, not a paid pack. Niche: econ-data. Stats: {"rows": 342, "tables": 1, "columns": 8, "updated": "2026-07-02"}.
+- Sample JSON: https://jayjex.github.io/data-vault/data/eurostat/house-prices/sample.json
+- Sample CSV: https://jayjex.github.io/data-vault/data/eurostat/house-prices/sample.csv
+- Page: https://jayjex.github.io/data-vault/datasets/eurostat-house-prices.html
+- Full data (free): https://jayjex.github.io/data-vault/data/eurostat/house-prices/house-price-index.csv
+- License: CC BY 4.0 (Eurostat, access-right PUBLIC)
+
+### Eurostat HICP Actual Rents, NL & EU27, CP0411 (eurostat-rents)
+HICP actual rentals for main residence (coicop CP0411), Netherlands and EU-27: 580 rows across two tables, monthly index 2015=100 (302 rows, 2009-12 to 2025-12) and annual rate of change (278 rows, 2010-12 to 2025-12). December 2025 YoY: NL +4.9%, EU-27 +3.2%. Pairs with the house prices dataset for rent-vs-price comparisons against the US HUD FMR series. Source is public Eurostat data, so both full CSVs are free downloads. Niche: econ-data. Stats: {"rows": 580, "tables": 2, "columns": 6, "updated": "2026-02-06"}.
+- Sample JSON: https://jayjex.github.io/data-vault/data/eurostat/rents/sample.json
+- Sample CSV: https://jayjex.github.io/data-vault/data/eurostat/rents/sample.csv
+- Page: https://jayjex.github.io/data-vault/datasets/eurostat-rents.html
+- Full data (free): https://jayjex.github.io/data-vault/data/eurostat/rents/rent-index-monthly.csv + https://jayjex.github.io/data-vault/data/eurostat/rents/rent-annual-rate.csv
+- License: CC BY 4.0 (Eurostat, access-right PUBLIC)
+
 ### Printable Engineering Bundle (printable-engineering-bundle)
 Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (A4 + US Letter PDFs with answer keys, mazes, dot-to-dots) and 5 Web3 KPI spreadsheet templates (portfolio, airdrop, DeFi yield, bounty income, trading journal) with live formulas. Niche: printables. Stats: {"worksheets_pages": 120, "spreadsheets": 5, "paper_sizes": 2, "updated": "2026-09-06"}.
 - Page: https://jayjex.github.io/data-vault/datasets/printable-engineering-bundle.html

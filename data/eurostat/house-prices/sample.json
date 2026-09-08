@@ -1,0 +1,259 @@
+{
+ "slug": "eurostat-house-prices",
+ "name": "Eurostat House Price Index, NL & EU27, 2005-2025",
+ "columns": [
+  "year",
+  "geo",
+  "purchase",
+  "unit",
+  "value",
+  "geo_label",
+  "purchase_label",
+  "unit_label"
+ ],
+ "row_count": 342,
+ "records": [
+  {
+   "time_label": "2010",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "I15_A_AVG",
+   "unit_label": "Annual average index, 2015=100",
+   "purchase": "DW_EXST",
+   "purchase_label": "Purchases of existing dwellings",
+   "value": 100.01,
+   "year": "2010"
+  },
+  {
+   "time_label": "2011",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "I15_A_AVG",
+   "unit_label": "Annual average index, 2015=100",
+   "purchase": "DW_EXST",
+   "purchase_label": "Purchases of existing dwellings",
+   "value": 100.67,
+   "year": "2011"
+  },
+  {
+   "time_label": "2012",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "I15_A_AVG",
+   "unit_label": "Annual average index, 2015=100",
+   "purchase": "DW_EXST",
+   "purchase_label": "Purchases of existing dwellings",
+   "value": 98.72,
+   "year": "2012"
+  },
+  {
+   "time_label": "2013",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "I15_A_AVG",
+   "unit_label": "Annual average index, 2015=100",
+   "purchase": "DW_EXST",
+   "purchase_label": "Purchases of existing dwellings",
+   "value": 97.05,
+   "year": "2013"
+  },
+  {
+   "time_label": "2014",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "I15_A_AVG",
+   "unit_label": "Annual average index, 2015=100",
+   "purchase": "DW_EXST",
+   "purchase_label": "Purchases of existing dwellings",
+   "value": 97.78,
+   "year": "2014"
+  },
+  {
+   "time_label": "2015",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "I15_A_AVG",
+   "unit_label": "Annual average index, 2015=100",
+   "purchase": "DW_EXST",
+   "purchase_label": "Purchases of existing dwellings",
+   "value": 100.0,
+   "year": "2015"
+  },
+  {
+   "time_label": "2016",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "I15_A_AVG",
+   "unit_label": "Annual average index, 2015=100",
+   "purchase": "DW_EXST",
+   "purchase_label": "Purchases of existing dwellings",
+   "value": 104.49,
+   "year": "2016"
+  },
+  {
+   "time_label": "2017",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "I15_A_AVG",
+   "unit_label": "Annual average index, 2015=100",
+   "purchase": "DW_EXST",
+   "purchase_label": "Purchases of existing dwellings",
+   "value": 109.75,
+   "year": "2017"
+  },
+  {
+   "time_label": "2018",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "I15_A_AVG",
+   "unit_label": "Annual average index, 2015=100",
+   "purchase": "DW_EXST",
+   "purchase_label": "Purchases of existing dwellings",
+   "value": 115.28,
+   "year": "2018"
+  },
+  {
+   "time_label": "2019",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "I15_A_AVG",
+   "unit_label": "Annual average index, 2015=100",
+   "purchase": "DW_EXST",
+   "purchase_label": "Purchases of existing dwellings",
+   "value": 120.91,
+   "year": "2019"
+  },
+  {
+   "time_label": "2020",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "I15_A_AVG",
+   "unit_label": "Annual average index, 2015=100",
+   "purchase": "DW_EXST",
+   "purchase_label": "Purchases of existing dwellings",
+   "value": 127.81,
+   "year": "2020"
+  },
+  {
+   "time_label": "2021",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "I15_A_AVG",
+   "unit_label": "Annual average index, 2015=100",
+   "purchase": "DW_EXST",
+   "purchase_label": "Purchases of existing dwellings",
+   "value": 139.11,
+   "year": "2021"
+  },
+  {
+   "time_label": "2022",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "I15_A_AVG",
+   "unit_label": "Annual average index, 2015=100",
+   "purchase": "DW_EXST",
+   "purchase_label": "Purchases of existing dwellings",
+   "value": 149.73,
+   "year": "2022"
+  },
+  {
+   "time_label": "2023",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "I15_A_AVG",
+   "unit_label": "Annual average index, 2015=100",
+   "purchase": "DW_EXST",
+   "purchase_label": "Purchases of existing dwellings",
+   "value": 147.42,
+   "year": "2023"
+  },
+  {
+   "time_label": "2024",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "I15_A_AVG",
+   "unit_label": "Annual average index, 2015=100",
+   "purchase": "DW_EXST",
+   "purchase_label": "Purchases of existing dwellings",
+   "value": 151.08,
+   "year": "2024"
+  },
+  {
+   "time_label": "2025",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "unit": "I15_A_AVG",
+   "unit_label": "Annual average index, 2015=100",
+   "purchase": "DW_EXST",
+   "purchase_label": "Purchases of existing dwellings",
+   "value": 159.65,
+   "year": "2025"
+  },
+  {
+   "time_label": "2005",
+   "geo": "NL",
+   "geo_label": "Netherlands",
+   "unit": "I15_A_AVG",
+   "unit_label": "Annual average index, 2015=100",
+   "purchase": "DW_EXST",
+   "purchase_label": "Purchases of existing dwellings",
+   "value": 106.44,
+   "year": "2005"
+  },
+  {
+   "time_label": "2006",
+   "geo": "NL",
+   "geo_label": "Netherlands",
+   "unit": "I15_A_AVG",
+   "unit_label": "Annual average index, 2015=100",
+   "purchase": "DW_EXST",
+   "purchase_label": "Purchases of existing dwellings",
+   "value": 111.29,
+   "year": "2006"
+  },
+  {
+   "time_label": "2007",
+   "geo": "NL",
+   "geo_label": "Netherlands",
+   "unit": "I15_A_AVG",
+   "unit_label": "Annual average index, 2015=100",
+   "purchase": "DW_EXST",
+   "purchase_label": "Purchases of existing dwellings",
+   "value": 115.97,
+   "year": "2007"
+  },
+  {
+   "time_label": "2008",
+   "geo": "NL",
+   "geo_label": "Netherlands",
+   "unit": "I15_A_AVG",
+   "unit_label": "Annual average index, 2015=100",
+   "purchase": "DW_EXST",
+   "purchase_label": "Purchases of existing dwellings",
+   "value": 119.45,
+   "year": "2008"
+  },
+  {
+   "time_label": "2009",
+   "geo": "NL",
+   "geo_label": "Netherlands",
+   "unit": "I15_A_AVG",
+   "unit_label": "Annual average index, 2015=100",
+   "purchase": "DW_EXST",
+   "purchase_label": "Purchases of existing dwellings",
+   "value": 115.39,
+   "year": "2009"
+  },
+  {
+   "time_label": "2010",
+   "geo": "NL",
+   "geo_label": "Netherlands",
+   "unit": "I15_A_AVG",
+   "unit_label": "Annual average index, 2015=100",
+   "purchase": "DW_EXST",
+   "purchase_label": "Purchases of existing dwellings",
+   "value": 112.77,
+   "year": "2010"
+  }
+ ]
+}

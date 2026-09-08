@@ -1,0 +1,13 @@
+{
+  "host": "jayjex.github.io",
+  "key": "78e095195f1e3c98ed5e6c17474dc1b6",
+  "keyLocation": "https://jayjex.github.io/data-vault/78e095195f1e3c98ed5e6c17474dc1b6.txt",
+  "urlList": [
+    "https://jayjex.github.io/data-vault/datasets/worldbank-g20-rural.html",
+    "https://jayjex.github.io/data-vault/data/worldbank-g20-rural/g20-rural-population.csv",
+    "https://jayjex.github.io/data-vault/data/worldbank-g20-rural/g20-rural-2025.csv",
+    "https://jayjex.github.io/data-vault/data/worldbank-g20-rural/sample.csv",
+    "https://jayjex.github.io/data-vault/data/worldbank-g20-rural/sample.json",
+    "https://jayjex.github.io/data-vault/data/worldbank-g20-rural/schema.md"
+  ]
+}

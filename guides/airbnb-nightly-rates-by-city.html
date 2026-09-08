@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Airbnb Nightly Rates by US City: 8 Markets, One Snapshot Ladder, June 2026 | Data Vault</title>
+<meta name="description" content="Median Airbnb nightly rates in 8 US cities run 160 to 281 dollars a night, 226 combined. Per-city spreads, room-type medians, and why the mean misleads.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/airbnb-nightly-rates-by-city.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Airbnb Nightly Rates by US City: 8 Markets, One Snapshot Ladder, June 2026">
+<meta property="og:description" content="Median Airbnb nightly rates in 8 US cities run 160 to 281 dollars a night, 226 combined. Per-city spreads, room-type medians, and why the mean misleads.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/airbnb-nightly-rates-by-city.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Airbnb Nightly Rates by US City: 8 Markets, One Snapshot Ladder, June 2026", "description": "Median Airbnb nightly rates in 8 US cities run 160 to 281 dollars a night, 226 combined. Per-city spreads, room-type medians, and why the mean misleads.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/airbnb-nightly-rates-by-city.html", "about": {"@type": "Dataset", "name": "Airbnb Listings, 8 More US Cities", "url": "https://jayjex.github.io/data-vault/datasets/airbnb-eight-cities.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the median Airbnb nightly rate across these US cities?", "acceptedAnswer": {"@type": "Answer", "text": "The combined median across 79,152 price-bearing listings is 226 dollars a night. City medians run from 160 dollars in Portland to 281 dollars in Seattle, with New Orleans at 192, Washington DC at 221, Chicago at 223, Los Angeles at 224, San Francisco at 252, and Boston at 279."}}, {"@type": "Question", "name": "Which US city has the highest Airbnb nightly rates?", "acceptedAnswer": {"@type": "Answer", "text": "Seattle tops the median ladder at 281 dollars a night, with Boston next at 279. San Francisco's median sits at 252, but its mean of 412 dollars is the highest of the eight because of outliers up to a 99,999-dollar source artifact, so rank cities by median when you compare rates."}}, {"@type": "Question", "name": "Why do some Airbnb listings have no price in the data?", "acceptedAnswer": {"@type": "Answer", "text": "11,594 of the 90,746 rows, 12.8 percent, carry an empty price field, and San Francisco has the largest share at 18.9 percent. Inside Airbnb publishes what the scrape captured; a blank means no price was recorded, not a free night. Every median on this page counts price-bearing rows only."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://jayjex.github.io/data-vault/guides/"}, {"@type": "ListItem", "position": 3, "name": "Airbnb nightly rates by US city", "item": "https://jayjex.github.io/data-vault/guides/airbnb-nightly-rates-by-city.html"}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Airbnb nightly rates by US city, 8 markets, June 2026</h1>
+  <p class="byline">June 2026 snapshots, published 2026-09-10. Data source: Inside Airbnb, CC BY 4.0. Data Vault is not affiliated with Airbnb or Inside Airbnb. This page documents the data; it is not travel, housing, or investment advice.</p>
+
+  <section aria-label="What this page measures">
+    <h2>What this page measures</h2>
+    <p>Every number here comes from the free per-city CSVs behind <a href="../datasets/airbnb-eight-cities.html">Airbnb Listings, 8 More US Cities</a>: 90,746 listings across Boston, Chicago, Los Angeles, New Orleans, Portland, San Francisco, Seattle, and Washington DC, each captured in an Inside Airbnb snapshot dated June 14 to 24, 2026. The rate is the nightly price column in USD, kept exactly as the source publishes it.</p>
+    <p>11,594 of those rows (12.8 percent) carry no price, so every median and share below counts the 79,152 price-bearing rows unless noted. Snapshots are point-in-time, and rates drift with every Inside Airbnb release. The <a href="airbnb-data-methodology.html">snapshot methodology guide</a> explains what a one-day capture can and cannot tell you.</p>
+  </section>
+
+  <section aria-label="The rate ladder, city by city">
+    <h2>The rate ladder, city by city</h2>
+    <p>Portland anchors the floor at 160 dollars a night and Seattle the top at 281. The combined median across all eight cities is 226. Table read from the eight city files:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Airbnb nightly rate medians by city"><table><thead><tr><th scope="col">city</th><th scope="col">listings</th><th scope="col">priced</th><th scope="col">median rate</th><th scope="col">middle half</th><th scope="col">entire-home share</th></tr></thead><tbody>
+      <tr><td>Portland, OR</td><td>4,210</td><td>3,646</td><td>$160</td><td>$111&ndash;$236</td><td>84%</td></tr>
+      <tr><td>New Orleans, LA</td><td>7,254</td><td>6,481</td><td>$192</td><td>$121&ndash;$309</td><td>79%</td></tr>
+      <tr><td>Washington, DC</td><td>6,996</td><td>6,280</td><td>$221</td><td>$142&ndash;$349</td><td>75%</td></tr>
+      <tr><td>Chicago, IL</td><td>8,704</td><td>7,645</td><td>$223</td><td>$135&ndash;$360</td><td>77%</td></tr>
+      <tr><td>Los Angeles, CA</td><td>43,932</td><td>38,362</td><td>$224</td><td>$116&ndash;$406</td><td>74%</td></tr>
+      <tr><td>San Francisco, CA</td><td>7,422</td><td>6,021</td><td>$252</td><td>$153&ndash;$438</td><td>60%</td></tr>
+      <tr><td>Boston, MA</td><td>4,414</td><td>3,729</td><td>$279</td><td>$155&ndash;$424</td><td>68%</td></tr>
+      <tr><td>Seattle, WA</td><td>7,814</td><td>6,988</td><td>$281</td><td>$172&ndash;$422</td><td>82%</td></tr>
+    </tbody></table></div>
+    <p>Five of the eight sit under the combined median, from Portland's 160 up through New Orleans at 192, Washington DC at 221, Chicago at 223, and Los Angeles at 224. Boston and San Francisco clear it, and Seattle clears it by 55 dollars. Los Angeles is also the biggest single-city file at 43,932 listings, so its 224 median carries more weight in the combined number than any other city.</p>
+  </section>
+
+  <section aria-label="The middle half is wider than the median">
+    <h2>The middle half is wider than the median</h2>
+    <p>A median names one point, and bookings happen across a range. Half of Portland's priced listings fall between 111 and 236 dollars; half of San Francisco's fall between 153 and 438. San Francisco's median sits 92 dollars above Portland's, but the top of its middle half sits 202 dollars above, so the gap between the two cities widens the further up the inventory you look.</p>
+    <p>Compare the spans within a city before you pick one: a 250-dollar budget clears more than half the listings in every city except Boston, San Francisco, and Seattle, where it clears less. Which half a listing sits in also depends on its <a href="#room-type">room type</a>, covered below.</p>
+  </section>
+
+  <section aria-label="Room type moves the rate" id="room-type">
+    <h2>Room type moves the rate more than the city does</h2>
+    <p>Across the 79,152 priced listings, the median nightly rate runs 265 dollars for Entire home/apt, 106 for Private room, 365 for Hotel room, and 41 for Shared room. The whole pack splits 74.4 percent entire homes, 23.6 percent private rooms, 1.5 percent hotel rooms, and 0.5 percent shared rooms.</p>
+    <p>The blend differs by city, and it does not rank them for you. Portland runs the highest entire-home share at 84 percent yet posts the lowest median at 160; San Francisco runs the lowest share at 60 percent and sits at 252. Two cities with near-identical medians can book differently: Los Angeles and Chicago sit 1 dollar apart, but Los Angeles lists 73.9 percent entire homes against Chicago's 76.6. Compare like room types when the comparison matters.</p>
+  </section>
+
+  <section aria-label="Why the mean overstates the typical night">
+    <h2>Why the mean overstates the typical night</h2>
+    <p>The mean across the priced listings is 352 dollars against the median of 226, because nightly rates are heavy-tailed. 44.5 percent of priced listings cost 200 dollars or less, while 16.3 percent cost more than 500.</p>
+    <p>Three cities carry max prices that are source artifacts: San Francisco's 99,999, Washington DC's 85,638, and Los Angeles' 20,583. The files keep them verbatim, so filter or trim before averaging. That is also why San Francisco's mean of 412 is the highest of the eight while its median of 252 ranks third. Rank cities by median; use the mean only after you have handled the tail.</p>
+  </section>
+
+  <section aria-label="The 12.8 percent with no price">
+    <h2>The 12.8 percent with no price</h2>
+    <p>11,594 rows ship with an empty price field. The share varies by city, from 10.2 percent in Washington DC and 10.6 in Seattle up to 15.5 percent in Boston and 18.9 percent in San Francisco. A blank means the scrape recorded no price, not a free night and not a zero. Average the column without filtering and your city means sink; every median on this page already excludes the blanks.</p>
+  </section>
+
+  <section aria-label="Run the rates yourself">
+    <h2>Run the rates yourself</h2>
+    <p>All 8 city files download free on the <a href="../datasets/airbnb-eight-cities.html">dataset page</a>: 90,746 rows under CC BY 4.0, no paywall, plus a <span class="mono">cities-index.csv</span> with one row per city. Load any file in a spreadsheet or pandas, filter empty prices, group by <span class="mono">room_type</span>, and the table above reproduces in minutes.</p>
+    <p>The <a href="../datasets/airbnb-six-cities.html">six-city pack</a> (Austin, Nashville, Denver, New York City, Las Vegas, San Diego) uses the same 12 columns, so all 14 city files join on id; its per-city means and medians are in the <a href="airbnb-price-data.html">Airbnb price data guide</a>, and per-city row counts in <a href="airbnb-data-by-city.html">Airbnb data by city</a>. To turn these nightly rates into a monthly number, the <a href="airbnb-vs-long-term-rent.html">Airbnb vs long-term rent guide</a> runs the nightly &times; 30 test against HUD FMR and ACS rents.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>Airbnb nightly rates questions</h2>
+    <dl>
+      <dt>What is the median Airbnb nightly rate across these US cities?</dt>
+      <dd>The combined median across 79,152 price-bearing listings is 226 dollars a night. City medians run from 160 dollars in Portland to 281 dollars in Seattle, with New Orleans at 192, Washington DC at 221, Chicago at 223, Los Angeles at 224, San Francisco at 252, and Boston at 279.</dd>
+      <dt>Which US city has the highest Airbnb nightly rates?</dt>
+      <dd>Seattle tops the median ladder at 281 dollars a night, with Boston next at 279. San Francisco's median sits at 252, but its mean of 412 dollars is the highest of the eight because of outliers up to a 99,999-dollar source artifact, so rank cities by median when you compare rates.</dd>
+      <dt>Why do some Airbnb listings have no price in the data?</dt>
+      <dd>11,594 of the 90,746 rows, 12.8 percent, carry an empty price field, and San Francisco has the largest share at 18.9 percent. Inside Airbnb publishes what the scrape captured; a blank means no price was recorded, not a free night. Every median on this page counts price-bearing rows only.</dd>
+    </dl>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

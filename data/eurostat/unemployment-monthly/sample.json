@@ -1,0 +1,259 @@
+{
+ "slug": "eurostat-unemployment-monthly",
+ "name": "Eurostat Monthly Unemployment Rate by Sex, EU27 + 8 Countries, 2003-2026",
+ "columns": [
+  "month",
+  "geo",
+  "sex",
+  "age",
+  "value",
+  "geo_label",
+  "sex_label",
+  "age_label"
+ ],
+ "row_count": 7641,
+ "records": [
+  {
+   "time_label": "2026-07",
+   "geo": "EL",
+   "geo_label": "Greece",
+   "sex": "T",
+   "sex_label": "Total",
+   "value": 7.9,
+   "month": "2026-07",
+   "age": "TOTAL",
+   "age_label": "Total (16 to 74 years)"
+  },
+  {
+   "time_label": "2026-07",
+   "geo": "ES",
+   "geo_label": "Spain",
+   "sex": "F",
+   "sex_label": "Females",
+   "value": 11.2,
+   "month": "2026-07",
+   "age": "TOTAL",
+   "age_label": "Total (16 to 74 years)"
+  },
+  {
+   "time_label": "2026-07",
+   "geo": "ES",
+   "geo_label": "Spain",
+   "sex": "M",
+   "sex_label": "Males",
+   "value": 8.9,
+   "month": "2026-07",
+   "age": "TOTAL",
+   "age_label": "Total (16 to 74 years)"
+  },
+  {
+   "time_label": "2026-07",
+   "geo": "ES",
+   "geo_label": "Spain",
+   "sex": "T",
+   "sex_label": "Total",
+   "value": 10.0,
+   "month": "2026-07",
+   "age": "TOTAL",
+   "age_label": "Total (16 to 74 years)"
+  },
+  {
+   "time_label": "2026-07",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "sex": "F",
+   "sex_label": "Females",
+   "value": 6.3,
+   "month": "2026-07",
+   "age": "TOTAL",
+   "age_label": "Total (16 to 74 years)"
+  },
+  {
+   "time_label": "2026-07",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "sex": "M",
+   "sex_label": "Males",
+   "value": 5.9,
+   "month": "2026-07",
+   "age": "TOTAL",
+   "age_label": "Total (16 to 74 years)"
+  },
+  {
+   "time_label": "2026-07",
+   "geo": "EU27",
+   "geo_label": "European Union - 27 countries (from 2020)",
+   "sex": "T",
+   "sex_label": "Total",
+   "value": 6.1,
+   "month": "2026-07",
+   "age": "TOTAL",
+   "age_label": "Total (16 to 74 years)"
+  },
+  {
+   "time_label": "2026-07",
+   "geo": "FR",
+   "geo_label": "France",
+   "sex": "F",
+   "sex_label": "Females",
+   "value": 8.2,
+   "month": "2026-07",
+   "age": "TOTAL",
+   "age_label": "Total (16 to 74 years)"
+  },
+  {
+   "time_label": "2026-07",
+   "geo": "FR",
+   "geo_label": "France",
+   "sex": "M",
+   "sex_label": "Males",
+   "value": 8.4,
+   "month": "2026-07",
+   "age": "TOTAL",
+   "age_label": "Total (16 to 74 years)"
+  },
+  {
+   "time_label": "2026-07",
+   "geo": "FR",
+   "geo_label": "France",
+   "sex": "T",
+   "sex_label": "Total",
+   "value": 8.3,
+   "month": "2026-07",
+   "age": "TOTAL",
+   "age_label": "Total (16 to 74 years)"
+  },
+  {
+   "time_label": "2026-07",
+   "geo": "IT",
+   "geo_label": "Italy",
+   "sex": "F",
+   "sex_label": "Females",
+   "value": 6.6,
+   "month": "2026-07",
+   "age": "TOTAL",
+   "age_label": "Total (16 to 74 years)"
+  },
+  {
+   "time_label": "2026-07",
+   "geo": "IT",
+   "geo_label": "Italy",
+   "sex": "M",
+   "sex_label": "Males",
+   "value": 5.2,
+   "month": "2026-07",
+   "age": "TOTAL",
+   "age_label": "Total (16 to 74 years)"
+  },
+  {
+   "time_label": "2026-07",
+   "geo": "IT",
+   "geo_label": "Italy",
+   "sex": "T",
+   "sex_label": "Total",
+   "value": 5.8,
+   "month": "2026-07",
+   "age": "TOTAL",
+   "age_label": "Total (16 to 74 years)"
+  },
+  {
+   "time_label": "2026-07",
+   "geo": "NL",
+   "geo_label": "Netherlands",
+   "sex": "F",
+   "sex_label": "Females",
+   "value": 3.9,
+   "month": "2026-07",
+   "age": "TOTAL",
+   "age_label": "Total (16 to 74 years)"
+  },
+  {
+   "time_label": "2026-07",
+   "geo": "NL",
+   "geo_label": "Netherlands",
+   "sex": "M",
+   "sex_label": "Males",
+   "value": 4.0,
+   "month": "2026-07",
+   "age": "TOTAL",
+   "age_label": "Total (16 to 74 years)"
+  },
+  {
+   "time_label": "2026-07",
+   "geo": "NL",
+   "geo_label": "Netherlands",
+   "sex": "T",
+   "sex_label": "Total",
+   "value": 4.0,
+   "month": "2026-07",
+   "age": "TOTAL",
+   "age_label": "Total (16 to 74 years)"
+  },
+  {
+   "time_label": "2026-07",
+   "geo": "PL",
+   "geo_label": "Poland",
+   "sex": "F",
+   "sex_label": "Females",
+   "value": 3.4,
+   "month": "2026-07",
+   "age": "TOTAL",
+   "age_label": "Total (16 to 74 years)"
+  },
+  {
+   "time_label": "2026-07",
+   "geo": "PL",
+   "geo_label": "Poland",
+   "sex": "M",
+   "sex_label": "Males",
+   "value": 3.3,
+   "month": "2026-07",
+   "age": "TOTAL",
+   "age_label": "Total (16 to 74 years)"
+  },
+  {
+   "time_label": "2026-07",
+   "geo": "PL",
+   "geo_label": "Poland",
+   "sex": "T",
+   "sex_label": "Total",
+   "value": 3.4,
+   "month": "2026-07",
+   "age": "TOTAL",
+   "age_label": "Total (16 to 74 years)"
+  },
+  {
+   "time_label": "2026-07",
+   "geo": "SE",
+   "geo_label": "Sweden",
+   "sex": "F",
+   "sex_label": "Females",
+   "value": 9.0,
+   "month": "2026-07",
+   "age": "TOTAL",
+   "age_label": "Total (16 to 74 years)"
+  },
+  {
+   "time_label": "2026-07",
+   "geo": "SE",
+   "geo_label": "Sweden",
+   "sex": "M",
+   "sex_label": "Males",
+   "value": 8.3,
+   "month": "2026-07",
+   "age": "TOTAL",
+   "age_label": "Total (16 to 74 years)"
+  },
+  {
+   "time_label": "2026-07",
+   "geo": "SE",
+   "geo_label": "Sweden",
+   "sex": "T",
+   "sex_label": "Total",
+   "value": 8.6,
+   "month": "2026-07",
+   "age": "TOTAL",
+   "age_label": "Total (16 to 74 years)"
+  }
+ ]
+}

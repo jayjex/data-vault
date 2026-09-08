@@ -112,6 +112,14 @@ Annual harmonised unemployment rates (une_rt_a, LFS definition, unit PC_ACT) for
 - Full data (free): https://jayjex.github.io/data-vault/data/eurostat/unemployment/unemployment-rate.csv
 - License: CC BY 4.0 (Eurostat, access-right PUBLIC)
 
+### Eurostat Monthly Unemployment Rate by Sex, EU27 + 8 Countries, 2003-2026 (eurostat-unemployment-monthly)
+Seasonally adjusted monthly unemployment rates (une_rt_m, LFS definition, unit PC_ACT, age TOTAL 16-74) for the EU-27 aggregate and eight countries (DE, EL, ES, FR, IT, NL, PL, SE): 7,641 rows, both sexes plus males and females, months 2003-01 through 2026-07 as a complete 9 x 283 x 3 grid with no gaps. July 2026 headline: EU-27 6.1%, Spain 10.0% highest, Poland 3.4% lowest; crisis peaks month-by-month are Greece 28.3% (2013-07) and Spain 26.4% (2013-02) against EU-27's 11.7% (2013-05). Source is public Eurostat data, so the full CSV is a free download. Niche: econ-data. Stats: {"rows": 7641, "tables": 1, "columns": 8, "updated": "2026-09-04"}.
+- Sample JSON: https://jayjex.github.io/data-vault/data/eurostat/unemployment-monthly/sample.json
+- Sample CSV: https://jayjex.github.io/data-vault/data/eurostat/unemployment-monthly/sample.csv
+- Page: https://jayjex.github.io/data-vault/datasets/eurostat-unemployment-monthly.html
+- Full data (free): https://jayjex.github.io/data-vault/data/eurostat/unemployment-monthly/unemployment-rate-monthly.csv
+- License: CC BY 4.0 (Eurostat, access-right PUBLIC)
+
 ### World Bank Population, G20 Countries + EU27, 1960-2025 (worldbank-g20-population)
 Total population (WDI indicator SP.POP.TOTL) for the 19 national G20 members plus the EU27 aggregate (EUU), one row per entity-year from 1960 through 2025: 1,320 rows, 4 columns (entity, iso3, year, population), values verbatim from the World Bank API v2. 2025: India 1,463,865,525 leads China 1,406,585,000 (crossover in 2021); Saudi Arabia is the fastest grower at 15.2x since 1960; six entities are already past their peak (Russia 1992, Japan 2010, Korea 2020, Italy 2014, China 2021, Germany 2024). Sourced keyless, retrieved 2026-09-10, WDI updated 2026-07-13. Niche: econ-data. Stats: {"rows": 1320, "tables": 2, "columns": 4, "updated": "2026-07-13"}.
 - Sample JSON: https://jayjex.github.io/data-vault/data/worldbank-g20-population/sample.json

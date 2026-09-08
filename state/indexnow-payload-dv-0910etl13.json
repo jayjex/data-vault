@@ -1,0 +1,15 @@
+{
+  "host": "jayjex.github.io",
+  "key": "78e095195f1e3c98ed5e6c17474dc1b6",
+  "keyLocation": "https://jayjex.github.io/data-vault/78e095195f1e3c98ed5e6c17474dc1b6.txt",
+  "urlList": [
+    "https://jayjex.github.io/data-vault/datasets/eurostat-unemployment-monthly.html",
+    "https://jayjex.github.io/data-vault/data/eurostat/unemployment-monthly/unemployment-rate-monthly.csv",
+    "https://jayjex.github.io/data-vault/data/eurostat/unemployment-monthly/sample.csv",
+    "https://jayjex.github.io/data-vault/data/eurostat/unemployment-monthly/sample.json",
+    "https://jayjex.github.io/data-vault/data/eurostat/unemployment-monthly/schema.md",
+    "https://jayjex.github.io/data-vault/datasets/eurostat-unemployment.html",
+    "https://jayjex.github.io/data-vault/catalog.json",
+    "https://jayjex.github.io/data-vault/llms.txt"
+  ]
+}

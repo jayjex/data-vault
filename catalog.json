@@ -387,6 +387,51 @@
    "page": "https://jayjex.github.io/data-vault/datasets/eurostat-unemployment.html"
   },
   {
+   "slug": "eurostat-unemployment-monthly",
+   "name": "Eurostat Monthly Unemployment Rate by Sex, EU27 + 8 Countries, 2003-2026",
+   "niche": "econ-data",
+   "tags": [
+    "eurostat",
+    "unemployment",
+    "labour-market",
+    "eu",
+    "monthly"
+   ],
+   "description": "Seasonally adjusted monthly unemployment rate (une_rt_m, LFS definition, unit PC_ACT, age TOTAL 16-74) for the EU-27 aggregate and eight countries (DE, EL, ES, FR, IT, NL, PL, SE): 7,641 rows, both sexes plus males and females, months 2003-01 through 2026-07 as a complete 9 x 283 x 3 grid with no gaps. July 2026 headline: EU-27 6.1%, Spain 10.0% highest, Poland 3.4% lowest.",
+   "stats": {
+    "rows": 7641,
+    "tables": 1,
+    "columns": 8,
+    "updated": "2026-09-04"
+   },
+   "sample": {
+    "csv": "https://jayjex.github.io/data-vault/data/eurostat/unemployment-monthly/sample.csv",
+    "json": "https://jayjex.github.io/data-vault/data/eurostat/unemployment-monthly/sample.json",
+    "rows": 22,
+    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+   },
+   "extra_files": [
+    {
+     "name": "unemployment-rate-monthly.csv (full, free)",
+     "url": "https://jayjex.github.io/data-vault/data/eurostat/unemployment-monthly/unemployment-rate-monthly.csv",
+     "rows": 7641,
+     "note": "complete dataset, free download"
+    },
+    {
+     "name": "schema.md",
+     "url": "https://jayjex.github.io/data-vault/data/eurostat/unemployment-monthly/schema.md",
+     "note": "column definitions, code lists, coverage notes, sanity ranges"
+    }
+   ],
+   "full_data": {
+    "status": "free",
+    "url": "https://jayjex.github.io/data-vault/data/eurostat/unemployment-monthly/unemployment-rate-monthly.csv",
+    "note": "Source is CC BY 4.0 public Eurostat data, so the full table is a free download, not a Getly pack."
+   },
+   "license": "CC BY 4.0 (source data Eurostat, une_rt_m, Creative Commons Attribution 4.0 International, access-right PUBLIC)",
+   "page": "https://jayjex.github.io/data-vault/datasets/eurostat-unemployment-monthly.html"
+  },
+  {
    "slug": "worldbank-g20-population",
    "name": "World Bank Population, G20 Countries + EU27, 1960-2025 (free)",
    "niche": "econ-data",

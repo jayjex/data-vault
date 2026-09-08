@@ -1,0 +1,10 @@
+{
+  "host": "jayjex.github.io",
+  "key": "78e095195f1e3c98ed5e6c17474dc1b6",
+  "urlList": [
+    "https://jayjex.github.io/data-vault/datasets/osm-us2-civic-amenities.html",
+    "https://jayjex.github.io/data-vault/data/osm-us2-civic/us2-civic-amenities.csv",
+    "https://jayjex.github.io/data-vault/data/osm-us2-civic/sample.csv",
+    "https://jayjex.github.io/data-vault/data/osm-us2-civic/sample.json"
+  ]
+}

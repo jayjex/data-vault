@@ -1,0 +1,12 @@
+{
+  "host": "jayjex.github.io",
+  "key": "78e095195f1e3c98ed5e6c17474dc1b6",
+  "keyLocation": "https://jayjex.github.io/data-vault/78e095195f1e3c98ed5e6c17474dc1b6.txt",
+  "urlList": [
+    "https://jayjex.github.io/data-vault/guides/eu-unemployment-rate-by-country-2026.html",
+    "https://jayjex.github.io/data-vault/datasets/eurostat-unemployment-monthly.html",
+    "https://jayjex.github.io/data-vault/datasets/eurostat-unemployment.html",
+    "https://jayjex.github.io/data-vault/guides/labor-market-data-guide.html",
+    "https://jayjex.github.io/data-vault/guides/index.html"
+  ]
+}

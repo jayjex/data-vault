@@ -130,6 +130,7 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - [Airbnb Occupancy Data: What a Listings Snapshot Can and Cannot Tell You](https://jayjex.github.io/data-vault/guides/airbnb-occupancy-data.html): availability fields, proxies, and honest limits
 - [Airbnb Dataset Sample: Free CSV Data Download (20 Rows, 12 Columns)](https://jayjex.github.io/data-vault/guides/airbnb-data-sample.html): free sample rows
 - [Airbnb Rental Analysis: Screen 6 US Markets With One Dataset](https://jayjex.github.io/data-vault/guides/airbnb-investment-analysis.html): screening workflow with real queries
+- [Airbnb vs Long-Term Rent: Nightly × 30 vs Monthly Rent (90,169 Listings)](https://jayjex.github.io/data-vault/guides/airbnb-vs-long-term-rent.html): STR vs LTR yield test, median nightly × 30 against FY2027 FMR + 2024 ACS 2BR rents in Austin, NYC, San Diego, breakeven occupancy 7.4-10.8 nights
 - [Inside Airbnb Alternative: 6 Cities, One Schema, 90,169 Rows](https://jayjex.github.io/data-vault/guides/inside-airbnb-alternative.html): normalized schema vs per-city dumps
 - [Airbnb Data Methodology: How Snapshot Datasets Are Built](https://jayjex.github.io/data-vault/guides/airbnb-data-methodology.html): collection pipeline, snapshot limits, two-snapshot bookings proxy
 - [Airbnb Scraper: Why It Fails, and the Legal Way to Get Airbnb Data](https://jayjex.github.io/data-vault/guides/airbnb-data-scraper.html): live test results against airbnb.com, the ToS scraping clause, legal snapshot sources with real row counts

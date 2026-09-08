@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Airbnb vs Long-Term Rent: Nightly × 30 vs Monthly Rent (90,169 Listings) | Data Vault</title>
+<meta name="description" content="Airbnb vs long term rent: median nightly price × 30 against HUD FMR and ACS 2BR monthly rents in Austin, New York City, and San Diego. STR vs LTR yield multiples with the occupancy caveat stated.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/airbnb-vs-long-term-rent.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Airbnb vs Long-Term Rent: Nightly × 30 vs Monthly Rent (90,169 Listings)">
+<meta property="og:description" content="Airbnb vs long term rent: median nightly price × 30 against HUD FMR and ACS 2BR monthly rents in Austin, New York City, and San Diego. STR vs LTR yield multiples with the occupancy caveat stated.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/airbnb-vs-long-term-rent.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Airbnb vs Long-Term Rent: Nightly × 30 vs Monthly Rent, on 90,169 Listings", "description": "Airbnb vs long term rent: median nightly price × 30 against HUD FMR and ACS 2BR monthly rents in Austin, New York City, and San Diego. STR vs LTR yield multiples with the occupancy caveat stated.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/airbnb-vs-long-term-rent.html", "about": {"@type": "Dataset", "name": "Airbnb Listings, 6 US Cities", "url": "https://doi.org/10.5281/zenodo.22643189"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Airbnb vs Long-Term Rent", "item": "https://jayjex.github.io/data-vault/guides/airbnb-vs-long-term-rent.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is Airbnb more profitable than long-term renting?", "acceptedAnswer": {"@type": "Answer", "text": "The nightly-to-monthly multiple favors short-term rentals on paper: in our 90,169-listing six-city pack, Austin's median nightly price of 217 times 30 nights is 6,510, 3.50 times the Austin metro's 2024 ACS 2BR median gross rent of 1,859, and San Diego's 323 times 30 is 9,690, 4.07 times its 2,379 ACS median. New York is the tightest at 2.78 times ACS (1,887) and only 1.59 times the FY2027 FMR of 3,295. The multiple is a gross ceiling: it books all 30 nights, pays no vacancy, cleaning, furnishing, or management costs, and mixes private rooms into the nightly median. Profitability needs booked nights and costs, which a listings snapshot cannot give."}}, {"@type": "Question", "name": "How do you compare Airbnb nightly prices with monthly rent?", "acceptedAnswer": {"@type": "Answer", "text": "Multiply the nightly price by 30 and compare the product with a monthly rent benchmark, both stated on the same rent-plus-utilities basis. We use two: the HUD fair market rent, a 40th percentile gross rent for recent movers, effective each October 1 (FY2027 2BR medians of 1,835 in Austin, 3,295 in New York, 2,820 in San Diego), and the Census ACS median gross rent, the 50th percentile across all renter leases (2BR 2024 medians of 1,859, 1,887, and 2,379). The Airbnb side comes from the median price of 90,169 listings in six cities."}}, {"@type": "Question", "name": "What does the nightly times 30 comparison miss?", "acceptedAnswer": {"@type": "Answer", "text": "Occupancy first. Multiplying by 30 books every night; the breakeven against the ACS 2BR median is 8.6 booked nights a month in Austin, 10.8 in New York, and 7.4 in San Diego. availability_365 counts open calendar, not booked nights, so a snapshot cannot settle real occupancy, and a single-day snapshot hides seasonality. Room mix matters: 42 percent of the NYC listings are private rooms, which pulls the 175 median below a whole-unit rate. The rent benchmarks include utilities; the nightly price does not, and STR operations add cleaning, furnishing, and turnover costs the rent side never sees."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Airbnb vs long-term rent: the nightly × 30 test, run on our own listings</h1>
+  <p class="byline">Published 2026-09-10. Data sources: our Airbnb 6-city pack (Inside Airbnb snapshots, June through August 2026, CC BY 4.0); HUD FY2027 Fair Market Rent file; US Census Bureau, 2024 American Community Survey one-year estimates via Census Reporter, retrieved 2026-09-10, public domain. This page is data and arithmetic; it is not financial or investment advice. Data Vault is not affiliated with Airbnb, HUD, or the Census Bureau.</p>
+
+  <section aria-label="The conversion method">
+    <h2>One conversion makes the two sides meet</h2>
+    <p>An Airbnb listing quotes a nightly price. A long-term rental quotes a monthly rent. The two numbers live on different clocks, so most "which yields more" takes float on vibes. The fix is mechanical: multiply the nightly price by 30 to get a monthly figure, then hold it against a monthly rent benchmark.</p>
+    <pre><code>STR monthly (ceiling) = median nightly price × 30 booked nights
+LTR monthly           = 2-bedroom rent benchmark for the same metro</code></pre>
+    <p>Two rent benchmarks, both including a utilities allowance. The HUD fair market rent is a 40th percentile gross rent for recent movers, effective each October 1; the FY2027 file is the current one, and <a href="hud-fair-market-rent-explained.html">what fair market rent is</a> covers the definition. The ACS median gross rent is the 50th percentile across every renter lease in the metro, long-tenured ones included; <a href="hud-fmr-vs-census-rent.html">HUD FMR vs census rent</a> compares the two percentiles. The Airbnb side comes from our own 90,169-listing pack, one schema across <a href="../datasets/airbnb-six-cities.html">six cities</a>, and the per-city medians in cities-index.csv.</p>
+  </section>
+
+  <section aria-label="Three cities worked">
+    <h2>Three cities, same test</h2>
+    <p>The pack covers Austin, Nashville, Denver, New York City, Las Vegas, and San Diego. Three of them carry the cleanest comparisons, so they get the worked examples. Los Angeles is a famous STR market, but LA is not in the pack, so it is left out; this page invents nothing. The FMR column is the median 2-bedroom value across each metro's ZIP rows in the FY2027 file (Austin 144 rows, New York 410, San Diego 178). The ACS column is the 2024 one-year 2BR median gross rent for the matching census metro. The last column divides the × 30 ceiling by the ACS median:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Airbnb median nightly price times 30 against 2BR rent benchmarks in three cities"><table><thead><tr><th scope="col">City</th><th scope="col">Median nightly</th><th scope="col">× 30 ceiling</th><th scope="col">FMR 2BR, FY2027</th><th scope="col">ACS 2BR median, 2024</th><th scope="col">Ceiling ÷ ACS</th></tr></thead><tbody>
+      <tr><td>Austin, TX (11,295 listings, snapshot 2026-06-22)</td><td>217</td><td>6,510</td><td>1,835</td><td>1,859</td><td>3.50×</td></tr>
+      <tr><td>New York City, NY (30,234, 2026-08-10)</td><td>175</td><td>5,250</td><td>3,295</td><td>1,887</td><td>2.78×</td></tr>
+      <tr><td>San Diego, CA (13,225, 2026-06-27)</td><td>323</td><td>9,690</td><td>2,820</td><td>2,379</td><td>4.07×</td></tr>
+    </tbody></table></div>
+    <p>What the table says. Austin is the cleanest read: 82 percent of its listings are entire homes, so the 217 median behaves like a whole-unit rate, and both rent benchmarks land within 24 dollars of each other (1,835 FMR, 1,859 ACS). The ceiling ÷ ACS multiple is 3.50×; against the FMR it is 3.55×.</p>
+    <p>San Diego posts the biggest multiple, 4.07×, because it is the priciest nightly market in the pack (323, the highest median of the six) while its ACS 2BR median of 2,379 sits below the FY2027 FMR of 2,820. Against the FMR the multiple is 3.44×.</p>
+    <p>New York runs the tightest, and its two rent benchmarks disagree for a reason: the ACS 1,887 median carries every lease in the metro, many signed years ago, while the 3,295 FMR prices what a recent mover pays. The multiple reads 2.78× against ACS but only 1.59× against FMR. And the 175 nightly median carries a mix problem the table cannot fix: 42 percent of the NYC listings are private rooms, which pulls the median below any whole-unit rate. A host weighing an entire NYC apartment against a lease should read the median as a floor, not a rate.</p>
+    <p>For the rent side of these three metros against local incomes, <a href="rent-vs-income-affordability.html">the 30% rule, tested on FMR and ACS data</a> runs the same benchmarks through an affordability lens.</p>
+  </section>
+
+  <section aria-label="Breakeven occupancy">
+    <h2>Breakeven occupancy: the caveat that decides the answer</h2>
+    <p>The × 30 ceiling books all 30 nights. Nobody books all 30 nights. The honest way to use this table is to ask how many booked nights a listing needs before the short-term route out-earns the long-term one:</p>
+    <pre><code>breakeven nights = LTR monthly rent ÷ nightly price</code></pre>
+    <p>Against the ACS 2BR median, Austin needs 8.6 booked nights a month (1,859 ÷ 217), New York 10.8 (1,887 ÷ 175), San Diego 7.4 (2,379 ÷ 323). Against New York's recent-mover FMR the bar jumps to 18.8 nights (3,295 ÷ 175). A listing that clears those counts grosses more than the median lease; one that does not loses to it, before costs.</p>
+    <p>Can a snapshot settle real occupancy? It cannot, and we have a whole page on <a href="airbnb-occupancy-data.html">what occupancy data a listings snapshot can and cannot tell you</a>. The availability_365 column counts open calendar, not booked nights; the <a href="airbnb-data-methodology.html">snapshot methodology</a> shows a two-snapshot diff as the closest proxy. Each city's numbers describe a single day, June through August 2026, and hosts reprice constantly, so the nightly medians are summer figures with the seasonality question left open. Over a year the ceiling compounds the same way: 217 a night lists at 79,205 if every night books, which is the same fiction stretched across 365 days.</p>
+  </section>
+
+  <section aria-label="What the multiple leaves out">
+    <h2>What the multiple leaves out</h2>
+    <p>The revenue side of the comparison is thin by design, and the cost side is thinner. The rent benchmarks include a utilities allowance; a nightly rate does not, and STR operations stack cleaning fees, furnishing, platform commissions, and turnover labor on top. Long-term leases pay those back with twelve months of guaranteed occupancy, no re-listing, and no regulatory whiplash, which in New York alone reshapes what can be listed at all. The room-type mismatch cuts both ways: the nightly median mixes private rooms with entire homes, while the 2BR benchmarks describe whole units, so a per-city read should check the mix before quoting the multiple. Austin's 82 percent entire-home share makes its 3.50× the sturdiest number in the table.</p>
+    <p>And the standing disclaimer: this page is arithmetic on published data. It is not investment advice, and it does not know your mortgage, your city's permit rules, or your calendar.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>Airbnb vs LTR questions</h2>
+    <dl>
+      <dt>Is Airbnb more profitable than long-term renting?</dt>
+      <dd>The nightly-to-monthly multiple favors short-term rentals on paper: in our 90,169-listing six-city pack, Austin's median nightly price of 217 times 30 nights is 6,510, 3.50 times the Austin metro's 2024 ACS 2BR median gross rent of 1,859, and San Diego's 323 times 30 is 9,690, 4.07 times its 2,379 ACS median. New York is the tightest at 2.78 times ACS (1,887) and only 1.59 times the FY2027 FMR of 3,295. The multiple is a gross ceiling: it books all 30 nights, pays no vacancy, cleaning, furnishing, or management costs, and mixes private rooms into the nightly median. Profitability needs booked nights and costs, which a listings snapshot cannot give.</dd>
+      <dt>How do you compare Airbnb nightly prices with monthly rent?</dt>
+      <dd>Multiply the nightly price by 30 and compare the product with a monthly rent benchmark, both stated on the same rent-plus-utilities basis. We use two: the HUD fair market rent, a 40th percentile gross rent for recent movers, effective each October 1 (FY2027 2BR medians of 1,835 in Austin, 3,295 in New York, 2,820 in San Diego), and the Census ACS median gross rent, the 50th percentile across all renter leases (2BR 2024 medians of 1,859, 1,887, and 2,379). The Airbnb side comes from the median price of 90,169 listings in six cities.</dd>
+      <dt>What does the nightly times 30 comparison miss?</dt>
+      <dd>Occupancy first. Multiplying by 30 books every night; the breakeven against the ACS 2BR median is 8.6 booked nights a month in Austin, 10.8 in New York, and 7.4 in San Diego. availability_365 counts open calendar, not booked nights, so a snapshot cannot settle real occupancy, and a single-day snapshot hides seasonality. Room mix matters: 42 percent of the NYC listings are private rooms, which pulls the 175 median below a whole-unit rate. The rent benchmarks include utilities; the nightly price does not, and STR operations add cleaning, furnishing, and turnover costs the rent side never sees.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <p>The Airbnb side runs on our six-city pack: 90,169 listings, one 12-column schema, per-city CSVs with snapshot dates and source checksums. The 20-row sample is free on this page; the full pack is licensed. Both rent benchmarks are free public data: the FY2027 FMR CSVs on Zenodo, and ACS tables B25031 on Census Reporter, with the keyless pull in the <a href="census-data-api-tutorial.html">census data API tutorial</a>.</p>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/airbnb-six-cities/sample.csv" download>Free 20-row sample CSV</a>
+      <a class="btn" href="../datasets/airbnb-six-cities.html">Airbnb 6-city dataset page</a>
+    </div>
+    <p class="btn-note">Source: Inside Airbnb snapshot data, CC BY 4.0 (Austin 2026-06-22, Las Vegas and San Diego 2026-06-27, Nashville 2026-06-26, Denver 2026-06-30, New York City 2026-08-10); US Department of Housing and Urban Development, FY2027 Fair Market Rent release, huduser.gov, public domain; US Census Bureau, 2024 ACS one-year estimates, table B25031, retrieved via Census Reporter on 2026-09-10, public domain. Data Vault is not affiliated with Airbnb, Inside Airbnb, HUD, the Census Bureau, or Census Reporter.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

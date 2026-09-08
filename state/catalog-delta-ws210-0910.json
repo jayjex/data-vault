@@ -1,0 +1,16 @@
+{
+  "_meta": {
+    "purpose": "SEO lane ws210 (guide) delta. catalog.json / sitemap.xml / llms.txt were LOCKED by ETL batch 6 coordination (etl6 Oceania/Africa/US OSM uncommitted in the worktree) when this lane ran, so the shared-file lines are staged here instead of edited. Same pattern as state/catalog-delta-osmetl7-0910.json. The guide page itself (guides/most-affordable-counties.html) and the cross-link in datasets/osm-asia-civic-amenities.html are committed directly.",
+    "created": "2026-09-10",
+    "lane": "seo-ws210",
+    "page": "https://jayjex.github.io/data-vault/guides/most-affordable-counties.html",
+    "sitemap_url": "https://jayjex.github.io/data-vault/guides/most-affordable-counties.html",
+    "sitemap_lastmod": "2026-09-10",
+    "sitemap_count": "153 -> 154",
+    "llms_txt_line": "- Most affordable counties by HUD FMR (guide): https://jayjex.github.io/data-vault/guides/most-affordable-counties.html (3,229-county FY2026 ladder: PR floor 475, 19 AL counties at 776 mainland floor, bedroom medians 0-4BR, 1.95x 4BR/studio ratio)"
+  },
+  "sitemap_entry": {
+    "loc": "https://jayjex.github.io/data-vault/guides/most-affordable-counties.html",
+    "lastmod": "2026-09-10"
+  }
+}

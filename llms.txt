@@ -349,6 +349,12 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - [3D Printed Gift Tags: 70 and 50 mm TO/FROM Engraved Set](https://jayjex.github.io/data-vault/guides/printable-gift-tags.html): two tag sizes in one file, 0.8 mm engraving, 4.5 mm string hole, flat no-support print, parametric; renders only
 - [3D Printable Education Models: Math Manipulatives for Class and Home](https://jayjex.github.io/data-vault/guides/printable-education-models.html): print-in-place 100-bead abacus, 0-99 number line in ten peg-joined tiles, two insect pinning blocks; dims, categories, print estimates; staged drafts pending submit, renders only
 
+## Store
+
+- [Ko-fi (JayHex)](https://ko-fi.com/jayjex): the printable galleries live here, plus a tip jar
+- [Fourthwall shop, JayHex](https://jayjex-shop.fourthwall.com): digital downloads like data packs, directories, planners, and the Web3 events calendar
+- [JayHex Prints on Printify](https://jayhex-prints.printify.me): print-on-demand sweatshirts and hoodies carrying the Matchbook Labs designs, including the Winter Robin and Halloween series
+
 ## Access rules
 - Fetch catalog.json and every sample endpoint freely. No API keys, no auth.
 - sample.json returns {slug, name, columns[], row_count, records[]}.

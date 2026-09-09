@@ -1067,6 +1067,53 @@
       },
       "license": "Public domain (US government data, HUD FY2027 Fair Market Rent release)",
       "page": "https://jayjex.github.io/data-vault/datasets/hud-fmr-metro-2027.html"
+    },
+    {
+      "slug": "hud-fmr-by-zip-2027",
+      "name": "HUD Fair Market Rents FY2027 by ZIP Code",
+      "niche": "gov-data",
+      "tags": [
+        "hud",
+        "fmr",
+        "zip",
+        "rent",
+        "real-estate",
+        "gov-data",
+        "free"
+      ],
+      "description": "The full FY2027 ZIP-level fair market rent file: 51,871 rows across 38,601 ZIP codes, ten columns with studio through 4BR rents, metro and nonmetro flags preserved. Zero empty cells, zero duplicate keys, leading-zero ZIPs intact. Free full CSV.",
+      "stats": {
+        "rows": 51871,
+        "tables": 1,
+        "columns": 10,
+        "updated": "FY2027"
+      },
+      "sample": {
+        "csv": "https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/sample.csv",
+        "json": "https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/sample.json",
+        "rows": 22,
+        "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+      },
+      "extra_files": [
+        {
+          "name": "fmr-by-zip-2027.csv (full, free)",
+          "url": "https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/fmr-by-zip-2027.csv",
+          "rows": 51871,
+          "note": "complete ZIP-level file, byte-identical copy of the parsed source, free download"
+        },
+        {
+          "name": "schema.md",
+          "url": "https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/schema.md",
+          "note": "column dictionary, coverage, integrity checks, caveats"
+        }
+      ],
+      "full_data": {
+        "status": "free",
+        "url": "https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/fmr-by-zip-2027.csv",
+        "note": "Source is US government data (HUD FY2027 FMR release), public domain, so the full file is a free download, not a Getly pack."
+      },
+      "license": "Public domain (US government data, HUD FY2027 Fair Market Rent release)",
+      "page": "https://jayjex.github.io/data-vault/datasets/hud-fmr-by-zip-2027.html"
     }
   ],
   "mcp": {

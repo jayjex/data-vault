@@ -68,6 +68,15 @@ FY2027 FMR medians for the 50 metro FMR areas with the most ZIP codes (10,143 of
 - Price table (free): https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/most-expensive-2br.csv (50 rows)
 - License: Public domain (US government data, HUD FY2027 Fair Market Rent release)
 
+### HUD Fair Market Rents FY2027 by ZIP Code (hud-fmr-by-zip-2027)
+The full FY2027 ZIP-level fair market rent file as one free download: 51,871 rows across 38,601 ZIP codes, ten columns (zip, hud_area_code, metro flag, area name, state, five bedroom rents), 27,288 metro rows and 24,583 nonmetro rows, 10,093 ZIPs deliberately split across more than one HUD area. Zero empty cells, zero duplicate (zip, area_code) keys, 3,000 leading-zero ZIP codes intact. Niche: gov-data. Stats: {"rows": 51871, "tables": 1, "columns": 10, "updated": "FY2027"}.
+- Sample JSON: https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/sample.json
+- Sample CSV: https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/sample.csv
+- Page: https://jayjex.github.io/data-vault/datasets/hud-fmr-by-zip-2027.html
+- Full ZIP file (free): https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/fmr-by-zip-2027.csv (51,871 rows, byte-identical copy of the parsed source)
+- SQL guide: https://jayjex.github.io/data-vault/guides/hud-fmr-by-zip-sql.html (DuckDB and SQLite queries on this exact file, Texas leads with 3,244 ZIP rows, 2BR median 1,190)
+- License: Public domain (US government data, HUD FY2027 Fair Market Rent release)
+
 ### Airbnb Listings, 6 US Cities (airbnb-six-cities)
 90,169 Airbnb listings across Austin, Nashville, Denver, New York City, Las Vegas, and San Diego in one normalized schema. Niche: real-estate. Stats: {"rows": 90169, "tables": 8, "columns": 12, "updated": "2026-08-10"}.
 - Sample JSON: https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.json

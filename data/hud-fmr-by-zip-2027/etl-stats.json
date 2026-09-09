@@ -1,0 +1,109 @@
+{
+ "rows": 51871,
+ "columns": 10,
+ "unique_zips": 38601,
+ "rows_leading_zero_zip": 3523,
+ "unique_zips_leading_zero": 3000,
+ "metro_rows": 27288,
+ "nonmetro_rows": 24583,
+ "distinct_area_codes": 2600,
+ "metro_area_codes": 649,
+ "nonmetro_area_codes": 1951,
+ "states_territories": 52,
+ "multi_area_zips": 10093,
+ "max_rows_per_zip": 6,
+ "zips_at_max_rows": [
+  "40351",
+  "40601",
+  "40962",
+  "47240",
+  "68823"
+ ],
+ "fmr_2br_min": 520,
+ "fmr_2br_p25": 1020,
+ "fmr_2br_median": 1190,
+ "fmr_2br_p75": 1590,
+ "fmr_2br_max": 5260,
+ "fmr_2br_min_zip": "00669",
+ "fmr_2br_min_area": "Aguadilla, PR MSA",
+ "fmr_2br_max_zip": "95060",
+ "fmr_2br_max_area": "Santa Cruz-Watsonville, CA MSA",
+ "top10_states_by_rows": [
+  [
+   "TX",
+   3244
+  ],
+  [
+   "CA",
+   2605
+  ],
+  [
+   "PA",
+   2576
+  ],
+  [
+   "NY",
+   2397
+  ],
+  [
+   "IL",
+   1939
+  ],
+  [
+   "MO",
+   1908
+  ],
+  [
+   "OH",
+   1884
+  ],
+  [
+   "IA",
+   1718
+  ],
+  [
+   "MI",
+   1556
+  ],
+  [
+   "FL",
+   1552
+  ]
+ ],
+ "top10_rows_sum": 21379,
+ "state_2br_median_top3": [
+  [
+   "CA",
+   2600,
+   2605
+  ],
+  [
+   "MA",
+   2550,
+   767
+  ],
+  [
+   "HI",
+   2535,
+   128
+  ]
+ ],
+ "state_2br_median_bottom3": [
+  [
+   "AR",
+   960,
+   989
+  ],
+  [
+   "MS",
+   960,
+   844
+  ],
+  [
+   "PR",
+   610,
+   216
+  ]
+ ],
+ "source_sha256": "3f94c5e98da53ff87987d7dbc28bf34de42168b5e90221dec70d62d1f0e30bd1"
+}

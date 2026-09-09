@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD Fair Market Rents FY2027 by ZIP Code: 51,871 Rows, Free CSV | Data Vault</title>
+<meta name="description" content="The full FY2027 ZIP-level fair market rent file: 51,871 rows across 38,601 ZIP codes, ten columns, metro and nonmetro flags preserved, zero empty cells, leading-zero ZIPs intact. Free CSV, public domain.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/datasets/hud-fmr-by-zip-2027.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="HUD Fair Market Rents FY2027 by ZIP Code (Free CSV) | Data Vault">
+<meta property="og:description" content="The full FY2027 ZIP-level fair market rent file: 51,871 rows, 38,601 ZIP codes, studio through 4BR rents, integrity checked at build time. Free CSV, public domain.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/datasets/hud-fmr-by-zip-2027.html">
+<meta property="og:image" content="https://jayjex.github.io/data-vault/assets/covers/data-vault-banner.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="HUD Fair Market Rents FY2027 by ZIP Code">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "HUD Fair Market Rents FY2027 by ZIP Code", "description": "The full FY2027 ZIP-level Fair Market Rent file: 51,871 rows across 38,601 ZIP codes, ten columns with a metro or nonmetro flag and dollar rents for studios through 4 bedrooms, rates effective October 1, 2026. 10,093 ZIPs appear in more than one HUD area by HUD's own split-area design. Zero empty cells, zero duplicate keys, leading-zero ZIP codes intact.", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-by-zip-2027.html", "dateModified": "2026-09-10", "keywords": ["hud", "fmr", "zip", "rent", "gov-data", "real-estate"], "creator": {"@type": "Organization", "name": "Matchbook Labs"}, "isAccessibleForFree": true, "license": "https://creativecommons.org/publicdomain/zero/1.0/", "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/fmr-by-zip-2027.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/sample.csv"}, {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/sample.json"}, {"@type": "DataDownload", "encodingFormat": "text/markdown", "contentUrl": "https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/schema.md"}, {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/etl-stats.json"}], "isBasedOn": "https://www.huduser.gov/portal/datasets/fmr.html"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Datasets", "item": "https://jayjex.github.io/data-vault/datasets/"}, {"@type": "ListItem", "position": 3, "name": "HUD Fair Market Rents FY2027 by ZIP Code", "item": "https://jayjex.github.io/data-vault/datasets/hud-fmr-by-zip-2027.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the full FY2027 ZIP-level file free to download?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The CSV downloads straight from this page with no signup, and no cut-down version exists here: all 51,871 rows ship, zero empty cells and zero duplicate keys included. HUD publishes federal fair market rents as US government data, so the file is public domain and you can republish it or sell derived work without asking anyone."}}, {"@type": "Question", "name": "Why does one ZIP code show up more than once in the file?", "acceptedAnswer": {"@type": "Answer", "text": "HUD's design, not a bug. 10,093 of the 38,601 ZIPs carry more than one row because metro and nonmetro coverage split the same ZIP between areas, and small-area county groups can add their own rows. ZIP 76437 in Texas, for example, holds a metro row for Abilene plus nonmetro rows for Eastland and Stephens counties, six rows total at most. Deduplicate on the zip and hud_area_code pair, or filter the metro flag, before per-ZIP lookups."}}, {"@type": "Question", "name": "How do I query the file with SQL?", "acceptedAnswer": {"@type": "Answer", "text": "The file loads straight into DuckDB or SQLite. Texas carries the most rows at 3,244, the national 2BR median across all rows is 1,190 dollars, and a JOIN to the metro medians table attaches area rollups to ZIP rows. The SQL guide walks the percentile window function, the state ranking GROUP BY and the metro JOIN with copy-paste queries against this exact CSV."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>HUD Fair Market Rents FY2027 by ZIP Code</h1>
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>51,871</b> rows</span><span class="stat"><b>38,601</b> ZIPs</span><span class="stat"><b>10</b> columns</span><span class="stat"><b>4.3 MB</b> free</span></div>
+  <section aria-label="About this dataset">
+    <p>FY2027 fair market rent for 51,871 ZIP rows across 38,601 ZIP codes, the way HUD publishes it: one row per ZIP per HUD area, ten columns with the area code, the metro or nonmetro flag, the area name, the state code, and dollar rents for studios through 4 bedrooms. Rates are effective October 1, 2026. The 27,288 metro rows and 24,583 nonmetro rows together span 2,600 HUD area codes (649 metro, 1,951 nonmetro) and 52 states and territories.</p>
+    <p>The rent split worth knowing: with 2BR, the 25th percentile sits at 1,020 dollars, the median at 1,190 and the 75th at 1,590. The cheapest row is ZIP 00669 in Aguadilla, PR at 520 and the most expensive is ZIP 95060 in Santa Cruz-Watsonville, CA at 5,260. Texas carries more rows than any other state at 3,244, and the ten biggest states (Texas, California, Pennsylvania, New York, Illinois, Missouri, Ohio, Iowa, Michigan, Florida) together hold 21,379 of the 51,871 rows. State-level 2BR medians run from California at 2,600 down to Puerto Rico at 610.</p>
+    <p>Integrity checks run at build time, all passing: zero malformed ZIP fields, zero empty or zero-valued rent cells, zero duplicate (zip, hud_area_code) keys, and zero rows where the 4BR rent is below the 2BR. The copy served here is byte-identical to the parsed source, confirmed by sha256, and 3,000 ZIP codes starting with 0 keep their leading zero. Full details live in <a href="../data/hud-fmr-by-zip-2027/schema.md">schema.md</a>.</p>
+    <p class="byline">Source: US Department of Housing and Urban Development, FY2027 Fair Market Rent release (FY27_FMRs.xlsx plus the FY2027 small-area FMR file), effective October 1, 2026. US government data, public domain.</p>
+  </section>
+  <section aria-label="Preview">
+    <h2>Eight rows from the file</h2>
+    <p class="table-note">Sample rows picked to show the range, one per ZIP across five states plus Puerto Rico. The 22-row sample starts in sample.csv.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Eight sample rows from the FY2027 ZIP-level FMR file"><table><thead><tr><th scope="col">zip</th><th scope="col">hud_area_code</th><th scope="col">metro</th><th scope="col">area_name</th><th scope="col">state</th><th scope="col">fmr_0br</th><th scope="col">fmr_1br</th><th scope="col">fmr_2br</th><th scope="col">fmr_3br</th><th scope="col">fmr_4br</th></tr></thead><tbody><tr><td>76437</td><td>METRO10180M10180</td><td>metro</td><td>Abilene, TX MSA</td><td>TX</td><td>910</td><td>920</td><td>1150</td><td>1490</td><td>1790</td></tr><tr><td>10001</td><td>METRO35620MM5600</td><td>metro</td><td>New York, NY HUD Metro FMR Area</td><td>NY</td><td>3890</td><td>4100</td><td>4460</td><td>5640</td><td>6190</td></tr><tr><td>60601</td><td>METRO16980M16980</td><td>metro</td><td>Chicago-Joliet-Naperville, IL HUD Metro FMR Area</td><td>IL</td><td>2520</td><td>2670</td><td>3020</td><td>3880</td><td>4440</td></tr><tr><td>90001</td><td>METRO31080MM4480</td><td>metro</td><td>Los Angeles-Long Beach-Glendale, CA HUD Metro FMR Area</td><td>CA</td><td>1690</td><td>1890</td><td>2330</td><td>2960</td><td>3310</td></tr><tr><td>20001</td><td>METRO47900M47900</td><td>metro</td><td>Washington-Arlington-Alexandria, DC-VA-MD HUD Metro FMR Area</td><td>DC</td><td>2970</td><td>3100</td><td>3430</td><td>4370</td><td>5150</td></tr><tr><td>95060</td><td>METRO42100M42100</td><td>metro</td><td>Santa Cruz-Watsonville, CA MSA</td><td>CA</td><td>3990</td><td>4190</td><td>5260</td><td>6840</td><td>7110</td></tr><tr><td>00669</td><td>NCNTY72923N72923</td><td>nonmetro</td><td>Puerto Rico HUD Nonmetro Area</td><td>PR</td><td>460</td><td>480</td><td>520</td><td>700</td><td>750</td></tr><tr><td>76437</td><td>NCNTY48133N48133</td><td>nonmetro</td><td>Eastland County, TX</td><td>TX</td><td>910</td><td>920</td><td>1150</td><td>1490</td><td>1790</td></tr></tbody></table></div>
+    <p>The last two rows make the multi-area point: ZIP 76437 carries a metro row and a nonmetro row with different area codes, which is why the file holds 51,871 rows for 38,601 ZIPs. 10,093 ZIPs split this way, capped at six rows for a single ZIP. Every row of one area carries the same rent values, so you can dedup on the zip and hud_area_code pair before per-ZIP lookups.</p>
+  </section>
+  <section aria-label="Questions">
+    <h2>FMR by ZIP: questions</h2>
+    <dl>
+      <dt>Is the full FY2027 ZIP-level file free to download?</dt>
+      <dd>Yes. The CSV downloads straight from this page with no signup, and no cut-down version exists here: all 51,871 rows ship, zero empty cells and zero duplicate keys included. HUD publishes federal fair market rents as US government data, so the file is public domain and you can republish it or sell derived work without asking anyone.</dd>
+      <dt>Why does one ZIP code show up more than once in the file?</dt>
+      <dd>HUD's design, not a bug. 10,093 of the 38,601 ZIPs carry more than one row because metro and nonmetro coverage split the same ZIP between areas, and small-area county groups can add their own rows. ZIP 76437 in Texas, for example, holds a metro row for Abilene plus nonmetro rows for Eastland and Stephens counties, six rows total at most. Deduplicate on the zip and hud_area_code pair, or filter the metro flag, before per-ZIP lookups.</dd>
+      <dt>How do I query the file with SQL?</dt>
+      <dd>The file loads straight into DuckDB or SQLite. Texas carries the most rows at 3,244, the national 2BR median across all rows is 1,190 dollars, and a JOIN to the metro medians table attaches area rollups to ZIP rows. The SQL guide walks the percentile window function, the state ranking GROUP BY and the metro JOIN with copy-paste queries against this exact CSV.</dd>
+    </dl>
+  </section>
+  <section aria-label="Files">
+    <h2>Files</h2>
+    <ul class="files">
+      <li><a href="../data/hud-fmr-by-zip-2027/fmr-by-zip-2027.csv" download>fmr-by-zip-2027.csv</a><span class="sz">51,871 rows, the complete file · 4.3 MB</span></li>
+      <li><a href="../data/hud-fmr-by-zip-2027/sample.csv" download>sample.csv</a><span class="sz">22 rows · 1.7 KB</span></li>
+      <li><a href="../data/hud-fmr-by-zip-2027/sample.json" download>sample.json</a><span class="sz">22 records, row_count 51,871 · 5.6 KB</span></li>
+      <li><a href="../data/hud-fmr-by-zip-2027/schema.md" download>schema.md</a><span class="sz">column dictionary, coverage, integrity checks, caveats</span></li>
+      <li><a href="../data/hud-fmr-by-zip-2027/etl-stats.json" download>etl-stats.json</a><span class="sz">build statistics and reference numbers</span></li>
+    </ul>
+  </section>
+  <section aria-label="Get the data">
+    <div class="btnrow">
+      <a class="btn" href="../data/hud-fmr-by-zip-2027/fmr-by-zip-2027.csv" download>Download full CSV (free, 4.3 MB)</a>
+      <a class="btn-ghost btn" href="../data/hud-fmr-by-zip-2027/sample.csv" download>Sample CSV first</a>
+    </div>
+    <p class="btn-note">The full file downloads free: the source is HUD's FY2027 Fair Market Rent release, US government data in the public domain, so republished rows carry no attribution requirement. To work with it, the <a href="../guides/hud-fmr-by-zip-sql.html">SQL guide</a> queries this exact file in DuckDB and SQLite; for the aggregates already rolled up, the <a href="hud-fmr-metro-2027.html">FY2027 metro dataset</a> keeps 50 metro tables and the <a href="hud-fmr-county-2026.html">county FY2026 dataset</a> covers counties from the prior year, and the <a href="hud-fmr-2026.html">ZIP-level FY2026 dataset</a> holds the same ten-column layout one year back. The rest of the catalog lives on the <a href="../portfolio.html">portfolio page</a>.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

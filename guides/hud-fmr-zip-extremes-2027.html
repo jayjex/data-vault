@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The 2BR Extremes FY2027: ZIP Codes Where HUD Fair Market Rent Peaks and Bottoms Out | Data Vault</title>
+<meta name="description" content="ZIP 95060 in Santa Cruz tops the FY2027 2BR fair market rent board at 5,260 dollars; 133 ZIP codes in Louisiana and South Carolina share the 890-dollar floor. Both ten-row boards, the percentiles behind them, and the state spreads.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fmr-zip-extremes-2027.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="The 2BR Extremes FY2027: ZIP Codes Where HUD Fair Market Rent Peaks and Bottoms Out">
+<meta property="og:description" content="ZIP 95060 in Santa Cruz tops HUD's FY2027 2BR fair market rent at 5,260 dollars while 133 ZIP codes in Louisiana and South Carolina share the 890-dollar floor. Both ten-row boards and the state spreads from 2,210 dollars (New York) down to 210 (West Virginia).">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fmr-zip-extremes-2027.html">
+<meta property="og:image" content="https://jayjex.github.io/data-vault/assets/covers/data-vault-banner.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The 2BR Extremes FY2027: ZIP Codes Where HUD Fair Market Rent Peaks and Bottoms Out">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "The 2BR Extremes FY2027: ZIP Codes Where HUD Fair Market Rent Peaks and Bottoms Out", "description": "ZIP 95060 in Santa Cruz tops HUD's FY2027 2BR fair market rent at 5,260 dollars; 133 ZIP codes in Louisiana and South Carolina share the 890-dollar floor. Both ten-row boards, the percentiles behind them, and the state spreads.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fmr-zip-extremes-2027.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2027 by ZIP Code", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-by-zip-2027.html"}, "mentions": [{"@type": "Dataset", "name": "HUD Fair Market Rents FY2027", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2027.html"}, {"@type": "Article", "name": "The 2BR Declines FY2027: Counties Where HUD Fair Market Rent Fell Most From FY2026 to FY2027", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-2br-declines-2027.html"}, {"@type": "Article", "name": "Most and Least Expensive Counties in Each State for HUD Fair Market Rent FY2027", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-county-spreads-2027.html"}, {"@type": "Article", "name": "Counties That Jumped or Fell Most in HUD Fair Market Rent FY2027", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-county-rank-shifts-2027.html"}, {"@type": "Article", "name": "Query HUD FMR by ZIP With SQL: DuckDB and SQLite on the FY2027 CSV", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-zip-sql.html"}, {"@type": "Article", "name": "HUD SAFMR List: ZIP-Level FMR Lookup, FY2026", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-safmr-list.html"}, {"@type": "Article", "name": "Section 8 Voucher Rent: How Much Will HUD Pay?", "url": "https://jayjex.github.io/data-vault/guides/section-8-voucher-rent.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which ZIP code has the highest HUD fair market rent in FY2027?", "acceptedAnswer": {"@type": "Answer", "text": "ZIP 95060 in the Santa Cruz-Watsonville, California MSA tops the file at 5,260 dollars for a 2BR, with 95062 next at 5,100 and San Francisco's 94404 at 5,050. The ten most expensive rows all sit in California, between 4,650 and 5,260 dollars: five carry Santa Cruz-Watsonville rates and five carry San Francisco small-area rates, and everything at 4,650 or above makes the board."}}, {"@type": "Question", "name": "Where is the 2BR fair market rent lowest?", "acceptedAnswer": {"@type": "Answer", "text": "At 890 dollars, shared by 173 rows across 133 ZIP codes in Louisiana parishes (114 rows) and South Carolina counties (59 rows). ZIP 70342 in St. Mary Parish, Louisiana leads the tie-break order, Washington Parish lands two ZIPs, and ZIP 70526 carries both an Acadia Parish and a Vermilion Parish row at the floor. The next rung is 900 dollars. Puerto Rico's rows stay out of the rankings; their 520-dollar floor in Aguadilla would otherwise own the bottom."}}, {"@type": "Question", "name": "How were the ZIP extremes computed?", "acceptedAnswer": {"@type": "Answer", "text": "From HUD's FY2027 ZIP-level file, 51,871 rows parsed from FY27_FMRs.xlsx plus the FY2027 small-area FMR file, rates effective October 1, 2026. Puerto Rico's 216 rows are excluded, leaving 51,655 ranked rows across the 50 states and DC. One row is one ZIP code under one HUD area, and 10,093 ZIP codes carry more than one row; ranking each ZIP's top schedule instead leaves the top five values and the 133 floor ZIPs unchanged. Percentiles interpolate linearly between the two nearest order statistics. Tables rank on exact 2BR dollars with ties annotated."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://jayjex.github.io/data-vault/guides/"}, {"@type": "ListItem", "position": 3, "name": "The 2BR extremes FY2027: ZIP codes where HUD fair market rent peaks and bottoms out", "item": "https://jayjex.github.io/data-vault/guides/hud-fmr-zip-extremes-2027.html"}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Where HUD fair market rent peaks and bottoms out, ZIP by ZIP, FY2027</h1>
+  <p class="byline">FY2027 edition, published 2026-09-10. Data source: HUD FY2027 Fair Market Rent release, ZIP-level file parsed from FY27_FMRs.xlsx plus the FY2027 small-area FMR file (FY27_safmrs.xlsx), rates effective October 1, 2026. License: CC0 1.0 (US government data, public domain). Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>5,260</b> most expensive 2BR (ZIP 95060, Santa Cruz CA)</span><span class="stat"><b>890</b> cheapest 2BR (173 rows, LA and SC)</span><span class="stat"><b>960</b> national p10, 2,210 p90</span><span class="stat"><b>2,210</b> widest state spread (New York)</span><span class="stat"><b>51,655</b> ZIP-area rows ranked</span></div>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>HUD's FY2027 ZIP-level file prices the 2BR fair market rent for 51,871 ZIP-and-area rows, and the two ends of it sit 4,370 dollars apart. The ceiling is ZIP 95060 in the Santa Cruz-Watsonville, California metro at 5,260 dollars, 5.9 times the 890-dollar floor shared by 173 rows across 133 ZIP codes in Louisiana parishes and South Carolina counties. Between the ends, the middle 80 percent of ranked rows run from 960 to 2,210 dollars around a 1,190-dollar median. The top of the board belongs to two places: five of the ten most expensive rows carry Santa Cruz-Watsonville rates and five carry San Francisco small-area rates, all ten in California. One region owns the whole bottom: every floor row is a Louisiana parish or a South Carolina county.</p>
+    <p>The ZIP cut reaches past the county cut. Santa Cruz County's 2BR median in the FY2027 county file is 4,254 dollars, the priciest county median in the nation, while the 95060 rate inside that same county runs 5,260, a 1,006-dollar premium that county medians smooth away. Pull Puerto Rico's 216 rows out with the territories and 51,655 rows remain for the rankings; keep them and ZIP 00669 in Aguadilla takes the bottom at 520 dollars. Both boards recompute from the CSV behind the <a href="../datasets/hud-fmr-by-zip-2027.html">FY2027 ZIP dataset</a>, and the two SQL blocks at the end of this page return the tables verbatim.</p>
+  </section>
+
+  <section aria-label="The ten most expensive 2BR ZIPs">
+    <h2>The ten most expensive 2BR ZIPs</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Ten ZIP-area rows with the highest 2BR fair market rent, FY2027"><table><thead><tr><th scope="col">#</th><th scope="col">ZIP</th><th scope="col">FMR area</th><th scope="col">State</th><th scope="col">2BR FMR</th></tr></thead><tbody>
+      <tr><td>1</td><td>95060</td><td>Santa Cruz-Watsonville, CA MSA</td><td>California</td><td>5,260</td></tr>
+      <tr><td>2</td><td>95062</td><td>Santa Cruz-Watsonville, CA MSA</td><td>California</td><td>5,100</td></tr>
+      <tr><td>3</td><td>94404</td><td>San Francisco, CA HUD Metro FMR Area</td><td>California</td><td>5,050</td></tr>
+      <tr><td>4</td><td>95065</td><td>Santa Cruz-Watsonville, CA MSA</td><td>California</td><td>4,980</td></tr>
+      <tr><td>5</td><td>94107</td><td>San Francisco, CA HUD Metro FMR Area</td><td>California</td><td>4,930, one of 2 tied</td></tr>
+      <tr><td>6</td><td>94158</td><td>San Francisco, CA HUD Metro FMR Area</td><td>California</td><td>4,930, one of 2 tied</td></tr>
+      <tr><td>7</td><td>95003</td><td>Santa Cruz-Watsonville, CA MSA</td><td>California</td><td>4,920</td></tr>
+      <tr><td>8</td><td>94925</td><td>San Francisco, CA HUD Metro FMR Area</td><td>California</td><td>4,710</td></tr>
+      <tr><td>9</td><td>95017</td><td>Santa Cruz-Watsonville, CA MSA</td><td>California</td><td>4,700</td></tr>
+      <tr><td>10</td><td>94123</td><td>San Francisco, CA HUD Metro FMR Area</td><td>California</td><td>4,650</td></tr>
+    </tbody></table></div>
+    <p>The board splits five and five. ZIPs 95060, 95062, 95065, 95003 and 95017 carry Santa Cruz-Watsonville rates from 4,700 to 5,260 dollars; 94404, 94107, 94158, 94925 and 94123 carry San Francisco rates from 4,650 to 5,050. Exactly ten rows sit at 4,650 dollars or above, so this is the complete club rather than a cut-off sample, and 95060 is the only row at 5,260. ZIPs 94107 and 94158 tie at 4,930 under one small-area schedule, and the metro's 94404 rate beats both even though San Francisco's own 94123 rounds out the list 280 dollars lower.</p>
+    <p>The area code tells you where each rent comes from. The first five digits after METRO or NCNTY carry the CBSA or area number: 42100 is the Santa Cruz-Watsonville CBSA, so its rows read METRO42100M42100, and 41860 is San Francisco's, so its rows read METRO41860MM7360. Trailing digits pin the sub-area, county FIPS included: NCNTY22101N22101 is St. Mary Parish, Louisiana, FIPS 22101 on both sides. One area code can carry many rents. The 113 San Francisco rows hold 50 distinct 2BR values from 3,250 to 5,050 dollars, and Santa Cruz's 23 rows hold 16 from 3,300 to 5,260. Variation is the rule across the file: every one of the 460 metro area codes with an M or MM schedule carries more than one 2BR value, 2,577 of the 2,600 area codes do overall, and the 23 exceptions are mostly nonmetro counties with a handful of ZIPs.</p>
+  </section>
+
+  <section aria-label="The ten cheapest 2BR ZIPs">
+    <h2>The ten cheapest 2BR ZIPs</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Ten ZIP-area rows with the lowest 2BR fair market rent, FY2027"><table><thead><tr><th scope="col">#</th><th scope="col">ZIP</th><th scope="col">FMR area</th><th scope="col">State</th><th scope="col">2BR FMR</th></tr></thead><tbody>
+      <tr><td>1</td><td>70342</td><td>St. Mary Parish, LA</td><td>Louisiana</td><td>890</td></tr>
+      <tr><td>2</td><td>70426</td><td>Washington Parish, LA</td><td>Louisiana</td><td>890</td></tr>
+      <tr><td>3</td><td>70429</td><td>Washington Parish, LA</td><td>Louisiana</td><td>890</td></tr>
+      <tr><td>4</td><td>70526</td><td>Acadia Parish, LA HUD Metro FMR Area</td><td>Louisiana</td><td>890</td></tr>
+      <tr><td>5</td><td>70526</td><td>Vermilion Parish, LA HUD Metro FMR Area</td><td>Louisiana</td><td>890</td></tr>
+      <tr><td>6</td><td>70532</td><td>Jefferson Davis Parish, LA HUD Metro FMR Area</td><td>Louisiana</td><td>890</td></tr>
+      <tr><td>7</td><td>70532</td><td>Allen Parish, LA</td><td>Louisiana</td><td>890</td></tr>
+      <tr><td>8</td><td>70534</td><td>Acadia Parish, LA HUD Metro FMR Area</td><td>Louisiana</td><td>890</td></tr>
+      <tr><td>9</td><td>70541</td><td>St. Landry Parish, LA</td><td>Louisiana</td><td>890</td></tr>
+      <tr><td>10</td><td>70543</td><td>Acadia Parish, LA HUD Metro FMR Area</td><td>Louisiana</td><td>890</td></tr>
+    </tbody></table></div>
+    <p>All ten rows share the 890-dollar floor with 163 more rows across the same two states. The full floor block counts 173 rows over 133 ZIP codes and 50 HUD areas: 114 in Louisiana parishes, 59 in South Carolina counties, 158 nonmetro-flagged, with Sumter, South Carolina the one MSA-named area among the 15 metro rows. The tie-break order that builds this table runs on state, then ZIP, then area code, so St. Mary Parish's 70342 leads and Washington Parish lands two ZIPs (70426 and 70429). Acadia Parish takes three board rows through ZIPs 70526, 70534 and 70543.</p>
+    <p>Two rows on the board carry the same ZIP twice. ZIP 70526 sits in both the Acadia Parish and Vermilion Parish HUD areas, and ZIP 70532 splits between Jefferson Davis Parish (metro, area code METRO29340N22053) and Allen Parish (nonmetro, NCNTY22003N22003), all four rows at 890 dollars. That is HUD's design: a ZIP split between two areas gets one row per area. The rung above the floor sits 10 dollars up, 900 dollars, carried by 45 rows, so the cheapest non-floor rent in the ranked file is a rounding-error climb from the bottom.</p>
+  </section>
+
+  <section aria-label="The middle band and the state spreads">
+    <h2>The middle band and the state spreads</h2>
+    <p>Percentiles frame the whole distribution. The 10th percentile of ranked 2BR rents is 960 dollars, the median 1,190, the 90th percentile 2,210, a 1,250-dollar span for the middle 80 percent. State by state the spread widens where the coast is. New York runs from 1,060 at the 10th percentile to 3,270 at the 90th, a 2,210-dollar gap, the widest in the file, and its 90th percentile prices at 3.08 times its 10th. California follows at 1,470 to 3,590 (2,120 dollars), Massachusetts at 1,790 to 3,194 (1,404), Maryland at 1,140 to 2,540 (1,400) and Washington at 1,240 to 2,600 (1,360). Next come Florida (1,340), Colorado (1,320) and New Jersey (1,190).</p>
+    <p>The tight end stretches barely a fifth as far. West Virginia spans 940 to 1,150 dollars, a 210-dollar gap, with Arkansas at 240 (910 to 1,150) and Kansas at 250 (960 to 1,210). DC shows what small-area schedules do inside one jurisdiction: its 488 rows all share the DC-VA-MD HUD Metro FMR Area code, and the percentiles still run 1,837 to 3,006 dollars, a 1,169-dollar spread, because the area prices ZIP by ZIP. Ranking each ZIP's single highest schedule instead of every row leaves the story intact: the top five values belong to the same five ZIPs at the same rents, and the 133 floor ZIPs are the same 133.</p>
+  </section>
+
+  <section aria-label="Methodology">
+    <h2>Methodology: rows, areas, and exclusions</h2>
+    <p>The source is HUD's FY2027 ZIP-level fair market rent file, 51,871 rows parsed from FY27_FMRs.xlsx plus the FY2027 small-area FMR file (FY27_safmrs.xlsx), rates effective October 1, 2026. The published copy is byte-identical to that parse, sha256-checked at build time, public domain. Rankings include the 50 states and DC; Puerto Rico's 216 rows are the file's only territory rows and stay out, the treatment the county-level pages extend to all five territories. Puerto Rico's own 2BR rates run 520 to 1,060 dollars, so the file-wide floor, 520 dollars at ZIP 00669 in Aguadilla, never appears in the tables above.</p>
+    <p>One row is one ZIP code under one HUD area, and 10,093 of the file's 38,601 ZIP codes carry more than one row, which is why the floor table repeats two ZIPs and why row counts can exceed ZIP counts. Percentiles interpolate linearly between the two nearest order statistics, the numpy default. FMRs are HUD's 40th-percentile rent estimates rather than observed asking rents, HUD can revise FY2027 mid-cycle, and rows of one area share a schedule, so a block of identical values reflects one area's rent stamped onto its ZIPs. This page documents the data; it is not housing or legal advice.</p>
+  </section>
+
+  <section aria-label="Recompute the boards yourself">
+    <h2>Recompute the boards yourself</h2>
+    <p>Load the FY2027 ZIP file into SQLite as <code>zips_fy2027</code>, ten columns per row, following the import steps in the <a href="hud-fmr-by-zip-sql.html">SQL guide</a>. The two boards are one ORDER BY each:</p>
+    <pre><code>-- SQLite: the ten most expensive 2BR ZIP rows, FY2027
+CREATE TABLE zips_fy2027 (zip TEXT, hud_area_code TEXT, metro TEXT,
+  area_name TEXT, state TEXT, fmr_0br INT, fmr_1br INT,
+  fmr_2br INT, fmr_3br INT, fmr_4br INT);
+.import --skip 1 fmr-by-zip-2027.csv zips_fy2027
+
+SELECT zip, hud_area_code, area_name, state, fmr_2br
+FROM zips_fy2027
+WHERE state &lt;&gt; 'PR'
+ORDER BY fmr_2br DESC, state, zip, hud_area_code
+LIMIT 10;
+-- Rows: 95060 METRO42100M42100 Santa Cruz-Watsonville CA 5260, 95062 METRO42100M42100 5100,
+-- 94404 METRO41860MM7360 San Francisco CA 5050, 95065 METRO42100M42100 4980,
+-- 94107 METRO41860MM7360 4930, 94158 METRO41860MM7360 4930, 95003 METRO42100M42100 4920,
+-- 94925 METRO41860MM7360 4710, 95017 METRO42100M42100 4700, 94123 METRO41860MM7360 4650.
+
+-- the ten cheapest, same table, order flipped
+SELECT zip, hud_area_code, area_name, state, fmr_2br
+FROM zips_fy2027
+WHERE state &lt;&gt; 'PR'
+ORDER BY fmr_2br ASC, state, zip, hud_area_code
+LIMIT 10;
+-- Rows: 70342 NCNTY22101N22101 St. Mary Parish LA 890, 70426 NCNTY22117N22117 Washington Parish 890,
+-- 70429 NCNTY22117N22117 890, 70526 METRO29180N22001 Acadia Parish 890,
+-- 70526 METRO29180N22113 Vermilion Parish 890, 70532 METRO29340N22053 Jefferson Davis Parish 890,
+-- 70532 NCNTY22003N22003 Allen Parish 890, 70534 METRO29180N22001 Acadia Parish 890,
+-- 70541 NCNTY22097N22097 St. Landry Parish 890, 70543 METRO29180N22001 Acadia Parish 890.</code></pre>
+    <p>The shape behind both boards, national percentiles, the floor block, and the state spreads, comes out of the same table:</p>
+    <pre><code>-- SQLite: national percentiles with linear interpolation
+WITH p AS (
+  SELECT fmr_2br AS v, ROW_NUMBER() OVER (ORDER BY fmr_2br) AS rn,
+         COUNT(*) OVER () AS n
+  FROM zips_fy2027
+  WHERE state &lt;&gt; 'PR'
+)
+SELECT
+  ROUND((SELECT a.v + (0.10*(c.n-1) - CAST(0.10*(c.n-1) AS INTEGER)) * (b.v - a.v)
+         FROM p c, p a, p b
+         WHERE a.rn = CAST(0.10*(c.n-1) AS INTEGER) + 1
+           AND b.rn = CAST(0.10*(c.n-1) AS INTEGER) + 2 LIMIT 1), 2) AS p10,
+  ROUND((SELECT a.v + (0.50*(c.n-1) - CAST(0.50*(c.n-1) AS INTEGER)) * (b.v - a.v)
+         FROM p c, p a, p b
+         WHERE a.rn = CAST(0.50*(c.n-1) AS INTEGER) + 1
+           AND b.rn = CAST(0.50*(c.n-1) AS INTEGER) + 2 LIMIT 1), 2) AS p50,
+  ROUND((SELECT a.v + (0.90*(c.n-1) - CAST(0.90*(c.n-1) AS INTEGER)) * (b.v - a.v)
+         FROM p c, p a, p b
+         WHERE a.rn = CAST(0.90*(c.n-1) AS INTEGER) + 1
+           AND b.rn = CAST(0.90*(c.n-1) AS INTEGER) + 2 LIMIT 1), 2) AS p90;
+-- 960.0 / 1190.0 / 2210.0.
+
+-- the floor block: rows, ZIPs, areas, and the two states
+SELECT COUNT(*) AS floor_rows, COUNT(DISTINCT zip) AS floor_zips,
+       COUNT(DISTINCT area_name) AS areas,
+       SUM(state = 'LA') AS la_rows, SUM(state = 'SC') AS sc_rows
+FROM zips_fy2027
+WHERE state &lt;&gt; 'PR'
+  AND fmr_2br = (SELECT MIN(fmr_2br) FROM zips_fy2027 WHERE state &lt;&gt; 'PR');
+-- 173 / 133 / 50 / 114 / 59.
+
+-- state spreads, widest first (same interpolation, partitioned by state)
+WITH p AS (
+  SELECT state, fmr_2br AS v,
+         ROW_NUMBER() OVER (PARTITION BY state ORDER BY fmr_2br) AS rn,
+         COUNT(*) OVER (PARTITION BY state) AS n
+  FROM zips_fy2027
+  WHERE state &lt;&gt; 'PR'
+),
+states AS (SELECT DISTINCT state, n FROM p)
+SELECT s.state, s.n AS zip_rows,
+  ROUND((SELECT a.v + (0.10*(s.n-1) - CAST(0.10*(s.n-1) AS INTEGER)) * (b.v - a.v)
+         FROM p a, p b
+         WHERE a.state = s.state AND b.state = s.state
+           AND a.rn = CAST(0.10*(s.n-1) AS INTEGER) + 1
+           AND b.rn = CAST(0.10*(s.n-1) AS INTEGER) + 2), 2) AS p10,
+  ROUND((SELECT a.v + (0.50*(s.n-1) - CAST(0.50*(s.n-1) AS INTEGER)) * (b.v - a.v)
+         FROM p a, p b
+         WHERE a.state = s.state AND b.state = s.state
+           AND a.rn = CAST(0.50*(s.n-1) AS INTEGER) + 1
+           AND b.rn = CAST(0.50*(s.n-1) AS INTEGER) + 2), 2) AS p50,
+  ROUND((SELECT a.v + (0.90*(s.n-1) - CAST(0.90*(s.n-1) AS INTEGER)) * (b.v - a.v)
+         FROM p a, p b
+         WHERE a.state = s.state AND b.state = s.state
+           AND a.rn = CAST(0.90*(s.n-1) AS INTEGER) + 1
+           AND b.rn = CAST(0.90*(s.n-1) AS INTEGER) + 2), 2) AS p90
+FROM states s
+ORDER BY p90 - p10 DESC
+LIMIT 8;
+-- NY 2397 1060.0 1500.0 3270.0, CA 2605 1470.0 2600.0 3590.0, MA 767 1790.0 2550.0 3194.0,
+-- MD 389 1140.0 1720.0 2540.0, WA 760 1240.0 1620.0 2600.0, FL 1552 1220.0 1820.0 2560.0,
+-- CO 771 1110.0 1650.0 2430.0, NJ 641 1920.0 2390.0 3110.0.</code></pre>
+    <p>Run in one session, both blocks return exactly the rows quoted in the tables and comments above. Swap <code>fmr_2br</code> for <code>fmr_1br</code> to re-rank the ladder one rung down, or drop the <code>WHERE state &lt;&gt; 'PR'</code> filter to watch 00669 take the bottom of the low board at 520 dollars.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>The 2BR extremes, FY2027: questions</h2>
+    <dl>
+      <dt>Which ZIP code has the highest HUD fair market rent in FY2027?</dt>
+      <dd>ZIP 95060 in the Santa Cruz-Watsonville, California MSA tops the file at 5,260 dollars for a 2BR, with 95062 next at 5,100 and San Francisco's 94404 at 5,050. The ten most expensive rows all sit in California, between 4,650 and 5,260 dollars: five carry Santa Cruz-Watsonville rates and five carry San Francisco small-area rates, and everything at 4,650 or above makes the board.</dd>
+      <dt>Where is the 2BR fair market rent lowest?</dt>
+      <dd>At 890 dollars, shared by 173 rows across 133 ZIP codes in Louisiana parishes (114 rows) and South Carolina counties (59 rows). ZIP 70342 in St. Mary Parish, Louisiana leads the tie-break order, Washington Parish lands two ZIPs, and ZIP 70526 carries both an Acadia Parish and a Vermilion Parish row at the floor. The next rung is 900 dollars. Puerto Rico's rows stay out of the rankings; their 520-dollar floor in Aguadilla would otherwise own the bottom.</dd>
+      <dt>How were the ZIP extremes computed?</dt>
+      <dd>From HUD's FY2027 ZIP-level file, 51,871 rows parsed from FY27_FMRs.xlsx plus the FY2027 small-area FMR file, rates effective October 1, 2026. Puerto Rico's 216 rows are excluded, leaving 51,655 ranked rows across the 50 states and DC. One row is one ZIP code under one HUD area, and 10,093 ZIP codes carry more than one row; ranking each ZIP's top schedule instead leaves the top five values and the 133 floor ZIPs unchanged. Percentiles interpolate linearly between the two nearest order statistics. Tables rank on exact 2BR dollars with ties annotated.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <div class="btnrow">
+      <a class="btn" href="../data/hud-fmr-by-zip-2027/fmr-by-zip-2027.csv" download>Download the FY2027 ZIP CSV (free, 4.4 MB)</a>
+      <a class="btn-ghost btn" href="../datasets/hud-fmr-by-zip-2027.html">Browse the FY2027 ZIP dataset page</a>
+    </div>
+    <p class="btn-note">The CSV comes from HUD's Fair Market Rent release and is public domain. The <a href="../datasets/hud-fmr-by-zip-2027.html">dataset page</a> documents the file's integrity checks, the <a href="hud-fmr-by-zip-sql.html">SQL guide</a> covers imports and window functions, the <a href="hud-fmr-safmr-list.html">SAFMR lookup guide</a> shows the FY2026 version of the same ZIP-level detail, the <a href="hud-fmr-2br-declines-2027.html">declines page</a> tracks FY2026-to-FY2027 county moves, and the <a href="section-8-voucher-rent.html">voucher rent guide</a> covers what a housing agency actually pays against these figures.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Most and Least Expensive Counties in Each State for HUD Fair Market Rent FY2027 | Data Vault</title>
+<meta name="description" content="Santa Cruz County runs 3.92 times Modoc County in HUD's FY2027 fair market rents, the widest within-state county gap. The ten widest spreads, the five flattest states, and the 18 states that bottom out at one shared 1,014-dollar floor, recomputed from the county files.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fmr-county-spreads-2027.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Most and Least Expensive Counties in Each State for HUD Fair Market Rent FY2027">
+<meta property="og:description" content="California's county gap leads the FY2027 fair market rents at 3.92x, Santa Cruz County 4,254 against Modoc County 1,084. Fourteen states span a 2x-plus county gap, 18 bottom out at one shared 1,014-dollar floor, and Florida's ceiling changed hands from Monroe County to Miami-Dade.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fmr-county-spreads-2027.html">
+<meta property="og:image" content="https://jayjex.github.io/data-vault/assets/covers/data-vault-banner.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Most and Least Expensive Counties in Each State for HUD Fair Market Rent FY2027">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Most and Least Expensive Counties in Each State for HUD Fair Market Rent FY2027", "description": "Santa Cruz County runs 3.92 times Modoc County in HUD's FY2027 fair market rents, the widest within-state county gap. The ten widest spreads, the five flattest states, and the 18 states that bottom out at one shared 1,014-dollar floor, recomputed from the county files.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fmr-county-spreads-2027.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2027", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2027.html"}, "mentions": [{"@type": "Dataset", "name": "HUD Fair Market Rents FY2026 by County: completeness & spread", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-county-2026.html"}, {"@type": "Article", "name": "Most and Least Expensive States for HUD Fair Market Rent FY2027, by Bedroom Size", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-state-extremes-2027.html"}, {"@type": "Article", "name": "HUD FMR by County: Fair Market Rent by County, FY2026", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-county.html"}, {"@type": "Article", "name": "Query HUD FMR by ZIP With SQL: DuckDB and SQLite on the FY2027 CSV", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-zip-sql.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which state has the biggest gap between its most and least expensive counties?", "acceptedAnswer": {"@type": "Answer", "text": "California. Santa Cruz County's 4,254-dollar 2BR median runs 3.92 times Modoc County's 1,084 in the FY2027 county file, up from 3.80 in FY2026. New York follows at 2.93 (Bronx and seven neighboring counties tied at 2,971 against a 1,014-dollar floor), then Colorado at 2.73 and Florida at 2.69. Fourteen of the 51 states and DC span at least 2x between their most and least expensive counties, and 18 states bottom out at one shared 1,014-dollar figure. The flattest board is DC itself at exactly 1.00 because it reports a single county-equivalent; the flattest multi-county state is Rhode Island at 1.17."}}, {"@type": "Question", "name": "Why do so many counties share the same fair market rent value?", "acceptedAnswer": {"@type": "Answer", "text": "Because counties inside one HUD FMR area carry that area's values. The 2,438-dollar figure repeats across DC, four Maryland counties (Charles, Frederick, Montgomery, Prince George's) and 14 Virginia county-equivalents because HUD sets one rent for the Washington-area FMR area; the 2,971-dollar figure covers eight New York counties from the Bronx to Westchester; and 41 Illinois counties tie at 930. The tables name one member county and count the ties. The same mechanism drives the floor: 373 of the 3,229 county rows carry the shared 1,014-dollar value, 351 of them flagged nonmetro."}}, {"@type": "Question", "name": "How were the county spreads computed?", "acceptedAnswer": {"@type": "Answer", "text": "From HUD's county-level files, 3,229 county-equivalents per year for FY2026 and FY2027 with identical county sets. Each state's spread divides its most expensive county 2BR median by its least expensive, the 2BR column standing in as the benchmark size. The 51 jurisdictions counted are the 50 states plus DC; Puerto Rico, Guam, the US Virgin Islands, American Samoa and the Northern Mariana Islands (84 rows) stay out of the rankings. The FY2026 figures were recomputed from the same file this site publishes as the county CSV and match it cell for cell. FMRs are HUD's 40th-percentile rent estimates effective October 1, 2026, not observed asking rents."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://jayjex.github.io/data-vault/guides/"}, {"@type": "ListItem", "position": 3, "name": "Most and least expensive counties in each state for HUD fair market rent FY2027", "item": "https://jayjex.github.io/data-vault/guides/hud-fmr-county-spreads-2027.html"}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>The most and least expensive counties in each state for HUD fair market rent FY2027</h1>
+  <p class="byline">FY2027 edition, published 2026-09-10. Data source: HUD FY2027 Fair Market Rent release, county-level file, compared with the FY2026 county file on the same geography. License: CC0 1.0 (US government data, public domain). Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>State medians flatten a landscape that counties do not. Rank the counties inside each state by HUD's FY2027 2BR fair market rent and California pulls apart the furthest: Santa Cruz County's 4,254-dollar median runs 3.92 times Modoc County's 1,084, a gap that widened from 3.80 in FY2026. California and 13 more states span at least 2x between their most and least expensive counties, 14 of the 51 jurisdictions, while the median state spread sits at 1.76 and five states stay below 1.4x. Every figure comes from HUD's county-level files, 3,229 county-equivalents per year, recomputed from the raw rows behind the <a href="../datasets/hud-fmr-2027.html">FY2027 fair market rent release</a> and its <a href="../datasets/hud-fmr-county-2026.html">FY2026 county counterpart</a>.</p>
+    <p>The floor side is flatter than any state's internal ladder. Eighteen states see their cheapest county sit at exactly 1,014 dollars, one repeated HUD figure rather than 18 separate local rents, and the cheapest county across the 51 states is Abbeville County, South Carolina, at 885 with 12 neighbors tied alongside it.</p>
+  </section>
+
+  <section aria-label="The ten widest county gaps">
+    <h2>The ten widest county gaps within a state</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Ten widest within-state county gaps by HUD 2BR FMR median, FY2027 with FY2026 spread"><table><thead><tr><th scope="col">#</th><th scope="col">State</th><th scope="col">Most expensive county</th><th scope="col">2BR median</th><th scope="col">Least expensive county</th><th scope="col">2BR median</th><th scope="col">Spread FY2027</th><th scope="col">FY2026</th></tr></thead><tbody>
+      <tr><td>1</td><td>California</td><td>Santa Cruz County</td><td>4,254</td><td>Modoc County</td><td>1,084</td><td>3.92x</td><td>3.80x</td></tr>
+      <tr><td>2</td><td>New York</td><td>Bronx County, one of 8 tied</td><td>2,971</td><td>Allegany County, one of 7 tied</td><td>1,014</td><td>2.93x</td><td>2.99x</td></tr>
+      <tr><td>3</td><td>Colorado</td><td>Summit County</td><td>2,766</td><td>Baca County, one of 4 tied</td><td>1,014</td><td>2.73x</td><td>2.54x</td></tr>
+      <tr><td>4</td><td>Florida</td><td>Miami-Dade County</td><td>2,564</td><td>Calhoun County, one of 3 tied</td><td>953</td><td>2.69x</td><td>2.57x</td></tr>
+      <tr><td>5</td><td>Virginia</td><td>Alexandria city, one of 14 tied</td><td>2,438</td><td>Alleghany County, one of 26 tied</td><td>943</td><td>2.59x</td><td>2.46x</td></tr>
+      <tr><td>6</td><td>Illinois</td><td>Kendall County</td><td>2,341</td><td>Carroll County, one of 41 tied</td><td>930</td><td>2.52x</td><td>2.24x</td></tr>
+      <tr><td>7</td><td>Washington</td><td>King County, one of 2 tied</td><td>2,549</td><td>Ferry County</td><td>1,058</td><td>2.41x</td><td>2.57x</td></tr>
+      <tr><td>8</td><td>Maryland</td><td>Charles County, one of 4 tied</td><td>2,438</td><td>Allegany County, one of 2 tied</td><td>1,014</td><td>2.40x</td><td>2.31x</td></tr>
+      <tr><td>9</td><td>Alaska</td><td>Aleutians West Census Area</td><td>2,394</td><td>Kusilvak Census Area</td><td>1,030</td><td>2.32x</td><td>2.25x</td></tr>
+      <tr><td>10</td><td>South Carolina</td><td>Beaufort County</td><td>2,010</td><td>Abbeville County, one of 13 tied</td><td>885</td><td>2.27x</td><td>2.01x</td></tr>
+    </tbody></table></div>
+    <p>The spread column divides the state's most expensive county 2BR median by its least expensive. Three movers explain most of the reshuffle against FY2026. Colorado climbed from 5th to 3rd as Summit County jumped 2,467 to 2,766 while its floor sat on the shared 1,014 figure. Washington slid from 4th to 7th for the opposite reason: Ferry County's floor lifted from 973 to 1,058 while King County added 48 dollars (2,501 to 2,549), so the gap narrowed from 2.57 to 2.41. Florida's ceiling changed hands entirely; Monroe County, the FY2026 leader at 2,504, fell 10.0 percent to 2,254, and Miami-Dade County took over at 2,564 after rising 5.3 percent from 2,436.</p>
+    <p>Illinois posted the biggest climb inside the table, 10th to 6th, after Kendall County's ceiling jumped 291 dollars, 2,050 to 2,341, a 14.2 percent rise against 41 counties holding at the 930-dollar floor. South Carolina is the one new entrant, 13th to 10th, on Beaufort County's 10.7 percent rise to 2,010 over the cheapest floor in the table. At the top, California's widening is a Modoc story more than a Santa Cruz one: the ceiling moved just 0.9 percent (4,214 to 4,254) while Modoc drifted down 24 dollars, and Marin, San Francisco and San Mateo counties tie one tier below at 3,697. New York's easing from 2.99 to 2.93 works the other way; the eight-county 2,971 ceiling ticked up from 2,910, but the floor moved off the old 973 shared figure onto 1,014, lifting seven counties at once.</p>
+    <p>Across all 51 jurisdictions the spread widened in 22 states and narrowed in 28, with DC unchanged at 1.00. The count of 2x-plus states still rose from 13 to 14, and the median spread held at 1.76, so the wide end stretched while the middle barely moved.</p>
+  </section>
+
+  <section aria-label="The flattest states">
+    <h2>The flattest states</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Five flattest states by within-county HUD 2BR FMR spread, FY2027"><table><thead><tr><th scope="col">State</th><th scope="col">Most expensive county</th><th scope="col">2BR median</th><th scope="col">Least expensive county</th><th scope="col">2BR median</th><th scope="col">Spread FY2027</th><th scope="col">FY2026</th></tr></thead><tbody>
+      <tr><td>District of Columbia</td><td>District of Columbia</td><td>2,438</td><td>District of Columbia</td><td>2,438</td><td>1.00x</td><td>1.00x</td></tr>
+      <tr><td>Rhode Island</td><td>Newport County</td><td>2,193</td><td>Bristol County, one of 4 tied</td><td>1,879</td><td>1.17x</td><td>1.17x</td></tr>
+      <tr><td>Delaware</td><td>New Castle County</td><td>1,860</td><td>Sussex County</td><td>1,498</td><td>1.24x</td><td>1.29x</td></tr>
+      <tr><td>Hawaii</td><td>Maui County</td><td>2,656</td><td>Hawaii County</td><td>2,081</td><td>1.28x</td><td>1.27x</td></tr>
+      <tr><td>Oklahoma</td><td>Canadian County, one of 5 tied</td><td>1,264</td><td>Adair County, one of 41 tied</td><td>916</td><td>1.38x</td><td>1.33x</td></tr>
+    </tbody></table></div>
+    <p>Rhode Island is the flattest true multi-county state: Newport County's 2,193 against 1,879 in four tied neighbors, a 1.17 ratio both years. Delaware narrowed from 1.29 to 1.24 as Sussex County's floor rose 1,399 to 1,498. Hawaii held nearly still at 1.27 to 1.28, with Maui County taking the state ceiling from Honolulu (2,656 against Honolulu's FY2026 2,642). Oklahoma rounds out the bottom five at 1.38, five counties tied at 1,264 over 41 tied at 916. DC reports one county-equivalent, so its 1.00 ratio is arithmetic rather than a policy finding, and its 2,438-dollar value is the same Washington-area figure shared by the Maryland and Virginia counties in the wide table above.</p>
+  </section>
+
+  <section aria-label="The shared floor">
+    <h2>The 1,014-dollar floor</h2>
+    <p>Eighteen of the 51 states bottom out at exactly the same number: 1,014 dollars for a 2BR county median. The list runs from Colorado, Idaho and Indiana through Maryland, Michigan, Minnesota, Montana, Nebraska, Nevada, New Mexico, New York, North Dakota, Oregon, Pennsylvania, South Dakota, Texas, Utah and Wisconsin. Across the whole file, 373 of the 3,229 county rows carry the value, 351 of them flagged nonmetro. FY2026's mirror image was 973 dollars, shared as a floor by 17 states. The repetition points to HUD's published floor for nonmetro and small areas rather than 18 coincidental local rents, which is one reason a state's cheapest county often says more about HUD's floor than about that county's rental market.</p>
+    <p>Below the shared floor, only a handful of states price cheaper. Thirteen South Carolina counties tie at 885, the cheapest county figure across the 51 states, and Virginia's 26-county tier at 943 and Oklahoma's 41-county tier at 916 sit just above it. The FY2026 cheapest was Barbour County, Alabama, at 776, the value 19 Alabama counties shared. At the ceiling, Santa Cruz County's 4,254 leads every county in the file, the same position it held in FY2026 at 4,214.</p>
+  </section>
+
+  <section aria-label="Methodology">
+    <h2>Methodology: conventions behind the numbers</h2>
+    <p>Both files are HUD's county-level publications, one row per county-equivalent with a median and a maximum for each bedroom size: 3,229 rows per year, and the county sets are identical between FY2026 and FY2027. Each state's spread divides its most expensive county 2BR median by its least expensive; the 2BR column stands in as the benchmark size, the one HUD publications and this site's earlier pages quote most. The 51 jurisdictions counted throughout are the 50 states plus DC. Puerto Rico, Guam, the US Virgin Islands, American Samoa and the Northern Mariana Islands contribute 84 rows and stay out of the rankings, the same exclusion the <a href="hud-fmr-state-extremes-2027.html">state-extremes page</a> documents with its own numbers.</p>
+    <p>Counties inside one HUD FMR area carry that area's values, so "most expensive county" usually names a tier. The 2,438-dollar tier covers DC, four Maryland counties (Charles, Frederick, Montgomery, Prince George's) and 14 Virginia county-equivalents; the 2,971-dollar tier covers eight New York counties; 41 Illinois counties tie at 930. Each table cell names one member county and counts the ties. Geography quirks matter when reading the rows: Virginia contributes 133 county-equivalents because independent cities count separately, Maryland's 24 include Baltimore city, Alaska's entries are census areas, and DC is exactly one row, which is why its ratio is 1.00. Sixty-seven counties per file span more than one FMR area (the <code>area_rows</code> column counts them), and those are the rows where the median and maximum differ.</p>
+    <p>The FY2026 figures were recomputed from the same file this site publishes free as the <a href="../data/hud-fmr-county-2026/fmr-county-2026.csv">county CSV</a> and match it cell for cell. Two caveats apply to every figure: FMRs are HUD's rent estimates set at the 40th percentile of local rents and effective October 1, 2026, not observed asking rents, and a wide spread is a statement about HUD's area geography as much as about the housing market. The <a href="hud-fmr-by-county.html">FY2026 by-county guide</a> documents the file column by column, and the <a href="hud-fmr-by-zip-sql.html">SQL guide</a> shows the import pattern the queries below adapt.</p>
+  </section>
+
+  <section aria-label="Recompute the spreads yourself">
+    <h2>Recompute the spreads yourself</h2>
+    <p>Load each county file into SQLite under its year label (<code>counties_fy2026</code>, <code>counties_fy2027</code>), fifteen columns per row, following the import steps in the <a href="hud-fmr-by-zip-sql.html">SQL guide</a> pointed at these files. The widest-gap leaderboard is one window-function chain, extremes first, then the tie counts:</p>
+    <pre><code>-- SQLite: the ten widest within-state county gaps, FY2027 2BR
+WITH e AS (
+  SELECT state, MAX(fmr_2br_median) AS hi, MIN(fmr_2br_median) AS lo
+  FROM counties_fy2027
+  WHERE state NOT IN ('PR','GU','VI','AS','MP') GROUP BY state
+),
+names AS (
+  SELECT c.state, c.fmr_2br_median AS v, MIN(c.county) AS some_county, COUNT(*) AS tied
+  FROM counties_fy2027 c JOIN e ON e.state = c.state
+   AND c.fmr_2br_median IN (e.hi, e.lo)
+  GROUP BY c.state, c.fmr_2br_median
+)
+SELECT ROUND(e.hi * 1.0 / e.lo, 2) AS spread, e.state,
+  h.some_county AS top_county, e.hi, h.tied AS top_tied,
+  l.some_county AS low_county, e.lo, l.tied AS low_tied
+FROM e
+JOIN names h ON h.state = e.state AND h.v = e.hi
+JOIN names l ON l.state = e.state AND l.v = e.lo
+ORDER BY spread DESC LIMIT 10;
+-- Rows: CA 3.92 (Santa Cruz 4254 / Modoc 1084), NY 2.93 (Bronx 2971,
+-- 8 tied / Allegany 1014, 7 tied), CO 2.73, FL 2.69, VA 2.59,
+-- IL 2.52, WA 2.41, MD 2.40, AK 2.32, SC 2.27.</code></pre>
+    <p>The shared-floor claim is one grouped query with a <code>HAVING</code>:</p>
+    <pre><code>-- SQLite: states whose cheapest county sits at the shared floor
+SELECT state, MIN(fmr_2br_median) AS floor_2br
+FROM counties_fy2027
+WHERE state NOT IN ('PR','GU','VI','AS','MP')
+GROUP BY state
+HAVING MIN(fmr_2br_median) = 1014
+ORDER BY state;
+-- 18 rows: CO, ID, IN, MD, MI, MN, MT, ND, NE, NV, NM, NY,
+-- OR, PA, SD, TX, UT, WI.</code></pre>
+    <p>Run both against the tables built by that import and the outputs match the tables on this page row for row. Swap the year label for <code>counties_fy2026</code> and the same queries re-rank last year's file; swap <code>fmr_2br_median</code> for another bedroom column and they re-rank that size.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>County spreads, FY2027: questions</h2>
+    <dl>
+      <dt>Which state has the biggest gap between its most and least expensive counties?</dt>
+      <dd>California. Santa Cruz County's 4,254-dollar 2BR median runs 3.92 times Modoc County's 1,084 in the FY2027 county file, up from 3.80 in FY2026. New York follows at 2.93 (Bronx and seven neighboring counties tied at 2,971 against a 1,014-dollar floor), then Colorado at 2.73 and Florida at 2.69. Fourteen of the 51 states and DC span at least 2x between their most and least expensive counties, and 18 states bottom out at one shared 1,014-dollar figure. The flattest board is DC itself at exactly 1.00 because it reports a single county-equivalent; the flattest multi-county state is Rhode Island at 1.17.</dd>
+      <dt>Why do so many counties share the same fair market rent value?</dt>
+      <dd>Because counties inside one HUD FMR area carry that area's values. The 2,438-dollar figure repeats across DC, four Maryland counties (Charles, Frederick, Montgomery, Prince George's) and 14 Virginia county-equivalents because HUD sets one rent for the Washington-area FMR area; the 2,971-dollar figure covers eight New York counties from the Bronx to Westchester; and 41 Illinois counties tie at 930. The tables name one member county and count the ties. The same mechanism drives the floor: 373 of the 3,229 county rows carry the shared 1,014-dollar value, 351 of them flagged nonmetro.</dd>
+      <dt>How were the county spreads computed?</dt>
+      <dd>From HUD's county-level files, 3,229 county-equivalents per year for FY2026 and FY2027 with identical county sets. Each state's spread divides its most expensive county 2BR median by its least expensive, the 2BR column standing in as the benchmark size. The 51 jurisdictions counted are the 50 states plus DC; Puerto Rico, Guam, the US Virgin Islands, American Samoa and the Northern Mariana Islands (84 rows) stay out of the rankings. The FY2026 figures were recomputed from the same file this site publishes as the county CSV and match it cell for cell. FMRs are HUD's 40th-percentile rent estimates effective October 1, 2026, not observed asking rents.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <div class="btnrow">
+      <a class="btn" href="../data/hud-fmr-county-2026/fmr-county-2026.csv" download>Download the FY2026 county CSV (free, 3,229 rows)</a>
+      <a class="btn-ghost btn" href="../data/hud-fmr-by-zip-2027/fmr-by-zip-2027.csv" download>FY2027 ZIP CSV first (free, 4.3 MB)</a>
+    </div>
+    <p class="btn-note">Both files come from HUD's Fair Market Rent releases, FY2027 effective October 1, 2026 and FY2026 effective October 1, 2025, and both are public domain. The <a href="../datasets/hud-fmr-county-2026.html">county dataset page</a> documents the FY2026 file's columns and integrity checks, the <a href="../datasets/hud-fmr-2027.html">FY2027 dataset page</a> covers the current ZIP-level release, and the full packs download free from Zenodo. For other angles on the same releases, the <a href="hud-fmr-by-county.html">by-county guide</a> walks the county file's columns, <a href="most-affordable-counties.html">cheapest counties</a> ladders the floor end, the <a href="hud-fmr-state-extremes-2027.html">state-extremes page</a> ranks whole states, and the <a href="hud-fmr-by-zip-sql.html">SQL guide</a> shows the import the queries above adapt.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

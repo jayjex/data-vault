@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Counties That Jumped or Fell Most in HUD Fair Market Rent FY2027 | Data Vault</title>
+<meta name="description" content="St. James Parish, Louisiana climbs 1,389 places in HUD's FY2027 fair market rent rankings while Madison County, Florida drops 1,150. The ten biggest risers and fallers by national 2BR rank, recomputed from the county files.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fmr-county-rank-shifts-2027.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Counties That Jumped or Fell Most in HUD Fair Market Rent FY2027">
+<meta property="og:description" content="St. James Parish, Louisiana climbs 1,389 rank positions on a 921-to-1,165-dollar 2BR median; Madison County, Florida falls 1,150. 1,751 of 3,145 ranked counties move a hundred places or more between the FY2026 and FY2027 county files.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fmr-county-rank-shifts-2027.html">
+<meta property="og:image" content="https://jayjex.github.io/data-vault/assets/covers/data-vault-banner.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Counties That Jumped or Fell Most in HUD Fair Market Rent FY2027">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Counties That Jumped or Fell Most in HUD Fair Market Rent FY2027", "description": "St. James Parish, Louisiana climbs 1,389 places in HUD's FY2027 fair market rent rankings while Madison County, Florida drops 1,150. The ten biggest risers and fallers by national 2BR rank, recomputed from the county files.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fmr-county-rank-shifts-2027.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2027", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2027.html"}, "mentions": [{"@type": "Dataset", "name": "HUD Fair Market Rents FY2026 by County: completeness & spread", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-county-2026.html"}, {"@type": "Article", "name": "Most and Least Expensive States for HUD Fair Market Rent FY2027, by Bedroom Size", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-state-extremes-2027.html"}, {"@type": "Article", "name": "Most and Least Expensive Counties in Each State for HUD Fair Market Rent FY2027", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-county-spreads-2027.html"}, {"@type": "Article", "name": "HUD FMR by County: Fair Market Rent by County, FY2026", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-county.html"}, {"@type": "Article", "name": "Query HUD FMR by ZIP With SQL: DuckDB and SQLite on the FY2027 CSV", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-zip-sql.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which county jumped the most in HUD's FY2027 fair market rent rankings?", "acceptedAnswer": {"@type": "Answer", "text": "St. James Parish, Louisiana, up 1,389 national rank positions, 2,569th to 1,180th, after its 2BR median rose from 921 to 1,165 dollars. Grant County, South Dakota follows at +1,306 and Jackson County, Colorado at +1,234 on the file's largest percentage gain, 50.2 percent. Twenty-eight North Dakota counties share an exact +1,082 move after the state's 873-dollar floor lifted to the shared 1,014-dollar figure. On the fall side Madison County, Florida, dropped 1,150 positions. Of the 3,145 ranked county-equivalents, 3,023 moved at least five places, 1,751 moved a hundred or more, and 18 held the same rank."}}, {"@type": "Question", "name": "How can county ranks move when the underlying rents barely change?", "acceptedAnswer": {"@type": "Answer", "text": "Because ranks amplify small dollar moves inside HUD's shared-value tiers. The median county gained 41 dollars, yet fallers outnumber risers 1,654 to 1,473, and 1,002 counties collected more dollars and still lost ground. Four Texas counties fell one dollar, 1,015 to 1,014, and lost 221 positions each; three Georgia counties fell one dollar, 1,680 to 1,679, and gained eight, because neighbors fell further. Only one county, Kendall County, Texas, held both the same dollar figure and the same rank, 1,650 at 377th, while 18 counties changed dollars and kept their rank and four changed rank on flat dollars."}}, {"@type": "Question", "name": "How were the rank moves computed?", "acceptedAnswer": {"@type": "Answer", "text": "From HUD's county-level files, 3,229 county-equivalents per year with identical county sets. Each year's counties are ranked by 2BR median with competition ranking: ties share the better position and the next distinct value takes its numbered place. The ranked universe covers the 50 states plus DC, 3,145 rows; Puerto Rico, Guam, the US Virgin Islands, American Samoa and the Northern Mariana Islands (84 rows) stay out. A move is the FY2026 rank minus the FY2027 rank. The FY2026 figures were recomputed from the same file this site publishes as the county CSV and match it cell for cell. FMRs are HUD's 40th-percentile rent estimates, FY2027 effective October 1, 2026, not observed asking rents."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://jayjex.github.io/data-vault/guides/"}, {"@type": "ListItem", "position": 3, "name": "Counties that jumped or fell most in HUD fair market rent FY2027", "item": "https://jayjex.github.io/data-vault/guides/hud-fmr-county-rank-shifts-2027.html"}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>The counties that jumped or fell most in HUD fair market rent rankings, FY2026 to FY2027</h1>
+  <p class="byline">FY2027 edition, published 2026-09-10. Data source: HUD FY2027 Fair Market Rent release, county-level file, compared with the FY2026 county file on the same geography. License: CC0 1.0 (US government data, public domain). Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>Rank every county-equivalent by HUD's 2BR fair market rent in both years' county files and the ladder reshuffles hard: of the 3,145 ranked county-equivalents, 3,023 move at least five positions, 1,751 move a hundred or more, and 279 move five hundred or more. Only 18 hold the exact same national rank. The biggest climb belongs to St. James Parish, Louisiana, up 1,389 places, 2,569th to 1,180th, after its 2BR median rose from 921 to 1,165 dollars. The biggest drop belongs to Madison County, Florida, down 1,150 places, 1,350th to 2,500th, after its median fell from 1,086 to 978 dollars. Every figure comes from the raw rows behind the <a href="../datasets/hud-fmr-2027.html">FY2027 fair market rent release</a> and its <a href="../datasets/hud-fmr-county-2026.html">FY2026 county counterpart</a>, 3,229 county-equivalents per year with identical county sets.</p>
+    <p>The dollar ledgers and the rank ledgers disagree more often than not. The median county gained 41 dollars, 2,486 counties gained dollars against 655 that lost them, yet rank fallers outnumber rank risers 1,654 to 1,473, and 1,002 counties collected more dollars and still lost ground. Ranking is a relative game: when most of the board rises, standing still is falling.</p>
+  </section>
+
+  <section aria-label="The ten biggest rank climbs">
+    <h2>The ten biggest rank climbs</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Ten biggest county rank climbs by HUD 2BR FMR median, FY2026 to FY2027"><table><thead><tr><th scope="col">#</th><th scope="col">County</th><th scope="col">State</th><th scope="col">2BR FY2026</th><th scope="col">2BR FY2027</th><th scope="col">Rank FY2026 &rarr; FY2027</th><th scope="col">Move</th></tr></thead><tbody>
+      <tr><td>1</td><td>St. James Parish</td><td>Louisiana</td><td>921</td><td>1,165, one of 5 tied</td><td>2,569 &rarr; 1,180</td><td>+1,389</td></tr>
+      <tr><td>2</td><td>Grant County</td><td>South Dakota</td><td>929, one of 37 tied</td><td>1,179, one of 10 tied</td><td>2,444 &rarr; 1,138</td><td>+1,306</td></tr>
+      <tr><td>3</td><td>Jackson County</td><td>Colorado</td><td>989, one of 3 tied</td><td>1,485, one of 3 tied</td><td>1,767 &rarr; 533</td><td>+1,234</td></tr>
+      <tr><td>4</td><td>Kidder County</td><td>North Dakota</td><td>873, one of 29 tied</td><td>1,024, one of 2 tied</td><td>2,929 &rarr; 1,789</td><td>+1,140</td></tr>
+      <tr><td>5</td><td>Jasper County</td><td>Missouri</td><td>947, one of 7 tied</td><td>1,153, one of 8 tied</td><td>2,349 &rarr; 1,218</td><td>+1,131</td></tr>
+      <tr><td>6</td><td>Newton County</td><td>Missouri</td><td>947, one of 7 tied</td><td>1,153, one of 8 tied</td><td>2,349 &rarr; 1,218</td><td>+1,131</td></tr>
+      <tr><td>7</td><td>Cullman County</td><td>Alabama</td><td>879, one of 2 tied</td><td>1,034, one of 2 tied</td><td>2,859 &rarr; 1,745</td><td>+1,114</td></tr>
+      <tr><td>8</td><td>Adams County</td><td>North Dakota</td><td>873, one of 29 tied</td><td>1,014, one of 373 tied</td><td>2,929 &rarr; 1,847</td><td>+1,082</td></tr>
+      <tr><td>9</td><td>Benson County</td><td>North Dakota</td><td>873, one of 29 tied</td><td>1,014, one of 373 tied</td><td>2,929 &rarr; 1,847</td><td>+1,082</td></tr>
+      <tr><td>10</td><td>Billings County</td><td>North Dakota</td><td>873, one of 29 tied</td><td>1,014, one of 373 tied</td><td>2,929 &rarr; 1,847</td><td>+1,082</td></tr>
+    </tbody></table></div>
+    <p>Three movements built this table. The first is North Dakota's floor lift: 29 counties, all of them in North Dakota, sat at the 873-dollar 2BR figure in FY2026, and 28 of them moved to 1,014, the shared national floor carried by 373 rows, for an identical +1,082 move apiece. The twenty-ninth, Kidder County, broke above the floor to 1,024 and climbed even further, +1,140. The second is escape from a mid-file tier: Grant County, South Dakota, was one of 37 counties tied at 929 dollars, and its rise to 1,179 carried it 1,306 places clear of the group it leaves behind at 929. The third is a straight percentage surge: Jackson County, Colorado, nearly 50 dollars of every hundred, 989 to 1,485, the file's largest single-year gain at 50.2 percent, while St. James Parish's 921-to-1,165 run adds 26.5 percent and the Jasper-and-Newton pair in Missouri rises together inside the 947-dollar tier to a new 1,153-dollar tier of 8.</p>
+    <p>The inverse stories live one row over from the risers. Five counties cut dollars and gained rank anyway: Santa Barbara County, California, slipped from 3,124 to 3,106 dollars and rose from 9th to 8th because Ventura County above it fell harder, and the Georgia trio of Bryan, Chatham and Effingham counties each dropped a dollar, 1,680 to 1,679, and picked up eight positions together. One county in the whole file, Kendall County, Texas, holds both the same dollar figure and the same rank, 1,650 dollars at 377th in both years. Eighteen counties change dollars and keep their exact rank, including the San Francisco, Marin and San Mateo trio that moves 3,604 to 3,697 as a unit.</p>
+  </section>
+
+  <section aria-label="The ten biggest rank drops">
+    <h2>The ten biggest rank drops</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Ten biggest county rank drops by HUD 2BR FMR median, FY2026 to FY2027"><table><thead><tr><th scope="col">#</th><th scope="col">County</th><th scope="col">State</th><th scope="col">2BR FY2026</th><th scope="col">2BR FY2027</th><th scope="col">Rank FY2026 &rarr; FY2027</th><th scope="col">Move</th></tr></thead><tbody>
+      <tr><td>1</td><td>Madison County</td><td>Florida</td><td>1,086, one of 4 tied</td><td>978, one of 2 tied</td><td>1,350 &rarr; 2,500</td><td>&minus;1,150</td></tr>
+      <tr><td>2</td><td>Liberty County</td><td>Florida</td><td>1,083, one of 6 tied</td><td>975, one of 4 tied</td><td>1,358 &rarr; 2,507</td><td>&minus;1,149</td></tr>
+      <tr><td>3</td><td>Suwannee County</td><td>Florida</td><td>1,110, one of 4 tied</td><td>999, one of 13 tied</td><td>1,255 &rarr; 2,400</td><td>&minus;1,145</td></tr>
+      <tr><td>4</td><td>Holmes County</td><td>Florida</td><td>1,078, one of 3 tied</td><td>971, one of 3 tied</td><td>1,376 &rarr; 2,520</td><td>&minus;1,144</td></tr>
+      <tr><td>5</td><td>Jackson County</td><td>Florida</td><td>1,068, one of 6 tied</td><td>962, one of 63 tied</td><td>1,407 &rarr; 2,534</td><td>&minus;1,127</td></tr>
+      <tr><td>6</td><td>Washington County</td><td>Alabama</td><td>983, one of 5 tied</td><td>921, one of 28 tied</td><td>1,791 &rarr; 2,881</td><td>&minus;1,090</td></tr>
+      <tr><td>7</td><td>Taylor County</td><td>Florida</td><td>1,018, one of 4 tied</td><td>953, one of 4 tied</td><td>1,609 &rarr; 2,677</td><td>&minus;1,068</td></tr>
+      <tr><td>8</td><td>Bradford County</td><td>Florida</td><td>1,120, one of 3 tied</td><td>1,008, one of 3 tied</td><td>1,220 &rarr; 2,273</td><td>&minus;1,053</td></tr>
+      <tr><td>9</td><td>Newberry County</td><td>South Carolina</td><td>994, one of 8 tied</td><td>933</td><td>1,738 &rarr; 2,774</td><td>&minus;1,036</td></tr>
+      <tr><td>10</td><td>Kershaw County</td><td>South Carolina</td><td>1,009, one of 7 tied</td><td>954, one of 4 tied</td><td>1,665 &rarr; 2,673</td><td>&minus;1,008</td></tr>
+    </tbody></table></div>
+    <p>Florida owns five of the ten, all nonmetro Panhandle and Big Bend counties, part of a wider contraction: 20 of Florida's 67 counties cut 100 dollars or more from their 2BR median, 19 of them nonmetro. Madison County's fall started inside a four-county tier at 1,086 that also held Cheyenne County in Nebraska and two Ohio counties; those three kept or raised their figures while Madison dropped to 978, and the ladder moved it 1,150 places. Jackson County, Florida, lands in a 63-county tier at 962 dollars, 59 of them Missouri counties. Washington County, Alabama, is the one non-Florida entrant in the top six, 983 to 921 dollars, and Newberry and Kershaw counties make South Carolina the third state on the list.</p>
+    <p>Nothing in the file falls further than exactly 10.0 percent. Five counties land on 10.0 flat, Bradford and Suwannee counties in Florida, Gem County in Idaho, Belknap County in New Hampshire and Karnes County in Texas, and 47 more bunch between 9.5 and 10.0 percent, while the biggest rise runs free to 50.2 percent. The pattern looks like a brake on decreases rather than market behavior, and HUD's methodology notices are the place to confirm the rule. The largest dollar cuts sit well under the cap: Ventura County, California, 2,693 to 2,424 (minus 269, rank 31 to 63), Monterey County, California, 2,684 to 2,416 (minus 268), Monroe County, Florida, 2,504 to 2,254 (minus 250, the same ceiling handoff the <a href="hud-fmr-county-spreads-2027.html">county-spreads page</a> documents), and Kauai County, Hawaii, 2,332 to 2,105 (minus 227). On the rise side, Nantucket County, Massachusetts, adds 445 dollars, 3,138 to 3,583, for rank 8 to 5, and Pitkin County, Colorado, adds 383 for rank 80 to 38.</p>
+    <p>Small dollars, big moves: four Texas counties, Reagan, San Augustine, Somervell and Stephens, each fall one dollar, 1,015 to 1,014, and each drops 221 national positions as the crowd above them climbs.</p>
+  </section>
+
+  <section aria-label="Inside the states">
+    <h2>Inside the state ladders</h2>
+    <p>National rank flattens some of the year's sharpest local reshuffles, so the same computation run inside each state tells a second story. Texas, with 254 counties, produces both extremes: Sutton County climbs 86 places inside the state, 248th to 162nd, one of the 55 Texas counties that rose off the 973-dollar FY2026 floor to 1,014 or above, while Lampasas County falls 108 places, 120th to 228th, on a 1,067-to-1,014 slide, and Hidalgo County drops from 123rd to 191st. Mississippi crowns a new most expensive county: Forrest County, home of Hattiesburg, jumps from 13th to 1st on a 1,047-to-1,316-dollar rise, Lamar and Perry counties take second and third, and the old top tier, Copiah, Hinds and Madison counties, slips from a shared 1,288 to 1,289 and down to fifth, sixth and seventh. In Virginia, Albemarle County drops 30 places inside the state, 15th to 45th, on a 1,824-to-1,642 cut. North Dakota's Kidder County climbs 16 places inside the state, 38th to 22nd, on top of its national climb.</p>
+  </section>
+
+  <section aria-label="Methodology">
+    <h2>Methodology: conventions behind the numbers</h2>
+    <p>Both files are HUD's county-level publications, one row per county-equivalent: 3,229 rows per year, and the county sets are identical between FY2026 and FY2027. Each year's counties are ranked by 2BR median with competition ranking, the same convention as the <a href="hud-fmr-state-extremes-2027.html">state-extremes page</a>: ties share the better position, and the next distinct value takes its numbered place, so 28 counties tied at +1,082 all own that number. A move is the FY2026 rank minus the FY2027 rank, positive meaning climbed. The ranked universe covers the 50 states plus DC, 3,145 rows; Puerto Rico, Guam, the US Virgin Islands, American Samoa and the Northern Mariana Islands contribute 84 rows and stay out of the rankings, the same exclusion those pages document. The 2BR column stands in as the benchmark size.</p>
+    <p>Counties inside one HUD FMR area carry that area's values, so a "county rank" often names a tier rather than a single county, which is why the tables count the ties behind every shared figure. Geography quirks carry over: Virginia contributes 133 county-equivalents because independent cities count separately, Maryland's 24 include Baltimore city, Alaska's entries are census areas, DC is exactly one row, and 67 counties per file span more than one FMR area (the <code>area_rows</code> column marks them). Rank moves measure HUD's published figures, not the rental market: a county can gain dollars and lose positions, and the FY2027 files also show a hard edge at minus 10.0 percent, where 52 counties lose 9.5 percent or more and none loses a dollar more, a shape worth reading alongside HUD's methodology notices.</p>
+    <p>The FY2026 figures were recomputed from the same file this site publishes free as the <a href="../data/hud-fmr-county-2026/fmr-county-2026.csv">county CSV</a> and match it cell for cell. Two caveats apply to every figure: FMRs are HUD's rent estimates set at the 40th percentile of local rents, FY2027 effective October 1, 2026, not observed asking rents, and a rank move overstates a dollar move whenever it rides a tier. The <a href="hud-fmr-by-county.html">FY2026 by-county guide</a> documents the file column by column, and the <a href="hud-fmr-by-zip-sql.html">SQL guide</a> shows the import pattern the queries below adapt.</p>
+  </section>
+
+  <section aria-label="Recompute the rank moves yourself">
+    <h2>Recompute the rank moves yourself</h2>
+    <p>Load each county file into SQLite under its year label (<code>counties_fy2026</code>, <code>counties_fy2027</code>), fifteen columns per row, following the import steps in the <a href="hud-fmr-by-zip-sql.html">SQL guide</a> pointed at these files. The riser leaderboard is one window-function chain, rank each year, then subtract:</p>
+    <pre><code>-- SQLite: the ten biggest risers, national 2BR rank FY2026 vs FY2027
+WITH r AS (
+  SELECT state, county, CAST(fmr_2br_median AS INTEGER) AS v,
+         RANK() OVER (ORDER BY CAST(fmr_2br_median AS INTEGER) DESC) AS rk
+  FROM counties_fy2026
+  WHERE state NOT IN ('PR','GU','VI','AS','MP')
+),
+s AS (
+  SELECT state, county, CAST(fmr_2br_median AS INTEGER) AS v,
+         RANK() OVER (ORDER BY CAST(fmr_2br_median AS INTEGER) DESC) AS rk
+  FROM counties_fy2027
+  WHERE state NOT IN ('PR','GU','VI','AS','MP')
+)
+SELECT r.rk - s.rk AS move, s.county, s.state,
+       r.v AS fy2026_2br, s.v AS fy2027_2br, r.rk AS rank26, s.rk AS rank27
+FROM r JOIN s USING (state, county)
+ORDER BY move DESC, s.state, s.county LIMIT 10;
+-- Rows: 1389 St. James Parish LA (921 to 1165, 2569 to 1180),
+-- 1306 Grant County SD (929 to 1179), 1234 Jackson County CO (989 to 1485),
+-- 1140 Kidder County ND, 1131 Jasper and Newton MO, 1114 Cullman County AL,
+-- then 1082, the first three of 28 North Dakota counties at 873 to 1014.</code></pre>
+    <p>The faller board flips the sort, and a second statement sums up the whole board:</p>
+    <pre><code>-- SQLite: the ten biggest fallers (same CTEs, order reversed)
+WITH r AS (
+  SELECT state, county, CAST(fmr_2br_median AS INTEGER) AS v,
+         RANK() OVER (ORDER BY CAST(fmr_2br_median AS INTEGER) DESC) AS rk
+  FROM counties_fy2026
+  WHERE state NOT IN ('PR','GU','VI','AS','MP')
+),
+s AS (
+  SELECT state, county, CAST(fmr_2br_median AS INTEGER) AS v,
+         RANK() OVER (ORDER BY CAST(fmr_2br_median AS INTEGER) DESC) AS rk
+  FROM counties_fy2027
+  WHERE state NOT IN ('PR','GU','VI','AS','MP')
+)
+SELECT r.rk - s.rk AS move, s.county, s.state,
+       r.v AS fy2026_2br, s.v AS fy2027_2br, r.rk AS rank26, s.rk AS rank27
+FROM r JOIN s USING (state, county)
+ORDER BY move ASC, s.state, s.county LIMIT 10;
+-- Rows: -1150 Madison County FL, -1149 Liberty FL, -1145 Suwannee FL,
+-- -1144 Holmes FL, -1127 Jackson FL, -1090 Washington County AL,
+-- -1068 Taylor FL, -1053 Bradford FL, -1036 Newberry SC, -1008 Kershaw SC.
+
+-- The shape of the board: held / risers / fallers / moved 5+ / moved 100+
+WITH r AS (SELECT state, county, CAST(fmr_2br_median AS INTEGER) AS v, RANK() OVER (ORDER BY CAST(fmr_2br_median AS INTEGER) DESC) AS rk FROM counties_fy2026 WHERE state NOT IN ('PR','GU','VI','AS','MP')),
+     s AS (SELECT state, county, CAST(fmr_2br_median AS INTEGER) AS v, RANK() OVER (ORDER BY CAST(fmr_2br_median AS INTEGER) DESC) AS rk FROM counties_fy2027 WHERE state NOT IN ('PR','GU','VI','AS','MP'))
+SELECT COUNT(*) FILTER (WHERE move = 0) AS held,
+       COUNT(*) FILTER (WHERE move &gt; 0) AS risers,
+       COUNT(*) FILTER (WHERE move &lt; 0) AS fallers,
+       COUNT(*) FILTER (WHERE ABS(move) &gt;= 5) AS moved_5plus,
+       COUNT(*) FILTER (WHERE ABS(move) &gt;= 100) AS moved_100plus
+FROM (SELECT r.rk - s.rk AS move FROM r JOIN s USING (state, county));
+-- 18 / 1,473 / 1,654 / 3,023 / 1,751.</code></pre>
+    <p>Run them against the tables built by that import and the outputs match the tables on this page row for row. Swap <code>DESC</code> for <code>ASC</code> inside both CTEs to rank from the cheapest end, swap <code>fmr_2br_median</code> for another bedroom column, or add <code>PARTITION BY state</code> to the window to re-run the whole analysis inside each state's ladder.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>County rank moves, FY2026 to FY2027: questions</h2>
+    <dl>
+      <dt>Which county jumped the most in HUD's FY2027 fair market rent rankings?</dt>
+      <dd>St. James Parish, Louisiana, up 1,389 national rank positions, 2,569th to 1,180th, after its 2BR median rose from 921 to 1,165 dollars. Grant County, South Dakota follows at +1,306 and Jackson County, Colorado at +1,234 on the file's largest percentage gain, 50.2 percent. Twenty-eight North Dakota counties share an exact +1,082 move after the state's 873-dollar floor lifted to the shared 1,014-dollar figure. On the fall side Madison County, Florida, dropped 1,150 positions. Of the 3,145 ranked county-equivalents, 3,023 moved at least five places, 1,751 moved a hundred or more, and 18 held the same rank.</dd>
+      <dt>How can county ranks move when the underlying rents barely change?</dt>
+      <dd>Because ranks amplify small dollar moves inside HUD's shared-value tiers. The median county gained 41 dollars, yet fallers outnumber risers 1,654 to 1,473, and 1,002 counties collected more dollars and still lost ground. Four Texas counties fell one dollar, 1,015 to 1,014, and lost 221 positions each; three Georgia counties fell one dollar, 1,680 to 1,679, and gained eight, because neighbors fell further. Only one county, Kendall County, Texas, held both the same dollar figure and the same rank, 1,650 at 377th, while 18 counties changed dollars and kept their rank and four changed rank on flat dollars.</dd>
+      <dt>How were the rank moves computed?</dt>
+      <dd>From HUD's county-level files, 3,229 county-equivalents per year with identical county sets. Each year's counties are ranked by 2BR median with competition ranking: ties share the better position and the next distinct value takes its numbered place. The ranked universe covers the 50 states plus DC, 3,145 rows; Puerto Rico, Guam, the US Virgin Islands, American Samoa and the Northern Mariana Islands (84 rows) stay out. A move is the FY2026 rank minus the FY2027 rank. The FY2026 figures were recomputed from the same file this site publishes as the county CSV and match it cell for cell. FMRs are HUD's 40th-percentile rent estimates, FY2027 effective October 1, 2026, not observed asking rents.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <div class="btnrow">
+      <a class="btn" href="../data/hud-fmr-county-2026/fmr-county-2026.csv" download>Download the FY2026 county CSV (free, 3,229 rows)</a>
+      <a class="btn-ghost btn" href="../data/hud-fmr-by-zip-2027/fmr-by-zip-2027.csv" download>FY2027 ZIP CSV first (free, 4.3 MB)</a>
+    </div>
+    <p class="btn-note">Both files come from HUD's Fair Market Rent releases, FY2027 effective October 1, 2026 and FY2026 effective October 1, 2025, and both are public domain. The <a href="../datasets/hud-fmr-county-2026.html">county dataset page</a> documents the FY2026 file's columns and integrity checks, the <a href="../datasets/hud-fmr-2027.html">FY2027 dataset page</a> covers the current ZIP-level release, and the full packs download free from Zenodo. For other angles on the same releases, the <a href="hud-fmr-state-extremes-2027.html">state-extremes page</a> ranks whole states, the <a href="hud-fmr-county-spreads-2027.html">county-spreads page</a> measures within-state gaps, <a href="most-affordable-counties.html">cheapest counties</a> ladders the floor end, and voucher readers can see what the numbers set in <a href="section-8-voucher-rent.html">Section 8 voucher rents</a>.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

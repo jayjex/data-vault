@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Life Expectancy by Country: G20 Data 1960-2024 (CSV) | Data Vault</title>
+<meta name="description" content="Japan leads the G20 at 84.04 years, top for 53 straight years. Life expectancy at birth for all 19 national members plus the EU27, recomputed from a free 1,300-row World Bank CSV.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/life-expectancy-g20-countries.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Life Expectancy by Country: G20 Data 1960-2024 (CSV)">
+<meta property="og:description" content="Japan leads the G20 at 84.04 years, top for 53 straight years. Life expectancy at birth for all 19 national members plus the EU27, from a free 1,300-row CSV.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/life-expectancy-g20-countries.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Life Expectancy by Country: G20 Data 1960-2024 (CSV)", "description": "Japan leads the G20 at 84.04 years, top for 53 straight years. Life expectancy at birth for all 19 national members plus the EU27, recomputed from a free 1,300-row World Bank CSV.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/life-expectancy-g20-countries.html", "about": {"@type": "Dataset", "name": "World Bank Life Expectancy, G20 Countries + EU27, 1960-2024", "url": "https://jayjex.github.io/data-vault/datasets/worldbank-g20-life-expectancy.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which G20 country has the highest life expectancy?", "acceptedAnswer": {"@type": "Answer", "text": "Japan, at 84.04 years in the 2024 World Bank figures. It has topped the 19 national members every year since 1972, 53 straight years; Canada led from 1960 through 1971. Italy follows at 83.95, South Korea at 83.63, and Australia at 83.05. South Africa is lowest at 66.31, which is a record high for the country."}}, {"@type": "Question", "name": "Which G20 country gained the most life expectancy since 1960?", "acceptedAnswer": {"@type": "Answer", "text": "China, up 44.60 years: 33.42 in 1960, the lowest value anywhere in the file, to 78.02 in 2024. Saudi Arabia added 33.67 (45.31 to 78.98) and South Korea 29.83 (53.80 to 83.63). The smallest gain is Russia's, 5.91 years over the whole window, with a trough of 64.47 in 1994 that took until 2007 to climb back above its own 1960 level."}}, {"@type": "Question", "name": "Did G20 life expectancy recover after COVID?", "acceptedAnswer": {"@type": "Answer", "text": "Mostly, yes. Fifteen of the 19 national members sit above their 2019 values in the 2024 data. The United States ran 78.79 in 2019, fell to 76.33 in 2021, its lowest since 1996, and recovered to 78.89 in 2024. Canada, Germany, Japan, and Turkiye remain below their 2019 marks, and 14 of the 20 entities set all-time highs in 2024."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://jayjex.github.io/data-vault/guides/"}, {"@type": "ListItem", "position": 3, "name": "Life expectancy by country, G20 data", "item": "https://jayjex.github.io/data-vault/guides/life-expectancy-g20-countries.html"}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Life expectancy by country: the G20 from 1960 to 2024</h1>
+  <p class="byline">World Bank WDI series SP.DYN.LE00.IN, retrieved 2026-09-10 (WDI update 2026-07-13), published 2026-09-10. Data source: World Bank Open Data, CC BY 4.0. Data Vault is not affiliated with the World Bank. This page documents the data; it is not medical, demographic, or policy advice.</p>
+
+  <section aria-label="What this page measures">
+    <h2>What this page measures</h2>
+    <p>Every number here is recomputed from the free CSV behind <a href="../datasets/worldbank-g20-life-expectancy.html">World Bank Life Expectancy, G20 Countries + EU27</a>: 1,300 rows, one per entity-year, covering the 19 national G20 members plus the EU27 aggregate from 1960 through 2024. The column is life_expectancy_years, the World Bank's SP.DYN.LE00.IN series for life expectancy at birth of the total population, rounded to two decimals the way the Bank publishes it.</p>
+    <p>Two conventions run through the page. The G20 seats the European Union alongside the 19 countries, and the EU27 aggregate is not a country, so club counts cover the 19 national members only. And this is the both-sexes series; the Bank publishes female and male life expectancy separately, and neither is in the pack. The series ends at 2024 because WDI publishes life expectancy with a longer lag than its population counts, and no 2025 value existed at retrieval.</p>
+  </section>
+
+  <section aria-label="Japan has led for 53 straight years">
+    <h2>Japan has led for 53 straight years</h2>
+    <p>Japan stands at 84.04 years in the 2024 row, the highest in the set, and it has topped the 19 national members every year since 1972: 53 consecutive years. Canada led from 1960 through 1971 before that. Behind Japan sit Italy at 83.95, South Korea at 83.63, and Australia at 83.05.</p>
+    <p>Japan's 84.04 sits below its own record of 84.56, set in 2020. At the other end, South Africa's 66.31 is the lowest value in 2024 and also the highest the country has ever recorded, up 13.73 years from its 52.58 start in 1960. The gap between Japan and South Africa is 17.73 years; in 1960 it was 37.71, from the United Kingdom and Canada at 71.13 down to China at 33.42. The 19-member average moved from 59.23 years in 1960 to 78.28 in 2024.</p>
+  </section>
+
+  <section aria-label="The 2024 ranking">
+    <h2>The 2024 ranking</h2>
+    <p>Values come straight from the latest-year CSV, sorted descending. The EUU row is the EU27 aggregate, marked separately and excluded from every count of countries.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="G20 life expectancy at birth, 2024"><table><thead><tr><th scope="col">entity</th><th scope="col">iso3</th><th scope="col">life expectancy (years)</th></tr></thead><tbody>
+      <tr><td>Japan</td><td>JPN</td><td>84.04</td></tr>
+      <tr><td>Italy</td><td>ITA</td><td>83.95</td></tr>
+      <tr><td>South Korea</td><td>KOR</td><td>83.63</td></tr>
+      <tr><td>Australia</td><td>AUS</td><td>83.05</td></tr>
+      <tr><td>France</td><td>FRA</td><td>82.98</td></tr>
+      <tr><td>Canada</td><td>CAN</td><td>82.11</td></tr>
+      <tr><td>European Union</td><td>EUU</td><td>81.56</td></tr>
+      <tr><td>United Kingdom</td><td>GBR</td><td>81.39</td></tr>
+      <tr><td>Germany</td><td>DEU</td><td>80.79</td></tr>
+      <tr><td>Saudi Arabia</td><td>SAU</td><td>78.98</td></tr>
+      <tr><td>United States</td><td>USA</td><td>78.89</td></tr>
+      <tr><td>China</td><td>CHN</td><td>78.02</td></tr>
+      <tr><td>Argentina</td><td>ARG</td><td>77.54</td></tr>
+      <tr><td>T&uuml;rkiye</td><td>TUR</td><td>77.42</td></tr>
+      <tr><td>Brazil</td><td>BRA</td><td>76.02</td></tr>
+      <tr><td>Mexico</td><td>MEX</td><td>75.26</td></tr>
+      <tr><td>Russia</td><td>RUS</td><td>73.44</td></tr>
+      <tr><td>India</td><td>IND</td><td>72.23</td></tr>
+      <tr><td>Indonesia</td><td>IDN</td><td>71.29</td></tr>
+      <tr><td>South Africa</td><td>ZAF</td><td>66.31</td></tr>
+    </tbody></table></div>
+    <p>South Africa and India anchor the bottom two country rows at 66.31 and 72.23. Ranked among the countries, the EU27 aggregate would slot seventh, between Canada and the United Kingdom.</p>
+  </section>
+
+  <section aria-label="The big climbers since 1960">
+    <h2>The big climbers since 1960</h2>
+    <p>Six members added more than 20 years of life expectancy between the 1960 and 2024 rows:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Life expectancy gain 1960 to 2024"><table><thead><tr><th scope="col">country</th><th scope="col">1960</th><th scope="col">2024</th><th scope="col">gain</th></tr></thead><tbody>
+      <tr><td>China</td><td>33.42</td><td>78.02</td><td>+44.60</td></tr>
+      <tr><td>Saudi Arabia</td><td>45.31</td><td>78.98</td><td>+33.67</td></tr>
+      <tr><td>South Korea</td><td>53.80</td><td>83.63</td><td>+29.83</td></tr>
+      <tr><td>India</td><td>45.61</td><td>72.23</td><td>+26.62</td></tr>
+      <tr><td>T&uuml;rkiye</td><td>50.80</td><td>77.42</td><td>+26.62</td></tr>
+      <tr><td>Indonesia</td><td>46.84</td><td>71.29</td><td>+24.45</td></tr>
+    </tbody></table></div>
+    <p>China's 33.42 in 1960 is the lowest number anywhere in the file, and the +44.60 climb is the largest gain; the series crossed 70 years in 1995 and 78 years in 2020. South Korea's +29.83 lifts it from 11th place among the 19 in 1960 to third in 2024. The slowest gains are Russia's +5.91 and the United States' +9.12, with the United Kingdom's +10.26 next.</p>
+  </section>
+
+  <section aria-label="Russia: the trough and the long climb">
+    <h2>Russia: the trough and the long climb</h2>
+    <p>Russia's series is the set's outlier. It starts at 67.53 in 1960, peaks at 69.46 in 1988, then falls six straight years to a trough of 64.47 in 1994, 3.06 years below where it started. A partial recovery reaches 67.03 by 1998, slides again to a second low of 65.03 in 2003, and only in 2007 does the series clear its 1960 level for the first time since 1991: 67.59 that year against the 67.53 starting mark. It passes the 1988 peak in 2011 at 69.68 and stands at 73.44 in 2024. The whole 64-year gain is 5.91 years, the smallest in the file.</p>
+  </section>
+
+  <section aria-label="The United States round trip">
+    <h2>The United States round trip</h2>
+    <p>The United States runs 78.79 in 2019, drops to 76.33 in 2021, its lowest value since 1996 (76.03), and recovers to 78.89 in 2024, a tenth of a year above the 2019 mark. The dip put China ahead of the United States for exactly three rows, 2020 through 2022. The United States moved back in front in 2023, 78.39 against 77.95, and the 2024 gap is 0.87 years.</p>
+  </section>
+
+  <section aria-label="The COVID shock, entity by entity">
+    <h2>The COVID shock, entity by entity</h2>
+    <p>Every national member's series dips in 2020 or 2021. The deepest falls from 2019 to the 2021 trough:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Life expectancy drop 2019 to 2021"><table><thead><tr><th scope="col">country</th><th scope="col">2019</th><th scope="col">2021</th><th scope="col">drop</th></tr></thead><tbody>
+      <tr><td>Mexico</td><td>74.53</td><td>69.75</td><td>&minus;4.78</td></tr>
+      <tr><td>South Africa</td><td>66.07</td><td>62.01</td><td>&minus;4.06</td></tr>
+      <tr><td>India</td><td>70.75</td><td>67.28</td><td>&minus;3.47</td></tr>
+      <tr><td>Russia</td><td>73.08</td><td>69.90</td><td>&minus;3.18</td></tr>
+      <tr><td>Indonesia</td><td>70.35</td><td>67.45</td><td>&minus;2.90</td></tr>
+      <tr><td>Argentina</td><td>76.85</td><td>73.95</td><td>&minus;2.90</td></tr>
+    </tbody></table></div>
+    <p>By the 2024 row, 15 of the 19 national members stand above their 2019 values. The four that do not: Canada (82.11 against 82.16), Germany (80.79 against 81.29), Japan (84.04 against 84.36), and Turkiye (77.42 against 77.74). Fourteen of the 20 entities set all-time highs in 2024; the six that did not peak earlier, Germany, Canada, and Turkiye in 2019, Japan in 2020, Australia in 2021, and China in 2022, all trace the same pattern, so for those members the pre-pandemic year is the baseline that still holds the record.</p>
+  </section>
+
+  <section aria-label="Read the series yourself">
+    <h2>Read the series yourself</h2>
+    <p>The full 1,300-row file downloads free on the <a href="../datasets/worldbank-g20-life-expectancy.html">life expectancy dataset page</a> under CC BY 4.0, alongside a 20-row latest-year file (<span class="mono">g20-life-expectancy-2024.csv</span>) and a schema. Four columns: <span class="mono">entity</span>, <span class="mono">iso3</span>, <span class="mono">year</span>, <span class="mono">life_expectancy_years</span>. Join it to the <a href="../datasets/worldbank-g20-population.html">companion population pack</a> on <span class="mono">iso3</span> and <span class="mono">year</span> for denominators, filter out <span class="mono">EUU</span> when you want national-only work, and every table above reproduces in minutes. If you republish derived numbers, the <a href="dataset-license-guide.html">dataset license guide</a> covers what CC BY 4.0 attribution asks of you.</p>
+    <p>The population side of the same 20 entities is its own guide: the <a href="world-population-milestones-g20.html">world population milestones guide</a> reads the companion CSV for the India-passes-China crossover, the billion and 100-million crossings, and the six members already past their population peak.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>Life expectancy questions</h2>
+    <dl>
+      <dt>Which G20 country has the highest life expectancy?</dt>
+      <dd>Japan, at 84.04 years in the 2024 World Bank figures. It has topped the 19 national members every year since 1972, 53 straight years; Canada led from 1960 through 1971. Italy follows at 83.95, South Korea at 83.63, and Australia at 83.05. South Africa is lowest at 66.31, which is a record high for the country.</dd>
+      <dt>Which G20 country gained the most life expectancy since 1960?</dt>
+      <dd>China, up 44.60 years: 33.42 in 1960, the lowest value anywhere in the file, to 78.02 in 2024. Saudi Arabia added 33.67 (45.31 to 78.98) and South Korea 29.83 (53.80 to 83.63). The smallest gain is Russia's, 5.91 years over the whole window, with a trough of 64.47 in 1994 that took until 2007 to climb back above its own 1960 level.</dd>
+      <dt>Did G20 life expectancy recover after COVID?</dt>
+      <dd>Mostly, yes. Fifteen of the 19 national members sit above their 2019 values in the 2024 data. The United States ran 78.79 in 2019, fell to 76.33 in 2021, its lowest since 1996, and recovered to 78.89 in 2024. Canada, Germany, Japan, and Turkiye remain below their 2019 marks, and 14 of the 20 entities set all-time highs in 2024.</dd>
+    </dl>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

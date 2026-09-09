@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Netherlands House Prices vs Rents: Eurostat Index Data 2005-2025 (CSV) | Data Vault</title>
+<meta name="description" content="Dutch house prices closed 2025 at 215.15 on Eurostat's index, 115 percent above 2015, while Dutch rents rose 32 percent over the same decade. Both series, recomputed from the free CSVs.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/eurostat-house-prices-vs-rents.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Netherlands House Prices vs Rents: Eurostat Index Data 2005-2025 (CSV)">
+<meta property="og:description" content="Dutch house prices closed 2025 at 215.15 on Eurostat's index, 115 percent above 2015, while Dutch rents rose 32 percent over the same decade. Both series, recomputed from the free CSVs.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/eurostat-house-prices-vs-rents.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Netherlands House Prices vs Rents: Eurostat Index Data 2005-2025 (CSV)", "description": "Dutch house prices closed 2025 at 215.15 on Eurostat's index, 115 percent above 2015, while Dutch rents rose 32 percent over the same decade. Both series, recomputed from the free CSVs.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/eurostat-house-prices-vs-rents.html", "about": {"@type": "Dataset", "name": "Eurostat House Price Index, NL and EU27, 2005-2025", "url": "https://jayjex.github.io/data-vault/datasets/eurostat-house-prices.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How much have Dutch house prices risen?", "acceptedAnswer": {"@type": "Answer", "text": "Eurostat's house price index for the Netherlands closed 2025 at 215.15 on the 2015=100 base, which is 115.1 percent above the 2015 average and 102.4 percent above the 2005 level of 106.30. The final year-over-year print was +8.5 percent for 2025, after +8.2 percent in 2024."}}, {"@type": "Question", "name": "Have Dutch or EU house prices ever fallen?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, twice in the file. After the financial crisis the Netherlands posted five straight down years, from -4.4 percent in 2009 to -6.0 percent in 2013, and the EU-27 aggregate fell in 2009 (-3.7), 2012 (-2.1) and 2013 (-1.7). The only down year of the 2020s so far is 2023: -1.9 percent for the Netherlands and -0.3 percent for the EU-27, the first declines in both series since 2013."}}, {"@type": "Question", "name": "Are European rents rising faster than house prices?", "acceptedAnswer": {"@type": "Answer", "text": "Over the last decade house prices grew far faster. From the 2016 average to the 2025 average the Dutch price index rose 104.3 percent against 28.4 percent for Dutch rents measured December 2016 to December 2025; the EU-27 figures are 55.2 percent for prices against 20.4 percent for rents. Rents are steadier, though: neither series has ever printed a negative month. Dutch rent inflation ran between 0.8 and 5.4 percent year on year, EU-27 between 1.1 and 3.3 percent."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://jayjex.github.io/data-vault/guides/"}, {"@type": "ListItem", "position": 3, "name": "Netherlands house prices vs rents", "item": "https://jayjex.github.io/data-vault/guides/eurostat-house-prices-vs-rents.html"}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Dutch house prices vs rents, in Eurostat's own index data</h1>
+  <p class="byline">Eurostat tables prc_hpi_a (house price index, annual) and prc_hicp_midx / prc_hicp_manr (HICP actual rentals, coicop CP0411), Netherlands and EU-27, retrieved 2026-09-10 (house prices last updated 2026-07-02, rents 2026-02-06), published 2026-09-10. Data source: Eurostat, CC BY 4.0. Data Vault is not affiliated with Eurostat. This page documents the data; it is not economic or investment advice.</p>
+
+  <section aria-label="What this page measures">
+    <h2>What this page measures</h2>
+    <p>Two free CSVs sit behind every number here. The <a href="../datasets/eurostat-house-prices.html">Eurostat house price index dataset</a> carries 342 rows of annual data for the Netherlands and the EU-27 aggregate, 2005 through 2025, split into total, newly built and existing dwellings. The <a href="../datasets/eurostat-rents.html">HICP actual rents dataset</a> carries 580 rows across two monthly tables: the rent index (2015=100, Netherlands from 2009-12, EU-27 from 2016-12) and the year-on-year rate of change.</p>
+    <p>Both indexes use 2015=100, so the two geos are directly comparable and the rent-versus-price gap is a ratio of the same base. One convention: "house prices" below means the total-dwelling annual average index (unit <span class="mono">I15_A_AVG</span>, purchase <span class="mono">TOTAL</span>) unless a sentence says otherwise.</p>
+  </section>
+
+  <section aria-label="The two decades in anchor years">
+    <h2>The two decades in anchor years</h2>
+    <p>Dutch prices closed 2025 at 215.15 on the 2015=100 base: 115.1 percent above the 2015 average and 102.4 percent above 2005. The EU-27 aggregate closed at 161.93, up 61.9 percent in the decade and 88.6 percent since 2005. The table below picks out the years that define the shape of both series:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="House price index anchor years, NL and EU27"><table><thead><tr><th scope="col">year</th><th scope="col">NL</th><th scope="col">EU-27</th><th scope="col">what happened</th></tr></thead><tbody>
+      <tr><td>2005</td><td>106.30</td><td>85.85</td><td>series start (NL); EU-27 from 2005</td></tr>
+      <tr><td>2008</td><td>118.74</td><td>103.67</td><td>pre-crisis peak in both</td></tr>
+      <tr><td>2013</td><td>95.81</td><td>97.06</td><td>trough in both, below the 2015 base</td></tr>
+      <tr><td>2015</td><td>100.0</td><td>100.0</td><td>index base year</td></tr>
+      <tr><td>2021</td><td>164.94</td><td>137.87</td><td>fastest year: NL +14.5%, EU-27 +8.4%</td></tr>
+      <tr><td>2023</td><td>183.26</td><td>148.45</td><td>the one down year of the 2020s</td></tr>
+      <tr><td>2025</td><td>215.15</td><td>161.93</td><td>latest: NL +8.5%, EU-27 +5.5%</td></tr>
+    </tbody></table></div>
+    <p>The crash and the recovery ran on different clocks. The EU-27 aggregate needed eight years to pass its 2008 peak again (103.67 in 2008, 104.31 in 2016). The Netherlands needed ten: its 2008 level of 118.74 was not cleared until 2018's 124.4, because Dutch prices kept falling through 2013 while the EU aggregate had already stabilised.</p>
+  </section>
+
+  <section aria-label="Year by year since 2020">
+    <h2>Year by year since 2020</h2>
+    <p>The 2020s split into three acts: the pandemic surge, a single down year, and the rebound that is still running.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Annual house price growth since 2020"><table><thead><tr><th scope="col">year</th><th scope="col">NL yoy</th><th scope="col">EU-27 yoy</th></tr></thead><tbody>
+      <tr><td>2020</td><td>+8.0%</td><td>+5.6%</td></tr>
+      <tr><td>2021</td><td>+14.5%</td><td>+8.4%</td></tr>
+      <tr><td>2022</td><td>+13.3%</td><td>+8.0%</td></tr>
+      <tr><td>2023</td><td>&minus;1.9%</td><td>&minus;0.3%</td></tr>
+      <tr><td>2024</td><td>+8.2%</td><td>+3.4%</td></tr>
+      <tr><td>2025</td><td>+8.5%</td><td>+5.5%</td></tr>
+    </tbody></table></div>
+    <p>The 2023 dip was small but it broke a nine-year run of gains in both series, and in the Netherlands it was the first negative year since 2013's &minus;6.0 percent. Two years later the Dutch market has more than made up for it: 2024 and 2025 averaged above eight percent, so the series ended 2025 at 215.15, 17.4 percent above its 2023 level.</p>
+  </section>
+
+  <section aria-label="Rents never fall">
+    <h2>Rents never fall</h2>
+    <p>The rent side of the file tells a different story. Across every month the rent datasets cover, from 2010-12 for the Netherlands and 2017-12 for the EU-27, the year-on-year rate has never once gone negative. The Dutch series bottomed at +0.8 percent in July 2021 and peaked at +5.4 percent in July 2024; the EU-27 series ran between +1.1 (June 2018) and +3.3 percent (July 2024). December 2025 reads +4.9 percent for the Netherlands and +3.2 percent for the EU-27.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Price growth vs rent growth over matched windows"><table><thead><tr><th scope="col">measure</th><th scope="col">NL</th><th scope="col">EU-27</th></tr></thead><tbody>
+      <tr><td>house prices, 2016 average &rarr; 2025 average</td><td>+104.3%</td><td>+55.2%</td></tr>
+      <tr><td>rents, Dec 2016 &rarr; Dec 2025</td><td>+28.4%</td><td>+20.4%</td></tr>
+      <tr><td>rents, Dec 2025 yoy</td><td>+4.9%</td><td>+3.2%</td></tr>
+      <tr><td>rent index level, Dec 2025 (2015=100)</td><td>132.36</td><td>120.36</td></tr>
+    </tbody></table></div>
+    <p>Matched over the same window, Dutch sale prices grew 104.3 percent while Dutch rents grew 28.4 percent, and the EU-27 gap is 55.2 against 20.4. Rents are the steadier series, not the faster one: they missed the 2021-22 price spike almost entirely (Dutch rent inflation was 0.8 percent at the end of 2021) and they also skipped the 2023 correction, accelerating instead into 2024-25.</p>
+  </section>
+
+  <section aria-label="New and existing dwellings">
+    <h2>New and existing dwellings</h2>
+    <p>The house price file splits each geo into newly built and existing dwellings, and the decade ordered them differently in each geography. In the EU-27, newly built dwellings led: +70.7 percent since 2015 against +59.7 percent for existing ones (170.66 vs 159.65 in 2025). In the Netherlands the order flips: existing dwellings did +115.1 percent against +110.9 for new builds, and 2025 closes with existing homes (215.10) indexed slightly above new ones (210.87). The Dutch split only starts in 2005 with both dwelling types near 104-106, so the flip is not a base-year artefact.</p>
+  </section>
+
+  <section aria-label="Read the series yourself">
+    <h2>Read the series yourself</h2>
+    <p>Both datasets download free under CC BY 4.0, each with a 22-row sample (<span class="mono">sample.csv</span>, <span class="mono">sample.json</span>). The house price file has eight columns: <span class="mono">year</span>, <span class="mono">geo</span>, <span class="mono">purchase</span>, <span class="mono">unit</span>, <span class="mono">value</span>, plus Eurostat's labels. The rent files share six columns with <span class="mono">month</span> in place of year. Filter to <span class="mono">geo=NL</span>, <span class="mono">unit=I15_A_AVG</span>, <span class="mono">purchase=TOTAL</span> and every house price number in the tables above reproduces in one pass. If you republish derived numbers, the <a href="dataset-license-guide.html">dataset license guide</a> covers what CC BY 4.0 attribution asks of you.</p>
+    <p>Two sibling pages extend this one. The <a href="eu-unemployment-rate-by-country-2026.html">EU unemployment rate by country guide</a> reads the labour-market side of the same Eurostat pull, where the Netherlands also runs below the EU-27 average (4.0 against 6.1 percent in July 2026). For the US counterparts, the <a href="rent-data-sources-compared.html">rent data sources compared guide</a> lines up HUD FMR, Census ACS, CPI rent and Zillow ZORI the way this page lines up the two Eurostat indexes.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>Dutch house price questions</h2>
+    <dl>
+      <dt>How much have Dutch house prices risen?</dt>
+      <dd>Eurostat's house price index for the Netherlands closed 2025 at 215.15 on the 2015=100 base, which is 115.1 percent above the 2015 average and 102.4 percent above the 2005 level of 106.30. The final year-over-year print was +8.5 percent for 2025, after +8.2 percent in 2024.</dd>
+      <dt>Have Dutch or EU house prices ever fallen?</dt>
+      <dd>Yes, twice in the file. After the financial crisis the Netherlands posted five straight down years, from &minus;4.4 percent in 2009 to &minus;6.0 percent in 2013, and the EU-27 aggregate fell in 2009 (&minus;3.7), 2012 (&minus;2.1) and 2013 (&minus;1.7). The only down year of the 2020s so far is 2023: &minus;1.9 percent for the Netherlands and &minus;0.3 percent for the EU-27, the first declines in both series since 2013.</dd>
+      <dt>Are European rents rising faster than house prices?</dt>
+      <dd>Over the last decade house prices grew far faster. From the 2016 average to the 2025 average the Dutch price index rose 104.3 percent against 28.4 percent for Dutch rents measured December 2016 to December 2025; the EU-27 figures are 55.2 percent for prices against 20.4 percent for rents. Rents are steadier, though: neither series has ever printed a negative month. Dutch rent inflation ran between 0.8 and 5.4 percent year on year, EU-27 between 1.1 and 3.3 percent.</dd>
+    </dl>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

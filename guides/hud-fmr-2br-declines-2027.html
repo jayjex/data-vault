@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The 2BR Declines FY2027: Counties Where HUD Fair Market Rent Fell Most From FY2026 to FY2027 | Data Vault</title>
+<meta name="description" content="Ventura County, California drops 269 dollars, the steepest 2BR fair market rent decline among 3,145 counties. The ten biggest drops, the ten biggest gains, and the 10 percent line no faller crosses, FY2026 to FY2027.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fmr-2br-declines-2027.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="The 2BR Declines FY2027: Counties Where HUD Fair Market Rent Fell Most From FY2026 to FY2027">
+<meta property="og:description" content="Ventura County, California drops 269 dollars, the steepest 2BR decline among 3,145 counties; Jackson County, Colorado gains 496. 655 counties fall, none past the 10 percent line, and the median county still rises 41 dollars.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fmr-2br-declines-2027.html">
+<meta property="og:image" content="https://jayjex.github.io/data-vault/assets/covers/data-vault-banner.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The 2BR Declines FY2027: Counties Where HUD Fair Market Rent Fell Most From FY2026 to FY2027">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "The 2BR Declines FY2027: Counties Where HUD Fair Market Rent Fell Most From FY2026 to FY2027", "description": "Ventura County, California drops 269 dollars, the steepest 2BR fair market rent decline among 3,145 counties. The ten biggest drops, the ten biggest gains, and the 10 percent line no faller crosses, FY2026 to FY2027.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fmr-2br-declines-2027.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2027", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2027.html"}, "mentions": [{"@type": "Dataset", "name": "HUD Fair Market Rents FY2026 by County: completeness & spread", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-county-2026.html"}, {"@type": "Dataset", "name": "HUD Fair Market Rents FY2027 by ZIP Code", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-by-zip-2027.html"}, {"@type": "Article", "name": "Counties That Jumped or Fell Most in HUD Fair Market Rent FY2027", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-county-rank-shifts-2027.html"}, {"@type": "Article", "name": "Most and Least Expensive Counties in Each State for HUD Fair Market Rent FY2027", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-county-spreads-2027.html"}, {"@type": "Article", "name": "The 4BR Premium FY2027: Counties Where HUD Fair Market Rent Stretches Furthest From 2BR to 4BR", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-4br-premium-2027.html"}, {"@type": "Article", "name": "Query HUD FMR by ZIP With SQL: DuckDB and SQLite on the FY2027 CSV", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-zip-sql.html"}, {"@type": "Article", "name": "Section 8 Voucher Rent: How Much Will HUD Pay?", "url": "https://jayjex.github.io/data-vault/guides/section-8-voucher-rent.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which counties saw the biggest HUD fair market rent declines in FY2027?", "acceptedAnswer": {"@type": "Answer", "text": "Ventura County, California falls 269 dollars on the 2BR median, 2,693 to 2,424, the steepest dollar decline among the 3,145 ranked county-equivalents. Monterey County, California follows at minus 268, Monroe County, Florida at minus 250 (2,504 to 2,254, the former state ceiling), and Kauai County, Hawaii at minus 227. The ten biggest drops all sit between minus 182 and minus 269 dollars, between 6.1 and 10.0 percent. On the other side, Jackson County, Colorado gains 496 dollars (989 to 1,485, a 50.2 percent rise), the largest move in either direction."}}, {"@type": "Question", "name": "Why does no county 2BR rent drop more than 10 percent?", "acceptedAnswer": {"@type": "Answer", "text": "That is what the data shows, and this page reports it as an observation rather than a rule. The deepest percentage decline in the file stops at exactly 10.0 percent, carried by five counties: Bradford (1,120 to 1,008) and Suwannee (1,110 to 999) in Florida, Gem in Idaho (1,190 to 1,071), Belknap in New Hampshire (1,800 to 1,620), and Karnes in Texas (1,270 to 1,143). Another 47 counties sit in the 9.5-to-10.0 band and none goes below it, while the largest gain runs 50.2 percent. HUD's methodology notices document how the schedules are built; the pattern is consistent with the publication's construction, and the data cannot say more than that."}}, {"@type": "Question", "name": "How were the county declines computed?", "acceptedAnswer": {"@type": "Answer", "text": "From HUD's county-level files for FY2026 and FY2027, 3,229 county-equivalents each, matched on state and county with identical county sets, rates effective October 1, 2026. Each county's change is its FY2027 2BR median minus its FY2026 2BR median; multi-area counties use the median column, which already aggregates the county's area rows. Puerto Rico, Guam, the US Virgin Islands, American Samoa and the Northern Mariana Islands contribute 84 rows and stay out of the rankings. The median county change across the 3,145 ranked counties is plus 41 dollars. Tables rank on exact dollar change, with percentage changes shown to two decimals."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://jayjex.github.io/data-vault/guides/"}, {"@type": "ListItem", "position": 3, "name": "The 2BR declines FY2027: counties where HUD fair market rent fell most from FY2026 to FY2027", "item": "https://jayjex.github.io/data-vault/guides/hud-fmr-2br-declines-2027.html"}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Where HUD fair market rent fell, county by county, FY2027</h1>
+  <p class="byline">FY2027 edition, published 2026-09-10. Data source: HUD FY2026 and FY2027 Fair Market Rent releases, county-level files, FY2027 rates effective October 1, 2026. License: CC0 1.0 (US government data, public domain). Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>&minus;269</b> biggest drop (Ventura County, CA)</span><span class="stat"><b>+41</b> median county change</span><span class="stat"><b>655</b> counties down, 4 held</span><span class="stat"><b>+496</b> biggest gain (Jackson County, CO)</span><span class="stat"><b>3,145</b> counties ranked</span></div>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>Match every county's 2BR median between HUD's FY2026 and FY2027 county files and the declines turn out to be a minority story with a sharp edge. 655 of the 3,145 ranked county-equivalents drop, 2,486 rise, and 4 hold exactly still, so the median county gains 41 dollars (quartiles plus 8 and plus 75) and the national county median moves from 1,028 to 1,071 dollars. But the counties that fall fall hard where it costs the most: Ventura County, California drops 269 dollars (2,693 to 2,424), Monterey County 268 (2,684 to 2,416), Monroe County, Florida 250 (2,504 to 2,254). Every one of the ten steepest declines runs at least 182 dollars, and five of them happen in counties whose 2BR median sits above 1,900 dollars.</p>
+    <p>The drops also cluster at a line. No county falls more than 10.0 percent; five land on exactly minus 10.0 and another 47 sit in the 9.5-to-10.0 band, while the biggest riser gains 50.2 percent with no ceiling in sight. This page reports the pattern as an observation and points at HUD's methodology notices for the construction behind it. Every number recomputes from the two county files behind the <a href="../datasets/hud-fmr-2027.html">FY2027 fair market rent release</a> and the <a href="../datasets/hud-fmr-county-2026.html">FY2026 county dataset</a>.</p>
+  </section>
+
+  <section aria-label="The ten steepest dollar declines">
+    <h2>The ten steepest 2BR dollar declines</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Ten counties with the biggest 2BR fair market rent declines, FY2026 to FY2027"><table><thead><tr><th scope="col">#</th><th scope="col">County</th><th scope="col">State</th><th scope="col">FY2026</th><th scope="col">FY2027</th><th scope="col">Change</th><th scope="col">Pct</th></tr></thead><tbody>
+      <tr><td>1</td><td>Ventura County</td><td>California</td><td>2,693</td><td>2,424</td><td>&minus;269</td><td>&minus;9.99</td></tr>
+      <tr><td>2</td><td>Monterey County</td><td>California</td><td>2,684</td><td>2,416</td><td>&minus;268</td><td>&minus;9.99</td></tr>
+      <tr><td>3</td><td>Monroe County</td><td>Florida</td><td>2,504</td><td>2,254</td><td>&minus;250</td><td>&minus;9.98</td></tr>
+      <tr><td>4</td><td>Kauai County</td><td>Hawaii</td><td>2,332</td><td>2,105</td><td>&minus;227</td><td>&minus;9.73</td></tr>
+      <tr><td>5</td><td>Santa Clara County</td><td>California</td><td>3,483</td><td>3,272</td><td>&minus;211</td><td>&minus;6.06</td></tr>
+      <tr><td>6</td><td>Calvert County</td><td>Maryland</td><td>2,083</td><td>1,890</td><td>&minus;193</td><td>&minus;9.27</td></tr>
+      <tr><td>7</td><td>Coconino County</td><td>Arizona</td><td>1,921</td><td>1,729</td><td>&minus;192</td><td>&minus;9.99, one of 2 tied</td></tr>
+      <tr><td>8</td><td>Cheshire County</td><td>New Hampshire</td><td>1,926</td><td>1,734</td><td>&minus;192</td><td>&minus;9.97</td></tr>
+      <tr><td>9</td><td>Grafton County</td><td>New Hampshire</td><td>1,909</td><td>1,719</td><td>&minus;190</td><td>&minus;9.95</td></tr>
+      <tr><td>10</td><td>Albemarle County</td><td>Virginia</td><td>1,824</td><td>1,642</td><td>&minus;182</td><td>&minus;9.98, one of 5 tied</td></tr>
+    </tbody></table></div>
+    <p>The board is a high-cost list. Ventura and Monterey anchor the California coast, Monroe runs the Florida Keys, Kauai is Hawaii, and Santa Clara is Silicon Valley; only Coconino (Flagstaff) and the two New Hampshire counties sit outside the big-metro price tier. All ten are metro counties, at a time when metro counties fall at more than twice the nonmetro rate: 396 of 1,187 metro counties drop (33.4 percent) against 259 of 1,958 nonmetro (13.2 percent). The board spans 87 dollars from minus 269 to minus 182, every row inside the 9.5-to-10.0 percent band except Santa Clara's 6.06.</p>
+    <p>The Virginia row is really five counties moving as one. Albemarle, Charlottesville city, Fluvanna, Greene and Nelson all carry the identical 1,824-to-1,642 schedule, one HUD area rewriting its whole ladder; the table ranks the first alphabetically and annotates the tie. Coconino and Cheshire share the minus-192 dollar step at different percentage depths (9.99 against 9.97), because they start from different FY2026 bases. Monroe County's minus 250 is the ceiling handoff the <a href="hud-fmr-county-spreads-2027.html">within-state spreads page</a> covers: Monroe was Florida's most expensive county in FY2026 at 2,504 dollars and cedes the title to Miami-Dade (2,564) in FY2027.</p>
+  </section>
+
+  <section aria-label="The ten biggest gains">
+    <h2>The ten biggest 2BR gains</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Ten counties with the biggest 2BR fair market rent gains, FY2026 to FY2027"><table><thead><tr><th scope="col">#</th><th scope="col">County</th><th scope="col">State</th><th scope="col">FY2026</th><th scope="col">FY2027</th><th scope="col">Change</th><th scope="col">Pct</th></tr></thead><tbody>
+      <tr><td>1</td><td>Jackson County</td><td>Colorado</td><td>989</td><td>1,485</td><td>+496</td><td>+50.15</td></tr>
+      <tr><td>2</td><td>Nantucket County</td><td>Massachusetts</td><td>3,138</td><td>3,583</td><td>+445</td><td>+14.18</td></tr>
+      <tr><td>3</td><td>Pitkin County</td><td>Colorado</td><td>2,214</td><td>2,597</td><td>+383</td><td>+17.30</td></tr>
+      <tr><td>4</td><td>Grand County</td><td>Colorado</td><td>1,475</td><td>1,844</td><td>+369</td><td>+25.02</td></tr>
+      <tr><td>5</td><td>Routt County</td><td>Colorado</td><td>2,022</td><td>2,384</td><td>+362</td><td>+17.90</td></tr>
+      <tr><td>6</td><td>Divide County</td><td>North Dakota</td><td>1,534</td><td>1,858</td><td>+324</td><td>+21.12</td></tr>
+      <tr><td>7</td><td>Martin County</td><td>Florida</td><td>1,757</td><td>2,069</td><td>+312</td><td>+17.76, one of 2 tied</td></tr>
+      <tr><td>8</td><td>St. Lucie County</td><td>Florida</td><td>1,757</td><td>2,069</td><td>+312</td><td>+17.76</td></tr>
+      <tr><td>9</td><td>Washington County</td><td>Vermont</td><td>1,482</td><td>1,783</td><td>+301</td><td>+20.31</td></tr>
+      <tr><td>10</td><td>Summit County</td><td>Colorado</td><td>2,467</td><td>2,766</td><td>+299</td><td>+12.12</td></tr>
+    </tbody></table></div>
+    <p>Five of the ten gainers sit in the Colorado high country: Jackson, Pitkin, Grand, Routt and Summit, the ski and resort corridor. Nantucket is an island resort market of its own, and Martin and St. Lucie share the identical 1,757-to-2,069 schedule on Florida's Atlantic coast. The asymmetry with the drop board runs in both size and geography: the largest gain is 496 dollars, almost twice the largest drop, the biggest percentage gain runs 50.2 percent against a downside pinned at 10.0, and the gain board is mostly small nonmetro counties (only Nantucket, Pitkin, Summit and the two Florida counties are metro), where the drop board is all metro.</p>
+    <p>The <a href="hud-fmr-county-rank-shifts-2027.html">rank-shifts page</a> tells this same year from the rank side, and the two ledgers disagree on who leads. Madison County, Florida takes that page's deepest rank fall, 1,150 positions, on a dollar change of minus 108 (1,086 to 978); on dollars alone it does not come within 70 dollars of today's board. Jackson County, Colorado leads both lists. Four counties hold exactly still: Dickinson, Iowa (1,091), Payette, Idaho (1,071), Alamance, North Carolina (1,348) and Kendall, Texas (1,650), the file's only county whose rank and rent both stay put.</p>
+  </section>
+
+  <section aria-label="Where the declines cluster">
+    <h2>Where the declines cluster</h2>
+    <p>Count by state and the map splits. Georgia sheds the most counties outright (62), ahead of Oklahoma (58), Virginia (54), Texas (49) and Florida (42), but those are mostly shallow cuts, 551 of the 655 fallers lose less than 100 dollars. Rank the states by share of counties falling and small western states top it: 93 percent of Arizona's 15 counties drop, 88 percent of Nevada's 17, 80 percent of New Hampshire's 10, 75 percent of Oklahoma's 77, 69 percent of Oregon's and Utah's. Five jurisdictions have no fallers at all: DC, Delaware, Rhode Island, South Dakota and Vermont.</p>
+    <p>State median changes sharpen the split. New Hampshire's state median falls 147 dollars, the deepest in the file, then Arizona at minus 104, Hawaii at minus 100, Nevada at minus 65 and Oregon at minus 39, while DC (plus 192), Vermont (plus 186), Rhode Island (plus 150), North Dakota (plus 141 across 53 counties) and Alabama (plus 130) rise fastest. Hawaii shows both sides at once: Honolulu drops 100 dollars (2,642 to 2,542) and Kauai 227, the number-four decline, while Maui gains 32 and Hawaii island 5. The national picture underneath it all stays positive, median county plus 41 dollars, 1,028 to 1,071 at the median, which is what makes the decline map a story about where rents cooled rather than a market-wide fall.</p>
+  </section>
+
+  <section aria-label="Methodology">
+    <h2>Methodology: how the declines were measured</h2>
+    <p>The sources are HUD's FY2026 and FY2027 county-level files, 3,229 county-equivalent rows each, matched on state plus county; the two sets are identical, so every county pairs with itself. Each county's change is its FY2027 2BR median minus its FY2026 2BR median, and the percentage divides that change by the FY2026 value. Counties that appear under more than one HUD area use the median column, which aggregates the county's area rows. The 51 ranked jurisdictions are the 50 states plus DC; Puerto Rico, Guam, the US Virgin Islands, American Samoa and the Northern Mariana Islands contribute 84 rows and stay out, the same exclusion the <a href="hud-fmr-county-spreads-2027.html">county-spreads</a> and <a href="hud-fmr-county-rank-shifts-2027.html">rank-shifts</a> pages apply.</p>
+    <p>The boards rank on exact dollar change, with ties annotated where counties share the exact dollar step, and percentage changes display to two decimals. Integrity checks ran before computing: zero duplicate state-plus-county keys in either file, zero cells where a median exceeds its max, identical county sets across years. Two caveats frame every figure: FMRs are HUD's rent estimates set at the 40th percentile of local rents, not observed asking rents, so a decline is a change in HUD's estimate, and year-over-year FMR moves follow HUD's methodology cycle, so a block of identical values points at a shared schedule being rebuilt rather than at independent county markets. The minus-10 percent line is reported as a data observation; HUD's methodology notices document how the schedules are built, and this page does not assert the rule behind them.</p>
+  </section>
+
+  <section aria-label="Recompute the declines yourself">
+    <h2>Recompute the declines yourself</h2>
+    <p>Load the FY2026 file into SQLite as <code>counties_fy2026</code> and the FY2027 file as <code>counties_fy2027</code>, fifteen columns per row, following the import steps in the <a href="hud-fmr-by-zip-sql.html">SQL guide</a>. The drop board is one join plus one window function:</p>
+    <pre><code>-- SQLite: the ten steepest 2BR dollar declines, FY2026 to FY2027
+WITH f26 AS (
+  SELECT state, county, fmr_2br_median AS fmr26
+  FROM counties_fy2026
+  WHERE state NOT IN ('PR','GU','VI','AS','MP')
+),
+f27 AS (
+  SELECT state, county, fmr_2br_median AS fmr27
+  FROM counties_fy2027
+  WHERE state NOT IN ('PR','GU','VI','AS','MP')
+),
+joined AS (
+  SELECT f27.county, f27.state, f26.fmr26, f27.fmr27,
+         f27.fmr27 - f26.fmr26 AS delta,
+         ROUND(100.0 * (f27.fmr27 - f26.fmr26) / f26.fmr26, 2) AS pct
+  FROM f27
+  JOIN f26 ON f26.state = f27.state AND f26.county = f27.county
+),
+ranked AS (
+  SELECT *, ROW_NUMBER() OVER (ORDER BY delta ASC, state, county) AS rn
+  FROM joined
+)
+SELECT rn, county, state, fmr26, fmr27, delta, pct
+FROM ranked WHERE rn &lt;= 10;
+-- Rows: 1 Ventura County CA 2693 2424 -269 -9.99, 2 Monterey County CA 2684 2416 -268 -9.99,
+-- 3 Monroe County FL 2504 2254 -250 -9.98, 4 Kauai County HI 2332 2105 -227 -9.73,
+-- 5 Santa Clara County CA 3483 3272 -211 -6.06, 6 Calvert County MD 2083 1890 -193 -9.27,
+-- 7 Coconino County AZ 1921 1729 -192 -9.99, 8 Cheshire County NH 1926 1734 -192 -9.97,
+-- 9 Grafton County NH 1909 1719 -190 -9.95, 10 Albemarle County VA 1824 1642 -182 -9.98.</code></pre>
+    <p>The gain board flips the sort, and a shape statement sums up the whole file:</p>
+    <pre><code>-- SQLite: the ten biggest gains (same join, order reversed)
+WITH f26 AS (
+  SELECT state, county, fmr_2br_median AS fmr26
+  FROM counties_fy2026
+  WHERE state NOT IN ('PR','GU','VI','AS','MP')
+),
+f27 AS (
+  SELECT state, county, fmr_2br_median AS fmr27
+  FROM counties_fy2027
+  WHERE state NOT IN ('PR','GU','VI','AS','MP')
+),
+joined AS (
+  SELECT f27.county, f27.state, f26.fmr26, f27.fmr27,
+         f27.fmr27 - f26.fmr26 AS delta,
+         ROUND(100.0 * (f27.fmr27 - f26.fmr26) / f26.fmr26, 2) AS pct
+  FROM f27
+  JOIN f26 ON f26.state = f27.state AND f26.county = f27.county
+),
+ranked AS (
+  SELECT *, ROW_NUMBER() OVER (ORDER BY delta DESC, state, county) AS rn
+  FROM joined
+)
+SELECT rn, county, state, fmr26, fmr27, delta, pct
+FROM ranked WHERE rn &lt;= 10;
+-- Rows: 1 Jackson County CO 989 1485 496 50.15, 2 Nantucket County MA 3138 3583 445 14.18,
+-- 3 Pitkin County CO 2214 2597 383 17.3, 4 Grand County CO 1475 1844 369 25.02,
+-- 5 Routt County CO 2022 2384 362 17.9, 6 Divide County ND 1534 1858 324 21.12,
+-- 7 Martin County FL 1757 2069 312 17.76, 8 St. Lucie County FL 1757 2069 312 17.76,
+-- 9 Washington County VT 1482 1783 301 20.31, 10 Summit County CO 2467 2766 299 12.12.
+
+-- The shape of the change: median, fallers, risers, held, drops of 100 dollars or more
+WITH f26 AS (
+  SELECT state, county, fmr_2br_median AS fmr26
+  FROM counties_fy2026
+  WHERE state NOT IN ('PR','GU','VI','AS','MP')
+),
+f27 AS (
+  SELECT state, county, fmr_2br_median AS fmr27
+  FROM counties_fy2027
+  WHERE state NOT IN ('PR','GU','VI','AS','MP')
+),
+joined AS (
+  SELECT f27.fmr27 - f26.fmr26 AS delta
+  FROM f27
+  JOIN f26 ON f26.state = f27.state AND f26.county = f27.county
+),
+m AS (SELECT delta, ROW_NUMBER() OVER (ORDER BY delta) AS rn, COUNT(*) OVER () AS n FROM joined)
+SELECT (SELECT ROUND(AVG(delta), 2) FROM m WHERE rn IN ((n + 1) / 2, (n + 2) / 2)) AS median_delta,
+       (SELECT SUM(delta &lt; 0) FROM m) AS fallers,
+       (SELECT SUM(delta &gt; 0) FROM m) AS risers,
+       (SELECT SUM(delta = 0) FROM m) AS held,
+       (SELECT SUM(delta &lt;= -100) FROM m) AS drops_100_plus;
+-- 41.0 / 655 / 2486 / 4 / 104.</code></pre>
+    <p>Run against the imported files, both boards return exactly the rows in the tables above and the shape statement returns the counts quoted here. Swap <code>fmr_2br_median</code> for <code>fmr_1br_median</code> to re-run the ladder one rung down, or set both tables to the same file to check that a year-against-itself join returns zero fallers and zero risers.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>The 2BR declines, FY2027: questions</h2>
+    <dl>
+      <dt>Which counties saw the biggest HUD fair market rent declines in FY2027?</dt>
+      <dd>Ventura County, California falls 269 dollars on the 2BR median, 2,693 to 2,424, the steepest dollar decline among the 3,145 ranked county-equivalents. Monterey County, California follows at minus 268, Monroe County, Florida at minus 250 (2,504 to 2,254, the former state ceiling), and Kauai County, Hawaii at minus 227. The ten biggest drops all sit between minus 182 and minus 269 dollars, between 6.1 and 10.0 percent. On the other side, Jackson County, Colorado gains 496 dollars (989 to 1,485, a 50.2 percent rise), the largest move in either direction.</dd>
+      <dt>Why does no county 2BR rent drop more than 10 percent?</dt>
+      <dd>That is what the data shows, and this page reports it as an observation rather than a rule. The deepest percentage decline in the file stops at exactly 10.0 percent, carried by five counties: Bradford (1,120 to 1,008) and Suwannee (1,110 to 999) in Florida, Gem in Idaho (1,190 to 1,071), Belknap in New Hampshire (1,800 to 1,620), and Karnes in Texas (1,270 to 1,143). Another 47 counties sit in the 9.5-to-10.0 band and none goes below it, while the largest gain runs 50.2 percent. HUD's methodology notices document how the schedules are built; the pattern is consistent with the publication's construction, and the data cannot say more than that.</dd>
+      <dt>How were the county declines computed?</dt>
+      <dd>From HUD's county-level files for FY2026 and FY2027, 3,229 county-equivalents each, matched on state and county with identical county sets, rates effective October 1, 2026. Each county's change is its FY2027 2BR median minus its FY2026 2BR median; multi-area counties use the median column, which already aggregates the county's area rows. Puerto Rico, Guam, the US Virgin Islands, American Samoa and the Northern Mariana Islands contribute 84 rows and stay out of the rankings. The median county change across the 3,145 ranked counties is plus 41 dollars. Tables rank on exact dollar change, with percentage changes shown to two decimals.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <div class="btnrow">
+      <a class="btn" href="../data/hud-fmr-by-zip-2027/fmr-by-zip-2027.csv" download>Download the FY2027 ZIP CSV (free, 4.3 MB)</a>
+      <a class="btn-ghost btn" href="../data/hud-fmr-county-2026/fmr-county-2026.csv" download>FY2026 county CSV (free)</a>
+    </div>
+    <p class="btn-note">Both files come from HUD's Fair Market Rent releases and are public domain. The <a href="../datasets/hud-fmr-by-zip-2027.html">ZIP dataset page</a> documents the FY2027 file's integrity checks and the <a href="../datasets/hud-fmr-county-2026.html">county dataset page</a> documents the FY2026 county file this page's baseline comes from; the full FY2027 county pack downloads from Zenodo. For other cuts of the same release, the <a href="hud-fmr-county-rank-shifts-2027.html">rank-shift page</a> tracks the same year by rank instead of dollars, the <a href="hud-fmr-county-spreads-2027.html">within-state spreads page</a> covers who is most expensive where, and the <a href="section-8-voucher-rent.html">voucher rent guide</a> covers what a housing agency actually pays against these figures.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

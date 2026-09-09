@@ -1,0 +1,17 @@
+{
+  "host": "jayjex.github.io",
+  "key": "78e095195f1e3c98ed5e6c17474dc1b6",
+  "keyLocation": "https://jayjex.github.io/data-vault/78e095195f1e3c98ed5e6c17474dc1b6.txt",
+  "urlList": [
+    "https://jayjex.github.io/data-vault/datasets/worldbank-g20-life-expectancy.html",
+    "https://jayjex.github.io/data-vault/data/worldbank-g20-life-expectancy/g20-life-expectancy.csv",
+    "https://jayjex.github.io/data-vault/data/worldbank-g20-life-expectancy/g20-life-expectancy-2024.csv",
+    "https://jayjex.github.io/data-vault/data/worldbank-g20-life-expectancy/sample.csv",
+    "https://jayjex.github.io/data-vault/data/worldbank-g20-life-expectancy/sample.json",
+    "https://jayjex.github.io/data-vault/data/worldbank-g20-life-expectancy/schema.md",
+    "https://jayjex.github.io/data-vault/datasets/worldbank-g20-population.html",
+    "https://jayjex.github.io/data-vault/datasets/worldbank-g20-rural.html",
+    "https://jayjex.github.io/data-vault/catalog.json",
+    "https://jayjex.github.io/data-vault/llms.txt"
+  ]
+}

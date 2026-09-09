@@ -137,6 +137,14 @@ Rural population as a percent of total population (WDI indicator SP.RUR.TOTL.ZS)
 - Full data (free): https://jayjex.github.io/data-vault/data/worldbank-g20-rural/g20-rural-population.csv
 - License: CC BY 4.0 (World Bank Open Data, CC BY 4.0)
 
+### World Bank Life Expectancy, G20 Countries + EU27, 1960-2024 (worldbank-g20-life-expectancy)
+Life expectancy at birth in total years (WDI indicator SP.DYN.LE00.IN) for the 19 national G20 members plus the EU27 aggregate (EUU), one row per entity-year from 1960 through 2024: 1,300 rows, 4 columns (entity, iso3, year, life_expectancy_years), values rounded to 2 decimals from the World Bank API v2. 2024: Japan leads at 84.04, a spot it has held since 1972 (Canada led 1960-1971); Italy 83.95 and Korea 83.63 follow; South Africa is lowest at 66.31, a record high for the country. China gained the most since 1960, up 44.6 years from a file-low 33.42; Russia the least, up 5.91 with a 1994 trough of 64.47. Fourteen of 20 entities set record highs in 2024; Germany, Canada, and Turkiye peaked in 2019, Japan 2020, Australia 2021, China 2022. The series ends at 2024 because WDI publishes life expectancy with a longer lag than population counts. Sourced keyless, retrieved 2026-09-10, WDI updated 2026-07-13. Niche: econ-data. Stats: {"rows": 1300, "tables": 2, "columns": 4, "updated": "2026-07-13"}.
+- Sample JSON: https://jayjex.github.io/data-vault/data/worldbank-g20-life-expectancy/sample.json
+- Sample CSV: https://jayjex.github.io/data-vault/data/worldbank-g20-life-expectancy/sample.csv
+- Page: https://jayjex.github.io/data-vault/datasets/worldbank-g20-life-expectancy.html
+- Full data (free): https://jayjex.github.io/data-vault/data/worldbank-g20-life-expectancy/g20-life-expectancy.csv
+- License: CC BY 4.0 (World Bank Open Data, CC BY 4.0)
+
 ### OpenStreetMap Civic Amenities, Tokyo-Jakarta-Seoul, 2026-09 (osm-asia-civic-amenities)
 Counts of three civic amenity node types inside official city boundaries: amenity=drinking_water, amenity=public_bookcase, amenity=bicycle_repair_station for Tokyo Metropolis (2,163 fountains), DKI Jakarta (38, and 0 bookcases mapped), and Seoul Special City (253, many tagged with the Arisu brand name). Overpass API snapshot 2026-09-10, one example node per pair for spot-checking. Niche: open-data. Stats: {"rows": 9, "tables": 1, "columns": 7, "updated": "2026-09-10"}.
 - Sample JSON: https://jayjex.github.io/data-vault/data/osm-asia-civic/sample.json

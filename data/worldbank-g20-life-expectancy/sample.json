@@ -1,0 +1,133 @@
+{
+ "slug": "worldbank-g20-life-expectancy",
+ "name": "World Bank Life Expectancy, G20 Countries + EU27, 1960-2024",
+ "columns": [
+  "entity",
+  "iso3",
+  "year",
+  "life_expectancy_years"
+ ],
+ "row_count": 1300,
+ "records": [
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1960,
+   "life_expectancy_years": 64.24
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1961,
+   "life_expectancy_years": 64.63
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1962,
+   "life_expectancy_years": 64.62
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1963,
+   "life_expectancy_years": 64.86
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1964,
+   "life_expectancy_years": 64.82
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1965,
+   "life_expectancy_years": 65.05
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1966,
+   "life_expectancy_years": 65.4
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1967,
+   "life_expectancy_years": 65.47
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1968,
+   "life_expectancy_years": 65.23
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1969,
+   "life_expectancy_years": 65.08
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1970,
+   "life_expectancy_years": 65.65
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1971,
+   "life_expectancy_years": 65.62
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1972,
+   "life_expectancy_years": 65.95
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1973,
+   "life_expectancy_years": 66.19
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1974,
+   "life_expectancy_years": 66.41
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1975,
+   "life_expectancy_years": 66.97
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1976,
+   "life_expectancy_years": 67.03
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1977,
+   "life_expectancy_years": 67.59
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1978,
+   "life_expectancy_years": 68.0
+  },
+  {
+   "entity": "Argentina",
+   "iso3": "ARG",
+   "year": 1979,
+   "life_expectancy_years": 68.43
+  }
+ ]
+}

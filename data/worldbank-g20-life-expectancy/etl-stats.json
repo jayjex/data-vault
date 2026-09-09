@@ -1,0 +1,101 @@
+{
+ "rows_long": 1300,
+ "rows_2024": 20,
+ "wdi_lastupdated": "2026-07-13",
+ "top_2024": [
+  [
+   "Japan",
+   84.04
+  ],
+  [
+   "Italy",
+   83.95
+  ],
+  [
+   "Korea, Rep.",
+   83.63
+  ],
+  [
+   "Australia",
+   83.05
+  ],
+  [
+   "France",
+   82.98
+  ]
+ ],
+ "bottom_2024": [
+  [
+   "India",
+   72.23
+  ],
+  [
+   "Indonesia",
+   71.29
+  ],
+  [
+   "South Africa",
+   66.31
+  ]
+ ],
+ "japan_leader_since": 1972,
+ "japan_leader_years": 53,
+ "canada_leader_years": 12,
+ "gains_1960_2024_top": [
+  [
+   "China",
+   [
+    33.42,
+    78.02,
+    44.6
+   ]
+  ],
+  [
+   "Saudi Arabia",
+   [
+    45.31,
+    78.98,
+    33.67
+   ]
+  ],
+  [
+   "Korea, Rep.",
+   [
+    53.8,
+    83.63,
+    29.83
+   ]
+  ]
+ ],
+ "china_min_1960": 33.42,
+ "russia_trough_1994": 64.47,
+ "russia_recovered_1960_level": 2007,
+ "usa_2021_dip": 76.33,
+ "usa_recovered_2019_level": 2024,
+ "not_record_2024": [
+  [
+   "Australia",
+   2021
+  ],
+  [
+   "Canada",
+   2019
+  ],
+  [
+   "China",
+   2022
+  ],
+  [
+   "Germany",
+   2019
+  ],
+  [
+   "Japan",
+   2020
+  ],
+  [
+   "Turkiye",
+   2019
+  ]
+ ]
+}

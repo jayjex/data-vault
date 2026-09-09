@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>World Bank Life Expectancy, G20 + EU27, 1,300 rows 1960-2024 (Free CSV) | Data Vault</title>
+<meta name="description" content="Life expectancy at birth in years for the 19 national G20 members plus the EU27 aggregate, one row per entity-year, 1960 through 2024. Free CSV from the World Bank WDI indicator SP.DYN.LE00.IN, CC BY 4.0.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/datasets/worldbank-g20-life-expectancy.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="World Bank Life Expectancy, G20 + EU27, 1960-2024 (Free CSV) | Data Vault">
+<meta property="og:description" content="Life expectancy at birth for the 19 national G20 members plus the EU27 aggregate, 1960-2024. Free long-format CSV, CC BY 4.0.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/datasets/worldbank-g20-life-expectancy.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "World Bank Life Expectancy, G20 Countries + EU27, 1960-2024", "description": "Life expectancy at birth in total years (World Bank indicator SP.DYN.LE00.IN) for the 19 national G20 members plus the European Union (EU27) aggregate, one row per entity-year from 1960 through 2024, 1,300 rows in a four-column long format. Sourced keyless from the World Bank API v2; values reflect the WDI update of 2026-07-13, and the series ends at 2024 because no 2025 observation existed at retrieval.", "url": "https://jayjex.github.io/data-vault/datasets/worldbank-g20-life-expectancy.html", "keywords": ["life-expectancy", "world-bank", "g20", "demographics", "health", "time-series", "free"], "creator": {"@type": "Organization", "name": "Matchbook Labs"}, "isAccessibleForFree": true, "license": "https://creativecommons.org/licenses/by/4.0/", "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/worldbank-g20-life-expectancy/g20-life-expectancy.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/worldbank-g20-life-expectancy/g20-life-expectancy-2024.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/worldbank-g20-life-expectancy/sample.csv"}, {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://jayjex.github.io/data-vault/data/worldbank-g20-life-expectancy/sample.json"}, {"@type": "DataDownload", "encodingFormat": "text/markdown", "contentUrl": "https://jayjex.github.io/data-vault/data/worldbank-g20-life-expectancy/schema.md"}], "isBasedOn": "https://api.worldbank.org/v2/country/ARG;AUS;BRA;CAN;CHN;FRA;DEU;IND;IDN;ITA;JPN;MEX;RUS;SAU;ZAF;KOR;TUR;GBR;USA;EUU/indicator/SP.DYN.LE00.IN?format=json"}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>World Bank Life Expectancy, G20 Countries + EU27</h1>
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>1,300</b> rows</span><span class="stat"><b>20</b> entities</span><span class="stat"><b>65</b> years</span><span class="stat"><b>free</b> full data</span></div>
+  <section aria-label="About this dataset">
+    <p>Life expectancy at birth, in years, for the 19 national G20 members plus the European Union aggregate, from the World Bank's WDI indicator SP.DYN.LE00.IN. One row per entity-year, 1960 through 2024, four columns: entity name, ISO3 code, year, and life_expectancy_years. It completes a trio with the <a href="worldbank-g20-population.html">World Bank population pack</a> and the <a href="worldbank-g20-rural.html">rural population share pack</a>, all three on the same 20 entities and the same entity-year key, so the files join without remapping.</p>
+    <p>Japan has held the top spot since 1972, 53 straight years, and stands at 84.04 in 2024. Canada led from 1960 through 1971 before that. Behind Japan sit Italy at 83.95, Korea at 83.63, and Australia at 83.05. South Africa is lowest at 66.31, and that is a record high for the country, so the top-to-bottom gap of 17.7 years overstates how the members are trending apart.</p>
+    <p>The biggest mover since 1960 is China, up 44.6 years from 33.42 to 78.02. The 33.42 starting value in 1960 is the lowest number anywhere in the file. Saudi Arabia added 33.67 years off a 45.31 start, Korea 29.83 off 53.80. The slowest gains are Russia's: up 5.91 years over the whole window, with a trough of 64.47 in 1994 that the country did not climb back past until 2007 relative to its own 1960 level. The United States gained 9.12 years, and its path runs 78.79 in 2019, down to 76.33 in 2021, then back above the 2019 mark in 2024 at 78.89.</p>
+    <p>Fourteen of the 20 entities set record highs in 2024. The other six peaked earlier: Germany, Canada, and Turkiye in 2019, Japan in 2020, Australia in 2021, and China in 2022, which makes pre-2020 baselines the right comparison for those six. The <a href="../guides/world-population-milestones-g20.html">world population milestones guide</a> reads the sibling population file, and the <a href="../guides/rural-population-share-g20-countries.html">rural population share guide</a> covers the third pack in the set.</p>
+    <p>The source is one keyless call to the World Bank API v2, and the pack keeps the Bank's entity names verbatim ("Korea, Rep.", "Turkiye", "Russian Federation"). Values are rounded to two decimals; the WDI publishes this series as annual estimates, so the rounding discards nothing a model could use. The series ends at 2024 because WDI has not published 2025 life expectancy yet, a longer lag than the population counts. The full column dictionary and caveats are in <a href="../data/worldbank-g20-life-expectancy/schema.md">schema.md</a>.</p>
+    <p class="byline">Source: World Bank World Development Indicators via api.worldbank.org, indicator SP.DYN.LE00.IN, retrieved 2026-09-10, WDI last updated 2026-07-13. License CC BY 4.0.</p>
+  </section>
+  <section aria-label="Latest year">
+    <h2>Latest year per entity</h2>
+    <p class="table-note">All 20 rows from g20-life-expectancy-2024.csv, sorted by life expectancy. The full 1,300-row series starts in sample.csv.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="2024 life expectancy table"><table><thead><tr><th scope="col">entity</th><th scope="col">iso3</th><th scope="col">life_expectancy_years</th></tr></thead><tbody><tr><td>Japan</td><td>JPN</td><td>84.04</td></tr><tr><td>Italy</td><td>ITA</td><td>83.95</td></tr><tr><td>Korea, Rep.</td><td>KOR</td><td>83.63</td></tr><tr><td>Australia</td><td>AUS</td><td>83.05</td></tr><tr><td>France</td><td>FRA</td><td>82.98</td></tr><tr><td>Canada</td><td>CAN</td><td>82.11</td></tr><tr><td>European Union</td><td>EUU</td><td>81.56</td></tr><tr><td>United Kingdom</td><td>GBR</td><td>81.39</td></tr><tr><td>Germany</td><td>DEU</td><td>80.79</td></tr><tr><td>Saudi Arabia</td><td>SAU</td><td>78.98</td></tr><tr><td>United States</td><td>USA</td><td>78.89</td></tr><tr><td>China</td><td>CHN</td><td>78.02</td></tr><tr><td>Argentina</td><td>ARG</td><td>77.54</td></tr><tr><td>Turkiye</td><td>TUR</td><td>77.42</td></tr><tr><td>Brazil</td><td>BRA</td><td>76.02</td></tr><tr><td>Mexico</td><td>MEX</td><td>75.26</td></tr><tr><td>Russian Federation</td><td>RUS</td><td>73.44</td></tr><tr><td>India</td><td>IND</td><td>72.23</td></tr><tr><td>Indonesia</td><td>IDN</td><td>71.29</td></tr><tr><td>South Africa</td><td>ZAF</td><td>66.31</td></tr></tbody></table></div>
+  </section>
+  <section aria-label="Files">
+    <h2>Files</h2>
+    <ul class="files">
+      <li><a href="../data/worldbank-g20-life-expectancy/g20-life-expectancy.csv" download>g20-life-expectancy.csv</a><span class="sz">1,300 rows, long format · 33 KB</span></li>
+      <li><a href="../data/worldbank-g20-life-expectancy/g20-life-expectancy-2024.csv" download>g20-life-expectancy-2024.csv</a><span class="sz">20 rows, latest year per entity · 561 B</span></li>
+      <li><a href="../data/worldbank-g20-life-expectancy/sample.csv" download>sample.csv</a><span class="sz">20 rows, Argentina 1960-1979 · 558 B</span></li>
+      <li><a href="../data/worldbank-g20-life-expectancy/sample.json" download>sample.json</a><span class="sz">20 records · 2.3 KB</span></li>
+      <li><a href="../data/worldbank-g20-life-expectancy/schema.md" download>schema.md</a><span class="sz">column dictionary, normalization, caveats</span></li>
+    </ul>
+  </section>
+  <section aria-label="Get the data">
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/worldbank-g20-life-expectancy/g20-life-expectancy.csv" download>Download full CSV (free)</a>
+      <a class="btn" href="worldbank-g20-population.html">World Bank population &rarr;</a>
+    </div>
+    <p class="btn-note">Everything downloads free under CC BY 4.0; the World Bank open data terms carry the same license, so republished rows keep their attribution. The <a href="worldbank-g20-rural.html">rural share pack</a> and the <a href="worldbank-g20-life-expectancy.html">life expectancy pack</a> run the other two WDI series on these same 20 entities, and the <a href="../guides/dataset-license-guide.html">dataset license guide</a> explains what CC BY 4.0 attribution requires. The rest of the catalog lives on the <a href="../portfolio.html">portfolio page</a>.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

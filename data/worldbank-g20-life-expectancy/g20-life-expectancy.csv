@@ -1,0 +1,1301 @@
+entity,iso3,year,life_expectancy_years
+Argentina,ARG,1960,64.24
+Argentina,ARG,1961,64.63
+Argentina,ARG,1962,64.62
+Argentina,ARG,1963,64.86
+Argentina,ARG,1964,64.82
+Argentina,ARG,1965,65.05
+Argentina,ARG,1966,65.4
+Argentina,ARG,1967,65.47
+Argentina,ARG,1968,65.23
+Argentina,ARG,1969,65.08
+Argentina,ARG,1970,65.65
+Argentina,ARG,1971,65.62
+Argentina,ARG,1972,65.95
+Argentina,ARG,1973,66.19
+Argentina,ARG,1974,66.41
+Argentina,ARG,1975,66.97
+Argentina,ARG,1976,67.03
+Argentina,ARG,1977,67.59
+Argentina,ARG,1978,68.0
+Argentina,ARG,1979,68.43
+Argentina,ARG,1980,68.58
+Argentina,ARG,1981,68.86
+Argentina,ARG,1982,68.97
+Argentina,ARG,1983,69.29
+Argentina,ARG,1984,69.35
+Argentina,ARG,1985,69.88
+Argentina,ARG,1986,70.28
+Argentina,ARG,1987,70.7
+Argentina,ARG,1988,71.1
+Argentina,ARG,1989,71.5
+Argentina,ARG,1990,71.61
+Argentina,ARG,1991,72.02
+Argentina,ARG,1992,72.1
+Argentina,ARG,1993,72.3
+Argentina,ARG,1994,72.73
+Argentina,ARG,1995,72.86
+Argentina,ARG,1996,73.06
+Argentina,ARG,1997,73.41
+Argentina,ARG,1998,73.41
+Argentina,ARG,1999,73.68
+Argentina,ARG,2000,73.91
+Argentina,ARG,2001,74.15
+Argentina,ARG,2002,74.31
+Argentina,ARG,2003,74.31
+Argentina,ARG,2004,74.87
+Argentina,ARG,2005,75.23
+Argentina,ARG,2006,75.28
+Argentina,ARG,2007,74.78
+Argentina,ARG,2008,75.43
+Argentina,ARG,2009,75.58
+Argentina,ARG,2010,75.68
+Argentina,ARG,2011,76.1
+Argentina,ARG,2012,75.8
+Argentina,ARG,2013,75.83
+Argentina,ARG,2014,76.27
+Argentina,ARG,2015,76.6
+Argentina,ARG,2016,76.11
+Argentina,ARG,2017,76.54
+Argentina,ARG,2018,76.77
+Argentina,ARG,2019,76.85
+Argentina,ARG,2020,75.88
+Argentina,ARG,2021,73.95
+Argentina,ARG,2022,75.81
+Argentina,ARG,2023,77.39
+Argentina,ARG,2024,77.54
+Australia,AUS,1960,70.82
+Australia,AUS,1961,70.97
+Australia,AUS,1962,70.94
+Australia,AUS,1963,70.91
+Australia,AUS,1964,70.88
+Australia,AUS,1965,70.85
+Australia,AUS,1966,70.82
+Australia,AUS,1967,70.87
+Australia,AUS,1968,70.92
+Australia,AUS,1969,70.97
+Australia,AUS,1970,71.02
+Australia,AUS,1971,71.07
+Australia,AUS,1972,71.46
+Australia,AUS,1973,71.85
+Australia,AUS,1974,72.24
+Australia,AUS,1975,72.63
+Australia,AUS,1976,73.01
+Australia,AUS,1977,73.34
+Australia,AUS,1978,73.67
+Australia,AUS,1979,74.0
+Australia,AUS,1980,74.33
+Australia,AUS,1981,74.66
+Australia,AUS,1982,74.9
+Australia,AUS,1983,75.15
+Australia,AUS,1984,75.39
+Australia,AUS,1985,75.63
+Australia,AUS,1986,75.87
+Australia,AUS,1987,76.15
+Australia,AUS,1988,76.43
+Australia,AUS,1989,76.71
+Australia,AUS,1990,76.99
+Australia,AUS,1991,77.28
+Australia,AUS,1992,77.38
+Australia,AUS,1993,77.88
+Australia,AUS,1994,77.88
+Australia,AUS,1995,77.83
+Australia,AUS,1996,78.08
+Australia,AUS,1997,78.48
+Australia,AUS,1998,78.63
+Australia,AUS,1999,78.93
+Australia,AUS,2000,79.23
+Australia,AUS,2001,79.63
+Australia,AUS,2002,79.94
+Australia,AUS,2003,80.24
+Australia,AUS,2004,80.49
+Australia,AUS,2005,80.84
+Australia,AUS,2006,81.04
+Australia,AUS,2007,81.29
+Australia,AUS,2008,81.4
+Australia,AUS,2009,81.54
+Australia,AUS,2010,81.7
+Australia,AUS,2011,81.9
+Australia,AUS,2012,82.05
+Australia,AUS,2013,82.15
+Australia,AUS,2014,82.3
+Australia,AUS,2015,82.4
+Australia,AUS,2016,82.45
+Australia,AUS,2017,82.5
+Australia,AUS,2018,82.75
+Australia,AUS,2019,82.9
+Australia,AUS,2020,83.2
+Australia,AUS,2021,83.3
+Australia,AUS,2022,83.2
+Australia,AUS,2023,83.05
+Australia,AUS,2024,83.05
+Brazil,BRA,1960,53.16
+Brazil,BRA,1961,53.59
+Brazil,BRA,1962,54.02
+Brazil,BRA,1963,54.45
+Brazil,BRA,1964,54.85
+Brazil,BRA,1965,55.24
+Brazil,BRA,1966,55.62
+Brazil,BRA,1967,56.02
+Brazil,BRA,1968,56.47
+Brazil,BRA,1969,56.9
+Brazil,BRA,1970,57.34
+Brazil,BRA,1971,57.79
+Brazil,BRA,1972,58.26
+Brazil,BRA,1973,58.68
+Brazil,BRA,1974,59.08
+Brazil,BRA,1975,59.56
+Brazil,BRA,1976,60.01
+Brazil,BRA,1977,60.46
+Brazil,BRA,1978,60.92
+Brazil,BRA,1979,61.37
+Brazil,BRA,1980,61.82
+Brazil,BRA,1981,62.27
+Brazil,BRA,1982,62.71
+Brazil,BRA,1983,63.13
+Brazil,BRA,1984,63.55
+Brazil,BRA,1985,63.98
+Brazil,BRA,1986,64.39
+Brazil,BRA,1987,64.78
+Brazil,BRA,1988,65.16
+Brazil,BRA,1989,65.51
+Brazil,BRA,1990,65.86
+Brazil,BRA,1991,66.2
+Brazil,BRA,1992,66.54
+Brazil,BRA,1993,66.89
+Brazil,BRA,1994,67.29
+Brazil,BRA,1995,67.7
+Brazil,BRA,1996,68.11
+Brazil,BRA,1997,68.5
+Brazil,BRA,1998,68.85
+Brazil,BRA,1999,69.21
+Brazil,BRA,2000,69.58
+Brazil,BRA,2001,69.98
+Brazil,BRA,2002,70.4
+Brazil,BRA,2003,70.88
+Brazil,BRA,2004,71.36
+Brazil,BRA,2005,71.83
+Brazil,BRA,2006,72.3
+Brazil,BRA,2007,72.73
+Brazil,BRA,2008,73.11
+Brazil,BRA,2009,73.46
+Brazil,BRA,2010,73.78
+Brazil,BRA,2011,74.05
+Brazil,BRA,2012,74.33
+Brazil,BRA,2013,74.61
+Brazil,BRA,2014,74.82
+Brazil,BRA,2015,75.11
+Brazil,BRA,2016,75.08
+Brazil,BRA,2017,75.38
+Brazil,BRA,2018,75.63
+Brazil,BRA,2019,75.81
+Brazil,BRA,2020,74.51
+Brazil,BRA,2021,73.04
+Brazil,BRA,2022,74.87
+Brazil,BRA,2023,75.85
+Brazil,BRA,2024,76.02
+Canada,CAN,1960,71.13
+Canada,CAN,1961,71.35
+Canada,CAN,1962,71.37
+Canada,CAN,1963,71.38
+Canada,CAN,1964,71.78
+Canada,CAN,1965,71.87
+Canada,CAN,1966,72.0
+Canada,CAN,1967,72.21
+Canada,CAN,1968,72.35
+Canada,CAN,1969,72.5
+Canada,CAN,1970,72.7
+Canada,CAN,1971,73.03
+Canada,CAN,1972,72.93
+Canada,CAN,1973,73.16
+Canada,CAN,1974,73.24
+Canada,CAN,1975,73.52
+Canada,CAN,1976,73.86
+Canada,CAN,1977,74.22
+Canada,CAN,1978,74.53
+Canada,CAN,1979,74.87
+Canada,CAN,1980,75.1
+Canada,CAN,1981,75.5
+Canada,CAN,1982,75.73
+Canada,CAN,1983,76.06
+Canada,CAN,1984,76.33
+Canada,CAN,1985,76.33
+Canada,CAN,1986,76.46
+Canada,CAN,1987,76.78
+Canada,CAN,1988,76.86
+Canada,CAN,1989,77.12
+Canada,CAN,1990,77.44
+Canada,CAN,1991,77.59
+Canada,CAN,1992,77.84
+Canada,CAN,1993,77.7
+Canada,CAN,1994,77.87
+Canada,CAN,1995,77.98
+Canada,CAN,1996,78.22
+Canada,CAN,1997,78.41
+Canada,CAN,1998,78.62
+Canada,CAN,1999,78.84
+Canada,CAN,2000,79.17
+Canada,CAN,2001,79.4
+Canada,CAN,2002,79.53
+Canada,CAN,2003,79.72
+Canada,CAN,2004,79.99
+Canada,CAN,2005,80.11
+Canada,CAN,2006,80.54
+Canada,CAN,2007,80.54
+Canada,CAN,2008,80.72
+Canada,CAN,2009,81.07
+Canada,CAN,2010,81.32
+Canada,CAN,2011,81.48
+Canada,CAN,2012,81.66
+Canada,CAN,2013,81.74
+Canada,CAN,2014,81.78
+Canada,CAN,2015,81.83
+Canada,CAN,2016,81.94
+Canada,CAN,2017,81.81
+Canada,CAN,2018,81.8
+Canada,CAN,2019,82.16
+Canada,CAN,2020,81.53
+Canada,CAN,2021,81.45
+Canada,CAN,2022,81.09
+Canada,CAN,2023,81.63
+Canada,CAN,2024,82.11
+China,CHN,1960,33.42
+China,CHN,1961,40.16
+China,CHN,1962,50.96
+China,CHN,1963,51.67
+China,CHN,1964,52.34
+China,CHN,1965,53.0
+China,CHN,1966,53.66
+China,CHN,1967,54.4
+China,CHN,1968,55.19
+China,CHN,1969,55.99
+China,CHN,1970,56.82
+China,CHN,1971,57.73
+China,CHN,1972,58.58
+China,CHN,1973,59.5
+China,CHN,1974,60.24
+China,CHN,1975,60.95
+China,CHN,1976,61.23
+China,CHN,1977,62.46
+China,CHN,1978,63.1
+China,CHN,1979,63.7
+China,CHN,1980,64.24
+China,CHN,1981,64.78
+China,CHN,1982,65.25
+China,CHN,1983,65.73
+China,CHN,1984,66.15
+China,CHN,1985,66.53
+China,CHN,1986,66.89
+China,CHN,1987,67.26
+China,CHN,1988,67.61
+China,CHN,1989,67.93
+China,CHN,1990,68.16
+China,CHN,1991,68.61
+China,CHN,1992,69.06
+China,CHN,1993,69.49
+China,CHN,1994,69.83
+China,CHN,1995,70.36
+China,CHN,1996,70.82
+China,CHN,1997,71.23
+China,CHN,1998,71.6
+China,CHN,1999,71.95
+China,CHN,2000,72.29
+China,CHN,2001,72.67
+China,CHN,2002,73.03
+China,CHN,2003,73.39
+China,CHN,2004,73.73
+China,CHN,2005,74.08
+China,CHN,2006,74.4
+China,CHN,2007,74.79
+China,CHN,2008,74.83
+China,CHN,2009,75.32
+China,CHN,2010,75.67
+China,CHN,2011,75.89
+China,CHN,2012,76.2
+China,CHN,2013,76.45
+China,CHN,2014,76.71
+China,CHN,2015,76.97
+China,CHN,2016,77.21
+China,CHN,2017,77.23
+China,CHN,2018,77.71
+China,CHN,2019,77.94
+China,CHN,2020,78.02
+China,CHN,2021,78.12
+China,CHN,2022,78.2
+China,CHN,2023,77.95
+China,CHN,2024,78.02
+Germany,DEU,1960,69.06
+Germany,DEU,1961,69.64
+Germany,DEU,1962,69.8
+Germany,DEU,1963,69.91
+Germany,DEU,1964,70.44
+Germany,DEU,1965,70.41
+Germany,DEU,1966,70.52
+Germany,DEU,1967,70.73
+Germany,DEU,1968,70.38
+Germany,DEU,1969,70.23
+Germany,DEU,1970,70.45
+Germany,DEU,1971,70.68
+Germany,DEU,1972,70.91
+Germany,DEU,1973,71.11
+Germany,DEU,1974,71.42
+Germany,DEU,1975,71.26
+Germany,DEU,1976,71.71
+Germany,DEU,1977,72.31
+Germany,DEU,1978,72.29
+Germany,DEU,1979,72.63
+Germany,DEU,1980,72.8
+Germany,DEU,1981,73.04
+Germany,DEU,1982,73.33
+Germany,DEU,1983,73.62
+Germany,DEU,1984,74.07
+Germany,DEU,1985,74.19
+Germany,DEU,1986,74.4
+Germany,DEU,1987,74.81
+Germany,DEU,1988,75.0
+Germany,DEU,1989,75.19
+Germany,DEU,1990,75.09
+Germany,DEU,1991,75.32
+Germany,DEU,1992,75.82
+Germany,DEU,1993,75.87
+Germany,DEU,1994,76.27
+Germany,DEU,1995,76.42
+Germany,DEU,1996,76.67
+Germany,DEU,1997,77.07
+Germany,DEU,1998,77.48
+Germany,DEU,1999,77.73
+Germany,DEU,2000,77.93
+Germany,DEU,2001,78.33
+Germany,DEU,2002,78.23
+Germany,DEU,2003,78.38
+Germany,DEU,2004,78.68
+Germany,DEU,2005,78.93
+Germany,DEU,2006,79.13
+Germany,DEU,2007,79.53
+Germany,DEU,2008,79.74
+Germany,DEU,2009,79.84
+Germany,DEU,2010,79.99
+Germany,DEU,2011,80.44
+Germany,DEU,2012,80.54
+Germany,DEU,2013,80.49
+Germany,DEU,2014,81.09
+Germany,DEU,2015,80.64
+Germany,DEU,2016,80.99
+Germany,DEU,2017,80.99
+Germany,DEU,2018,80.89
+Germany,DEU,2019,81.29
+Germany,DEU,2020,81.04
+Germany,DEU,2021,80.79
+Germany,DEU,2022,80.61
+Germany,DEU,2023,81.04
+Germany,DEU,2024,80.79
+European Union,EUU,1960,69.07
+European Union,EUU,1961,69.44
+European Union,EUU,1962,69.29
+European Union,EUU,1963,69.65
+European Union,EUU,1964,70.16
+European Union,EUU,1965,70.28
+European Union,EUU,1966,70.59
+European Union,EUU,1967,70.6
+European Union,EUU,1968,70.6
+European Union,EUU,1969,70.42
+European Union,EUU,1970,70.82
+European Union,EUU,1971,70.96
+European Union,EUU,1972,71.35
+European Union,EUU,1973,71.47
+European Union,EUU,1974,71.78
+European Union,EUU,1975,71.8
+European Union,EUU,1976,72.07
+European Union,EUU,1977,72.4
+European Union,EUU,1978,72.49
+European Union,EUU,1979,72.77
+European Union,EUU,1980,72.79
+European Union,EUU,1981,73.13
+European Union,EUU,1982,73.41
+European Union,EUU,1983,73.45
+European Union,EUU,1984,73.74
+European Union,EUU,1985,73.82
+European Union,EUU,1986,74.08
+European Union,EUU,1987,74.32
+European Union,EUU,1988,74.53
+European Union,EUU,1989,74.66
+European Union,EUU,1990,74.7
+European Union,EUU,1991,74.82
+European Union,EUU,1992,75.13
+European Union,EUU,1993,75.26
+European Union,EUU,1994,75.53
+European Union,EUU,1995,75.67
+European Union,EUU,1996,75.93
+European Union,EUU,1997,76.24
+European Union,EUU,1998,76.51
+European Union,EUU,1999,76.75
+European Union,EUU,2000,77.08
+European Union,EUU,2001,77.43
+European Union,EUU,2002,77.53
+European Union,EUU,2003,77.59
+European Union,EUU,2004,78.12
+European Union,EUU,2005,78.28
+European Union,EUU,2006,78.67
+European Union,EUU,2007,78.91
+European Union,EUU,2008,79.13
+European Union,EUU,2009,79.36
+European Union,EUU,2010,79.64
+European Union,EUU,2011,80.14
+European Union,EUU,2012,80.17
+European Union,EUU,2013,80.47
+European Union,EUU,2014,80.88
+European Union,EUU,2015,80.57
+European Union,EUU,2016,80.95
+European Union,EUU,2017,80.93
+European Union,EUU,2018,81.03
+European Union,EUU,2019,81.32
+European Union,EUU,2020,80.44
+European Union,EUU,2021,80.31
+European Union,EUU,2022,80.71
+European Union,EUU,2023,81.42
+European Union,EUU,2024,81.56
+France,FRA,1960,69.87
+France,FRA,1961,70.12
+France,FRA,1962,70.31
+France,FRA,1963,70.51
+France,FRA,1964,70.66
+France,FRA,1965,70.81
+France,FRA,1966,70.96
+France,FRA,1967,71.16
+France,FRA,1968,71.31
+France,FRA,1969,71.46
+France,FRA,1970,71.66
+France,FRA,1971,71.91
+France,FRA,1972,72.11
+France,FRA,1973,72.36
+France,FRA,1974,72.6
+France,FRA,1975,72.85
+France,FRA,1976,73.1
+France,FRA,1977,73.35
+France,FRA,1978,73.6
+France,FRA,1979,73.85
+France,FRA,1980,74.05
+France,FRA,1981,74.3
+France,FRA,1982,74.5
+France,FRA,1983,74.8
+France,FRA,1984,75
+France,FRA,1985,75.3
+France,FRA,1986,75.6
+France,FRA,1987,75.8
+France,FRA,1988,76.1
+France,FRA,1989,76.35
+France,FRA,1990,76.6
+France,FRA,1991,76.85
+France,FRA,1992,77.1
+France,FRA,1993,77.3
+France,FRA,1994,77.65
+France,FRA,1995,77.75
+France,FRA,1996,77.95
+France,FRA,1997,78.3
+France,FRA,1998,78.6
+France,FRA,1999,78.76
+France,FRA,2000,79.06
+France,FRA,2001,79.16
+France,FRA,2002,79.26
+France,FRA,2003,79.11
+France,FRA,2004,80.16
+France,FRA,2005,80.16
+France,FRA,2006,80.81
+France,FRA,2007,81.11
+France,FRA,2008,81.21
+France,FRA,2009,81.41
+France,FRA,2010,81.66
+France,FRA,2011,82.11
+France,FRA,2012,81.97
+France,FRA,2013,82.22
+France,FRA,2014,82.72
+France,FRA,2015,82.32
+France,FRA,2016,82.57
+France,FRA,2017,82.58
+France,FRA,2018,82.68
+France,FRA,2019,82.83
+France,FRA,2020,82.18
+France,FRA,2021,82.32
+France,FRA,2022,82.13
+France,FRA,2023,82.83
+France,FRA,2024,82.98
+United Kingdom,GBR,1960,71.13
+United Kingdom,GBR,1961,70.88
+United Kingdom,GBR,1962,70.93
+United Kingdom,GBR,1963,70.83
+United Kingdom,GBR,1964,71.62
+United Kingdom,GBR,1965,71.62
+United Kingdom,GBR,1966,71.57
+United Kingdom,GBR,1967,72.12
+United Kingdom,GBR,1968,71.72
+United Kingdom,GBR,1969,71.72
+United Kingdom,GBR,1970,71.97
+United Kingdom,GBR,1971,72.27
+United Kingdom,GBR,1972,72.12
+United Kingdom,GBR,1973,72.32
+United Kingdom,GBR,1974,72.52
+United Kingdom,GBR,1975,72.72
+United Kingdom,GBR,1976,72.78
+United Kingdom,GBR,1977,73.22
+United Kingdom,GBR,1978,73.18
+United Kingdom,GBR,1979,73.28
+United Kingdom,GBR,1980,73.68
+United Kingdom,GBR,1981,74.03
+United Kingdom,GBR,1982,74.18
+United Kingdom,GBR,1983,74.38
+United Kingdom,GBR,1984,74.78
+United Kingdom,GBR,1985,74.63
+United Kingdom,GBR,1986,74.93
+United Kingdom,GBR,1987,75.28
+United Kingdom,GBR,1988,75.38
+United Kingdom,GBR,1989,75.58
+United Kingdom,GBR,1990,75.88
+United Kingdom,GBR,1991,76.08
+United Kingdom,GBR,1992,76.43
+United Kingdom,GBR,1993,76.39
+United Kingdom,GBR,1994,76.89
+United Kingdom,GBR,1995,76.84
+United Kingdom,GBR,1996,77.09
+United Kingdom,GBR,1997,77.21
+United Kingdom,GBR,1998,77.19
+United Kingdom,GBR,1999,77.39
+United Kingdom,GBR,2000,77.74
+United Kingdom,GBR,2001,77.99
+United Kingdom,GBR,2002,78.14
+United Kingdom,GBR,2003,78.45
+United Kingdom,GBR,2004,78.75
+United Kingdom,GBR,2005,79.05
+United Kingdom,GBR,2006,79.25
+United Kingdom,GBR,2007,79.45
+United Kingdom,GBR,2008,79.6
+United Kingdom,GBR,2009,80.05
+United Kingdom,GBR,2010,80.4
+United Kingdom,GBR,2011,80.95
+United Kingdom,GBR,2012,80.9
+United Kingdom,GBR,2013,81.0
+United Kingdom,GBR,2014,81.3
+United Kingdom,GBR,2015,80.96
+United Kingdom,GBR,2016,81.16
+United Kingdom,GBR,2017,81.26
+United Kingdom,GBR,2018,81.26
+United Kingdom,GBR,2019,81.37
+United Kingdom,GBR,2020,80.33
+United Kingdom,GBR,2021,80.65
+United Kingdom,GBR,2022,81.01
+United Kingdom,GBR,2023,81.24
+United Kingdom,GBR,2024,81.39
+Indonesia,IDN,1960,46.84
+Indonesia,IDN,1961,47.38
+Indonesia,IDN,1962,48.14
+Indonesia,IDN,1963,48.74
+Indonesia,IDN,1964,49.44
+Indonesia,IDN,1965,42.76
+Indonesia,IDN,1966,48.41
+Indonesia,IDN,1967,51.31
+Indonesia,IDN,1968,51.89
+Indonesia,IDN,1969,52.59
+Indonesia,IDN,1970,53.25
+Indonesia,IDN,1971,53.82
+Indonesia,IDN,1972,54.36
+Indonesia,IDN,1973,54.92
+Indonesia,IDN,1974,55.44
+Indonesia,IDN,1975,56.0
+Indonesia,IDN,1976,56.45
+Indonesia,IDN,1977,57.09
+Indonesia,IDN,1978,57.61
+Indonesia,IDN,1979,58.18
+Indonesia,IDN,1980,58.7
+Indonesia,IDN,1981,59.1
+Indonesia,IDN,1982,59.7
+Indonesia,IDN,1983,60.34
+Indonesia,IDN,1984,60.89
+Indonesia,IDN,1985,61.39
+Indonesia,IDN,1986,61.74
+Indonesia,IDN,1987,62.09
+Indonesia,IDN,1988,62.39
+Indonesia,IDN,1989,62.88
+Indonesia,IDN,1990,63.25
+Indonesia,IDN,1991,63.7
+Indonesia,IDN,1992,64.18
+Indonesia,IDN,1993,64.85
+Indonesia,IDN,1994,65.04
+Indonesia,IDN,1995,65.26
+Indonesia,IDN,1996,65.47
+Indonesia,IDN,1997,65.77
+Indonesia,IDN,1998,65.94
+Indonesia,IDN,1999,66.0
+Indonesia,IDN,2000,66.29
+Indonesia,IDN,2001,66.58
+Indonesia,IDN,2002,66.95
+Indonesia,IDN,2003,67.13
+Indonesia,IDN,2004,65.52
+Indonesia,IDN,2005,67.53
+Indonesia,IDN,2006,67.66
+Indonesia,IDN,2007,67.91
+Indonesia,IDN,2008,68.08
+Indonesia,IDN,2009,68.27
+Indonesia,IDN,2010,68.36
+Indonesia,IDN,2011,68.63
+Indonesia,IDN,2012,68.86
+Indonesia,IDN,2013,69.06
+Indonesia,IDN,2014,69.29
+Indonesia,IDN,2015,69.52
+Indonesia,IDN,2016,69.73
+Indonesia,IDN,2017,69.95
+Indonesia,IDN,2018,70.08
+Indonesia,IDN,2019,70.35
+Indonesia,IDN,2020,68.82
+Indonesia,IDN,2021,67.45
+Indonesia,IDN,2022,70.92
+Indonesia,IDN,2023,71.15
+Indonesia,IDN,2024,71.29
+India,IND,1960,45.61
+India,IND,1961,45.82
+India,IND,1962,46.13
+India,IND,1963,46.46
+India,IND,1964,46.74
+India,IND,1965,45.56
+India,IND,1966,45.88
+India,IND,1967,46.18
+India,IND,1968,47.92
+India,IND,1969,48.26
+India,IND,1970,48.59
+India,IND,1971,48.9
+India,IND,1972,49.21
+India,IND,1973,49.64
+India,IND,1974,50.26
+India,IND,1975,50.76
+India,IND,1976,51.3
+India,IND,1977,51.82
+India,IND,1978,52.42
+India,IND,1979,53.01
+India,IND,1980,53.59
+India,IND,1981,54.17
+India,IND,1982,54.73
+India,IND,1983,55.28
+India,IND,1984,55.81
+India,IND,1985,56.32
+India,IND,1986,56.82
+India,IND,1987,57.29
+India,IND,1988,57.74
+India,IND,1989,58.2
+India,IND,1990,58.62
+India,IND,1991,59.03
+India,IND,1992,59.45
+India,IND,1993,59.82
+India,IND,1994,60.24
+India,IND,1995,60.63
+India,IND,1996,61.03
+India,IND,1997,61.44
+India,IND,1998,61.85
+India,IND,1999,62.28
+India,IND,2000,62.75
+India,IND,2001,63.16
+India,IND,2002,63.65
+India,IND,2003,64.09
+India,IND,2004,64.48
+India,IND,2005,64.94
+India,IND,2006,65.37
+India,IND,2007,65.8
+India,IND,2008,66.25
+India,IND,2009,66.7
+India,IND,2010,67.16
+India,IND,2011,67.62
+India,IND,2012,68.08
+India,IND,2013,68.5
+India,IND,2014,68.93
+India,IND,2015,69.33
+India,IND,2016,69.71
+India,IND,2017,70.07
+India,IND,2018,70.42
+India,IND,2019,70.75
+India,IND,2020,70.16
+India,IND,2021,67.28
+India,IND,2022,71.7
+India,IND,2023,72.0
+India,IND,2024,72.23
+Italy,ITA,1960,69.12
+Italy,ITA,1961,69.76
+Italy,ITA,1962,69.15
+Italy,ITA,1963,69.25
+Italy,ITA,1964,70.31
+Italy,ITA,1965,70.17
+Italy,ITA,1966,70.93
+Italy,ITA,1967,70.96
+Italy,ITA,1968,70.78
+Italy,ITA,1969,70.81
+Italy,ITA,1970,71.56
+Italy,ITA,1971,71.81
+Italy,ITA,1972,72.08
+Italy,ITA,1973,72.03
+Italy,ITA,1974,72.73
+Italy,ITA,1975,72.65
+Italy,ITA,1976,72.99
+Italy,ITA,1977,73.36
+Italy,ITA,1978,73.69
+Italy,ITA,1979,74.0
+Italy,ITA,1980,73.94
+Italy,ITA,1981,74.35
+Italy,ITA,1982,74.81
+Italy,ITA,1983,74.64
+Italy,ITA,1984,75.39
+Italy,ITA,1985,75.47
+Italy,ITA,1986,75.77
+Italy,ITA,1987,76.22
+Italy,ITA,1988,76.37
+Italy,ITA,1989,76.82
+Italy,ITA,1990,76.97
+Italy,ITA,1991,77.02
+Italy,ITA,1992,77.42
+Italy,ITA,1993,77.72
+Italy,ITA,1994,77.92
+Italy,ITA,1995,78.17
+Italy,ITA,1996,78.52
+Italy,ITA,1997,78.82
+Italy,ITA,1998,78.98
+Italy,ITA,1999,79.42
+Italy,ITA,2000,79.78
+Italy,ITA,2001,80.13
+Italy,ITA,2002,80.23
+Italy,ITA,2003,79.98
+Italy,ITA,2004,80.78
+Italy,ITA,2005,80.78
+Italy,ITA,2006,81.28
+Italy,ITA,2007,81.43
+Italy,ITA,2008,81.49
+Italy,ITA,2009,81.64
+Italy,ITA,2010,82.04
+Italy,ITA,2011,82.19
+Italy,ITA,2012,82.24
+Italy,ITA,2013,82.69
+Italy,ITA,2014,83.09
+Italy,ITA,2015,82.54
+Italy,ITA,2016,83.24
+Italy,ITA,2017,82.95
+Italy,ITA,2018,83.35
+Italy,ITA,2019,83.5
+Italy,ITA,2020,82.2
+Italy,ITA,2021,82.65
+Italy,ITA,2022,82.7
+Italy,ITA,2023,83.35
+Italy,ITA,2024,83.95
+Japan,JPN,1960,67.7
+Japan,JPN,1961,68.35
+Japan,JPN,1962,68.63
+Japan,JPN,1963,69.71
+Japan,JPN,1964,70.21
+Japan,JPN,1965,70.27
+Japan,JPN,1966,70.92
+Japan,JPN,1967,71.47
+Japan,JPN,1968,71.61
+Japan,JPN,1969,71.86
+Japan,JPN,1970,71.92
+Japan,JPN,1971,72.81
+Japan,JPN,1972,73.15
+Japan,JPN,1973,73.3
+Japan,JPN,1974,73.67
+Japan,JPN,1975,74.25
+Japan,JPN,1976,74.69
+Japan,JPN,1977,75.26
+Japan,JPN,1978,75.58
+Japan,JPN,1979,76.11
+Japan,JPN,1980,75.99
+Japan,JPN,1981,76.39
+Japan,JPN,1982,76.87
+Japan,JPN,1983,76.92
+Japan,JPN,1984,77.29
+Japan,JPN,1985,77.56
+Japan,JPN,1986,78.01
+Japan,JPN,1987,78.43
+Japan,JPN,1988,78.35
+Japan,JPN,1989,78.77
+Japan,JPN,1990,78.84
+Japan,JPN,1991,79.04
+Japan,JPN,1992,79.08
+Japan,JPN,1993,79.3
+Japan,JPN,1994,79.7
+Japan,JPN,1995,79.54
+Japan,JPN,1996,80.22
+Japan,JPN,1997,80.42
+Japan,JPN,1998,80.5
+Japan,JPN,1999,80.46
+Japan,JPN,2000,81.08
+Japan,JPN,2001,81.42
+Japan,JPN,2002,81.69
+Japan,JPN,2003,81.76
+Japan,JPN,2004,82.03
+Japan,JPN,2005,81.96
+Japan,JPN,2006,82.32
+Japan,JPN,2007,82.51
+Japan,JPN,2008,82.59
+Japan,JPN,2009,82.93
+Japan,JPN,2010,82.84
+Japan,JPN,2011,82.59
+Japan,JPN,2012,83.1
+Japan,JPN,2013,83.33
+Japan,JPN,2014,83.59
+Japan,JPN,2015,83.79
+Japan,JPN,2016,83.98
+Japan,JPN,2017,84.1
+Japan,JPN,2018,84.21
+Japan,JPN,2019,84.36
+Japan,JPN,2020,84.56
+Japan,JPN,2021,84.45
+Japan,JPN,2022,84.0
+Japan,JPN,2023,84.04
+Japan,JPN,2024,84.04
+"Korea, Rep.",KOR,1960,53.8
+"Korea, Rep.",KOR,1961,54.48
+"Korea, Rep.",KOR,1962,55.05
+"Korea, Rep.",KOR,1963,55.03
+"Korea, Rep.",KOR,1964,55.39
+"Korea, Rep.",KOR,1965,55.86
+"Korea, Rep.",KOR,1966,55.52
+"Korea, Rep.",KOR,1967,60.93
+"Korea, Rep.",KOR,1968,60.94
+"Korea, Rep.",KOR,1969,61.48
+"Korea, Rep.",KOR,1970,62.16
+"Korea, Rep.",KOR,1971,62.61
+"Korea, Rep.",KOR,1972,63.01
+"Korea, Rep.",KOR,1973,63.41
+"Korea, Rep.",KOR,1974,63.8
+"Korea, Rep.",KOR,1975,64.15
+"Korea, Rep.",KOR,1976,64.5
+"Korea, Rep.",KOR,1977,64.9
+"Korea, Rep.",KOR,1978,65.2
+"Korea, Rep.",KOR,1979,65.55
+"Korea, Rep.",KOR,1980,66.05
+"Korea, Rep.",KOR,1981,66.55
+"Korea, Rep.",KOR,1982,67.1
+"Korea, Rep.",KOR,1983,67.55
+"Korea, Rep.",KOR,1984,68.2
+"Korea, Rep.",KOR,1985,68.8
+"Korea, Rep.",KOR,1986,69.45
+"Korea, Rep.",KOR,1987,70.0
+"Korea, Rep.",KOR,1988,70.55
+"Korea, Rep.",KOR,1989,71.05
+"Korea, Rep.",KOR,1990,71.6
+"Korea, Rep.",KOR,1991,72.05
+"Korea, Rep.",KOR,1992,72.5
+"Korea, Rep.",KOR,1993,73.0
+"Korea, Rep.",KOR,1994,73.4
+"Korea, Rep.",KOR,1995,73.7
+"Korea, Rep.",KOR,1996,74.15
+"Korea, Rep.",KOR,1997,74.6
+"Korea, Rep.",KOR,1998,75.0
+"Korea, Rep.",KOR,1999,75.41
+"Korea, Rep.",KOR,2000,75.91
+"Korea, Rep.",KOR,2001,76.41
+"Korea, Rep.",KOR,2002,76.77
+"Korea, Rep.",KOR,2003,77.21
+"Korea, Rep.",KOR,2004,77.67
+"Korea, Rep.",KOR,2005,78.17
+"Korea, Rep.",KOR,2006,78.67
+"Korea, Rep.",KOR,2007,79.12
+"Korea, Rep.",KOR,2008,79.52
+"Korea, Rep.",KOR,2009,79.97
+"Korea, Rep.",KOR,2010,80.12
+"Korea, Rep.",KOR,2011,80.57
+"Korea, Rep.",KOR,2012,80.82
+"Korea, Rep.",KOR,2013,81.27
+"Korea, Rep.",KOR,2014,81.72
+"Korea, Rep.",KOR,2015,82.02
+"Korea, Rep.",KOR,2016,82.28
+"Korea, Rep.",KOR,2017,82.63
+"Korea, Rep.",KOR,2018,82.63
+"Korea, Rep.",KOR,2019,83.23
+"Korea, Rep.",KOR,2020,83.43
+"Korea, Rep.",KOR,2021,83.53
+"Korea, Rep.",KOR,2022,82.68
+"Korea, Rep.",KOR,2023,83.43
+"Korea, Rep.",KOR,2024,83.63
+Mexico,MEX,1960,53.57
+Mexico,MEX,1961,54.42
+Mexico,MEX,1962,55.06
+Mexico,MEX,1963,55.5
+Mexico,MEX,1964,55.92
+Mexico,MEX,1965,56.69
+Mexico,MEX,1966,57.35
+Mexico,MEX,1967,57.96
+Mexico,MEX,1968,58.22
+Mexico,MEX,1969,58.41
+Mexico,MEX,1970,58.89
+Mexico,MEX,1971,59.41
+Mexico,MEX,1972,60.05
+Mexico,MEX,1973,60.52
+Mexico,MEX,1974,61.18
+Mexico,MEX,1975,61.88
+Mexico,MEX,1976,62.48
+Mexico,MEX,1977,62.99
+Mexico,MEX,1978,63.44
+Mexico,MEX,1979,63.86
+Mexico,MEX,1980,64.28
+Mexico,MEX,1981,64.72
+Mexico,MEX,1982,65.26
+Mexico,MEX,1983,65.76
+Mexico,MEX,1984,66.22
+Mexico,MEX,1985,66.78
+Mexico,MEX,1986,67.38
+Mexico,MEX,1987,67.9
+Mexico,MEX,1988,68.3
+Mexico,MEX,1989,68.62
+Mexico,MEX,1990,69.03
+Mexico,MEX,1991,69.37
+Mexico,MEX,1992,69.66
+Mexico,MEX,1993,69.96
+Mexico,MEX,1994,70.3
+Mexico,MEX,1995,70.7
+Mexico,MEX,1996,71.09
+Mexico,MEX,1997,71.47
+Mexico,MEX,1998,71.79
+Mexico,MEX,1999,72.2
+Mexico,MEX,2000,72.56
+Mexico,MEX,2001,72.91
+Mexico,MEX,2002,73.11
+Mexico,MEX,2003,73.31
+Mexico,MEX,2004,73.43
+Mexico,MEX,2005,73.63
+Mexico,MEX,2006,73.75
+Mexico,MEX,2007,73.8
+Mexico,MEX,2008,73.69
+Mexico,MEX,2009,73.63
+Mexico,MEX,2010,73.72
+Mexico,MEX,2011,73.92
+Mexico,MEX,2012,74.13
+Mexico,MEX,2013,74.29
+Mexico,MEX,2014,74.4
+Mexico,MEX,2015,74.43
+Mexico,MEX,2016,74.38
+Mexico,MEX,2017,74.26
+Mexico,MEX,2018,74.3
+Mexico,MEX,2019,74.53
+Mexico,MEX,2020,70.45
+Mexico,MEX,2021,69.75
+Mexico,MEX,2022,73.97
+Mexico,MEX,2023,75.07
+Mexico,MEX,2024,75.26
+Russian Federation,RUS,1960,67.53
+Russian Federation,RUS,1961,67.78
+Russian Federation,RUS,1962,67.7
+Russian Federation,RUS,1963,68.27
+Russian Federation,RUS,1964,68.71
+Russian Federation,RUS,1965,68.51
+Russian Federation,RUS,1966,68.59
+Russian Federation,RUS,1967,68.43
+Russian Federation,RUS,1968,68.32
+Russian Federation,RUS,1969,67.91
+Russian Federation,RUS,1970,68.13
+Russian Federation,RUS,1971,68.38
+Russian Federation,RUS,1972,68.31
+Russian Federation,RUS,1973,68.29
+Russian Federation,RUS,1974,68.32
+Russian Federation,RUS,1975,67.72
+Russian Federation,RUS,1976,67.49
+Russian Federation,RUS,1977,67.38
+Russian Federation,RUS,1978,67.39
+Russian Federation,RUS,1979,67.11
+Russian Federation,RUS,1980,67.03
+Russian Federation,RUS,1981,67.26
+Russian Federation,RUS,1982,67.81
+Russian Federation,RUS,1983,67.65
+Russian Federation,RUS,1984,67.2
+Russian Federation,RUS,1985,67.86
+Russian Federation,RUS,1986,69.39
+Russian Federation,RUS,1987,69.44
+Russian Federation,RUS,1988,69.46
+Russian Federation,RUS,1989,69.17
+Russian Federation,RUS,1990,68.89
+Russian Federation,RUS,1991,68.47
+Russian Federation,RUS,1992,66.87
+Russian Federation,RUS,1993,64.94
+Russian Federation,RUS,1994,64.47
+Russian Federation,RUS,1995,64.69
+Russian Federation,RUS,1996,65.85
+Russian Federation,RUS,1997,66.7
+Russian Federation,RUS,1998,67.03
+Russian Federation,RUS,1999,65.98
+Russian Federation,RUS,2000,65.48
+Russian Federation,RUS,2001,65.38
+Russian Federation,RUS,2002,65.13
+Russian Federation,RUS,2003,65.03
+Russian Federation,RUS,2004,65.47
+Russian Federation,RUS,2005,65.53
+Russian Federation,RUS,2006,66.73
+Russian Federation,RUS,2007,67.59
+Russian Federation,RUS,2008,67.95
+Russian Federation,RUS,2009,68.68
+Russian Federation,RUS,2010,68.84
+Russian Federation,RUS,2011,69.68
+Russian Federation,RUS,2012,70.07
+Russian Federation,RUS,2013,70.58
+Russian Federation,RUS,2014,70.74
+Russian Federation,RUS,2015,71.18
+Russian Federation,RUS,2016,71.65
+Russian Federation,RUS,2017,72.45
+Russian Federation,RUS,2018,72.66
+Russian Federation,RUS,2019,73.08
+Russian Federation,RUS,2020,71.34
+Russian Federation,RUS,2021,69.9
+Russian Federation,RUS,2022,72.55
+Russian Federation,RUS,2023,73.25
+Russian Federation,RUS,2024,73.44
+Saudi Arabia,SAU,1960,45.31
+Saudi Arabia,SAU,1961,45.88
+Saudi Arabia,SAU,1962,46.47
+Saudi Arabia,SAU,1963,47.09
+Saudi Arabia,SAU,1964,47.73
+Saudi Arabia,SAU,1965,48.44
+Saudi Arabia,SAU,1966,49.19
+Saudi Arabia,SAU,1967,49.99
+Saudi Arabia,SAU,1968,50.86
+Saudi Arabia,SAU,1969,51.77
+Saudi Arabia,SAU,1970,52.73
+Saudi Arabia,SAU,1971,53.73
+Saudi Arabia,SAU,1972,54.74
+Saudi Arabia,SAU,1973,55.77
+Saudi Arabia,SAU,1974,56.78
+Saudi Arabia,SAU,1975,57.78
+Saudi Arabia,SAU,1976,58.78
+Saudi Arabia,SAU,1977,59.75
+Saudi Arabia,SAU,1978,60.69
+Saudi Arabia,SAU,1979,61.52
+Saudi Arabia,SAU,1980,62.44
+Saudi Arabia,SAU,1981,63.25
+Saudi Arabia,SAU,1982,64.01
+Saudi Arabia,SAU,1983,64.72
+Saudi Arabia,SAU,1984,65.39
+Saudi Arabia,SAU,1985,66.03
+Saudi Arabia,SAU,1986,66.65
+Saudi Arabia,SAU,1987,67.24
+Saudi Arabia,SAU,1988,67.81
+Saudi Arabia,SAU,1989,68.36
+Saudi Arabia,SAU,1990,68.87
+Saudi Arabia,SAU,1991,69.34
+Saudi Arabia,SAU,1992,69.8
+Saudi Arabia,SAU,1993,70.21
+Saudi Arabia,SAU,1994,70.59
+Saudi Arabia,SAU,1995,70.94
+Saudi Arabia,SAU,1996,71.29
+Saudi Arabia,SAU,1997,71.62
+Saudi Arabia,SAU,1998,71.96
+Saudi Arabia,SAU,1999,72.29
+Saudi Arabia,SAU,2000,72.61
+Saudi Arabia,SAU,2001,72.95
+Saudi Arabia,SAU,2002,73.3
+Saudi Arabia,SAU,2003,73.66
+Saudi Arabia,SAU,2004,74.03
+Saudi Arabia,SAU,2005,74.4
+Saudi Arabia,SAU,2006,74.76
+Saudi Arabia,SAU,2007,75.07
+Saudi Arabia,SAU,2008,75.3
+Saudi Arabia,SAU,2009,75.45
+Saudi Arabia,SAU,2010,75.62
+Saudi Arabia,SAU,2011,75.81
+Saudi Arabia,SAU,2012,76.09
+Saudi Arabia,SAU,2013,76.52
+Saudi Arabia,SAU,2014,77.12
+Saudi Arabia,SAU,2015,77.78
+Saudi Arabia,SAU,2016,78.35
+Saudi Arabia,SAU,2017,78.72
+Saudi Arabia,SAU,2018,78.75
+Saudi Arabia,SAU,2019,78.31
+Saudi Arabia,SAU,2020,77.6
+Saudi Arabia,SAU,2021,77.09
+Saudi Arabia,SAU,2022,77.31
+Saudi Arabia,SAU,2023,78.73
+Saudi Arabia,SAU,2024,78.98
+Turkiye,TUR,1960,50.8
+Turkiye,TUR,1961,51.56
+Turkiye,TUR,1962,52.35
+Turkiye,TUR,1963,53.12
+Turkiye,TUR,1964,53.6
+Turkiye,TUR,1965,54.1
+Turkiye,TUR,1966,54.57
+Turkiye,TUR,1967,55.18
+Turkiye,TUR,1968,55.64
+Turkiye,TUR,1969,56.18
+Turkiye,TUR,1970,56.7
+Turkiye,TUR,1971,57.22
+Turkiye,TUR,1972,57.97
+Turkiye,TUR,1973,58.45
+Turkiye,TUR,1974,59.02
+Turkiye,TUR,1975,59.51
+Turkiye,TUR,1976,60.01
+Turkiye,TUR,1977,60.85
+Turkiye,TUR,1978,61.61
+Turkiye,TUR,1979,62.16
+Turkiye,TUR,1980,62.74
+Turkiye,TUR,1981,63.19
+Turkiye,TUR,1982,63.74
+Turkiye,TUR,1983,64.27
+Turkiye,TUR,1984,64.81
+Turkiye,TUR,1985,65.34
+Turkiye,TUR,1986,65.87
+Turkiye,TUR,1987,66.38
+Turkiye,TUR,1988,66.9
+Turkiye,TUR,1989,67.36
+Turkiye,TUR,1990,67.83
+Turkiye,TUR,1991,68.29
+Turkiye,TUR,1992,68.6
+Turkiye,TUR,1993,69.02
+Turkiye,TUR,1994,69.4
+Turkiye,TUR,1995,69.73
+Turkiye,TUR,1996,70.25
+Turkiye,TUR,1997,70.67
+Turkiye,TUR,1998,71.14
+Turkiye,TUR,1999,70.75
+Turkiye,TUR,2000,71.93
+Turkiye,TUR,2001,72.27
+Turkiye,TUR,2002,72.61
+Turkiye,TUR,2003,72.91
+Turkiye,TUR,2004,73.22
+Turkiye,TUR,2005,73.51
+Turkiye,TUR,2006,73.8
+Turkiye,TUR,2007,74.13
+Turkiye,TUR,2008,74.38
+Turkiye,TUR,2009,74.68
+Turkiye,TUR,2010,74.96
+Turkiye,TUR,2011,74.82
+Turkiye,TUR,2012,75.55
+Turkiye,TUR,2013,76.17
+Turkiye,TUR,2014,76.45
+Turkiye,TUR,2015,76.54
+Turkiye,TUR,2016,76.59
+Turkiye,TUR,2017,77.04
+Turkiye,TUR,2018,77.45
+Turkiye,TUR,2019,77.74
+Turkiye,TUR,2020,76.53
+Turkiye,TUR,2021,75.72
+Turkiye,TUR,2022,77.59
+Turkiye,TUR,2023,77.16
+Turkiye,TUR,2024,77.42
+United States,USA,1960,69.77
+United States,USA,1961,70.27
+United States,USA,1962,70.12
+United States,USA,1963,69.92
+United States,USA,1964,70.17
+United States,USA,1965,70.21
+United States,USA,1966,70.21
+United States,USA,1967,70.56
+United States,USA,1968,69.95
+United States,USA,1969,70.51
+United States,USA,1970,70.81
+United States,USA,1971,71.11
+United States,USA,1972,71.16
+United States,USA,1973,71.36
+United States,USA,1974,71.96
+United States,USA,1975,72.6
+United States,USA,1976,72.86
+United States,USA,1977,73.26
+United States,USA,1978,73.36
+United States,USA,1979,73.8
+United States,USA,1980,73.61
+United States,USA,1981,74.01
+United States,USA,1982,74.36
+United States,USA,1983,74.46
+United States,USA,1984,74.56
+United States,USA,1985,74.56
+United States,USA,1986,74.61
+United States,USA,1987,74.77
+United States,USA,1988,74.77
+United States,USA,1989,75.02
+United States,USA,1990,75.21
+United States,USA,1991,75.37
+United States,USA,1992,75.62
+United States,USA,1993,75.42
+United States,USA,1994,75.62
+United States,USA,1995,75.62
+United States,USA,1996,76.03
+United States,USA,1997,76.43
+United States,USA,1998,76.58
+United States,USA,1999,76.58
+United States,USA,2000,76.64
+United States,USA,2001,76.84
+United States,USA,2002,76.94
+United States,USA,2003,77.04
+United States,USA,2004,77.49
+United States,USA,2005,77.49
+United States,USA,2006,77.69
+United States,USA,2007,77.99
+United States,USA,2008,78.04
+United States,USA,2009,78.39
+United States,USA,2010,78.54
+United States,USA,2011,78.64
+United States,USA,2012,78.74
+United States,USA,2013,78.74
+United States,USA,2014,78.84
+United States,USA,2015,78.69
+United States,USA,2016,78.54
+United States,USA,2017,78.54
+United States,USA,2018,78.64
+United States,USA,2019,78.79
+United States,USA,2020,76.98
+United States,USA,2021,76.33
+United States,USA,2022,77.43
+United States,USA,2023,78.39
+United States,USA,2024,78.89
+South Africa,ZAF,1960,52.58
+South Africa,ZAF,1961,53.07
+South Africa,ZAF,1962,53.57
+South Africa,ZAF,1963,53.9
+South Africa,ZAF,1964,54.22
+South Africa,ZAF,1965,54.43
+South Africa,ZAF,1966,54.73
+South Africa,ZAF,1967,54.95
+South Africa,ZAF,1968,55.19
+South Africa,ZAF,1969,55.44
+South Africa,ZAF,1970,55.68
+South Africa,ZAF,1971,56.02
+South Africa,ZAF,1972,56.38
+South Africa,ZAF,1973,56.72
+South Africa,ZAF,1974,57.11
+South Africa,ZAF,1975,57.59
+South Africa,ZAF,1976,58
+South Africa,ZAF,1977,58.48
+South Africa,ZAF,1978,58.99
+South Africa,ZAF,1979,59.47
+South Africa,ZAF,1980,59.96
+South Africa,ZAF,1981,60.45
+South Africa,ZAF,1982,60.94
+South Africa,ZAF,1983,61.39
+South Africa,ZAF,1984,61.84
+South Africa,ZAF,1985,62.2
+South Africa,ZAF,1986,62.42
+South Africa,ZAF,1987,62.69
+South Africa,ZAF,1988,62.9
+South Africa,ZAF,1989,63.02
+South Africa,ZAF,1990,62.94
+South Africa,ZAF,1991,62.98
+South Africa,ZAF,1992,62.84
+South Africa,ZAF,1993,62.62
+South Africa,ZAF,1994,62.07
+South Africa,ZAF,1995,61.6
+South Africa,ZAF,1996,61.08
+South Africa,ZAF,1997,60.54
+South Africa,ZAF,1998,59.91
+South Africa,ZAF,1999,59.19
+South Africa,ZAF,2000,58.37
+South Africa,ZAF,2001,57.16
+South Africa,ZAF,2002,55.58
+South Africa,ZAF,2003,54.24
+South Africa,ZAF,2004,53.96
+South Africa,ZAF,2005,53.91
+South Africa,ZAF,2006,54.22
+South Africa,ZAF,2007,54.95
+South Africa,ZAF,2008,55.98
+South Africa,ZAF,2009,57.41
+South Africa,ZAF,2010,58.89
+South Africa,ZAF,2011,60.6
+South Africa,ZAF,2012,61.74
+South Africa,ZAF,2013,62.39
+South Africa,ZAF,2014,63.18
+South Africa,ZAF,2015,64.05
+South Africa,ZAF,2016,64.75
+South Africa,ZAF,2017,65.42
+South Africa,ZAF,2018,65.73
+South Africa,ZAF,2019,66.07
+South Africa,ZAF,2020,65.15
+South Africa,ZAF,2021,62.01
+South Africa,ZAF,2022,65.45
+South Africa,ZAF,2023,66.14
+South Africa,ZAF,2024,66.31

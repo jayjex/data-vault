@@ -48,8 +48,11 @@ FY2026 fair market rents for 51,895 ZIP codes, 3,229 counties, and 52 states. Fi
 ### HUD Fair Market Rents FY2027 (hud-fmr-2027)
 FY2027 fair market rents for 51,871 ZIP codes, 3,229 counties, and 52 states, effective October 1, 2026. Five bedroom sizes per row, same ten-column schema as the FY2026 file. Citable DOI: https://doi.org/10.5281/zenodo.22649503 (full CSVs on Zenodo, CC BY 4.0). Niche: gov-data. Stats: {"rows": 51871, "tables": 3, "columns": 11, "updated": "FY2027"}.
 - Zenodo record (all files): https://zenodo.org/records/22649503/latest
+- Sample JSON: https://jayjex.github.io/data-vault/data/hud-fmr-2027/sample.json
+- Sample CSV: https://jayjex.github.io/data-vault/data/hud-fmr-2027/sample.csv
+- Page: https://jayjex.github.io/data-vault/datasets/hud-fmr-2027.html (free 22-row sample + complete 52-row state summary)
 - FY2026 pack (prior year, for anything dated before October): https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html
-- Full data: coming to Getly with the FY2027 pack pages
+- Full CSVs (free): https://zenodo.org/records/22649503/latest (ZIP, county, state, data dictionary)
 
 ### HUD Fair Market Rents FY2026 by County: completeness & spread (hud-fmr-county-2026)
 County-level FY2026 Fair Market Rents: 3,229 county-equivalents across 56 states and territories, five bedroom sizes with median and max per row, 67 multi-FMR-area counties flagged with an area_rows count, and a derived table of the 8 counties where the 2BR max exceeds the median (Bristol County MA +47.5%). Zero empty cells. Niche: gov-data. Stats: {"rows": 3229, "tables": 2, "columns": 15, "updated": "2026-09-10"}.
@@ -392,6 +395,7 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - [Parametric Planisphere STL: Star Wheel for 45N, 3 Parts](https://jayjex.github.io/data-vault/printables/planisphere-stl.html): measured spec sheet, 416 star holes sized by magnitude, snap-pin pivot, snap-on hour ring, no fasteners
 - [Print-in-Place Abacus STL: 100-Bead Counting Frame](https://jayjex.github.io/data-vault/printables/abacus-stl.html): measured spec sheet, 100 beads in 20 sealed channels split 5+5, clearances verified from the mesh, no stringing no supports
 - [Classroom Number Line 0-99 STL: Ten Peg-Joined Decade Tiles](https://jayjex.github.io/data-vault/printables/number-line-stl.html): measured spec sheet, ten 122 x 34 mm tiles chaining with 0.2 mm tab clearance, taller ticks on fives, no supports
+- [Sharpening Stone Holder STL: Dual Channel Whetstone Cradle](https://jayjex.github.io/data-vault/printables/stone-holder-stl.html): measured spec sheet, two 180 x 60 x 15 mm channels on one base, 0.4 mm side and 3.0 mm end clearance, stones ride 6 mm above the rails, flat no-support print
 - [Free Printable PDF Templates: 223 Tracker Sheets, Planners and Worksheets by Category](https://jayjex.github.io/data-vault/printables/free-printable-templates.html)
 - [3D Printed Desk Organizers and Printable Tools: 10 Parametric MakerWorld Models](https://jayjex.github.io/data-vault/guides/print-in-use-organizers.html): cable clips, phone stand, bit holder, rulers, hex gauge; flat no-support prints, CC BY 4.0; 1 live, 9 in MakerWorld review, renders only
 - [Parametric 3D Printed Tools: 10 MakerWorld Models You Can Rebuild at Your Own Dimensions](https://jayjex.github.io/data-vault/guides/printable-tools-parametric.html): generator scripts ship in the files, edit dims and rerun, no CAD skills; parameter table per model, renders only

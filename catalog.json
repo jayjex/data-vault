@@ -111,12 +111,12 @@
         }
       ],
       "full_data": {
-        "status": "available",
-        "url": "https://www.getly.store/store/matchbook-labs-mtrfh66f",
-        "note": "FY2027 Getly pack in prep; until it lands the full FY2027 files are free via the bundled MCP server (query_dataset \"hud-fmr-2027\") or the data-v1 GitHub release."
+        "status": "free",
+        "url": "https://zenodo.org/records/22649503/latest",
+        "note": "Full FY2027 CSVs (ZIP, county, state, data dictionary, build script) are free on Zenodo under DOI 10.5281/zenodo.22649503, CC BY 4.0 repackaging of public-domain US government data. The 51,871-row ZIP file also serves free from the hud-fmr-by-zip-2027 dataset page."
       },
       "license": "Public domain (US government data)",
-      "page": "https://jayjex.github.io/data-vault/guides/hud-fmr-2027.html"
+      "page": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2027.html"
     },
     {
       "slug": "airbnb-six-cities",

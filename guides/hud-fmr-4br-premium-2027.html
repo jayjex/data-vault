@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The 4BR Premium FY2027: Counties Where HUD Fair Market Rent Stretches Furthest From 2BR to 4BR | Data Vault</title>
+<meta name="description" content="Bradford County, Florida prices its 4BR median at 1.68 times the 2BR, the widest family-size premium among 3,145 counties. The ten widest and ten narrowest ratios, and the shared schedules behind both boards, FY2027.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fmr-4br-premium-2027.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="The 4BR Premium FY2027: Counties Where HUD Fair Market Rent Stretches Furthest From 2BR to 4BR">
+<meta property="og:description" content="Bradford County, Florida prices its 4BR median at 1.68 times the 2BR median; Calhoun and Taylor County, Florida share the narrowest board at 1.3137. Same 2BR floor, four different 4BR answers, across 3,145 counties.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fmr-4br-premium-2027.html">
+<meta property="og:image" content="https://jayjex.github.io/data-vault/assets/covers/data-vault-banner.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The 4BR Premium FY2027: Counties Where HUD Fair Market Rent Stretches Furthest From 2BR to 4BR">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "The 4BR Premium FY2027: Counties Where HUD Fair Market Rent Stretches Furthest From 2BR to 4BR", "description": "Bradford County, Florida prices its 4BR median at 1.68 times the 2BR, the widest family-size premium among 3,145 counties. The ten widest and ten narrowest ratios, and the shared schedules behind both boards, FY2027.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fmr-4br-premium-2027.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2027", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2027.html"}, "mentions": [{"@type": "Dataset", "name": "HUD Fair Market Rents FY2027 by ZIP Code", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-by-zip-2027.html"}, {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026 by County: completeness & spread", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-county-2026.html"}, {"@type": "Article", "name": "Most and Least Expensive Counties in Each State for HUD Fair Market Rent FY2027", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-county-spreads-2027.html"}, {"@type": "Article", "name": "Counties That Jumped or Fell Most in HUD Fair Market Rent FY2027", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-county-rank-shifts-2027.html"}, {"@type": "Article", "name": "Small-Area FMR vs Metro-Wide FMR FY2027: Counties Priced Away From Their Metros", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-metro-split-gaps-2027.html"}, {"@type": "Article", "name": "Query HUD FMR by ZIP With SQL: DuckDB and SQLite on the FY2027 CSV", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-zip-sql.html"}, {"@type": "Article", "name": "Section 8 Voucher Rent: How Much Will HUD Pay?", "url": "https://jayjex.github.io/data-vault/guides/section-8-voucher-rent.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which county has the widest 4BR-over-2BR premium in HUD's FY2027 fair market rents?", "acceptedAnswer": {"@type": "Answer", "text": "Bradford County, Florida: a 1,692-dollar 4BR median against a 1,008-dollar 2BR median, 1.6786 times, a 67.9 percent premium. Butte County, Idaho follows at 1.6780 (1,970 over 1,174) and Liberty County, Florida at 1.6779 (1,636 over 975). At the narrow end, Calhoun and Taylor County, Florida share the floor at 1.3137 (1,252 over 953), a 31.4 percent premium. The median county runs 1.48 across the 3,145 ranked county-equivalents."}}, {"@type": "Question", "name": "Why do hundreds of counties share the same 4BR-to-2BR ratio?", "acceptedAnswer": {"@type": "Answer", "text": "HUD's county schedules repeat wherever counties share an area's values. 266 counties land inside the 1.6715-to-1.6725 band and 428 inside the 1.3135-to-1.3147 band, 22 percent of the ranked file combined. The 373 counties that share the 1,014-dollar 2BR floor split four ways on the 4BR: 84 counties at 1,695 dollars (1.6716, 30 of them in North Dakota), 40 Texas counties at 1,461 (1.4408), 31 Nebraska counties at 1,380 (1.3609), and 47 counties at 1,333 (1.3146, 11 in Wisconsin). Across the whole file, 3,145 counties carry 1,781 distinct 4BR-plus-2BR pairs."}}, {"@type": "Question", "name": "How were the county ratios computed?", "acceptedAnswer": {"@type": "Answer", "text": "From HUD's FY2027 county-level file, 3,229 county-equivalents carrying a median and a maximum for each bedroom size, effective October 1, 2026. Each county's ratio divides its 4BR median by its 2BR median; multi-area counties use the median column, which already aggregates the county's area rows. Puerto Rico, Guam, the US Virgin Islands, American Samoa and the Northern Mariana Islands contribute 84 rows and stay out of the rankings. The national anchor comes from the published ZIP CSV: the 1,780-dollar 4BR median over the 1,190-dollar 2BR median, 1.50. Tables round ratios to four decimals and rank on the exact value."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://jayjex.github.io/data-vault/guides/"}, {"@type": "ListItem", "position": 3, "name": "The 4BR premium FY2027: counties where HUD fair market rent stretches furthest from 2BR to 4BR", "item": "https://jayjex.github.io/data-vault/guides/hud-fmr-4br-premium-2027.html"}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Where the 4BR premium runs widest, county by county, FY2027</h1>
+  <p class="byline">FY2027 edition, published 2026-09-10. Data source: HUD FY2027 Fair Market Rent release, county-level file, rates effective October 1, 2026. License: CC0 1.0 (US government data, public domain). Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>1.48</b> median county ratio</span><span class="stat"><b>1.6786</b> widest (Bradford County, FL)</span><span class="stat"><b>1.3137</b> narrowest (Calhoun County, FL)</span><span class="stat"><b>3,145</b> counties ranked</span><span class="stat"><b>559</b> dollar median step</span></div>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>Divide each county's 4BR fair market rent by its 2BR rent and the result is a family-size premium: how much more HUD's estimate costs when a household needs the biggest unit on the ladder. Across the 3,145 mainland county-equivalents in the FY2027 file, the median county prices a 4BR at 1.48 times the 2BR, half the file sits between 1.38 and 1.60, and the published ZIP-level medians, 1,780 dollars for a 4BR against 1,190 for a 2BR, give a national ratio of 1.50. The spread looks narrow next to prices: county 2BR medians run 4.81 times from the 885-dollar floor to the 4,254-dollar ceiling, while the ratio spread runs 1.28 times from 1.3137 to 1.6786.</p>
+    <p>The boards at both ends tell two different stories. Bradford County, Florida tops the ratio table at 1.6786, but its 4BR step is 684 dollars; Orange County, California adds 1,907 dollars, the largest dollar step in the file, and ranks 735th on the ratio. Every number here recomputes from HUD's county-level publication behind the <a href="../datasets/hud-fmr-2027.html">FY2027 fair market rent release</a>, with the ratio anchored against the free <a href="../datasets/hud-fmr-by-zip-2027.html">ZIP-level CSV</a>.</p>
+  </section>
+
+  <section aria-label="The ten widest premiums">
+    <h2>The ten widest 4BR-over-2BR premiums</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Ten counties with the widest 4BR to 2BR ratios, HUD FY2027"><table><thead><tr><th scope="col">#</th><th scope="col">County</th><th scope="col">State</th><th scope="col">2BR median</th><th scope="col">4BR median</th><th scope="col">Step</th><th scope="col">Ratio</th></tr></thead><tbody>
+      <tr><td>1</td><td>Bradford County</td><td>Florida</td><td>1,008</td><td>1,692</td><td>+684</td><td>1.6786</td></tr>
+      <tr><td>2</td><td>Butte County</td><td>Idaho</td><td>1,174</td><td>1,970</td><td>+796</td><td>1.6780</td></tr>
+      <tr><td>3</td><td>Liberty County</td><td>Florida</td><td>975</td><td>1,636</td><td>+661</td><td>1.6779</td></tr>
+      <tr><td>4</td><td>Mineral County</td><td>Nevada</td><td>1,254</td><td>2,104</td><td>+850</td><td>1.6778</td></tr>
+      <tr><td>5</td><td>Yuma County</td><td>Arizona</td><td>1,244</td><td>2,087</td><td>+843</td><td>1.6777</td></tr>
+      <tr><td>6</td><td>La Paz County</td><td>Arizona</td><td>1,038</td><td>1,741</td><td>+703</td><td>1.6773</td></tr>
+      <tr><td>7</td><td>Hardee County</td><td>Florida</td><td>1,124</td><td>1,885</td><td>+761</td><td>1.6770</td></tr>
+      <tr><td>8</td><td>Moore County</td><td>North Carolina</td><td>1,223</td><td>2,051</td><td>+828</td><td>1.6770</td></tr>
+      <tr><td>9</td><td>Ward County</td><td>North Dakota</td><td>1,049</td><td>1,759</td><td>+710</td><td>1.6768</td></tr>
+      <tr><td>10</td><td>Sherman County</td><td>Oregon</td><td>1,214</td><td>2,033</td><td>+819</td><td>1.6746</td></tr>
+    </tbody></table></div>
+    <p>Ratios show to four decimals; the ten exact values are unique, and Hardee County and Moore County both display 1.6770 while the exact values, 1.67705 and 1.67702, order them. The whole board fits inside a 0.0040 band: ten counties, six of them nonmetro, three of them Floridian, all pricing a 4BR at 67.5 to 67.9 percent over the 2BR. Bradford County's 1,008-dollar 2BR median sits 5.9 percent under the national county median of 1,071 dollars, so the premium runs widest where the base runs cheap.</p>
+    <p>Under the board the file turns into a plateau. 266 counties land inside the 1.6715-to-1.6725 band, and 84 of them carry the exact pair 1,695 dollars over 1,014, a schedule shared across 13 states with North Dakota contributing 30. State medians cluster the same way: North Dakota tops the 51 jurisdictions at 1.672 (53 counties), with Idaho 1.671 (44), Nevada 1.671 (17), Oregon 1.671 (36) and Wyoming 1.664 (23) behind it. The <a href="hud-fmr-county-rank-shifts-2027.html">rank-shift page</a> shows how these shared schedules move whole states in blocs between years.</p>
+  </section>
+
+  <section aria-label="The ten narrowest premiums">
+    <h2>The ten narrowest 4BR-over-2BR premiums</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Ten counties with the narrowest 4BR to 2BR ratios, HUD FY2027"><table><thead><tr><th scope="col">#</th><th scope="col">County</th><th scope="col">State</th><th scope="col">2BR median</th><th scope="col">4BR median</th><th scope="col">Step</th><th scope="col">Ratio</th></tr></thead><tbody>
+      <tr><td>1</td><td>Calhoun County</td><td>Florida</td><td>953</td><td>1,252</td><td>+299</td><td>1.3137, one of 2 tied</td></tr>
+      <tr><td>2</td><td>Taylor County</td><td>Florida</td><td>953</td><td>1,252</td><td>+299</td><td>1.3137, one of 2 tied</td></tr>
+      <tr><td>3</td><td>St. Francois County</td><td>Missouri</td><td>988</td><td>1,298</td><td>+310</td><td>1.3138</td></tr>
+      <tr><td>4</td><td>DeKalb County</td><td>Indiana</td><td>1,023</td><td>1,344</td><td>+321</td><td>1.3138</td></tr>
+      <tr><td>5</td><td>Crenshaw County</td><td>Alabama</td><td>921</td><td>1,210</td><td>+289</td><td>1.3138, one of 3 tied</td></tr>
+      <tr><td>6</td><td>Franklin County</td><td>Alabama</td><td>921</td><td>1,210</td><td>+289</td><td>1.3138, one of 3 tied</td></tr>
+      <tr><td>7</td><td>Lamar County</td><td>Alabama</td><td>921</td><td>1,210</td><td>+289</td><td>1.3138, one of 3 tied</td></tr>
+      <tr><td>8</td><td>Pierce County</td><td>Georgia</td><td>1,058</td><td>1,390</td><td>+332</td><td>1.3138</td></tr>
+      <tr><td>9</td><td>Habersham County</td><td>Georgia</td><td>1,007</td><td>1,323</td><td>+316</td><td>1.3138</td></tr>
+      <tr><td>10</td><td>Woods County</td><td>Oklahoma</td><td>956</td><td>1,256</td><td>+300</td><td>1.3138</td></tr>
+    </tbody></table></div>
+    <p>All ten counties are nonmetro, and the board spans less than 0.0001 of ratio. Calhoun and Taylor share the exact 1,252-over-953 pair, and Crenshaw, Franklin and Lamar share 1,210 over 921; the other five rows carry distinct pairs that round to the same 1.3138. In these counties the whole top of the ladder costs 31.4 percent over the 2BR, against 67.9 percent in Bradford County, and the 4BR step stays under 350 dollars.</p>
+    <p>The narrow end has its own state clusters. Mississippi's state median runs 1.314 across 82 counties, with 33 of them on the shared 1,189-over-905 schedule, and Massachusetts (1.339, 14 counties), New Hampshire (1.360, 10), Nebraska (1.361, 93) and New York (1.365, 62) fill out the flat half of the state table. New York pairs the second-lowest state ratio with some of the highest dollar rents in the file, which is the clearest sign the ratio and the price level measure different things; the <a href="hud-fmr-county-spreads-2027.html">within-state spreads page</a> covers the price-level side.</p>
+  </section>
+
+  <section aria-label="Same 2BR, four 4BR answers">
+    <h2>Same 2BR floor, four different 4BR answers</h2>
+    <p>The 1,014-dollar 2BR floor is the file's most repeated value, carried by 373 counties. What a 4BR costs on top of it depends on the state schedule the county sits in, and the floor splits four ways: 84 counties pair it with a 1,695-dollar 4BR for a ratio of 1.6716 (30 North Dakota, 9 Nebraska, 8 Minnesota, 8 Texas, 6 Oregon, 5 Idaho and the rest across 7 more states), 40 Texas counties pair it with 1,461 for 1.4408, 31 Nebraska counties pair it with 1,380 for 1.3609, and 47 counties (11 Wisconsin, 10 Nebraska, 9 Indiana, 8 Minnesota, 4 Michigan) pair it with 1,333 for 1.3146. One voucher-sized household, one identical 2BR figure, four different premiums ranging from 31 to 67 percent.</p>
+    <p>Across the file, 3,145 counties carry 1,781 distinct 4BR-plus-2BR pairs, 428 counties sit inside the 1.3135-to-1.3147 band and 266 inside the 1.6715-to-1.6725 band, 22 percent of the ranked file on six figures of ratio range. Kansas runs the neatest coincidence: 31 counties share the 1,418-over-961 schedule, which lands at 1.4755, the national median ratio to four decimals. This page reports where the schedules pile up; HUD's methodology notices document how the schedules themselves are built, and this page does not assert the rule behind them.</p>
+  </section>
+
+  <section aria-label="Percent and dollars pick different counties">
+    <h2>Percent and dollars pick different counties</h2>
+    <p>Ranked by the dollar step instead of the ratio, the board changes completely. Orange County, California adds 1,907 dollars from 2BR to 4BR (3,057 to 4,964), the largest step in the file, on a ratio of 1.6238 that ranks 735th. Nantucket County, Massachusetts adds 1,809 (3,583 to 5,392) at a mid-table 1.5049, and Eagle County, Colorado adds 1,750 (2,607 to 4,357) at 1.6713, just under the 1.6715-to-1.6725 band but off the ten-board. At the small end, Lee County, South Carolina carries the file's smallest step, 278 dollars (885 to 1,163), and its 1.3141 ratio lands inside the same 1.3135-to-1.3147 band that holds 428 counties.</p>
+    <p>Price level moves the ratio less than the county map suggests. The 782 counties with a 2BR median of 1,328 dollars or more run a median ratio of 1.50, the 816 counties at 1,002 or less run 1.45, and the metro-nonmetro split lands between them (1.49 across 1,187 metro counties against 1.46 across 1,958 nonmetro). The single most expensive county breaks the drift: Santa Cruz County, California holds the national 2BR ceiling at 4,254 dollars and the national 4BR maximum at 5,748, yet its ratio runs 1.3512, with 618 counties pricing the jump from 2BR to 4BR more steeply. California's own median sits at 1.59 with 55 of 58 counties at 1.40 or above, Trinity County's 1.3140 the only California ratio inside the 1.3135-to-1.3147 band.</p>
+    <p>One more ladder check: the same ratio computed one rung down, 3BR over 1BR, medians 1.59 across the 3,145 counties. The middle of the ladder stretches wider than the top, which is why the 4BR-over-2BR number should be read as one rung's premium rather than a statement about the whole ladder.</p>
+  </section>
+
+  <section aria-label="Methodology">
+    <h2>Methodology: how the ratios were built</h2>
+    <p>The source is HUD's FY2027 county-level file: 3,229 county-equivalent rows, one per county or county-equivalent, each carrying a median and a maximum for the five bedroom sizes, effective October 1, 2026. Counties that appear under more than one HUD area use the median column, which aggregates the county's area rows; 3,162 rows carry a single area row, where median and max are identical by construction. The 51 ranked jurisdictions are the 50 states plus DC. Puerto Rico, Guam, the US Virgin Islands, American Samoa and the Northern Mariana Islands contribute 84 rows and stay out of the rankings, the same exclusion the <a href="hud-fmr-county-spreads-2027.html">county-spreads</a> and <a href="hud-fmr-county-rank-shifts-2027.html">rank-shifts</a> pages apply.</p>
+    <p>Each county's ratio divides its 4BR median by its 2BR median, and the boards rank on the exact value with ties annotated where counties share the exact ratio. Ratios display to four decimals, which makes near-ties look identical: the narrow board's five un-annotated rows all display 1.3138 while carrying five distinct pairs. Integrity checks run on the file before computing: zero duplicate state-plus-county keys, zero cells where the median exceeds the max, and a national anchor against the published <a href="../data/hud-fmr-by-zip-2027/fmr-by-zip-2027.csv">FY2027 ZIP CSV</a>, whose 1,780-dollar 4BR median over the 1,190-dollar 2BR median gives 1.50 at the ZIP-row level. Two caveats frame every figure: FMRs are HUD's rent estimates set at the 40th percentile of local rents, not observed asking rents, and the ratio inherits HUD's area geography, so a shared schedule says as much about the publication's construction as about any local market. The <a href="../datasets/hud-fmr-county-2026.html">FY2026 county dataset</a> carries last year's file for comparison, and the <a href="../datasets/hud-fmr-2027.html">FY2027 dataset page</a> documents the source workbooks.</p>
+  </section>
+
+  <section aria-label="Recompute the ratios yourself">
+    <h2>Recompute the ratios yourself</h2>
+    <p>Load the FY2027 county file into SQLite as <code>counties_fy2027</code>, fifteen columns per row, following the import steps in the <a href="hud-fmr-by-zip-sql.html">SQL guide</a>. The wide board is one window-function chain:</p>
+    <pre><code>-- SQLite: the ten widest 4BR-over-2BR ratios, FY2027
+WITH ranked AS (
+  SELECT state, state_name, county, fmr_2br_median, fmr_4br_median,
+         CAST(fmr_4br_median AS REAL) / fmr_2br_median AS ratio,
+         ROW_NUMBER() OVER (ORDER BY CAST(fmr_4br_median AS REAL) / fmr_2br_median DESC, state, county) AS rn
+  FROM counties_fy2027
+  WHERE state NOT IN ('PR','GU','VI','AS','MP')
+)
+SELECT rn, county, state_name, fmr_2br_median, fmr_4br_median, ROUND(ratio, 4) AS ratio
+FROM ranked WHERE rn &lt;= 10;
+-- Rows: 1 Bradford County FL 1008 1692 1.6786, 2 Butte County ID 1174 1970 1.678,
+-- 3 Liberty County FL 975 1636 1.6779, 4 Mineral County NV 1254 2104 1.6778,
+-- 5 Yuma County AZ 1244 2087 1.6777, 6 La Paz County AZ 1038 1741 1.6773,
+-- 7 Hardee County FL 1124 1885 1.677, 8 Moore County NC 1223 2051 1.677,
+-- 9 Ward County ND 1049 1759 1.6768, 10 Sherman County OR 1214 2033 1.6746.</code></pre>
+    <p>The narrow board flips the sort, and a shape statement sums up the whole file:</p>
+    <pre><code>-- SQLite: the ten narrowest ratios (same computation, order reversed)
+WITH ranked AS (
+  SELECT state, state_name, county, fmr_2br_median, fmr_4br_median,
+         CAST(fmr_4br_median AS REAL) / fmr_2br_median AS ratio,
+         ROW_NUMBER() OVER (ORDER BY CAST(fmr_4br_median AS REAL) / fmr_2br_median ASC, state, county) AS rn
+  FROM counties_fy2027
+  WHERE state NOT IN ('PR','GU','VI','AS','MP')
+)
+SELECT rn, county, state_name, fmr_2br_median, fmr_4br_median, ROUND(ratio, 4) AS ratio
+FROM ranked WHERE rn &lt;= 10;
+-- Rows: 1 Calhoun County FL 953 1252 1.3137, 2 Taylor County FL 953 1252 1.3137,
+-- 3 St. Francois County MO 988 1298 1.3138, 4 DeKalb County IN 1023 1344 1.3138,
+-- 5 Crenshaw County AL 921 1210 1.3138, 6 Franklin County AL 921 1210 1.3138,
+-- 7 Lamar County AL 921 1210 1.3138, 8 Pierce County GA 1058 1390 1.3138,
+-- 9 Habersham County GA 1007 1323 1.3138, 10 Woods County OK 956 1256 1.3138.
+
+-- The shape of the file: median, big-premium share, narrow share, both plateaus
+WITH r AS (
+  SELECT CAST(fmr_4br_median AS REAL) / fmr_2br_median AS ratio
+  FROM counties_fy2027
+  WHERE state NOT IN ('PR','GU','VI','AS','MP')
+),
+m AS (SELECT ratio, ROW_NUMBER() OVER (ORDER BY ratio) AS rn, COUNT(*) OVER () AS n FROM r)
+SELECT (SELECT ROUND(AVG(ratio), 4) FROM m WHERE rn IN ((n + 1) / 2, (n + 2) / 2)) AS median_ratio,
+       (SELECT SUM(ratio &gt;= 1.6) FROM m) AS at_or_over_1_60,
+       (SELECT SUM(ratio &lt;= 1.35) FROM m) AS at_or_under_1_35,
+       (SELECT SUM(ratio BETWEEN 1.6715 AND 1.6725) FROM m) AS high_band,
+       (SELECT SUM(ratio BETWEEN 1.3135 AND 1.3147) FROM m) AS low_band;
+-- 1.4755 / 820 / 611 / 266 / 428.</code></pre>
+    <p>Run against the imported file, both boards return exactly the rows in the tables above and the shape statement returns the counts quoted here. Swap <code>fmr_4br_median</code> for <code>fmr_3br_median</code> and <code>fmr_1br_median</code> to re-run the ladder one rung down, or point the same queries at the FY2026 table to rank last year's file.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>The 4BR premium, FY2027: questions</h2>
+    <dl>
+      <dt>Which county has the widest 4BR-over-2BR premium in HUD's FY2027 fair market rents?</dt>
+      <dd>Bradford County, Florida: a 1,692-dollar 4BR median against a 1,008-dollar 2BR median, 1.6786 times, a 67.9 percent premium. Butte County, Idaho follows at 1.6780 (1,970 over 1,174) and Liberty County, Florida at 1.6779 (1,636 over 975). At the narrow end, Calhoun and Taylor County, Florida share the floor at 1.3137 (1,252 over 953), a 31.4 percent premium. The median county runs 1.48 across the 3,145 ranked county-equivalents.</dd>
+      <dt>Why do hundreds of counties share the same 4BR-to-2BR ratio?</dt>
+      <dd>HUD's county schedules repeat wherever counties share an area's values. 266 counties land inside the 1.6715-to-1.6725 band and 428 inside the 1.3135-to-1.3147 band, 22 percent of the ranked file combined. The 373 counties that share the 1,014-dollar 2BR floor split four ways on the 4BR: 84 counties at 1,695 dollars (1.6716, 30 of them in North Dakota), 40 Texas counties at 1,461 (1.4408), 31 Nebraska counties at 1,380 (1.3609), and 47 counties at 1,333 (1.3146, 11 in Wisconsin). Across the whole file, 3,145 counties carry 1,781 distinct 4BR-plus-2BR pairs.</dd>
+      <dt>How were the county ratios computed?</dt>
+      <dd>From HUD's FY2027 county-level file, 3,229 county-equivalents carrying a median and a maximum for each bedroom size, effective October 1, 2026. Each county's ratio divides its 4BR median by its 2BR median; multi-area counties use the median column, which already aggregates the county's area rows. Puerto Rico, Guam, the US Virgin Islands, American Samoa and the Northern Mariana Islands contribute 84 rows and stay out of the rankings. The national anchor comes from the published ZIP CSV: the 1,780-dollar 4BR median over the 1,190-dollar 2BR median, 1.50. Tables round ratios to four decimals and rank on the exact value.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <div class="btnrow">
+      <a class="btn" href="../data/hud-fmr-by-zip-2027/fmr-by-zip-2027.csv" download>Download the FY2027 ZIP CSV (free, 4.3 MB)</a>
+      <a class="btn-ghost btn" href="../data/hud-fmr-county-2026/fmr-county-2026.csv" download>FY2026 county CSV (free)</a>
+    </div>
+    <p class="btn-note">Both files come from HUD's Fair Market Rent releases and are public domain. The <a href="../datasets/hud-fmr-by-zip-2027.html">ZIP dataset page</a> documents the FY2027 file's integrity checks and the <a href="../datasets/hud-fmr-county-2026.html">county dataset page</a> documents the FY2026 county file; the full FY2027 county pack downloads from Zenodo. For other cuts of the same release, the <a href="hud-fmr-metro-split-gaps-2027.html">metro-split page</a> compares small-area and metro-wide pricing, the <a href="hud-fmr-county-rank-shifts-2027.html">rank-shift page</a> tracks year-over-year county moves, and the <a href="section-8-voucher-rent.html">voucher rent guide</a> covers what a housing agency actually pays against these figures.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

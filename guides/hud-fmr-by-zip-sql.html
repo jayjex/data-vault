@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Query HUD FMR by ZIP With SQL: DuckDB and SQLite on the FY2027 CSV | Data Vault</title>
+<meta name="description" content="SQL on the 51,871-row HUD FY2027 fair market rent ZIP file: median 2BR of 1,190 dollars, quartiles at 1,020 and 1,590, Texas leads all states with 3,244 ZIPs, and a JOIN to the metro medians with DuckDB and SQLite examples.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fmr-by-zip-sql.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Query HUD FMR by ZIP With SQL: DuckDB and SQLite on the FY2027 CSV">
+<meta property="og:description" content="The FY2027 HUD fair market rent ZIP file holds 51,871 rows. Query it with SQL: Texas leads with 3,244 ZIPs, the national 2BR median is 1,190 dollars, and a JOIN to the metro medians splits Los Angeles into 118 rows below, 177 at and 179 above.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fmr-by-zip-sql.html">
+<meta property="og:image" content="https://jayjex.github.io/data-vault/assets/covers/data-vault-banner.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Query HUD FMR by ZIP With SQL: DuckDB and SQLite on the FY2027 CSV">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Query HUD FMR by ZIP With SQL: DuckDB and SQLite on the FY2027 CSV", "description": "SQL on the 51,871-row HUD FY2027 fair market rent ZIP file: median 2BR of 1,190 dollars, quartiles at 1,020 and 1,590, Texas leads all states with 3,244 ZIPs, and a JOIN to the metro medians with DuckDB and SQLite examples.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-zip-sql.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026 by County: Completeness and Spread", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-county-2026.html"}, "mentions": [{"@type": "Article", "name": "Most Expensive US Metro Areas for Rent 2027 (HUD Fair Market Rent)", "url": "https://jayjex.github.io/data-vault/guides/most-expensive-metros-rent-2027.html"}, {"@type": "Article", "name": "HUD FMR 2027: Fair Market Rents for FY2027, What Changed by ZIP", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-2027.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which state has the most ZIP codes in the FY2027 fair market rent file?", "acceptedAnswer": {"@type": "Answer", "text": "Texas leads with 3,244 ZIP rows in the FY2027 file, ahead of California at 2,605, Pennsylvania at 2,576 and New York at 2,397. The full top ten adds Illinois (1,939), Missouri (1,908), Ohio (1,884), Iowa (1,718), Michigan (1,556) and Florida (1,552), and those ten states together carry 21,379 of the 51,871 rows."}}, {"@type": "Question", "name": "What is the median 2BR fair market rent for FY2027?", "acceptedAnswer": {"@type": "Answer", "text": "The national 2BR median across all 51,871 ZIP rows is 1,190 dollars, with quartiles at 1,020 (25th) and 1,590 (75th). The cheapest row in the file is ZIP 00669 in Aguadilla, PR at 520 dollars and the most expensive is ZIP 95060 in Santa Cruz-Watsonville, CA at 5,260 dollars. The median moved up from 1,150 in the FY2026 file, a 3.5 percent change of medians (the FY2027 guide reports 3.3 percent, which is the median of ZIP-level percent changes, a different measure)."}}, {"@type": "Question", "name": "How do I compute a median in SQL?", "acceptedAnswer": {"@type": "Answer", "text": "Rank the rows with ROW_NUMBER() OVER (ORDER BY fmr_2br), carry the total row count with COUNT(*) OVER (), then average the middle row for odd counts or the two middle rows for even counts, using rn IN ((n+1)/2, (n+2)/2). The pattern runs in SQLite and DuckDB with window functions, and it handles exact ties correctly because each of the 395 distinct 2BR values can occupy many row positions."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://jayjex.github.io/data-vault/guides/"}, {"@type": "ListItem", "position": 3, "name": "Query HUD FMR by ZIP with SQL", "item": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-zip-sql.html"}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Query HUD fair market rent by ZIP with SQL: DuckDB and SQLite on the FY2027 CSV</h1>
+  <p class="byline">FY2027 edition, published 2026-09-10. Data source: HUD FY2027 Fair Market Rent release, effective October 1, 2026. US government data, public domain. Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>The FY2027 ZIP-level fair market rent file holds 51,871 rows, one per ZIP code, with FMRs for studios through 4-bedrooms in ten columns. Every number on this page came out of that file in DuckDB and SQLite: Texas carries the most ZIP rows at 3,244, the national 2BR median is 1,190 dollars with quartiles at 1,020 and 1,590, and California owns the highest state-level 2BR median at 2,600 dollars.</p>
+    <p>The queries below are the whole toolkit. Two window functions give you exact percentiles, one JOIN attaches the metro-area medians from the <a href="../datasets/hud-fmr-metro-2027.html">FY2027 metro dataset</a> to the ZIP rows, and one GROUP BY ranks states. Nothing needs pandas, and every result in the text is copy-paste reproducible from the CSV.</p>
+  </section>
+
+  <section aria-label="What one row looks like">
+    <h2>What one row looks like</h2>
+    <pre><code>zip,hud_area_code,metro,area_name,state,fmr_0br,fmr_1br,fmr_2br,fmr_3br,fmr_4br
+76437,METRO10180M10180,metro,"Abilene, TX MSA",TX,910,920,1150,1490,1790</code></pre>
+    <p>Ten columns, all typed. The <code>metro</code> flag splits the file into 27,288 metro rows and 24,583 nonmetro rows, and the 51,871 rows cover 2,600 distinct FMR areas: 649 metro areas plus 1,951 nonmetro county groups across 52 state codes (the 50 states, DC and Puerto Rico). Only 395 distinct 2BR values exist across the whole file, so exact-value joins and GROUP BYs see plenty of ties.</p>
+    <p>Two properties matter before you write a query. First, keep the <code>zip</code> column as text, because ZIPs like 00669 in Aguadilla, PR lose their leading zero in any numeric type. Second, FMRs land on rounded dollar values, so medians computed over an even row count average two integers and can come out at .5; the queries below show the exact-tie behavior.</p>
+  </section>
+
+  <section aria-label="The ten states with the most ZIP rows">
+    <h2>The ten states with the most ZIP rows</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Ten states with the most ZIP rows in the FY2027 FMR file, with state-level 2BR medians"><table><thead><tr><th scope="col">#</th><th scope="col">State</th><th scope="col">ZIP rows</th><th scope="col">2BR median</th></tr></thead><tbody>
+      <tr><td>1</td><td>Texas</td><td>3,244</td><td>1,220</td></tr>
+      <tr><td>2</td><td>California</td><td>2,605</td><td>2,600</td></tr>
+      <tr><td>3</td><td>Pennsylvania</td><td>2,576</td><td>1,270</td></tr>
+      <tr><td>4</td><td>New York</td><td>2,397</td><td>1,500</td></tr>
+      <tr><td>5</td><td>Illinois</td><td>1,939</td><td>1,050</td></tr>
+      <tr><td>6</td><td>Missouri</td><td>1,908</td><td>1,020</td></tr>
+      <tr><td>7</td><td>Ohio</td><td>1,884</td><td>1,100</td></tr>
+      <tr><td>8</td><td>Iowa</td><td>1,718</td><td>990</td></tr>
+      <tr><td>9</td><td>Michigan</td><td>1,556</td><td>1,180</td></tr>
+      <tr><td>10</td><td>Florida</td><td>1,552</td><td>1,820</td></tr>
+    </tbody></table></div>
+    <p>The top ten states together carry 21,379 of the 51,871 rows, 41 percent of the file. Row count and rent level have nothing to do with each other: Texas tops the table at 3,244 ZIPs with a 1,220-dollar median, while second-place California runs a 2,600-dollar median, more than double. Iowa holds the lowest median among the ten at 990 dollars across 1,718 ZIPs, and Florida breaks the Midwest pattern at 1,820.</p>
+  </section>
+
+  <section aria-label="The 2BR distribution">
+    <h2>The 2BR distribution, five numbers</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Distribution of 2BR fair market rent across all 51,871 ZIP rows, FY2027"><table><thead><tr><th scope="col">Min</th><th scope="col">P25</th><th scope="col">Median</th><th scope="col">P75</th><th scope="col">Max</th></tr></thead><tbody>
+      <tr><td>520</td><td>1,020</td><td>1,190</td><td>1,590</td><td>5,260</td></tr>
+    </tbody></table></div>
+    <p>Half of all ZIP rows sit between 1,020 and 1,590 dollars for a 2-bedroom. Both ends of the distribution are anchored by named rows: the floor is ZIP 00669 in Aguadilla, PR at 520 dollars, and the ceiling is ZIP 95060 in Santa Cruz-Watsonville, CA at 5,260, the same metro that tops the <a href="most-expensive-metros-rent-2027.html">FY2027 most-expensive-metros ranking</a>. The p75-to-median ratio is 1.34, so the upper quartile climbs 570 dollars while the lower quartile sits 170 below the median: cheap ZIPs bunch together and expensive ones stretch.</p>
+    <p>Year over year, the national median moved from 1,150 dollars in the FY2026 file to 1,190, a 3.5 percent change of medians. The <a href="hud-fmr-2027.html">FY2027 guide</a> reports 3.3 percent for the same pair of files; that number is the median of ZIP-level percent changes over the 51,819 ZIPs present in both years, a different measure that weights every ZIP the same instead of every year's distribution.</p>
+  </section>
+
+  <section aria-label="Median 2BR by state">
+    <h2>Median 2BR by state: California on top</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Five states with the highest 2BR fair market rent median, FY2027"><table><thead><tr><th scope="col">#</th><th scope="col">State</th><th scope="col">2BR median</th></tr></thead><tbody>
+      <tr><td>1</td><td>California</td><td>2,600</td></tr>
+      <tr><td>2</td><td>Massachusetts</td><td>2,550</td></tr>
+      <tr><td>3</td><td>Hawaii</td><td>2,535</td></tr>
+      <tr><td>4</td><td>District of Columbia</td><td>2,400</td></tr>
+      <tr><td>5</td><td>New Jersey</td><td>2,390</td></tr>
+    </tbody></table></div>
+    <p>California edges Massachusetts by 50 dollars and Hawaii by 65. DC makes the list with 488 ZIP rows of its own, and Puerto Rico anchors the other end at a 610-dollar 2BR median across 216 rows. The state-level GROUP BY also exposes spread inside one state: Texas medians 1,220 at the state level, but the Austin ZIP rows median 1,835, Dallas 1,720 and Houston 1,470, so a state number can sit well under its own big metros.</p>
+  </section>
+
+  <section aria-label="Percentiles in SQL">
+    <h2>SQL: exact percentiles with window functions</h2>
+    <p>DuckDB reads the CSV directly, no import step. This is the query behind the distribution table:</p>
+    <pre><code>-- DuckDB: exact 2BR percentiles in one pass
+WITH ranked AS (
+  SELECT fmr_2br,
+         row_number() OVER (ORDER BY fmr_2br)      AS rn,
+         count(*)    OVER ()                       AS n
+  FROM read_csv_auto('fmr-by-zip-2027.csv')
+)
+SELECT
+  min(fmr_2br) AS min_2br,
+  avg(fmr_2br) FILTER (WHERE rn IN ((n+1)/4, (n+2)/4)) AS p25,
+  avg(fmr_2br) FILTER (WHERE rn IN ((n+1)/2, (n+2)/2)) AS med,
+  avg(fmr_2br) FILTER (WHERE rn IN ((3*n+1)/4, (3*n+2)/4)) AS p75,
+  max(fmr_2br) AS max_2br
+FROM ranked;
+-- 520, 1020, 1190, 1590, 5260</code></pre>
+    <p>SQLite needs the rows in a table first and no <code>FILTER</code> clause, so the CASE form does the same job:</p>
+    <pre><code>-- SQLite: import once, then the same window trick
+CREATE TABLE zips (zip TEXT, hud_area_code TEXT, metro TEXT,
+  area_name TEXT, state TEXT, fmr_0br INT, fmr_1br INT,
+  fmr_2br INT, fmr_3br INT, fmr_4br INT);
+.mode csv
+.import --skip 1 fmr-by-zip-2027.csv zips
+
+WITH ranked AS (
+  SELECT fmr_2br,
+         row_number() OVER (ORDER BY fmr_2br) AS rn,
+         count(*)    OVER ()                  AS n
+  FROM zips
+)
+SELECT avg(CASE WHEN rn IN ((n+1)/4, (n+2)/4) THEN fmr_2br END) AS p25,
+       avg(CASE WHEN rn IN ((n+1)/2, (n+2)/2) THEN fmr_2br END) AS med,
+       avg(CASE WHEN rn IN ((3*n+1)/4, (3*n+2)/4) THEN fmr_2br END) AS p75
+FROM ranked;
+-- 1020, 1190, 1590</code></pre>
+    <p>Why the <code>avg</code> of two row positions instead of a plain offset pick: with 51,871 rows the median position is a single row, (n+1)/2 = (n+2)/2 = 25,936, so both expressions resolve to the same row and the median is exactly 1,190. Quartile positions land between rows, and the average of the two neighbors is what a percentile function would interpolate. The <code>rn IN (...)</code> form handles both cases in one expression, which is why the same query runs in SQLite and DuckDB unchanged. Both engines verified on the real file; outputs match Python's statistics module to the dollar.</p>
+  </section>
+
+  <section aria-label="Joining ZIP rows to metro medians">
+    <h2>SQL: JOIN the ZIP rows to the metro medians</h2>
+    <p>The <a href="../datasets/hud-fmr-metro-2027.html">metro dataset</a> ships 50 metro areas with a per-metro 2BR median computed across each area's ZIP rows. The join key is <code>hud_area_code</code> on the ZIP side, <code>metro_code</code> on the metro side:</p>
+    <pre><code>SELECT count(*)                    AS matched,
+       sum(z.fmr_2br &lt; m.fmr_2br_median) AS below,
+       sum(z.fmr_2br = m.fmr_2br_median) AS at_median,
+       sum(z.fmr_2br &gt; m.fmr_2br_median) AS above
+FROM zips z
+JOIN metros m ON z.hud_area_code = m.metro_code;
+-- 10143, 4405, 1150, 4588</code></pre>
+    <p>The coverage table holds 10,143 of the 51,871 ZIP rows, the ZIPs inside the 50 largest metros by row count. Against their metro medians, 4,405 rows price below, 1,150 land exactly on it and 4,588 price above. Per-area breakdown for the three biggest:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="ZIP rows below, at and above the metro median for the three largest metros"><table><thead><tr><th scope="col">Metro</th><th scope="col">ZIP rows</th><th scope="col">Below</th><th scope="col">At median</th><th scope="col">Above</th></tr></thead><tbody>
+      <tr><td>Washington-Arlington-Alexandria, DC-VA-MD</td><td>488</td><td>183</td><td>74</td><td>231</td></tr>
+      <tr><td>Los Angeles-Long Beach-Glendale, CA</td><td>474</td><td>118</td><td>177</td><td>179</td></tr>
+      <tr><td>Philadelphia-Camden-Wilmington, PA-NJ-DE-MD</td><td>473</td><td>236</td><td>8</td><td>229</td></tr>
+    </tbody></table></div>
+    <p>Washington DC's 488 rows carry 162 distinct 2BR values, the most of any area. Los Angeles runs 159 and splits almost evenly, 179 rows above the metro median against 118 below. Philadelphia behaves differently: 236 rows below the median and only 8 above, because the metro's median rides on the expensive Pennsylvania and New Jersey side while most of its ZIP rows are cheaper. These per-metro medians are computed the same way the metro dataset documents: median across the area's ZIP rows, every ZIP weighted once. HUD publishes a second, separate set of ZIP-level figures for some metros (Small Area FMRs), so one area can carry both a single metro median and a ZIP-by-ZIP schedule; the <a href="../datasets/hud-fmr-county-2026.html">county dataset page</a> covers the median-plus-max rollup at county level for FY2026.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FMR by ZIP in SQL: questions</h2>
+    <dl>
+      <dt>Which state has the most ZIP codes in the FY2027 fair market rent file?</dt>
+      <dd>Texas leads with 3,244 ZIP rows in the FY2027 file, ahead of California at 2,605, Pennsylvania at 2,576 and New York at 2,397. The full top ten adds Illinois (1,939), Missouri (1,908), Ohio (1,884), Iowa (1,718), Michigan (1,556) and Florida (1,552), and those ten states together carry 21,379 of the 51,871 rows.</dd>
+      <dt>What is the median 2BR fair market rent for FY2027?</dt>
+      <dd>The national 2BR median across all 51,871 ZIP rows is 1,190 dollars, with quartiles at 1,020 (25th) and 1,590 (75th). The cheapest row in the file is ZIP 00669 in Aguadilla, PR at 520 dollars and the most expensive is ZIP 95060 in Santa Cruz-Watsonville, CA at 5,260 dollars. The median moved up from 1,150 in the FY2026 file, a 3.5 percent change of medians (the FY2027 guide reports 3.3 percent, which is the median of ZIP-level percent changes, a different measure).</dd>
+      <dt>How do I compute a median in SQL?</dt>
+      <dd>Rank the rows with ROW_NUMBER() OVER (ORDER BY fmr_2br), carry the total row count with COUNT(*) OVER (), then average the middle row for odd counts or the two middle rows for even counts, using rn IN ((n+1)/2, (n+2)/2). The pattern runs in SQLite and DuckDB with window functions, and it handles exact ties correctly because each of the 395 distinct 2BR values can occupy many row positions.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-2027/state-summary.csv" download>Download the 52-row state summary (free)</a>
+      <a class="btn" href="https://doi.org/10.5281/zenodo.22649503" rel="noopener">Full FY2027 CSVs on Zenodo (free)</a>
+    </div>
+    <p class="btn-note">The state summary downloads free with all three state-level numbers used above. The full 51,871-row ZIP file, the county file and the data dictionary live on Zenodo under CC BY 4.0, and the cleaned tables ship in the <a href="../datasets/hud-fmr-metro-2027.html">FY2027 metro dataset</a> and the <a href="../datasets/hud-fmr-county-2026.html">FY2026 county dataset</a>. Everything comes from HUD's FY2027 Fair Market Rent release, US government data in the public domain.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

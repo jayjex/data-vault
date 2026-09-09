@@ -403,3 +403,4 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - Full packs are licensed per purchase through the Getly links above.
 Guides index (every guide on the site, one line per page): https://jayjex.github.io/data-vault/guides/
 Dataset index (every dataset page on one page): https://jayjex.github.io/data-vault/datasets/
+Printables index (every STL spec sheet and printable-template page on one line each, mesh-checked, not test-printed): https://jayjex.github.io/data-vault/printables/

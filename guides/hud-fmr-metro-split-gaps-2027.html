@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Small-Area FMR vs Metro-Wide FMR FY2027: Counties Priced Away From Their Metros | Data Vault</title>
+<meta name="description" content="Jefferson County, West Virginia prices a 2BR voucher area at 1,380 dollars while its Washington DC metro complex medians 2,400. The ten deepest county discounts and biggest premiums inside HUD's 141 split metro complexes, FY2027.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fmr-metro-split-gaps-2027.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Small-Area FMR vs Metro-Wide FMR FY2027: Counties Priced Away From Their Metros">
+<meta property="og:description" content="Jefferson County, West Virginia prices a 2BR at 1,380 dollars inside a complex that medians 2,400; Eastern Worcester County, Massachusetts runs 33.8 percent above Boston's orbit. 210 of 392 sub-areas price below their own metro complex-wide median.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fmr-metro-split-gaps-2027.html">
+<meta property="og:image" content="https://jayjex.github.io/data-vault/assets/covers/data-vault-banner.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Small-Area FMR vs Metro-Wide FMR FY2027: Counties Priced Away From Their Metros">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Small-Area FMR vs Metro-Wide FMR FY2027: Counties Priced Away From Their Metros", "description": "Jefferson County, West Virginia prices a 2BR voucher area at 1,380 dollars while its Washington DC metro complex medians 2,400. The ten deepest county discounts and biggest premiums inside HUD's 141 split metro complexes, FY2027.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fmr-metro-split-gaps-2027.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2027", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2027.html"}, "mentions": [{"@type": "Dataset", "name": "HUD Fair Market Rents FY2027 by ZIP Code", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-by-zip-2027.html"}, {"@type": "Dataset", "name": "HUD Fair Market Rents FY2027, Top-50 Metro Areas", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-metro-2027.html"}, {"@type": "Article", "name": "Query HUD FMR by ZIP With SQL: DuckDB and SQLite on the FY2027 CSV", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-zip-sql.html"}, {"@type": "Article", "name": "HUD Metro FMR Area Guide: How HUD Defines a Metro FMR Area", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-metro-area.html"}, {"@type": "Article", "name": "Counties That Jumped or Fell Most in HUD Fair Market Rent FY2027", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-county-rank-shifts-2027.html"}, {"@type": "Article", "name": "What Is a Small Area FMR (SAFMR)?", "url": "https://jayjex.github.io/data-vault/guides/safmr-small-area-fmr.html"}, {"@type": "Article", "name": "Section 8 Voucher Rent: How Much Will HUD Pay?", "url": "https://jayjex.github.io/data-vault/guides/section-8-voucher-rent.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is a small-area FMR and how does it differ from a metro-wide FMR?", "acceptedAnswer": {"@type": "Answer", "text": "Small-area FMRs price individual ZIPs or counties inside a big metro; metro-wide figures price the whole area at once. In the FY2027 ZIP-level file, 141 of the 393 metro complexes are split into two or more separately priced areas, 392 areas in all. Median every ZIP inside a complex and 210 of those areas price below the complex-wide 2BR figure, 134 above it, and 48 exactly on it; 131 areas miss their complex-wide median by ten percentage points or more."}}, {"@type": "Question", "name": "Which county is priced furthest from its metro-wide HUD rent in FY2027?", "acceptedAnswer": {"@type": "Answer", "text": "Jefferson County, West Virginia: 1,380 dollars for a 2BR inside the Washington-Arlington-Alexandria complex whose ZIP-median runs 2,400 dollars, a 42.5 percent discount worth 1,020 dollars a month. Warren County, Virginia follows at minus 39.4 percent. The biggest premium is Eastern Worcester County, Massachusetts: 2,650 dollars against the 1,980-dollar Worcester complex-wide median, plus 33.8 percent or 670 dollars a month."}}, {"@type": "Question", "name": "How were the small-area vs metro-wide gaps computed?", "acceptedAnswer": {"@type": "Answer", "text": "From the FY2027 ZIP-level file's 27,288 metro rows; 193 Puerto Rico rows stay out. Grouping area codes by their five-digit CBSA number leaves 393 metro complexes, and 141 of them contain two or more separately priced areas. Each area's median runs over its own unique ZIPs; the complex-wide median runs over the union of the complex's ZIPs (1,003 ZIP rows repeat inside their complex with identical values, verified with zero conflicts). Medians average the two middle values on even counts and floor to whole dollars. The figures are recomputed from raw rows, not HUD's published area FMRs, which use a 40th-percentile rent estimate."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://jayjex.github.io/data-vault/guides/"}, {"@type": "ListItem", "position": 3, "name": "Small-area FMR vs metro-wide FMR FY2027: counties priced away from their metros", "item": "https://jayjex.github.io/data-vault/guides/hud-fmr-metro-split-gaps-2027.html"}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Where small-area FMRs break from the metro-wide median, FY2027</h1>
+  <p class="byline">FY2027 edition, published 2026-09-10. Data source: HUD FY2027 Fair Market Rent release, ZIP-level file including the small-area FMR publication, rates effective October 1, 2026. License: CC0 1.0 (US government data, public domain). Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>HUD's 649 metro FMR areas do not map one-to-one onto metros. Group them by the five-digit CBSA number inside each area code and the 649 collapse into 393 metro complexes, and 141 of those complexes are split into two or more separately priced areas, 392 areas in all once Puerto Rico's rows come out. Median the 2BR rent of every ZIP inside a complex, then compare each area against its own complex-wide figure: 210 areas price below it, 134 price above it, and 48 land exactly on it. 216 areas miss their complex median by five percentage points or more, 131 by ten or more, and 15 by thirty or more.</p>
+    <p>The extremes sit in two directions at once. Jefferson County, West Virginia, prices a 2BR at 1,380 dollars inside the Washington-Arlington-Alexandria complex whose ZIP-median runs 2,400 dollars, 1,020 dollars under, a 42.5 percent discount and the deepest in the file. Eastern Worcester County, Massachusetts, prices the same bedroom size at 2,650 dollars inside the Worcester complex at 1,980, 670 dollars over, a 33.8 percent premium and the biggest in the file. Every figure here recomputes from the raw rows of the <a href="../datasets/hud-fmr-by-zip-2027.html">FY2027 ZIP-level release</a>; the complex-wide medians are this page's construction over those rows, not HUD's published area figures.</p>
+  </section>
+
+  <section aria-label="The ten deepest discounts">
+    <h2>The ten deepest discounts against the metro-wide median</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Ten sub-areas with the deepest 2BR discounts against their own metro complex-wide median, HUD FY2027"><table><thead><tr><th scope="col">#</th><th scope="col">Sub-area</th><th scope="col">State</th><th scope="col">ZIPs</th><th scope="col">2BR sub-area</th><th scope="col">2BR complex-wide</th><th scope="col">Gap</th><th scope="col">Gap %</th><th scope="col">Metro complex</th></tr></thead><tbody>
+      <tr><td>1</td><td>Jefferson County</td><td>West Virginia</td><td>12</td><td>1,380, one of 6 tied</td><td>2,400</td><td>&minus;1,020</td><td>&minus;42.5%</td><td>47900 Washington DC</td></tr>
+      <tr><td>2</td><td>Warren County</td><td>Virginia</td><td>8</td><td>1,455</td><td>2,400</td><td>&minus;945</td><td>&minus;39.4%</td><td>47900 Washington DC</td></tr>
+      <tr><td>3</td><td>Haralson County</td><td>Georgia</td><td>8</td><td>1,055, one of 3 tied</td><td>1,710</td><td>&minus;655</td><td>&minus;38.3%</td><td>12060 Atlanta GA</td></tr>
+      <tr><td>4</td><td>Jasper County</td><td>Indiana</td><td>14</td><td>1,240, one of 5 tied</td><td>1,980</td><td>&minus;740</td><td>&minus;37.4%</td><td>16980 Chicago IL</td></tr>
+      <tr><td>5</td><td>Lancaster County</td><td>South Carolina</td><td>6</td><td>975, one of 3 tied</td><td>1,535</td><td>&minus;560</td><td>&minus;36.5%</td><td>16740 Charlotte NC-SC</td></tr>
+      <tr><td>6</td><td>Baker County</td><td>Florida</td><td>5</td><td>1,070, one of 13 tied</td><td>1,660</td><td>&minus;590</td><td>&minus;35.5%</td><td>27260 Jacksonville FL</td></tr>
+      <tr><td>7</td><td>Rappahannock County</td><td>Virginia</td><td>10</td><td>1,565</td><td>2,400</td><td>&minus;835</td><td>&minus;34.8%</td><td>47900 Washington DC</td></tr>
+      <tr><td>8</td><td>Meriwether County</td><td>Georgia</td><td>11</td><td>1,130, one of 2 tied</td><td>1,710</td><td>&minus;580</td><td>&minus;33.9%</td><td>12060 Atlanta GA</td></tr>
+      <tr><td>9</td><td>Culpeper County</td><td>Virginia</td><td>19</td><td>1,600, one of 2 tied</td><td>2,400</td><td>&minus;800</td><td>&minus;33.3%</td><td>47900 Washington DC</td></tr>
+      <tr><td>10</td><td>Pender County</td><td>North Carolina</td><td>13</td><td>1,070, one of 13 tied</td><td>1,590</td><td>&minus;520</td><td>&minus;32.7%</td><td>48900 Wilmington NC</td></tr>
+    </tbody></table></div>
+    <p>Four of the ten ring one metro. The Washington complex covers 524 unique ZIPs across five areas: the core Washington-Arlington-Alexandria area carries 488 of them and prices exactly on the 2,400-dollar complex-wide median, while the four satellite counties, Jefferson and its Virginia neighbors, price 33 to 42 percent below it. Jefferson County's twelve ZIPs median 1,380 dollars, so the complex-wide figure overstates that county's 2BR by 1,020 dollars, the largest dollar gap on either side of the ledger. This is the geography HUD's small-area program was built for: where an agency applies ZIP-level payment standards, the rent figure follows the county line instead of the metro average, and the <a href="safmr-small-area-fmr.html">small-area FMR explainer</a> walks through that mechanic.</p>
+    <p>Atlanta splits the same way. Five satellite counties, Haralson, Meriwether, Butts, Lumpkin and Morgan, price 24 to 38 percent below the 1,710-dollar complex-wide median while the core area prices at 1,770. Chicago's complex puts Gary, Indiana at 1,420 dollars against 1,980 (minus 28.3 percent) and Jasper County at 1,240 (minus 37.4). Charlotte runs the sharpest version: Lancaster County, South Carolina, prices at 975 dollars against 1,535, minus 36.5 percent, while the Charlotte core itself prices 23.1 percent above the same median, the only complex on the page to place an area in both top-ten tables. Baker County, Florida, sits in the Jacksonville complex with five ZIPs at 1,070, a figure shared by 13 of the 392 areas nationwide, and Pender County, North Carolina, holds the last slot at 1,070 against 1,590 in the Wilmington complex.</p>
+  </section>
+
+  <section aria-label="The ten biggest premiums">
+    <h2>The ten biggest premiums against the metro-wide median</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Ten sub-areas with the biggest 2BR premiums against their own metro complex-wide median, HUD FY2027"><table><thead><tr><th scope="col">#</th><th scope="col">Sub-area</th><th scope="col">State</th><th scope="col">ZIPs</th><th scope="col">2BR sub-area</th><th scope="col">2BR complex-wide</th><th scope="col">Gap</th><th scope="col">Gap %</th><th scope="col">Metro complex</th></tr></thead><tbody>
+      <tr><td>1</td><td>Eastern Worcester County</td><td>Massachusetts</td><td>20</td><td>2,650, one of 2 tied</td><td>1,980</td><td>+670</td><td>+33.8%</td><td>49340 Worcester MA</td></tr>
+      <tr><td>2</td><td>Easton-Raynham</td><td>Massachusetts</td><td>8</td><td>2,470</td><td>1,975</td><td>+495</td><td>+25.1%</td><td>39300 Providence RI-MA</td></tr>
+      <tr><td>3</td><td>Warren County</td><td>New Jersey</td><td>24</td><td>2,265</td><td>1,810</td><td>+455</td><td>+25.1%</td><td>10900 Allentown PA</td></tr>
+      <tr><td>4</td><td>Newport-Middleton-Portsmouth</td><td>Rhode Island</td><td>6</td><td>2,465</td><td>1,975</td><td>+490</td><td>+24.8%</td><td>39300 Providence RI-MA</td></tr>
+      <tr><td>5</td><td>Charlotte-Concord-Gastonia</td><td>North Carolina</td><td>129</td><td>1,890</td><td>1,535</td><td>+355</td><td>+23.1%</td><td>16740 Charlotte NC-SC</td></tr>
+      <tr><td>6</td><td>Hudspeth County</td><td>Texas</td><td>6</td><td>1,385</td><td>1,150</td><td>+235</td><td>+20.4%</td><td>21340 El Paso TX</td></tr>
+      <tr><td>7</td><td>Taunton-Mansfield-Norton</td><td>Massachusetts</td><td>14</td><td>2,365</td><td>1,975</td><td>+390</td><td>+19.7%</td><td>39300 Providence RI-MA</td></tr>
+      <tr><td>8</td><td>New York</td><td>New York</td><td>410</td><td>3,295</td><td>2,790</td><td>+505</td><td>+18.1%</td><td>35620 New York NY</td></tr>
+      <tr><td>9</td><td>Portland</td><td>Maine</td><td>45</td><td>2,340</td><td>2,000</td><td>+340</td><td>+17.0%</td><td>38860 Portland ME</td></tr>
+      <tr><td>10</td><td>Grand Rapids-Wyoming</td><td>Michigan</td><td>50</td><td>1,605</td><td>1,380</td><td>+225</td><td>+16.3%</td><td>24340 Grand Rapids MI</td></tr>
+    </tbody></table></div>
+    <p>The premium side is a Boston and Providence story with one twist. Eastern Worcester County carries twenty ZIPs at 2,650 dollars while the core Worcester area prices exactly on the 1,980-dollar median; the 670-dollar gap is the largest dollar premium in the file. Providence's orbit contributes three of the ten: Easton-Raynham, Taunton-Mansfield-Norton and Newport-Middleton-Portsmouth, all Massachusetts and Rhode Island sub-areas priced 19.7 to 25.1 percent above the shared 1,975-dollar complex median. Warren County, New Jersey, rides the Allentown complex, where the Pennsylvania core prices at 1,700 and the New Jersey side at 2,265, a 25.1 percent spread across a state line.</p>
+    <p>The New York complex is the largest split in the file: 1,059 unique ZIPs across seven areas and no base code at all. The core New York area carries 410 ZIPs at 3,295 dollars, 18.1 percent above the 2,790-dollar complex-wide median, while Jersey City prices exactly on it, Nassau-Suffolk sits 1.8 percent under, and Monmouth-Ocean holds the floor at 2,330, minus 16.5 percent. Charlotte's core is the flip case of its own cheap ring: 129 ZIPs at 1,890 dollars against 1,535 wide, a 355-dollar premium created entirely by the rural counties around it. San Francisco prices 335 dollars over the Oakland-Fremont complex median (3,590 against 3,255, plus 10.3 percent), the second-largest dollar premium, and Grand Rapids-Wyoming's core runs 225 dollars over its own complex. In dollar terms the two boards disagree with the percent boards: the deepest dollar discount is Jefferson County's minus 1,020, and the biggest dollar premiums are Eastern Worcester's plus 670 and New York's plus 505.</p>
+  </section>
+
+  <section aria-label="Bedroom size changes the story">
+    <h2>The gap depends on the bedroom size</h2>
+    <p>Rank the same area on studios and on four-bedrooms and the gap can flip sides. Newport-Middleton-Portsmouth, Rhode Island, prices a 4BR at 3,915 dollars against a 2,760-dollar complex-wide figure, plus 41.8 percent, the biggest 4BR premium anywhere in the file, on top of a 25.5 percent studio premium. Boone County, West Virginia, in the Charleston complex runs the other way: its 0BR median of 660 dollars sits 8.3 percent under the complex-wide 720, but its 4BR median of 1,590 sits 15.2 percent over the 1,380-wide figure, a 23.5-point swing between bedroom sizes inside one county. Carroll County, Indiana, prices studios exactly on its complex-wide 830 dollars while its 4BR runs 19.7 percent under the 1,800-wide figure, and Cape May County, New Jersey, prices studios 11.1 percent over while its 4BR runs 6.0 percent under. For a household shopping a large unit, the complex-wide number can understate the local rent in one county and overstate it in the next.</p>
+  </section>
+
+  <section aria-label="Methodology">
+    <h2>Methodology: how the gaps were built</h2>
+    <p>The source is the FY2027 ZIP-level file, 51,871 rows parsed from HUD's FY27_FMRs.xlsx plus the FY2027 small-area FMR publication, effective October 1, 2026. The analysis uses the 27,288 metro-flagged rows and drops 193 Puerto Rico rows, leaving 27,095 rows over 638 areas. Grouping area codes by the five-digit CBSA number inside them (positions 6 through 10 of the code) collapses the 638 areas into 393 metro complexes, and 141 complexes hold two or more separately priced areas, 392 areas in all covering 14,969 unique ZIPs. The other 252 complexes are a single area each and have no internal gap to measure.</p>
+    <p>Each sub-area's median runs over its own unique ZIPs. The complex-wide median runs over the union of the complex's ZIPs, one value per ZIP. HUD's multi-area design puts 1,003 ZIP rows inside two areas of the same complex; every one of those repeats with identical values (checked across all five bedroom sizes, zero conflicts), so the union is unambiguous. 129 of the 141 complexes share at least one ZIP between their own areas this way, and 1,283 ZIPs appear in more than one complex, each complex keeping its own values. Medians take the middle value, average the two middle values when the count is even, and floor to whole dollars, the same convention the <a href="../datasets/hud-fmr-metro-2027.html">top-50 metro dataset</a> documents. 22 complexes carry no base area code at all: New York's seven areas, Boston's six, and the Los Angeles pair of Los Angeles-Long Beach-Glendale plus Santa Ana-Anaheim-Irvine all live entirely on sub-area codes.</p>
+    <p>Three caveats frame every number. First, these medians are recomputed from raw ZIP rows; HUD's official area FMRs are 40th-percentile rent estimates and will not match a ZIP-median figure. Second, a complex-wide median weights each ZIP once, so a small expensive satellite can sit far from a figure that its own ZIPs helped set; the tables report ZIP counts so the weight is visible. Third, the gaps measure the published file, not what a voucher pays: payment standards are set per housing agency, and the <a href="section-8-voucher-rent.html">voucher rent guide</a> covers that layer. HUD can revise FY2027 figures mid-cycle.</p>
+  </section>
+
+  <section aria-label="Recompute the gaps yourself">
+    <h2>Recompute the gaps yourself</h2>
+    <p>Load <code>fmr-by-zip-2027.csv</code> into SQLite as table <code>fmr27</code> following the import steps in the <a href="hud-fmr-by-zip-sql.html">SQL guide</a>, then run the discount board. The first CTE keeps one row per ZIP per area, the next two compute the area and complex-wide 2BR medians, and the last counts areas per complex:</p>
+    <pre><code>-- SQLite 3.25+: the ten deepest 2BR discounts vs the complex-wide median
+WITH az AS (
+  SELECT hud_area_code, area_name, state, zip, CAST(fmr_2br AS INTEGER) AS v,
+         ROW_NUMBER() OVER (PARTITION BY hud_area_code, zip ORDER BY CAST(fmr_2br AS INTEGER)) AS rn
+  FROM fmr27
+  WHERE metro = 'metro' AND state != 'PR'
+),
+one AS (SELECT hud_area_code, area_name, state, zip, v FROM az WHERE rn = 1),
+amed AS (
+  SELECT hud_area_code, area_name, state, MAX(an) AS zips, AVG(v) AS med
+  FROM (
+    SELECT hud_area_code, area_name, state, v, an,
+           ROW_NUMBER() OVER (PARTITION BY hud_area_code ORDER BY v) AS arn
+    FROM (
+      SELECT hud_area_code, area_name, state, v,
+             COUNT(*) OVER (PARTITION BY hud_area_code) AS an
+      FROM one))
+  WHERE arn IN ((an + 1) / 2, (an + 2) / 2)
+  GROUP BY hud_area_code, area_name, state
+),
+wz AS (
+  SELECT cbsa, zip, v FROM (
+    SELECT SUBSTR(hud_area_code, 6, 5) AS cbsa, zip, v,
+           ROW_NUMBER() OVER (PARTITION BY SUBSTR(hud_area_code, 6, 5), zip ORDER BY v) AS zrn
+    FROM one)
+  WHERE zrn = 1
+),
+wmed AS (
+  SELECT cbsa, AVG(v) AS med FROM (
+    SELECT cbsa, v,
+           ROW_NUMBER() OVER (PARTITION BY cbsa ORDER BY v) AS rn,
+           COUNT(*) OVER (PARTITION BY cbsa) AS n
+    FROM wz)
+  WHERE rn IN ((n + 1) / 2, (n + 2) / 2)
+  GROUP BY cbsa
+),
+cx AS (
+  SELECT SUBSTR(hud_area_code, 6, 5) AS cbsa, COUNT(DISTINCT hud_area_code) AS n
+  FROM one GROUP BY cbsa
+)
+SELECT ROUND(100.0 * (a.med - w.med) / w.med, 1) AS gap_pct,
+       a.area_name, a.state, a.zips,
+       CAST(a.med AS INTEGER) AS area_2br,
+       CAST(w.med AS INTEGER) AS wide_2br
+FROM amed a
+JOIN wmed w ON SUBSTR(a.hud_area_code, 6, 5) = w.cbsa
+JOIN cx ON cx.cbsa = w.cbsa
+WHERE cx.n &gt; 1
+ORDER BY gap_pct ASC, a.area_name
+LIMIT 10;
+-- Rows: -42.5 Jefferson County WV (12 ZIPs, 1380 vs 2400),
+-- -39.4 Warren County VA (8, 1455 vs 2400), -38.3 Haralson County GA (8, 1055 vs 1710),
+-- -37.4 Jasper County IN (14, 1240 vs 1980), -36.5 Lancaster County SC (6, 975 vs 1535),
+-- -35.5 Baker County FL (5, 1070 vs 1660), -34.8 Rappahannock County VA (10, 1565 vs 2400),
+-- -33.9 Meriwether County GA (11, 1130 vs 1710), -33.3 Culpeper County VA (19, 1600 vs 2400),
+-- -32.7 Pender County NC (13, 1070 vs 1590).</code></pre>
+    <p>The premium board flips the sort, and a closing statement sums up the board shape:</p>
+    <pre><code>-- SQLite: the ten biggest premiums (same computation, order reversed)
+WITH az AS (
+  SELECT hud_area_code, area_name, state, zip, CAST(fmr_2br AS INTEGER) AS v,
+         ROW_NUMBER() OVER (PARTITION BY hud_area_code, zip ORDER BY CAST(fmr_2br AS INTEGER)) AS rn
+  FROM fmr27
+  WHERE metro = 'metro' AND state != 'PR'
+),
+one AS (SELECT hud_area_code, area_name, state, zip, v FROM az WHERE rn = 1),
+amed AS (
+  SELECT hud_area_code, area_name, state, MAX(an) AS zips, AVG(v) AS med
+  FROM (
+    SELECT hud_area_code, area_name, state, v, an,
+           ROW_NUMBER() OVER (PARTITION BY hud_area_code ORDER BY v) AS arn
+    FROM (
+      SELECT hud_area_code, area_name, state, v,
+             COUNT(*) OVER (PARTITION BY hud_area_code) AS an
+      FROM one))
+  WHERE arn IN ((an + 1) / 2, (an + 2) / 2)
+  GROUP BY hud_area_code, area_name, state
+),
+wz AS (
+  SELECT cbsa, zip, v FROM (
+    SELECT SUBSTR(hud_area_code, 6, 5) AS cbsa, zip, v,
+           ROW_NUMBER() OVER (PARTITION BY SUBSTR(hud_area_code, 6, 5), zip ORDER BY v) AS zrn
+    FROM one)
+  WHERE zrn = 1
+),
+wmed AS (
+  SELECT cbsa, AVG(v) AS med FROM (
+    SELECT cbsa, v,
+           ROW_NUMBER() OVER (PARTITION BY cbsa ORDER BY v) AS rn,
+           COUNT(*) OVER (PARTITION BY cbsa) AS n
+    FROM wz)
+  WHERE rn IN ((n + 1) / 2, (n + 2) / 2)
+  GROUP BY cbsa
+),
+cx AS (
+  SELECT SUBSTR(hud_area_code, 6, 5) AS cbsa, COUNT(DISTINCT hud_area_code) AS n
+  FROM one GROUP BY cbsa
+)
+SELECT ROUND(100.0 * (a.med - w.med) / w.med, 1) AS gap_pct,
+       a.area_name, a.state, a.zips,
+       CAST(a.med AS INTEGER) AS area_2br,
+       CAST(w.med AS INTEGER) AS wide_2br
+FROM amed a
+JOIN wmed w ON SUBSTR(a.hud_area_code, 6, 5) = w.cbsa
+JOIN cx ON cx.cbsa = w.cbsa
+WHERE cx.n &gt; 1
+ORDER BY gap_pct DESC, a.area_name
+LIMIT 10;
+-- Rows: +33.8 Eastern Worcester County MA (20 ZIPs, 2650 vs 1980),
+-- +25.1 Easton-Raynham MA (8, 2470 vs 1975), +25.1 Warren County NJ (24, 2265 vs 1810),
+-- +24.8 Newport-Middleton-Portsmouth RI (6, 2465 vs 1975),
+-- +23.1 Charlotte-Concord-Gastonia NC-SC (129, 1890 vs 1535),
+-- +20.4 Hudspeth County TX (6, 1385 vs 1150), +19.7 Taunton-Mansfield-Norton MA (14, 2365 vs 1975),
+-- +18.1 New York NY (410, 3295 vs 2790), +17.0 Portland ME (45, 2340 vs 2000),
+-- +16.3 Grand Rapids-Wyoming MI (50, 1605 vs 1380).
+
+-- The shape of the board: above / below / equal / 10+ points / 20+ points
+WITH az AS (
+  SELECT hud_area_code, area_name, state, zip, CAST(fmr_2br AS INTEGER) AS v,
+         ROW_NUMBER() OVER (PARTITION BY hud_area_code, zip ORDER BY CAST(fmr_2br AS INTEGER)) AS rn
+  FROM fmr27
+  WHERE metro = 'metro' AND state != 'PR'
+),
+one AS (SELECT hud_area_code, area_name, state, zip, v FROM az WHERE rn = 1),
+amed AS (
+  SELECT hud_area_code, area_name, state, MAX(an) AS zips, AVG(v) AS med
+  FROM (
+    SELECT hud_area_code, area_name, state, v, an,
+           ROW_NUMBER() OVER (PARTITION BY hud_area_code ORDER BY v) AS arn
+    FROM (
+      SELECT hud_area_code, area_name, state, v,
+             COUNT(*) OVER (PARTITION BY hud_area_code) AS an
+      FROM one))
+  WHERE arn IN ((an + 1) / 2, (an + 2) / 2)
+  GROUP BY hud_area_code, area_name, state
+),
+wz AS (
+  SELECT cbsa, zip, v FROM (
+    SELECT SUBSTR(hud_area_code, 6, 5) AS cbsa, zip, v,
+           ROW_NUMBER() OVER (PARTITION BY SUBSTR(hud_area_code, 6, 5), zip ORDER BY v) AS zrn
+    FROM one)
+  WHERE zrn = 1
+),
+wmed AS (
+  SELECT cbsa, AVG(v) AS med FROM (
+    SELECT cbsa, v,
+           ROW_NUMBER() OVER (PARTITION BY cbsa ORDER BY v) AS rn,
+           COUNT(*) OVER (PARTITION BY cbsa) AS n
+    FROM wz)
+  WHERE rn IN ((n + 1) / 2, (n + 2) / 2)
+  GROUP BY cbsa
+),
+cx AS (
+  SELECT SUBSTR(hud_area_code, 6, 5) AS cbsa, COUNT(DISTINCT hud_area_code) AS n
+  FROM one GROUP BY cbsa
+)
+SELECT COUNT(*) FILTER (WHERE g.gap_pct &gt; 0) AS above,
+       COUNT(*) FILTER (WHERE g.gap_pct &lt; 0) AS below,
+       COUNT(*) FILTER (WHERE g.gap_pct = 0) AS equal,
+       COUNT(*) FILTER (WHERE ABS(g.gap_pct) &gt;= 10) AS moved_10pts,
+       COUNT(*) FILTER (WHERE ABS(g.gap_pct) &gt;= 20) AS moved_20pts
+FROM (
+  SELECT ROUND(100.0 * (a.med - w.med) / w.med, 1) AS gap_pct
+  FROM amed a
+  JOIN wmed w ON SUBSTR(a.hud_area_code, 6, 5) = w.cbsa
+  JOIN cx ON cx.cbsa = w.cbsa
+  WHERE cx.n &gt; 1) g;
+-- 134 / 210 / 48 / 131 / 49.</code></pre>
+    <p>Run against the imported file, both statements return exactly the rows in the tables above and the board counts quoted in the short answer. Swap <code>fmr_2br</code> for another bedroom column to re-run the whole analysis at a different unit size, or drop the <code>state != 'PR'</code> filter to add Puerto Rico's 11 metro areas back in.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>Small-area vs metro-wide FMRs: questions</h2>
+    <dl>
+      <dt>What is a small-area FMR and how does it differ from a metro-wide FMR?</dt>
+      <dd>Small-area FMRs price individual ZIPs or counties inside a big metro; metro-wide figures price the whole area at once. In the FY2027 ZIP-level file, 141 of the 393 metro complexes are split into two or more separately priced areas, 392 areas in all. Median every ZIP inside a complex and 210 of those areas price below the complex-wide 2BR figure, 134 above it, and 48 exactly on it; 131 areas miss their complex-wide median by ten percentage points or more.</dd>
+      <dt>Which county is priced furthest from its metro-wide HUD rent in FY2027?</dt>
+      <dd>Jefferson County, West Virginia: 1,380 dollars for a 2BR inside the Washington-Arlington-Alexandria complex whose ZIP-median runs 2,400 dollars, a 42.5 percent discount worth 1,020 dollars a month. Warren County, Virginia follows at minus 39.4 percent. The biggest premium is Eastern Worcester County, Massachusetts: 2,650 dollars against the 1,980-dollar Worcester complex-wide median, plus 33.8 percent or 670 dollars a month.</dd>
+      <dt>How were the small-area vs metro-wide gaps computed?</dt>
+      <dd>From the FY2027 ZIP-level file's 27,288 metro rows; 193 Puerto Rico rows stay out. Grouping area codes by their five-digit CBSA number leaves 393 metro complexes, and 141 of them contain two or more separately priced areas. Each area's median runs over its own unique ZIPs; the complex-wide median runs over the union of the complex's ZIPs (1,003 ZIP rows repeat inside their complex with identical values, verified with zero conflicts). Medians average the two middle values on even counts and floor to whole dollars. The figures are recomputed from raw rows, not HUD's published area FMRs, which use a 40th-percentile rent estimate.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <div class="btnrow">
+      <a class="btn" href="../data/hud-fmr-by-zip-2027/fmr-by-zip-2027.csv" download>Download the FY2027 ZIP CSV (free, 4.3 MB)</a>
+      <a class="btn-ghost btn" href="../data/hud-fmr-metro-2027/fmr-metro-2027.csv" download>FY2027 top-50 metro CSV (free)</a>
+    </div>
+    <p class="btn-note">Both files come from HUD's FY2027 Fair Market Rent release, effective October 1, 2026, and are public domain. The <a href="../datasets/hud-fmr-by-zip-2027.html">ZIP dataset page</a> documents the file's integrity checks, the <a href="../datasets/hud-fmr-metro-2027.html">metro dataset page</a> covers the per-area medians for the 50 largest areas, and the full packs download free from Zenodo. For other cuts of the same release, the <a href="hud-fmr-by-metro-area.html">metro FMR area guide</a> explains how HUD defines these areas, the <a href="hud-fmr-county-rank-shifts-2027.html">rank-shift page</a> tracks year-over-year county moves, and the <a href="hud-fmr-by-zip-sql.html">SQL guide</a> shows the import pattern the queries above adapt.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

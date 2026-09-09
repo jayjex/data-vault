@@ -4,19 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MCP server for datasets: query full packs from Claude Desktop or pi | Data Vault</title>
-<meta name="description" content="dataset-mcp is an MCP server for datasets: list, sample, query, and summarize 149,673 rows of NFL, HUD rent, Airbnb, and bounty data over the Model Context Protocol. One npx install, no API key.">
+<meta name="description" content="dataset-mcp is an MCP server for datasets: list, sample, query, and summarize 209,118 rows of NFL, HUD rent, Airbnb, and bounty data over the Model Context Protocol. One npx install, no API key.">
 <link rel="canonical" href="https://jayjex.github.io/data-vault/agents/mcp-dataset-server.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Data Vault">
 <meta property="og:title" content="MCP server for datasets: query full packs from Claude Desktop or pi | Data Vault">
-<meta property="og:description" content="dataset-mcp is an MCP server for datasets: list, sample, query, and summarize 149,673 rows of NFL, HUD rent, Airbnb, and bounty data over the Model Context Protocol. One npx install, no API key.">
+<meta property="og:description" content="dataset-mcp is an MCP server for datasets: list, sample, query, and summarize 209,118 rows of NFL, HUD rent, Airbnb, and bounty data over the Model Context Protocol. One npx install, no API key.">
 <meta property="og:url" content="https://jayjex.github.io/data-vault/agents/mcp-dataset-server.html">
 <meta property="og:image" content="https://jayjex.github.io/data-vault/assets/covers/data-vault-banner.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="MCP server for datasets: query full packs from Claude Desktop or pi">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"dataset-mcp","applicationCategory":"DeveloperApplication","operatingSystem":"Cross-platform, Node.js 18+","softwareVersion":"1.1.0","url":"https://jayjex.github.io/data-vault/agents/mcp-dataset-server.html","downloadUrl":"https://github.com/jayjex/dataset-mcp","codeRepository":"https://github.com/jayjex/dataset-mcp","description":"An MCP server for datasets: five tools (list_datasets, get_dataset_info, get_sample, query_dataset, get_stats) over 149,673 rows of NFL games, HUD fair market rents, Airbnb listings, and Superteam Earn bounties. Full released files are queryable and cached locally with SHA-256 verification.","featureList":["list_datasets","get_dataset_info","get_sample","query_dataset","get_stats"],"offers":{"@type":"Offer","availability":"https://schema.org/InStock"},"license":"https://opensource.org/licenses/MIT","publisher":{"@type":"Organization","name":"Matchbook Labs"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"dataset-mcp","applicationCategory":"DeveloperApplication","operatingSystem":"Cross-platform, Node.js 18+","softwareVersion":"1.1.2","url":"https://jayjex.github.io/data-vault/agents/mcp-dataset-server.html","downloadUrl":"https://github.com/jayjex/dataset-mcp","codeRepository":"https://github.com/jayjex/dataset-mcp","description":"An MCP server for datasets: five tools (list_datasets, get_dataset_info, get_sample, query_dataset, get_stats) over 209,118 rows of NFL games, HUD fair market rents, Airbnb listings, and Superteam Earn bounties. Full released files are queryable and cached locally with SHA-256 verification.","featureList":["list_datasets","get_dataset_info","get_sample","query_dataset","get_stats"],"offers":{"@type":"Offer","availability":"https://schema.org/InStock"},"license":"https://opensource.org/licenses/MIT","publisher":{"@type":"Organization","name":"Matchbook Labs"}}</script>
 <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
@@ -33,11 +33,11 @@
   <a class="crumb" href="..">&larr; Catalog</a>
   <p class="kicker">model context protocol data access</p>
   <h1>MCP server for datasets</h1>
-  <p class="lead"><strong>dataset-mcp</strong> is an MCP server for datasets. Five tools, five data packs, 149,673 rows. Your Model Context Protocol client asks for rows, the server streams the full files from a public GitHub release, caches them locally, and answers. No API key, no auth, no CSV exports to babysit.</p>
+  <p class="lead"><strong>dataset-mcp</strong> is an MCP server for datasets. Five tools, six data packs, 209,118 rows. Your Model Context Protocol client asks for rows, the server streams the full files from a public GitHub release, caches them locally, and answers. No API key, no auth, no CSV exports to babysit.</p>
   <div class="herostats">
     <span><b>5</b> tools</span>
-    <span><b>149,673</b> rows queryable</span>
-    <span><b>19 MB</b> full release</span>
+    <span><b>209,118</b> rows queryable</span>
+    <span><b>24 MB</b> full release</span>
     <span>server <b>free</b></span>
   </div>
 
@@ -115,7 +115,7 @@ top: 59.11 x62, 61.01 x45, 209.00 x32, 279.00 x30, 165.93 x28</pre>
 
   <section aria-label="Registry">
     <h2>Registry entry</h2>
-    <p>Listed in the official MCP registry as <code>io.github.jayjex/dataset-mcp</code>, version 1.1.0. Source and issues: <a href="https://github.com/jayjex/dataset-mcp" rel="noopener">github.com/jayjex/dataset-mcp</a>. The server code is MIT.</p>
+    <p>Listed in the official MCP registry as <code>io.github.jayjex/dataset-mcp</code>, version 1.1.2. Source and issues: <a href="https://github.com/jayjex/dataset-mcp" rel="noopener">github.com/jayjex/dataset-mcp</a>. The server code is MIT.</p>
   </section>
 
   <section aria-label="Licenses">
@@ -126,9 +126,10 @@ top: 59.11 x62, 61.01 x45, 209.00 x32, 279.00 x30, 165.93 x28</pre>
       <tbody>
         <tr><td>nfl-games</td><td>CC BY 4.0</td><td>nflverse</td></tr>
         <tr><td>hud-fmr-2026</td><td>Public domain</td><td>US Department of Housing and Urban Development</td></tr>
+        <tr><td>hud-fmr-2027</td><td>Public domain</td><td>US Department of Housing and Urban Development</td></tr>
+        <tr><td>hud-fmr-metro-2027</td><td>Public domain</td><td>US Department of Housing and Urban Development</td></tr>
         <tr><td>airbnb-six-cities</td><td>CC BY 4.0</td><td>Inside Airbnb</td></tr>
         <tr><td>earn-bounties</td><td>Public API aggregate, personal and commercial use, no resale of files as-is</td><td>Superteam Earn public API</td></tr>
-        <tr><td>scraper-pack</td><td>Personal and commercial use, no redistribution, samples only over MCP</td><td>Data Vault</td></tr>
       </tbody>
     </table></div>
   </section>

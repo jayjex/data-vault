@@ -33,7 +33,7 @@
   <a class="crumb" href="..">&larr; Catalog</a>
   <p class="kicker">claude desktop config, three servers</p>
   <h1>MCP tools for Claude</h1>
-  <p class="lead">Our three MCP servers, wired for Claude Desktop. <strong>dataset-mcp</strong> queries 149,673 rows of NFL, rent, Airbnb, and bounty data. <strong>earn-bounty-scanner</strong> reads the live Superteam Earn feed. <strong>solana-research-library</strong> answers from a 25-platform Solana earning-rail database. All three are MIT-licensed, run locally over stdio, and need no API key. Every <code>claude_desktop_config.json</code> snippet below is copied from the server's README, and every MCP registry entry read active on 2026-09-10.</p>
+  <p class="lead">Our three MCP servers, wired for Claude Desktop. <strong>dataset-mcp</strong> queries 209,118 rows of NFL, rent, Airbnb, and bounty data. <strong>earn-bounty-scanner</strong> reads the live Superteam Earn feed. <strong>solana-research-library</strong> answers from a 25-platform Solana earning-rail database. All three are MIT-licensed, run locally over stdio, and need no API key. Every <code>claude_desktop_config.json</code> snippet below is copied from the server's README, and every MCP registry entry read active on 2026-09-10.</p>
 
   <section aria-label="The servers">
     <h2>The three servers</h2>
@@ -41,7 +41,7 @@
     <article class="card">
       <span class="niche">mcp</span>
       <h3>dataset-mcp: five tools over the dataset catalog</h3>
-      <p>The server behind this catalog. Five tools: <code>list_datasets</code>, <code>get_dataset_info</code>, <code>get_sample</code>, <code>query_dataset</code>, and <code>get_stats</code>. <code>query_dataset</code> filters and paginates the full released files (149,673 rows across five datasets), 100 rows per call, with <code>=</code>, <code>contains</code>, <code>gt</code>, and <code>lt</code> operators. <code>get_stats</code> returns row counts, numeric min/max/mean, and top-N frequencies. Files download once from a public GitHub release into <code>~/.cache/dataset-mcp/</code> and are re-verified against SHA-256 on every load.</p>
+      <p>The server behind this catalog. Five tools: <code>list_datasets</code>, <code>get_dataset_info</code>, <code>get_sample</code>, <code>query_dataset</code>, and <code>get_stats</code>. <code>query_dataset</code> filters and paginates the full released files (209,118 rows across six datasets), 100 rows per call, with <code>=</code>, <code>contains</code>, <code>gt</code>, and <code>lt</code> operators. <code>get_stats</code> returns row counts, numeric min/max/mean, and top-N frequencies. Files download once from a public GitHub release into <code>~/.cache/dataset-mcp/</code> and are re-verified against SHA-256 on every load.</p>
       <p>The README's config for <code>claude_desktop_config.json</code>, plain form (npm 10 and 11):</p>
 <pre>{
   "mcpServers": {
@@ -60,7 +60,7 @@
     }
   }
 }</pre>
-      <p class="btn-note">Registry: <code>io.github.jayjex/dataset-mcp</code>, version 1.1.0, active. Repo: <a href="https://github.com/jayjex/dataset-mcp" rel="noopener">github.com/jayjex/dataset-mcp</a>. Full tool docs with a captured session: <a href="mcp-dataset-server.html">MCP server for datasets</a>.</p>
+      <p class="btn-note">Registry: <code>io.github.jayjex/dataset-mcp</code>, version 1.1.2, active. Repo: <a href="https://github.com/jayjex/dataset-mcp" rel="noopener">github.com/jayjex/dataset-mcp</a>. Full tool docs with a captured session: <a href="mcp-dataset-server.html">MCP server for datasets</a>.</p>
     </article>
 
     <article class="card">

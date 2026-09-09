@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Most and Least Expensive States for HUD Fair Market Rent FY2027, by Bedroom Size | Data Vault</title>
+<meta name="description" content="The most expensive states for HUD fair market rent FY2027: Washington DC tops studios at 2,080 dollars, California the 2BR at 2,600, Hawaii the 4BR at 4,110; Arkansas and Mississippi hold the floor. Nine states moved five or more rank positions year over year, North Dakota up in all five bedroom sizes, Oklahoma down in all five. Recomputed from the free FY2026 and FY2027 CSVs.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fmr-state-extremes-2027.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Most and Least Expensive States for HUD Fair Market Rent FY2027, by Bedroom Size">
+<meta property="og:description" content="Washington DC tops the FY2027 studio ranking at a 2,080-dollar median, 2.29 times the national figure, while California holds the 2BR crown at 2,600 dollars and Hawaii the 4BR at 4,110. Arkansas and Mississippi hold the floor. Nine states jumped five or more rank positions between FY2026 and FY2027; North Dakota climbed in all five bedroom sizes, Oklahoma fell in all five.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fmr-state-extremes-2027.html">
+<meta property="og:image" content="https://jayjex.github.io/data-vault/assets/covers/data-vault-banner.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Most and Least Expensive States for HUD Fair Market Rent FY2027, by Bedroom Size">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Most and Least Expensive States for HUD Fair Market Rent FY2027, by Bedroom Size", "description": "The most expensive states for HUD fair market rent FY2027: Washington DC tops studios at 2,080 dollars, California the 2BR at 2,600, Hawaii the 4BR at 4,110; Arkansas and Mississippi hold the floor. Nine states moved five or more rank positions year over year, North Dakota up in all five bedroom sizes, Oklahoma down in all five. Recomputed from the free FY2026 and FY2027 CSVs.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fmr-state-extremes-2027.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2027", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2027.html"}, "mentions": [{"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}, {"@type": "Article", "name": "HUD Fair Market Rents FY2027 vs FY2026: Which Bedroom Size Rose Most", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-bedroom-deltas-2027.html"}, {"@type": "Article", "name": "HUD FMR by state: FY2026 fair market rent for all 50 states, DC and Puerto Rico", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-state.html"}, {"@type": "Article", "name": "Query HUD FMR by ZIP With SQL: DuckDB and SQLite on the FY2027 CSV", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-zip-sql.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which state has the highest fair market rent in FY2027?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on the bedroom size. Washington DC tops the studio column at a 2,080-dollar median, 2.29 times the national 910, and the 1-bedroom column at 2,170. California leads the 2BR ranking at 2,600 dollars and the 3BR at 3,420. Hawaii takes the 4BR crown at 4,110. At the other end, Arkansas is the cheapest state for studios at 700 dollars and 1BR at 760, while Mississippi holds the cheapest 2BR at 960 (tied with Arkansas), 3BR at 1,240, and 4BR at 1,360. Across the five bedroom sizes the most expensive state runs 2.71 to 3.02 times the cheapest."}}, {"@type": "Question", "name": "Which states moved the most in the FY2027 fair market rent rankings?", "acceptedAnswer": {"@type": "Answer", "text": "Ranking the 51 jurisdictions by their state median in each bedroom size, nine states moved five or more positions between FY2026 and FY2027. North Dakota is the only state that climbed in all five bedroom sizes, for example 44th to 38th at 2BR, and South Dakota, Vermont, Kansas and Nebraska also gained ground. Oklahoma is the only state that fell in all five, 41st to 49th at 2BR, the largest single drop on the board, with Louisiana, Maryland and Arizona also sliding. Maryland is the one high-ranked faller, 9th to 14th at 3BR, and Vermont's 20th-to-13th 2BR jump rides its 15.60 percent increase."}}, {"@type": "Question", "name": "How were the state medians and ranks computed?", "acceptedAnswer": {"@type": "Answer", "text": "As ZIP-row medians over the two HUD SAFMR files, 51,895 rows for FY2026 and 51,871 for FY2027, one row per ZIP and HUD area, so each ZIP weighs once. The recomputed FY2027 2BR medians match the published 52-row state summary on all 52 rows, and the FY2026 side lands on previously verified values (California 2,635, New York 1,430, Alaska 1,510 flat). Ranks use the standard competition convention, SQL RANK(): states with equal medians share the better position and the next position is skipped, so the tied 2BR floor of Arkansas and Mississippi at 960 dollars ranks 50. Puerto Rico stays out of the 51-jurisdiction rankings; its own 2BR median moved from 600 to 610 dollars."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://jayjex.github.io/data-vault/guides/"}, {"@type": "ListItem", "position": 3, "name": "Most and least expensive states for HUD fair market rent FY2027, by bedroom size", "item": "https://jayjex.github.io/data-vault/guides/hud-fmr-state-extremes-2027.html"}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>The most and least expensive states for HUD fair market rent FY2027, by bedroom size</h1>
+  <p class="byline">FY2027 edition, published 2026-09-10. Data source: HUD FY2027 Fair Market Rent release, effective October 1, 2026, diffed against the FY2026 files on the same ZIP basis. License: CC0 1.0 (US government data, public domain). Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>No single state is the most expensive at every bedroom size. Washington DC tops the studio column in HUD's FY2027 fair market rents at a 2,080-dollar median, 2.29 times the national 910, and the 1-bedroom column at 2,170. California leads the 2BR ranking at 2,600 dollars and the 3BR at 3,420. Hawaii takes the 4BR crown at 4,110. The floor splits the same way: Arkansas is the cheapest state for studios at 700 dollars and 1BR at 760, while Mississippi holds the cheapest 2BR at 960, tied with Arkansas, plus the cheapest 3BR at 1,240 and 4BR at 1,360. Every figure here is recomputed from the raw ZIP rows behind the <a href="../datasets/hud-fmr-2027.html">FY2027 fair market rent dataset</a> and its FY2026 counterpart, 51,871 and 51,895 rows, one row per ZIP and HUD area.</p>
+    <p>The second half of the page tracks movement. Ranking all 51 jurisdictions by their state median in each bedroom size, nine states shifted five or more positions between FY2026 and FY2027. North Dakota climbed in all five bedroom sizes; Oklahoma fell in all five. The full flip table sits below the extremes table.</p>
+  </section>
+
+  <section aria-label="State extremes by bedroom size">
+    <h2>Most and least expensive states, bedroom by bedroom</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Most and least expensive states by HUD FMR median, FY2026 vs FY2027"><table><thead><tr><th scope="col">Bedroom size</th><th scope="col">Top state</th><th scope="col">FY2026</th><th scope="col">FY2027</th><th scope="col">vs national</th><th scope="col">Bottom state</th><th scope="col">FY2026</th><th scope="col">FY2027</th><th scope="col">vs national</th><th scope="col">Max/min ratio</th></tr></thead><tbody>
+      <tr><td>0BR (studio)</td><td>Washington, DC</td><td>1,910</td><td>2,080</td><td>2.29x</td><td>Arkansas</td><td>680</td><td>700</td><td>76.9%</td><td>2.85 &rarr; 2.97</td></tr>
+      <tr><td>1BR</td><td>Washington, DC</td><td>1,970</td><td>2,170</td><td>2.24x</td><td>Arkansas</td><td>730</td><td>760</td><td>78.4%</td><td>2.90 &rarr; 2.86</td></tr>
+      <tr><td>2BR</td><td>California</td><td>2,635</td><td>2,600</td><td>2.18x</td><td>Arkansas, Mississippi (tied)</td><td>920 / 960</td><td>960 / 960</td><td>80.7%</td><td>2.86 &rarr; 2.71</td></tr>
+      <tr><td>3BR</td><td>California</td><td>3,475</td><td>3,420</td><td>2.22x</td><td>Mississippi</td><td>1,210</td><td>1,240</td><td>80.5%</td><td>2.87 &rarr; 2.76</td></tr>
+      <tr><td>4BR</td><td>Hawaii</td><td>4,130</td><td>4,110</td><td>2.31x</td><td>Mississippi</td><td>1,370</td><td>1,360</td><td>76.4%</td><td>3.01 &rarr; 3.02</td></tr>
+    </tbody></table></div>
+    <p>The "vs national" columns divide each extreme by the FY2027 national median for that size, 910, 970, 1,190, 1,540 and 1,780 dollars. The DC studio median runs 2.29 times the national figure; a Mississippi 4BR voucher ceiling sits at 76.4 percent of the national median. The last column is the spread, the top state's median divided by the bottom state's, FY2026 against FY2027.</p>
+    <p>The studio, 1BR and 2BR top-10 lists share the same ten states, and the 3BR and 4BR lists swap Maryland for Nevada. California, Massachusetts, Hawaii, Washington DC and New Jersey hold the first five positions in every column, in shifting arrangements:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Ten most expensive states per bedroom size, FY2027 medians with FY2026 in parentheses"><table><thead><tr><th scope="col">#</th><th scope="col">0BR</th><th scope="col">1BR</th><th scope="col">2BR</th><th scope="col">3BR</th><th scope="col">4BR</th></tr></thead><tbody>
+      <tr><td>1</td><td>DC 2,080 (1,910)</td><td>DC 2,170 (1,970)</td><td>CA 2,600 (2,635)</td><td>CA 3,420 (3,475)</td><td>HI 4,110 (4,130)</td></tr>
+      <tr><td>2</td><td>CA 1,950 (1,940)</td><td>CA 2,080 (2,115)</td><td>MA 2,550 (2,485)</td><td>HI 3,360 (3,390)</td><td>CA 3,950 (3,950)</td></tr>
+      <tr><td>3</td><td>MA 1,880 (1,820)</td><td>MA 1,980 (1,910)</td><td>HI 2,535 (2,550)</td><td>MA 3,180 (3,080)</td><td>DC 3,600 (3,260)</td></tr>
+      <tr><td>4</td><td>HI 1,830 (1,880)</td><td>NJ 1,960 (1,940)</td><td>DC 2,400 (2,200)</td><td>DC 3,060 (2,780)</td><td>MA 3,510 (3,390)</td></tr>
+      <tr><td>5</td><td>NJ 1,790 (1,720)</td><td>HI 1,945 (1,970)</td><td>NJ 2,390 (2,360)</td><td>NJ 2,960 (2,960)</td><td>NJ 3,410 (3,360)</td></tr>
+      <tr><td>6</td><td>FL 1,470 (1,430)</td><td>FL 1,550 (1,530)</td><td>RI 1,940 (1,830)</td><td>NH 2,430 (2,550)</td><td>CT 2,750 (2,800)</td></tr>
+      <tr><td>7</td><td>RI 1,470 (1,400), tied with FL at rank 6</td><td>RI 1,550 (1,470), tied with FL at rank 6</td><td>CT 1,930 (1,895)</td><td>CT 2,390 (2,340)</td><td>RI 2,740 (2,600)</td></tr>
+      <tr><td>8</td><td>CT 1,370 (1,320)</td><td>CT 1,540 (1,530)</td><td>NH 1,920 (1,930)</td><td>RI 2,380 (2,220)</td><td>FL 2,735 (2,780)</td></tr>
+      <tr><td>9</td><td>NH 1,335 (1,370)</td><td>NH 1,480 (1,470)</td><td>FL 1,820 (1,800)</td><td>FL 2,360 (2,350)</td><td>NV 2,660 (2,640)</td></tr>
+      <tr><td>10</td><td>MD 1,310 (1,280)</td><td>MD 1,430 (1,450)</td><td>MD 1,720 (1,770)</td><td>NV 2,290 (2,230)</td><td>NH 2,650 (2,700)</td></tr>
+    </tbody></table></div>
+    <p>Two changes stand out. Washington DC took the studio crown from California, 1,910 to 2,080 dollars against California's 1,940 to 1,950, and it jumped from 5th to 4th at 2BR on a 200-dollar step, the largest dollar increase in the 2BR top five. Hawaii walked the other way: its studio median fell from 1,880 to 1,830, and Massachusetts moved past it, 1,820 to 1,880, taking the 3rd studio position Hawaii held in FY2026. Nevada is the one state that joins a top-10 list from outside it, 10th at 3BR and 9th at 4BR, taking Maryland's seat in both. Each state's FY2026 median follows in parentheses. Rows mark list position within each column, and tied medians share a competition rank: Florida and Rhode Island tie at 1,470 among studios and 1,550 among 1BRs, so both hold rank 6 and Connecticut follows at rank 8.</p>
+  </section>
+
+  <section aria-label="The floor">
+    <h2>The floor: Arkansas and Mississippi</h2>
+    <p>Arkansas holds the cheapest studio and 1BR medians, 700 and 760 dollars, and it ties Mississippi at the 2BR floor, both at 960. Mississippi owns the 3BR and 4BR floors outright at 1,240 and 1,360, and its 2BR median did not move at all year over year. Oklahoma (970), Kentucky and West Virginia (980 each), and Iowa and Kansas (990 each) fill the positions just above the tied floor; the cluster the <a href="hud-fmr-bedroom-deltas-2027.html">FY2027 bedroom-deltas page</a> shows moving least.</p>
+    <p>The cheap cluster is tight and the expensive end is not. The bottom ten of the 2BR ranking sits within 60 dollars of each other, 960 to 1,020, while the top ten spans 880, 1,720 to 2,600. The gap from the floor to the national median of 1,190 dollars is 230 dollars; the gap from the national median to California at the top is 1,410.</p>
+  </section>
+
+  <section aria-label="The spread">
+    <h2>How wide is the state-to-state gap?</h2>
+    <p>Divide the most expensive state median by the cheapest and FY2027 lands between 2.71 and 3.02 across the five bedroom sizes. The direction of travel differs by size. At the studio end the spread widened, 2.85 to 2.97, because DC's studio surge pulled the ceiling up while the Arkansas floor barely moved. Through the middle of the ladder the spread narrowed: 2BR fell from 2.86 to 2.71, the tightest of the five, and 3BR from 2.87 to 2.76, as California's 2BR and 3BR medians ticked down from their FY2026 levels (2,635 to 2,600, 3,475 to 3,420) while the cheap end rose to meet the middle, the Arkansas 2BR floor from 920 to 960. The 4BR spread held at 3.01 to 3.02, the widest of the five, with Hawaii's ceiling easing 20 dollars while Mississippi's floor slipped 10.</p>
+    <p>Read together, the board did not get uniformly more unequal. The cheap end rose roughly in line with the national median, the studio ceiling ran away from it, and the 2BR and 3BR ceilings drifted toward it.</p>
+  </section>
+
+  <section aria-label="Rank flips">
+    <h2>Nine states jumped five or more rank positions</h2>
+    <p>Ranking all 51 jurisdictions by their state median in each bedroom size, then diffing the FY2026 ranks against the FY2027 ranks, nine states moved five or more positions somewhere on the board, 24 state-and-bedroom-size cells in total. Ranks use the standard competition convention, SQL <code>RANK()</code>: states with equal medians share the better position, which is why the tied Arkansas-and-Mississippi 2BR floor ranks 50th. Across all five sizes, between 37 and 41 of the 51 states shifted at least one position, so the five-or-more threshold isolates the real movers:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="States whose FY2026 to FY2027 rank changed by five or more positions, per bedroom size"><table><thead><tr><th scope="col">State</th><th scope="col">0BR</th><th scope="col">1BR</th><th scope="col">2BR</th><th scope="col">3BR</th><th scope="col">4BR</th></tr></thead><tbody>
+      <tr><td>North Dakota</td><td>40 &rarr; 33 (+7)</td><td>42 &rarr; 36 (+6)</td><td>44 &rarr; 38 (+6)</td><td>38 &rarr; 33 (+5)</td><td>35 &rarr; 29 (+6)</td></tr>
+      <tr><td>South Dakota</td><td>48 &rarr; 41 (+7)</td><td>43 &rarr; 36 (+7)</td><td>&mdash;</td><td>43 &rarr; 37 (+6)</td><td>38 &rarr; 32 (+6)</td></tr>
+      <tr><td>Vermont</td><td>18 &rarr; 12 (+6)</td><td>18 &rarr; 13 (+5)</td><td>20 &rarr; 13 (+7)</td><td>&mdash;</td><td>&mdash;</td></tr>
+      <tr><td>Kansas</td><td>&mdash;</td><td>&mdash;</td><td>50 &rarr; 45 (+5)</td><td>&mdash;</td><td>48 &rarr; 43 (+5)</td></tr>
+      <tr><td>Nebraska</td><td>46 &rarr; 41 (+5)</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>44 &rarr; 39 (+5)</td></tr>
+      <tr><td>Louisiana</td><td>&mdash;</td><td>&mdash;</td><td>37 &rarr; 42 (&minus;5)</td><td>&mdash;</td><td>&mdash;</td></tr>
+      <tr><td>Maryland</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>9 &rarr; 14 (&minus;5)</td><td>&mdash;</td></tr>
+      <tr><td>Arizona</td><td>11 &rarr; 17 (&minus;6)</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+      <tr><td>Oklahoma</td><td>42 &rarr; 48 (&minus;6)</td><td>45 &rarr; 50 (&minus;5)</td><td>41 &rarr; 49 (&minus;8)</td><td>41 &rarr; 48 (&minus;7)</td><td>40 &rarr; 46 (&minus;6)</td></tr>
+    </tbody></table></div>
+    <p>North Dakota is the only state that climbed in all five bedroom sizes, on increases of 80 to 130 dollars across the five sizes, from 800 to 880 at 1BR up to 1,320 to 1,450 at 3BR and 1,600 to 1,730 at 4BR. South Dakota follows with four rises: the biggest rank gains on the rise side, +7 at both 0BR (690 to 780) and 1BR (790 to 880), and the biggest dollar step at 4BR, 1,550 to 1,710. Vermont posts the largest upward 2BR move in the table, 20th to 13th, riding the 15.60 percent increase (1,410 to 1,630) that tops the <a href="hud-fmr-bedroom-deltas-2027.html">deltas page</a>. Kansas and Nebraska each gained twice. Five states rose somewhere; four fell.</p>
+    <p>Oklahoma is the mirror image, the only state that fell in all five bedroom sizes, and its 2BR slide of eight positions is the largest single move on the board. Its dollar medians barely budged, 980 to 970 at 2BR and 1,510 to 1,480 at 4BR, but the Plains states around it raised their figures, so it sank. Louisiana's 2BR step down (1,030 to 1,020) and Maryland's 3BR slide (2,280 to 2,200) work the same way. Maryland is worth its own line: it is the only high-ranked faller, dropping from 9th to 14th at 3BR, and its 1,720-dollar 2BR median is the lowest 2BR median of any top-10 list, 10th among 2BR states. Arizona completes the set, 11th to 17th at studios on the 1,200-to-1,150 cut, consistent with its all-five-median cuts on the deltas page.</p>
+  </section>
+
+  <section aria-label="Methodology">
+    <h2>Methodology: conventions behind the numbers</h2>
+    <p>Both files share one ten-column schema, one row per ZIP and HUD area: 51,895 rows for FY2026 and 51,871 for FY2027. Because a metro's FMR values repeat across most of its ZIP rows, every median here weighs each ZIP once, the ZIP-row convention. That is the same convention behind the published 52-row state summary, and the recomputed FY2027 2BR medians match that summary for all 52 rows, which is the check that pins the method down. The FY2026 side was cross-checked against previously published values: the national medians reproduce the 870 / 940 / 1,150 / 1,500 / 1,720 ladder on the <a href="hud-fmr-by-bedroom.html">FY2026 bedroom-size guide</a>, and state spot checks land on the published figures (California 2,635, New York 1,430, Alaska 1,510 flat).</p>
+    <p>Ranks use the standard competition convention, SQL <code>RANK()</code>: tied medians share the better position and later positions are skipped, so two states tied at the 2BR floor both rank 50th and no state ranks 51st. The alternative, ranking each distinct value once, changes several positions in the tight floor cluster, which is why the convention is stated here rather than assumed. The 51 jurisdictions counted throughout are the 50 states plus DC. Puerto Rico's 216 rows stay in both files, and its 2BR median moved from 600 to 610 dollars, +1.67 percent, far enough below the rest of the board that its exclusion changes no rank here. Two caveats apply to every figure: FMRs are HUD's rent estimates, set at the 40th percentile of local rents and effective October 1, 2026, not observed asking rents, and medians weight ZIPs, so a metro with 300 ZIP rows weighs 300 times a county area with one. The <a href="hud-fmr-by-state.html">FY2026 by-state page</a> carries last year's full 52-row table, and the <a href="hud-fmr-by-zip-sql.html">SQL guide</a> documents the import pattern the queries below assume.</p>
+  </section>
+
+  <section aria-label="Recompute the rankings yourself">
+    <h2>Recompute the rankings yourself</h2>
+    <p>Load both CSVs into SQLite with a <code>fy</code> column and the 2BR leaderboard falls out of one window-function chain, median first, then rank:</p>
+    <pre><code>-- SQLite: the ten most expensive states by 2BR median, FY2027
+WITH m AS (
+  SELECT state, AVG(v) AS med FROM (
+    SELECT state, fmr_2br AS v,
+           ROW_NUMBER() OVER (PARTITION BY state ORDER BY fmr_2br) AS rn,
+           COUNT(*) OVER (PARTITION BY state) AS n
+    FROM zips WHERE fy = 'fy2027'
+  ) WHERE rn IN ((n + 1) / 2, (n + 2) / 2) GROUP BY state
+)
+SELECT RANK() OVER (ORDER BY med DESC) AS rk, state, med
+FROM m ORDER BY rk, state LIMIT 10;
+-- Top row: CA, 2600. Rows 2 to 10: MA 2550, HI 2535, DC 2400,
+-- NJ 2390, RI 1940, CT 1930, NH 1920, FL 1820, MD 1720.</code></pre>
+    <p>The flip table needs both years' ranks in one query, then a threshold:</p>
+    <pre><code>-- SQLite: states whose 2BR rank moved five or more positions
+WITH m26 AS (
+  SELECT state, AVG(v) AS med FROM (
+    SELECT state, fmr_2br AS v,
+           ROW_NUMBER() OVER (PARTITION BY state ORDER BY fmr_2br) AS rn,
+           COUNT(*) OVER (PARTITION BY state) AS n
+    FROM zips WHERE fy = 'fy2026'
+  ) WHERE rn IN ((n + 1) / 2, (n + 2) / 2) GROUP BY state
+),
+r26 AS (SELECT state, med, RANK() OVER (ORDER BY med DESC) AS rk FROM m26),
+m27 AS (
+  SELECT state, AVG(v) AS med FROM (
+    SELECT state, fmr_2br AS v,
+           ROW_NUMBER() OVER (PARTITION BY state ORDER BY fmr_2br) AS rn,
+           COUNT(*) OVER (PARTITION BY state) AS n
+    FROM zips WHERE fy = 'fy2027'
+  ) WHERE rn IN ((n + 1) / 2, (n + 2) / 2) GROUP BY state
+),
+r27 AS (SELECT state, med, RANK() OVER (ORDER BY med DESC) AS rk FROM m27)
+SELECT r26.state, r26.rk AS rk26, r27.rk AS rk27, r26.rk - r27.rk AS moved
+FROM r26 JOIN r27 USING (state)
+WHERE ABS(r26.rk - r27.rk) &gt;= 5
+ORDER BY moved DESC, r27.rk;
+-- Five rows: VT +7, ND +6, KS +5, LA -5, OK -8. Matches the table above.</code></pre>
+    <p>Run both against the tables built by the <a href="hud-fmr-by-zip-sql.html">SQL guide's</a> import block, with each file loaded under its <code>fy</code> label, and the outputs match this page row for row. Swap <code>fmr_2br</code> for any other bedroom column and the same queries re-rank that size.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>State extremes and rank flips, FY2027: questions</h2>
+    <dl>
+      <dt>Which state has the highest fair market rent in FY2027?</dt>
+      <dd>It depends on the bedroom size. Washington DC tops the studio column at a 2,080-dollar median, 2.29 times the national 910, and the 1-bedroom column at 2,170. California leads the 2BR ranking at 2,600 dollars and the 3BR at 3,420. Hawaii takes the 4BR crown at 4,110. At the other end, Arkansas is the cheapest state for studios at 700 dollars and 1BR at 760, while Mississippi holds the cheapest 2BR at 960 (tied with Arkansas), 3BR at 1,240, and 4BR at 1,360. Across the five bedroom sizes the most expensive state runs 2.71 to 3.02 times the cheapest.</dd>
+      <dt>Which states moved the most in the FY2027 fair market rent rankings?</dt>
+      <dd>Ranking the 51 jurisdictions by their state median in each bedroom size, nine states moved five or more positions between FY2026 and FY2027. North Dakota is the only state that climbed in all five bedroom sizes, for example 44th to 38th at 2BR, and South Dakota, Vermont, Kansas and Nebraska also gained ground. Oklahoma is the only state that fell in all five, 41st to 49th at 2BR, the largest single drop on the board, with Louisiana, Maryland and Arizona also sliding. Maryland is the one high-ranked faller, 9th to 14th at 3BR, and Vermont's 20th-to-13th 2BR jump rides its 15.60 percent increase.</dd>
+      <dt>How were the state medians and ranks computed?</dt>
+      <dd>As ZIP-row medians over the two HUD SAFMR files, 51,895 rows for FY2026 and 51,871 for FY2027, one row per ZIP and HUD area, so each ZIP weighs once. The recomputed FY2027 2BR medians match the published 52-row state summary on all 52 rows, and the FY2026 side lands on previously verified values (California 2,635, New York 1,430, Alaska 1,510 flat). Ranks use the standard competition convention, SQL RANK(): states with equal medians share the better position and the next position is skipped, so the tied 2BR floor of Arkansas and Mississippi at 960 dollars ranks 50. Puerto Rico stays out of the 51-jurisdiction rankings; its own 2BR median moved from 600 to 610 dollars.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <div class="btnrow">
+      <a class="btn" href="../data/hud-fmr-by-zip-2027/fmr-by-zip-2027.csv" download>Download the full FY2027 ZIP CSV (free, 4.3 MB)</a>
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>FY2026 sample CSV first</a>
+    </div>
+    <p class="btn-note">Both files come from HUD's Fair Market Rent releases, FY2027 effective October 1, 2026 and FY2026 effective October 1, 2025. The <a href="../datasets/hud-fmr-2027.html">FY2027 dataset page</a> documents the columns and integrity checks, the <a href="../datasets/hud-fmr-2026.html">ZIP-level FY2026 dataset page</a> covers the baseline year, and the full packs download free from Zenodo. For more on the same files, the <a href="hud-fmr-bedroom-deltas-2027.html">bedroom-deltas page</a> ranks the states by percentage increase, the <a href="hud-fmr-by-state.html">FY2026 by-state guide</a> holds last year's 52-row table, and the <a href="hud-fmr-by-zip-sql.html">SQL guide</a> walks the import the queries above reuse.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

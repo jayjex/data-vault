@@ -37,8 +37,9 @@
         }
       ],
       "full_data": {
-        "status": "available",
-        "url": "https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtrfvdt7"
+        "status": "free",
+        "url": "https://zenodo.org/records/22643177/latest",
+        "note": "Full pack (games.csv 7,548 rows, team-records-by-season.csv 861 rows, season-summaries.csv 27 rows, data dictionary, build script, source checksums) is free on Zenodo under DOI 10.5281/zenodo.22643177, CC BY 4.0 repackaging of nflverse release data."
       },
       "license": "CC BY 4.0 (game data from nflverse, CC BY 4.0)",
       "page": "https://jayjex.github.io/data-vault/datasets/nfl-games.html"
@@ -74,8 +75,9 @@
         }
       ],
       "full_data": {
-        "status": "available",
-        "url": "https://www.getly.store/store/matchbook-labs-mtrfh66f"
+        "status": "free",
+        "url": "https://zenodo.org/records/22643149/latest",
+        "note": "Full pack (fmr-by-zip-2026.csv 51,895 rows, fmr-by-county-2026.csv 3,229 rows, state-summary.csv 52 rows, data dictionary, build script) is free on Zenodo under DOI 10.5281/zenodo.22643149, CC BY 4.0 repackaging of public-domain US government data."
       },
       "license": "Public domain (US government data)",
       "page": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"
@@ -149,8 +151,9 @@
         }
       ],
       "full_data": {
-        "status": "available",
-        "url": "https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtrfuvf3"
+        "status": "free",
+        "url": "https://zenodo.org/records/22643189/latest",
+        "note": "Full pack (six per-city CSVs, cities-index.csv, data dictionary, normalize script, source checksums) is free on Zenodo under DOI 10.5281/zenodo.22643189, CC BY 4.0 repackaging of Inside Airbnb summary data."
       },
       "license": "CC BY 4.0 (listing data from Inside Airbnb, CC BY 4.0)",
       "page": "https://jayjex.github.io/data-vault/datasets/airbnb-six-cities.html"

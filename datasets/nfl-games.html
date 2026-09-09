@@ -16,7 +16,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="NFL betting pack cover">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "NFL Games & Betting Lines 1999-2026", "description": "7,548 NFL games with scores, closing spreads, totals, moneylines, odds, rest days, QBs, coaches, and stadium weather.", "url": "https://jayjex.github.io/data-vault/datasets/nfl-games.html", "dateModified": "2026-09-06", "keywords": ["sports", "betting", "nfl"], "creator": {"@type": "Organization", "name": "Matchbook Labs"}, "isAccessibleForFree": true, "license": "https://creativecommons.org/licenses/by/4.0/", "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/nfl-games/sample.csv"}, {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://jayjex.github.io/data-vault/data/nfl-games/sample.json"}], "offers": {"@type": "Offer", "url": "https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtrfvdt7"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "NFL Games & Betting Lines 1999-2026", "description": "7,548 NFL games with scores, closing spreads, totals, moneylines, odds, rest days, QBs, coaches, and stadium weather.", "url": "https://jayjex.github.io/data-vault/datasets/nfl-games.html", "dateModified": "2026-09-10", "identifier": "https://doi.org/10.5281/zenodo.22643177", "keywords": ["sports", "betting", "nfl"], "creator": {"@type": "Organization", "name": "Matchbook Labs"}, "isAccessibleForFree": true, "license": "https://creativecommons.org/licenses/by/4.0/", "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/nfl-games/sample.csv"}, {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://jayjex.github.io/data-vault/data/nfl-games/sample.json"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://zenodo.org/records/22643177/latest"}]}</script>
 <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
@@ -32,7 +32,7 @@
 <main id="main" class="wrap page">
   <a class="crumb" href="..">&larr; Catalog</a>
   <h1>NFL Games &amp; Betting Lines 1999-2026</h1>
-  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>7,548</b> rows</span><span class="stat"><b>3</b> tables</span><span class="stat">2026-09-06</span><span class="stat"><b>one-time</b> full pack</span></div>
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>7,548</b> rows</span><span class="stat"><b>3</b> tables</span><span class="stat">2026-09-06</span><span class="stat"><b>free</b> full data</span></div>
   <section aria-label="About this dataset">
     <p>One row per game, 46 columns, 7,548 games from the 1999 season through the full 2026 schedule. Scores, closing spreads and totals, moneylines with odds, rest days, starting QBs, coaches, referees, stadium, roof, surface, and weather. Loads straight into pandas, Excel, or R.</p>
     <p>Three tables ship in the pack. games.csv has the game rows. team-records-by-season.csv has 861 rows of W/L/T, points for and against, ATS record, and over/under record per team per season. season-summaries.csv has 27 rows of scoring averages, home win rate, and favorite cover rate per season. The <a href="../guides/nfl-games-data-guide.html">games.csv column guide</a> walks through every column group, season coverage, and free MCP query examples. Deciding between raw nflverse downloads and this pack? The <a href="../guides/nfl-data-alternative.html">nflverse vs preprocessed pack comparison</a> lays out both routes. Opening the sample in a spreadsheet? The <a href="../guides/nfl-dataset-excel.html">Excel and Google Sheets import guide</a> walks the 22-row CSV step by step. Loading it in Python? The <a href="../guides/nfl-dataset-python.html">pandas quickstart</a> pulls the same sample straight from its URL and runs three small analyses. Calling live endpoints instead? The <a href="../guides/nfl-data-api-python.html">requests examples for NFL APIs</a> cover ESPN's scoreboard JSON and the nflverse release file, with the snapshot trade-off spelled out.</p>
@@ -57,9 +57,9 @@
   <section aria-label="Get the data">
     <div class="btnrow">
       <a class="btn-ghost btn" href="../data/nfl-games/sample.csv" download>Download sample (CSV)</a>
-      <a class="btn" href="https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtrfvdt7" rel="noopener">Get full data</a>
+      <a class="btn" href="https://doi.org/10.5281/zenodo.22643177" rel="noopener">All files on Zenodo (free)</a>
     </div>
-    <p class="btn-note">Full pack: 3 CSVs (7,548 + 861 + 27 rows), data dictionary, source checksums. Checkout and download run through Getly. Building on the data and need the license picture? The <a href="../guides/dataset-license-guide.html">dataset license guide</a> explains the CC BY 4.0 line this pack carries.</p>
+    <p class="btn-note">The full pack downloads free from Zenodo (CC BY 4.0, data from nflverse): games.csv with all 7,548 rows, team-records-by-season.csv, season-summaries.csv, the data dictionary, and the build script. Building on the data and need the license picture? The <a href="../guides/dataset-license-guide.html">dataset license guide</a> explains the CC BY 4.0 line this pack carries.</p>
   </section>
 </main>
 

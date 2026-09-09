@@ -34,7 +34,7 @@ Paid per-call API (x402 protocol, USDC on Base): the NFL scores and HUD FMR data
 - Sample JSON: https://jayjex.github.io/data-vault/data/nfl-games/sample.json
 - Sample CSV: https://jayjex.github.io/data-vault/data/nfl-games/sample.csv
 - Page: https://jayjex.github.io/data-vault/datasets/nfl-games.html
-- Full data: [Get full data](https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtrfvdt7)
+- Full data (free): https://zenodo.org/records/22643177/latest (games 7,548 rows, team records 861, season summaries 27, data dictionary, checksums)
 
 ### HUD Fair Market Rents FY2026 (hud-fmr-2026)
 FY2026 fair market rents for 51,895 ZIP codes, 3,229 counties, and 52 states. Five bedroom sizes per row. Niche: gov-data. Stats: {"rows": 51895, "tables": 3, "columns": 11, "updated": "FY2026"}.
@@ -43,7 +43,7 @@ FY2026 fair market rents for 51,895 ZIP codes, 3,229 counties, and 52 states. Fi
 - Page: https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html
 - Texas guide: https://jayjex.github.io/data-vault/guides/hud-fmr-texas.html (state=TX filter, 3,247 ZIP rows, metro table, free state-summary.csv)
 - County guide: https://jayjex.github.io/data-vault/guides/hud-fmr-by-county.html (3,229 county rows, Harris County TX query example, median/max rollup explainer)
-- Full data: [Get full data](https://www.getly.store/store/matchbook-labs-mtrfh66f)
+- Full data (free): https://zenodo.org/records/22643149/latest (ZIP 51,895 rows, county 3,229, state summary 52, data dictionary)
 
 ### HUD Fair Market Rents FY2027 (hud-fmr-2027)
 FY2027 fair market rents for 51,871 ZIP codes, 3,229 counties, and 52 states, effective October 1, 2026. Five bedroom sizes per row, same ten-column schema as the FY2026 file. Citable DOI: https://doi.org/10.5281/zenodo.22649503 (full CSVs on Zenodo, CC BY 4.0). Niche: gov-data. Stats: {"rows": 51871, "tables": 3, "columns": 11, "updated": "FY2027"}.
@@ -86,7 +86,7 @@ The full FY2027 ZIP-level fair market rent file as one free download: 51,871 row
 - Sample CSV: https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.csv
 - Page: https://jayjex.github.io/data-vault/datasets/airbnb-six-cities.html
 - Guide (per-city view): https://jayjex.github.io/data-vault/guides/airbnb-data-by-city.html
-- Full data: [Get full data](https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtrfuvf3)
+- Full data (free): https://zenodo.org/records/22643189/latest (six per-city CSVs, cities-index, data dictionary)
 
 ### Airbnb Listings, 8 More US Cities (airbnb-eight-cities)
 90,746 Airbnb listings across Boston, Chicago, Los Angeles, New Orleans, Portland, San Francisco, Seattle, and Washington DC, June 2026 snapshots, same 12-column schema as airbnb-six-cities. Niche: real-estate. Stats: {"rows": 90746, "tables": 12, "columns": 12, "updated": "2026-06-24"}.
@@ -315,6 +315,7 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - [Query HUD FMR by ZIP With SQL: DuckDB and SQLite on the FY2027 CSV](https://jayjex.github.io/data-vault/guides/hud-fmr-by-zip-sql.html): 51,871-row ZIP file queried in SQL, Texas leads with 3,244 rows (top ten = 21,379), 2BR percentiles 520 / 1,020 / 1,190 / 1,590 / 5,260, window-function median that handles ties, JOIN to metro medians matches 10,143 rows (4,405 below, 1,150 at, 4,588 above)
 - [10 Most Affordable US Metro ZIP Codes for Renters 2027 (HUD Fair Market Rent)](https://jayjex.github.io/data-vault/guides/most-affordable-zips-rent-2027.html): 2BR floor of 890 dollars shared by 133 mainland ZIPs across 46 areas (SC 47, LA 86), ZIP 29001 in Clarendon County, SC tops the list and all 12 cheapest rows are South Carolina, cheapest states Arkansas and Mississippi at a 960 median, cheapest full metro Gadsden, AL at 920, FY2026 floor was 780 all-Alabama, Puerto Rico excluded
 - [HUD Fair Market Rents FY2027 vs FY2026: Which Bedroom Size Rose Most](https://jayjex.github.io/data-vault/guides/hud-fmr-bedroom-deltas-2027.html): studios moved fastest, national 0BR median 870 to 910 dollars (+4.60 percent) against 2BR 1,150 to 1,190, Vermont tops the state table at a 15.60 percent 2BR jump (1,410 to 1,630), 4BR steepest single cell at Vermont +17.59 percent, Arizona cut all five medians, both files matched on 51,819 ZIP-area pairs
+- [Most and Least Expensive States for HUD Fair Market Rent FY2027, by Bedroom Size](https://jayjex.github.io/data-vault/guides/hud-fmr-state-extremes-2027.html): DC tops the studio ranking at a 2,080-dollar median (2.29x national 910) and 1BR at 2,170, California holds 2BR at 2,600 and 3BR at 3,420, Hawaii 4BR at 4,110, floor Arkansas 700/760 and Mississippi 960/1,240/1,360, state spread 2.71 to 3.02 with the 2BR gap narrowing 2.86 to 2.71, nine states flipped five or more rank positions (North Dakota up all five sizes, Oklahoma down all five, biggest single move OK 2BR 41st to 49th), same ten states hold every top-10 slot
 - [Superteam Earn Data: the Solana Bounties Dataset and Its API Map](https://jayjex.github.io/data-vault/guides/solana-bounties-data-guide.html): bounty schema and 186+ API routes
 - [Solana Grants List: Mapping the Ecosystem's Funding Programs from Public Data](https://jayjex.github.io/data-vault/guides/solana-grants-data.html): research method, 51-row snapshot splits, 6 AGENT_ALLOWED rows, grants-vs-bounty framing
 - [Solana Ecosystem Data: Public Sources for Research, Tested Live](https://jayjex.github.io/data-vault/guides/solana-ecosystem-data.html): JSON-RPC validator stats, Superteam Earn snapshot, solana-research-library MCP, endpoint test log with honest statuses

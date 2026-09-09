@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Metro Medians FY2027: 387 CBSA Complexes Ranked by 2BR Fair Market Rent | Data Vault</title>
+<meta name="description" content="Santa Cruz-Watsonville tops the FY2027 metro board at a 4,250-dollar median 2BR fair market rent while Dothan and Gadsden, Alabama share the 920-dollar floor. Both ten-complex boards, the split-metro gaps behind them, and the percentiles from 387 CBSA complexes.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fmr-cbsa-rankings-2027.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="The Metro Medians FY2027: 387 CBSA Complexes Ranked by 2BR Fair Market Rent">
+<meta property="og:description" content="Santa Cruz-Watsonville tops HUD's FY2027 metro board at a 4,250-dollar median 2BR fair market rent while Dothan and Gadsden, Alabama share the 920-dollar floor. Both ten-complex boards, the split-metro gaps behind them, and the percentiles from 387 CBSA complexes.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fmr-cbsa-rankings-2027.html">
+<meta property="og:image" content="https://jayjex.github.io/data-vault/assets/covers/data-vault-banner.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Metro Medians FY2027: 387 CBSA Complexes Ranked by 2BR Fair Market Rent">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "The Metro Medians FY2027: 387 CBSA Complexes Ranked by 2BR Fair Market Rent", "description": "Santa Cruz-Watsonville tops the FY2027 metro board at a 4,250-dollar median 2BR fair market rent while Dothan and Gadsden, Alabama share the 920-dollar floor. Both ten-complex boards, the split-metro gaps behind them, and the percentiles from 387 CBSA complexes.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fmr-cbsa-rankings-2027.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2027 by ZIP Code", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-by-zip-2027.html"}, "mentions": [{"@type": "Dataset", "name": "HUD Fair Market Rents FY2027", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2027.html"}, {"@type": "Article", "name": "The 2BR Extremes FY2027: ZIP Codes Where HUD Fair Market Rent Peaks and Bottoms Out", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-zip-extremes-2027.html"}, {"@type": "Article", "name": "Small-Area FMR vs Metro-Wide FMR FY2027: Counties Priced Away From Their Metros", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-metro-split-gaps-2027.html"}, {"@type": "Article", "name": "Most and Least Expensive Counties in Each State for HUD Fair Market Rent FY2027", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-county-spreads-2027.html"}, {"@type": "Article", "name": "Query HUD FMR by ZIP With SQL: DuckDB and SQLite on the FY2027 CSV", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-zip-sql.html"}, {"@type": "Article", "name": "Section 8 Voucher Rent: How Much Will HUD Pay?", "url": "https://jayjex.github.io/data-vault/guides/section-8-voucher-rent.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which metro area has the highest median 2BR fair market rent in FY2027?", "acceptedAnswer": {"@type": "Answer", "text": "The Santa Cruz-Watsonville, California complex tops the 387 ranked CBSA complexes at a 4,250-dollar median for a 2BR, computed across its 23 ZIP values. San Jose-Sunnyvale-Santa Clara follows at 3,270 and the Oakland-Fremont complex at 3,255, the complex whose area codes also carry San Francisco, where the sub-area median runs 3,590. Nine of the ten most expensive complexes sit in California; New York, at 2,790 dollars across its seven New York and New Jersey sub-areas, is the only exception."}}, {"@type": "Question", "name": "Which metro areas are cheapest for a 2BR in FY2027?", "acceptedAnswer": {"@type": "Answer", "text": "Dothan, Alabama and Gadsden, Alabama tie at a 920-dollar median, the lowest of the 387 ranked CBSA complexes. Lawton, Oklahoma follows at 930, Decatur, Alabama at 950, Monroe, Louisiana and Parkersburg-Vienna, West Virginia at 960, Alexandria, Louisiana at 965, and a three-way tie at 970 between Raleigh County, West Virginia, Fort Smith, Arkansas-Oklahoma and Jefferson City, Missouri. The board concentrates in the Deep South and West Virginia: three Alabama complexes, two Louisiana and two West Virginia, plus Oklahoma, Arkansas and Missouri."}}, {"@type": "Question", "name": "How were the CBSA rankings computed?", "acceptedAnswer": {"@type": "Answer", "text": "From HUD's FY2027 ZIP-level file, 51,871 rows, rates effective October 1, 2026. Every row under a METRO area code shares its five-digit CBSA number with the rest of its complex, so 649 metro area codes collapse into 393 complexes; Puerto Rico's 193 metro rows (11 areas, 6 complexes) are excluded, leaving 387 complexes ranked on 26,046 unique ZIP values after removing 1,049 duplicate rows that repeat identical rates. Each complex median is the middle value, or the average of the two middle values on even counts, and the national percentiles interpolate linearly. The medians are recomputed from ZIP rows, not HUD's published area FMRs."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://jayjex.github.io/data-vault/guides/"}, {"@type": "ListItem", "position": 3, "name": "The metro medians FY2027: 387 CBSA complexes ranked by 2BR fair market rent", "item": "https://jayjex.github.io/data-vault/guides/hud-fmr-cbsa-rankings-2027.html"}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>HUD fair market rent by metro, FY2027: the 2BR medians of 387 CBSA complexes</h1>
+  <p class="byline">FY2027 edition, published 2026-09-10. Data source: HUD FY2027 Fair Market Rent release, ZIP-level file parsed from FY27_FMRs.xlsx plus the FY2027 small-area FMR file (FY27_safmrs.xlsx), rates effective October 1, 2026. License: CC0 1.0 (US government data, public domain). Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>4,250</b> top complex median (Santa Cruz CA)</span><span class="stat"><b>920</b> cheapest median (Dothan and Gadsden AL)</span><span class="stat"><b>1,043</b> p10, 1,980 p90 (complex medians)</span><span class="stat"><b>1,020</b> widest split (Washington DC complex)</span><span class="stat"><b>26,046</b> ZIP values in 387 complexes</span></div>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>Group HUD's FY2027 ZIP file by the five-digit CBSA (core-based statistical area) number embedded in every metro area code and 649 metro area codes collapse into 393 CBSA complexes. Rank the 387 that survive Puerto Rico's exclusion by the median 2BR fair market rent of their ZIP rows, and the board spans 3,330 dollars: Santa Cruz-Watsonville, California tops it at 4,250, 4.6 times the 920-dollar floor Dothan and Gadsden share in Alabama. The middle 80 percent of complex medians run from 1,043 to 1,980 dollars around a 1,290-dollar midpoint. Nine of the ten most expensive complexes sit in California; the cheapest ten scatter across Alabama, Louisiana, West Virginia, Oklahoma, Arkansas and Missouri.</p>
+    <p>Each complex median is recomputed from the deduped ZIP rows inside the complex; HUD's published FMR for an area is its own 40th-percentile estimate and can differ. No population weighting trims the small end, so 16-ZIP Napa ranks beside 615-ZIP Los Angeles. Both boards recompute from the CSV behind the <a href="../datasets/hud-fmr-by-zip-2027.html">FY2027 ZIP dataset</a>, and the two SQL blocks at the end of this page return them verbatim.</p>
+  </section>
+
+  <section aria-label="The ten most expensive CBSA complexes">
+    <h2>The ten most expensive CBSA complexes</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Ten CBSA complexes with the highest median 2BR fair market rent, FY2027"><table><thead><tr><th scope="col">#</th><th scope="col">CBSA</th><th scope="col">Metro complex</th><th scope="col">State</th><th scope="col">Median 2BR FMR</th></tr></thead><tbody>
+      <tr><td>1</td><td>42100</td><td>Santa Cruz-Watsonville, CA MSA</td><td>California</td><td>4,250</td></tr>
+      <tr><td>2</td><td>41940</td><td>San Jose-Sunnyvale-Santa Clara, CA HUD Metro FMR Area</td><td>California</td><td>3,270</td></tr>
+      <tr><td>3</td><td>41860</td><td>Oakland-Fremont, CA HUD Metro FMR Area</td><td>California</td><td>3,255</td></tr>
+      <tr><td>4</td><td>34900</td><td>Napa, CA MSA</td><td>California</td><td>3,200</td></tr>
+      <tr><td>5</td><td>42200</td><td>Santa Maria-Santa Barbara, CA MSA</td><td>California</td><td>3,110</td></tr>
+      <tr><td>6</td><td>31080</td><td>Los Angeles-Long Beach-Glendale, CA HUD Metro FMR Area</td><td>California</td><td>2,960</td></tr>
+      <tr><td>7</td><td>41740</td><td>San Diego-Chula Vista-Carlsbad, CA MSA</td><td>California</td><td>2,820, one of 2 tied</td></tr>
+      <tr><td>8</td><td>42220</td><td>Santa Rosa-Petaluma, CA MSA</td><td>California</td><td>2,820, one of 2 tied</td></tr>
+      <tr><td>9</td><td>35620</td><td>New York, NY HUD Metro FMR Area</td><td>New York, New Jersey</td><td>2,790</td></tr>
+      <tr><td>10</td><td>42020</td><td>San Luis Obispo-Paso Robles, CA MSA</td><td>California</td><td>2,720</td></tr>
+    </tbody></table></div>
+    <p>Nine of the ten rows are California. Santa Cruz-Watsonville leads at 4,250, the median of 23 ZIP values running from 3,300 to 5,260, and its ceiling matches the 5,260-dollar ZIP rate that tops the national ZIP board; the county file's priciest 2BR median, Santa Cruz County at 4,254, sits 4 dollars above this complex median because the two come from different HUD schedules. San Jose-Sunnyvale-Santa Clara follows at 3,270 with San Benito County riding inside its complex number, then the Oakland-Fremont complex at 3,255, whose two area codes split 228 ZIP rows between Oakland-Fremont proper and San Francisco. Napa is the smallest complex on the board at 16 ZIP rows, and San Diego and Santa Rosa-Petaluma tie at 2,820 for the last shared rung.</p>
+    <p>The complex number lives in the area code. METRO42100M42100 embeds CBSA 42100 for Santa Cruz-Watsonville; a split metro appends a sub-area suffix, so the Oakland-Fremont complex reads METRO41860MM5775 and METRO41860MM7360, the latter San Francisco's small-area schedule. San Francisco prices above its own complex: its 113 ZIP rows carry a 3,590-dollar sub-area median against Oakland-Fremont's 2,810, and the union of both lands at 3,255. Los Angeles-Long Beach-Glendale is the largest California board entry at 615 ZIP rows, with Santa Ana-Anaheim-Irvine's 147 rows pricing higher at 3,060 inside the same 2,960-dollar complex median.</p>
+    <p>New York breaks the California run at number nine. Its 35620 complex is the file's largest, 1,059 ZIP values across seven separately priced areas from the New York core (3,295) down to Monmouth-Ocean, New Jersey (2,330), and the complex median of 2,790 lands behind only the eight California entries above it. The next complex off the board is Kahului-Wailuku-Lahaina, Hawaii at 2,660, then Boston-Cambridge-Quincy at 2,650.</p>
+  </section>
+
+  <section aria-label="The ten cheapest CBSA complexes">
+    <h2>The ten cheapest CBSA complexes</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Ten CBSA complexes with the lowest median 2BR fair market rent, FY2027"><table><thead><tr><th scope="col">#</th><th scope="col">CBSA</th><th scope="col">Metro complex</th><th scope="col">State</th><th scope="col">Median 2BR FMR</th></tr></thead><tbody>
+      <tr><td>1</td><td>20020</td><td>Dothan, AL HUD Metro FMR Area</td><td>Alabama</td><td>920, one of 2 tied</td></tr>
+      <tr><td>2</td><td>23460</td><td>Gadsden, AL MSA</td><td>Alabama</td><td>920, one of 2 tied</td></tr>
+      <tr><td>3</td><td>30020</td><td>Lawton, OK HUD Metro FMR Area</td><td>Oklahoma</td><td>930</td></tr>
+      <tr><td>4</td><td>19460</td><td>Decatur, AL MSA</td><td>Alabama</td><td>950</td></tr>
+      <tr><td>5</td><td>33740</td><td>Monroe, LA HUD Metro FMR Area</td><td>Louisiana</td><td>960, one of 2 tied</td></tr>
+      <tr><td>6</td><td>37620</td><td>Parkersburg-Vienna, WV MSA</td><td>West Virginia</td><td>960, one of 2 tied</td></tr>
+      <tr><td>7</td><td>10780</td><td>Alexandria, LA MSA</td><td>Louisiana</td><td>965</td></tr>
+      <tr><td>8</td><td>13220</td><td>Raleigh County, WV HUD Metro FMR Area</td><td>West Virginia</td><td>970, one of 3 tied</td></tr>
+      <tr><td>9</td><td>22900</td><td>Fort Smith, AR-OK MSA</td><td>Arkansas</td><td>970, one of 3 tied</td></tr>
+      <tr><td>10</td><td>27620</td><td>Jefferson City, MO HUD Metro FMR Area</td><td>Missouri</td><td>970, one of 3 tied</td></tr>
+    </tbody></table></div>
+    <p>Alabama owns three of the ten: Dothan and Gadsden tie at 920 for the floor, Decatur sits at 950. Monroe, Louisiana and Parkersburg-Vienna, West Virginia tie at 960, Alexandria, Louisiana runs 965, and the last three rows are a three-way tie at 970 between Raleigh County, West Virginia (94 ZIP values across two counties), Fort Smith, Arkansas-Oklahoma and Jefferson City, Missouri. The next complex up prices at 990, a rung shared by Elizabethtown, Kentucky, Jonesboro, Arkansas and Waterloo-Cedar Falls, Iowa.</p>
+    <p>No complex median falls below 920, though 173 ZIP rows sit at the 890-dollar national floor, because floor rows scatter inside pricier complexes. Monroe's 39 ZIP values include three at 890, yet the complex median lands at 960; the other complexes holding 890-dollar rows are Baton Rouge (1,090 median), Lafayette (995), Lake Charles (1,100) and Sumter, South Carolina (1,170). Every bottom-board complex is a split metro or a small MSA: Dothan carries a Henry County sub-area, Monroe prices Morehouse and Richland parishes separately from its core, and Jefferson City adds Callaway and Moniteau counties to its 60 ZIP values.</p>
+    <p>The middle of the distribution is dense. Eighty-one of the 387 complex medians sit at 1,100 dollars or below and 37 at 2,000 or above, and the 1,290-dollar midpoint of the medians runs 100 dollars above the 1,190-dollar median of all ZIP rows, the premium metro pricing carries over the rural nonmetro counties. Texas fields 25 complexes and none makes either board, its medians running from 1,010 to 1,850.</p>
+  </section>
+
+  <section aria-label="Inside the split complexes">
+    <h2>Inside the split complexes</h2>
+    <p>Split metros price themselves apart inside one complex number. The Washington DC complex (47900) spans five areas from the 2,400-dollar core down to Jefferson County, West Virginia at 1,380, a 1,020-dollar spread, the widest in the file. The New York complex follows at 965 dollars between its New York core and Monmouth-Ocean, and the Charlotte complex at 915 between its 1,890-dollar core and Lancaster County, South Carolina at 975. In ratio terms Charlotte splits furthest: the core prices 1.94 times its cheapest county.</p>
+    <p>California's biggest internal gap is 780 dollars, San Francisco 3,590 over Oakland-Fremont 2,810 in the 41860 complex. The Worcester, Massachusetts complex splits four ways from Eastern Worcester County at 2,650 down to Western Worcester County at 1,860, a 790-dollar spread that ranks fourth nationally. Across the file, 141 of the 387 ranked complexes split into two or more separately priced areas and 19 span state lines.</p>
+  </section>
+
+  <section aria-label="Methodology">
+    <h2>Methodology: complexes, dedup, medians</h2>
+    <p>The source is HUD's FY2027 ZIP-level fair market rent file, 51,871 rows parsed from FY27_FMRs.xlsx plus the FY2027 small-area FMR file (FY27_safmrs.xlsx), rates effective October 1, 2026, public domain. The 27,288 rows under METRO area codes form the metro universe; Puerto Rico's 193 metro rows across 11 areas are excluded, the treatment every ranking page in this series applies. Complex membership comes from the five digits after METRO in the area code, so 649 metro area codes collapse into 393 complexes, six of them entirely Puerto Rican, leaving 387 ranked complexes.</p>
+    <p>Within a complex, 129 ZIP codes repeat under two or more area codes, contributing 1,049 surplus rows, and every repeat carries identical rates across all five bedroom sizes, so the duplicates drop out without loss and 26,046 unique ZIP values remain. Each complex median is the middle value, or the average of the two middle values where the count is even (197 of the 387 complexes). Every 2BR rate in the file moves in 5-dollar steps, so every complex median lands on a multiple of 5. Percentiles interpolate linearly between the two nearest order statistics: the 10th percentile of the 387 medians sits at position 38.6, hence 1,043. These medians are recomputed from ZIP rows, not HUD's published area FMRs, which are 40th-percentile estimates; no population weighting is applied; HUD can revise FY2027 mid-cycle. This page documents the data; it is not housing or legal advice.</p>
+  </section>
+
+  <section aria-label="Recompute the boards yourself">
+    <h2>Recompute the boards yourself</h2>
+    <p>Load the FY2027 ZIP file into SQLite as <code>zips_fy2027</code>, ten columns per row, following the import steps in the <a href="hud-fmr-by-zip-sql.html">SQL guide</a>. The two boards need one grouping and one median each:</p>
+    <pre><code>-- SQLite: the ten most expensive CBSA complexes, FY2027
+CREATE TABLE zips_fy2027 (zip TEXT, hud_area_code TEXT, metro TEXT,
+  area_name TEXT, state TEXT, fmr_0br INT, fmr_1br INT,
+  fmr_2br INT, fmr_3br INT, fmr_4br INT);
+.import --skip 1 fmr-by-zip-2027.csv zips_fy2027
+
+-- complex = every area code sharing the five digits after METRO;
+-- repeated ZIPs inside a complex carry identical values, so MIN dedups
+WITH m AS (
+  SELECT zip, hud_area_code, area_name, state, CAST(fmr_2br AS INT) AS v,
+         SUBSTR(hud_area_code, 6, 5) AS cbsa,
+         ROW_NUMBER() OVER (PARTITION BY SUBSTR(hud_area_code, 6, 5), zip
+                            ORDER BY hud_area_code) AS rn
+  FROM zips_fy2027
+  WHERE hud_area_code LIKE 'METRO%' AND state &lt;&gt; 'PR'
+),
+d AS (SELECT cbsa, zip, v FROM m WHERE rn = 1),
+r AS (SELECT cbsa, v, ROW_NUMBER() OVER (PARTITION BY cbsa ORDER BY v) AS rn,
+             COUNT(*) OVER (PARTITION BY cbsa) AS n FROM d),
+med AS (SELECT cbsa, AVG(v) AS med FROM r WHERE rn IN ((n+1)/2, (n+2)/2) GROUP BY cbsa),
+cnt AS (SELECT cbsa, COUNT(*) AS zip_rows FROM r GROUP BY cbsa),
+areas AS (SELECT cbsa, COUNT(DISTINCT hud_area_code) AS areas FROM m GROUP BY cbsa),
+lab AS (SELECT cbsa, area_name, state,
+               ROW_NUMBER() OVER (PARTITION BY cbsa ORDER BY k DESC, area_name) AS rn
+        FROM (SELECT cbsa, area_name, state, COUNT(*) AS k
+              FROM m GROUP BY cbsa, area_name, state))
+SELECT med.cbsa, lab.area_name, lab.state, cnt.zip_rows,
+       ROUND(med.med, 2) AS med2br
+FROM med JOIN cnt ON cnt.cbsa = med.cbsa
+         JOIN areas ON areas.cbsa = med.cbsa
+         JOIN lab ON lab.cbsa = med.cbsa AND lab.rn = 1
+ORDER BY med.med DESC, med.cbsa
+LIMIT 10;
+-- Rows: 42100 Santa Cruz-Watsonville, CA MSA CA 23 4250.0, 41940 San Jose-Sunnyvale-Santa Clara, CA HUD Metro FMR Area CA 114 3270.0,
+-- 41860 Oakland-Fremont, CA HUD Metro FMR Area CA 228 3255.0, 34900 Napa, CA MSA CA 16 3200.0,
+-- 42200 Santa Maria-Santa Barbara, CA MSA CA 41 3110.0, 31080 Los Angeles-Long Beach-Glendale, CA HUD Metro FMR Area CA 615 2960.0,
+-- 41740 San Diego-Chula Vista-Carlsbad, CA MSA CA 178 2820.0, 42220 Santa Rosa-Petaluma, CA MSA CA 53 2820.0,
+-- 35620 New York, NY HUD Metro FMR Area NY 1059 2790.0, 42020 San Luis Obispo-Paso Robles, CA MSA CA 41 2720.0.
+
+-- the ten cheapest, same chain, order flipped
+WITH m AS (
+  SELECT zip, hud_area_code, area_name, state, CAST(fmr_2br AS INT) AS v,
+         SUBSTR(hud_area_code, 6, 5) AS cbsa,
+         ROW_NUMBER() OVER (PARTITION BY SUBSTR(hud_area_code, 6, 5), zip
+                            ORDER BY hud_area_code) AS rn
+  FROM zips_fy2027
+  WHERE hud_area_code LIKE 'METRO%' AND state &lt;&gt; 'PR'
+),
+d AS (SELECT cbsa, zip, v FROM m WHERE rn = 1),
+r AS (SELECT cbsa, v, ROW_NUMBER() OVER (PARTITION BY cbsa ORDER BY v) AS rn,
+             COUNT(*) OVER (PARTITION BY cbsa) AS n FROM d),
+med AS (SELECT cbsa, AVG(v) AS med FROM r WHERE rn IN ((n+1)/2, (n+2)/2) GROUP BY cbsa),
+cnt AS (SELECT cbsa, COUNT(*) AS zip_rows FROM r GROUP BY cbsa),
+areas AS (SELECT cbsa, COUNT(DISTINCT hud_area_code) AS areas FROM m GROUP BY cbsa),
+lab AS (SELECT cbsa, area_name, state,
+               ROW_NUMBER() OVER (PARTITION BY cbsa ORDER BY k DESC, area_name) AS rn
+        FROM (SELECT cbsa, area_name, state, COUNT(*) AS k
+              FROM m GROUP BY cbsa, area_name, state))
+SELECT med.cbsa, lab.area_name, lab.state, cnt.zip_rows,
+       ROUND(med.med, 2) AS med2br
+FROM med JOIN cnt ON cnt.cbsa = med.cbsa
+         JOIN areas ON areas.cbsa = med.cbsa
+         JOIN lab ON lab.cbsa = med.cbsa AND lab.rn = 1
+ORDER BY med.med ASC, med.cbsa
+LIMIT 10;
+-- Rows: 20020 Dothan, AL HUD Metro FMR Area AL 33 920.0, 23460 Gadsden, AL MSA AL 17 920.0,
+-- 30020 Lawton, OK HUD Metro FMR Area OK 29 930.0, 19460 Decatur, AL MSA AL 25 950.0,
+-- 33740 Monroe, LA HUD Metro FMR Area LA 39 960.0, 37620 Parkersburg-Vienna, WV MSA WV 26 960.0,
+-- 10780 Alexandria, LA MSA LA 42 965.0, 13220 Raleigh County, WV HUD Metro FMR Area WV 94 970.0,
+-- 22900 Fort Smith, AR-OK MSA AR 44 970.0, 27620 Jefferson City, MO HUD Metro FMR Area MO 60 970.0.</code></pre>
+    <p>The percentiles, the shape counts, and the split-complex gaps come out of the same table:</p>
+    <pre><code>-- SQLite: percentiles of the 387 complex medians, linear interpolation
+WITH m AS (
+  SELECT zip, hud_area_code, CAST(fmr_2br AS INT) AS v,
+         SUBSTR(hud_area_code, 6, 5) AS cbsa,
+         ROW_NUMBER() OVER (PARTITION BY SUBSTR(hud_area_code, 6, 5), zip
+                            ORDER BY hud_area_code) AS rn
+  FROM zips_fy2027
+  WHERE hud_area_code LIKE 'METRO%' AND state &lt;&gt; 'PR'
+),
+d AS (SELECT cbsa, zip, v FROM m WHERE rn = 1),
+r AS (SELECT cbsa, v, ROW_NUMBER() OVER (PARTITION BY cbsa ORDER BY v) AS rn,
+             COUNT(*) OVER (PARTITION BY cbsa) AS n FROM d),
+med AS (SELECT cbsa, AVG(v) AS med FROM r WHERE rn IN ((n+1)/2, (n+2)/2) GROUP BY cbsa),
+p AS (SELECT med AS v, ROW_NUMBER() OVER (ORDER BY med) AS rn,
+             COUNT(*) OVER () AS n FROM med)
+SELECT
+  ROUND((SELECT a.v + (0.10*(c.n-1) - CAST(0.10*(c.n-1) AS INTEGER)) * (b.v - a.v)
+         FROM p c, p a, p b
+         WHERE a.rn = CAST(0.10*(c.n-1) AS INTEGER) + 1
+           AND b.rn = CAST(0.10*(c.n-1) AS INTEGER) + 2 LIMIT 1), 2) AS p10,
+  ROUND((SELECT a.v + (0.50*(c.n-1) - CAST(0.50*(c.n-1) AS INTEGER)) * (b.v - a.v)
+         FROM p c, p a, p b
+         WHERE a.rn = CAST(0.50*(c.n-1) AS INTEGER) + 1
+           AND b.rn = CAST(0.50*(c.n-1) AS INTEGER) + 2 LIMIT 1), 2) AS p50,
+  ROUND((SELECT a.v + (0.90*(c.n-1) - CAST(0.90*(c.n-1) AS INTEGER)) * (b.v - a.v)
+         FROM p c, p a, p b
+         WHERE a.rn = CAST(0.90*(c.n-1) AS INTEGER) + 1
+           AND b.rn = CAST(0.90*(c.n-1) AS INTEGER) + 2 LIMIT 1), 2) AS p90,
+  (SELECT MAX(v) FROM p) - (SELECT MIN(v) FROM p) AS span,
+  (SELECT COUNT(*) FROM p) AS complexes;
+-- 1043.0 / 1290.0 / 1980.0 / 3330.0 / 387.
+
+-- shape counts
+WITH m AS (
+  SELECT zip, hud_area_code, CAST(fmr_2br AS INT) AS v,
+         SUBSTR(hud_area_code, 6, 5) AS cbsa,
+         ROW_NUMBER() OVER (PARTITION BY SUBSTR(hud_area_code, 6, 5), zip
+                            ORDER BY hud_area_code) AS rn
+  FROM zips_fy2027
+  WHERE hud_area_code LIKE 'METRO%' AND state &lt;&gt; 'PR'
+),
+d AS (SELECT cbsa, zip, v FROM m WHERE rn = 1),
+r AS (SELECT cbsa, v, ROW_NUMBER() OVER (PARTITION BY cbsa ORDER BY v) AS rn,
+             COUNT(*) OVER (PARTITION BY cbsa) AS n FROM d),
+med AS (SELECT cbsa, AVG(v) AS med FROM r WHERE rn IN ((n+1)/2, (n+2)/2) GROUP BY cbsa)
+SELECT
+  (SELECT COUNT(*) FROM med) AS complexes,
+  (SELECT COUNT(*) FROM med WHERE med &gt;= 2000) AS at_or_above_2000,
+  (SELECT COUNT(*) FROM med WHERE med &lt;= 1100) AS at_or_below_1100,
+  (SELECT COUNT(*) FROM (
+     SELECT cbsa FROM m GROUP BY cbsa HAVING COUNT(DISTINCT hud_area_code) &gt; 1)) AS split_complexes,
+  (SELECT COUNT(*) FROM med WHERE CAST(med AS INT) &lt;&gt; med) AS noninteger_medians;
+-- 387 / 37 / 81 / 141 / 0.
+
+-- the three widest split-complex gaps, one row per sub-area median
+WITH m AS (
+  SELECT zip, hud_area_code, area_name, CAST(fmr_2br AS INT) AS v,
+         SUBSTR(hud_area_code, 6, 5) AS cbsa,
+         ROW_NUMBER() OVER (PARTITION BY hud_area_code, zip
+                            ORDER BY hud_area_code) AS rn
+  FROM zips_fy2027
+  WHERE hud_area_code LIKE 'METRO%' AND state &lt;&gt; 'PR'
+),
+d AS (SELECT cbsa, hud_area_code, area_name, zip, v FROM m WHERE rn = 1),
+r AS (SELECT hud_area_code, area_name, cbsa, v,
+             ROW_NUMBER() OVER (PARTITION BY hud_area_code ORDER BY v) AS rn,
+             COUNT(*) OVER (PARTITION BY hud_area_code) AS n FROM d),
+am AS (SELECT cbsa, hud_area_code, area_name, AVG(v) AS med
+       FROM r WHERE rn IN ((n+1)/2, (n+2)/2) GROUP BY hud_area_code),
+sp AS (SELECT cbsa, MAX(med) - MIN(med) AS gap, COUNT(*) AS areas
+       FROM am GROUP BY cbsa HAVING COUNT(*) &gt; 1 ORDER BY gap DESC LIMIT 3)
+SELECT sp.gap, am.cbsa, am.area_name, ROUND(am.med, 2) AS med
+FROM sp JOIN am ON am.cbsa = sp.cbsa
+ORDER BY sp.gap DESC, am.med DESC, am.hud_area_code;
+-- Rows: 1020.0 47900 Washington-Arlington-Alexandria, DC-VA-MD HUD Metro FMR Area 2400.0,
+-- 1020.0 47900 Culpeper County, VA HUD Metro FMR Area 1600.0,
+-- 1020.0 47900 Rappahannock County, VA HUD Metro FMR Area 1565.0,
+-- 1020.0 47900 Warren County, VA HUD Metro FMR Area 1455.0,
+-- 1020.0 47900 Jefferson County, WV HUD Metro FMR Area 1380.0,
+-- 965.0 35620 New York, NY HUD Metro FMR Area 3295.0,
+-- 965.0 35620 Jersey City, NJ HUD Metro FMR Area 2790.0,
+-- 965.0 35620 Nassau-Suffolk, NY HUD Metro FMR Area 2740.0,
+-- 965.0 35620 Middlesex-Somerset-Hunterdon, NJ HUD Metro FMR Area 2600.0,
+-- 965.0 35620 Newark, NJ HUD Metro FMR Area 2460.0,
+-- 965.0 35620 Bergen-Passaic, NJ HUD Metro FMR Area 2410.0,
+-- 965.0 35620 Monmouth-Ocean, NJ HUD Metro FMR Area 2330.0,
+-- 915.0 16740 Charlotte-Concord-Gastonia, NC-SC HUD Metro FMR Area 1890.0,
+-- 915.0 16740 Chester County, SC HUD Metro FMR Area 1350.0,
+-- 915.0 16740 Rowan County, NC HUD Metro FMR Area 1270.0,
+-- 915.0 16740 Iredell County, NC HUD Metro FMR Area 1210.0,
+-- 915.0 16740 Anson County, NC HUD Metro FMR Area 1200.0,
+-- 915.0 16740 Lincoln County, NC HUD Metro FMR Area 1120.0,
+-- 915.0 16740 Lancaster County, SC HUD Metro FMR Area 975.0.</code></pre>
+    <p>Run in one session, all three statements return exactly the rows quoted in the comments above. Swap <code>fmr_2br</code> for <code>fmr_1br</code> to re-rank the ladder one rung down, or drop the <code>WHERE state &lt;&gt; 'PR'</code> filter to watch the six Puerto Rican complexes, led by San Juan's, take the bottom of the low board.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>Metro medians by CBSA, FY2027: questions</h2>
+    <dl>
+      <dt>Which metro area has the highest median 2BR fair market rent in FY2027?</dt>
+      <dd>The Santa Cruz-Watsonville, California complex tops the 387 ranked CBSA complexes at a 4,250-dollar median for a 2BR, computed across its 23 ZIP values. San Jose-Sunnyvale-Santa Clara follows at 3,270 and the Oakland-Fremont complex at 3,255, the complex whose area codes also carry San Francisco, where the sub-area median runs 3,590. Nine of the ten most expensive complexes sit in California; New York, at 2,790 dollars across its seven New York and New Jersey sub-areas, is the only exception.</dd>
+      <dt>Which metro areas are cheapest for a 2BR in FY2027?</dt>
+      <dd>Dothan, Alabama and Gadsden, Alabama tie at a 920-dollar median, the lowest of the 387 ranked CBSA complexes. Lawton, Oklahoma follows at 930, Decatur, Alabama at 950, Monroe, Louisiana and Parkersburg-Vienna, West Virginia at 960, Alexandria, Louisiana at 965, and a three-way tie at 970 between Raleigh County, West Virginia, Fort Smith, Arkansas-Oklahoma and Jefferson City, Missouri. The board concentrates in the Deep South and West Virginia: three Alabama complexes, two Louisiana and two West Virginia, plus Oklahoma, Arkansas and Missouri.</dd>
+      <dt>How were the CBSA rankings computed?</dt>
+      <dd>From HUD's FY2027 ZIP-level file, 51,871 rows, rates effective October 1, 2026. Every row under a METRO area code shares its five-digit CBSA number with the rest of its complex, so 649 metro area codes collapse into 393 complexes; Puerto Rico's 193 metro rows (11 areas, 6 complexes) are excluded, leaving 387 complexes ranked on 26,046 unique ZIP values after removing 1,049 duplicate rows that repeat identical rates. Each complex median is the middle value, or the average of the two middle values on even counts, and the national percentiles interpolate linearly. The medians are recomputed from ZIP rows, not HUD's published area FMRs.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <div class="btnrow">
+      <a class="btn" href="../data/hud-fmr-by-zip-2027/fmr-by-zip-2027.csv" download>Download the FY2027 ZIP CSV (free, 4.4 MB)</a>
+      <a class="btn-ghost btn" href="../datasets/hud-fmr-by-zip-2027.html">Browse the FY2027 ZIP dataset page</a>
+    </div>
+    <p class="btn-note">The CSV comes from HUD's Fair Market Rent release and is public domain. The <a href="../datasets/hud-fmr-by-zip-2027.html">dataset page</a> documents the file's integrity checks, the <a href="hud-fmr-by-zip-sql.html">SQL guide</a> covers imports and window functions, the <a href="hud-fmr-zip-extremes-2027.html">ZIP extremes page</a> ranks individual ZIP codes against the same file, the <a href="hud-fmr-metro-split-gaps-2027.html">metro split page</a> measures each sub-area against its own complex median, and the <a href="section-8-voucher-rent.html">voucher rent guide</a> covers what a housing agency actually pays against these figures.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

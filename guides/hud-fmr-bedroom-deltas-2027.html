@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD Fair Market Rents FY2027 vs FY2026: Which Bedroom Size Rose Most | Data Vault</title>
+<meta name="description" content="Studios rose fastest in HUD's FY2027 fair market rents: the national 0BR median moved from 870 to 910 dollars, up 4.60 percent. Vermont leads the state table at a 15.60 percent 2BR jump to 1,630 dollars; Arizona cut all five bedroom medians. Recomputed from the free FY2026 and FY2027 CSVs.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/hud-fmr-bedroom-deltas-2027.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="HUD Fair Market Rents FY2027 vs FY2026: Which Bedroom Size Rose Most">
+<meta property="og:description" content="Every HUD fair market rent bedroom size moved up for FY2027, and studios moved fastest: the national 0BR median rose from 870 to 910 dollars, up 4.60 percent against the FY2026 file. Vermont tops the state table at a 15.60 percent 2BR increase; Arizona cut all five bedroom medians.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/hud-fmr-bedroom-deltas-2027.html">
+<meta property="og:image" content="https://jayjex.github.io/data-vault/assets/covers/data-vault-banner.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="HUD Fair Market Rents FY2027 vs FY2026: Which Bedroom Size Rose Most">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "HUD Fair Market Rents FY2027 vs FY2026: Which Bedroom Size Rose Most", "description": "Studios rose fastest in HUD's FY2027 fair market rents: the national 0BR median moved from 870 to 910 dollars, up 4.60 percent. Vermont leads the state table at a 15.60 percent 2BR jump to 1,630 dollars; Arizona cut all five bedroom medians. Recomputed from the free FY2026 and FY2027 CSVs.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/hud-fmr-bedroom-deltas-2027.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2027", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2027.html"}, "mentions": [{"@type": "Dataset", "name": "HUD Fair Market Rents FY2026", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"}, {"@type": "Article", "name": "Most Expensive US Metro Areas for Rent 2027 (HUD Fair Market Rent)", "url": "https://jayjex.github.io/data-vault/guides/most-expensive-metros-rent-2027.html"}, {"@type": "Article", "name": "Query HUD FMR by ZIP With SQL: DuckDB and SQLite on the FY2027 CSV", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-zip-sql.html"}, {"@type": "Article", "name": "10 Most Affordable US Metro ZIP Codes for Renters 2027 (HUD Fair Market Rent)", "url": "https://jayjex.github.io/data-vault/guides/most-affordable-zips-rent-2027.html"}, {"@type": "Article", "name": "HUD FMR by Bedroom Size: Studio to 4BR Medians, FY2026", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-bedroom.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which bedroom size rose the most in the FY2027 fair market rents?", "acceptedAnswer": {"@type": "Answer", "text": "Studios. The national 0-bedroom median moved from 870 to 910 dollars, a 4.60 percent increase, the steepest of the five bedroom sizes. The 1-bedroom rose 3.19 percent, the 2-bedroom 3.48 percent, the 3-bedroom 2.67 percent, and the 4-bedroom 3.49 percent on the biggest dollar step, 1,720 to 1,780. At the state level the studio median rose in 44 of 51 jurisdictions and led every other bedroom size in 21 of them; Vermont's 4-bedroom increase of 17.59 percent is the steepest single state cell on the board."}}, {"@type": "Question", "name": "Which states raised fair market rents the most for FY2027?", "acceptedAnswer": {"@type": "Answer", "text": "Vermont tops the 2BR ranking: its state median moved from 1,410 to 1,630 dollars, up 15.60 percent. South Dakota follows at 10.20 percent (980 to 1,080), North Dakota at 9.28 percent (970 to 1,060), Washington DC at 9.09 percent (2,200 to 2,400), and Kansas at 7.61 percent (920 to 990). On the other side, Arizona cut all five bedroom medians, from a 4.17 percent studio drop to a 5.59 percent 2-bedroom drop (1,610 to 1,520)."}}, {"@type": "Question", "name": "How were these bedroom-size medians computed?", "acceptedAnswer": {"@type": "Answer", "text": "As ZIP-row medians over the two HUD SAFMR files: 51,895 rows for FY2026 and 51,871 for FY2027, one row per ZIP and HUD area. The ZIP-row convention weighs each ZIP once, the same convention behind the published 52-row state summary, and the recomputed FY2027 2BR medians match that summary for all 52 rows. Puerto Rico stays out of the 51-jurisdiction rankings; its own 2BR median moved from 600 to 610 dollars."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://jayjex.github.io/data-vault/guides/"}, {"@type": "ListItem", "position": 3, "name": "HUD fair market rents FY2027 vs FY2026, bedroom-size deltas", "item": "https://jayjex.github.io/data-vault/guides/hud-fmr-bedroom-deltas-2027.html"}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>HUD fair market rents FY2027 vs FY2026: which bedroom size rose most</h1>
+  <p class="byline">FY2027 edition, published 2026-09-10. Data source: HUD FY2027 Fair Market Rent release, effective October 1, 2026, diffed against the FY2026 files on the same ZIP basis. License: CC0 1.0 (US government data, public domain). Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>Every bedroom size moved up in HUD's FY2027 fair market rents, and the smallest homes moved fastest. The national median for a 0-bedroom, the studio column in the file, rose from 870 to 910 dollars, a 4.60 percent increase over the FY2026 file. The 2-bedroom median, the number most voucher calculations turn on, moved from 1,150 to 1,190 dollars. Both numbers come from the <a href="../datasets/hud-fmr-2027.html">FY2027 fair market rent dataset</a> and its FY2026 counterpart, 51,895 and 51,871 ZIP rows recomputed from the raw files. As a sanity check against earlier pages, the FY2027 levels match the baseline on the <a href="hud-fmr-by-zip-sql.html">SQL guide</a> (2BR percentiles at 1,020 and 1,590 around the 1,190 median), and the FY2026 levels match the <a href="hud-fmr-by-bedroom.html">FY2026 bedroom-size guide</a>.</p>
+    <p>State by state, the steepest climb belongs to Vermont, whose 2-bedroom median jumped from 1,410 to 1,630 dollars, up 15.60 percent. South Dakota, North Dakota, Washington DC and Kansas follow. Arizona is the only state that cut all five bedroom medians. The ten biggest movers, with all five bedroom columns, sit in the second table.</p>
+  </section>
+
+  <section aria-label="National medians by bedroom size">
+    <h2>National medians by bedroom size, FY2026 vs FY2027</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="National FMR medians by bedroom size, FY2026 vs FY2027"><table><thead><tr><th scope="col">Bedroom size</th><th scope="col">FY2026 median</th><th scope="col">FY2027 median</th><th scope="col">Change</th><th scope="col">Change %</th></tr></thead><tbody>
+      <tr><td>0BR (studio)</td><td>870</td><td>910</td><td>+40</td><td>+4.60%</td></tr>
+      <tr><td>1BR</td><td>940</td><td>970</td><td>+30</td><td>+3.19%</td></tr>
+      <tr><td>2BR</td><td>1,150</td><td>1,190</td><td>+40</td><td>+3.48%</td></tr>
+      <tr><td>3BR</td><td>1,500</td><td>1,540</td><td>+40</td><td>+2.67%</td></tr>
+      <tr><td>4BR</td><td>1,720</td><td>1,780</td><td>+60</td><td>+3.49%</td></tr>
+    </tbody></table></div>
+    <p>The ranking order runs 0BR, 4BR, 2BR, 1BR, 3BR: the two ends of the ladder rose fastest, the middle slowest. The dollar steps explain some of it. A studio and a 2-bedroom each picked up 40 dollars, but the studio starts from an 870-dollar base, so the same step lands as a 4.60 percent move where the 2-bedroom lands at 3.48. The 4-bedroom carries the largest dollar step, 60 dollars on a 1,720 base.</p>
+    <p>A second read of the same two files matches rows that appear in both years and diffs them. 51,819 of the ZIP-plus-area pairs match, and at the 2BR line the median matched-pair change is +40 dollars: 36,101 rows moved up, 13,885 moved down, and 1,833 held. The <a href="hud-fmr-by-zip-sql.html">SQL guide</a> builds the table this join runs against, and the <a href="hud-fmr-2027.html">FY2027 guide</a> walks the same diff area by area, ZIP 12461 in the Kingston, NY MSA leading at +70.37 percent.</p>
+  </section>
+
+  <section aria-label="The ten states with the steepest 2BR increases">
+    <h2>The ten states with the steepest 2BR increases</h2>
+    <p>Ranked by the 2-bedroom percentage change, with every bedroom column so the shape of each state's move shows:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Ten states with the steepest 2BR median increases, FY2026 vs FY2027"><table><thead><tr><th scope="col">#</th><th scope="col">State</th><th scope="col">2BR FY2026</th><th scope="col">2BR FY2027</th><th scope="col">0BR</th><th scope="col">1BR</th><th scope="col">2BR</th><th scope="col">3BR</th><th scope="col">4BR</th></tr></thead><tbody>
+      <tr><td>1</td><td>Vermont</td><td>1,410</td><td>1,630</td><td>+11.82%</td><td>+16.52%</td><td>+15.60%</td><td>+15.17%</td><td>+17.59%</td></tr>
+      <tr><td>2</td><td>South Dakota</td><td>980</td><td>1,080</td><td>+13.04%</td><td>+11.39%</td><td>+10.20%</td><td>+10.85%</td><td>+10.32%</td></tr>
+      <tr><td>3</td><td>North Dakota</td><td>970</td><td>1,060</td><td>+11.84%</td><td>+10.00%</td><td>+9.28%</td><td>+9.85%</td><td>+8.12%</td></tr>
+      <tr><td>4</td><td>Washington, DC</td><td>2,200</td><td>2,400</td><td>+8.90%</td><td>+10.15%</td><td>+9.09%</td><td>+10.07%</td><td>+10.43%</td></tr>
+      <tr><td>5</td><td>Kansas</td><td>920</td><td>990</td><td>+8.82%</td><td>+9.59%</td><td>+7.61%</td><td>+8.26%</td><td>+10.14%</td></tr>
+      <tr><td>6</td><td>Delaware</td><td>1,470</td><td>1,580</td><td>+7.08%</td><td>+7.02%</td><td>+7.48%</td><td>+6.19%</td><td>+6.14%</td></tr>
+      <tr><td>7</td><td>Missouri</td><td>960</td><td>1,020</td><td>+5.48%</td><td>+5.13%</td><td>+6.25%</td><td>+6.30%</td><td>+6.76%</td></tr>
+      <tr><td>8</td><td>Rhode Island</td><td>1,830</td><td>1,940</td><td>+5.00%</td><td>+5.44%</td><td>+6.01%</td><td>+7.21%</td><td>+5.38%</td></tr>
+      <tr><td>9</td><td>Nebraska</td><td>1,010</td><td>1,060</td><td>+9.86%</td><td>+7.41%</td><td>+4.95%</td><td>+7.69%</td><td>+9.66%</td></tr>
+      <tr><td>10</td><td>New York</td><td>1,430</td><td>1,500</td><td>+2.80%</td><td>+5.22%</td><td>+4.90%</td><td>+3.37%</td><td>+2.53%</td></tr>
+    </tbody></table></div>
+    <p>Vermont leads four of the five bedroom sizes, and its 4BR column is the steepest single state cell on the board: 1,990 to 2,340 dollars, up 17.59 percent. The studio crown sits with South Dakota at 13.04 percent (690 to 780 dollars), and Washington DC adds the largest studio dollar jump, 170 dollars (1,910 to 2,080). In Vermont and Kansas the 4BR column outpaces every other bedroom. Nebraska's entry rides its studio and 4BR columns, +9.86 and +9.66, while its 2BR step runs 4.95. New York closes the table at 4.90 percent, a 1,430-to-1,500 move that blends the downstate premium with upstate bases.</p>
+  </section>
+
+  <section aria-label="Where studios lead">
+    <h2>Where studios lead, state by state</h2>
+    <p>Count which bedroom column moves fastest in each state and the studio wins 21 of the 51 jurisdictions, the 4-bedroom ten, the 1-bedroom and 3-bedroom seven each, the 2-bedroom six. In 33 of the 51, the studio's percentage increase beats the 4-bedroom's. Averaged across states, the studio median rose 3.86 percent against 2.92 for the 2BR. Part of the studio lead is mechanical: studio bases sit lowest on the ladder, so a similar dollar step converts to a bigger percentage. The counts point the same way on their own, though: 44 of 51 states raised the studio median, against 39 that raised the 2BR and 4BR medians.</p>
+    <p>Thirty-two states rose across all five bedroom sizes, fifteen cut at least one median, and the remaining four held at least one line flat. For the states that missed the top ten despite broad increases, the <a href="hud-fmr-by-bedroom.html">FY2026 bedroom-size guide</a> holds the baseline levels this page diffs, and the state summary files on each <a href="../datasets/hud-fmr-2026.html">dataset page</a> carry the 2BR medians behind the second table.</p>
+  </section>
+
+  <section aria-label="The cuts">
+    <h2>The states that cut fair market rents</h2>
+    <p>Arizona cut all five: the studio from 1,200 to 1,150 dollars, the 2BR from 1,610 to 1,520, down 5.59 percent, and the 4BR from 2,400 to 2,260. Maryland's 2BR fell 2.82 percent and Maine's 1.33 percent. The <a href="most-expensive-metros-rent-2027.html">most-expensive-metros ranking</a> shows where the ceiling sits in FY2027, Santa Cruz-Watsonville at a 4,250-dollar 2BR median, and the <a href="most-affordable-zips-rent-2027.html">most-affordable-ZIPs guide</a> shows the floor at 890 dollars, so the cuts above move state medians, not the extremes.</p>
+  </section>
+
+  <section aria-label="Methodology">
+    <h2>Methodology: conventions behind the numbers</h2>
+    <p>Both files share one ten-column schema, one row per ZIP and HUD area: 51,895 rows for FY2026 and 51,871 for FY2027. Because a metro's FMR values repeat across most of its ZIP rows, every median here weighs each ZIP once, the ZIP-row convention. That is the same convention behind the published 52-row state summary, and the recomputed FY2027 2BR medians match that summary for all 52 rows, which is the check that pins the method down. The FY2026 side was cross-checked the same way: the national medians reproduce the 870 / 940 / 1,150 / 1,500 / 1,720 ladder on the FY2026 bedroom-size guide, and the state spot checks land on the published values (New York 1,430, California 2,635, Alaska 1,510 flat).</p>
+    <p>The 51 jurisdictions counted throughout are the 50 states plus DC. Puerto Rico's 216 rows stay in both files, and its 2BR median moved from 600 to 610 dollars, +1.67 percent, close enough to the national pace that its exclusion changes no ranking here. Two caveats apply to every figure: FMRs are HUD's rent estimates, set at the 40th percentile of local rents and effective October 1, 2026, not observed asking rents, and medians weight ZIPs, so a metro with 300 ZIP rows weighs 300 times a county area with one.</p>
+  </section>
+
+  <section aria-label="Recompute the deltas yourself">
+    <h2>Recompute the deltas yourself</h2>
+    <p>Load both CSVs into SQLite with a <code>fy</code> column and the national medians fall out of one window-function pattern. This is the query behind the studio row:</p>
+    <pre><code>-- SQLite: national median per bedroom size, FY2027
+SELECT AVG(fmr) AS median_0br
+FROM (
+  SELECT fmr_0br AS fmr,
+         ROW_NUMBER() OVER (ORDER BY fmr_0br) AS rn,
+         COUNT(*) OVER () AS n
+  FROM zips
+  WHERE fy = 'fy2027'
+)
+WHERE rn IN ((n + 1) / 2, (n + 2) / 2);
+-- 910. Repeat with fmr_1br .. fmr_4br for 970 / 1,190 / 1,540 / 1,780.</code></pre>
+    <p>The state table needs per-state medians from both years, then the percentage diff:</p>
+    <pre><code>-- SQLite: the ten steepest state-level 2BR median increases
+WITH y26 AS (
+  SELECT state, fmr_2br,
+         ROW_NUMBER() OVER (PARTITION BY state ORDER BY fmr_2br) AS rn,
+         COUNT(*) OVER (PARTITION BY state) AS n
+  FROM zips WHERE fy = 'fy2026'
+),
+m26 AS (SELECT state, AVG(fmr_2br) AS med FROM y26
+        WHERE rn IN ((n + 1) / 2, (n + 2) / 2) GROUP BY state),
+y27 AS (
+  SELECT state, fmr_2br,
+         ROW_NUMBER() OVER (PARTITION BY state ORDER BY fmr_2br) AS rn,
+         COUNT(*) OVER (PARTITION BY state) AS n
+  FROM zips WHERE fy = 'fy2027'
+),
+m27 AS (SELECT state, AVG(fmr_2br) AS med FROM y27
+        WHERE rn IN ((n + 1) / 2, (n + 2) / 2) GROUP BY state)
+SELECT m26.state, m26.med AS fy26, m27.med AS fy27,
+       ROUND((m27.med - m26.med) * 100.0 / m26.med, 2) AS pct
+FROM m26 JOIN m27 USING (state)
+ORDER BY pct DESC
+LIMIT 10;
+-- Top row: VT, 1410, 1630, 15.6. The order matches the table above.</code></pre>
+    <p>Run both against the tables built by the <a href="hud-fmr-by-zip-sql.html">SQL guide's</a> import block, with each file loaded under its <code>fy</code> label, and the outputs match this page row for row. Change the ORDER BY column and the same query re-ranks any bedroom size.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>Bedroom-size deltas, FY2027 vs FY2026: questions</h2>
+    <dl>
+      <dt>Which bedroom size rose the most in the FY2027 fair market rents?</dt>
+      <dd>Studios. The national 0-bedroom median moved from 870 to 910 dollars, a 4.60 percent increase, the steepest of the five bedroom sizes. The 1-bedroom rose 3.19 percent, the 2-bedroom 3.48 percent, the 3-bedroom 2.67 percent, and the 4-bedroom 3.49 percent on the biggest dollar step, 1,720 to 1,780. At the state level the studio median rose in 44 of 51 jurisdictions and led every other bedroom size in 21 of them; Vermont's 4-bedroom increase of 17.59 percent is the steepest single state cell on the board.</dd>
+      <dt>Which states raised fair market rents the most for FY2027?</dt>
+      <dd>Vermont tops the 2BR ranking: its state median moved from 1,410 to 1,630 dollars, up 15.60 percent. South Dakota follows at 10.20 percent (980 to 1,080), North Dakota at 9.28 percent (970 to 1,060), Washington DC at 9.09 percent (2,200 to 2,400), and Kansas at 7.61 percent (920 to 990). On the other side, Arizona cut all five bedroom medians, from a 4.17 percent studio drop to a 5.59 percent 2-bedroom drop (1,610 to 1,520).</dd>
+      <dt>How were these bedroom-size medians computed?</dt>
+      <dd>As ZIP-row medians over the two HUD SAFMR files: 51,895 rows for FY2026 and 51,871 for FY2027, one row per ZIP and HUD area. The ZIP-row convention weighs each ZIP once, the same convention behind the published 52-row state summary, and the recomputed FY2027 2BR medians match that summary for all 52 rows. Puerto Rico stays out of the 51-jurisdiction rankings; its own 2BR median moved from 600 to 610 dollars.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <div class="btnrow">
+      <a class="btn" href="../data/hud-fmr-by-zip-2027/fmr-by-zip-2027.csv" download>Download the full FY2027 ZIP CSV (free, 4.3 MB)</a>
+      <a class="btn-ghost btn" href="../data/hud-fmr-2026/sample.csv" download>FY2026 sample CSV first</a>
+    </div>
+    <p class="btn-note">Both files come from HUD's Fair Market Rent releases, FY2027 effective October 1, 2026 and FY2026 effective October 1, 2025. The <a href="../datasets/hud-fmr-2027.html">FY2027 dataset page</a> documents the columns and integrity checks, the <a href="../datasets/hud-fmr-2026.html">ZIP-level FY2026 dataset page</a> covers the baseline year, and the full packs download free from Zenodo. For more on the same files, the <a href="hud-fmr-by-bedroom.html">FY2026 bedroom-size guide</a> holds the studio-to-4BR medians this page diffs, the <a href="most-expensive-metros-rent-2027.html">most-expensive-metros ranking</a> tops out at Santa Cruz-Watsonville's 4,250-dollar 2BR median, and the <a href="most-affordable-zips-rent-2027.html">most-affordable-ZIPs guide</a> bottoms out at the 890-dollar floor.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

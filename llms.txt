@@ -144,6 +144,7 @@ Rural population as a percent of total population (WDI indicator SP.RUR.TOTL.ZS)
 - Sample CSV: https://jayjex.github.io/data-vault/data/worldbank-g20-rural/sample.csv
 - Page: https://jayjex.github.io/data-vault/datasets/worldbank-g20-rural.html
 - Full data (free): https://jayjex.github.io/data-vault/data/worldbank-g20-rural/g20-rural-population.csv
+- Citable DOI: https://doi.org/10.5281/zenodo.22667657 (Zenodo record: https://zenodo.org/records/22667657/latest)
 - License: CC BY 4.0 (World Bank Open Data, CC BY 4.0)
 
 ### World Bank Life Expectancy, G20 Countries + EU27, 1960-2024 (worldbank-g20-life-expectancy)

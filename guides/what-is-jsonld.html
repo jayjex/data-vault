@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>What Is JSON-LD? Structured Data for SEO, With Real Blocks From This Site | Data Vault</title>
-<meta name="description" content="JSON-LD is the script format Google prefers for structured data. What it is, the four schema.org types that matter for SEO (Article, FAQPage, BreadcrumbList, ItemList), how to validate it, and the JSON-LD blocks this site ships on all 119 pages.">
+<meta name="description" content="JSON-LD is the script format Google prefers for structured data. What it is, the four schema.org types that matter for SEO (Article, FAQPage, BreadcrumbList, ItemList), how to validate it, and the JSON-LD blocks this site ships on all 170 pages.">
 <link rel="canonical" href="https://jayjex.github.io/data-vault/guides/what-is-jsonld.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Data Vault">
@@ -17,7 +17,7 @@
 <meta property="og:image:alt" content="What Is JSON-LD? Structured Data for SEO, With Real Blocks From This Site">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "Article", "headline": "What Is JSON-LD? Structured Data for SEO, With Real Blocks From This Site", "description": "JSON-LD is the script format Google prefers for structured data. What it is, the four schema.org types that matter for SEO (Article, FAQPage, BreadcrumbList, ItemList), how to validate it, and the JSON-LD blocks this site ships on all 119 pages.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/what-is-jsonld.html", "about": {"@type": "Thing", "name": "JSON-LD"}, "mentions": [{"@type": "WebPage", "name": "Google Rich Results Test", "url": "https://search.google.com/test/rich-results"}, {"@type": "WebPage", "name": "Schema.org validator", "url": "https://validator.schema.org"}]}
+{"@context": "https://schema.org", "@type": "Article", "headline": "What Is JSON-LD? Structured Data for SEO, With Real Blocks From This Site", "description": "JSON-LD is the script format Google prefers for structured data. What it is, the four schema.org types that matter for SEO (Article, FAQPage, BreadcrumbList, ItemList), how to validate it, and the JSON-LD blocks this site ships on all 170 pages.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/what-is-jsonld.html", "about": {"@type": "Thing", "name": "JSON-LD"}, "mentions": [{"@type": "WebPage", "name": "Google Rich Results Test", "url": "https://search.google.com/test/rich-results"}, {"@type": "WebPage", "name": "Schema.org validator", "url": "https://validator.schema.org"}]}
 </script>
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "What is JSON-LD", "item": "https://jayjex.github.io/data-vault/guides/what-is-jsonld.html"}]}
@@ -40,7 +40,7 @@
 <main id="main" class="wrap page">
   <a class="crumb" href="..">&larr; Catalog</a>
   <h1>What is JSON-LD?</h1>
-  <p class="byline">Published 2026-09-10. Every block below is copied from pages live on this site: all 119 HTML pages carry at least one JSON-LD block, most carry three.</p>
+  <p class="byline">Published 2026-09-10. Every block below is copied from pages live on this site: all 170 HTML pages carry at least one JSON-LD block, most carry three.</p>
 
   <section aria-label="The short answer">
     <h2>The short answer</h2>
@@ -68,7 +68,7 @@
 
   <section aria-label="How this site uses JSON-LD">
     <h2>How this site uses it: real blocks</h2>
-    <p>All 119 HTML pages on this site carry JSON-LD, and every guide ships the same three blocks: <code>Article</code>, <code>BreadcrumbList</code>, and <code>FAQPage</code>. Here is what that looks like in practice.</p>
+    <p>All 170 HTML pages on this site carry JSON-LD, and every guide ships the same three blocks: <code>Article</code>, <code>BreadcrumbList</code>, and <code>FAQPage</code>. Here is what that looks like in practice.</p>
     <p>Our <a href="hud-fmr-by-state.html">HUD FMR by state</a> guide has a 52-row table of per-state rent medians, one row per state, each row an anchor. The <code>ItemList</code> block mirrors that table with one <code>ListItem</code> per state. The real block, abridged:</p>
 <pre><code>{"@context": "https://schema.org", "@type": "ItemList",
  "name": "HUD FMR by state, FY2026 2BR medians", "numberOfItems": 52,

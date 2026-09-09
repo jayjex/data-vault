@@ -75,7 +75,7 @@
 Base URL: https://jayjex.github.io/data-vault
 Catalog (start here): https://jayjex.github.io/data-vault/catalog.json
 Agent docs: https://jayjex.github.io/data-vault/agents/
-MCP server: npx --allow-git=all -y github:jayjex/dataset-mcp (v1.1.0; tools: list_datasets, get_dataset_info, get_sample, query_dataset, get_stats)
+MCP server: npx --allow-git=all -y github:jayjex/dataset-mcp (v1.1.2; tools: list_datasets, get_dataset_info, get_sample, query_dataset, get_stats)
 
 ## Datasets
 
@@ -94,7 +94,7 @@ FY2026 fair market rents for 51,895 ZIP codes, 3,229 counties, and 52 states. Fi
 
   <section aria-label="Same site, both files">
     <h2>Same site, both files: what each one contributes</h2>
-    <p>This catalog runs both, which makes the division of labor easy to see. The <a href="../sitemap.xml">sitemap</a> lists all 34 pages and exists so Google indexes the dataset and guide pages at all. The <a href="../llms.txt">llms.txt</a> is shorter, curated, and ends with access rules instead of URL blocks.</p>
+    <p>This catalog runs both, which makes the division of labor easy to see. The <a href="../sitemap.xml">sitemap</a> lists all 170 pages and exists so Google indexes the dataset and guide pages at all. The <a href="../llms.txt">llms.txt</a> is shorter, curated, and ends with access rules instead of URL blocks.</p>
     <p>The two files overlap on almost nothing. A dataset like <a href="../datasets/hud-fmr-2026.html">HUD fair market rents</a> appears in both, but as different payloads: a bare URL with a date in the sitemap, versus row counts, sample endpoints, and a link to the full-data page in llms.txt. The sitemap entry gets the page indexed for someone searching rent data. The llms.txt entry gets the dataset used by an agent building something with rent data.</p>
     <p>If you deleted one file, the loss would be asymmetric. Lose the sitemap and search indexing degrades to whatever links crawlers stumble across. Lose llms.txt and agents fall back to crawling HTML, which is slower and burns their context, but still possible. That is the honest ranking of stakes: the sitemap protects an established channel, llms.txt improves an emerging one.</p>
   </section>

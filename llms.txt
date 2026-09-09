@@ -5,7 +5,7 @@
 Base URL: https://jayjex.github.io/data-vault
 Catalog (start here): https://jayjex.github.io/data-vault/catalog.json
 Agent docs: https://jayjex.github.io/data-vault/agents/
-MCP server: npx --allow-git=all -y github:jayjex/dataset-mcp (v1.1.0; tools: list_datasets, get_dataset_info, get_sample, query_dataset, get_stats; --allow-git=all needed on npm 12+, plain form on npm 10/11)
+MCP server: npx --allow-git=all -y github:jayjex/dataset-mcp (v1.1.2; tools: list_datasets, get_dataset_info, get_sample, query_dataset, get_stats; --allow-git=all needed on npm 12+, plain form on npm 10/11)
 MCP repo: https://github.com/jayjex/dataset-mcp
 MCP registry name: io.github.jayjex/dataset-mcp
 Portfolio (all live work in one page: MCP server, DOIs, x402 API, 3D print, print-on-demand, writing): https://jayjex.github.io/data-vault/portfolio.html
@@ -324,14 +324,14 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - [Web Scraping Tools Comparison: Cloud Platforms vs Self-Hosted Scripts](https://jayjex.github.io/data-vault/tools/scraping-tools-alternative.html): Apify-class platforms vs scripts
 - [Web Scraping Scripts Pack: 10 Ready-to-Run Playwright Templates](https://jayjex.github.io/data-vault/tools/scraping-scripts.html): the script pack landing
 - [How to Create an llms.txt File (No Generator Needed)](https://jayjex.github.io/data-vault/tools/llms-txt-howto.html): build one by hand, live example
-- [Free API Datasets for AI Agents, 5 packs with JSON samples](https://jayjex.github.io/data-vault/free-datasets-for-ai-agents.html): agent-oriented dataset index
+- [Free API Datasets for AI Agents, 12 packs with JSON samples](https://jayjex.github.io/data-vault/free-datasets-for-ai-agents.html): agent-oriented dataset index
 - [MCP Server Directory: Official Registry, Community Indexes, 3 Free Servers](https://jayjex.github.io/data-vault/tools/mcp-server-directory.html): registry + PulseMCP/mcp.so/Glama/mcpservers.org, our servers with README configs
 - [ESPN CDN Endpoints: 10 Hidden URLs for Scoreboard, Schedule, News and Standings (No Key)](https://jayjex.github.io/data-vault/tools/espncdn-cheatsheet.html): site.api.espn.com + cdn.espn.com + core API, one verbatim line each, live-tested
 
 ## Agents
 
 - [Agent access: catalog.json & sample endpoints](https://jayjex.github.io/data-vault/agents/): start here for machine access
-- [MCP server for datasets: query full packs from Claude Desktop or pi](https://jayjex.github.io/data-vault/agents/mcp-dataset-server.html): v1.1.0, five tools
+- [MCP server for datasets: query full packs from Claude Desktop or pi](https://jayjex.github.io/data-vault/agents/mcp-dataset-server.html): v1.1.2, five tools
 - [llms.txt for AI Agents: Structure and a Live Example](https://jayjex.github.io/data-vault/agents/llms-txt-guide.html): the format, explained
 - [Free Tools for AI Agents: catalog, MCP server, sample endpoints](https://jayjex.github.io/data-vault/agents/free-agent-tools.html): full free toolkit
 - [MCP Tools for Claude: 3 Free Servers, Config JSON, Registry](https://jayjex.github.io/data-vault/agents/mcp-tools-for-claude.html): server comparison with configs

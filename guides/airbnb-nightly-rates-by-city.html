@@ -69,7 +69,7 @@
   <section aria-label="Why the mean overstates the typical night">
     <h2>Why the mean overstates the typical night</h2>
     <p>The mean across the priced listings is 352 dollars against the median of 226, because nightly rates are heavy-tailed. 44.5 percent of priced listings cost 200 dollars or less, while 16.3 percent cost more than 500.</p>
-    <p>Three cities carry max prices that are source artifacts: San Francisco's 99,999, Washington DC's 85,638, and Los Angeles' 20,583. The files keep them verbatim, so filter or trim before averaging. That is also why San Francisco's mean of 412 is the highest of the eight while its median of 252 ranks third. Rank cities by median; use the mean only after you have handled the tail.</p>
+    <p>Three cities carry max prices that are source artifacts: San Francisco's 99,999, Washington DC's 85,638, and Los Angeles' 20,583. The files keep them verbatim, so filter or trim before averaging. That is also why San Francisco's mean of 412 is the highest of the eight while its median of 252 ranks third. Rank cities by median; use the mean only after you have handled the tail. The <a href="airbnb-price-data-exploration.html">price data exploration guide</a> works the outlier-trimming step in pandas.</p>
   </section>
 
   <section aria-label="The 12.8 percent with no price">
@@ -79,8 +79,8 @@
 
   <section aria-label="Run the rates yourself">
     <h2>Run the rates yourself</h2>
-    <p>All 8 city files download free on the <a href="../datasets/airbnb-eight-cities.html">dataset page</a>: 90,746 rows under CC BY 4.0, no paywall, plus a <span class="mono">cities-index.csv</span> with one row per city. Load any file in a spreadsheet or pandas, filter empty prices, group by <span class="mono">room_type</span>, and the table above reproduces in minutes.</p>
-    <p>The <a href="../datasets/airbnb-six-cities.html">six-city pack</a> (Austin, Nashville, Denver, New York City, Las Vegas, San Diego) uses the same 12 columns, so all 14 city files join on id; its per-city means and medians are in the <a href="airbnb-price-data.html">Airbnb price data guide</a>, and per-city row counts in <a href="airbnb-data-by-city.html">Airbnb data by city</a>. To turn these nightly rates into a monthly number, the <a href="airbnb-vs-long-term-rent.html">Airbnb vs long-term rent guide</a> runs the nightly &times; 30 test against HUD FMR and ACS rents.</p>
+    <p>All 8 city files download free on the <a href="../datasets/airbnb-eight-cities.html">dataset page</a>: 90,746 rows under CC BY 4.0, no paywall, plus a <span class="mono">cities-index.csv</span> with one row per city. Load any file in a spreadsheet or pandas, filter empty prices, group by <span class="mono">room_type</span>, and the table above reproduces in minutes. The schema and first rows also answer <code>curl</code> as JSON through the free <a href="../data/airbnb-eight-cities/sample.json">sample.json</a> endpoint, no key needed.</p>
+    <p>The <a href="../datasets/airbnb-six-cities.html">six-city pack</a> (Austin, Nashville, Denver, New York City, Las Vegas, San Diego) uses the same 12 columns, so all 14 city files join on id; its per-city means and medians are in the <a href="airbnb-price-data.html">Airbnb price data guide</a>, and per-city row counts in <a href="airbnb-data-by-city.html">Airbnb data by city</a>. To turn these nightly rates into a monthly number, the <a href="airbnb-vs-long-term-rent.html">Airbnb vs long-term rent guide</a> runs the nightly &times; 30 test against HUD FMR and ACS rents. For the point-in-time snapshot behind each month's rows, the <a href="airbnb-data-methodology.html">Airbnb data methodology guide</a> documents the Inside Airbnb capture, dedupe, and privacy-strip steps both packs share.</p>
   </section>
 
   <section aria-label="Frequently asked questions">

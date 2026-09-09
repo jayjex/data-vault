@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>10 Most Affordable US Metro ZIP Codes for Renters 2027 (HUD Fair Market Rent) | Data Vault</title>
+<meta name="description" content="The cheapest US ZIP codes for rent in FY2027, ranked by HUD fair market rent: the 2BR floor sits at 890 dollars across 133 ZIP codes in South Carolina and Louisiana, ZIP 29001 in Clarendon County, SC leads the list, and Gadsden, AL is the cheapest full metro at 920 dollars. Recomputed from the free CSVs.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/most-affordable-zips-rent-2027.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="10 Most Affordable US Metro ZIP Codes for Renters 2027 (HUD Fair Market Rent)">
+<meta property="og:description" content="The FY2027 HUD fair market rent floor for a 2-bedroom is 890 dollars, and 133 US ZIP codes share it across South Carolina and Louisiana. ZIP 29001 in Clarendon County, SC tops the list; Gadsden, AL is the cheapest full metro at 920 dollars.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/most-affordable-zips-rent-2027.html">
+<meta property="og:image" content="https://jayjex.github.io/data-vault/assets/covers/data-vault-banner.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="10 Most Affordable US Metro ZIP Codes for Renters 2027 (HUD Fair Market Rent)">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "10 Most Affordable US Metro ZIP Codes for Renters 2027 (HUD Fair Market Rent)", "description": "The cheapest US ZIP codes for rent in FY2027, ranked by HUD fair market rent: the 2BR floor sits at 890 dollars across 133 ZIP codes in South Carolina and Louisiana, ZIP 29001 in Clarendon County, SC leads the list, and Gadsden, AL is the cheapest full metro at 920 dollars. Recomputed from the free CSVs.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/most-affordable-zips-rent-2027.html", "about": {"@type": "Dataset", "name": "HUD Fair Market Rents FY2027 by ZIP Code", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-by-zip-2027.html"}, "mentions": [{"@type": "Dataset", "name": "HUD Fair Market Rents FY2027, Top-50 Metro Areas", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-metro-2027.html"}, {"@type": "Article", "name": "Query HUD FMR by ZIP With SQL: DuckDB and SQLite on the FY2027 CSV", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-zip-sql.html"}, {"@type": "Article", "name": "Most Expensive US Metro Areas for Rent 2027 (HUD Fair Market Rent)", "url": "https://jayjex.github.io/data-vault/guides/most-expensive-metros-rent-2027.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the cheapest ZIP code for rent in the US in 2027?", "acceptedAnswer": {"@type": "Answer", "text": "ZIP 29001 in Clarendon County, SC carries the lowest 2BR fair market rent of any mainland ZIP in the FY2027 file at 890 dollars, and it shares that floor with 132 other ZIP codes, 133 in all across 46 HUD areas in South Carolina and Louisiana. The floor moved up from 780 dollars in FY2026, spread over 28 Alabama county areas from Talladega to Choctaw."}}, {"@type": "Question", "name": "Which state has the cheapest fair market rent in 2027?", "acceptedAnswer": {"@type": "Answer", "text": "Arkansas and Mississippi tie for the cheapest state-level 2BR median at 960 dollars, followed by Oklahoma at 970 and Kentucky and West Virginia at 980. California sits at the other end at 2,600, 2.7 times the Arkansas median. The cheapest full metro area in the file is Gadsden, AL at a 920-dollar 2BR median across its 17 ZIP rows."}}, {"@type": "Question", "name": "Why does this ranking exclude Puerto Rico?", "acceptedAnswer": {"@type": "Answer", "text": "Puerto Rico runs its own housing market at a different price level: its 216 rows in the FY2027 file carry 2BR rents from 520 to 1,060 dollars with a 610-dollar median, so including it would fill the whole bottom of a US ranking with one territory. The ranking covers the 50 states and DC, and the Puerto Rico rows stay in the downloadable file for anyone who wants them."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://jayjex.github.io/data-vault/guides/"}, {"@type": "ListItem", "position": 3, "name": "10 most affordable US ZIP codes for renters 2027", "item": "https://jayjex.github.io/data-vault/guides/most-affordable-zips-rent-2027.html"}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>The most affordable US ZIP codes for renters in 2027, by HUD fair market rent</h1>
+  <p class="byline">FY2027 edition, published 2026-09-10. Data source: HUD FY2027 Fair Market Rent release, effective October 1, 2026. License: CC0 1.0 (US government data, public domain). Data Vault is not affiliated with HUD. This page documents the data; it is not housing or legal advice.</p>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>The cheapest 2-bedroom rent HUD projects for FY2027 is 890 dollars a month, and it is not a single ZIP code: 133 distinct ZIP codes share the floor, spread across 46 HUD areas in South Carolina and Louisiana. By ZIP number, the lowest is 29001 in Clarendon County, SC, which heads the table below. The list comes from the <a href="../datasets/hud-fmr-by-zip-2027.html">FY2027 ZIP-level fair market rent dataset</a>, all 51,871 rows recomputed from the raw file.</p>
+    <p>This is the mirror of the <a href="most-expensive-metros-rent-2027.html">most-expensive-metros ranking</a>, where Santa Cruz-Watsonville tops the list at a 4,250-dollar 2BR median. The same file bottoms out 5.9 times lower at the 890-dollar floor. One caveat before the table: Puerto Rico is excluded from every ranking on this page. Its 216 rows price from 520 to 1,060 dollars for a 2BR, so left in, one territory would sweep the entire bottom of a US list. The <a href="#methodology">methodology section</a> has the numbers.</p>
+  </section>
+
+  <section aria-label="The 12 cheapest ZIP codes">
+    <h2>The 12 cheapest ZIP codes for a 2-bedroom, FY2027</h2>
+    <p>A top-10 list undersells the floor, because ten is where the ties run out, not where the cheap rents do. The table carries twelve rows: the ten cheapest ZIP codes by 2BR fair market rent, then two more that tie at the same 890 dollars. Every row is a rural South Carolina county area, and every row is nonmetro.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Twelve cheapest US ZIP codes by HUD 2BR fair market rent, FY2027, Puerto Rico excluded"><table><thead><tr><th scope="col">#</th><th scope="col">ZIP</th><th scope="col">HUD area</th><th scope="col">ST</th><th scope="col">0BR</th><th scope="col">1BR</th><th scope="col">2BR</th><th scope="col">3BR</th><th scope="col">4BR</th></tr></thead><tbody>
+      <tr><td>1</td><td>29001</td><td>Clarendon County, SC</td><td>SC</td><td>640</td><td>690</td><td>890</td><td>1,130</td><td>1,320</td></tr>
+      <tr><td>2</td><td>29038</td><td>Bamberg County, SC</td><td>SC</td><td>640</td><td>730</td><td>890</td><td>1,070</td><td>1,160</td></tr>
+      <tr><td>3</td><td>29041</td><td>Clarendon County, SC</td><td>SC</td><td>650</td><td>680</td><td>890</td><td>1,110</td><td>1,320</td></tr>
+      <tr><td>4</td><td>29042</td><td>Bamberg County, SC</td><td>SC</td><td>640</td><td>680</td><td>890</td><td>1,100</td><td>1,160</td></tr>
+      <tr><td>5</td><td>29046</td><td>Lee County, SC</td><td>SC</td><td>640</td><td>680</td><td>890</td><td>1,060</td><td>1,250</td></tr>
+      <tr><td>6</td><td>29048</td><td>Orangeburg County, SC</td><td>SC</td><td>650</td><td>730</td><td>890</td><td>1,060</td><td>1,170</td></tr>
+      <tr><td>7</td><td>29080</td><td>Lee County, SC</td><td>SC</td><td>630</td><td>690</td><td>890</td><td>1,050</td><td>1,280</td></tr>
+      <tr><td>8</td><td>29081</td><td>Bamberg County, SC</td><td>SC</td><td>640</td><td>680</td><td>890</td><td>1,090</td><td>1,330</td></tr>
+      <tr><td>9</td><td>29115</td><td>Orangeburg County, SC</td><td>SC</td><td>640</td><td>730</td><td>890</td><td>1,050</td><td>1,160</td></tr>
+      <tr><td>10</td><td>29117</td><td>Orangeburg County, SC</td><td>SC</td><td>640</td><td>730</td><td>890</td><td>1,050</td><td>1,160</td></tr>
+      <tr><td>11</td><td>29133</td><td>Orangeburg County, SC</td><td>SC</td><td>660</td><td>730</td><td>890</td><td>1,050</td><td>1,160</td></tr>
+      <tr><td>12</td><td>29148</td><td>Clarendon County, SC</td><td>SC</td><td>640</td><td>680</td><td>890</td><td>1,100</td><td>1,310</td></tr>
+    </tbody></table></div>
+    <p>The whole bottom-12 is South Carolina because the floor ties break by ZIP number, and the 29xxx block sorts ahead of Louisiana's 70xxx. Louisiana owns more of the floor in raw count: 86 of the 133 floor ZIPs are Louisiana parishes against 47 in South Carolina. The bedroom columns show how flat these markets are: studios run 630 to 660, and the priciest studio in the table, 660 dollars in ZIP 29133, prices below the cheapest 2-bedroom in the <a href="../datasets/hud-fmr-metro-2027.html">top-50 metro table</a>, where Tulsa closes the coverage list at 1,150.</p>
+    <p>Put the floor against the ceiling and the spread is the story. A 4-bedroom in ZIP 29080 prices at 1,050 dollars, less than a third of the 3,230-dollar studio median in Santa Cruz-Watsonville. Year over year, the mainland floor moved from 780 dollars in FY2026, spread over 28 Alabama county areas from Talladega to Choctaw, to 890 now, a 14.1 percent jump at the bottom of the market, and the cheapest state flipped from Alabama to South Carolina and Louisiana.</p>
+  </section>
+
+  <section aria-label="The floor runs deeper than 12">
+    <h2>The floor runs deeper than the list</h2>
+    <p>The 890-dollar 2BR floor covers 133 distinct ZIP codes and 46 HUD areas, so any top-10 or top-12 is a slice, not a boundary. Ranked by their own ZIP-level 2BR medians, these 12 areas sit cheapest, six tied at the 890 floor and four more at 900:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Twelve cheapest HUD areas by ZIP-level 2BR median, FY2027"><table><thead><tr><th scope="col">#</th><th scope="col">HUD area</th><th scope="col">ST</th><th scope="col">ZIP rows</th><th scope="col">0BR</th><th scope="col">1BR</th><th scope="col">2BR</th><th scope="col">3BR</th><th scope="col">4BR</th></tr></thead><tbody>
+      <tr><td>1</td><td>Dillon County, SC</td><td>SC</td><td>11</td><td>780</td><td>820</td><td>890</td><td>1,230</td><td>1,480</td></tr>
+      <tr><td>2</td><td>East Carroll Parish, LA</td><td>LA</td><td>5</td><td>640</td><td>710</td><td>890</td><td>1,240</td><td>1,480</td></tr>
+      <tr><td>3</td><td>Franklin Parish, LA</td><td>LA</td><td>10</td><td>640</td><td>710</td><td>890</td><td>1,120</td><td>1,350</td></tr>
+      <tr><td>4</td><td>Marion County, SC</td><td>SC</td><td>8</td><td>690</td><td>820</td><td>890</td><td>1,150</td><td>1,370</td></tr>
+      <tr><td>5</td><td>Tensas Parish, LA</td><td>LA</td><td>6</td><td>640</td><td>765</td><td>890</td><td>1,240</td><td>1,460</td></tr>
+      <tr><td>6</td><td>West Carroll Parish, LA</td><td>LA</td><td>7</td><td>640</td><td>700</td><td>890</td><td>1,170</td><td>1,280</td></tr>
+      <tr><td>7</td><td>Allendale County, SC</td><td>SC</td><td>6</td><td>645</td><td>750</td><td>895</td><td>1,100</td><td>1,200</td></tr>
+      <tr><td>8</td><td>Avoyelles Parish, LA</td><td>LA</td><td>19</td><td>630</td><td>710</td><td>900</td><td>1,150</td><td>1,370</td></tr>
+      <tr><td>9</td><td>Bienville Parish, LA</td><td>LA</td><td>14</td><td>645</td><td>715</td><td>900</td><td>1,245</td><td>1,490</td></tr>
+      <tr><td>10</td><td>Evangeline Parish, LA</td><td>LA</td><td>14</td><td>665</td><td>710</td><td>900</td><td>1,210</td><td>1,265</td></tr>
+      <tr><td>11</td><td>Winn Parish, LA</td><td>LA</td><td>14</td><td>645</td><td>795</td><td>900</td><td>1,240</td><td>1,410</td></tr>
+      <tr><td>12</td><td>Morehouse Parish, LA HUD Metro FMR Area</td><td>LA</td><td>8</td><td>710</td><td>720</td><td>905</td><td>1,180</td><td>1,230</td></tr>
+    </tbody></table></div>
+    <p>At the state level, Arkansas and Mississippi tie for the cheapest 2BR median at 960 dollars, and the cheap-state cluster is Southern and Appalachian:</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Five states with the lowest 2BR fair market rent median, FY2027"><table><thead><tr><th scope="col">#</th><th scope="col">State</th><th scope="col">ZIP rows</th><th scope="col">2BR median</th></tr></thead><tbody>
+      <tr><td>1</td><td>Arkansas</td><td>989</td><td>960</td></tr>
+      <tr><td>2</td><td>Mississippi</td><td>844</td><td>960</td></tr>
+      <tr><td>3</td><td>Oklahoma</td><td>1,086</td><td>970</td></tr>
+      <tr><td>4</td><td>Kentucky</td><td>1,320</td><td>980</td></tr>
+      <tr><td>5</td><td>West Virginia</td><td>1,156</td><td>980</td></tr>
+    </tbody></table></div>
+    <p>California closes the same ranking at 2,600, 2.7 times the Arkansas median. For renters who want a real metro rather than a rural county, the cheapest full MSA in the file is Gadsden, AL at a 920-dollar 2BR median across 17 ZIP rows, then Decatur, AL at 950 (25 ZIPs) and Parkersburg-Vienna, WV at 960 (26 ZIPs). None of the 46 floor areas appears in the 50-metro coverage table, where <a href="hud-fmr-by-zip-sql.html">the SQL guide</a> shows the JOIN working; the cheapest metro there is Tulsa at 1,150. Sub-1,000-dollar 2BRs are a real slice of the country, not a rounding error: 4,529 distinct ZIP codes, 11.8 percent of the 38,432 mainland ZIPs in the file, price under 1,000 dollars, while the non-PR quartiles land at 1,020 / 1,190 / 1,590.</p>
+  </section>
+
+  <section aria-label="Methodology: why Puerto Rico is excluded">
+    <h2 id="methodology">Methodology: the Puerto Rico exclusion</h2>
+    <p>The FY2027 file holds 51,871 rows, 216 of them Puerto Rico. Puerto Rico's 2BR rows run from 520 dollars (ZIP 00669, Aguadilla) to 1,060, with a 610-dollar median, so on an unfiltered ranking every one of the top slots would be Puerto Rico. That is a true fact about the file and a useless answer to "where can I rent cheap in the US," because the territory prices its own market under different conditions. Every table on this page therefore ranks the 50 states and DC only: 51,655 rows over 38,432 distinct ZIP codes. The Puerto Rico rows stay in the downloadable CSV untouched, so the all-rows floor of 520 still belongs to Aguadilla, PR, the number the <a href="../datasets/hud-fmr-by-zip-2027.html">dataset page</a> reports.</p>
+    <p>Two more conventions worth knowing before recomputing. First, 10,093 ZIPs carry more than one row because HUD splits some ZIPs between metro and nonmetro areas, so a per-ZIP ranking needs a dedup; the query below keeps each ZIP's cheapest row and breaks ties on area name. Second, all figures on this page are FMRs, HUD's rent estimates for the coming fiscal year effective October 1, 2026, not observed asking rents, and they are set at the 40th percentile of local rents, so they describe what a modest rental costs, not the market floor in cash terms.</p>
+  </section>
+
+  <section aria-label="Recompute the ranking yourself">
+    <h2>Recompute the ranking yourself</h2>
+    <p>Load the <a href="../datasets/hud-fmr-by-zip-2027.html">ZIP-level CSV</a> into SQLite and the whole bottom-12 falls out of one query. The dedup window function keeps the cheapest row per ZIP, the CAST keeps the ZIP order numeric, and the WHERE clause applies the Puerto Rico exclusion:</p>
+    <pre><code>-- SQLite: the 12 cheapest ZIP codes by 2BR FMR, Puerto Rico excluded
+SELECT zip, area_name, state, fmr_0br, fmr_1br, fmr_2br, fmr_3br, fmr_4br
+FROM (
+  SELECT *, row_number() OVER (
+    PARTITION BY zip
+    ORDER BY fmr_2br, area_name
+  ) AS rn
+  FROM zips
+  WHERE state &lt;&gt; 'PR'
+)
+WHERE rn = 1
+ORDER BY fmr_2br, CAST(zip AS INTEGER)
+LIMIT 12;
+-- 12 rows, every fmr_2br = 890: 29001, 29038, 29041, 29042, 29046,
+-- 29048, 29080, 29081, 29115, 29117, 29133, 29148, all South Carolina</code></pre>
+    <p>Run it against the table built by the <a href="hud-fmr-by-zip-sql.html">SQL guide's</a> import block and the output matches the first table row for row, including the all-South-Carolina tail. Drop the LIMIT or re-order on any bedroom column to extend the table; sort without the <code>state</code> filter and Puerto Rico's 520-dollar rows take over the top of the list, which is exactly why the exclusion is stated up front.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>Affordable ZIP codes 2027: questions</h2>
+    <dl>
+      <dt>What is the cheapest ZIP code for rent in the US in 2027?</dt>
+      <dd>ZIP 29001 in Clarendon County, SC carries the lowest 2BR fair market rent of any mainland ZIP in the FY2027 file at 890 dollars, and it shares that floor with 132 other ZIP codes, 133 in all across 46 HUD areas in South Carolina and Louisiana. The floor moved up from 780 dollars in FY2026, spread over 28 Alabama county areas from Talladega to Choctaw.</dd>
+      <dt>Which state has the cheapest fair market rent in 2027?</dt>
+      <dd>Arkansas and Mississippi tie for the cheapest state-level 2BR median at 960 dollars, followed by Oklahoma at 970 and Kentucky and West Virginia at 980. California sits at the other end at 2,600, 2.7 times the Arkansas median. The cheapest full metro area in the file is Gadsden, AL at a 920-dollar 2BR median across its 17 ZIP rows.</dd>
+      <dt>Why does this ranking exclude Puerto Rico?</dt>
+      <dd>Puerto Rico runs its own housing market at a different price level: its 216 rows in the FY2027 file carry 2BR rents from 520 to 1,060 dollars with a 610-dollar median, so including it would fill the whole bottom of a US ranking with one territory. The ranking covers the 50 states and DC, and the Puerto Rico rows stay in the downloadable file for anyone who wants them.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <div class="btnrow">
+      <a class="btn" href="../data/hud-fmr-by-zip-2027/fmr-by-zip-2027.csv" download>Download the full ZIP-level CSV (free, 4.3 MB)</a>
+      <a class="btn-ghost btn" href="../data/hud-fmr-by-zip-2027/sample.csv" download>Sample CSV first</a>
+    </div>
+    <p class="btn-note">The full 51,871-row file downloads free from the <a href="../datasets/hud-fmr-by-zip-2027.html">FY2027 ZIP dataset page</a>, which documents the columns, the split-ZIP design and the integrity checks. The metro medians used for the Tulsa and top-50 comparisons come from the <a href="../datasets/hud-fmr-metro-2027.html">FY2027 metro dataset</a>. Everything comes from HUD's FY2027 Fair Market Rent release: US government data, public domain under CC0, no attribution required to republish.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

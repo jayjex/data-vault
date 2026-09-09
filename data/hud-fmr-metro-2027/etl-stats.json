@@ -1,0 +1,57 @@
+{
+ "rows_main": 50,
+ "rows_expensive": 50,
+ "metro_areas_total": 649,
+ "zip_rows_source": 51871,
+ "top50_zip_share": 10143,
+ "total_metro_zips": 27288,
+ "median_2br_across_649_metros": 1240,
+ "most_expensive_2br": [
+  [
+   "Santa Cruz-Watsonville, CA MSA",
+   4250
+  ],
+  [
+   "San Francisco, CA HUD Metro FMR Area",
+   3590
+  ],
+  [
+   "New York, NY HUD Metro FMR Area",
+   3295
+  ],
+  [
+   "San Jose-Sunnyvale-Santa Clara, CA HUD Metro FMR Area",
+   3270
+  ],
+  [
+   "Napa, CA MSA",
+   3200
+  ]
+ ],
+ "most_expensive_2br_50th": 2160,
+ "overlap_two_rankings": 12,
+ "cheapest_in_top50_2br": 1150,
+ "cheapest_in_top50_name": "Tulsa, OK HUD Metro FMR Area",
+ "new_york": {
+  "metro_code": "METRO35620MM5600",
+  "metro_name": "New York, NY HUD Metro FMR Area",
+  "state": "NY",
+  "zip_count": 410,
+  "fmr_0br_median": 2865,
+  "fmr_1br_median": 3010,
+  "fmr_2br_median": 3295,
+  "fmr_3br_median": 4155,
+  "fmr_4br_median": 4550
+ },
+ "los_angeles": {
+  "metro_code": "METRO31080MM4480",
+  "metro_name": "Los Angeles-Long Beach-Glendale, CA HUD Metro FMR Area",
+  "state": "CA",
+  "zip_count": 474,
+  "fmr_0br_median": 2150,
+  "fmr_1br_median": 2400,
+  "fmr_2br_median": 2960,
+  "fmr_3br_median": 3760,
+  "fmr_4br_median": 4200
+ }
+}

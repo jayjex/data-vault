@@ -1,0 +1,150 @@
+{
+ "slug": "hud-fmr-metro-2027",
+ "name": "HUD Fair Market Rents FY2027, Top-50 Metro Areas",
+ "columns": [
+  "metro_code",
+  "metro_name",
+  "state",
+  "zip_count",
+  "fmr_0br_median",
+  "fmr_1br_median",
+  "fmr_2br_median",
+  "fmr_3br_median",
+  "fmr_4br_median"
+ ],
+ "row_count": 50,
+ "records": [
+  {
+   "metro_code": "METRO47900M47900",
+   "metro_name": "Washington-Arlington-Alexandria, DC-VA-MD HUD Metro FMR Area",
+   "state": "DC",
+   "zip_count": 488,
+   "fmr_0br_median": 2080,
+   "fmr_1br_median": 2170,
+   "fmr_2br_median": 2400,
+   "fmr_3br_median": 3060,
+   "fmr_4br_median": 3600
+  },
+  {
+   "metro_code": "METRO31080MM4480",
+   "metro_name": "Los Angeles-Long Beach-Glendale, CA HUD Metro FMR Area",
+   "state": "CA",
+   "zip_count": 474,
+   "fmr_0br_median": 2150,
+   "fmr_1br_median": 2400,
+   "fmr_2br_median": 2960,
+   "fmr_3br_median": 3760,
+   "fmr_4br_median": 4200
+  },
+  {
+   "metro_code": "METRO37980M37980",
+   "metro_name": "Philadelphia-Camden-Wilmington, PA-NJ-DE-MD MSA",
+   "state": "PA",
+   "zip_count": 473,
+   "fmr_0br_median": 1460,
+   "fmr_1br_median": 1580,
+   "fmr_2br_median": 1900,
+   "fmr_3br_median": 2280,
+   "fmr_4br_median": 2500
+  },
+  {
+   "metro_code": "METRO35620MM5600",
+   "metro_name": "New York, NY HUD Metro FMR Area",
+   "state": "NY",
+   "zip_count": 410,
+   "fmr_0br_median": 2865,
+   "fmr_1br_median": 3010,
+   "fmr_2br_median": 3295,
+   "fmr_3br_median": 4155,
+   "fmr_4br_median": 4550
+  },
+  {
+   "metro_code": "METRO38300M38300",
+   "metro_name": "Pittsburgh, PA HUD Metro FMR Area",
+   "state": "PA",
+   "zip_count": 393,
+   "fmr_0br_median": 950,
+   "fmr_1br_median": 1020,
+   "fmr_2br_median": 1230,
+   "fmr_3br_median": 1570,
+   "fmr_4br_median": 1700
+  },
+  {
+   "metro_code": "METRO16980M16980",
+   "metro_name": "Chicago-Joliet-Naperville, IL HUD Metro FMR Area",
+   "state": "IL",
+   "zip_count": 370,
+   "fmr_0br_median": 1650,
+   "fmr_1br_median": 1750,
+   "fmr_2br_median": 2010,
+   "fmr_3br_median": 2580,
+   "fmr_4br_median": 2940
+  },
+  {
+   "metro_code": "METRO26420M26420",
+   "metro_name": "Houston-The Woodlands-Sugar Land, TX HUD Metro FMR Area",
+   "state": "TX",
+   "zip_count": 327,
+   "fmr_0br_median": 1210,
+   "fmr_1br_median": 1240,
+   "fmr_2br_median": 1470,
+   "fmr_3br_median": 1980,
+   "fmr_4br_median": 2460
+  },
+  {
+   "metro_code": "METRO12060M12060",
+   "metro_name": "Atlanta-Sandy Springs-Roswell, GA HUD Metro FMR Area",
+   "state": "GA",
+   "zip_count": 299,
+   "fmr_0br_median": 1560,
+   "fmr_1br_median": 1630,
+   "fmr_2br_median": 1770,
+   "fmr_3br_median": 2110,
+   "fmr_4br_median": 2500
+  },
+  {
+   "metro_code": "METRO41180M41180",
+   "metro_name": "St. Louis, MO-IL HUD Metro FMR Area",
+   "state": "MO",
+   "zip_count": 268,
+   "fmr_0br_median": 970,
+   "fmr_1br_median": 1010,
+   "fmr_2br_median": 1230,
+   "fmr_3br_median": 1580,
+   "fmr_4br_median": 1820
+  },
+  {
+   "metro_code": "METRO19100M19100",
+   "metro_name": "Dallas, TX HUD Metro FMR Area",
+   "state": "TX",
+   "zip_count": 260,
+   "fmr_0br_median": 1420,
+   "fmr_1br_median": 1460,
+   "fmr_2br_median": 1720,
+   "fmr_3br_median": 2170,
+   "fmr_4br_median": 2750
+  },
+  {
+   "metro_code": "METRO14460MM1120",
+   "metro_name": "Boston-Cambridge-Quincy, MA-NH HUD Metro FMR Area",
+   "state": "MA",
+   "zip_count": 259,
+   "fmr_0br_median": 2250,
+   "fmr_1br_median": 2340,
+   "fmr_2br_median": 2820,
+   "fmr_3br_median": 3360,
+   "fmr_4br_median": 3710
+  },
+  {
+   "metro_code": "METRO28140M28140",
+   "metro_name": "Kansas City, MO-KS HUD Metro FMR Area",
+   "state": "MO",
+   "zip_count": 252,
+   "fmr_0br_median": 1190,
+   "fmr_1br_median": 1290,
+   "fmr_2br_median": 1460,
+   "fmr_3br_median": 1910,
+   "fmr_4br_median": 2280
+  }
+ ]
+}

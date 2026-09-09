@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD Fair Market Rents FY2027, Top-50 Metro Areas (Free CSV) | Data Vault</title>
+<meta name="description" content="FY2027 fair market rents for the 50 largest metro FMR areas, one median per bedroom size across each area's ZIPs, plus the 50 most expensive 2BR metros. Free full CSV, public domain.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/datasets/hud-fmr-metro-2027.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="HUD Fair Market Rents FY2027, Top-50 Metro Areas (Free CSV) | Data Vault">
+<meta property="og:description" content="FY2027 FMR medians for the 50 largest metro FMR areas and the 50 priciest 2BR metros, one row per metro. Free full CSV, public domain.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/datasets/hud-fmr-metro-2027.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "HUD Fair Market Rents FY2027, Top-50 Metro Areas", "description": "FY2027 Fair Market Rents aggregated to metro FMR areas: one row per area with a median across the area's ZIPs for each bedroom size, studios through 4BR. Covers the 50 metro areas with the most ZIP codes (10,143 of 27,288 metro-assigned ZIPs) plus a second table of the 50 areas with the highest 2BR median across all 649 metro areas. Aggregates recomputed from the ZIP-level FY2027 file; rates effective October 1, 2026.", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-metro-2027.html", "keywords": ["hud", "fmr", "metro", "rent", "gov-data", "real-estate"], "creator": {"@type": "Organization", "name": "Matchbook Labs"}, "isAccessibleForFree": true, "license": "https://creativecommons.org/publicdomain/zero/1.0/", "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/fmr-metro-2027.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/most-expensive-2br.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/sample.csv"}, {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/sample.json"}, {"@type": "DataDownload", "encodingFormat": "text/markdown", "contentUrl": "https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/schema.md"}], "isBasedOn": "https://www.huduser.gov/portal/datasets/fmr.html"}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>HUD Fair Market Rents FY2027, Top-50 Metro Areas</h1>
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>50</b> metros × 2 tables</span><span class="stat"><b>10,143</b> ZIPs covered</span><span class="stat"><b>5</b> bedroom sizes</span><span class="stat"><b>free</b> full data</span></div>
+  <section aria-label="About this dataset">
+    <p>FY2027 fair market rents for the 50 metro FMR areas with the most ZIP codes, one row per area: the HUD area code and name, ZIP count, and a median across the area's ZIPs for each bedroom size, studios through 4BR. Rates are effective October 1, 2026. HUD publishes rents per ZIP; this table rolls them up to the metro, which is the level most rent comparisons actually happen at. Together the 50 areas cover 10,143 of the 27,288 metro-assigned ZIPs in the FY2027 file.</p>
+    <p>Two cuts, two different leaders. Rank by ZIP coverage and Washington DC leads with 488 ZIPs at a $2,400 2BR median, ahead of Los Angeles (474, $2,960) and Philadelphia (473, $1,900). Rank all 649 metro areas by 2BR price and Santa Cruz-Watsonville tops the list at $4,250 with 23 ZIPs, ahead of San Francisco ($3,590) and New York ($3,295). Only 12 areas appear in both top-50s, which is why the pack ships both tables. The price table is its own angle: 16 of the 50 priciest metros are in California, New Jersey puts up 7, and the 50th spot, Nashua NH at $2,160, still beats every Texas metro in the coverage table.</p>
+    <p>The aggregate is a plain median: every ZIP in the area weighs the same. That makes it easy to recompute and easy to check against the ZIP file, but it is not HUD's official 40th-percentile area FMR, and it is not a ZIP-count-weighted average. Where you want the official number, HUD publishes it at <a href="https://www.huduser.gov/portal/datasets/fmr.html" rel="noopener">huduser.gov</a>.</p>
+    <p>Everything here is recomputed from the ZIP-level FY2027 file behind the <a href="../guides/hud-fmr-2027.html">HUD FMR FY2027 dataset</a>, not copied from any HUD summary, and the build asserts each metro code carries exactly one name and one state. The full column dictionary and caveats are in <a href="../data/hud-fmr-metro-2027/schema.md">schema.md</a>. For county-level FY2026 rates, see the <a href="hud-fmr-county-2026.html">HUD FMR by county dataset</a>.</p>
+    <p class="byline">Source: US Department of Housing and Urban Development, FY2027 Fair Market Rent release, effective October 1, 2026. US government data, public domain.</p>
+  </section>
+  <section aria-label="Most expensive preview">
+    <h2>Most expensive 2BR metros</h2>
+    <p class="table-note">The top 12 rows of most-expensive-2br.csv, sorted by 2BR median. The 50-row coverage table starts in sample.csv.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Most expensive metros table"><table><thead><tr><th scope="col">metro_name</th><th scope="col">state</th><th scope="col">zip_count</th><th scope="col">fmr_2br_median</th></tr></thead><tbody><tr><td>Santa Cruz-Watsonville, CA MSA</td><td>CA</td><td>23</td><td>4250</td></tr><tr><td>San Francisco, CA HUD Metro FMR Area</td><td>CA</td><td>113</td><td>3590</td></tr><tr><td>New York, NY HUD Metro FMR Area</td><td>NY</td><td>410</td><td>3295</td></tr><tr><td>San Jose-Sunnyvale-Santa Clara, CA HUD Metro FMR Area</td><td>CA</td><td>106</td><td>3270</td></tr><tr><td>Napa, CA MSA</td><td>CA</td><td>16</td><td>3200</td></tr><tr><td>Santa Maria-Santa Barbara, CA MSA</td><td>CA</td><td>41</td><td>3110</td></tr><tr><td>Santa Ana-Anaheim-Irvine, CA HUD Metro FMR Area</td><td>CA</td><td>147</td><td>3060</td></tr><tr><td>San Benito County, CA HUD Metro FMR Area</td><td>CA</td><td>9</td><td>3000</td></tr><tr><td>Los Angeles-Long Beach-Glendale, CA HUD Metro FMR Area</td><td>CA</td><td>474</td><td>2960</td></tr><tr><td>Boston-Cambridge-Quincy, MA-NH HUD Metro FMR Area</td><td>MA</td><td>259</td><td>2820</td></tr><tr><td>San Diego-Chula Vista-Carlsbad, CA MSA</td><td>CA</td><td>178</td><td>2820</td></tr><tr><td>Santa Rosa-Petaluma, CA MSA</td><td>CA</td><td>53</td><td>2820</td></tr></tbody></table></div>
+  </section>
+  <section aria-label="Files">
+    <h2>Files</h2>
+    <ul class="files">
+      <li><a href="../data/hud-fmr-metro-2027/fmr-metro-2027.csv" download>fmr-metro-2027.csv</a><span class="sz">50 rows, top metros by ZIP coverage · 4.7 KB</span></li>
+      <li><a href="../data/hud-fmr-metro-2027/most-expensive-2br.csv" download>most-expensive-2br.csv</a><span class="sz">50 rows, priciest 2BR metros · 4.6 KB</span></li>
+      <li><a href="../data/hud-fmr-metro-2027/sample.csv" download>sample.csv</a><span class="sz">12 rows, coverage top 12 · 1.3 KB</span></li>
+      <li><a href="../data/hud-fmr-metro-2027/sample.json" download>sample.json</a><span class="sz">12 records, row_count 50 · 3.7 KB</span></li>
+      <li><a href="../data/hud-fmr-metro-2027/schema.md" download>schema.md</a><span class="sz">column dictionary, aggregation rules, caveats</span></li>
+    </ul>
+  </section>
+  <section aria-label="Get the data">
+    <div class="btnrow">
+      <a class="btn-ghost btn" href="../data/hud-fmr-metro-2027/fmr-metro-2027.csv" download>Download coverage CSV (free)</a>
+      <a class="btn" href="../data/hud-fmr-metro-2027/most-expensive-2br.csv" download>Download price CSV (free)</a>
+    </div>
+    <p class="btn-note">Both tables download free: the source is HUD's FY2027 FMR release, US government data in the public domain, so republished rows carry no attribution requirement. The <a href="../guides/hud-fmr-2027.html">FY2027 guide</a> reads the ZIP-level file these medians roll up from, the <a href="hud-fmr-county-2026.html">county FY2026 dataset</a> and the <a href="hud-fmr-2026.html">ZIP-level FY2026 dataset</a> cover the prior year, and the <a href="../guides/hud-fmr-by-metro-area.html">metro area guide</a> explains how HUD defines a metro FMR area. The rest of the catalog lives on the <a href="../portfolio.html">portfolio page</a>.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

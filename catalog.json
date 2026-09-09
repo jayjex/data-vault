@@ -1012,6 +1012,59 @@
       },
       "license": "Public domain (US government data, HUD FY2026 Fair Market Rent release)",
       "page": "https://jayjex.github.io/data-vault/datasets/hud-fmr-county-2026.html"
+    },
+    {
+      "slug": "hud-fmr-metro-2027",
+      "name": "HUD Fair Market Rents FY2027, Top-50 Metro Areas",
+      "niche": "gov-data",
+      "tags": [
+        "hud",
+        "fmr",
+        "metro",
+        "rent",
+        "real-estate",
+        "gov-data",
+        "free"
+      ],
+      "description": "FY2027 fair market rents for the 50 metro FMR areas with the most ZIP codes: one row per area, median across the area's ZIPs for studios through 4BR, 10,143 of 27,288 metro ZIPs covered. A second table ranks the 50 priciest 2BR metros across all 649 areas (Santa Cruz-Watsonville tops at 4,250); only 12 areas appear in both. Free full CSVs.",
+      "stats": {
+        "rows": 50,
+        "tables": 2,
+        "columns": 9,
+        "updated": "FY2027"
+      },
+      "sample": {
+        "csv": "https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/sample.csv",
+        "json": "https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/sample.json",
+        "rows": 12,
+        "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+      },
+      "extra_files": [
+        {
+          "name": "fmr-metro-2027.csv (full, free)",
+          "url": "https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/fmr-metro-2027.csv",
+          "rows": 50,
+          "note": "complete coverage table, free download"
+        },
+        {
+          "name": "most-expensive-2br.csv (full, free)",
+          "url": "https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/most-expensive-2br.csv",
+          "rows": 50,
+          "note": "50 priciest 2BR metros across all 649 areas, free download"
+        },
+        {
+          "name": "schema.md",
+          "url": "https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/schema.md",
+          "note": "column dictionary, aggregation rules, caveats"
+        }
+      ],
+      "full_data": {
+        "status": "free",
+        "url": "https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/fmr-metro-2027.csv",
+        "note": "Source is US government data (HUD FY2027 FMR release), public domain, so both tables are free downloads, not a Getly pack."
+      },
+      "license": "Public domain (US government data, HUD FY2027 Fair Market Rent release)",
+      "page": "https://jayjex.github.io/data-vault/datasets/hud-fmr-metro-2027.html"
     }
   ],
   "mcp": {

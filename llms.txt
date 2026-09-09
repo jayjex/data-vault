@@ -59,6 +59,15 @@ County-level FY2026 Fair Market Rents: 3,229 county-equivalents across 56 states
 - Full county FMR table (free): https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/fmr-county-2026.csv (3,229 county-equivalents, FY2026, median+max for 0-4BR; page: https://jayjex.github.io/data-vault/datasets/hud-fmr-county-2026.html)
 - License: Public domain (US government data, HUD FY2026 Fair Market Rent release)
 
+### HUD Fair Market Rents FY2027, Top-50 Metro Areas (hud-fmr-metro-2027)
+FY2027 FMR medians for the 50 metro FMR areas with the most ZIP codes (10,143 of 27,288 metro ZIPs, Washington DC leads at 488 ZIPs) plus a second table of the 50 priciest 2BR metros across all 649 areas (Santa Cruz-Watsonville tops at 4,250, only 12 areas overlap with the coverage table): one row per metro, median across the area's ZIPs per bedroom size, rates effective October 1, 2026. Niche: gov-data. Stats: {"rows": 50, "tables": 2, "columns": 9, "updated": "FY2027"}.
+- Sample JSON: https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/sample.json
+- Sample CSV: https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/sample.csv
+- Page: https://jayjex.github.io/data-vault/datasets/hud-fmr-metro-2027.html
+- Coverage table (free): https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/fmr-metro-2027.csv (50 rows)
+- Price table (free): https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/most-expensive-2br.csv (50 rows)
+- License: Public domain (US government data, HUD FY2027 Fair Market Rent release)
+
 ### Airbnb Listings, 6 US Cities (airbnb-six-cities)
 90,169 Airbnb listings across Austin, Nashville, Denver, New York City, Las Vegas, and San Diego in one normalized schema. Niche: real-estate. Stats: {"rows": 90169, "tables": 8, "columns": 12, "updated": "2026-08-10"}.
 - Sample JSON: https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.json

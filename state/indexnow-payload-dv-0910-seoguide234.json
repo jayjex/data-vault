@@ -1,0 +1,14 @@
+{
+  "host": "jayjex.github.io",
+  "key": "78e095195f1e3c98ed5e6c17474dc1b6",
+  "keyLocation": "https://jayjex.github.io/data-vault/78e095195f1e3c98ed5e6c17474dc1b6.txt",
+  "urlList": [
+    "https://jayjex.github.io/data-vault/guides/county-name-duplicates.html",
+    "https://jayjex.github.io/data-vault/guides/index.html",
+    "https://jayjex.github.io/data-vault/sitemap.xml",
+    "https://jayjex.github.io/data-vault/llms.txt",
+    "https://jayjex.github.io/data-vault/portfolio.html",
+    "https://jayjex.github.io/data-vault/datasets/hud-fmr-county-2026.html",
+    "https://jayjex.github.io/data-vault/data/county-name-duplicates/county-name-duplicates-2027.csv"
+  ]
+}

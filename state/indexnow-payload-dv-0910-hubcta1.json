@@ -1,0 +1,17 @@
+{
+  "host": "jayjex.github.io",
+  "key": "78e095195f1e3c98ed5e6c17474dc1b6",
+  "keyLocation": "https://jayjex.github.io/data-vault/78e095195f1e3c98ed5e6c17474dc1b6.txt",
+  "urlList": [
+    "https://jayjex.github.io/data-vault/guides/worldwide-civic-amenities-map.html",
+    "https://jayjex.github.io/data-vault/guides/civic-amenities-per-capita.html",
+    "https://jayjex.github.io/data-vault/guides/zip-prefix-geography.html",
+    "https://jayjex.github.io/data-vault/guides/most-affordable-counties.html",
+    "https://jayjex.github.io/data-vault/guides/rent-vs-income-affordability.html",
+    "https://jayjex.github.io/data-vault/guides/python-read-csv-tutorial.html",
+    "https://jayjex.github.io/data-vault/guides/csv-vs-excel-data-analysis.html",
+    "https://jayjex.github.io/data-vault/guides/data-dictionary-explained.html",
+    "https://jayjex.github.io/data-vault/guides/mcp-server-build-tutorial.html",
+    "https://jayjex.github.io/data-vault/guides/mena-city-amenities-guide.html"
+  ]
+}

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The STL Ledger: 20 Print Models Ranked by Volume, Measured From the Mesh | Data Vault</title>
+<meta name="description" content="The seed packet box tops the ledger at 246.34 cm³ of print and the opisometer bottoms it at 3.3, a 74.65x span across 20 mesh-measured STL spec sheets with 188,946 faces on 138 bodies.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/stl-volume-ledger.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="The STL Ledger: 20 Print Models Ranked by Volume, Measured From the Mesh">
+<meta property="og:description" content="The seed packet box tops the ledger at 246.34 cm³ of print and the opisometer bottoms it at 3.3, a 74.65x span across 20 mesh-measured STL spec sheets with 188,946 faces on 138 bodies.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/stl-volume-ledger.html">
+<meta property="og:image" content="https://jayjex.github.io/data-vault/assets/covers/data-vault-banner.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The STL Ledger: 20 print models ranked by volume, measured from the mesh">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "The STL Ledger: 20 Print Models Ranked by Volume, Measured From the Mesh", "description": "The seed packet box tops the ledger at 246.34 cm³ of print and the opisometer bottoms it at 3.3, a 74.65x span across 20 mesh-measured STL spec sheets with 188,946 faces on 138 bodies.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/stl-volume-ledger.html", "about": {"@type": "Dataset", "name": "STL mesh measurement ledger, one row per print model", "url": "https://jayjex.github.io/data-vault/data/stl-ledger/stl-ledger.csv"}, "mentions": [{"@type": "Article", "name": "3D Printed Desk Organizers and Printable Tools: 10 Parametric MakerWorld Models", "url": "https://jayjex.github.io/data-vault/guides/print-in-use-organizers.html"}, {"@type": "Article", "name": "Parametric 3D Printed Tools: 10 MakerWorld Models You Can Rebuild at Your Own Dimensions", "url": "https://jayjex.github.io/data-vault/guides/printable-tools-parametric.html"}, {"@type": "Article", "name": "3D Printable Education Models: Math Manipulatives for Class and Home", "url": "https://jayjex.github.io/data-vault/guides/printable-education-models.html"}, {"@type": "Article", "name": "3D Printed Gift Tags: 70 and 50 mm TO/FROM Engraved Set, No Supports", "url": "https://jayjex.github.io/data-vault/guides/printable-gift-tags.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which model on the printables shelf needs the most filament?", "acceptedAnswer": {"@type": "Answer", "text": "By solid mesh volume the seed packet box is the heaviest at 246.34 cm³, about 305 g of PLA printed solid, ahead of the toothbrush holder at 172.58 and the sharpening stone holder at 167.5. The lightest is the opisometer at 3.3 cm³, about 4.1 g, so the heaviest file holds 74.65 times the plastic of the lightest. Weight in hand depends on infill, and each spec sheet quotes grams at its own assumption, so the ledger ranks volumes and leaves the grams as notes."}}, {"@type": "Question", "name": "Why does the opisometer carry so many more faces than models twice its size?", "acceptedAnswer": {"@type": "Answer", "text": "Face counts follow feature fineness, not size. The opisometer packs a 2.5 mm trapezoid thread, a knurled thumb nut and three screw-together parts into 3.3 cm³, and its mesh needs 16,474 faces, 4,992.1 per cm³. The planisphere follows at 3,309.3 faces per cm³ across its 416 star holes and snap-pin pivot. At the other end the sharpening stone holder is one 128-face body around 167.5 cm³, 0.76 faces per cm³, a 6,532.7-to-1 spread between the two extremes."}}, {"@type": "Question", "name": "How were the volumes and face counts measured?", "acceptedAnswer": {"@type": "Answer", "text": "Every spec sheet on the printables shelf reports mesh measurements taken with trimesh 5.1.0 on 2026-09-10: a watertight check, winding consistency, face and body counts, and solid mesh volume, with an analytic cross-check stated on six models where the worst delta is 0.009883 percent on the toothbrush holder. This ledger re-parses those 20 spec sheets, ships the result as a one-row-per-model CSV, and both SQL blocks at the end recompute the boards from that file. Print-time figures are geometry estimates and 16 of the 20 pages carry an hour figure; none of the models has been test-printed."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://jayjex.github.io/data-vault/guides/"}, {"@type": "ListItem", "position": 3, "name": "The STL ledger: 20 print models ranked by volume, measured from the mesh", "item": "https://jayjex.github.io/data-vault/guides/stl-volume-ledger.html"}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>The STL ledger: 20 print models ranked by print volume, measured from the mesh</h1>
+  <p class="byline">Published 2026-09-10. Data source: the 20 STL spec sheets on the <a href="../printables/">printables shelf</a>, each measured from the mesh with trimesh 5.1.0 on 2026-09-10 and re-parsed row by row for this ledger. None of the models has been test-printed; print-time figures are geometry estimates. This page documents the data.</p>
+
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>246.34</b> heaviest cm³ (seed packet box)</span><span class="stat"><b>3.3</b> lightest cm³ (opisometer)</span><span class="stat"><b>1,571.14</b> total cm³ across the shelf</span><span class="stat"><b>54.05</b> median cm³, 12.71 p10, 168.01 p90</span><span class="stat"><b>188,946</b> faces on 138 bodies</span></div>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>Twenty STL spec sheets now sit on the printables shelf, and every one of them reports the same three mesh numbers: solid volume in cm³, triangle (face) count, and body count. Piled into one ledger, the shelf holds 1,571.14 cm³ of print, about a liter and a half of PLA, spread across 188,946 faces and 138 bodies. The seed packet box alone takes 246.34 cm³, 15.7 percent of the shelf, and the opisometer 3.3, so the heaviest file holds 74.65 times the plastic of the lightest. The median model runs 54.05 cm³, and the middle 80 percent of the pool spans 12.71 to 168.01.</p>
+    <p>Volume and face count tell different stories. The five biggest models by volume carry only 82,478 faces between them, while the five mesh-densest models hold 156,642 faces, 82.9 percent of the shelf total, on less than a third of the plastic. Both boards below recompute from the <a href="../data/stl-ledger/stl-ledger.csv">one-row-per-model ledger CSV</a>, and the two SQL blocks at the end of this page return them verbatim.</p>
+  </section>
+
+  <section aria-label="The ten heaviest models">
+    <h2>The ten heaviest models</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Ten STL models with the highest solid mesh volume"><table><thead><tr><th scope="col">#</th><th scope="col">Model</th><th scope="col">Bodies</th><th scope="col">Faces</th><th scope="col">Volume cm³</th><th scope="col">Faces per cm³</th></tr></thead><tbody>
+      <tr><td>1</td><td><a href="../printables/seed-box-stl.html">Seed packet box</a></td><td>1</td><td>2,222</td><td>246.34</td><td>9.0</td></tr>
+      <tr><td>2</td><td><a href="../printables/toothbrush-holder-stl.html">Toothbrush holder</a></td><td>1</td><td>2,076</td><td>172.58</td><td>12.0</td></tr>
+      <tr><td>3</td><td><a href="../printables/stone-holder-stl.html">Sharpening stone holder</a></td><td>1</td><td>128</td><td>167.5</td><td>0.8</td></tr>
+      <tr><td>4</td><td><a href="../printables/abacus-stl.html">Print-in-place abacus</a></td><td>101</td><td>38,342</td><td>158.9</td><td>241.3</td></tr>
+      <tr><td>5</td><td><a href="../printables/number-line-stl.html">Classroom number line</a></td><td>10</td><td>48,364</td><td>126.0</td><td>383.8</td></tr>
+      <tr><td>6</td><td><a href="../printables/bookend-stl.html">L bookend pair</a></td><td>2</td><td>1,968</td><td>113.91</td><td>17.3</td></tr>
+      <tr><td>7</td><td><a href="../printables/pen-organizer-stl.html">Pen organizer caddy</a></td><td>1</td><td>1,396</td><td>111.8</td><td>12.5</td></tr>
+      <tr><td>8</td><td><a href="../printables/cable-tray-stl.html">Under-desk cable tray</a></td><td>1</td><td>956</td><td>106.57</td><td>9.0</td></tr>
+      <tr><td>9</td><td><a href="../printables/nozzle-dock-stl.html">Hotend nozzle dock</a></td><td>1</td><td>8,124</td><td>64.1</td><td>126.7</td></tr>
+      <tr><td>10</td><td><a href="../printables/phone-stand-fold-flat-stl.html">Fold-flat phone stand</a></td><td>2</td><td>2,968</td><td>55.6</td><td>53.4</td></tr>
+    </tbody></table></div>
+    <p>Six of the ten are single-body boxes and trays, the kind of model where the volume number is the whole story: the seed packet box walls six paper packets on edge, the toothbrush holder drills four drain holes through 172.58 cm³, the stone holder cradles two whetstones in 128 faces, the fewest of any model on the shelf. The other four earn their rank on assembly: the abacus carries 101 bodies, a frame plus 100 loose print-in-place beads, the number line ships as ten peg-joined decade tiles, the bookend file holds both brackets at 984 faces each, 1,968 ledgered for the pair, and the phone stand folds flat on a print-in-place pin hinge.</p>
+    <p>Face counts run against the grain of this board. The number line is the mesh champion of the entire shelf at 48,364 faces, a fifth of the total, because every one of its 0-99 numerals is raised geometry rather than an engraving. The stone holder sits 24 ranks higher by volume yet carries 378 times fewer triangles. Big and simple beats big and detailed on this half of the ledger.</p>
+  </section>
+
+  <section aria-label="The ten lightest models">
+    <h2>The ten lightest models</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Ten STL models with the lowest solid mesh volume"><table><thead><tr><th scope="col">#</th><th scope="col">Model</th><th scope="col">Bodies</th><th scope="col">Faces</th><th scope="col">Volume cm³</th><th scope="col">Faces per cm³</th></tr></thead><tbody>
+      <tr><td>1</td><td><a href="../printables/opisometer-stl.html">Opisometer</a></td><td>3</td><td>16,474</td><td>3.3</td><td>4,992.1</td></tr>
+      <tr><td>2</td><td><a href="../printables/cable-clip-set-stl.html">Cable clip set</a></td><td>4</td><td>1,776</td><td>3.8</td><td>467.4</td></tr>
+      <tr><td>3</td><td><a href="../printables/planisphere-stl.html">Parametric planisphere</a></td><td>3</td><td>45,338</td><td>13.7</td><td>3,309.3</td></tr>
+      <tr><td>4</td><td><a href="../printables/ruler-stencil-15cm-stl.html">Ruler stencil</a></td><td>1</td><td>3,752</td><td>15.4</td><td>243.6</td></tr>
+      <tr><td>5</td><td><a href="../printables/hex-gauge-stl.html">Hex key gauge</a></td><td>1</td><td>236</td><td>15.58</td><td>15.1</td></tr>
+      <tr><td>6</td><td><a href="../printables/bookmark-stl.html">Quantum bookmark</a></td><td>1</td><td>2,318</td><td>16.85</td><td>137.6</td></tr>
+      <tr><td>7</td><td><a href="../printables/insect-pinning-block-24-stl.html">Insect pinning block (3-step)</a></td><td>1</td><td>1,824</td><td>32.3</td><td>56.5</td></tr>
+      <tr><td>8</td><td><a href="../printables/socket-tray-stl.html">Socket size tray</a></td><td>1</td><td>6,048</td><td>44.48</td><td>136.0</td></tr>
+      <tr><td>9</td><td><a href="../printables/soap-dish-stl.html">Soap dish</a></td><td>1</td><td>594</td><td>49.93</td><td>11.9</td></tr>
+      <tr><td>10</td><td><a href="../printables/insect-pinning-block-stl.html">Insect pinning block (3-stage)</a></td><td>1</td><td>4,042</td><td>52.5</td><td>77.0</td></tr>
+    </tbody></table></div>
+    <p>Multi-part mechanisms dominate the light half: the opisometer screws together from shaft, wheel and knurled nut, the cable clip set lays four sizes on one plate, and the planisphere snaps a star wheel, backer disc and hour ring onto a barbed pivot, 45,338 faces across 416 naked-eye star holes on 13.7 cm³. The two insect pinning blocks frame the board: the compact 3-step block takes 32.3 cm³, its taller 3-stage sibling 52.5, and those two land on either side of the 55.6 cm³ phone stand that closes the heavy board.</p>
+    <p>The boards split the pool exactly at the median. The lightest heavy-board row (phone stand, 55.6) and the heaviest light-board row (tall pinning block, 52.5) average to 54.05, the shelf median. Every one of the 20 volumes is distinct, so no rung on either board carries a tie; the closest pair anywhere in the pool is the ruler stencil at 15.4 against the hex key gauge at 15.58, 0.18 cm³ apart on adjacent rungs.</p>
+  </section>
+
+  <section aria-label="Faces per cm3 and the shape of the pool">
+    <h2>Faces per cm³ and the shape of the pool</h2>
+    <p>Face count per cm³ of print measures how much mesh detail rides in each cubic centimeter. The opisometer tops the shelf at 4,992.1, the planisphere follows at 3,309.3, and the cable clip set runs 467.4 with its four screw holes and channel arches. At the bottom, the stone holder prints 167.5 cm³ with 128 faces, 0.76 per cm³, and the seed packet box and cable tray both round to 9.0 (raw 9.02 and 8.97). The spread between the two extremes is 6,532.7 to 1.</p>
+    <p>Both ends are honest numbers, but they measure two things at once: shape complexity and export tessellation. Fine features such as threads, knurls and star holes force the mesher to place more triangles, and so does a tighter chord tolerance at export. The ledger records the counts as the spec sheets publish them, all measured with the same trimesh 5.1.0 pass on the same day.</p>
+    <p>The pool's totals: 188,946 faces, 138 bodies, 13 of the 20 files exporting as one connected body. Five models, the number line (48,364), planisphere (45,338), abacus (38,342), opisometer (16,474) and nozzle dock (8,124), carry 156,642 faces, 82.9 percent of the shelf, on 367.5 cm³ of print, less than a quarter of the plastic. Print-time estimates follow the same unevenness: 16 of the 20 pages carry an hour figure, from 25 minutes for the cable clip set and opisometer (0.4 h each) to 10 to 12 hours for the seed packet box; the cable tray, hex gauge, soap dish and toothbrush holder describe print posture without an hour figure.</p>
+  </section>
+
+  <section aria-label="Methodology">
+    <h2>Methodology: the ledger and what each number is</h2>
+    <p>The source is the 20 STL spec sheets under <a href="../printables/">printables/</a>, each built from a mesh checked with trimesh 5.1.0 on 2026-09-10: watertight, winding consistent, with face, body and euler counts recorded on the page. Solid volume is the discrete mesh volume; six models (bookmark, cable tray, hex gauge, seed box, soap dish, toothbrush holder) also state an analytic volume cross-check, and the worst published delta between the two is 0.009883 percent on the toothbrush holder. Every one of the 20 is watertight and winding consistent; none has been test-printed.</p>
+    <p>Bodies count printed parts as the spec sheet states them: the planisphere's mesh carries 7 shells that group into 3 parts, the number line's 3MF holds 10 named tile objects, the abacus 101 (frame plus 100 beads). Faces are the exported triangle counts; the bookend page reports 984 per body, doubled to 1,968 for the two-body pair in the ledger. Print-time notes quote the spec sheets verbatim, geometry estimates at PLA 0.4 nozzle 0.2 mm layers, and the four newest sheets skip the estimate. The <a href="../data/stl-ledger/stl-ledger.csv">ledger CSV</a> carries one row per model with those seven fields, and this page's boards, percentiles and totals recompute from it three ways: a python pass, an independent SQLite pass, and the verbatim page SQL below.</p>
+  </section>
+
+  <section aria-label="Recompute the ledger yourself">
+    <h2>Recompute the ledger yourself</h2>
+    <p>Load the ledger CSV into SQLite as <code>stl</code>, seven columns per row. The two boards need one ordering each:</p>
+    <pre><code>-- SQLite: the ten heaviest models by solid mesh volume
+CREATE TABLE stl (slug TEXT, model TEXT, bodies INT, faces INT,
+  volume_cm3 REAL, grams_note TEXT, print_time_note TEXT);
+.import --skip 1 stl-ledger.csv stl
+
+SELECT rn, slug, model, bodies, faces, volume_cm3,
+       ROUND(faces * 1.0 / volume_cm3, 1) AS faces_per_cm3
+FROM (SELECT slug, model, bodies, faces, volume_cm3,
+             ROW_NUMBER() OVER (ORDER BY volume_cm3 DESC, slug) AS rn
+      FROM stl)
+ORDER BY rn LIMIT 10;
+-- Rows: 1 seed-box Seed packet box 1 2222 246.34 9.0,
+-- 2 toothbrush-holder Toothbrush holder 1 2076 172.58 12.0,
+-- 3 stone-holder Sharpening stone holder 1 128 167.5 0.8,
+-- 4 abacus Print-in-place abacus 101 38342 158.9 241.3,
+-- 5 number-line Classroom number line 10 48364 126.0 383.8,
+-- 6 bookend L bookend pair 2 1968 113.91 17.3,
+-- 7 pen-organizer Pen organizer caddy 1 1396 111.8 12.5,
+-- 8 cable-tray Under-desk cable tray 1 956 106.57 9.0,
+-- 9 nozzle-dock Hotend nozzle dock 1 8124 64.1 126.7,
+-- 10 phone-stand-fold-flat Fold-flat phone stand 2 2968 55.6 53.4.
+
+-- the ten lightest, same table, order flipped
+SELECT rn, slug, model, bodies, faces, volume_cm3,
+       ROUND(faces * 1.0 / volume_cm3, 1) AS faces_per_cm3
+FROM (SELECT slug, model, bodies, faces, volume_cm3,
+             ROW_NUMBER() OVER (ORDER BY volume_cm3 ASC, slug) AS rn
+      FROM stl)
+ORDER BY rn LIMIT 10;
+-- Rows: 1 opisometer Opisometer 3 16474 3.3 4992.1,
+-- 2 cable-clip-set Cable clip set 4 1776 3.8 467.4,
+-- 3 planisphere Parametric planisphere 3 45338 13.7 3309.3,
+-- 4 ruler-stencil-15cm Ruler stencil 1 3752 15.4 243.6,
+-- 5 hex-gauge Hex key gauge 1 236 15.58 15.1,
+-- 6 bookmark Quantum bookmark 1 2318 16.85 137.6,
+-- 7 insect-pinning-block-24 Insect pinning block (3-step) 1 1824 32.3 56.5,
+-- 8 socket-tray Socket size tray 1 6048 44.48 136.0,
+-- 9 soap-dish Soap dish 1 594 49.93 11.9,
+-- 10 insect-pinning-block Insect pinning block (3-stage) 1 4042 52.5 77.0.</code></pre>
+    <p>The percentiles, the totals and the density board come out of the same table:</p>
+    <pre><code>-- SQLite: shape of the ledger, percentiles and totals
+WITH r AS (SELECT slug, volume_cm3 AS v,
+                  ROW_NUMBER() OVER (ORDER BY volume_cm3) AS rn,
+                  COUNT(*) OVER () AS n
+           FROM stl)
+SELECT
+  (SELECT COUNT(*) FROM r) AS models,
+  ROUND((SELECT a.v + (0.10*(c.n-1) - CAST(0.10*(c.n-1) AS INTEGER)) * (b.v - a.v)
+         FROM r c, r a, r b
+         WHERE a.rn = CAST(0.10*(c.n-1) AS INTEGER) + 1
+           AND b.rn = CAST(0.10*(c.n-1) AS INTEGER) + 2 LIMIT 1), 2) AS p10,
+  ROUND((SELECT AVG(v) FROM r WHERE rn IN ((n+1)/2, (n+2)/2)), 2) AS p50,
+  ROUND((SELECT a.v + (0.90*(c.n-1) - CAST(0.90*(c.n-1) AS INTEGER)) * (b.v - a.v)
+         FROM r c, r a, r b
+         WHERE a.rn = CAST(0.90*(c.n-1) AS INTEGER) + 1
+           AND b.rn = CAST(0.90*(c.n-1) AS INTEGER) + 2 LIMIT 1), 2) AS p90,
+  ROUND((SELECT MAX(v) - MIN(v) FROM r), 2) AS span_cm3,
+  ROUND((SELECT MAX(v) / MIN(v) FROM r), 2) AS heaviest_to_lightest,
+  (SELECT SUM(faces) FROM stl) AS faces_total,
+  (SELECT SUM(bodies) FROM stl) AS bodies_total,
+  (SELECT COUNT(*) FROM stl WHERE bodies = 1) AS single_body_models;
+-- 20 / 12.71 / 54.05 / 168.01 / 243.04 / 74.65 / 188946 / 138 / 13.
+
+-- the ten densest meshes, faces per cm3 of solid volume
+SELECT rn, slug, model, volume_cm3, faces,
+       ROUND(faces * 1.0 / volume_cm3, 1) AS faces_per_cm3
+FROM (SELECT slug, model, volume_cm3, faces,
+             ROW_NUMBER() OVER (ORDER BY faces * 1.0 / volume_cm3 DESC, slug) AS rn
+      FROM stl)
+ORDER BY rn LIMIT 10;
+-- Rows: 1 opisometer Opisometer 3.3 16474 4992.1,
+-- 2 planisphere Parametric planisphere 13.7 45338 3309.3,
+-- 3 cable-clip-set Cable clip set 3.8 1776 467.4,
+-- 4 number-line Classroom number line 126.0 48364 383.8,
+-- 5 ruler-stencil-15cm Ruler stencil 15.4 3752 243.6,
+-- 6 abacus Print-in-place abacus 158.9 38342 241.3,
+-- 7 bookmark Quantum bookmark 16.85 2318 137.6,
+-- 8 socket-tray Socket size tray 44.48 6048 136.0,
+-- 9 nozzle-dock Hotend nozzle dock 64.1 8124 126.7,
+-- 10 insect-pinning-block Insect pinning block (3-stage) 52.5 4042 77.0.</code></pre>
+    <p>Run in one session, both blocks return exactly the rows quoted in the comments. Swap the ordering key to <code>faces</code> to rank by mesh size instead of plastic, or drop the slug tiebreaker and sort by <code>faces * 1.0 / volume_cm3 ASC</code> to watch the stone holder take the bottom of the density board at 0.8.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>The STL ledger: questions</h2>
+    <dl>
+      <dt>Which model on the printables shelf needs the most filament?</dt>
+      <dd>By solid mesh volume the seed packet box is the heaviest at 246.34 cm³, about 305 g of PLA printed solid, ahead of the toothbrush holder at 172.58 and the sharpening stone holder at 167.5. The lightest is the opisometer at 3.3 cm³, about 4.1 g, so the heaviest file holds 74.65 times the plastic of the lightest. Weight in hand depends on infill, and each spec sheet quotes grams at its own assumption, so the ledger ranks volumes and leaves the grams as notes.</dd>
+      <dt>Why does the opisometer carry so many more faces than models twice its size?</dt>
+      <dd>Face counts follow feature fineness, not size. The opisometer packs a 2.5 mm trapezoid thread, a knurled thumb nut and three screw-together parts into 3.3 cm³, and its mesh needs 16,474 faces, 4,992.1 per cm³. The planisphere follows at 3,309.3 faces per cm³ across its 416 star holes and snap-pin pivot. At the other end the sharpening stone holder is one 128-face body around 167.5 cm³, 0.76 faces per cm³, a 6,532.7-to-1 spread between the two extremes.</dd>
+      <dt>How were the volumes and face counts measured?</dt>
+      <dd>Every spec sheet on the printables shelf reports mesh measurements taken with trimesh 5.1.0 on 2026-09-10: a watertight check, winding consistency, face and body counts, and solid mesh volume, with an analytic cross-check stated on six models where the worst delta is 0.009883 percent on the toothbrush holder. This ledger re-parses those 20 spec sheets, ships the result as a one-row-per-model CSV, and both SQL blocks at the end recompute the boards from that file. Print-time figures are geometry estimates and 16 of the 20 pages carry an hour figure; none of the models has been test-printed.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <div class="btnrow">
+      <a class="btn" href="../data/stl-ledger/stl-ledger.csv" download>Download the STL ledger CSV (free, 20 rows)</a>
+      <a class="btn-ghost btn" href="../printables/">Browse the printables shelf</a>
+    </div>
+    <p class="btn-note">The CSV carries the same numbers as the spec sheets, one row per model, plus the gram and print-time notes. The <a href="print-in-use-organizers.html">desk organizers guide</a> covers the 10 MakerWorld models in daily use, the <a href="printable-tools-parametric.html">parametric tools guide</a> lists the generator scripts, the <a href="printable-education-models.html">education models guide</a> details the abacus, number line and pinning blocks, and the <a href="printable-gift-tags.html">gift tags page</a> documents the engraved TO/FROM set.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

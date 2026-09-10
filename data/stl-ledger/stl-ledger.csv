@@ -1,0 +1,21 @@
+slug,model,bodies,faces,volume_cm3,grams_note,print_time_note
+abacus,Print-in-place abacus,101,38342,158.9,about 195 g at typical infill,6-8 hours (geometry estimate)
+bookend,L bookend pair,2,1968,113.91,about 141 g printed solid,6-8 hours for the pair (geometry estimate)
+bookmark,Quantum bookmark,1,2318,16.85,about 21 g solid,1 to 2 h (geometry estimate)
+cable-clip-set,Cable clip set,4,1776,3.8,about 4.0 g,0.4 h (25 min)
+cable-tray,Under-desk cable tray,1,956,106.57,about 132 g solid,
+hex-gauge,Hex key gauge,1,236,15.58,about 19 g solid,
+insect-pinning-block-24,Insect pinning block (30/22/14 mm),1,1824,32.3,about 10-15 g at typical infill,under an hour
+insect-pinning-block,Insect pinning block (24/16/8 mm),1,4042,52.5,about 65 g,2.2 h
+nozzle-dock,Hotend nozzle dock,1,8124,64.1,about 80 g,2.7 h
+number-line,Classroom number line,10,48364,126.0,about 156 g at typical infill,4-6 hours (geometry estimate)
+opisometer,Opisometer,3,16474,3.3,about 4.1 g,0.4 h
+pen-organizer,Pen organizer caddy,1,1396,111.8,about 139 g solid,5 h (geometry estimate)
+phone-stand-fold-flat,Fold-flat phone stand,2,2968,55.6,about 58.4 g,2.3 h
+planisphere,Parametric planisphere,3,45338,13.7,about 17 g at typical infill,about an hour
+ruler-stencil-15cm,Ruler stencil,1,3752,15.4,about 16.2 g,0.8 h
+seed-box,Seed packet box,1,2222,246.34,about 305 g solid,10 to 12 h (geometry estimate)
+soap-dish,Soap dish,1,594,49.93,about 62 g solid,
+socket-tray,Socket size tray,1,6048,44.48,about 55 g solid,2 h (geometry estimate)
+stone-holder,Sharpening stone holder,1,128,167.5,about 208 g printed solid,3-4 hours (geometry estimate)
+toothbrush-holder,Toothbrush holder,1,2076,172.58,about 214 g solid,

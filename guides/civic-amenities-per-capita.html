@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Public Amenities per Capita in NYC, Chicago and Seattle: OpenStreetMap Counts (CSV) | Data Vault</title>
+<meta name="description" content="Three US cities counted inside exact OpenStreetMap boundaries: 27,624 features, New York holds 77.1 percent of the file on raw counts, and the per-capita board flips the order with Seattle first at 467.6 benches per 100,000 residents.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/civic-amenities-per-capita.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Public Amenities per Capita in NYC, Chicago and Seattle: OpenStreetMap Counts (CSV)">
+<meta property="og:description" content="Three US cities counted inside exact OpenStreetMap boundaries: 27,624 features, New York holds 77.1 percent of the file on raw counts, and the per-capita board flips the order with Seattle first at 467.6 benches per 100,000 residents.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/civic-amenities-per-capita.html">
+<meta property="og:image" content="https://jayjex.github.io/data-vault/assets/covers/data-vault-banner.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Public amenities per capita in NYC, Chicago and Seattle, counted from OpenStreetMap">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Public Amenities per Capita in NYC, Chicago and Seattle: OpenStreetMap Counts (CSV)", "description": "Three US cities counted inside exact OpenStreetMap boundaries: 27,624 features, New York holds 77.1 percent of the file on raw counts, and the per-capita board flips the order with Seattle first at 467.6 benches per 100,000 residents.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/civic-amenities-per-capita.html", "about": {"@type": "Dataset", "name": "OpenStreetMap Civic Amenities, New York-Chicago-Seattle, 2026-09", "url": "https://jayjex.github.io/data-vault/datasets/osm-us2-civic-amenities.html"}, "mentions": [{"@type": "Article", "name": "Open Street Map Civic Data: Fountains, Bookcases, Bike Repair Stations in 16 Cities", "url": "https://jayjex.github.io/data-vault/guides/osm-civic-data-guide.html"}, {"@type": "Article", "name": "Public Bookcase Map Worldwide: Fountains and Bike Repair Stations Counted in 19 Cities", "url": "https://jayjex.github.io/data-vault/guides/worldwide-civic-amenities-map.html"}, {"@type": "Article", "name": "Istanbul Drinking Water Fountains, Cairo and Mumbai Public Amenities: Open Data Counts", "url": "https://jayjex.github.io/data-vault/guides/mena-city-amenities-guide.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which US city has the most public benches per person?", "acceptedAnswer": {"@type": "Answer", "text": "Seattle, on OpenStreetMap's counts: 3,446 benches mapped inside the city boundary, 467.6 per 100,000 residents, against New York's 18,991 benches at 224.3 per 100,000 and Chicago's 1,905 at 69.4. New York maps more benches in absolute terms, 5.5 times Seattle's total, and Seattle still maps more per person because its population is 737,015 against New York's 8,467,513."}}, {"@type": "Question", "name": "Why does New York dominate the raw counts?", "acceptedAnswer": {"@type": "Answer", "text": "Two forces stack. New York has the largest population of the three, 8,467,513 against Chicago's 2,746,388 and Seattle's 737,015, and its bench mapping is dense: the 18,991 benches include park, transit, and street seats, and they carry 89.2 percent of the city's features and 78.0 percent of all benches in the file. The schema caveats say the comparison reflects mapping effort as much as ground truth, which is why the per-capita board sits alongside the raw one."}}, {"@type": "Question", "name": "How were the counts taken and verified?", "acceptedAnswer": {"@type": "Answer", "text": "Each cell is an Overpass API out count query for one amenity type inside one verified city relation, run on 2026-09-10 against a snapshot with base timestamp 2026-09-08T21:00:20Z. A second run on a different mirror returned all nine numbers exactly. Boundary relations were verified tag by tag against the OSM API before querying, and three suggested relations that failed verification were dropped. The full query form and the discarded relations are documented in the dataset schema."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://jayjex.github.io/data-vault/guides/"}, {"@type": "ListItem", "position": 3, "name": "Public amenities per capita in NYC, Chicago and Seattle, counted from OpenStreetMap", "item": "https://jayjex.github.io/data-vault/guides/civic-amenities-per-capita.html"}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Public amenities per capita in New York, Chicago and Seattle, counted from OpenStreetMap</h1>
+  <p class="byline">Published 2026-09-10. Data source: <a href="../datasets/osm-us2-civic-amenities.html">OpenStreetMap Civic Amenities, New York-Chicago-Seattle, 2026-09</a>, nine counts from Overpass API `out count` queries on 2026-09-10 inside exact city relations, cross-checked on a second mirror with all nine numbers matching. Population figures come from the boundary tags recorded in the <a href="../data/osm-us2-civic/schema.md">dataset schema</a>. This page documents the data.</p>
+
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>27,624</b> features in 9 city-amenity cells</span><span class="stat"><b>18,991</b> NYC benches, 68.8 percent of the file</span><span class="stat"><b>467.6</b> Seattle benches per 100k residents</span><span class="stat"><b>774</b> median count of the nine cells</span><span class="stat"><b>98.4x</b> span, 193 to 18,991</span></div>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>Three US cities, three amenity types, nine counts. OpenStreetMap contributors have mapped 27,624 public features inside the exact boundaries of New York City, Chicago, and Seattle: 24,342 benches, 1,976 drinking water fountains, and 1,306 public toilets, a snapshot taken 2026-09-10 with a base timestamp of 2026-09-08T21:00:20Z. New York holds 21,296 of the features, 77.1 percent of the file, and its bench count alone (18,991) outweighs the other eight cells combined by 2.2 to 1.</p>
+    <p>Size the cities against their populations and the order flips. Seattle runs the densest civic map of the three at 525.1 features per 100,000 residents, New York follows at 251.5, and Chicago trails at 89.5. Seattle also takes the top bench rate, 467.6 per 100,000 against New York's 224.3 and Chicago's 69.4. Both boards below recompute from the <a href="../data/osm-us2-civic/us2-civic-amenities.csv">free nine-row CSV</a>, and the two SQL blocks at the end of this page return them verbatim.</p>
+  </section>
+
+  <section aria-label="All nine counts ranked by raw total">
+    <h2>All nine counts, ranked by raw total</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Nine city-amenity counts ranked by raw count"><table><thead><tr><th scope="col">#</th><th scope="col">City</th><th scope="col">Amenity</th><th scope="col">Count</th><th scope="col">Share of city</th></tr></thead><tbody>
+      <tr><td>1</td><td>New York City</td><td>Benches</td><td>18,991</td><td>89.2%</td></tr>
+      <tr><td>2</td><td>Seattle</td><td>Benches</td><td>3,446</td><td>89.0%</td></tr>
+      <tr><td>3</td><td>Chicago</td><td>Benches</td><td>1,905</td><td>77.5%</td></tr>
+      <tr><td>4</td><td>New York City</td><td>Drinking water</td><td>1,531</td><td>7.2%</td></tr>
+      <tr><td>5</td><td>New York City</td><td>Public toilets</td><td>774</td><td>3.6%</td></tr>
+      <tr><td>6</td><td>Chicago</td><td>Public toilets</td><td>301</td><td>12.2%</td></tr>
+      <tr><td>7</td><td>Chicago</td><td>Drinking water</td><td>252</td><td>10.3%</td></tr>
+      <tr><td>8</td><td>Seattle</td><td>Public toilets</td><td>231</td><td>6.0%</td></tr>
+      <tr><td>9</td><td>Seattle</td><td>Drinking water</td><td>193</td><td>5.0%</td></tr>
+    </tbody></table></div>
+    <p>Benches take the top three slots, one per city. New York's 18,991 benches carry 89.2 percent of its mapped features, Seattle's 3,446 carry 89.0, and Chicago's 1,905 carry 77.5, a lower share because Chicago is the one city of the three where mapped toilets outnumber fountains, 301 to 252. New York runs the reverse at 1,531 fountains against 774 toilets, and Seattle splits close to even, 231 toilets to 193 fountains. The median count across all nine cells is 774, New York's toilet figure, and the file spans 193 to 18,991, a 98.4x spread.</p>
+    <p>An earlier five-city dataset on this site counted fountains, bookcases, and bike repair stations inside bounding boxes rather than exact boundaries (<a href="../datasets/osm-us-civic-amenities.html">OpenStreetMap Civic Amenities: New York, Los Angeles, Chicago, Austin, Seattle</a>). Its New York fountain figure is 1,599 against 1,531 counted here inside the city relation. The two tables use different query shapes and boundaries and do not merge row for row, which the schema pages on both datasets say outright.</p>
+  </section>
+
+  <section aria-label="The per-capita board">
+    <h2>The per-capita board: features per 100,000 residents</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Nine city-amenity counts ranked per 100,000 residents"><table><thead><tr><th scope="col">#</th><th scope="col">City</th><th scope="col">Amenity</th><th scope="col">Count</th><th scope="col">Per 100k</th></tr></thead><tbody>
+      <tr><td>1</td><td>Seattle</td><td>Benches</td><td>3,446</td><td>467.6</td></tr>
+      <tr><td>2</td><td>New York City</td><td>Benches</td><td>18,991</td><td>224.3</td></tr>
+      <tr><td>3</td><td>Chicago</td><td>Benches</td><td>1,905</td><td>69.4</td></tr>
+      <tr><td>4</td><td>Seattle</td><td>Public toilets</td><td>231</td><td>31.3</td></tr>
+      <tr><td>5</td><td>Seattle</td><td>Drinking water</td><td>193</td><td>26.2</td></tr>
+      <tr><td>6</td><td>New York City</td><td>Drinking water</td><td>1,531</td><td>18.1</td></tr>
+      <tr><td>7</td><td>Chicago</td><td>Public toilets</td><td>301</td><td>11.0</td></tr>
+      <tr><td>8</td><td>Chicago</td><td>Drinking water</td><td>252</td><td>9.2</td></tr>
+      <tr><td>9</td><td>New York City</td><td>Public toilets</td><td>774</td><td>9.1</td></tr>
+    </tbody></table></div>
+    <p>Per capita, the board reorders almost completely. Seattle takes the top bench rate at 467.6, twice New York's 224.3, and both of its small raw counts jump up the board: 231 toilets and 193 fountains move from raw ranks 8 and 9 to per-capita ranks 4 and 5 at 31.3 and 26.2 per 100,000. New York's toilets fall the other way. A raw count of 774 ranks fifth in the file and lands last per capita at 9.1, because 8.5 million people share them. Chicago lands mid-pack on toilets (11.0) and second from the bottom on fountains (9.2).</p>
+    <p>New York still maps more benches per person than Chicago, 224.3 against 69.4, a 3.2x gap that shrinks the 10x raw gap but does not close it. City size explains part of the shuffle and mapping culture explains the rest, so the caveats below apply to every row on both boards.</p>
+  </section>
+
+  <section aria-label="City totals and ratios">
+    <h2>City totals, density, and the toilet-to-fountain ratio</h2>
+    <p>Per city, the totals are New York 21,296, Seattle 3,870, Chicago 2,458, and per 100,000 residents they run Seattle 525.1, New York 251.5, Chicago 89.5, a 5.9x spread between the densest and thinnest civic map. The toilet-to-fountain ratio splits the cities two ways: Chicago sits at 1.19 and Seattle at 1.20, roughly five mapped toilets for every four fountains, while New York sits at 0.51, about one toilet for every two fountains. New York's drinking water edge traces to park fountains such as the Riverbank State Park node in the schema's example list, and Chicago's toilet edge traces to park district comfort stations mapped as building ways.</p>
+    <p>Read both boards as OpenStreetMap coverage, and the schema pages say the same. A city with more active mappers shows more features. New York's bench total includes park, transit, and street seats; Chicago's toilets skew toward park district comfort stations mapped as building ways; Seattle's toilet nodes carry wheelchair and changing-table tags from parks surveys. The numbers are exact for what was mapped on the snapshot date; they are estimates for what stands on the ground.</p>
+  </section>
+
+  <section aria-label="Methodology">
+    <h2>Methodology: boundaries, mirror cross-check, populations</h2>
+    <p>The source file is the nine-row <a href="../data/osm-us2-civic/us2-civic-amenities.csv">us2-civic-amenities.csv</a> (ODbL 1.0, &copy; OpenStreetMap contributors). Each cell is an Overpass API <code>out count</code> query for one amenity type inside one city, counting nodes, ways, and relations together, since fountains attach to ways, toilet facilities are often building ways, and one New York bench is a relation.</p>
+    <p>Boundaries are exact administrative relations, each verified against OSM API tags before querying: the City of New York (relation 175905, admin_level 5), the City of Chicago (relation 122604, admin_level 8), and the City of Seattle (relation 237385, admin_level 8). Three suggested relations failed verification and were discarded, among them a village council boundary in Ukraine and Dunkerton, Iowa, population 842. A parallel count run on the overpass-api.de mirror matched all 9 of 9 numbers exactly: New York 1,531 / 774 / 18,991, Chicago 252 / 301 / 1,905, Seattle 193 / 231 / 3,446.</p>
+    <p>The per-capita board divides by populations carried on those verified boundary tags and recorded in the dataset schema: New York 8,467,513 (Wikidata Q60), Chicago 2,746,388 (Q1297), Seattle 737,015 (Q5083). These are census-vintage values from the OSM tags, not a fresh Census pull, so read the per-capita numbers as ratios of two snapshots: 2020-vintage populations against a 2026-09-08 map. OSM moves daily, and both halves of the ratio drift.</p>
+  </section>
+
+  <section aria-label="Recompute the boards yourself">
+    <h2>Recompute the boards yourself</h2>
+    <p>Load the CSV into SQLite as <code>civic</code>, three columns per row. The first block returns both boards:</p>
+    <pre><code>-- SQLite: all nine city-amenity counts, ranked by raw count
+CREATE TABLE civic (city TEXT, theme TEXT, count INT);
+.import --skip 1 us2-civic-amenities.csv civic
+
+SELECT rn, city, theme, count, share_of_city
+FROM (SELECT city, theme, count,
+             ROUND(count * 100.0 / SUM(count) OVER (PARTITION BY city), 1) AS share_of_city,
+             ROW_NUMBER() OVER (ORDER BY count DESC) AS rn
+      FROM civic)
+ORDER BY rn;
+-- Rows: 1 New York City benches 18991 89.2,
+-- 2 Seattle benches 3446 89.0,
+-- 3 Chicago benches 1905 77.5,
+-- 4 New York City drinking water 1531 7.2,
+-- 5 New York City public toilets 774 3.6,
+-- 6 Chicago public toilets 301 12.2,
+-- 7 Chicago drinking water 252 10.3,
+-- 8 Seattle public toilets 231 6.0,
+-- 9 Seattle drinking water 193 5.0.
+
+-- the same nine counts per 100,000 residents, populations from the OSM
+-- boundary tags recorded in the dataset schema
+WITH pop(city, people) AS (
+  VALUES ('New York City', 8467513), ('Chicago', 2746388), ('Seattle', 737015)
+)
+SELECT rn, city, theme, count,
+       ROUND(count * 100000.0 / people, 1) AS per_100k
+FROM (SELECT p.city, theme, count, people,
+             ROW_NUMBER() OVER (ORDER BY count * 100000.0 / people DESC) AS rn
+      FROM civic JOIN pop p USING (city))
+ORDER BY rn;
+-- Rows: 1 Seattle benches 3446 467.6,
+-- 2 New York City benches 18991 224.3,
+-- 3 Chicago benches 1905 69.4,
+-- 4 Seattle public toilets 231 31.3,
+-- 5 Seattle drinking water 193 26.2,
+-- 6 New York City drinking water 1531 18.1,
+-- 7 Chicago public toilets 301 11.0,
+-- 8 Chicago drinking water 252 9.2,
+-- 9 New York City public toilets 774 9.1.</code></pre>
+    <p>The second block returns the file's shape: theme totals, city totals, percentiles, and the per-city density and ratio columns quoted above:</p>
+    <pre><code>-- SQLite: shape of the file, percentiles on the nine raw counts
+WITH r AS (SELECT count AS v, ROW_NUMBER() OVER (ORDER BY count) AS rn,
+                  COUNT(*) OVER () AS n FROM civic),
+     t AS (SELECT theme, SUM(count) AS n FROM civic GROUP BY theme),
+     c AS (SELECT city, SUM(count) AS n FROM civic GROUP BY city)
+SELECT
+  (SELECT SUM(v) FROM r) AS features,
+  (SELECT n FROM t WHERE theme = 'benches') AS benches,
+  (SELECT n FROM t WHERE theme = 'drinking water') AS drinking_water,
+  (SELECT n FROM t WHERE theme = 'public toilets') AS toilets,
+  (SELECT n FROM c WHERE city = 'New York City') AS nyc_total,
+  (SELECT ROUND(n * 100.0 / (SELECT SUM(n) FROM c), 1) FROM c
+   WHERE city = 'New York City') AS nyc_share,
+  (SELECT v FROM r WHERE rn = (n+1)/2) AS median_count,
+  ROUND((SELECT a.v + (0.10*(a.n-1) - CAST(0.10*(a.n-1) AS INTEGER)) * (b.v - a.v)
+         FROM r a, r b
+         WHERE a.rn = CAST(0.10*(a.n-1) AS INTEGER) + 1
+           AND b.rn = CAST(0.10*(a.n-1) AS INTEGER) + 2), 1) AS p10,
+  ROUND((SELECT a.v + (0.90*(a.n-1) - CAST(0.90*(a.n-1) AS INTEGER)) * (b.v - a.v)
+         FROM r a, r b
+         WHERE a.rn = CAST(0.90*(a.n-1) AS INTEGER) + 1
+           AND b.rn = CAST(0.90*(a.n-1) AS INTEGER) + 2), 1) AS p90,
+  (SELECT MAX(v) - MIN(v) FROM r) AS span,
+  (SELECT ROUND(MAX(v) * 1.0 / MIN(v), 1) FROM r) AS top_to_bottom;
+-- 27624 / 24342 / 1976 / 1306 / 21296 / 77.1 / 774 / 223.4 / 6555.0 / 18798 / 98.4.
+
+-- per-city totals, density per 100k, and the toilet-to-fountain ratio
+WITH pop(city, people) AS (
+  VALUES ('New York City', 8467513), ('Chicago', 2746388), ('Seattle', 737015)
+),
+c AS (SELECT city, SUM(count) AS n FROM civic GROUP BY city)
+SELECT c.city, c.n AS city_total,
+       ROUND(c.n * 100000.0 / people, 1) AS features_per_100k,
+       ROUND((SELECT count FROM civic WHERE city = c.city AND theme = 'public toilets') * 1.0 /
+             (SELECT count FROM civic WHERE city = c.city AND theme = 'drinking water'), 2)
+             AS toilets_per_fountain
+FROM c JOIN pop p USING (city)
+ORDER BY c.n DESC;
+-- Rows: New York City 21296 251.5 0.51,
+-- Seattle 3870 525.1 1.2,
+-- Chicago 2458 89.5 1.19.</code></pre>
+    <p>Run in one session, both blocks return exactly the rows quoted in the comments. One formatting note: SQLite prints the Seattle ratio as 1.2 rather than 1.20, same number, and this page's table shows two decimals for the column.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>Civic amenity counts: questions</h2>
+    <dl>
+      <dt>Which US city has the most public benches per person?</dt>
+      <dd>Seattle, on OpenStreetMap's counts: 3,446 benches mapped inside the city boundary, 467.6 per 100,000 residents, against New York's 18,991 benches at 224.3 per 100,000 and Chicago's 1,905 at 69.4. New York maps more benches in absolute terms, 5.5 times Seattle's total, and Seattle still maps more per person because its population is 737,015 against New York's 8,467,513.</dd>
+      <dt>Why does New York dominate the raw counts?</dt>
+      <dd>Two forces stack. New York has the largest population of the three, 8,467,513 against Chicago's 2,746,388 and Seattle's 737,015, and its bench mapping is dense: the 18,991 benches include park, transit, and street seats, and they carry 89.2 percent of the city's features and 78.0 percent of all benches in the file. The schema caveats say the comparison reflects mapping effort as much as ground truth, which is why the per-capita board sits alongside the raw one.</dd>
+      <dt>How were the counts taken and verified?</dt>
+      <dd>Each cell is an Overpass API out count query for one amenity type inside one verified city relation, run on 2026-09-10 against a snapshot with base timestamp 2026-09-08T21:00:20Z. A second run on a different mirror returned all nine numbers exactly. Boundary relations were verified tag by tag against the OSM API before querying, and three suggested relations that failed verification were dropped. The full query form and the discarded relations are documented in the dataset schema.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <div class="btnrow">
+      <a class="btn" href="../data/osm-us2-civic/us2-civic-amenities.csv" download>Download the nine-row CSV (free, ODbL)</a>
+      <a class="btn-ghost btn" href="../datasets/osm-us2-civic-amenities.html">Open the dataset page</a>
+    </div>
+    <p class="btn-note">The CSV carries one row per city-amenity pair with the ODbL license line verbatim, and the <a href="../data/osm-us2-civic/schema.md">schema page</a> documents the Overpass query form, the boundary verification, and the mirror cross-check. Related guides on this site: the <a href="osm-civic-data-guide.html">16-city civic data guide</a>, the <a href="worldwide-civic-amenities-map.html">19-city worldwide counts</a>, and the <a href="mena-city-amenities-guide.html">Istanbul, Cairo and Mumbai amenity counts</a>.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

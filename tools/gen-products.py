@@ -52,6 +52,7 @@ GROUPS = [
         'wallpack-v2',
         'wallpack-v3',
         'wallpaper-pack-v1',
+        'wallpaper-vol4',
         'icon-pack',
         'icon-pack-60svg',
         'logo-pack',
@@ -72,6 +73,7 @@ GROUPS = [
         'content-cal',
         'sheets-pack',
         'hr-kit',
+        'budget-tracker',
     ]),
     ('Notion & Obsidian', [
         'notion-os',
@@ -93,6 +95,7 @@ GROUPS = [
         'focus-planner',
         'football-draft-kit',
         'garden-planner',
+        'halloween-bundle',
         'homebinder',
         'homeops',
         'homestead-journal',
@@ -225,6 +228,9 @@ COPY = {
     'deck-system': dict(niche='HTML + JS · PDF pipeline', num='10', label='slides', desc='A 10-slide 1280x720 HTML pitch deck template with a Playwright render pipeline: screenshot-overflow QA plus PDF export, a zero-overflow workflow.', alt=None),
     'readme-templates': dict(niche='MD · multi-chain', num='30', label='templates', desc='30 markdown README templates for crypto and open-source repos, grouped by project type: copy a file, replace the placeholders, publish.', alt=None),
     'agentos-pack': dict(niche='MD · plain markdown', num='20', label='templates', desc='20 markdown templates for building agent and automation products: fill in the brackets, get a working spec, prompt, checklist or support doc.', alt=None),
+    'wallpaper-vol4': dict(niche='PNG · 2560x1440', num='10', label='walls', desc='Ten minimal AI wallpapers in two light themes, nordic fog and riso botanical: five nordic walls (birch trunks in fog, a fjord shoreline, a snow field and more) and five riso botanical walls (ferns, monstera, eucalyptus, wildflowers, ginkgo) in a flat two-ink print style. Generated at 1920x1072, upscaled to 2560x1440; pairs with Vol.1 to Vol.3 for the full set of 70.', alt=None),
+    'budget-tracker': dict(niche='XLSX + MD · Excel + Sheets', num='4', label='sheets', desc='One budgeting workbook for Excel and Google Sheets: log each money event in Transactions with category dropdowns pre-wired down to 100 rows, a Dashboard that computes monthly income, expenses, net and savings rate for all of 2026 with SUMIFS, a Categories sheet with budget-versus-actual variance, and three savings goals with formula progress bars. No macros or add-ons; 16 sample rows show how a month looks.', alt=None),
+    'halloween-bundle': dict(niche='PDF · A4 + Letter', num='19', label='pages ×2 sizes', desc='Nineteen printable pages for October: ten Halloween party games (word scramble, a 12x12 word search, bingo with a 48-item caller list, 14-question trivia, pictionary, charades, a scavenger hunt, this or that, a fill-in story and a candy-count jar station), eight autumn planner pages and a title page, delivered as two PDFs with identical content, one A4 and one US Letter. Answer keys sit at the bottom of each game page.', alt=None),
     'lead-earn-sample': dict(niche='CSV · free', num='5', label='listings', desc='Five real listings pulled from the live superteam.fun API, a cut-down slice of the full dataset so you can inspect the data shape before buying.', alt=None),
     'lead-walls-sample': dict(niche='JPG · 1920x1080', num='2', label='walls', desc='Two full wallpapers from Vol.3, downscaled from 4K to 1920x1080. Try them on your actual desktop before buying the pack.', alt=None),
 }

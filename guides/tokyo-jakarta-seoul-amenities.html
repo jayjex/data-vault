@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drinking Water Points in Tokyo, Jakarta and Seoul: OpenStreetMap Counts (CSV) | Data Vault</title>
+<meta name="description" content="Tokyo, Jakarta and Seoul counted from OpenStreetMap: 2,489 features, 98.6 percent drinking water, Tokyo's 2,163 fountains third in the series, and Jakarta's one zero cell explained.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/tokyo-jakarta-seoul-amenities.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Drinking Water Points in Tokyo, Jakarta and Seoul: OpenStreetMap Counts (CSV)">
+<meta property="og:description" content="Tokyo, Jakarta and Seoul counted from OpenStreetMap: 2,489 features, 98.6 percent drinking water, Tokyo's 2,163 fountains third in the series, and Jakarta's one zero cell explained.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/tokyo-jakarta-seoul-amenities.html">
+<meta property="og:image" content="https://jayjex.github.io/data-vault/assets/covers/data-vault-banner.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Drinking water points, public bookcases and bike repair stations in Tokyo, Jakarta and Seoul, counted from OpenStreetMap">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Drinking Water Points in Tokyo, Jakarta and Seoul: OpenStreetMap Counts (CSV)", "description": "Tokyo, Jakarta and Seoul counted from OpenStreetMap: 2,489 features, 98.6 percent drinking water, Tokyo's 2,163 fountains third in the series, and Jakarta's one zero cell explained.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/tokyo-jakarta-seoul-amenities.html", "about": {"@type": "Dataset", "name": "OpenStreetMap Civic Amenities, Tokyo-Jakarta-Seoul, 2026-09", "url": "https://jayjex.github.io/data-vault/datasets/osm-asia-civic-amenities.html"}, "mentions": [{"@type": "Article", "name": "Public Toilets and Drinking Fountains in Sydney, Melbourne, Auckland: OpenStreetMap Counts (CSV)", "url": "https://jayjex.github.io/data-vault/guides/sydney-melbourne-auckland-amenities.html"}, {"@type": "Article", "name": "Drinking Water Points in Lagos, Nairobi and Addis Ababa: OpenStreetMap Counts (CSV)", "url": "https://jayjex.github.io/data-vault/guides/lagos-nairobi-addis-ababa-amenities.html"}, {"@type": "Article", "name": "Istanbul Drinking Water Fountains Map Counts: Cairo and Mumbai Public Amenities Open Data (CSV)", "url": "https://jayjex.github.io/data-vault/guides/mena-city-amenities-guide.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which of the three cities has the most drinking water points?", "acceptedAnswer": {"@type": "Answer", "text": "Tokyo on raw counts: 2,163 of the file's 2,454 drinking-water features, 88.1 percent of the theme, against Seoul's 253 and Jakarta's 38. Cross-file, Tokyo's 2,163 ranks third among single-city drinking-water counts in the catalog's eight-file civic series, behind Sydney (2,479) and Nairobi (2,174) and ahead of Madrid (2,058). All three Asian counts run inside admin-boundary relations, so the numbers cover the whole metropolis rather than the downtown core."}}, {"@type": "Question", "name": "Why does Jakarta show zero public bookcases?", "acceptedAnswer": {"@type": "Answer", "text": "The schema states it as a real result: nobody has mapped a public_bookcase yet inside the Jakarta relation boundary, so the count is 0 and the row's coordinates are a city-center placeholder rather than a node location. The rest of the file backs the small base: Tokyo counts 3 public bookcases and Seoul 1, and no Asian city passes single digits. Across the catalog's civic series, Seattle holds the bookcase peak at 497, Paris 165, and Berlin 114, so the Asian numbers sit at the low end of a tag that never caught on in the region."}}, {"@type": "Question", "name": "How were the counts taken and verified?", "acceptedAnswer": {"@type": "Answer", "text": "Each cell is an Overpass API out count query for one amenity type inside one verified boundary relation, run on 2026-09-10 against the kumi.systems and maps.mail.ru mirrors; the schema documents the kumi base timestamp as 2026-07-24, 48 days before the count date. Counts cover nodes only, and the schema notes some amenities are mapped as ways, which is rare for these three tags. On this page every number was recomputed with python and independently in SQLite, and the two SQL blocks return their quoted outputs verbatim."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://jayjex.github.io/data-vault/guides/"}, {"@type": "ListItem", "position": 3, "name": "Drinking water points in Tokyo, Jakarta and Seoul", "item": "https://jayjex.github.io/data-vault/guides/tokyo-jakarta-seoul-amenities.html"}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Drinking water points in Tokyo, Jakarta and Seoul, counted from OpenStreetMap</h1>
+  <p class="byline">Published 2026-09-10. Data source: <a href="../datasets/osm-asia-civic-amenities.html">OpenStreetMap Civic Amenities, Tokyo-Jakarta-Seoul, 2026-09</a>, nine node counts from Overpass API <code>out count</code> queries on 2026-09-10, kumi mirror base timestamp 2026-07-24. Boundary details come from the <a href="../data/osm-asia-civic/schema.md">dataset schema</a>. This page documents the data.</p>
+
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>2,489</b> features in 9 city-amenity cells</span><span class="stat"><b>2,163</b> Tokyo drinking-water points, largest count in the file</span><span class="stat"><b>98.6</b> percent of the file is drinking water</span><span class="stat"><b>1</b> zero cell, Jakarta's public bookcases</span><span class="stat"><b>2,163x</b> span across nonzero cells, 1 to 2,163</span></div>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>Three capitals, three amenity types, nine counts, and one capital holding nearly everything. OpenStreetMap contributors have mapped 2,489 public features inside the boundaries of Tokyo, Jakarta, and Seoul: 2,454 drinking water points, 4 public bookcases, and 31 bike repair stations, a node snapshot taken 2026-09-10 on a database whose documented base timestamp is 2026-07-24. Tokyo holds 2,191 of the features, 88.0 percent of the file, and its drinking-water count alone (2,163) covers 88.1 percent of the fountains in all three cities combined.</p>
+    <p>The file's one zero cell and its unnamed rows say as much about mapping culture as the thousands do. Jakarta has no mapped public bookcase, and two of its three rows carry no name tag at all. Both tables below recompute from the <a href="../data/osm-asia-civic/counts-2026-09.csv">free nine-row CSV</a>, and the two SQL blocks at the end of this page return them verbatim.</p>
+  </section>
+
+  <section aria-label="All nine counts ranked by raw count">
+    <h2>All nine counts, ranked by raw count</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Nine city-amenity counts ranked by raw count"><table><thead><tr><th scope="col">#</th><th scope="col">City</th><th scope="col">Amenity</th><th scope="col">Count</th><th scope="col">Share of city</th></tr></thead><tbody>
+      <tr><td>1</td><td>Tokyo</td><td>Drinking water</td><td>2,163</td><td>98.7%</td></tr>
+      <tr><td>2</td><td>Seoul</td><td>Drinking water</td><td>253</td><td>97.7%</td></tr>
+      <tr><td>3</td><td>Jakarta</td><td>Drinking water</td><td>38</td><td>97.4%</td></tr>
+      <tr><td>4</td><td>Tokyo</td><td>Bike repair stations</td><td>25</td><td>1.1%</td></tr>
+      <tr><td>5</td><td>Seoul</td><td>Bike repair stations</td><td>5</td><td>1.9%</td></tr>
+      <tr><td>6</td><td>Tokyo</td><td>Public bookcases</td><td>3</td><td>0.1%</td></tr>
+      <tr><td>7</td><td>Jakarta</td><td>Bike repair stations</td><td>1</td><td>2.6%</td></tr>
+      <tr><td>8</td><td>Seoul</td><td>Public bookcases</td><td>1</td><td>0.4%</td></tr>
+      <tr><td>9</td><td>Jakarta</td><td>Public bookcases</td><td>0</td><td>0.0%</td></tr>
+    </tbody></table></div>
+    <p>Drinking water takes the top three rows in all three cities at once, which the Africa file's table could not do (its repair column held one stand and its bookcase column none). Per city, the totals run Tokyo 2,191 (88.0 percent of the file), Seoul 259 (10.4), and Jakarta 39 (1.6). The theme totals are 2,454 fountains (98.6 percent of the file), 31 repair stations (1.2), and 4 bookcases (0.2). The median count across the nine cells is 5, only one cell holds zero, and the largest-to-smallest span across nonzero cells is 2,163 to 1.</p>
+  </section>
+
+  <section aria-label="Three capitals, three writing scripts">
+    <h2>Three capitals, three writing scripts</h2>
+    <p>Unlike the count-only US, EU, and Africa files, each Asia row carries an example node: its name tag verbatim, with latitude and longitude. The names come back in three scripts. Tokyo's bookcase example is named <span lang="ja">&#38899;&#27005;&#12521;&#12452;&#12502;&#12521;&#12522;&#12540;</span> (a music library shelf) at 35.68241, 139.71942, and its repair-station example is <span lang="ja">&#33258;&#36578;&#36554;&#20462;&#29702;&#12356;&#12416;&#12425;&#21830;&#20250;</span> (Imura Shokai, a bike shop) at 35.72883, 139.68391. Seoul's drinking-water example is named <span lang="ko">&#50500;&#47532;&#49688; (Arisu)</span> at 37.55575, 126.89504, and its repair-station example is <span lang="ko">&#49436;&#50872;&#51088;&#51204;&#44144;</span> at 37.51372, 127.10091. Jakarta's drinking-water example reads galon c2 at -6.09890, 106.96190.</p>
+    <p>Two of Jakarta's three rows carry an empty name tag, and Tokyo's drinking-water example carries the generic tag name fountain at 35.56829, 139.45574. The file records what the tags say, nothing more; what Arisu stands for, or who fills the galon c2 bottles, is context the CSV does not carry. For an agent or a pipeline, that column is a free sample of the map's texture; pull one row and you get a name and a coordinate you can plot.</p>
+  </section>
+
+  <section aria-label="One real zero and a placeholder coordinate">
+    <h2>One real zero and a placeholder coordinate</h2>
+    <p>Zeros in a count table can mean two things: nobody mapped the thing, or nobody mapped the tag. The schema answers for Jakarta's bookcase cell: no <code>public_bookcase</code> is mapped yet inside the Jakarta relation boundary. Because the count is 0, no example node exists, and the row's coordinates (-6.20000, 106.81667) are a city-center placeholder, which the schema states outright. Every other cell in the file has a real node behind it.</p>
+    <p>The rest of the series puts the small bookcase base in context. Seattle holds the catalog peak at 497 in the 16-city US file, Paris 165, Berlin 114, and Warsaw 33 in the EU file; in Asia, Tokyo's 3 is the high mark and Seoul adds 1. The EU file's Amsterdam also reads 0 while Berlin in the same file reads 114, so a zero next to a busy column is a mapping-culture gap that shows up inside one region too. Whether Jakarta's 0 will stay 0 is a question the file cannot answer.</p>
+  </section>
+
+  <section aria-label="Where Tokyo stands across the series">
+    <h2>Where Tokyo stands across the series</h2>
+    <p>Cross-file, Tokyo's 2,163 drinking-water points rank third among single-city counts in the catalog's eight-file civic series. Sydney holds the top count at 2,479 in the Oceania file, Nairobi follows at 2,174, and Tokyo leads Madrid (2,058) and New York (1,599 in the 16-city US file). Seoul's 253 lands one fountain above Chicago's 252 in the exact-boundary US2 file, and Jakarta's 38 sits second-lowest in the series, ahead of only Addis Ababa's 5.</p>
+    <p>The repair column earns an honest downgrade. Tokyo's 25 bike repair stations lead the Asia file and outnumber the entire MENA file's repair total (Istanbul 16, Cairo 0, Mumbai 3, together 19), but across the series 25 ranks ninth: Warsaw's 188 stands top the catalog, with Berlin (71), Paris (52), Los Angeles (44), Chicago (40), New York (31), Austin (28), and Seattle (28) all ahead. The comparison stays within a theme on purpose: the Oceania and US2 files count fountains, toilets, and benches, so a bench-to-fountain ratio does not transfer across files. What does transfer is the drinking-water column, which every file measures with the same <code>amenity=drinking_water</code> tag.</p>
+    <p>One counting rule differs from the Africa lane and matters for close comparisons: this file counts nodes only, and the schema notes that some amenities are mapped as ways, rare for these three tags. The Africa file counted nodes and ways together. A way mapped as a drinking fountain would appear in the Africa numbers and not here, which is one more reason to treat single-digit differences between regions as snapshot noise rather than rankings.</p>
+  </section>
+
+  <section aria-label="Methodology">
+    <h2>Methodology: nodes only, one documented base timestamp</h2>
+    <p>The source file is the nine-row <a href="../data/osm-asia-civic/counts-2026-09.csv">counts-2026-09.csv</a> (ODbL, &copy; OpenStreetMap contributors). Each cell is an Overpass API <code>out count</code> query for one amenity type inside one city area, counting nodes only; ways and relations are ignored, and the schema flags ways as rare for these three tags. City areas were resolved through Nominatim relations and passed to Overpass as 3600000000-offset area IDs: Tokyo Metropolis (R3601543125), Daerah Khusus Ibukota Jakarta (R6362934), and Seoul Special City (R2297418).</p>
+    <p>The counts ran on 2026-09-10 against the kumi.systems and maps.mail.ru Overpass mirrors, and the schema documents the kumi base timestamp as 2026-07-24, 48 days before the count date. Unlike the Africa file, this schema publishes no second-mirror drift table, so this page makes no mirror-agreement claim. Counts are a snapshot, OSM moves daily, and all three boundaries are metro-scale admin areas that reach past the downtown cores, so read the numbers as OpenStreetMap coverage inside these boundaries: exact for what was mapped, estimates for what stands on the ground.</p>
+  </section>
+
+  <section aria-label="Recompute the boards yourself">
+    <h2>Recompute the tables yourself</h2>
+    <p>Load the CSV into SQLite as <code>civic</code>, seven columns per row. The first block returns the raw board:</p>
+    <pre><code>-- SQLite: all nine city-amenity counts, ranked by raw count
+CREATE TABLE civic (city TEXT, amenity TEXT, total INT, tags TEXT, lat TEXT, lon TEXT, source TEXT);
+.import --skip 1 counts-2026-09.csv civic
+
+SELECT rn, city, amenity, total, share_of_city
+FROM (SELECT city, amenity, total,
+             ROUND(total * 100.0 / SUM(total) OVER (PARTITION BY city), 1) AS share_of_city,
+             ROW_NUMBER() OVER (ORDER BY total DESC, city, amenity) AS rn
+      FROM civic)
+ORDER BY rn;
+-- Rows: 1 Tokyo drinking_water 2163 98.7,
+-- 2 Seoul drinking_water 253 97.7,
+-- 3 Jakarta drinking_water 38 97.4,
+-- 4 Tokyo bicycle_repair_station 25 1.1,
+-- 5 Seoul bicycle_repair_station 5 1.9,
+-- 6 Tokyo public_bookcase 3 0.1,
+-- 7 Jakarta bicycle_repair_station 1 2.6,
+-- 8 Seoul public_bookcase 1 0.4,
+-- 9 Jakarta public_bookcase 0 0.0.</code></pre>
+    <p>The second block returns the file's shape: theme totals, Tokyo's share, the median, the zero-cell count, and the span across nonzero cells, then per-city totals:</p>
+    <pre><code>-- SQLite: shape of the file
+WITH r AS (SELECT total AS v, ROW_NUMBER() OVER (ORDER BY total) AS rn,
+                  COUNT(*) OVER () AS n FROM civic),
+     t AS (SELECT amenity, SUM(total) AS n FROM civic GROUP BY amenity),
+     c2 AS (SELECT city, SUM(total) AS n FROM civic GROUP BY city)
+SELECT
+  (SELECT SUM(v) FROM r) AS features,
+  (SELECT n FROM t WHERE amenity = 'drinking_water') AS drinking_water,
+  (SELECT n FROM t WHERE amenity = 'public_bookcase') AS bookcases,
+  (SELECT n FROM t WHERE amenity = 'bicycle_repair_station') AS repair_stations,
+  (SELECT n FROM c2 WHERE city = 'Tokyo') AS tokyo_total,
+  (SELECT ROUND(n * 100.0 / (SELECT SUM(n) FROM c2), 1) FROM c2
+   WHERE city = 'Tokyo') AS tokyo_share,
+  (SELECT v FROM r WHERE rn = (n+1)/2) AS median_count,
+  (SELECT SUM(CASE WHEN v = 0 THEN 1 ELSE 0 END) FROM r) AS zero_cells,
+  (SELECT MAX(v) FROM r) AS largest_count,
+  (SELECT ROUND(MAX(v) * 1.0 / MIN(v), 1) FROM r WHERE v > 0) AS largest_over_floor;
+-- 2489 / 2454 / 4 / 31 / 2191 / 88.0 / 5 / 1 / 2163 / 2163.0.
+
+-- per-city totals and the drinking-water share
+SELECT city, SUM(total) AS city_total,
+       ROUND((SELECT total FROM civic WHERE city = c.city AND amenity = 'drinking_water')
+             * 100.0 / SUM(total), 1) AS drinking_share
+FROM civic c
+GROUP BY city
+ORDER BY city_total DESC;
+-- Rows: Tokyo 2191 98.7,
+-- Seoul 259 97.7,
+-- Jakarta 39 97.4.</code></pre>
+    <p>Run in one session, both blocks return exactly the rows quoted in the comments. The drinking-water share stays above 97 percent in every city because each city's file is, to one decimal, nearly all fountains.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>Tokyo, Jakarta and Seoul counts: questions</h2>
+    <dl>
+      <dt>Which of the three cities has the most drinking water points?</dt>
+      <dd>Tokyo on raw counts: 2,163 of the file's 2,454 drinking-water features, 88.1 percent of the theme, against Seoul's 253 and Jakarta's 38. Cross-file, Tokyo's 2,163 ranks third among single-city drinking-water counts in the catalog's eight-file civic series, behind Sydney (2,479) and Nairobi (2,174) and ahead of Madrid (2,058). All three Asian counts run inside admin-boundary relations, so the numbers cover the whole metropolis rather than the downtown core.</dd>
+      <dt>Why does Jakarta show zero public bookcases?</dt>
+      <dd>The schema states it as a real result: nobody has mapped a public_bookcase yet inside the Jakarta relation boundary, so the count is 0 and the row's coordinates are a city-center placeholder rather than a node location. The rest of the file backs the small base: Tokyo counts 3 public bookcases and Seoul 1, and no Asian city passes single digits. Across the catalog's civic series, Seattle holds the bookcase peak at 497, Paris 165, and Berlin 114, so the Asian numbers sit at the low end of a tag that never caught on in the region.</dd>
+      <dt>How were the counts taken and verified?</dt>
+      <dd>Each cell is an Overpass API out count query for one amenity type inside one verified boundary relation, run on 2026-09-10 against the kumi.systems and maps.mail.ru mirrors; the schema documents the kumi base timestamp as 2026-07-24, 48 days before the count date. Counts cover nodes only, and the schema notes some amenities are mapped as ways, which is rare for these three tags. On this page every number was recomputed with python and independently in SQLite, and the two SQL blocks return their quoted outputs verbatim.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <div class="btnrow">
+      <a class="btn" href="../data/osm-asia-civic/counts-2026-09.csv" download>Download the nine-row CSV (free, ODbL)</a>
+      <a class="btn-ghost btn" href="../datasets/osm-asia-civic-amenities.html">Open the dataset page</a>
+    </div>
+    <p class="btn-note">The CSV carries one row per city-amenity pair with the example node's name tag and coordinates, and the <a href="../data/osm-asia-civic/schema.md">schema page</a> documents the boundary relations and the nodes-only counting rule. Related guides on this site: the <a href="sydney-melbourne-auckland-amenities.html">Sydney, Melbourne and Auckland counts</a>, the <a href="lagos-nairobi-addis-ababa-amenities.html">Lagos, Nairobi and Addis Ababa counts</a>, and the <a href="mena-city-amenities-guide.html">Istanbul, Cairo and Mumbai counts</a>. Off the data lane, the <a href="../free-printables-index.html">free printables index</a> holds 223 printable trackers, planners, and worksheets.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

@@ -11,7 +11,7 @@ MCP registry name: io.github.jayjex/dataset-mcp
 Portfolio (all live work in one page: MCP server, DOIs, x402 API, 3D print, print-on-demand, writing): https://jayjex.github.io/data-vault/portfolio.html
 Free printables index (223 free printable pages from the Matchbook Labs funnel, one link per live page): https://jayjex.github.io/data-vault/free-printables-index.html
 Free printables by use case (same 223 pages regrouped into budget, moving, study and worksheet use cases): https://jayjex.github.io/data-vault/printable-index-roundup.html
-Product catalog (all 87 public SKUs in one page: datasets, prompt packs, wallpapers and icons, bundles, spreadsheets, Notion templates, printable planners, books, dev tools, 2 free samples; prices and item counts as listed on each storefront; Fourthwall/SellApp/Getly links): https://jayjex.github.io/data-vault/products.html
+Product catalog (all 90 public SKUs in one page: datasets, prompt packs, wallpapers and icons, bundles, spreadsheets, Notion templates, printable planners, books, dev tools, 2 free samples; prices and item counts as listed on each storefront; Fourthwall/SellApp/Getly links): https://jayjex.github.io/data-vault/products.html
 MCP full query: query_dataset(slug, {where, columns, limit, offset}) filters and paginates the FULL released files, 100 rows/call. Example: query_dataset("hud-fmr-2026", {where: [{column: "state", op: "=", value: "TX"}], limit: 5}) returns 3,247 matched Texas rent rows. Full data release: https://github.com/jayjex/dataset-mcp/releases/tag/data-v1
 FMR calculator guide (the math behind FMRs + MCP lookup, no official HUD calculator exists): https://jayjex.github.io/data-vault/guides/hud-fair-market-rent-calculator.html
 HUD income limits guide (AMI vs FMR, FY2026 30/50/80 percent limits parsed from huduser.gov files beside each metro's 2BR FMR): https://jayjex.github.io/data-vault/guides/hud-income-limits.html
@@ -440,7 +440,7 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - [Ko-fi (JayHex)](https://ko-fi.com/jayjex): the printable galleries live here, plus a tip jar
 - [Fourthwall shop, JayHex](https://jayjex-shop.fourthwall.com): digital downloads like data packs, directories, planners, and the Web3 events calendar
 - [JayHex Prints on Printify](https://jayhex-prints.printify.me): print-on-demand sweatshirts and hoodies carrying the Matchbook Labs designs, including the Winter Robin and Halloween series
-- [Product catalog](https://jayjex.github.io/data-vault/products.html): all 87 public SKUs on one page, grouped into Datasets / Prompt Packs / Wallpapers & Icons / Bundles / Spreadsheets & Business / Notion & Obsidian / Planners & Printables / Books & Workbooks / Design & Social / Dev Tools & Templates / Free Samples, with price, item count, format and store link per product. Two Getly uploads still in platform review and four Gumroad drafts are deliberately absent until live.
+- [Product catalog](https://jayjex.github.io/data-vault/products.html): all 90 public SKUs on one page, grouped into Datasets / Prompt Packs / Wallpapers & Icons / Bundles / Spreadsheets & Business / Notion & Obsidian / Planners & Printables / Books & Workbooks / Design & Social / Dev Tools & Templates / Free Samples, with price, item count, format and store link per product. Four Gumroad drafts are deliberately absent until live.
 
 ## Access rules
 - Fetch catalog.json and every sample endpoint freely. No API keys, no auth.

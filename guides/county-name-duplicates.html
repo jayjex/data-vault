@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>County Name Duplicates: What Rent Does When States Share a County Name | Data Vault</title>
+<meta name="description" content="423 county names repeat across state lines in the FY2027 rent file, 1,686 counties in all. Washington County spans 30 states from 905 in Mississippi to 1,879 in Rhode Island.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/county-name-duplicates.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="County Name Duplicates: What Rent Does When States Share a County Name">
+<meta property="og:description" content="423 county names repeat across state lines in the FY2027 rent file, 1,686 counties in all. Washington County spans 30 states from 905 in Mississippi to 1,879 in Rhode Island.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/county-name-duplicates.html">
+<meta property="og:image" content="https://jayjex.github.io/data-vault/assets/covers/data-vault-banner.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="County name duplicates: 1,686 FY2027 county rent rows grouped by names two or more states share">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "County Name Duplicates: What Rent Does When States Share a County Name", "description": "423 county names repeat across state lines in the FY2027 rent file, 1,686 counties in all. Washington County spans 30 states from 905 in Mississippi to 1,879 in Rhode Island.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/county-name-duplicates.html", "about": {"@type": "Dataset", "name": "County-name duplicates ledger, one row per county name two or more states share", "url": "https://jayjex.github.io/data-vault/data/county-name-duplicates/county-name-duplicates-2027.csv"}, "mentions": [{"@type": "Article", "name": "ZIP Prefix Geography: What the First Two Digits of a ZIP Code Say About Rent", "url": "https://jayjex.github.io/data-vault/guides/zip-prefix-geography.html"}, {"@type": "Article", "name": "HUD FMR by County: Completeness and Spread in the FY2026 County File", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-by-county.html"}, {"@type": "Article", "name": "HUD FMR 2027: Fair Market Rents for FY2027, What Changed by ZIP", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-2027.html"}, {"@type": "Dataset", "name": "HUD Fair Market Rents FY2026 by County: Completeness and Spread", "url": "https://jayjex.github.io/data-vault/datasets/hud-fmr-county-2026.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How many county names repeat across state lines?", "acceptedAnswer": {"@type": "Answer", "text": "In the FY2027 fair market rent file by county, 423 county names are shared by two or more states, covering 1,686 of the 3,229 county rows, 52.2 percent of the file. 223 of those names live in exactly two states and 36 appear in ten or more, led by Washington County at 30, Jefferson County at 25, Franklin County at 24, then Jackson and Lincoln counties at 23 each."}}, {"@type": "Question", "name": "Which duplicated county name has the widest rent gap?", "acceptedAnswer": {"@type": "Answer", "text": "Santa Cruz County: the Arizona county medians 1,041 for a two-bedroom and the California county medians 4,254, a 3,213 gap inside one name. Orange County runs second at 2,043 between Indiana at 1,014 and California at 3,057, Putnam County third at 2,029 between Illinois and New York, and 46 of the 423 duplicated names have a ceiling at or above 2,000."}}, {"@type": "Question", "name": "Why does the same county name cost so little in some states?", "acceptedAnswer": {"@type": "Answer", "text": "The cheap end of most duplicated names sits in the same places. Mississippi anchors 30 of the 423 floors at 905, the cheapest county median the state posts, and five South Carolina groups tie for the lowest group floor of all at 885, Marion County among them. Those are county-level rents in low-cost states, not the national floor: the lowest 2BR county median in the file is 517, in Puerto Rico, whose rows use Municipio names and never enter a County-name group."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://jayjex.github.io/data-vault/guides/"}, {"@type": "ListItem", "position": 3, "name": "County name duplicates: what rent does when states share a county name", "item": "https://jayjex.github.io/data-vault/guides/county-name-duplicates.html"}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>County name duplicates: what rent does when states share a county name</h1>
+  <p class="byline">Published 2026-09-10. Data source: the FY2027 fair market rent file by county, 3,229 rows, md5 3960f577f991978f3a1bb99d353853d5, every number on this page computed from that file on 2026-09-10. Two-bedroom county medians throughout, dollars per month, no product prices involved. This page documents the data.</p>
+
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>423</b> county names shared across state lines, 1,686 counties</span><span class="stat"><b>3,213</b> widest same-name rent gap, Santa Cruz AZ to CA</span></div>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>A county name is not an address. In the FY2027 county file, 1,966 distinct names cover 3,229 county rows, and 423 of those names are claimed by two or more states, 1,686 counties in total, 52.2 percent of the file. Washington County is the most shared name in America: 30 states each have one, from Washington County, Kansas, to Washington County, Rhode Island. Jefferson County follows in 25 states, Franklin in 24, Jackson and Lincoln in 23 each, Madison in 19. Thirty-six names reach ten or more states; 223 more live in exactly two.</p>
+    <p>Rent separates the copies. Washington County medians 1,187 across its 30 counties, but the floors and ceilings tell the story: 905 in Mississippi, 1,879 in Rhode Island. Jefferson County stretches 905 in Mississippi to 2,169 in Colorado, Franklin County 905 to 2,165 in Vermont, and Montgomery County tops the board below with a 2,438 ceiling in Maryland against a 905 floor in Alabama. The widest gap inside any single name belongs to Santa Cruz County: the Arizona county medians 1,041, the California county medians 4,254, a 3,213 span. Orange County runs 1,014 in Indiana to 3,057 in California, a 2,043 gap, and Putnam County 942 in Illinois to 2,971 in New York. Forty-six of the 423 duplicated names carry a ceiling at or above 2,000.</p>
+    <p>The cheap ends pile up in the same few states. Mississippi anchors 30 of the 423 floors at 905, its cheapest county median, and five South Carolina groups share the lowest group floor of all at 885, Marion County among them. The middle of the distribution is quiet: the 423 group medians median 1,071, near the file-wide county median of 1,063, and the drama lives in the tails. Every board row and the full state lists behind it come from the <a href="../data/county-name-duplicates/county-name-duplicates-2027.csv">one-row-per-name CSV</a>, and the SQL block at the end of this page returns the table verbatim.</p>
+  </section>
+
+  <section aria-label="The ten most shared county names">
+    <h2>The ten most shared county names</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Ten county names claimed by the most states in the FY2027 file, with two-bedroom medians and extremes"><table><thead><tr><th scope="col">#</th><th scope="col">County name</th><th scope="col">States</th><th scope="col">Counties</th><th scope="col">Median 2BR</th><th scope="col">Floor</th><th scope="col">Ceiling</th></tr></thead><tbody>
+      <tr><td>1</td><td>Washington County</td><td>30</td><td>30</td><td>1,187</td><td>905 · MS</td><td>1,879 · RI</td></tr>
+      <tr><td>2</td><td>Jefferson County</td><td>25</td><td>25</td><td>1,209</td><td>905 · MS</td><td>2,169 · CO</td></tr>
+      <tr><td>3</td><td>Franklin County</td><td>24</td><td>24</td><td>1,147</td><td>905 · MS</td><td>2,165 · VT</td></tr>
+      <tr><td>4</td><td>Jackson County</td><td>23</td><td>23</td><td>1,014</td><td>909 · AR</td><td>1,546 · MO</td></tr>
+      <tr><td>5</td><td>Lincoln County</td><td>23</td><td>23</td><td>1,047</td><td>905 · MS</td><td>1,400 · OR</td></tr>
+      <tr><td>6</td><td>Madison County</td><td>19</td><td>19</td><td>1,289</td><td>978 · FL</td><td>1,866 · NC</td></tr>
+      <tr><td>7</td><td>Clay County</td><td>18</td><td>18</td><td>1,018</td><td>905 · MS</td><td>1,694 · FL</td></tr>
+      <tr><td>8</td><td>Montgomery County</td><td>18</td><td>18</td><td>1,029</td><td>905 · MS</td><td>2,438 · MD</td></tr>
+      <tr><td>9</td><td>Marion County</td><td>17</td><td>17</td><td>1,041</td><td>885 · SC</td><td>1,692 · OR</td></tr>
+      <tr><td>10</td><td>Monroe County</td><td>17</td><td>17</td><td>1,003</td><td>905 · MS</td><td>2,254 · FL</td></tr>
+    </tbody></table></div>
+    <p>Each rank orders by states first, then the name, so Jackson sits at 4 ahead of Lincoln on their shared 23, and Clay at 7 ahead of Montgomery on a shared 18. The cutoff falls hard: Union County also claims 17 states, and misses the board on the alphabetical tie-break. Board medians run a narrow 1,003 to 1,289, and the extremes swing wider: Monroe's Florida ceiling of 2,254 is more than double Monroe's median, and Montgomery's Maryland county at 2,438 costs 2.7 times its Alabama floor. The <a href="../data/county-name-duplicates/county-name-duplicates-2027.csv">CSV</a> carries the full state list for every row on the board.</p>
+  </section>
+
+  <section aria-label="Methodology">
+    <h2>Methodology: the file and what each number is</h2>
+    <p>The source is the FY2027 fair market rent file by county: 3,229 county-equivalent rows across 56 states and territories, parsed from HUD's FY27 workbooks and shipped beside the <a href="../datasets/hud-fmr-county-2026.html">FY2026 county dataset</a> (same 15-column schema, md5 of the FY2027 file 3960f577f991978f3a1bb99d353853d5). Every number on this page uses the fmr_2br_median column. A name group is an exact match on the county column, suffix included, so Louisiana's Washington Parish, Puerto Rico's Municipio rows and the independent-city rows never mix into a County group, and all 423 groups here are pure County names. No state carries two counties of the same name, the file's 3,229 state and county pairs are distinct, so each group's county count equals its state count.</p>
+    <p>The group median is the median of the member counties' fmr_2br_median values, the middle row for odd counts, the mean of the two middle rows rounded up for even counts, which is how the CSV and the SQL below both compute it. Floor and ceiling name the member county with the lowest and highest median, ties resolved by state code in alphabetical order, and the board orders by states descending, then county name. Every number was computed two ways over the source file, a python pass and an independent SQLite pass, and the page SQL re-executed verbatim after publication, with zero mismatches across all 423 rows.</p>
+  </section>
+
+  <section aria-label="Recompute the board yourself">
+    <h2>Recompute the board yourself</h2>
+    <p>Load the source CSV into SQLite as <code>county27</code>, fifteen columns per row. One block returns the whole board:</p>
+    <pre><code>-- SQLite: the ten most shared county names by state count, with 2BR extremes
+CREATE TABLE county27 (state TEXT, state_name TEXT, county TEXT, metro TEXT,
+  fmr_0br_median INT, fmr_0br_max INT, fmr_1br_median INT, fmr_1br_max INT,
+  fmr_2br_median INT, fmr_2br_max INT, fmr_3br_median INT, fmr_3br_max INT,
+  fmr_4br_median INT, fmr_4br_max INT, area_rows INT);
+.import --skip 1 fmr-by-county-2027.csv county27
+
+WITH g AS (SELECT county, COUNT(DISTINCT state) AS sc, COUNT(*) AS cr
+           FROM county27 GROUP BY county HAVING COUNT(DISTINCT state) &gt; 1),
+med AS (SELECT c.county, ROUND(AVG(c.fmr_2br_median)) AS med
+        FROM (SELECT county, fmr_2br_median,
+                     ROW_NUMBER() OVER (PARTITION BY county ORDER BY fmr_2br_median, state) AS r2,
+                     COUNT(*) OVER (PARTITION BY county) AS n
+              FROM county27) c
+        WHERE c.county IN (SELECT county FROM g)
+          AND c.r2 IN ((c.n+1)/2, (c.n+2)/2) GROUP BY c.county),
+lo AS (SELECT county, MIN(fmr_2br_median) AS mn FROM county27
+       WHERE county IN (SELECT county FROM g) GROUP BY county),
+hi AS (SELECT county, MAX(fmr_2br_median) AS mx FROM county27
+       WHERE county IN (SELECT county FROM g) GROUP BY county),
+ls AS (SELECT county, state, fmr_2br_median,
+              ROW_NUMBER() OVER (PARTITION BY county ORDER BY fmr_2br_median, state) AS rl
+       FROM county27 WHERE county IN (SELECT county FROM g)),
+hs AS (SELECT county, state, fmr_2br_median,
+              ROW_NUMBER() OVER (PARTITION BY county ORDER BY fmr_2br_median DESC, state) AS rh
+       FROM county27 WHERE county IN (SELECT county FROM g)),
+srun AS (SELECT county, state,
+                GROUP_CONCAT(state, ' ') OVER (PARTITION BY county ORDER BY state) AS acc,
+                ROW_NUMBER() OVER (PARTITION BY county ORDER BY state) AS rs,
+                COUNT(*) OVER (PARTITION BY county) AS ns
+         FROM (SELECT DISTINCT county, state FROM county27)),
+states AS (SELECT county, acc AS states FROM srun WHERE rs = ns)
+SELECT g.county, g.sc, states.states, g.cr, med.med, lo.mn, ls.state, hi.mx, hs.state
+FROM g JOIN med ON med.county=g.county JOIN lo ON lo.county=g.county JOIN hi ON hi.county=g.county
+JOIN ls ON ls.county=g.county AND ls.fmr_2br_median=lo.mn AND ls.rl=1
+JOIN hs ON hs.county=g.county AND hs.fmr_2br_median=hi.mx AND hs.rh=1
+JOIN states ON states.county=g.county
+ORDER BY g.sc DESC, g.county
+LIMIT 10;
+-- Rows: 1 Washington County 30 AL AR CO FL GA IA ID IL IN KS KY MD ME MN MO MS NC NE NY OH OK OR PA RI TN TX UT VA VT WI 30 1187.0 905 MS 1879 RI,
+-- 2 Jefferson County 25 AL AR CO FL GA IA ID IL IN KS KY MO MS MT NE NY OH OK OR PA TN TX WA WI WV 25 1209.0 905 MS 2169 CO,
+-- 3 Franklin County 24 AL AR FL GA IA ID IL IN KS KY MA ME MO MS NC NE NY OH PA TN TX VA VT WA 24 1147.0 905 MS 2165 VT,
+-- 4 Jackson County 23 AL AR CO FL GA IA IL IN KS KY MI MN MO MS NC OH OK OR SD TN TX WI WV 23 1014.0 909 AR 1546 MO,
+-- 5 Lincoln County 23 AR CO GA ID KS KY ME MN MO MS MT NC NE NM NV OK OR SD TN WA WI WV WY 23 1047.0 905 MS 1400 OR,
+-- 6 Madison County 19 AL AR FL GA IA ID IL IN KY MO MS MT NC NE NY OH TN TX VA 19 1289.0 978 FL 1866 NC,
+-- 7 Clay County 18 AL AR FL GA IA IL IN KS KY MN MO MS NC NE SD TN TX WV 18 1018.0 905 MS 1694 FL,
+-- 8 Montgomery County 18 AL AR GA IA IL IN KS KY MD MO MS NC NY OH PA TN TX VA 18 1029.0 905 MS 2438 MD,
+-- 9 Marion County 17 AL AR FL GA IA IL IN KS KY MO MS OH OR SC TN TX WV 17 1041.0 885 SC 1692 OR,
+-- 10 Monroe County 17 AL AR FL GA IA IL IN KY MI MO MS NY OH PA TN WI WV 17 1003.0 905 MS 2254 FL.</code></pre>
+    <p>Run in one session, the block returns exactly the ten rows quoted in the comments, including the tie order Jackson before Lincoln and Clay before Montgomery. Ordering by <code>MAX(fmr_2br_median) - MIN(fmr_2br_median) DESC</code> instead turns the board into a same-name spread ranking with Santa Cruz County on top, or drop the <code>HAVING</code> clause to see the 1,543 single-state names this page leaves out.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>County name duplicates: questions</h2>
+    <dl>
+      <dt>How many county names repeat across state lines?</dt>
+      <dd>In the FY2027 fair market rent file by county, 423 county names are shared by two or more states, covering 1,686 of the 3,229 county rows, 52.2 percent of the file. 223 of those names live in exactly two states and 36 appear in ten or more, led by Washington County at 30, Jefferson County at 25, Franklin County at 24, then Jackson and Lincoln counties at 23 each.</dd>
+      <dt>Which duplicated county name has the widest rent gap?</dt>
+      <dd>Santa Cruz County: the Arizona county medians 1,041 for a two-bedroom and the California county medians 4,254, a 3,213 gap inside one name. Orange County runs second at 2,043 between Indiana at 1,014 and California at 3,057, Putnam County third at 2,029 between Illinois and New York, and 46 of the 423 duplicated names have a ceiling at or above 2,000.</dd>
+      <dt>Why does the same county name cost so little in some states?</dt>
+      <dd>The cheap end of most duplicated names sits in the same places. Mississippi anchors 30 of the 423 floors at 905, the cheapest county median the state posts, and five South Carolina groups tie for the lowest group floor of all at 885, Marion County among them. Those are county-level rents in low-cost states, not the national floor: the lowest 2BR county median in the file is 517, in Puerto Rico, whose rows use Municipio names and never enter a County-name group.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <div class="btnrow">
+      <a class="btn" href="../data/county-name-duplicates/county-name-duplicates-2027.csv" download>Download the county-name duplicates CSV (free, 423 rows)</a>
+      <a class="btn-ghost btn" href="../datasets/hud-fmr-county-2026.html">Browse the county FMR dataset</a>
+    </div>
+    <p class="btn-note">The CSV carries one row per shared county name: name, state count, member states, county count, median, floor with its state and ceiling with its state. For the county file behind it, the <a href="../datasets/hud-fmr-county-2026.html">FY2026 county dataset page</a> documents every column, the <a href="hud-fmr-2027.html">FY2027 changes guide</a> covers what moved year over year, the <a href="zip-prefix-geography.html">ZIP prefix guide</a> groups the same rents by routing geography instead, and the <a href="hud-fmr-by-county.html">county guide</a> walks the county-level columns. Off the data lane, the <a href="../free-printables-index.html">free printables index</a> holds 223 printable trackers, planners, and worksheets.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

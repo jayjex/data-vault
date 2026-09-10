@@ -344,6 +344,7 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - [Public Domain Datasets: Licenses, Commercial Use, Credit Lines](https://jayjex.github.io/data-vault/guides/public-domain-datasets.html): license table for public data
 - [MCP Server for Claude Desktop: Install dataset-mcp, Config JSON, Real Outputs](https://jayjex.github.io/data-vault/guides/mcp-claude-desktop.html): Claude Desktop config walkthrough
 - [Build an MCP Server in Python: 76-Line Tutorial With Tested Output](https://jayjex.github.io/data-vault/guides/mcp-server-build-tutorial.html): stdio JSON-RPC loop, response shapes, npx github: publishing
+- [How to QA a PDF's Internal Structure in Python: Page-Tree Walk With Verbatim Output](https://jayjex.github.io/data-vault/guides/pdf-page-tree-qa-python.html): /Kids to /Type /Page graph walk, /Contents stream and orphan checks, /Count vs reachable, healthy vs broken-wiring fixtures, free @jayjex/pdfcheck-mcp on npm
 
 - [Airbnb data by country: what exists and where it comes from](https://jayjex.github.io/data-vault/guides/airbnb-data-by-country.html): no official country-level dataset, coverage from Inside Airbnb city files, Eurostat nights, national statistics offices
 - [Airbnb market analysis: a 5-step framework with public listing data](https://jayjex.github.io/data-vault/guides/airbnb-market-analysis.html): supply counts, mean and median nightly prices, competition density, snapshot seasonality, what the data cannot answer

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to QA a PDF's Internal Structure in Python: Page-Tree Walk With Verbatim Output | Data Vault</title>
+<meta name="description" content="A Python page-tree QA walkthrough: walk /Kids to /Type /Page objects, check every /Contents points at a stream, catch orphan pages and /Count mismatches. Healthy and broken-wiring fixtures, every output verbatim, plus the free pdfcheck-mcp server.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/pdf-page-tree-qa-python.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="How to QA a PDF's Internal Structure in Python: Page-Tree Walk With Verbatim Output">
+<meta property="og:description" content="Walk /Kids to /Type /Page objects, check every /Contents points at a stream, catch orphan pages and /Count mismatches. Healthy and broken-wiring fixtures, every output verbatim.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/pdf-page-tree-qa-python.html">
+<meta property="og:image" content="https://jayjex.github.io/data-vault/assets/covers/data-vault-banner.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="How to QA a PDF's internal structure in Python">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "How to QA a PDF's Internal Structure in Python: Page-Tree Walk With Verbatim Output", "description": "A Python page-tree QA walkthrough: walk /Kids to /Type /Page objects, check every /Contents points at a stream, catch orphan pages and /Count mismatches. Healthy and broken-wiring fixtures, every output verbatim, plus the free pdfcheck-mcp server.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/pdf-page-tree-qa-python.html", "about": {"@type": "Thing", "name": "PDF page-tree validation in Python"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What does QA on a PDF's internal structure check?", "acceptedAnswer": {"@type": "Answer", "text": "Four graph checks: every /Kids entry resolves to a /Type /Page object, every page /Contents points at a stream object that carries text-drawing operators, no /Type /Page object is orphaned outside the /Kids array, and the /Count claim matches the pages actually reachable. The walker on this page runs all four in about 70 lines of Python."}}, {"@type": "Question", "name": "Why did my PDF QA pass but the pages render blank?", "acceptedAnswer": {"@type": "Answer", "text": "Because the QA counted stream objects instead of walking the page tree. A PDF can carry 24 healthy content streams and still be unreadable when /Kids points at a font object, /Contents points one slot off, and every real page dictionary sits orphaned outside the tree. We shipped 13 product PDFs in exactly this state and the stream-count QA passed all of them; pypdf reported the pages without raising, and viewers rendered blanks."}}, {"@type": "Question", "name": "Does this page-tree walker work on every PDF?", "acceptedAnswer": {"@type": "Answer", "text": "It covers classic (uncompressed) xref tables, which is what most PDF generators write. Files with compressed xref streams are rejected with a clear message instead of a false pass, and encrypted files are out of scope. The same checks ship as the free npm package @jayjex/pdfcheck-mcp with a batch tool for whole directories."}}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>How to QA a PDF's internal structure in Python</h1>
+  <p class="byline">Published 2026-09-10. Every output on this page is verbatim from runs on 2026-09-10 with Python 3.14.4, pypdf 6.18.0 and pdfcheck-mcp 0.1.1 on Linux. The two fixture PDFs ship with the pdfcheck-mcp repo under MIT.</p>
+
+  <section aria-label="Why stream counts lie">
+    <h2>Why stream counts lie</h2>
+    <p>We shipped 13 product PDFs that were unreadable, and our QA passed every one of them. The QA counted stream objects and found plenty: each file carried healthy compressed content streams with real text operators. What it never did was look at the page tree, and the page tree is what a reader actually walks. In all 13 files the generator had written objects with a one-slot offset bug: <code>/Kids</code> pointed at a font object, every page dictionary's <code>/Contents</code> pointed one slot down the chain, and the last real page dictionary sat orphaned outside the tree. Viewers rendered blank pages. pypdf did not raise either; it quietly reported fewer pages.</p>
+    <p>This page builds the check that catches that class of bug. It walks the object graph the way a viewer does, runs four checks against the page tree, and prints a verdict. The code runs against two fixtures: a healthy 4-page PDF and the broken-wiring variant from the incident, so you can see what a pass and a failure look like with real numbers.</p>
+  </section>
+
+  <section aria-label="The page tree in one minute">
+    <h2>The page tree in one minute</h2>
+    <p>A classic PDF is a list of numbered objects plus a cross-reference (xref) table giving each object's byte offset. The trailer names the root object, the root is the catalog, and the catalog names the page tree:</p>
+<pre>trailer
+&lt;&lt; /Size 13 /Root 1 0 R &gt;&gt;
+1 0 obj    &lt;&lt; /Type /Catalog /Pages 2 0 R &gt;&gt;
+2 0 obj    &lt;&lt; /Type /Pages /Count 4 /Kids [6 0 R 8 0 R 10 0 R 12 0 R] &gt;&gt;
+6 0 obj    &lt;&lt; /Type /Page /Parent 2 0 R /Contents 5 0 R /MediaBox [0 0 612 792] &gt;&gt;
+5 0 obj    &lt;&lt; /Length 62 &gt;&gt; stream ... endstream</pre>
+    <p>Four links matter. The trailer's <code>/Root</code> reaches the catalog, the catalog's <code>/Pages</code> reaches the tree root, the tree root's <code>/Kids</code> array lists the page dictionaries, and each page dictionary's <code>/Contents</code> points at the stream object holding the text. The <code>/Count</code> field claims how many pages the tree holds. A PDF renders when all four links hold; it breaks, without any object being visibly corrupt, when one of them points at the wrong numbered object.</p>
+  </section>
+
+  <section aria-label="The four checks">
+    <h2>The four checks</h2>
+    <p>QA for the graph reduces to four questions, asked in order:</p>
+    <p><strong>a. Kids resolve to pages.</strong> Every reference in <code>/Kids</code> must land on an object whose type is <code>/Page</code>. A font object, a stream, or an empty body in that slot means the tree itself is miswired.</p>
+    <p><strong>b. Contents point at streams with ink.</strong> Every page's <code>/Contents</code> must reference a stream object, and the stream must carry at least one text-showing operator (<code>Tj</code> or <code>TJ</code>). A stream with no <code>Tj</code> is a blank page wearing a valid object number.</p>
+    <p><strong>c. No orphan pages.</strong> Every <code>/Type /Page</code> object in the file must be reachable from <code>/Kids</code>. An orphaned page dictionary is a page no viewer will ever show.</p>
+    <p><strong>d. Count matches reachability.</strong> The <code>/Count</code> claim must equal the number of pages actually reachable through <code>/Kids</code>. A mismatch is the cheapest possible summary that something upstream is wrong.</p>
+  </section>
+
+  <section aria-label="The walker">
+    <h2>The walker, in Python</h2>
+    <p>About 70 lines, standard library only. It parses the classic xref layout, builds an object-number to body map, and runs the four checks. Save as <code>qa_page_tree.py</code>:</p>
+<pre>#!/usr/bin/env python3
+"""Page-tree QA for classic-xref PDFs: /Kids -&gt; /Type /Page, /Contents -&gt; stream,
+orphan pages, /Count vs reachable. Same four checks as pdfcheck-mcp, in Python."""
+import re
+import sys
+
+def load_objects(data):
+    """Map object number -&gt; body text, plus the raw file text, for a classic xref."""
+    text = data.decode("latin1")
+    sx = re.search(r"startxref\s+(\d+)", text)
+    if not sx:
+        sys.exit("no startxref: not a parseable PDF")
+    if text[int(sx.group(1)):int(sx.group(1)) + 4] != "xref":
+        sys.exit("compressed xref stream: outside this walker")
+    objects = {}
+    for m in re.finditer(r"(\d+)\s+\d+\s+obj\b", text):
+        end = text.find("endobj", m.end())
+        objects[int(m.group(1))] = text[m.end(): end if end != -1 else len(text)]
+    return text, objects
+
+def walk(data):
+    text, objects = load_objects(data)
+    body = objects.get
+    problems = []
+
+    trailer = re.search(r"trailer\s*&lt;&lt;(.*?)&gt;&gt;", text, re.S)
+    if not trailer:
+        sys.exit("no trailer dictionary")
+    root = int(re.search(r"/Root\s+(\d+)\s+\d+\s+R", trailer.group(1)).group(1))
+    pages_obj = int(re.search(r"/Pages\s+(\d+)\s+\d+\s+R", body(root, "")).group(1))
+    pages_body = body(pages_obj, "")
+    count_claim = int(re.search(r"/Count\s+(\d+)", pages_body).group(1))
+    kids = [int(x) for x in re.findall(
+        r"(\d+)\s+\d+\s+R", re.search(r"/Kids\s*\[(.*?)\]", pages_body, re.S).group(1))]
+
+    # (a) every /Kids entry resolves to a /Type /Page object
+    reachable = []
+    for num in kids:
+        if re.search(r"/Type\s*/Page\b", body(num, "")) and \
+           not re.search(r"/Type\s*/Pages\b", body(num, "")):
+            reachable.append(num)
+        else:
+            kind = re.search(r"/Type\s*/(\w+)", body(num, ""))
+            problems.append("kids-not-Page: obj %d is /Type /%s"
+                            % (num, kind.group(1) if kind else "none"))
+
+    # (b) every page /Contents points at a stream object that has ink (a Tj op)
+    for num in reachable:
+        cm = re.search(r"/Contents\s+(\d+)\s+\d+\s+R", body(num, ""))
+        if not cm:
+            problems.append("contents-missing: page obj %d has no /Contents" % num)
+            continue
+        stream_obj = body(int(cm.group(1)), "")
+        if "stream" not in stream_obj:
+            kind = re.search(r"/Type\s*/(\w+)", stream_obj)
+            problems.append("contents-not-stream: page obj %d -&gt; obj %s (type %s)"
+                            % (num, cm.group(1), kind.group(1) if kind else "none"))
+
+    # (c) orphan pages: /Type /Page objects the /Kids array never reaches
+    all_pages = {n for n, b in objects.items()
+                 if re.search(r"/Type\s*/Page\b", b) and not re.search(r"/Type\s*/Pages\b", b)}
+    orphans = sorted(all_pages - set(reachable))
+    if orphans:
+        problems.append("orphan-pages: %s" % orphans)
+
+    # (d) the /Count claim matches the pages actually reachable
+    if count_claim != len(reachable):
+        problems.append("count-mismatch: /Count claims %d, /Kids reaches %d"
+                        % (count_claim, len(reachable)))
+
+    return {"count_claim": count_claim, "reachable": len(reachable),
+            "orphan_nums": orphans, "objects_in_file": len(objects),
+            "ok": not problems, "problems": problems}
+
+if __name__ == "__main__":
+    with open(sys.argv[1], "rb") as f:
+        import json
+        print(json.dumps(walk(f.read()), indent=1))
+</pre>
+    <p>Three parsing details do the work. The xref check reads the byte offset in <code>startxref</code> and expects the keyword <code>xref</code> there; compressed xref streams are rejected instead of half-parsed, because a half-parse that reports ok is worse than a refusal. Object bodies are cut at the first <code>endobj</code> after each <code>N 0 obj</code> header, which is exact for classic layouts. And check (a) requires <code>/Type /Page</code> while rejecting <code>/Type /Pages</code>, because the tree root itself is also typed Pages-like and a naive match would pass a tree pointing at itself.</p>
+  </section>
+
+  <section aria-label="Healthy PDF">
+    <h2>Run it on a healthy PDF</h2>
+    <p>The first fixture is a real generated product page, 9,469 bytes, 12 objects:</p>
+<pre>python3 qa_page_tree.py healthy-checklist.pdf</pre>
+    <p>Output, verbatim:</p>
+<pre>{
+ "count_claim": 4,
+ "reachable": 4,
+ "orphan_nums": [],
+ "objects_in_file": 12,
+ "ok": true,
+ "problems": []
+}</pre>
+    <p>Clean across the board: <code>/Kids [6 0 R 8 0 R 10 0 R 12 0 R]</code>, all four slots are <code>/Type /Page</code>, all four <code>/Contents</code> references land on streams, no orphans, and the claimed <code>/Count 4</code> equals the 4 reachable pages.</p>
+    <p>Next, cross-check with pypdf, which reads the file the way a reader does. One loop over both fixtures, no setup beyond <code>pip install pypdf</code> (6.18.0 here):</p>
+<pre>import pypdf
+
+for path in ("healthy-checklist.pdf", "broken-wiring.pdf"):
+    r = pypdf.PdfReader(path)
+    page = r.pages[0]
+    print(path, "| pages:", len(r.pages),
+          "| size:", int(page.mediabox.width), "x", int(page.mediabox.height),
+          "| meta:", dict(r.metadata or {}) or "{}",
+          "| text head:", repr(page.extract_text()[:42]))</pre>
+    <p>The run prints one line per file; the broken fixture's stderr warning belongs to the next section. The healthy line, verbatim:</p>
+<pre>healthy-checklist.pdf | pages: 4 | size: 612 x 792 | meta: {} | text head: 'Smart Contract Security Audit Checklist\n12'</pre>
+    <p>4 pages, US Letter at 612 x 792 points, no metadata (common for generated files and not a defect), and a text layer that extracts. Both the graph and the reader agree.</p>
+  </section>
+
+  <section aria-label="Broken PDF">
+    <h2>Run it on the broken-wiring PDF</h2>
+    <p>The second fixture is the incident shape: 1,458 bytes, 13 objects, built by a generator whose object-number arithmetic assumed a 3-font header and shifted every later object by one slot. Same command:</p>
+<pre>python3 qa_page_tree.py broken-wiring.pdf</pre>
+    <p>Output, verbatim:</p>
+<pre>{
+ "count_claim": 4,
+ "reachable": 3,
+ "orphan_nums": [
+  13
+ ],
+ "objects_in_file": 13,
+ "ok": false,
+ "problems": [
+  "kids-not-Page: obj 5 is /Type /Font",
+  "contents-not-stream: page obj 7 -&gt; obj 5 (type Font)",
+  "contents-not-stream: page obj 9 -&gt; obj 7 (type Page)",
+  "contents-not-stream: page obj 11 -&gt; obj 9 (type Page)",
+  "orphan-pages: [13]",
+  "count-mismatch: /Count claims 4, /Kids reaches 3"
+ ]
+}</pre>
+    <p>Six lines, one per defect, and together they draw the whole miswiring. The <code>/Kids</code> array is <code>[5 0 R 7 0 R 9 0 R 11 0 R]</code>: slot one lands on the font object (obj 5), while the real page dictionaries (objs 7, 9, 11) got picked up as kids. Each of those page dictionaries carries a <code>/Contents</code> that points one slot down the chain, page 7 at the font, page 9 at page 7, page 11 at page 9. The fourth page dictionary, obj 13, never received a kid slot at all, so it is orphaned. And <code>/Count</code> still claims 4 pages because the generator counted what it meant to write, not what it wrote.</p>
+    <p>Now the reader's view of the same file, which is the part that makes stream-count QA dangerous:</p>
+<pre>Ignoring page tree entry that is not a dictionary: /Type
+broken-wiring.pdf | pages: 3 | size: 612 x 792 | meta: {} | text head: ''</pre>
+    <p>pypdf opens the file without raising, reports 3 pages instead of 4, extracts empty text, and moves on. The one warning it prints is a stderr note, easy to miss in a build log. A QA that only counted objects would see 4 content streams and 4 page dictionaries and pass the file. The graph is what fails, so the graph is what QA has to walk.</p>
+  </section>
+
+  <section aria-label="Same checks as a tool">
+    <h2>The same checks as a tool you can install</h2>
+    <p>The walker above is the Python reading of the check that ships as <a href="https://github.com/jayjex/pdfcheck-mcp" rel="noopener">pdfcheck-mcp</a>, a free MIT-licensed MCP server on npm. It exposes <code>pdf_qa</code> for one file and <code>pdf_batch</code> for a directory, groups the defects into the four classes, and adds the ink check as a zero-<code>Tj</code> counter. Running <code>pdf_qa</code> on the same broken fixture returns, verbatim:</p>
+<pre>{
+ "ok": false,
+ "problems": [
+  "kids-not-Page=1 [{\"obj\":5,\"type\":\"Font\",\"stream\":\"not-stream\"}]",
+  "contents-not-stream=3 [{\"page\":7,\"reason\":\"obj 5 not stream (type Font)\"},{\"page\":9,\"reason\":\"obj 7 not stream (type Page)\"},{\"page\":11,\"reason\":\"obj 9 not stream (type Page)\"}]",
+  "orphan-pages=1 [13]",
+  "count-mismatch claimed=4 reachable=3"
+ ]
+}</pre>
+    <p>Same six defects, grouped into four classes with per-object detail. The response also carries the file path and a <code>report</code> object with the per-check tallies; the <code>ok</code> flag and <code>problems</code> list here are verbatim from the run. Install it free:</p>
+<pre>npm install -g @jayjex/pdfcheck-mcp</pre>
+    <p>Or point an MCP client at it, no global install needed:</p>
+<pre>{
+  "mcpServers": {
+    "pdfcheck": {
+      "command": "npx",
+      "args": ["-y", "@jayjex/pdfcheck-mcp"]
+    }
+  }
+}</pre>
+    <p>The server speaks the same stdio JSON-RPC loop covered step by step in the <a href="mcp-server-build-tutorial.html">MCP server build tutorial</a>, so you can wire the tool into Claude Desktop or any agent and ask it to QA a directory of PDFs in one call. Both the walker and the server refuse compressed xref streams with a clear message rather than a false pass; that refusal is deliberate, and the FAQ below spells out the coverage.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>FAQ</h2>
+    <h3>What does QA on a PDF's internal structure check?</h3>
+    <p>Four graph checks: every <code>/Kids</code> entry resolves to a <code>/Type /Page</code> object, every page <code>/Contents</code> points at a stream object that carries text-drawing operators, no <code>/Type /Page</code> object is orphaned outside the <code>/Kids</code> array, and the <code>/Count</code> claim matches the pages actually reachable. The walker on this page runs all four in about 70 lines of Python.</p>
+    <h3>Why did my PDF QA pass but the pages render blank?</h3>
+    <p>Because the QA counted stream objects instead of walking the page tree. A PDF can carry 24 healthy content streams and still be unreadable when <code>/Kids</code> points at a font object, <code>/Contents</code> points one slot off, and every real page dictionary sits orphaned outside the tree. We shipped 13 product PDFs in exactly this state and the stream-count QA passed all of them; pypdf reported the pages without raising, and viewers rendered blanks.</p>
+    <h3>Does this page-tree walker work on every PDF?</h3>
+    <p>It covers classic (uncompressed) xref tables, which is what most PDF generators write. Files with compressed xref streams are rejected with a clear message instead of a false pass, and encrypted files are out of scope. The same checks ship as the free npm package <code>@jayjex/pdfcheck-mcp</code> with a batch tool for whole directories.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/mcp-server-build-tutorial.html">Build an MCP server in Python</a></div>
+<div class="mono">Samples CC BY 4.0 · full packs licensed per purchase · <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

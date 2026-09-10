@@ -1,1133 +1,1135 @@
 {
- "name": "Data Vault",
- "url": "https://jayjex.github.io/data-vault/",
- "last_built": "2026-09-10",
- "description": "Sample-first data catalog by Matchbook Labs. Free CSV/JSON samples for every dataset; full packs sold via Getly.",
- "agent_docs": "https://jayjex.github.io/data-vault/agents/",
- "for_agents": "Fetch this file, pick a dataset, fetch its sample.json to learn the schema. Full data is linked per dataset, and the MCP server queries the full files for free (see mcp).",
- "datasets": [
-  {
-   "slug": "nfl-games",
-   "name": "NFL Games & Betting Lines 1999-2026",
-   "niche": "sports",
-   "tags": [
-    "sports",
-    "betting",
-    "nfl"
-   ],
-   "description": "7,548 NFL games with scores, closing spreads, totals, moneylines, odds, rest days, QBs, coaches, and stadium weather.",
-   "stats": {
-    "rows": 7548,
-    "tables": 3,
-    "columns": 46,
-    "updated": "2026-09-06"
-   },
-   "sample": {
-    "csv": "https://jayjex.github.io/data-vault/data/nfl-games/sample.csv",
-    "json": "https://jayjex.github.io/data-vault/data/nfl-games/sample.json",
-    "rows": 22,
-    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
-   },
-   "extra_files": [
+  "name": "Data Vault",
+  "url": "https://jayjex.github.io/data-vault/",
+  "last_built": "2026-09-10",
+  "description": "Sample-first data catalog by Matchbook Labs. Free CSV/JSON samples for every dataset; full packs sold via Getly.",
+  "agent_docs": "https://jayjex.github.io/data-vault/agents/",
+  "for_agents": "Fetch this file, pick a dataset, fetch its sample.json to learn the schema. Full data is linked per dataset, and the MCP server queries the full files for free (see mcp).",
+  "datasets": [
     {
-     "name": "season-summaries.csv",
-     "url": "https://jayjex.github.io/data-vault/data/nfl-games/season-summaries.csv",
-     "rows": 27,
-     "note": "complete aggregate table, 27 rows"
-    }
-   ],
-   "full_data": {
-    "status": "free",
-    "url": "https://zenodo.org/records/22643177/latest",
-    "note": "Full pack (games.csv 7,548 rows, team-records-by-season.csv 861 rows, season-summaries.csv 27 rows, data dictionary, build script, source checksums) is free on Zenodo under DOI 10.5281/zenodo.22643177, CC BY 4.0 repackaging of nflverse release data."
-   },
-   "license": "CC BY 4.0 (game data from nflverse, CC BY 4.0)",
-   "page": "https://jayjex.github.io/data-vault/datasets/nfl-games.html"
-  },
-  {
-   "slug": "hud-fmr-2026",
-   "name": "HUD Fair Market Rents FY2026",
-   "niche": "gov-data",
-   "tags": [
-    "gov-data",
-    "real-estate",
-    "rent"
-   ],
-   "description": "FY2026 fair market rents for 51,895 ZIP codes, 3,229 counties, and 52 states. Five bedroom sizes per row.",
-   "stats": {
-    "rows": 51895,
-    "tables": 3,
-    "columns": 11,
-    "updated": "FY2026"
-   },
-   "sample": {
-    "csv": "https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.csv",
-    "json": "https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.json",
-    "rows": 22,
-    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
-   },
-   "extra_files": [
-    {
-     "name": "state-summary.csv",
-     "url": "https://jayjex.github.io/data-vault/data/hud-fmr-2026/state-summary.csv",
-     "rows": 52,
-     "note": "complete aggregate table, 52 rows"
-    }
-   ],
-   "full_data": {
-    "status": "free",
-    "url": "https://zenodo.org/records/22643149/latest",
-    "note": "Full pack (fmr-by-zip-2026.csv 51,895 rows, fmr-by-county-2026.csv 3,229 rows, state-summary.csv 52 rows, data dictionary, build script) is free on Zenodo under DOI 10.5281/zenodo.22643149, CC BY 4.0 repackaging of public-domain US government data."
-   },
-   "license": "Public domain (US government data)",
-   "page": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"
-  },
-  {
-   "slug": "hud-fmr-2027",
-   "name": "HUD Fair Market Rents FY2027",
-   "niche": "gov-data",
-   "tags": [
-    "gov-data",
-    "real-estate",
-    "rent"
-   ],
-   "description": "FY2027 fair market rents for 51,871 ZIP codes, 3,229 counties, and 52 states, effective October 1, 2026. Five bedroom sizes per row.",
-   "stats": {
-    "rows": 51871,
-    "tables": 3,
-    "columns": 10,
-    "updated": "FY2027"
-   },
-   "sample": {
-    "csv": "https://jayjex.github.io/data-vault/data/hud-fmr-2027/sample.csv",
-    "json": "https://jayjex.github.io/data-vault/data/hud-fmr-2027/sample.json",
-    "rows": 22,
-    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
-   },
-   "extra_files": [
-    {
-     "name": "state-summary.csv",
-     "url": "https://jayjex.github.io/data-vault/data/hud-fmr-2027/state-summary.csv",
-     "rows": 52,
-     "note": "complete aggregate table, 52 rows"
-    }
-   ],
-   "full_data": {
-    "status": "free",
-    "url": "https://zenodo.org/records/22649503/latest",
-    "note": "Full FY2027 CSVs (ZIP, county, state, data dictionary, build script) are free on Zenodo under DOI 10.5281/zenodo.22649503, CC BY 4.0 repackaging of public-domain US government data. The 51,871-row ZIP file also serves free from the hud-fmr-by-zip-2027 dataset page."
-   },
-   "license": "Public domain (US government data)",
-   "page": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2027.html"
-  },
-  {
-   "slug": "airbnb-six-cities",
-   "name": "Airbnb Listings, 6 US Cities",
-   "niche": "real-estate",
-   "tags": [
-    "real-estate",
-    "airbnb",
-    "str"
-   ],
-   "description": "90,169 Airbnb listings across Austin, Nashville, Denver, New York City, Las Vegas, and San Diego in one normalized schema.",
-   "stats": {
-    "rows": 90169,
-    "tables": 8,
-    "columns": 12,
-    "updated": "2026-08-10"
-   },
-   "sample": {
-    "csv": "https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.csv",
-    "json": "https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.json",
-    "rows": 20,
-    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
-   },
-   "extra_files": [
-    {
-     "name": "cities-index.csv",
-     "url": "https://jayjex.github.io/data-vault/data/airbnb-six-cities/cities-index.csv",
-     "rows": 6,
-     "note": "complete per-city index, 6 rows"
-    }
-   ],
-   "full_data": {
-    "status": "free",
-    "url": "https://zenodo.org/records/22643189/latest",
-    "note": "Full pack (six per-city CSVs, cities-index.csv, data dictionary, normalize script, source checksums) is free on Zenodo under DOI 10.5281/zenodo.22643189, CC BY 4.0 repackaging of Inside Airbnb summary data."
-   },
-   "license": "CC BY 4.0 (listing data from Inside Airbnb, CC BY 4.0)",
-   "page": "https://jayjex.github.io/data-vault/datasets/airbnb-six-cities.html"
-  },
-  {
-   "slug": "airbnb-eight-cities",
-   "name": "Airbnb Listings, 8 More US Cities (free)",
-   "niche": "real-estate",
-   "tags": [
-    "real-estate",
-    "airbnb",
-    "str",
-    "free"
-   ],
-   "description": "90,746 Airbnb listings across Boston, Chicago, Los Angeles, New Orleans, Portland, San Francisco, Seattle, and Washington DC, June 2026 snapshots, same 12-column schema as airbnb-six-cities. Full per-city CSVs are free downloads.",
-   "stats": {
-    "rows": 90746,
-    "tables": 12,
-    "columns": 12,
-    "updated": "2026-06-24"
-   },
-   "sample": {
-    "csv": "https://jayjex.github.io/data-vault/data/airbnb-eight-cities/sample.csv",
-    "json": "https://jayjex.github.io/data-vault/data/airbnb-eight-cities/sample.json",
-    "rows": 20,
-    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
-   },
-   "extra_files": [
-    {
-     "name": "cities-index.csv",
-     "url": "https://jayjex.github.io/data-vault/data/airbnb-eight-cities/cities-index.csv",
-     "rows": 8,
-     "note": "complete per-city index, 8 rows"
+      "slug": "nfl-games",
+      "name": "NFL Games & Betting Lines 1999-2026",
+      "niche": "sports",
+      "tags": [
+        "sports",
+        "betting",
+        "nfl"
+      ],
+      "description": "7,548 NFL games with scores, closing spreads, totals, moneylines, odds, rest days, QBs, coaches, and stadium weather.",
+      "stats": {
+        "rows": 7548,
+        "tables": 3,
+        "columns": 46,
+        "updated": "2026-09-06"
+      },
+      "sample": {
+        "csv": "https://jayjex.github.io/data-vault/data/nfl-games/sample.csv",
+        "json": "https://jayjex.github.io/data-vault/data/nfl-games/sample.json",
+        "rows": 22,
+        "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+      },
+      "extra_files": [
+        {
+          "name": "season-summaries.csv",
+          "url": "https://jayjex.github.io/data-vault/data/nfl-games/season-summaries.csv",
+          "rows": 27,
+          "note": "complete aggregate table, 27 rows"
+        }
+      ],
+      "full_data": {
+        "status": "free",
+        "url": "https://zenodo.org/records/22643177/latest",
+        "note": "Full pack (games.csv 7,548 rows, team-records-by-season.csv 861 rows, season-summaries.csv 27 rows, data dictionary, build script, source checksums) is free on Zenodo under DOI 10.5281/zenodo.22643177, CC BY 4.0 repackaging of nflverse release data."
+      },
+      "license": "CC BY 4.0 (game data from nflverse, CC BY 4.0)",
+      "page": "https://jayjex.github.io/data-vault/datasets/nfl-games.html"
     },
     {
-     "name": "schema.md",
-     "url": "https://jayjex.github.io/data-vault/data/airbnb-eight-cities/schema.md",
-     "note": "column dictionary, normalization, caveats"
-    }
-   ],
-   "full_data": {
-    "status": "free",
-    "url": "https://jayjex.github.io/data-vault/datasets/airbnb-eight-cities.html",
-    "note": "Source is Inside Airbnb, CC BY 4.0, so all 8 per-city CSVs are free downloads from the dataset page; no Getly pack."
-   },
-   "license": "CC BY 4.0 (listing data from Inside Airbnb, CC BY 4.0)",
-   "page": "https://jayjex.github.io/data-vault/datasets/airbnb-eight-cities.html"
-  },
-  {
-   "slug": "earn-bounties",
-   "name": "Superteam Earn Live Listings",
-   "niche": "ai-agents",
-   "tags": [
-    "ai-agents",
-    "crypto",
-    "bounties"
-   ],
-   "description": "28 open Superteam Earn listings with full description HTML, the raw cards dump, and 186+ reverse-engineered API routes.",
-   "stats": {
-    "rows": 28,
-    "tables": 3,
-    "columns": 15,
-    "updated": "2026-09-04"
-   },
-   "sample": {
-    "csv": "https://jayjex.github.io/data-vault/data/earn-bounties/sample.csv",
-    "json": "https://jayjex.github.io/data-vault/data/earn-bounties/sample.json",
-    "rows": 10,
-    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
-   },
-   "extra_files": [],
-   "full_data": {
-    "status": "available",
-    "url": "https://www.getly.store/product/superteam-earn-28-live-listings-dataset-186-reverse-engineered-api-routes-mtrfumk0"
-   },
-   "license": "Personal + commercial use, no resale of files as-is",
-   "page": "https://jayjex.github.io/data-vault/datasets/earn-bounties.html"
-  },
-  {
-   "slug": "scraper-pack",
-   "name": "Web Scraping Script Pack",
-   "niche": "dev-tools",
-   "tags": [
-    "dev-tools",
-    "playwright",
-    "scraping"
-   ],
-   "description": "Ten self-contained Playwright scripts for pagination, infinite scroll, login sessions, price monitors, sitemap crawling, and retries.",
-   "stats": {
-    "rows": 10,
-    "tables": 1,
-    "columns": 0,
-    "updated": "2026-09-07",
-    "unit": "scripts"
-   },
-   "sample": {
-    "csv": "https://jayjex.github.io/data-vault/data/scraper-pack/sample.csv",
-    "json": "https://jayjex.github.io/data-vault/data/scraper-pack/sample.json",
-    "rows": 10,
-    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
-   },
-   "extra_files": [],
-   "full_data": {
-    "status": "available",
-    "url": "https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtrfwfcd"
-   },
-   "license": "Personal + commercial use, no redistribution",
-   "page": "https://jayjex.github.io/data-vault/datasets/scraper-pack.html"
-  },
-  {
-   "slug": "eurostat-house-prices",
-   "name": "Eurostat House Price Index, NL & EU27, 2005-2025",
-   "niche": "econ-data",
-   "tags": [
-    "eurostat",
-    "real-estate",
-    "eu"
-   ],
-   "description": "Eurostat house price index (prc_hpi_a) for the Netherlands and the EU-27 aggregate, 2005-2025: 342 rows, total / new / existing dwellings, three unit variants (2015=100, 2025=100, annual rate of change).",
-   "stats": {
-    "rows": 342,
-    "tables": 1,
-    "columns": 8,
-    "updated": "2026-07-02"
-   },
-   "sample": {
-    "csv": "https://jayjex.github.io/data-vault/data/eurostat/house-prices/sample.csv",
-    "json": "https://jayjex.github.io/data-vault/data/eurostat/house-prices/sample.json",
-    "rows": 22,
-    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
-   },
-   "extra_files": [
-    {
-     "name": "house-price-index.csv (full, free)",
-     "url": "https://jayjex.github.io/data-vault/data/eurostat/house-prices/house-price-index.csv",
-     "rows": 342,
-     "note": "complete dataset, free download"
-    }
-   ],
-   "full_data": {
-    "status": "free",
-    "url": "https://jayjex.github.io/data-vault/data/eurostat/house-prices/house-price-index.csv",
-    "note": "Source is CC BY 4.0 public Eurostat data, so the full table is a free download, not a Getly pack."
-   },
-   "license": "CC BY 4.0 (source data Eurostat, prc_hpi_a, Creative Commons Attribution 4.0 International, access-right PUBLIC)",
-   "page": "https://jayjex.github.io/data-vault/datasets/eurostat-house-prices.html"
-  },
-  {
-   "slug": "eurostat-rents",
-   "name": "Eurostat HICP Actual Rents, NL & EU27, CP0411",
-   "niche": "econ-data",
-   "tags": [
-    "eurostat",
-    "rent",
-    "eu"
-   ],
-   "description": "HICP actual rentals for main residence (coicop CP0411), Netherlands and EU-27: 580 rows across two tables, monthly index 2015=100 (302 rows, 2009-12 to 2025-12) and annual rate of change (278 rows, 2010-12 to 2025-12).",
-   "stats": {
-    "rows": 580,
-    "tables": 2,
-    "columns": 6,
-    "updated": "2026-02-06"
-   },
-   "sample": {
-    "csv": "https://jayjex.github.io/data-vault/data/eurostat/rents/sample.csv",
-    "json": "https://jayjex.github.io/data-vault/data/eurostat/rents/sample.json",
-    "rows": 22,
-    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
-   },
-   "extra_files": [
-    {
-     "name": "rent-index-monthly.csv (full, free)",
-     "url": "https://jayjex.github.io/data-vault/data/eurostat/rents/rent-index-monthly.csv",
-     "rows": 302,
-     "note": "complete monthly index, free download"
+      "slug": "hud-fmr-2026",
+      "name": "HUD Fair Market Rents FY2026",
+      "niche": "gov-data",
+      "tags": [
+        "gov-data",
+        "real-estate",
+        "rent"
+      ],
+      "description": "FY2026 fair market rents for 51,895 ZIP codes, 3,229 counties, and 52 states. Five bedroom sizes per row.",
+      "stats": {
+        "rows": 51895,
+        "tables": 3,
+        "columns": 11,
+        "updated": "FY2026"
+      },
+      "sample": {
+        "csv": "https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.csv",
+        "json": "https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.json",
+        "rows": 22,
+        "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+      },
+      "extra_files": [
+        {
+          "name": "state-summary.csv",
+          "url": "https://jayjex.github.io/data-vault/data/hud-fmr-2026/state-summary.csv",
+          "rows": 52,
+          "note": "complete aggregate table, 52 rows"
+        }
+      ],
+      "full_data": {
+        "status": "free",
+        "url": "https://zenodo.org/records/22643149/latest",
+        "note": "Full pack (fmr-by-zip-2026.csv 51,895 rows, fmr-by-county-2026.csv 3,229 rows, state-summary.csv 52 rows, data dictionary, build script) is free on Zenodo under DOI 10.5281/zenodo.22643149, CC BY 4.0 repackaging of public-domain US government data."
+      },
+      "license": "Public domain (US government data)",
+      "page": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"
     },
     {
-     "name": "rent-annual-rate.csv (full, free)",
-     "url": "https://jayjex.github.io/data-vault/data/eurostat/rents/rent-annual-rate.csv",
-     "rows": 278,
-     "note": "complete annual rates, free download"
-    }
-   ],
-   "full_data": {
-    "status": "free",
-    "url": "https://jayjex.github.io/data-vault/data/eurostat/rents/rent-index-monthly.csv",
-    "note": "Source is CC BY 4.0 public Eurostat data, so both full tables are free downloads, not a Getly pack."
-   },
-   "license": "CC BY 4.0 (source data Eurostat, prc_hicp_midx + prc_hicp_manr, Creative Commons Attribution 4.0 International, access-right PUBLIC)",
-   "page": "https://jayjex.github.io/data-vault/datasets/eurostat-rents.html"
-  },
-  {
-   "slug": "eurostat-unemployment",
-   "name": "Eurostat Unemployment Rate by Sex and Age, EU27 + 9 Countries, 2003-2025",
-   "niche": "econ-data",
-   "tags": [
-    "eurostat",
-    "unemployment",
-    "labour-market",
-    "eu"
-   ],
-   "description": "Annual harmonised unemployment rate (une_rt_a, LFS definition, percentage of the labour force) for EU-27, euro area, Germany, Spain, France, Italy, Greece, Netherlands, Poland, Sweden: 3,768 rows, unit PC_ACT, both sexes plus males and females, seven age bands from Y15-24 to Y55-74, 2003-2025 (some country/age combinations start 2005 or later).",
-   "stats": {
-    "rows": 3768,
-    "tables": 1,
-    "columns": 8,
-    "updated": "2026-06-11"
-   },
-   "sample": {
-    "csv": "https://jayjex.github.io/data-vault/data/eurostat/unemployment/sample.csv",
-    "json": "https://jayjex.github.io/data-vault/data/eurostat/unemployment/sample.json",
-    "rows": 22,
-    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
-   },
-   "extra_files": [
-    {
-     "name": "unemployment-rate.csv (full, free)",
-     "url": "https://jayjex.github.io/data-vault/data/eurostat/unemployment/unemployment-rate.csv",
-     "rows": 3768,
-     "note": "complete dataset, free download"
+      "slug": "hud-fmr-2027",
+      "name": "HUD Fair Market Rents FY2027",
+      "niche": "gov-data",
+      "tags": [
+        "gov-data",
+        "real-estate",
+        "rent"
+      ],
+      "description": "FY2027 fair market rents for 51,871 ZIP codes, 3,229 counties, and 52 states, effective October 1, 2026. Five bedroom sizes per row.",
+      "stats": {
+        "rows": 51871,
+        "tables": 3,
+        "columns": 10,
+        "updated": "FY2027"
+      },
+      "sample": {
+        "csv": "https://jayjex.github.io/data-vault/data/hud-fmr-2027/sample.csv",
+        "json": "https://jayjex.github.io/data-vault/data/hud-fmr-2027/sample.json",
+        "rows": 22,
+        "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+      },
+      "extra_files": [
+        {
+          "name": "state-summary.csv",
+          "url": "https://jayjex.github.io/data-vault/data/hud-fmr-2027/state-summary.csv",
+          "rows": 52,
+          "note": "complete aggregate table, 52 rows"
+        }
+      ],
+      "full_data": {
+        "status": "free",
+        "url": "https://zenodo.org/records/22649503/latest",
+        "note": "Full FY2027 CSVs (ZIP, county, state, data dictionary, build script) are free on Zenodo under DOI 10.5281/zenodo.22649503, CC BY 4.0 repackaging of public-domain US government data. The 51,871-row ZIP file also serves free from the hud-fmr-by-zip-2027 dataset page."
+      },
+      "license": "Public domain (US government data)",
+      "page": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2027.html"
     },
     {
-     "name": "schema.md",
-     "url": "https://jayjex.github.io/data-vault/data/eurostat/unemployment/schema.md",
-     "note": "column definitions, code lists, coverage notes, sanity ranges"
-    }
-   ],
-   "full_data": {
-    "status": "free",
-    "url": "https://jayjex.github.io/data-vault/data/eurostat/unemployment/unemployment-rate.csv",
-    "note": "Source is CC BY 4.0 public Eurostat data, so the full table is a free download, not a Getly pack."
-   },
-   "license": "CC BY 4.0 (source data Eurostat, une_rt_a, Creative Commons Attribution 4.0 International, access-right PUBLIC)",
-   "page": "https://jayjex.github.io/data-vault/datasets/eurostat-unemployment.html"
-  },
-  {
-   "slug": "eurostat-unemployment-monthly",
-   "name": "Eurostat Monthly Unemployment Rate by Sex, EU27 + 8 Countries, 2003-2026",
-   "niche": "econ-data",
-   "tags": [
-    "eurostat",
-    "unemployment",
-    "labour-market",
-    "eu",
-    "monthly"
-   ],
-   "description": "Seasonally adjusted monthly unemployment rate (une_rt_m, LFS definition, unit PC_ACT, age TOTAL 16-74) for the EU-27 aggregate and eight countries (DE, EL, ES, FR, IT, NL, PL, SE): 7,641 rows, both sexes plus males and females, months 2003-01 through 2026-07 as a complete 9 x 283 x 3 grid with no gaps. July 2026 headline: EU-27 6.1%, Spain 10.0% highest, Poland 3.4% lowest.",
-   "stats": {
-    "rows": 7641,
-    "tables": 1,
-    "columns": 8,
-    "updated": "2026-09-04"
-   },
-   "sample": {
-    "csv": "https://jayjex.github.io/data-vault/data/eurostat/unemployment-monthly/sample.csv",
-    "json": "https://jayjex.github.io/data-vault/data/eurostat/unemployment-monthly/sample.json",
-    "rows": 22,
-    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
-   },
-   "extra_files": [
-    {
-     "name": "unemployment-rate-monthly.csv (full, free)",
-     "url": "https://jayjex.github.io/data-vault/data/eurostat/unemployment-monthly/unemployment-rate-monthly.csv",
-     "rows": 7641,
-     "note": "complete dataset, free download"
+      "slug": "airbnb-six-cities",
+      "name": "Airbnb Listings, 6 US Cities",
+      "niche": "real-estate",
+      "tags": [
+        "real-estate",
+        "airbnb",
+        "str"
+      ],
+      "description": "90,169 Airbnb listings across Austin, Nashville, Denver, New York City, Las Vegas, and San Diego in one normalized schema.",
+      "stats": {
+        "rows": 90169,
+        "tables": 8,
+        "columns": 12,
+        "updated": "2026-08-10"
+      },
+      "sample": {
+        "csv": "https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.csv",
+        "json": "https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.json",
+        "rows": 20,
+        "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+      },
+      "extra_files": [
+        {
+          "name": "cities-index.csv",
+          "url": "https://jayjex.github.io/data-vault/data/airbnb-six-cities/cities-index.csv",
+          "rows": 6,
+          "note": "complete per-city index, 6 rows"
+        }
+      ],
+      "full_data": {
+        "status": "free",
+        "url": "https://zenodo.org/records/22643189/latest",
+        "note": "Full pack (six per-city CSVs, cities-index.csv, data dictionary, normalize script, source checksums) is free on Zenodo under DOI 10.5281/zenodo.22643189, CC BY 4.0 repackaging of Inside Airbnb summary data."
+      },
+      "license": "CC BY 4.0 (listing data from Inside Airbnb, CC BY 4.0)",
+      "page": "https://jayjex.github.io/data-vault/datasets/airbnb-six-cities.html"
     },
     {
-     "name": "schema.md",
-     "url": "https://jayjex.github.io/data-vault/data/eurostat/unemployment-monthly/schema.md",
-     "note": "column definitions, code lists, coverage notes, sanity ranges"
-    }
-   ],
-   "full_data": {
-    "status": "free",
-    "url": "https://jayjex.github.io/data-vault/data/eurostat/unemployment-monthly/unemployment-rate-monthly.csv",
-    "note": "Source is CC BY 4.0 public Eurostat data, so the full table is a free download, not a Getly pack."
-   },
-   "doi": "10.5281/zenodo.22676080",
-   "zenodo_record": "https://zenodo.org/records/22676080/latest",
-   "license": "CC BY 4.0 (source data Eurostat, une_rt_m, Creative Commons Attribution 4.0 International, access-right PUBLIC)",
-   "page": "https://jayjex.github.io/data-vault/datasets/eurostat-unemployment-monthly.html"
-  },
-  {
-   "slug": "worldbank-g20-population",
-   "name": "World Bank Population, G20 Countries + EU27, 1960-2025 (free)",
-   "niche": "econ-data",
-   "tags": [
-    "population",
-    "world-bank",
-    "g20",
-    "demographics",
-    "time-series",
-    "free"
-   ],
-   "description": "Total population (World Bank indicator SP.POP.TOTL) for the 19 national G20 members plus the EU27 aggregate (EUU), one row per entity-year from 1960 through 2025: 1,320 rows, 4 columns, values kept verbatim from the API. Full CSV free download.",
-   "stats": {
-    "rows": 1320,
-    "tables": 2,
-    "columns": 4,
-    "updated": "2026-07-13"
-   },
-   "sample": {
-    "csv": "https://jayjex.github.io/data-vault/data/worldbank-g20-population/sample.csv",
-    "json": "https://jayjex.github.io/data-vault/data/worldbank-g20-population/sample.json",
-    "rows": 20,
-    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
-   },
-   "extra_files": [
-    {
-     "name": "g20-population-2025.csv",
-     "url": "https://jayjex.github.io/data-vault/data/worldbank-g20-population/g20-population-2025.csv",
-     "rows": 20,
-     "note": "latest year per entity, sorted by population"
+      "slug": "airbnb-eight-cities",
+      "name": "Airbnb Listings, 8 More US Cities (free)",
+      "niche": "real-estate",
+      "tags": [
+        "real-estate",
+        "airbnb",
+        "str",
+        "free"
+      ],
+      "description": "90,746 Airbnb listings across Boston, Chicago, Los Angeles, New Orleans, Portland, San Francisco, Seattle, and Washington DC, June 2026 snapshots, same 12-column schema as airbnb-six-cities. Full per-city CSVs are free downloads.",
+      "stats": {
+        "rows": 90746,
+        "tables": 12,
+        "columns": 12,
+        "updated": "2026-06-24"
+      },
+      "sample": {
+        "csv": "https://jayjex.github.io/data-vault/data/airbnb-eight-cities/sample.csv",
+        "json": "https://jayjex.github.io/data-vault/data/airbnb-eight-cities/sample.json",
+        "rows": 20,
+        "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+      },
+      "extra_files": [
+        {
+          "name": "cities-index.csv",
+          "url": "https://jayjex.github.io/data-vault/data/airbnb-eight-cities/cities-index.csv",
+          "rows": 8,
+          "note": "complete per-city index, 8 rows"
+        },
+        {
+          "name": "schema.md",
+          "url": "https://jayjex.github.io/data-vault/data/airbnb-eight-cities/schema.md",
+          "note": "column dictionary, normalization, caveats"
+        }
+      ],
+      "full_data": {
+        "status": "free",
+        "url": "https://jayjex.github.io/data-vault/datasets/airbnb-eight-cities.html",
+        "note": "Source is Inside Airbnb, CC BY 4.0, so all 8 per-city CSVs are free downloads from the dataset page; no Getly pack."
+      },
+      "license": "CC BY 4.0 (listing data from Inside Airbnb, CC BY 4.0)",
+      "page": "https://jayjex.github.io/data-vault/datasets/airbnb-eight-cities.html"
     },
     {
-     "name": "schema.md",
-     "url": "https://jayjex.github.io/data-vault/data/worldbank-g20-population/schema.md",
-     "note": "column dictionary, normalization, caveats"
-    }
-   ],
-   "full_data": {
-    "status": "free",
-    "url": "https://jayjex.github.io/data-vault/datasets/worldbank-g20-population.html",
-    "note": "Source is World Bank Open Data, CC BY 4.0, so the full 1,320-row CSV is a free download from the dataset page; no Getly pack."
-   },
-   "doi": "10.5281/zenodo.22667477",
-   "zenodo_record": "https://zenodo.org/records/22667477/latest",
-   "license": "CC BY 4.0 (population series from World Bank Open Data, CC BY 4.0)",
-   "page": "https://jayjex.github.io/data-vault/datasets/worldbank-g20-population.html"
-  },
-  {
-   "slug": "worldbank-g20-rural",
-   "name": "World Bank Rural Population Share, G20 Countries + EU27, 1960-2025 (free)",
-   "niche": "econ-data",
-   "tags": [
-    "rural-population",
-    "world-bank",
-    "g20",
-    "demographics",
-    "urbanization",
-    "time-series",
-    "free"
-   ],
-   "description": "Rural population as a percent of total population (World Bank indicator SP.RUR.TOTL.ZS) for the 19 national G20 members plus the EU27 aggregate (EUU), one row per entity-year from 1960 through 2025: 1,320 rows, 4 columns, values kept verbatim from the API. Full CSV free download; pairs with the SP.POP.TOTL population pack for rural headcounts.",
-   "stats": {
-    "rows": 1320,
-    "tables": 2,
-    "columns": 4,
-    "updated": "2026-07-13"
-   },
-   "sample": {
-    "csv": "https://jayjex.github.io/data-vault/data/worldbank-g20-rural/sample.csv",
-    "json": "https://jayjex.github.io/data-vault/data/worldbank-g20-rural/sample.json",
-    "rows": 20,
-    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
-   },
-   "extra_files": [
-    {
-     "name": "g20-rural-2025.csv",
-     "url": "https://jayjex.github.io/data-vault/data/worldbank-g20-rural/g20-rural-2025.csv",
-     "rows": 20,
-     "note": "latest year per entity, sorted by rural share"
+      "slug": "earn-bounties",
+      "name": "Superteam Earn Live Listings",
+      "niche": "ai-agents",
+      "tags": [
+        "ai-agents",
+        "crypto",
+        "bounties"
+      ],
+      "description": "28 open Superteam Earn listings with full description HTML, the raw cards dump, and 186+ reverse-engineered API routes.",
+      "stats": {
+        "rows": 28,
+        "tables": 3,
+        "columns": 15,
+        "updated": "2026-09-04"
+      },
+      "sample": {
+        "csv": "https://jayjex.github.io/data-vault/data/earn-bounties/sample.csv",
+        "json": "https://jayjex.github.io/data-vault/data/earn-bounties/sample.json",
+        "rows": 10,
+        "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+      },
+      "extra_files": [],
+      "full_data": {
+        "status": "available",
+        "url": "https://www.getly.store/product/superteam-earn-28-live-listings-dataset-186-reverse-engineered-api-routes-mtrfumk0"
+      },
+      "license": "Personal + commercial use, no resale of files as-is",
+      "page": "https://jayjex.github.io/data-vault/datasets/earn-bounties.html"
     },
     {
-     "name": "schema.md",
-     "url": "https://jayjex.github.io/data-vault/data/worldbank-g20-rural/schema.md",
-     "note": "column dictionary, normalization, caveats"
-    }
-   ],
-   "full_data": {
-    "status": "free",
-    "url": "https://jayjex.github.io/data-vault/datasets/worldbank-g20-rural.html",
-    "note": "Source is World Bank Open Data, CC BY 4.0, so the full 1,320-row CSV is a free download from the dataset page; no Getly pack."
-   },
-   "doi": "10.5281/zenodo.22667657",
-   "zenodo_record": "https://zenodo.org/records/22667657/latest",
-   "license": "CC BY 4.0 (rural population series from World Bank Open Data, CC BY 4.0)",
-   "page": "https://jayjex.github.io/data-vault/datasets/worldbank-g20-rural.html"
-  },
-  {
-   "slug": "worldbank-g20-life-expectancy",
-   "name": "World Bank Life Expectancy, G20 Countries + EU27, 1960-2024 (free)",
-   "niche": "econ-data",
-   "tags": [
-    "life-expectancy",
-    "world-bank",
-    "g20",
-    "demographics",
-    "health",
-    "time-series",
-    "free"
-   ],
-   "description": "Life expectancy at birth in total years (World Bank indicator SP.DYN.LE00.IN) for the 19 national G20 members plus the EU27 aggregate (EUU), one row per entity-year from 1960 through 2024: 1,300 rows, 4 columns, values rounded to 2 decimals from the API. Full CSV free download; the WDI publishes this series with a lag, so it ends at 2024. Joins on entity-year with the SP.POP.TOTL and SP.RUR.TOTL.ZS sibling packs.",
-   "stats": {
-    "rows": 1300,
-    "tables": 2,
-    "columns": 4,
-    "updated": "2026-07-13"
-   },
-   "sample": {
-    "csv": "https://jayjex.github.io/data-vault/data/worldbank-g20-life-expectancy/sample.csv",
-    "json": "https://jayjex.github.io/data-vault/data/worldbank-g20-life-expectancy/sample.json",
-    "rows": 20,
-    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
-   },
-   "extra_files": [
-    {
-     "name": "g20-life-expectancy-2024.csv",
-     "url": "https://jayjex.github.io/data-vault/data/worldbank-g20-life-expectancy/g20-life-expectancy-2024.csv",
-     "rows": 20,
-     "note": "latest year per entity, sorted by life expectancy"
+      "slug": "scraper-pack",
+      "name": "Web Scraping Script Pack",
+      "niche": "dev-tools",
+      "tags": [
+        "dev-tools",
+        "playwright",
+        "scraping"
+      ],
+      "description": "Ten self-contained Playwright scripts for pagination, infinite scroll, login sessions, price monitors, sitemap crawling, and retries.",
+      "stats": {
+        "rows": 10,
+        "tables": 1,
+        "columns": 0,
+        "updated": "2026-09-07",
+        "unit": "scripts"
+      },
+      "sample": {
+        "csv": "https://jayjex.github.io/data-vault/data/scraper-pack/sample.csv",
+        "json": "https://jayjex.github.io/data-vault/data/scraper-pack/sample.json",
+        "rows": 10,
+        "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+      },
+      "extra_files": [],
+      "full_data": {
+        "status": "available",
+        "url": "https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtrfwfcd"
+      },
+      "license": "Personal + commercial use, no redistribution",
+      "page": "https://jayjex.github.io/data-vault/datasets/scraper-pack.html"
     },
     {
-     "name": "schema.md",
-     "url": "https://jayjex.github.io/data-vault/data/worldbank-g20-life-expectancy/schema.md",
-     "note": "column dictionary, normalization, caveats"
-    }
-   ],
-   "full_data": {
-    "status": "free",
-    "url": "https://jayjex.github.io/data-vault/datasets/worldbank-g20-life-expectancy.html",
-    "note": "Source is World Bank Open Data, CC BY 4.0, so the full 1,300-row CSV is a free download from the dataset page; no Getly pack."
-   },
-   "license": "CC BY 4.0 (life expectancy series from World Bank Open Data, CC BY 4.0)",
-   "page": "https://jayjex.github.io/data-vault/datasets/worldbank-g20-life-expectancy.html"
-  },
-  {
-   "slug": "osm-asia-civic-amenities",
-   "name": "OpenStreetMap Civic Amenities, Tokyo-Jakarta-Seoul, 2026-09",
-   "niche": "open-data",
-   "tags": [
-    "openstreetmap",
-    "osm",
-    "civic-amenities",
-    "asia"
-   ],
-   "description": "Counts of amenity=drinking_water, amenity=public_bookcase, and amenity=bicycle_repair_station nodes inside the Tokyo Metropolis, DKI Jakarta, and Seoul Special City boundaries: 2,489 nodes across 9 city-amenity pairs, Overpass API snapshot 2026-09-10, one example node per pair for spot-checking.",
-   "stats": {
-    "rows": 9,
-    "tables": 1,
-    "columns": 7,
-    "updated": "2026-09-10"
-   },
-   "sample": {
-    "csv": "https://jayjex.github.io/data-vault/data/osm-asia-civic/sample.csv",
-    "json": "https://jayjex.github.io/data-vault/data/osm-asia-civic/sample.json",
-    "rows": 9,
-    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
-   },
-   "extra_files": [
-    {
-     "name": "counts-2026-09.csv (full, free)",
-     "url": "https://jayjex.github.io/data-vault/data/osm-asia-civic/counts-2026-09.csv",
-     "rows": 9,
-     "note": "complete dataset, free download"
+      "slug": "eurostat-house-prices",
+      "name": "Eurostat House Price Index, NL & EU27, 2005-2025",
+      "niche": "econ-data",
+      "tags": [
+        "eurostat",
+        "real-estate",
+        "eu"
+      ],
+      "description": "Eurostat house price index (prc_hpi_a) for the Netherlands and the EU-27 aggregate, 2005-2025: 342 rows, total / new / existing dwellings, three unit variants (2015=100, 2025=100, annual rate of change).",
+      "stats": {
+        "rows": 342,
+        "tables": 1,
+        "columns": 8,
+        "updated": "2026-07-02"
+      },
+      "sample": {
+        "csv": "https://jayjex.github.io/data-vault/data/eurostat/house-prices/sample.csv",
+        "json": "https://jayjex.github.io/data-vault/data/eurostat/house-prices/sample.json",
+        "rows": 22,
+        "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+      },
+      "extra_files": [
+        {
+          "name": "house-price-index.csv (full, free)",
+          "url": "https://jayjex.github.io/data-vault/data/eurostat/house-prices/house-price-index.csv",
+          "rows": 342,
+          "note": "complete dataset, free download"
+        }
+      ],
+      "full_data": {
+        "status": "free",
+        "url": "https://jayjex.github.io/data-vault/data/eurostat/house-prices/house-price-index.csv",
+        "note": "Source is CC BY 4.0 public Eurostat data, so the full table is a free download, not a Getly pack."
+      },
+      "license": "CC BY 4.0 (source data Eurostat, prc_hpi_a, Creative Commons Attribution 4.0 International, access-right PUBLIC)",
+      "page": "https://jayjex.github.io/data-vault/datasets/eurostat-house-prices.html"
     },
     {
-     "name": "schema.md",
-     "url": "https://jayjex.github.io/data-vault/data/osm-asia-civic/schema.md",
-     "note": "columns, Overpass query form, boundary relations, snapshot caveats"
-    }
-   ],
-   "full_data": {
-    "status": "free",
-    "url": "https://jayjex.github.io/data-vault/data/osm-asia-civic/counts-2026-09.csv",
-    "note": "Source is ODbL OpenStreetMap data (© OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
-   },
-   "doi": "10.5281/zenodo.22665145",
-   "zenodo_record": "https://zenodo.org/records/22665145/latest",
-   "license": "ODbL 1.0 (source data OpenStreetMap, © OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
-   "page": "https://jayjex.github.io/data-vault/datasets/osm-asia-civic-amenities.html"
-  },
-  {
-   "slug": "osm-us-civic-amenities",
-   "name": "OpenStreetMap Civic Amenities, New York-Los Angeles-Chicago-Austin-Seattle, 2026-09",
-   "niche": "open-data",
-   "tags": [
-    "openstreetmap",
-    "osm",
-    "civic-amenities",
-    "us-cities"
-   ],
-   "description": "Counts of amenity=drinking_water, amenity=public_bookcase, and amenity=bicycle_repair_station elements inside the New York City, Los Angeles, Chicago, Austin, and Seattle bounding boxes: 4,000 elements across 15 city-amenity pairs, Overpass API snapshot 2026-09-10.",
-   "stats": {
-    "rows": 15,
-    "tables": 1,
-    "columns": 3,
-    "updated": "2026-09-10"
-   },
-   "sample": {
-    "csv": "https://jayjex.github.io/data-vault/data/osm-civic/sample.csv",
-    "json": "https://jayjex.github.io/data-vault/data/osm-civic/sample.json",
-    "rows": 15,
-    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
-   },
-   "extra_files": [
-    {
-     "name": "us-civic-amenities.csv (full, free)",
-     "url": "https://jayjex.github.io/data-vault/data/osm-civic/us-civic-amenities.csv",
-     "rows": 15,
-     "note": "complete dataset, free download"
-    }
-   ],
-   "full_data": {
-    "status": "free",
-    "url": "https://jayjex.github.io/data-vault/data/osm-civic/us-civic-amenities.csv",
-    "note": "Source is ODbL OpenStreetMap data (© OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
-   },
-   "license": "ODbL 1.0 (source data OpenStreetMap, © OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
-   "page": "https://jayjex.github.io/data-vault/datasets/osm-us-civic-amenities.html"
-  },
-  {
-   "slug": "osm-eu-civic-amenities",
-   "name": "OpenStreetMap Civic Amenities, Berlin-Amsterdam-Paris-Madrid-Warsaw, 2026-09",
-   "niche": "open-data",
-   "tags": [
-    "openstreetmap",
-    "osm",
-    "civic-amenities",
-    "eu-cities"
-   ],
-   "description": "Counts of amenity=drinking_water, amenity=public_bookcase, and amenity=bicycle_repair_station nodes inside the administrative boundaries of Berlin, Amsterdam, Paris, Madrid, and Warsaw: 4,669 nodes across 15 city-amenity pairs, Overpass API snapshot 2026-09-10, license line carried verbatim per row.",
-   "stats": {
-    "rows": 15,
-    "tables": 1,
-    "columns": 4,
-    "updated": "2026-09-10"
-   },
-   "sample": {
-    "csv": "https://jayjex.github.io/data-vault/data/osm-eu-civic/sample.csv",
-    "json": "https://jayjex.github.io/data-vault/data/osm-eu-civic/sample.json",
-    "rows": 15,
-    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
-   },
-   "extra_files": [
-    {
-     "name": "eu-civic-amenities.csv",
-     "url": "https://jayjex.github.io/data-vault/data/osm-eu-civic/eu-civic-amenities.csv",
-     "rows": 15,
-     "note": "complete table, 15 rows, includes verbatim OSM license column"
-    }
-   ],
-   "full_data": {
-    "status": "free",
-    "url": "https://jayjex.github.io/data-vault/data/osm-eu-civic/eu-civic-amenities.csv",
-    "note": "Source is ODbL OpenStreetMap data (© OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
-   },
-   "license": "ODbL 1.0 (source data OpenStreetMap, © OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
-   "page": "https://jayjex.github.io/data-vault/datasets/osm-eu-civic-amenities.html"
-  },
-  {
-   "slug": "printable-engineering-bundle",
-   "name": "Printable Engineering Bundle",
-   "niche": "printables",
-   "tags": [
-    "printables",
-    "worksheets",
-    "spreadsheets",
-    "kids",
-    "crypto-tracking"
-   ],
-   "description": "Aggregated pack of 120 printable kindergarten worksheets (A4 + US Letter PDFs with answer keys, mazes, dot-to-dots) plus 5 Web3 KPI spreadsheet templates (portfolio, airdrop, DeFi yield, bounty income, trading journal) with live formulas.",
-   "stats": {
-    "worksheets_pages": 120,
-    "spreadsheets": 5,
-    "paper_sizes": 2,
-    "updated": "2026-09-06"
-   },
-   "sample": {
-    "csv": "https://jayjex.github.io/data-vault/data/nfl-games/sample.csv",
-    "json": "https://jayjex.github.io/data-vault/data/nfl-games/sample.json",
-    "rows": 22,
-    "shape": "This bundle ships as printable PDFs and XLSX/CSV, not tables. Use any other sample endpoint to learn the sample format, or read the free printables index."
-   },
-   "free_index": {
-    "url": "https://jayjex.github.io/data-vault/free-printables-index.html",
-    "note": "223 free printable pages, one card per funnel page with its own free version."
-   },
-   "full_data": {
-    "status": "available",
-    "url": "https://www.getly.store/store/matchbook-labs-mtrfh66f",
-    "note": "One-time purchase. Direct product link added after the Getly publish lands (gate: canonical URL 200 first)."
-   },
-   "license": "Personal and commercial use. No reselling the pack as-is or with minor changes.",
-   "page": "https://jayjex.github.io/data-vault/datasets/printable-engineering-bundle.html"
-  },
-  {
-   "slug": "osm-latam-civic-amenities",
-   "name": "OpenStreetMap Civic Amenities, Sao Paulo-Buenos Aires-Mexico City, 2026-09",
-   "niche": "open-data",
-   "tags": [
-    "openstreetmap",
-    "osm",
-    "civic-amenities",
-    "latin-america"
-   ],
-   "description": "Counts of amenity=drinking_water, amenity=public_bookcase, and amenity=bicycle_repair_station nodes inside the São Paulo municipality, Ciudad Autónoma de Buenos Aires, and Ciudad de México boundaries: 385 nodes across 9 city-amenity pairs, Overpass API snapshot 2026-09-10, license line verbatim per row.",
-   "stats": {
-    "rows": 9,
-    "tables": 1,
-    "columns": 4,
-    "updated": "2026-09-10"
-   },
-   "sample": {
-    "csv": "https://jayjex.github.io/data-vault/data/osm-latam-civic/sample.csv",
-    "json": "https://jayjex.github.io/data-vault/data/osm-latam-civic/sample.json",
-    "rows": 9,
-    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
-   },
-   "extra_files": [
-    {
-     "name": "latam-civic-amenities.csv (full, free)",
-     "url": "https://jayjex.github.io/data-vault/data/osm-latam-civic/latam-civic-amenities.csv",
-     "rows": 9,
-     "note": "complete dataset, free download"
+      "slug": "eurostat-rents",
+      "name": "Eurostat HICP Actual Rents, NL & EU27, CP0411",
+      "niche": "econ-data",
+      "tags": [
+        "eurostat",
+        "rent",
+        "eu"
+      ],
+      "description": "HICP actual rentals for main residence (coicop CP0411), Netherlands and EU-27: 580 rows across two tables, monthly index 2015=100 (302 rows, 2009-12 to 2025-12) and annual rate of change (278 rows, 2010-12 to 2025-12).",
+      "stats": {
+        "rows": 580,
+        "tables": 2,
+        "columns": 6,
+        "updated": "2026-02-06"
+      },
+      "sample": {
+        "csv": "https://jayjex.github.io/data-vault/data/eurostat/rents/sample.csv",
+        "json": "https://jayjex.github.io/data-vault/data/eurostat/rents/sample.json",
+        "rows": 22,
+        "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+      },
+      "extra_files": [
+        {
+          "name": "rent-index-monthly.csv (full, free)",
+          "url": "https://jayjex.github.io/data-vault/data/eurostat/rents/rent-index-monthly.csv",
+          "rows": 302,
+          "note": "complete monthly index, free download"
+        },
+        {
+          "name": "rent-annual-rate.csv (full, free)",
+          "url": "https://jayjex.github.io/data-vault/data/eurostat/rents/rent-annual-rate.csv",
+          "rows": 278,
+          "note": "complete annual rates, free download"
+        }
+      ],
+      "full_data": {
+        "status": "free",
+        "url": "https://jayjex.github.io/data-vault/data/eurostat/rents/rent-index-monthly.csv",
+        "note": "Source is CC BY 4.0 public Eurostat data, so both full tables are free downloads, not a Getly pack."
+      },
+      "license": "CC BY 4.0 (source data Eurostat, prc_hicp_midx + prc_hicp_manr, Creative Commons Attribution 4.0 International, access-right PUBLIC)",
+      "page": "https://jayjex.github.io/data-vault/datasets/eurostat-rents.html"
     },
     {
-     "name": "schema.md",
-     "url": "https://jayjex.github.io/data-vault/data/osm-latam-civic/schema.md",
-     "note": "columns, Overpass query form, boundary relations, example nodes, snapshot caveats"
+      "slug": "eurostat-unemployment",
+      "name": "Eurostat Unemployment Rate by Sex and Age, EU27 + 9 Countries, 2003-2025",
+      "niche": "econ-data",
+      "tags": [
+        "eurostat",
+        "unemployment",
+        "labour-market",
+        "eu"
+      ],
+      "description": "Annual harmonised unemployment rate (une_rt_a, LFS definition, percentage of the labour force) for EU-27, euro area, Germany, Spain, France, Italy, Greece, Netherlands, Poland, Sweden: 3,768 rows, unit PC_ACT, both sexes plus males and females, seven age bands from Y15-24 to Y55-74, 2003-2025 (some country/age combinations start 2005 or later).",
+      "stats": {
+        "rows": 3768,
+        "tables": 1,
+        "columns": 8,
+        "updated": "2026-06-11"
+      },
+      "sample": {
+        "csv": "https://jayjex.github.io/data-vault/data/eurostat/unemployment/sample.csv",
+        "json": "https://jayjex.github.io/data-vault/data/eurostat/unemployment/sample.json",
+        "rows": 22,
+        "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+      },
+      "extra_files": [
+        {
+          "name": "unemployment-rate.csv (full, free)",
+          "url": "https://jayjex.github.io/data-vault/data/eurostat/unemployment/unemployment-rate.csv",
+          "rows": 3768,
+          "note": "complete dataset, free download"
+        },
+        {
+          "name": "schema.md",
+          "url": "https://jayjex.github.io/data-vault/data/eurostat/unemployment/schema.md",
+          "note": "column definitions, code lists, coverage notes, sanity ranges"
+        }
+      ],
+      "full_data": {
+        "status": "free",
+        "url": "https://jayjex.github.io/data-vault/data/eurostat/unemployment/unemployment-rate.csv",
+        "note": "Source is CC BY 4.0 public Eurostat data, so the full table is a free download, not a Getly pack."
+      },
+      "license": "CC BY 4.0 (source data Eurostat, une_rt_a, Creative Commons Attribution 4.0 International, access-right PUBLIC)",
+      "page": "https://jayjex.github.io/data-vault/datasets/eurostat-unemployment.html"
+    },
+    {
+      "slug": "eurostat-unemployment-monthly",
+      "name": "Eurostat Monthly Unemployment Rate by Sex, EU27 + 8 Countries, 2003-2026",
+      "niche": "econ-data",
+      "tags": [
+        "eurostat",
+        "unemployment",
+        "labour-market",
+        "eu",
+        "monthly"
+      ],
+      "description": "Seasonally adjusted monthly unemployment rate (une_rt_m, LFS definition, unit PC_ACT, age TOTAL 16-74) for the EU-27 aggregate and eight countries (DE, EL, ES, FR, IT, NL, PL, SE): 7,641 rows, both sexes plus males and females, months 2003-01 through 2026-07 as a complete 9 x 283 x 3 grid with no gaps. July 2026 headline: EU-27 6.1%, Spain 10.0% highest, Poland 3.4% lowest.",
+      "stats": {
+        "rows": 7641,
+        "tables": 1,
+        "columns": 8,
+        "updated": "2026-09-04"
+      },
+      "sample": {
+        "csv": "https://jayjex.github.io/data-vault/data/eurostat/unemployment-monthly/sample.csv",
+        "json": "https://jayjex.github.io/data-vault/data/eurostat/unemployment-monthly/sample.json",
+        "rows": 22,
+        "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+      },
+      "extra_files": [
+        {
+          "name": "unemployment-rate-monthly.csv (full, free)",
+          "url": "https://jayjex.github.io/data-vault/data/eurostat/unemployment-monthly/unemployment-rate-monthly.csv",
+          "rows": 7641,
+          "note": "complete dataset, free download"
+        },
+        {
+          "name": "schema.md",
+          "url": "https://jayjex.github.io/data-vault/data/eurostat/unemployment-monthly/schema.md",
+          "note": "column definitions, code lists, coverage notes, sanity ranges"
+        }
+      ],
+      "full_data": {
+        "status": "free",
+        "url": "https://jayjex.github.io/data-vault/data/eurostat/unemployment-monthly/unemployment-rate-monthly.csv",
+        "note": "Source is CC BY 4.0 public Eurostat data, so the full table is a free download, not a Getly pack."
+      },
+      "doi": "10.5281/zenodo.22676080",
+      "zenodo_record": "https://zenodo.org/records/22676080/latest",
+      "license": "CC BY 4.0 (source data Eurostat, une_rt_m, Creative Commons Attribution 4.0 International, access-right PUBLIC)",
+      "page": "https://jayjex.github.io/data-vault/datasets/eurostat-unemployment-monthly.html"
+    },
+    {
+      "slug": "worldbank-g20-population",
+      "name": "World Bank Population, G20 Countries + EU27, 1960-2025 (free)",
+      "niche": "econ-data",
+      "tags": [
+        "population",
+        "world-bank",
+        "g20",
+        "demographics",
+        "time-series",
+        "free"
+      ],
+      "description": "Total population (World Bank indicator SP.POP.TOTL) for the 19 national G20 members plus the EU27 aggregate (EUU), one row per entity-year from 1960 through 2025: 1,320 rows, 4 columns, values kept verbatim from the API. Full CSV free download.",
+      "stats": {
+        "rows": 1320,
+        "tables": 2,
+        "columns": 4,
+        "updated": "2026-07-13"
+      },
+      "sample": {
+        "csv": "https://jayjex.github.io/data-vault/data/worldbank-g20-population/sample.csv",
+        "json": "https://jayjex.github.io/data-vault/data/worldbank-g20-population/sample.json",
+        "rows": 20,
+        "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+      },
+      "extra_files": [
+        {
+          "name": "g20-population-2025.csv",
+          "url": "https://jayjex.github.io/data-vault/data/worldbank-g20-population/g20-population-2025.csv",
+          "rows": 20,
+          "note": "latest year per entity, sorted by population"
+        },
+        {
+          "name": "schema.md",
+          "url": "https://jayjex.github.io/data-vault/data/worldbank-g20-population/schema.md",
+          "note": "column dictionary, normalization, caveats"
+        }
+      ],
+      "full_data": {
+        "status": "free",
+        "url": "https://jayjex.github.io/data-vault/datasets/worldbank-g20-population.html",
+        "note": "Source is World Bank Open Data, CC BY 4.0, so the full 1,320-row CSV is a free download from the dataset page; no Getly pack."
+      },
+      "doi": "10.5281/zenodo.22667477",
+      "zenodo_record": "https://zenodo.org/records/22667477/latest",
+      "license": "CC BY 4.0 (population series from World Bank Open Data, CC BY 4.0)",
+      "page": "https://jayjex.github.io/data-vault/datasets/worldbank-g20-population.html"
+    },
+    {
+      "slug": "worldbank-g20-rural",
+      "name": "World Bank Rural Population Share, G20 Countries + EU27, 1960-2025 (free)",
+      "niche": "econ-data",
+      "tags": [
+        "rural-population",
+        "world-bank",
+        "g20",
+        "demographics",
+        "urbanization",
+        "time-series",
+        "free"
+      ],
+      "description": "Rural population as a percent of total population (World Bank indicator SP.RUR.TOTL.ZS) for the 19 national G20 members plus the EU27 aggregate (EUU), one row per entity-year from 1960 through 2025: 1,320 rows, 4 columns, values kept verbatim from the API. Full CSV free download; pairs with the SP.POP.TOTL population pack for rural headcounts.",
+      "stats": {
+        "rows": 1320,
+        "tables": 2,
+        "columns": 4,
+        "updated": "2026-07-13"
+      },
+      "sample": {
+        "csv": "https://jayjex.github.io/data-vault/data/worldbank-g20-rural/sample.csv",
+        "json": "https://jayjex.github.io/data-vault/data/worldbank-g20-rural/sample.json",
+        "rows": 20,
+        "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+      },
+      "extra_files": [
+        {
+          "name": "g20-rural-2025.csv",
+          "url": "https://jayjex.github.io/data-vault/data/worldbank-g20-rural/g20-rural-2025.csv",
+          "rows": 20,
+          "note": "latest year per entity, sorted by rural share"
+        },
+        {
+          "name": "schema.md",
+          "url": "https://jayjex.github.io/data-vault/data/worldbank-g20-rural/schema.md",
+          "note": "column dictionary, normalization, caveats"
+        }
+      ],
+      "full_data": {
+        "status": "free",
+        "url": "https://jayjex.github.io/data-vault/datasets/worldbank-g20-rural.html",
+        "note": "Source is World Bank Open Data, CC BY 4.0, so the full 1,320-row CSV is a free download from the dataset page; no Getly pack."
+      },
+      "doi": "10.5281/zenodo.22667657",
+      "zenodo_record": "https://zenodo.org/records/22667657/latest",
+      "license": "CC BY 4.0 (rural population series from World Bank Open Data, CC BY 4.0)",
+      "page": "https://jayjex.github.io/data-vault/datasets/worldbank-g20-rural.html"
+    },
+    {
+      "slug": "worldbank-g20-life-expectancy",
+      "name": "World Bank Life Expectancy, G20 Countries + EU27, 1960-2024 (free)",
+      "niche": "econ-data",
+      "tags": [
+        "life-expectancy",
+        "world-bank",
+        "g20",
+        "demographics",
+        "health",
+        "time-series",
+        "free"
+      ],
+      "description": "Life expectancy at birth in total years (World Bank indicator SP.DYN.LE00.IN) for the 19 national G20 members plus the EU27 aggregate (EUU), one row per entity-year from 1960 through 2024: 1,300 rows, 4 columns, values rounded to 2 decimals from the API. Full CSV free download; the WDI publishes this series with a lag, so it ends at 2024. Joins on entity-year with the SP.POP.TOTL and SP.RUR.TOTL.ZS sibling packs.",
+      "stats": {
+        "rows": 1300,
+        "tables": 2,
+        "columns": 4,
+        "updated": "2026-07-13"
+      },
+      "sample": {
+        "csv": "https://jayjex.github.io/data-vault/data/worldbank-g20-life-expectancy/sample.csv",
+        "json": "https://jayjex.github.io/data-vault/data/worldbank-g20-life-expectancy/sample.json",
+        "rows": 20,
+        "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+      },
+      "extra_files": [
+        {
+          "name": "g20-life-expectancy-2024.csv",
+          "url": "https://jayjex.github.io/data-vault/data/worldbank-g20-life-expectancy/g20-life-expectancy-2024.csv",
+          "rows": 20,
+          "note": "latest year per entity, sorted by life expectancy"
+        },
+        {
+          "name": "schema.md",
+          "url": "https://jayjex.github.io/data-vault/data/worldbank-g20-life-expectancy/schema.md",
+          "note": "column dictionary, normalization, caveats"
+        }
+      ],
+      "full_data": {
+        "status": "free",
+        "url": "https://jayjex.github.io/data-vault/datasets/worldbank-g20-life-expectancy.html",
+        "note": "Source is World Bank Open Data, CC BY 4.0, so the full 1,300-row CSV is a free download from the dataset page; no Getly pack."
+      },
+      "license": "CC BY 4.0 (life expectancy series from World Bank Open Data, CC BY 4.0)",
+      "page": "https://jayjex.github.io/data-vault/datasets/worldbank-g20-life-expectancy.html",
+      "doi": "10.5281/zenodo.22697115",
+      "zenodo_record": "https://zenodo.org/records/22697115/latest"
+    },
+    {
+      "slug": "osm-asia-civic-amenities",
+      "name": "OpenStreetMap Civic Amenities, Tokyo-Jakarta-Seoul, 2026-09",
+      "niche": "open-data",
+      "tags": [
+        "openstreetmap",
+        "osm",
+        "civic-amenities",
+        "asia"
+      ],
+      "description": "Counts of amenity=drinking_water, amenity=public_bookcase, and amenity=bicycle_repair_station nodes inside the Tokyo Metropolis, DKI Jakarta, and Seoul Special City boundaries: 2,489 nodes across 9 city-amenity pairs, Overpass API snapshot 2026-09-10, one example node per pair for spot-checking.",
+      "stats": {
+        "rows": 9,
+        "tables": 1,
+        "columns": 7,
+        "updated": "2026-09-10"
+      },
+      "sample": {
+        "csv": "https://jayjex.github.io/data-vault/data/osm-asia-civic/sample.csv",
+        "json": "https://jayjex.github.io/data-vault/data/osm-asia-civic/sample.json",
+        "rows": 9,
+        "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+      },
+      "extra_files": [
+        {
+          "name": "counts-2026-09.csv (full, free)",
+          "url": "https://jayjex.github.io/data-vault/data/osm-asia-civic/counts-2026-09.csv",
+          "rows": 9,
+          "note": "complete dataset, free download"
+        },
+        {
+          "name": "schema.md",
+          "url": "https://jayjex.github.io/data-vault/data/osm-asia-civic/schema.md",
+          "note": "columns, Overpass query form, boundary relations, snapshot caveats"
+        }
+      ],
+      "full_data": {
+        "status": "free",
+        "url": "https://jayjex.github.io/data-vault/data/osm-asia-civic/counts-2026-09.csv",
+        "note": "Source is ODbL OpenStreetMap data (© OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
+      },
+      "doi": "10.5281/zenodo.22665145",
+      "zenodo_record": "https://zenodo.org/records/22665145/latest",
+      "license": "ODbL 1.0 (source data OpenStreetMap, © OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
+      "page": "https://jayjex.github.io/data-vault/datasets/osm-asia-civic-amenities.html"
+    },
+    {
+      "slug": "osm-us-civic-amenities",
+      "name": "OpenStreetMap Civic Amenities, New York-Los Angeles-Chicago-Austin-Seattle, 2026-09",
+      "niche": "open-data",
+      "tags": [
+        "openstreetmap",
+        "osm",
+        "civic-amenities",
+        "us-cities"
+      ],
+      "description": "Counts of amenity=drinking_water, amenity=public_bookcase, and amenity=bicycle_repair_station elements inside the New York City, Los Angeles, Chicago, Austin, and Seattle bounding boxes: 4,000 elements across 15 city-amenity pairs, Overpass API snapshot 2026-09-10.",
+      "stats": {
+        "rows": 15,
+        "tables": 1,
+        "columns": 3,
+        "updated": "2026-09-10"
+      },
+      "sample": {
+        "csv": "https://jayjex.github.io/data-vault/data/osm-civic/sample.csv",
+        "json": "https://jayjex.github.io/data-vault/data/osm-civic/sample.json",
+        "rows": 15,
+        "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+      },
+      "extra_files": [
+        {
+          "name": "us-civic-amenities.csv (full, free)",
+          "url": "https://jayjex.github.io/data-vault/data/osm-civic/us-civic-amenities.csv",
+          "rows": 15,
+          "note": "complete dataset, free download"
+        }
+      ],
+      "full_data": {
+        "status": "free",
+        "url": "https://jayjex.github.io/data-vault/data/osm-civic/us-civic-amenities.csv",
+        "note": "Source is ODbL OpenStreetMap data (© OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
+      },
+      "license": "ODbL 1.0 (source data OpenStreetMap, © OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
+      "page": "https://jayjex.github.io/data-vault/datasets/osm-us-civic-amenities.html"
+    },
+    {
+      "slug": "osm-eu-civic-amenities",
+      "name": "OpenStreetMap Civic Amenities, Berlin-Amsterdam-Paris-Madrid-Warsaw, 2026-09",
+      "niche": "open-data",
+      "tags": [
+        "openstreetmap",
+        "osm",
+        "civic-amenities",
+        "eu-cities"
+      ],
+      "description": "Counts of amenity=drinking_water, amenity=public_bookcase, and amenity=bicycle_repair_station nodes inside the administrative boundaries of Berlin, Amsterdam, Paris, Madrid, and Warsaw: 4,669 nodes across 15 city-amenity pairs, Overpass API snapshot 2026-09-10, license line carried verbatim per row.",
+      "stats": {
+        "rows": 15,
+        "tables": 1,
+        "columns": 4,
+        "updated": "2026-09-10"
+      },
+      "sample": {
+        "csv": "https://jayjex.github.io/data-vault/data/osm-eu-civic/sample.csv",
+        "json": "https://jayjex.github.io/data-vault/data/osm-eu-civic/sample.json",
+        "rows": 15,
+        "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+      },
+      "extra_files": [
+        {
+          "name": "eu-civic-amenities.csv",
+          "url": "https://jayjex.github.io/data-vault/data/osm-eu-civic/eu-civic-amenities.csv",
+          "rows": 15,
+          "note": "complete table, 15 rows, includes verbatim OSM license column"
+        }
+      ],
+      "full_data": {
+        "status": "free",
+        "url": "https://jayjex.github.io/data-vault/data/osm-eu-civic/eu-civic-amenities.csv",
+        "note": "Source is ODbL OpenStreetMap data (© OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
+      },
+      "license": "ODbL 1.0 (source data OpenStreetMap, © OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
+      "page": "https://jayjex.github.io/data-vault/datasets/osm-eu-civic-amenities.html"
+    },
+    {
+      "slug": "printable-engineering-bundle",
+      "name": "Printable Engineering Bundle",
+      "niche": "printables",
+      "tags": [
+        "printables",
+        "worksheets",
+        "spreadsheets",
+        "kids",
+        "crypto-tracking"
+      ],
+      "description": "Aggregated pack of 120 printable kindergarten worksheets (A4 + US Letter PDFs with answer keys, mazes, dot-to-dots) plus 5 Web3 KPI spreadsheet templates (portfolio, airdrop, DeFi yield, bounty income, trading journal) with live formulas.",
+      "stats": {
+        "worksheets_pages": 120,
+        "spreadsheets": 5,
+        "paper_sizes": 2,
+        "updated": "2026-09-06"
+      },
+      "sample": {
+        "csv": "https://jayjex.github.io/data-vault/data/nfl-games/sample.csv",
+        "json": "https://jayjex.github.io/data-vault/data/nfl-games/sample.json",
+        "rows": 22,
+        "shape": "This bundle ships as printable PDFs and XLSX/CSV, not tables. Use any other sample endpoint to learn the sample format, or read the free printables index."
+      },
+      "free_index": {
+        "url": "https://jayjex.github.io/data-vault/free-printables-index.html",
+        "note": "223 free printable pages, one card per funnel page with its own free version."
+      },
+      "full_data": {
+        "status": "available",
+        "url": "https://www.getly.store/store/matchbook-labs-mtrfh66f",
+        "note": "One-time purchase. Direct product link added after the Getly publish lands (gate: canonical URL 200 first)."
+      },
+      "license": "Personal and commercial use. No reselling the pack as-is or with minor changes.",
+      "page": "https://jayjex.github.io/data-vault/datasets/printable-engineering-bundle.html"
+    },
+    {
+      "slug": "osm-latam-civic-amenities",
+      "name": "OpenStreetMap Civic Amenities, Sao Paulo-Buenos Aires-Mexico City, 2026-09",
+      "niche": "open-data",
+      "tags": [
+        "openstreetmap",
+        "osm",
+        "civic-amenities",
+        "latin-america"
+      ],
+      "description": "Counts of amenity=drinking_water, amenity=public_bookcase, and amenity=bicycle_repair_station nodes inside the São Paulo municipality, Ciudad Autónoma de Buenos Aires, and Ciudad de México boundaries: 385 nodes across 9 city-amenity pairs, Overpass API snapshot 2026-09-10, license line verbatim per row.",
+      "stats": {
+        "rows": 9,
+        "tables": 1,
+        "columns": 4,
+        "updated": "2026-09-10"
+      },
+      "sample": {
+        "csv": "https://jayjex.github.io/data-vault/data/osm-latam-civic/sample.csv",
+        "json": "https://jayjex.github.io/data-vault/data/osm-latam-civic/sample.json",
+        "rows": 9,
+        "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+      },
+      "extra_files": [
+        {
+          "name": "latam-civic-amenities.csv (full, free)",
+          "url": "https://jayjex.github.io/data-vault/data/osm-latam-civic/latam-civic-amenities.csv",
+          "rows": 9,
+          "note": "complete dataset, free download"
+        },
+        {
+          "name": "schema.md",
+          "url": "https://jayjex.github.io/data-vault/data/osm-latam-civic/schema.md",
+          "note": "columns, Overpass query form, boundary relations, example nodes, snapshot caveats"
+        }
+      ],
+      "full_data": {
+        "status": "free",
+        "url": "https://jayjex.github.io/data-vault/data/osm-latam-civic/latam-civic-amenities.csv",
+        "note": "Source is ODbL OpenStreetMap data (© OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
+      },
+      "license": "ODbL 1.0 (source data OpenStreetMap, © OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
+      "page": "https://jayjex.github.io/data-vault/datasets/osm-latam-civic-amenities.html"
+    },
+    {
+      "slug": "osm-mena-civic-amenities",
+      "name": "OpenStreetMap Civic Amenities, Istanbul-Cairo-Mumbai, 2026-09",
+      "niche": "open-data",
+      "tags": [
+        "openstreetmap",
+        "osm",
+        "civic-amenities",
+        "mena",
+        "south-asia"
+      ],
+      "description": "Counts of amenity=drinking_water, amenity=public_bookcase, and amenity=bicycle_repair_station features inside the Istanbul province, Cairo Governorate, and Mumbai district (Suburban + City) boundaries: 359 features across 9 city-amenity pairs, Overpass API snapshot 2026-09-10, license line verbatim per row.",
+      "stats": {
+        "rows": 9,
+        "tables": 1,
+        "columns": 4,
+        "updated": "2026-09-10"
+      },
+      "sample": {
+        "csv": "https://jayjex.github.io/data-vault/data/osm-mena-civic/sample.csv",
+        "json": "https://jayjex.github.io/data-vault/data/osm-mena-civic/sample.json",
+        "rows": 9,
+        "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+      },
+      "extra_files": [
+        {
+          "name": "mena-civic-amenities.csv (full, free)",
+          "url": "https://jayjex.github.io/data-vault/data/osm-mena-civic/mena-civic-amenities.csv",
+          "rows": 9,
+          "note": "complete dataset, free download"
+        },
+        {
+          "name": "schema.md",
+          "url": "https://jayjex.github.io/data-vault/data/osm-mena-civic/schema.md",
+          "note": "columns, Overpass query form, boundary relations, example nodes, snapshot caveats"
+        }
+      ],
+      "full_data": {
+        "status": "free",
+        "url": "https://jayjex.github.io/data-vault/data/osm-mena-civic/mena-civic-amenities.csv",
+        "note": "Source is ODbL OpenStreetMap data (© OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
+      },
+      "license": "ODbL 1.0 (source data OpenStreetMap, © OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
+      "page": "https://jayjex.github.io/data-vault/datasets/osm-mena-civic-amenities.html"
+    },
+    {
+      "slug": "osm-africa-civic-amenities",
+      "name": "OpenStreetMap Civic Amenities, Lagos-Nairobi-Addis Ababa, 2026-09",
+      "niche": "open-data",
+      "tags": [
+        "openstreetmap",
+        "osm",
+        "civic-amenities",
+        "africa",
+        "water-access"
+      ],
+      "description": "Counts of amenity=drinking_water, amenity=public_bookcase, and amenity=bicycle_repair_station features inside the Lagos State, Nairobi County, and Addis Ababa city boundaries: 2,240 features across 9 city-amenity pairs, Overpass API snapshot 2026-09-10, license line verbatim per row.",
+      "stats": {
+        "rows": 9,
+        "tables": 1,
+        "columns": 4,
+        "updated": "2026-09-10"
+      },
+      "sample": {
+        "csv": "https://jayjex.github.io/data-vault/data/osm-africa-civic/sample.csv",
+        "json": "https://jayjex.github.io/data-vault/data/osm-africa-civic/sample.json",
+        "rows": 9,
+        "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+      },
+      "extra_files": [
+        {
+          "name": "africa-civic-amenities.csv (full, free)",
+          "url": "https://jayjex.github.io/data-vault/data/osm-africa-civic/africa-civic-amenities.csv",
+          "rows": 9,
+          "note": "complete dataset, free download"
+        },
+        {
+          "name": "schema.md",
+          "url": "https://jayjex.github.io/data-vault/data/osm-africa-civic/schema.md",
+          "note": "columns, Overpass query form, boundary relations, example nodes, mirror cross-check, snapshot caveats"
+        }
+      ],
+      "full_data": {
+        "status": "free",
+        "url": "https://jayjex.github.io/data-vault/data/osm-africa-civic/africa-civic-amenities.csv",
+        "note": "Source is ODbL OpenStreetMap data (© OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
+      },
+      "doi": "10.5281/zenodo.22665925",
+      "zenodo_record": "https://zenodo.org/records/22665925/latest",
+      "license": "ODbL 1.0 (source data OpenStreetMap, © OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
+      "page": "https://jayjex.github.io/data-vault/datasets/osm-africa-civic-amenities.html"
+    },
+    {
+      "slug": "osm-oceania-civic-amenities",
+      "name": "OpenStreetMap Civic Amenities, Sydney-Melbourne-Auckland, 2026-09",
+      "niche": "open-data",
+      "tags": [
+        "openstreetmap",
+        "osm",
+        "civic-amenities",
+        "oceania"
+      ],
+      "description": "Counts of amenity=drinking_water, amenity=toilets, and amenity=bench features inside the greater Sydney, City of Melbourne, and Auckland unitary authority boundaries: 27,231 features across 9 city-amenity pairs, Overpass API snapshot 2026-09-10, license line verbatim per row.",
+      "stats": {
+        "rows": 9,
+        "tables": 1,
+        "columns": 4,
+        "updated": "2026-09-10"
+      },
+      "sample": {
+        "csv": "https://jayjex.github.io/data-vault/data/osm-oceania-civic/sample.csv",
+        "json": "https://jayjex.github.io/data-vault/data/osm-oceania-civic/sample.json",
+        "rows": 9,
+        "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+      },
+      "extra_files": [
+        {
+          "name": "oceania-civic-amenities.csv (full, free)",
+          "url": "https://jayjex.github.io/data-vault/data/osm-oceania-civic/oceania-civic-amenities.csv",
+          "rows": 9,
+          "note": "complete dataset, free download"
+        },
+        {
+          "name": "schema.md",
+          "url": "https://jayjex.github.io/data-vault/data/osm-oceania-civic/schema.md",
+          "note": "columns, Overpass query form, boundary relations, example nodes, mirror cross-check, snapshot caveats"
+        }
+      ],
+      "full_data": {
+        "status": "free",
+        "url": "https://jayjex.github.io/data-vault/data/osm-oceania-civic/oceania-civic-amenities.csv",
+        "note": "Source is ODbL OpenStreetMap data (© OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
+      },
+      "doi": "10.5281/zenodo.22666640",
+      "zenodo_record": "https://zenodo.org/records/22666640/latest",
+      "license": "ODbL 1.0 (source data OpenStreetMap, © OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
+      "page": "https://jayjex.github.io/data-vault/datasets/osm-oceania-civic-amenities.html"
+    },
+    {
+      "slug": "osm-us2-civic-amenities",
+      "name": "OpenStreetMap Civic Amenities, New York-Chicago-Seattle, 2026-09",
+      "niche": "open-data",
+      "tags": [
+        "openstreetmap",
+        "osm",
+        "civic-amenities",
+        "united-states"
+      ],
+      "description": "Counts of amenity=drinking_water, amenity=toilets, and amenity=bench features inside the exact City of New York, City of Chicago, and City of Seattle boundaries: 27,624 features across 9 city-amenity pairs, Overpass API snapshot 2026-09-10, license line verbatim per row.",
+      "stats": {
+        "rows": 9,
+        "tables": 1,
+        "columns": 4,
+        "updated": "2026-09-10"
+      },
+      "sample": {
+        "csv": "https://jayjex.github.io/data-vault/data/osm-us2-civic/sample.csv",
+        "json": "https://jayjex.github.io/data-vault/data/osm-us2-civic/sample.json",
+        "rows": 9,
+        "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+      },
+      "extra_files": [
+        {
+          "name": "us2-civic-amenities.csv (full, free)",
+          "url": "https://jayjex.github.io/data-vault/data/osm-us2-civic/us2-civic-amenities.csv",
+          "rows": 9,
+          "note": "complete dataset, free download"
+        },
+        {
+          "name": "schema.md",
+          "url": "https://jayjex.github.io/data-vault/data/osm-us2-civic/schema.md",
+          "note": "columns, Overpass query form, boundary relations, example nodes, mirror cross-check, caveats"
+        }
+      ],
+      "full_data": {
+        "status": "free",
+        "url": "https://jayjex.github.io/data-vault/data/osm-us2-civic/us2-civic-amenities.csv",
+        "note": "Source is ODbL OpenStreetMap data (© OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
+      },
+      "doi": "10.5281/zenodo.22667164",
+      "zenodo_record": "https://zenodo.org/records/22667164/latest",
+      "license": "ODbL 1.0 (source data OpenStreetMap, © OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
+      "page": "https://jayjex.github.io/data-vault/datasets/osm-us2-civic-amenities.html"
+    },
+    {
+      "slug": "hud-fmr-county-2026",
+      "name": "HUD Fair Market Rents FY2026 by County: completeness & spread",
+      "niche": "gov-data",
+      "tags": [
+        "hud",
+        "fmr",
+        "county",
+        "rent",
+        "real-estate",
+        "gov-data"
+      ],
+      "description": "County-level FY2026 Fair Market Rents: 3,229 county-equivalents across 56 states and territories, five bedroom sizes with median and max per row, 67 multi-FMR-area counties flagged with an area_rows count, and a derived table of the 8 counties where the 2BR max exceeds the median (Bristol County MA +47.5%). Zero empty cells.",
+      "stats": {
+        "rows": 3229,
+        "tables": 2,
+        "columns": 15,
+        "updated": "2026-09-10"
+      },
+      "sample": {
+        "csv": "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/sample.csv",
+        "json": "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/sample.json",
+        "rows": 22,
+        "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+      },
+      "extra_files": [
+        {
+          "name": "fmr-county-2026.csv (full, free)",
+          "url": "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/fmr-county-2026.csv",
+          "rows": 3229,
+          "note": "complete dataset, free download"
+        },
+        {
+          "name": "spread-counties.csv",
+          "url": "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/spread-counties.csv",
+          "rows": 8,
+          "note": "derived: counties where fmr_2br_max > fmr_2br_median, with gap columns"
+        },
+        {
+          "name": "schema.md",
+          "url": "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/schema.md",
+          "note": "columns, coverage, completeness findings, caveats"
+        }
+      ],
+      "full_data": {
+        "status": "free",
+        "url": "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/fmr-county-2026.csv",
+        "note": "Source is US government data (HUD FY2026 FMR release), public domain, so the full table is a free download, not a Getly pack."
+      },
+      "license": "Public domain (US government data, HUD FY2026 Fair Market Rent release)",
+      "page": "https://jayjex.github.io/data-vault/datasets/hud-fmr-county-2026.html"
+    },
+    {
+      "slug": "hud-fmr-metro-2027",
+      "name": "HUD Fair Market Rents FY2027, Top-50 Metro Areas",
+      "niche": "gov-data",
+      "tags": [
+        "hud",
+        "fmr",
+        "metro",
+        "rent",
+        "real-estate",
+        "gov-data",
+        "free"
+      ],
+      "description": "FY2027 fair market rents for the 50 metro FMR areas with the most ZIP codes: one row per area, median across the area's ZIPs for studios through 4BR, 10,143 of 27,288 metro ZIPs covered. A second table ranks the 50 priciest 2BR metros across all 649 areas (Santa Cruz-Watsonville tops at 4,250); only 12 areas appear in both. Free full CSVs.",
+      "stats": {
+        "rows": 50,
+        "tables": 2,
+        "columns": 9,
+        "updated": "FY2027"
+      },
+      "sample": {
+        "csv": "https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/sample.csv",
+        "json": "https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/sample.json",
+        "rows": 12,
+        "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+      },
+      "extra_files": [
+        {
+          "name": "fmr-metro-2027.csv (full, free)",
+          "url": "https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/fmr-metro-2027.csv",
+          "rows": 50,
+          "note": "complete coverage table, free download"
+        },
+        {
+          "name": "most-expensive-2br.csv (full, free)",
+          "url": "https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/most-expensive-2br.csv",
+          "rows": 50,
+          "note": "50 priciest 2BR metros across all 649 areas, free download"
+        },
+        {
+          "name": "schema.md",
+          "url": "https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/schema.md",
+          "note": "column dictionary, aggregation rules, caveats"
+        }
+      ],
+      "full_data": {
+        "status": "free",
+        "url": "https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/fmr-metro-2027.csv",
+        "note": "Source is US government data (HUD FY2027 FMR release), public domain, so both tables are free downloads, not a Getly pack."
+      },
+      "license": "Public domain (US government data, HUD FY2027 Fair Market Rent release)",
+      "page": "https://jayjex.github.io/data-vault/datasets/hud-fmr-metro-2027.html"
+    },
+    {
+      "slug": "hud-fmr-by-zip-2027",
+      "name": "HUD Fair Market Rents FY2027 by ZIP Code",
+      "niche": "gov-data",
+      "tags": [
+        "hud",
+        "fmr",
+        "zip",
+        "rent",
+        "real-estate",
+        "gov-data",
+        "free"
+      ],
+      "description": "The full FY2027 ZIP-level fair market rent file: 51,871 rows across 38,601 ZIP codes, ten columns with studio through 4BR rents, metro and nonmetro flags preserved. Zero empty cells, zero duplicate keys, leading-zero ZIPs intact. Free full CSV.",
+      "stats": {
+        "rows": 51871,
+        "tables": 1,
+        "columns": 10,
+        "updated": "FY2027"
+      },
+      "sample": {
+        "csv": "https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/sample.csv",
+        "json": "https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/sample.json",
+        "rows": 22,
+        "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
+      },
+      "extra_files": [
+        {
+          "name": "fmr-by-zip-2027.csv (full, free)",
+          "url": "https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/fmr-by-zip-2027.csv",
+          "rows": 51871,
+          "note": "complete ZIP-level file, byte-identical copy of the parsed source, free download"
+        },
+        {
+          "name": "schema.md",
+          "url": "https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/schema.md",
+          "note": "column dictionary, coverage, integrity checks, caveats"
+        }
+      ],
+      "full_data": {
+        "status": "free",
+        "url": "https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/fmr-by-zip-2027.csv",
+        "note": "Source is US government data (HUD FY2027 FMR release), public domain, so the full file is a free download, not a Getly pack."
+      },
+      "license": "Public domain (US government data, HUD FY2027 Fair Market Rent release)",
+      "page": "https://jayjex.github.io/data-vault/datasets/hud-fmr-by-zip-2027.html"
     }
-   ],
-   "full_data": {
-    "status": "free",
-    "url": "https://jayjex.github.io/data-vault/data/osm-latam-civic/latam-civic-amenities.csv",
-    "note": "Source is ODbL OpenStreetMap data (© OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
-   },
-   "license": "ODbL 1.0 (source data OpenStreetMap, © OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
-   "page": "https://jayjex.github.io/data-vault/datasets/osm-latam-civic-amenities.html"
-  },
-  {
-   "slug": "osm-mena-civic-amenities",
-   "name": "OpenStreetMap Civic Amenities, Istanbul-Cairo-Mumbai, 2026-09",
-   "niche": "open-data",
-   "tags": [
-    "openstreetmap",
-    "osm",
-    "civic-amenities",
-    "mena",
-    "south-asia"
-   ],
-   "description": "Counts of amenity=drinking_water, amenity=public_bookcase, and amenity=bicycle_repair_station features inside the Istanbul province, Cairo Governorate, and Mumbai district (Suburban + City) boundaries: 359 features across 9 city-amenity pairs, Overpass API snapshot 2026-09-10, license line verbatim per row.",
-   "stats": {
-    "rows": 9,
-    "tables": 1,
-    "columns": 4,
-    "updated": "2026-09-10"
-   },
-   "sample": {
-    "csv": "https://jayjex.github.io/data-vault/data/osm-mena-civic/sample.csv",
-    "json": "https://jayjex.github.io/data-vault/data/osm-mena-civic/sample.json",
-    "rows": 9,
-    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
-   },
-   "extra_files": [
-    {
-     "name": "mena-civic-amenities.csv (full, free)",
-     "url": "https://jayjex.github.io/data-vault/data/osm-mena-civic/mena-civic-amenities.csv",
-     "rows": 9,
-     "note": "complete dataset, free download"
-    },
-    {
-     "name": "schema.md",
-     "url": "https://jayjex.github.io/data-vault/data/osm-mena-civic/schema.md",
-     "note": "columns, Overpass query form, boundary relations, example nodes, snapshot caveats"
-    }
-   ],
-   "full_data": {
-    "status": "free",
-    "url": "https://jayjex.github.io/data-vault/data/osm-mena-civic/mena-civic-amenities.csv",
-    "note": "Source is ODbL OpenStreetMap data (© OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
-   },
-   "license": "ODbL 1.0 (source data OpenStreetMap, © OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
-   "page": "https://jayjex.github.io/data-vault/datasets/osm-mena-civic-amenities.html"
-  },
-  {
-   "slug": "osm-africa-civic-amenities",
-   "name": "OpenStreetMap Civic Amenities, Lagos-Nairobi-Addis Ababa, 2026-09",
-   "niche": "open-data",
-   "tags": [
-    "openstreetmap",
-    "osm",
-    "civic-amenities",
-    "africa",
-    "water-access"
-   ],
-   "description": "Counts of amenity=drinking_water, amenity=public_bookcase, and amenity=bicycle_repair_station features inside the Lagos State, Nairobi County, and Addis Ababa city boundaries: 2,240 features across 9 city-amenity pairs, Overpass API snapshot 2026-09-10, license line verbatim per row.",
-   "stats": {
-    "rows": 9,
-    "tables": 1,
-    "columns": 4,
-    "updated": "2026-09-10"
-   },
-   "sample": {
-    "csv": "https://jayjex.github.io/data-vault/data/osm-africa-civic/sample.csv",
-    "json": "https://jayjex.github.io/data-vault/data/osm-africa-civic/sample.json",
-    "rows": 9,
-    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
-   },
-   "extra_files": [
-    {
-     "name": "africa-civic-amenities.csv (full, free)",
-     "url": "https://jayjex.github.io/data-vault/data/osm-africa-civic/africa-civic-amenities.csv",
-     "rows": 9,
-     "note": "complete dataset, free download"
-    },
-    {
-     "name": "schema.md",
-     "url": "https://jayjex.github.io/data-vault/data/osm-africa-civic/schema.md",
-     "note": "columns, Overpass query form, boundary relations, example nodes, mirror cross-check, snapshot caveats"
-    }
-   ],
-   "full_data": {
-    "status": "free",
-    "url": "https://jayjex.github.io/data-vault/data/osm-africa-civic/africa-civic-amenities.csv",
-    "note": "Source is ODbL OpenStreetMap data (© OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
-   },
-   "doi": "10.5281/zenodo.22665925",
-   "zenodo_record": "https://zenodo.org/records/22665925/latest",
-   "license": "ODbL 1.0 (source data OpenStreetMap, © OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
-   "page": "https://jayjex.github.io/data-vault/datasets/osm-africa-civic-amenities.html"
-  },
-  {
-   "slug": "osm-oceania-civic-amenities",
-   "name": "OpenStreetMap Civic Amenities, Sydney-Melbourne-Auckland, 2026-09",
-   "niche": "open-data",
-   "tags": [
-    "openstreetmap",
-    "osm",
-    "civic-amenities",
-    "oceania"
-   ],
-   "description": "Counts of amenity=drinking_water, amenity=toilets, and amenity=bench features inside the greater Sydney, City of Melbourne, and Auckland unitary authority boundaries: 27,231 features across 9 city-amenity pairs, Overpass API snapshot 2026-09-10, license line verbatim per row.",
-   "stats": {
-    "rows": 9,
-    "tables": 1,
-    "columns": 4,
-    "updated": "2026-09-10"
-   },
-   "sample": {
-    "csv": "https://jayjex.github.io/data-vault/data/osm-oceania-civic/sample.csv",
-    "json": "https://jayjex.github.io/data-vault/data/osm-oceania-civic/sample.json",
-    "rows": 9,
-    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
-   },
-   "extra_files": [
-    {
-     "name": "oceania-civic-amenities.csv (full, free)",
-     "url": "https://jayjex.github.io/data-vault/data/osm-oceania-civic/oceania-civic-amenities.csv",
-     "rows": 9,
-     "note": "complete dataset, free download"
-    },
-    {
-     "name": "schema.md",
-     "url": "https://jayjex.github.io/data-vault/data/osm-oceania-civic/schema.md",
-     "note": "columns, Overpass query form, boundary relations, example nodes, mirror cross-check, snapshot caveats"
-    }
-   ],
-   "full_data": {
-    "status": "free",
-    "url": "https://jayjex.github.io/data-vault/data/osm-oceania-civic/oceania-civic-amenities.csv",
-    "note": "Source is ODbL OpenStreetMap data (© OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
-   },
-   "doi": "10.5281/zenodo.22666640",
-   "zenodo_record": "https://zenodo.org/records/22666640/latest",
-   "license": "ODbL 1.0 (source data OpenStreetMap, © OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
-   "page": "https://jayjex.github.io/data-vault/datasets/osm-oceania-civic-amenities.html"
-  },
-  {
-   "slug": "osm-us2-civic-amenities",
-   "name": "OpenStreetMap Civic Amenities, New York-Chicago-Seattle, 2026-09",
-   "niche": "open-data",
-   "tags": [
-    "openstreetmap",
-    "osm",
-    "civic-amenities",
-    "united-states"
-   ],
-   "description": "Counts of amenity=drinking_water, amenity=toilets, and amenity=bench features inside the exact City of New York, City of Chicago, and City of Seattle boundaries: 27,624 features across 9 city-amenity pairs, Overpass API snapshot 2026-09-10, license line verbatim per row.",
-   "stats": {
-    "rows": 9,
-    "tables": 1,
-    "columns": 4,
-    "updated": "2026-09-10"
-   },
-   "sample": {
-    "csv": "https://jayjex.github.io/data-vault/data/osm-us2-civic/sample.csv",
-    "json": "https://jayjex.github.io/data-vault/data/osm-us2-civic/sample.json",
-    "rows": 9,
-    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
-   },
-   "extra_files": [
-    {
-     "name": "us2-civic-amenities.csv (full, free)",
-     "url": "https://jayjex.github.io/data-vault/data/osm-us2-civic/us2-civic-amenities.csv",
-     "rows": 9,
-     "note": "complete dataset, free download"
-    },
-    {
-     "name": "schema.md",
-     "url": "https://jayjex.github.io/data-vault/data/osm-us2-civic/schema.md",
-     "note": "columns, Overpass query form, boundary relations, example nodes, mirror cross-check, caveats"
-    }
-   ],
-   "full_data": {
-    "status": "free",
-    "url": "https://jayjex.github.io/data-vault/data/osm-us2-civic/us2-civic-amenities.csv",
-    "note": "Source is ODbL OpenStreetMap data (© OpenStreetMap contributors), so the full table is a free download, not a Getly pack. Share-alike applies to derivative databases."
-   },
-   "doi": "10.5281/zenodo.22667164",
-   "zenodo_record": "https://zenodo.org/records/22667164/latest",
-   "license": "ODbL 1.0 (source data OpenStreetMap, © OpenStreetMap contributors, open under the Open Data Commons Open Database License)",
-   "page": "https://jayjex.github.io/data-vault/datasets/osm-us2-civic-amenities.html"
-  },
-  {
-   "slug": "hud-fmr-county-2026",
-   "name": "HUD Fair Market Rents FY2026 by County: completeness & spread",
-   "niche": "gov-data",
-   "tags": [
-    "hud",
-    "fmr",
-    "county",
-    "rent",
-    "real-estate",
-    "gov-data"
-   ],
-   "description": "County-level FY2026 Fair Market Rents: 3,229 county-equivalents across 56 states and territories, five bedroom sizes with median and max per row, 67 multi-FMR-area counties flagged with an area_rows count, and a derived table of the 8 counties where the 2BR max exceeds the median (Bristol County MA +47.5%). Zero empty cells.",
-   "stats": {
-    "rows": 3229,
-    "tables": 2,
-    "columns": 15,
-    "updated": "2026-09-10"
-   },
-   "sample": {
-    "csv": "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/sample.csv",
-    "json": "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/sample.json",
-    "rows": 22,
-    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
-   },
-   "extra_files": [
-    {
-     "name": "fmr-county-2026.csv (full, free)",
-     "url": "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/fmr-county-2026.csv",
-     "rows": 3229,
-     "note": "complete dataset, free download"
-    },
-    {
-     "name": "spread-counties.csv",
-     "url": "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/spread-counties.csv",
-     "rows": 8,
-     "note": "derived: counties where fmr_2br_max > fmr_2br_median, with gap columns"
-    },
-    {
-     "name": "schema.md",
-     "url": "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/schema.md",
-     "note": "columns, coverage, completeness findings, caveats"
-    }
-   ],
-   "full_data": {
-    "status": "free",
-    "url": "https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/fmr-county-2026.csv",
-    "note": "Source is US government data (HUD FY2026 FMR release), public domain, so the full table is a free download, not a Getly pack."
-   },
-   "license": "Public domain (US government data, HUD FY2026 Fair Market Rent release)",
-   "page": "https://jayjex.github.io/data-vault/datasets/hud-fmr-county-2026.html"
-  },
-  {
-   "slug": "hud-fmr-metro-2027",
-   "name": "HUD Fair Market Rents FY2027, Top-50 Metro Areas",
-   "niche": "gov-data",
-   "tags": [
-    "hud",
-    "fmr",
-    "metro",
-    "rent",
-    "real-estate",
-    "gov-data",
-    "free"
-   ],
-   "description": "FY2027 fair market rents for the 50 metro FMR areas with the most ZIP codes: one row per area, median across the area's ZIPs for studios through 4BR, 10,143 of 27,288 metro ZIPs covered. A second table ranks the 50 priciest 2BR metros across all 649 areas (Santa Cruz-Watsonville tops at 4,250); only 12 areas appear in both. Free full CSVs.",
-   "stats": {
-    "rows": 50,
-    "tables": 2,
-    "columns": 9,
-    "updated": "FY2027"
-   },
-   "sample": {
-    "csv": "https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/sample.csv",
-    "json": "https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/sample.json",
-    "rows": 12,
-    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
-   },
-   "extra_files": [
-    {
-     "name": "fmr-metro-2027.csv (full, free)",
-     "url": "https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/fmr-metro-2027.csv",
-     "rows": 50,
-     "note": "complete coverage table, free download"
-    },
-    {
-     "name": "most-expensive-2br.csv (full, free)",
-     "url": "https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/most-expensive-2br.csv",
-     "rows": 50,
-     "note": "50 priciest 2BR metros across all 649 areas, free download"
-    },
-    {
-     "name": "schema.md",
-     "url": "https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/schema.md",
-     "note": "column dictionary, aggregation rules, caveats"
-    }
-   ],
-   "full_data": {
-    "status": "free",
-    "url": "https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/fmr-metro-2027.csv",
-    "note": "Source is US government data (HUD FY2027 FMR release), public domain, so both tables are free downloads, not a Getly pack."
-   },
-   "license": "Public domain (US government data, HUD FY2027 Fair Market Rent release)",
-   "page": "https://jayjex.github.io/data-vault/datasets/hud-fmr-metro-2027.html"
-  },
-  {
-   "slug": "hud-fmr-by-zip-2027",
-   "name": "HUD Fair Market Rents FY2027 by ZIP Code",
-   "niche": "gov-data",
-   "tags": [
-    "hud",
-    "fmr",
-    "zip",
-    "rent",
-    "real-estate",
-    "gov-data",
-    "free"
-   ],
-   "description": "The full FY2027 ZIP-level fair market rent file: 51,871 rows across 38,601 ZIP codes, ten columns with studio through 4BR rents, metro and nonmetro flags preserved. Zero empty cells, zero duplicate keys, leading-zero ZIPs intact. Free full CSV.",
-   "stats": {
-    "rows": 51871,
-    "tables": 1,
-    "columns": 10,
-    "updated": "FY2027"
-   },
-   "sample": {
-    "csv": "https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/sample.csv",
-    "json": "https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/sample.json",
-    "rows": 22,
-    "shape": "sample.json returns {slug, name, columns[], row_count, records[]}"
-   },
-   "extra_files": [
-    {
-     "name": "fmr-by-zip-2027.csv (full, free)",
-     "url": "https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/fmr-by-zip-2027.csv",
-     "rows": 51871,
-     "note": "complete ZIP-level file, byte-identical copy of the parsed source, free download"
-    },
-    {
-     "name": "schema.md",
-     "url": "https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/schema.md",
-     "note": "column dictionary, coverage, integrity checks, caveats"
-    }
-   ],
-   "full_data": {
-    "status": "free",
-    "url": "https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/fmr-by-zip-2027.csv",
-    "note": "Source is US government data (HUD FY2027 FMR release), public domain, so the full file is a free download, not a Getly pack."
-   },
-   "license": "Public domain (US government data, HUD FY2027 Fair Market Rent release)",
-   "page": "https://jayjex.github.io/data-vault/datasets/hud-fmr-by-zip-2027.html"
+  ],
+  "mcp": {
+    "server": "npx --allow-git=all -y github:jayjex/dataset-mcp",
+    "server_npm10": "npx -y github:jayjex/dataset-mcp",
+    "registry": "io.github.jayjex/dataset-mcp",
+    "repo": "https://github.com/jayjex/dataset-mcp",
+    "version": "1.1.0",
+    "full_query": "query_dataset(slug, {where, columns, limit, offset}) filters and paginates the full released files (100 rows/call, operators =, contains, gt, lt). get_stats(slug, {column}) returns unique counts, numeric min/max/mean, top-N. Full release: https://github.com/jayjex/dataset-mcp/releases/tag/data-v1",
+    "example": "query_dataset(\"hud-fmr-2026\", {where: [{column: \"state\", op: \"=\", value: \"TX\"}], limit: 5})"
   }
- ],
- "mcp": {
-  "server": "npx --allow-git=all -y github:jayjex/dataset-mcp",
-  "server_npm10": "npx -y github:jayjex/dataset-mcp",
-  "registry": "io.github.jayjex/dataset-mcp",
-  "repo": "https://github.com/jayjex/dataset-mcp",
-  "version": "1.1.0",
-  "full_query": "query_dataset(slug, {where, columns, limit, offset}) filters and paginates the full released files (100 rows/call, operators =, contains, gt, lt). get_stats(slug, {column}) returns unique counts, numeric min/max/mean, top-N. Full release: https://github.com/jayjex/dataset-mcp/releases/tag/data-v1",
-  "example": "query_dataset(\"hud-fmr-2026\", {where: [{column: \"state\", op: \"=\", value: \"TX\"}], limit: 5})"
- }
 }

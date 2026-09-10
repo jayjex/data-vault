@@ -23,7 +23,7 @@ Rent affordability guide (the 30% rule vs the FMR, five metros against the US me
 Rent-to-income guide (how much rent can I afford: the 30% rule tested on FY2027 FMR + 2024 ACS data, national ratio 17.5% vs New York 39.6%, Miami, LA, SF, Boston against their own median incomes): https://jayjex.github.io/data-vault/guides/rent-vs-income-affordability.html
 HUD FMR vs market rent guide (FMR vs ACS median gross rent vs ZORI asking rent side by side, San Diego worked example: FMR 3,000 vs county ACS median 2,379, and why the percentile ordering reverses in fast markets): https://jayjex.github.io/data-vault/guides/hud-fmr-vs-market-rent.html
 What is llms.txt (plain-English definition of the format, how agents read the file, honest status): https://jayjex.github.io/data-vault/guides/what-is-llms-txt.html
-Dataset DOIs: ten packs have permanent citable DOIs on Zenodo: https://doi.org/10.5281/zenodo.22643177 , https://doi.org/10.5281/zenodo.22643149 , https://doi.org/10.5281/zenodo.22643189 , https://doi.org/10.5281/zenodo.22649503 , https://doi.org/10.5281/zenodo.22665145 , https://doi.org/10.5281/zenodo.22665925 , https://doi.org/10.5281/zenodo.22666640 , https://doi.org/10.5281/zenodo.22667164 , https://doi.org/10.5281/zenodo.22667477 , https://doi.org/10.5281/zenodo.22667657
+Dataset DOIs: twelve packs have permanent citable DOIs on Zenodo: https://doi.org/10.5281/zenodo.22643177 , https://doi.org/10.5281/zenodo.22643149 , https://doi.org/10.5281/zenodo.22643189 , https://doi.org/10.5281/zenodo.22649503 , https://doi.org/10.5281/zenodo.22665145 , https://doi.org/10.5281/zenodo.22665925 , https://doi.org/10.5281/zenodo.22666640 , https://doi.org/10.5281/zenodo.22667164 , https://doi.org/10.5281/zenodo.22667477 , https://doi.org/10.5281/zenodo.22667657 , https://doi.org/10.5281/zenodo.22676080 , https://doi.org/10.5281/zenodo.22697115
 FY2027 HUD FMR DOI (rates effective October 1, 2026): https://doi.org/10.5281/zenodo.22649503
 Paid per-call API (x402 protocol, USDC on Base): the NFL scores and HUD FMR datasets are also queryable as paid x402 endpoints, $0.01/call NFL and $0.001/call HUD FMR, curl challenge replay + SDK snippet: https://gist.github.com/jayjex/9cb7cd0612b3192e06915f784e6d6e4a
 
@@ -166,6 +166,7 @@ Life expectancy at birth in total years (WDI indicator SP.DYN.LE00.IN) for the 1
 - Sample CSV: https://jayjex.github.io/data-vault/data/worldbank-g20-life-expectancy/sample.csv
 - Page: https://jayjex.github.io/data-vault/datasets/worldbank-g20-life-expectancy.html
 - Full data (free): https://jayjex.github.io/data-vault/data/worldbank-g20-life-expectancy/g20-life-expectancy.csv
+- Citable DOI: https://doi.org/10.5281/zenodo.22697115 (Zenodo record: https://zenodo.org/records/22697115/latest)
 - License: CC BY 4.0 (World Bank Open Data, CC BY 4.0)
 
 ### OpenStreetMap Civic Amenities, Tokyo-Jakarta-Seoul, 2026-09 (osm-asia-civic-amenities)

@@ -41,6 +41,8 @@
         "url": "https://zenodo.org/records/22643177/latest",
         "note": "Full pack (games.csv 7,548 rows, team-records-by-season.csv 861 rows, season-summaries.csv 27 rows, data dictionary, build script, source checksums) is free on Zenodo under DOI 10.5281/zenodo.22643177, CC BY 4.0 repackaging of nflverse release data."
       },
+      "doi": "10.5281/zenodo.22643177",
+      "zenodo_record": "https://zenodo.org/records/22643177/latest",
       "license": "CC BY 4.0 (game data from nflverse, CC BY 4.0)",
       "page": "https://jayjex.github.io/data-vault/datasets/nfl-games.html"
     },
@@ -79,6 +81,8 @@
         "url": "https://zenodo.org/records/22643149/latest",
         "note": "Full pack (fmr-by-zip-2026.csv 51,895 rows, fmr-by-county-2026.csv 3,229 rows, state-summary.csv 52 rows, data dictionary, build script) is free on Zenodo under DOI 10.5281/zenodo.22643149, CC BY 4.0 repackaging of public-domain US government data."
       },
+      "doi": "10.5281/zenodo.22643149",
+      "zenodo_record": "https://zenodo.org/records/22643149/latest",
       "license": "Public domain (US government data)",
       "page": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html"
     },
@@ -117,6 +121,8 @@
         "url": "https://zenodo.org/records/22649503/latest",
         "note": "Full FY2027 CSVs (ZIP, county, state, data dictionary, build script) are free on Zenodo under DOI 10.5281/zenodo.22649503, CC BY 4.0 repackaging of public-domain US government data. The 51,871-row ZIP file also serves free from the hud-fmr-by-zip-2027 dataset page."
       },
+      "doi": "10.5281/zenodo.22649503",
+      "zenodo_record": "https://zenodo.org/records/22649503/latest",
       "license": "Public domain (US government data)",
       "page": "https://jayjex.github.io/data-vault/datasets/hud-fmr-2027.html"
     },
@@ -155,6 +161,8 @@
         "url": "https://zenodo.org/records/22643189/latest",
         "note": "Full pack (six per-city CSVs, cities-index.csv, data dictionary, normalize script, source checksums) is free on Zenodo under DOI 10.5281/zenodo.22643189, CC BY 4.0 repackaging of Inside Airbnb summary data."
       },
+      "doi": "10.5281/zenodo.22643189",
+      "zenodo_record": "https://zenodo.org/records/22643189/latest",
       "license": "CC BY 4.0 (listing data from Inside Airbnb, CC BY 4.0)",
       "page": "https://jayjex.github.io/data-vault/datasets/airbnb-six-cities.html"
     },

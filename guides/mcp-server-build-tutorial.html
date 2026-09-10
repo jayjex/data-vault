@@ -243,6 +243,11 @@ npx -y github:jayjex/dataset-mcp</pre>
     <h3>How do I publish an MCP server so clients can install it with npx?</h3>
     <p>Put the entry file at the repo root with a shebang line, point the <code>bin</code> field of <code>package.json</code> at it, and list it in the <code>files</code> field so the published package stays small. Clients can then run it with <code>npx github:youruser/your-repo</code>. On npm 12 the git-based form needs <code>--allow-git=all</code> first, which is how dataset-mcp ships: <code>npx --allow-git=all -y github:jayjex/dataset-mcp</code>. For registry listings, add a <code>server.json</code> declaring a name like <code>io.github.jayjex/dataset-mcp</code>.</p>
   </section>
+
+  <section aria-label="Get the icon set">
+    <h2>Get the icon set</h2>
+    <p>When the publish step ends with a README and a docs page, the <a href="https://jayjex-shop.fourthwall.com/products/line-icons-60" rel="noopener">60 Line Icons Essentials Pack</a> is the set we drew for that work: 60 SVGs on a 24px grid, 1.5px stroke, one weight across the set, every file under 2KB and recolorable with one CSS rule. Commercial use, no attribution.</p>
+  </section>
 </main>
 
 <footer><div class="wrap">

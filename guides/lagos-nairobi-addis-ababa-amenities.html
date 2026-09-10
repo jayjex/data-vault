@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drinking Water Points in Lagos, Nairobi and Addis Ababa: OpenStreetMap Counts (CSV) | Data Vault</title>
+<meta name="description" content="Lagos, Nairobi and Addis Ababa counted from OpenStreetMap: 2,240 features, 99.96 percent drinking water, zero public bookcases in all three cities, and Nairobi's 2,174 taps explained.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/lagos-nairobi-addis-ababa-amenities.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Drinking Water Points in Lagos, Nairobi and Addis Ababa: OpenStreetMap Counts (CSV)">
+<meta property="og:description" content="Lagos, Nairobi and Addis Ababa counted from OpenStreetMap: 2,240 features, 99.96 percent drinking water, zero public bookcases in all three cities, and Nairobi's 2,174 taps explained.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/lagos-nairobi-addis-ababa-amenities.html">
+<meta property="og:image" content="https://jayjex.github.io/data-vault/assets/covers/data-vault-banner.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Drinking water points, public bookcases and bike repair stations in Lagos, Nairobi and Addis Ababa, counted from OpenStreetMap">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Drinking Water Points in Lagos, Nairobi and Addis Ababa: OpenStreetMap Counts (CSV)", "description": "Lagos, Nairobi and Addis Ababa counted from OpenStreetMap: 2,240 features, 99.96 percent drinking water, zero public bookcases in all three cities, and Nairobi's 2,174 taps explained.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/lagos-nairobi-addis-ababa-amenities.html", "about": {"@type": "Dataset", "name": "OpenStreetMap Civic Amenities, Lagos-Nairobi-Addis Ababa, 2026-09", "url": "https://jayjex.github.io/data-vault/datasets/osm-africa-civic-amenities.html"}, "mentions": [{"@type": "Article", "name": "Public Amenities per Capita in NYC, Chicago and Seattle: OpenStreetMap Counts (CSV)", "url": "https://jayjex.github.io/data-vault/guides/civic-amenities-per-capita.html"}, {"@type": "Article", "name": "Public Toilets and Drinking Fountains in Sydney, Melbourne, Auckland: OpenStreetMap Counts (CSV)", "url": "https://jayjex.github.io/data-vault/guides/sydney-melbourne-auckland-amenities.html"}, {"@type": "Article", "name": "Istanbul Drinking Water Fountains Map Counts: Cairo and Mumbai Public Amenities Open Data (CSV)", "url": "https://jayjex.github.io/data-vault/guides/mena-city-amenities-guide.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which of the three cities has the most drinking water points?", "acceptedAnswer": {"@type": "Answer", "text": "Nairobi on raw counts: 2,174 of the file's 2,239 drinking-water features, 97.1 percent, against Lagos's 60 and Addis Ababa's 5. The schema attributes Nairobi's count to community water-point mapping projects rather than decorative fountains, and most of the 2,174 are unnamed tap points with a dense Kibera cluster. All three boundaries are admin_level 4 areas that reach past the built-up core, so the counts are province-wide rather than downtown-only."}}, {"@type": "Question", "name": "Why are the bookcase and bike repair counts zero?", "acceptedAnswer": {"@type": "Answer", "text": "The zeros are real results, not missing data: the schema states that no public_bookcase is mapped anywhere in the three boundaries, and bicycle_repair_station appears exactly once, at a Nairobi bike shop (node 12243521973). Whether a zero column reflects a tagging gap or an infrastructure gap is a fieldwork question the file cannot answer. Six files in the catalog's civic series count bookcases, and this is the only one where the whole column reads zero; the EU file's Amsterdam also reads 0 while Berlin in the same file reads 114."}}, {"@type": "Question", "name": "How were the counts taken and verified?", "acceptedAnswer": {"@type": "Answer", "text": "Each cell is an Overpass API out count query for one amenity type inside one verified boundary relation, run on 2026-09-10 against the maps.mail.ru mirror with base timestamp 2026-09-08T19:24:39Z. A parallel run on the kumi.systems mirror (base 2026-05-06, four months staler) matched 8 of 9 numbers exactly; Nairobi's drinking-water count was 2,173 on the staler base versus 2,174 here, one edit in the gap between the two mirrors. Nodes and ways are counted; relations are ignored, and none exist for these tags in the three areas."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://jayjex.github.io/data-vault/guides/"}, {"@type": "ListItem", "position": 3, "name": "Drinking water points in Lagos, Nairobi and Addis Ababa", "item": "https://jayjex.github.io/data-vault/guides/lagos-nairobi-addis-ababa-amenities.html"}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Drinking water points in Lagos, Nairobi and Addis Ababa, counted from OpenStreetMap</h1>
+  <p class="byline">Published 2026-09-10. Data source: <a href="../datasets/osm-africa-civic-amenities.html">OpenStreetMap Civic Amenities, Lagos-Nairobi-Addis Ababa, 2026-09</a>, nine counts from Overpass API <code>out count</code> queries on 2026-09-10, cross-checked on a second mirror with 8 of 9 numbers matching. Boundary details come from the <a href="../data/osm-africa-civic/schema.md">dataset schema</a>. This page documents the data.</p>
+
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>2,240</b> features in 9 city-amenity cells</span><span class="stat"><b>2,174</b> Nairobi drinking-water points, largest count in the file</span><span class="stat"><b>99.96</b> percent of the file is drinking water</span><span class="stat"><b>0</b> public bookcases in all three cities</span><span class="stat"><b>2,174x</b> span across nonzero cells, 1 to 2,174</span></div>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>Three cities, three amenity types, nine counts, and one amenity carrying nearly everything. OpenStreetMap contributors have mapped 2,240 public features inside the boundaries of Lagos, Nairobi, and Addis Ababa: 2,239 drinking water points, zero public bookcases, and one bike repair stand, a snapshot taken 2026-09-10 with a base timestamp of 2026-09-08T19:24:39Z. Nairobi holds 2,175 of the features, 97.1 percent of the file, and its drinking-water count alone (2,174) covers 97.1 percent of the fountains in all three cities combined.</p>
+    <p>The five zero cells and the single 1 are as informative as the thousands. This is the only file in the catalog's civic series where an entire amenity column reads zero in every city, and the schema states outright that the zeros are real results. Both tables below recompute from the <a href="../data/osm-africa-civic/africa-civic-amenities.csv">free nine-row CSV</a>, and the two SQL blocks at the end of this page return them verbatim.</p>
+  </section>
+
+  <section aria-label="All nine counts ranked by raw count">
+    <h2>All nine counts, ranked by raw count</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Nine city-amenity counts ranked by raw count"><table><thead><tr><th scope="col">#</th><th scope="col">City</th><th scope="col">Amenity</th><th scope="col">Count</th><th scope="col">Share of city</th></tr></thead><tbody>
+      <tr><td>1</td><td>Nairobi</td><td>Drinking water</td><td>2,174</td><td>100.0%</td></tr>
+      <tr><td>2</td><td>Lagos</td><td>Drinking water</td><td>60</td><td>100.0%</td></tr>
+      <tr><td>3</td><td>Addis Ababa</td><td>Drinking water</td><td>5</td><td>100.0%</td></tr>
+      <tr><td>4</td><td>Nairobi</td><td>Bike repair stations</td><td>1</td><td>0.0%</td></tr>
+      <tr><td>5</td><td>Addis Ababa</td><td>Bike repair stations</td><td>0</td><td>0.0%</td></tr>
+      <tr><td>6</td><td>Addis Ababa</td><td>Public bookcases</td><td>0</td><td>0.0%</td></tr>
+      <tr><td>7</td><td>Lagos</td><td>Bike repair stations</td><td>0</td><td>0.0%</td></tr>
+      <tr><td>8</td><td>Lagos</td><td>Public bookcases</td><td>0</td><td>0.0%</td></tr>
+      <tr><td>9</td><td>Nairobi</td><td>Public bookcases</td><td>0</td><td>0.0%</td></tr>
+    </tbody></table></div>
+    <p>Drinking water takes the top three rows, and every nonzero cell's share of its city rounds to 100 percent. Per city, the totals are Nairobi 2,175 (97.1 percent of the file), Lagos 60 (2.7), and Addis Ababa 5 (0.2). The theme totals run 2,239 fountains (99.96 percent of the file), 1 repair stand (0.04), and 0 bookcases. The median count across the nine cells is 0, because 5 of the 9 cells hold zero, and the largest-to-smallest span across nonzero cells is 2,174 to 1.</p>
+  </section>
+
+  <section aria-label="The zero columns and the one repair stand">
+    <h2>The zero columns and the one repair stand</h2>
+    <p>Zeros in a count table can mean two things: nobody mapped the thing, or nobody mapped the tag. The schema answers for the bookcase column: no <code>public_bookcase</code> is mapped anywhere in the three boundaries. For the repair column, exactly one <code>bicycle_repair_station</code> exists, gitonga bicycle services (node 12243521973, -1.3111768, 36.8686335), a bike shop and the county's only mapped stand. Whether the zeros reflect a tagging gap or an infrastructure gap is a fieldwork question the file cannot answer.</p>
+    <p>Context from the rest of the series sharpens the picture. Six files in the catalog's civic series count public bookcases, and every one of the other five has at least one nonzero cell: New York City 221 in the US file, Berlin 114 and Paris 165 in the EU file, Tokyo 3 in the Asia file, S&atilde;o Paulo 4 in the Latin America file, Istanbul 1 in the MENA file. Amsterdam reads 0 bookcases in the EU file while Berlin in the same file reads 114, so a zero sits next to a busy column even inside one region. Africa's column stays zero end to end.</p>
+    <p>The drinking-water cells carry their own texture. Lagos's 60 fountains sit mostly in one branded &ldquo;Clean Water&rdquo; cluster around 6.494-6.495 N, 3.388 E, including node 7376214198 and a second tap at 7376214199. Nairobi's 2,174 are mostly unnamed tap points with a dense Kibera cluster around -1.31, 36.79, including the Kibera Water &amp; Sanitation Project (node 612007474); the schema attributes the count to community water-point mapping projects rather than decorative fountains. Addis Ababa holds exactly 5 drinking-water features in the whole city, among them Esa bling (node 6665462785) and Minch water filters (node 10800986807).</p>
+  </section>
+
+  <section aria-label="Three boundaries, one admin level">
+    <h2>Three boundaries, one admin level</h2>
+    <p>Where the Sydney-Melbourne-Auckland file counts three different kinds of area, this file's three boundaries are all the same kind, and the schema says so. Lagos counts run inside R3718182, Lagos State (admin_level 4), whose built-up core matches the city but which also includes Epe, Ikorodu, and Badagry. Nairobi counts run inside R3492709, Nairobi County (admin_level 4), which covers the whole pre-2010 county rather than the old city council boundary. Addis Ababa counts run inside R1707699, the city administration itself, because Addis Ababa is a chartered city, so the administration is the city.</p>
+    <p>Two boundary picks deserve the detail. Nominatim's top hit for &ldquo;Lagos&rdquo; is a city place node (27565124), not an area, so the counts use Lagos State, and the schema flags that the numbers are therefore province-wide rather than downtown-only. All three relations carry Overpass areas directly, with no district-child fallback needed, which the schema contrasts with Mumbai in the MENA batch. Read the counts as OpenStreetMap coverage inside these admin areas: exact for what was mapped on the snapshot date, estimates for what stands on the ground.</p>
+  </section>
+
+  <section aria-label="Where Nairobi stands across the series">
+    <h2>Where Nairobi stands across the series</h2>
+    <p>Cross-file, Nairobi's 2,174 drinking-water points rank second among single-city counts in the catalog's civic series. Sydney holds the top count at 2,479 in the Oceania file, and Nairobi leads Tokyo (2,163) and Madrid (2,058). The schema still describes Nairobi's 2,174 as the largest single-city drinking-water count in the catalog's OSM civic series; the Oceania batch added the same day carries the higher Sydney figure, and this page reports both numbers.</p>
+    <p>The comparison holds within a theme on purpose. This file counts fountains, bookcases, and repair stands; the Oceania and US2 files count fountains, toilets, and benches, so a bench-to-fountain ratio does not transfer across files. What does transfer is the drinking-water column, which every file in the series measures with the same <code>amenity=drinking_water</code> tag.</p>
+  </section>
+
+  <section aria-label="Methodology">
+    <h2>Methodology: two mirrors, four months apart</h2>
+    <p>The source file is the nine-row <a href="../data/osm-africa-civic/africa-civic-amenities.csv">africa-civic-amenities.csv</a> (ODbL, &copy; OpenStreetMap contributors). Each cell is an Overpass API <code>out count</code> query for one amenity type inside one city area, counting nodes and ways together; relations are ignored, and none exist for these tags in the three areas. City areas were resolved through Nominatim relations and passed to Overpass as 3600000000-offset area IDs.</p>
+    <p>The primary run used the maps.mail.ru mirror (keyless, base timestamp 2026-09-08T19:24:39Z) on 2026-09-10. A parallel count run on the kumi.systems mirror (base timestamp 2026-05-06, four months staler) matched 8 of 9 numbers exactly: Lagos 60 / 0 / 0 and Addis Ababa 5 / 0 / 0 identical, Nairobi's repair stand 1. Nairobi's drinking-water count came back 2,173 on the staler base against 2,174 here, one edit in the gap between the two mirrors.</p>
+    <p>Counts are a snapshot, OSM moves daily, and the three admin_level 4 boundaries reach past the built-up cores, so treat the numbers as province-wide coverage inside the mapped boundaries. The bookcase and repair themes sit on a much smaller mapping base in this region than the bench and toilet themes of the US files, which is why this page compares within a theme across files and keeps ratios out.</p>
+  </section>
+
+  <section aria-label="Recompute the boards yourself">
+    <h2>Recompute the tables yourself</h2>
+    <p>Load the CSV into SQLite as <code>civic</code>, three columns per row. The first block returns the raw board:</p>
+    <pre><code>-- SQLite: all nine city-amenity counts, ranked by raw count
+CREATE TABLE civic (city TEXT, theme TEXT, count INT);
+.import --skip 1 africa-civic-amenities.csv civic
+
+SELECT rn, city, theme, count, share_of_city
+FROM (SELECT city, theme, count,
+             ROUND(count * 100.0 / SUM(count) OVER (PARTITION BY city), 1) AS share_of_city,
+             ROW_NUMBER() OVER (ORDER BY count DESC, city, theme) AS rn
+      FROM civic)
+ORDER BY rn;
+-- Rows: 1 Nairobi water fountains 2174 100.0,
+-- 2 Lagos water fountains 60 100.0,
+-- 3 Addis Ababa water fountains 5 100.0,
+-- 4 Nairobi bike repair stations 1 0.0,
+-- 5 Addis Ababa bike repair stations 0 0.0,
+-- 6 Addis Ababa public bookcases 0 0.0,
+-- 7 Lagos bike repair stations 0 0.0,
+-- 8 Lagos public bookcases 0 0.0,
+-- 9 Nairobi public bookcases 0 0.0.</code></pre>
+    <p>The second block returns the file's shape: theme totals, Nairobi's share, the median, the zero-cell count, and the span across nonzero cells, then per-city totals:</p>
+    <pre><code>-- SQLite: shape of the file
+WITH r AS (SELECT count AS v, ROW_NUMBER() OVER (ORDER BY count) AS rn,
+                  COUNT(*) OVER () AS n FROM civic),
+     t AS (SELECT theme, SUM(count) AS n FROM civic GROUP BY theme),
+     c2 AS (SELECT city, SUM(count) AS n FROM civic GROUP BY city)
+SELECT
+  (SELECT SUM(v) FROM r) AS features,
+  (SELECT n FROM t WHERE theme = 'water fountains') AS fountains,
+  (SELECT n FROM t WHERE theme = 'public bookcases') AS bookcases,
+  (SELECT n FROM t WHERE theme = 'bike repair stations') AS repair_stands,
+  (SELECT n FROM c2 WHERE city = 'Nairobi') AS nairobi_total,
+  (SELECT ROUND(n * 100.0 / (SELECT SUM(n) FROM c2), 1) FROM c2
+   WHERE city = 'Nairobi') AS nairobi_share,
+  (SELECT v FROM r WHERE rn = (n+1)/2) AS median_count,
+  (SELECT SUM(CASE WHEN v = 0 THEN 1 ELSE 0 END) FROM r) AS zero_cells,
+  (SELECT MAX(v) FROM r) AS largest_count,
+  (SELECT ROUND(MAX(v) * 1.0 / MIN(v), 1) FROM r WHERE v > 0) AS largest_over_floor;
+-- 2240 / 2239 / 0 / 1 / 2175 / 97.1 / 0 / 5 / 2174 / 2174.0.
+
+-- per-city totals and the drinking-water share
+SELECT city, SUM(count) AS city_total,
+       ROUND((SELECT count FROM civic WHERE city = c.city AND theme = 'water fountains')
+             * 100.0 / SUM(count), 1) AS fountain_share
+FROM civic c
+GROUP BY city
+ORDER BY city_total DESC;
+-- Rows: Nairobi 2175 100.0,
+-- Lagos 60 100.0,
+-- Addis Ababa 5 100.0.</code></pre>
+    <p>Run in one session, both blocks return exactly the rows quoted in the comments. The shares round to 100.0 for every nonzero fountain cell because each city's file is, to one decimal, all fountains.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>Lagos, Nairobi and Addis Ababa counts: questions</h2>
+    <dl>
+      <dt>Which of the three cities has the most drinking water points?</dt>
+      <dd>Nairobi on raw counts: 2,174 of the file's 2,239 drinking-water features, 97.1 percent, against Lagos's 60 and Addis Ababa's 5. The schema attributes Nairobi's count to community water-point mapping projects rather than decorative fountains, and most of the 2,174 are unnamed tap points with a dense Kibera cluster. All three boundaries are admin_level 4 areas that reach past the built-up core, so the counts are province-wide rather than downtown-only.</dd>
+      <dt>Why are the bookcase and bike repair counts zero?</dt>
+      <dd>The zeros are real results, not missing data: the schema states that no public_bookcase is mapped anywhere in the three boundaries, and bicycle_repair_station appears exactly once, at a Nairobi bike shop (node 12243521973). Whether a zero column reflects a tagging gap or an infrastructure gap is a fieldwork question the file cannot answer. Six files in the catalog's civic series count bookcases, and this is the only one where the whole column reads zero; the EU file's Amsterdam also reads 0 while Berlin in the same file reads 114.</dd>
+      <dt>How were the counts taken and verified?</dt>
+      <dd>Each cell is an Overpass API out count query for one amenity type inside one verified boundary relation, run on 2026-09-10 against the maps.mail.ru mirror with base timestamp 2026-09-08T19:24:39Z. A parallel run on the kumi.systems mirror (base 2026-05-06, four months staler) matched 8 of 9 numbers exactly; Nairobi's drinking-water count was 2,173 on the staler base versus 2,174 here, one edit in the gap between the two mirrors. Nodes and ways are counted; relations are ignored, and none exist for these tags in the three areas.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <div class="btnrow">
+      <a class="btn" href="../data/osm-africa-civic/africa-civic-amenities.csv" download>Download the nine-row CSV (free, ODbL)</a>
+      <a class="btn-ghost btn" href="../datasets/osm-africa-civic-amenities.html">Open the dataset page</a>
+    </div>
+    <p class="btn-note">The CSV carries one row per city-amenity pair with the ODbL license line verbatim, and the <a href="../data/osm-africa-civic/schema.md">schema page</a> documents the boundary relations, the mirror cross-check, and the example nodes. Related guides on this site: the <a href="civic-amenities-per-capita.html">per-capita counts for New York, Chicago and Seattle</a>, the <a href="sydney-melbourne-auckland-amenities.html">Sydney, Melbourne and Auckland counts</a>, and the <a href="mena-city-amenities-guide.html">Istanbul, Cairo and Mumbai counts</a>. Off the data lane, the <a href="../free-printables-index.html">free printables index</a> holds 223 printable trackers, planners, and worksheets.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

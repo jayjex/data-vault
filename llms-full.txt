@@ -1,0 +1,1018 @@
+# Data Vault — llms-full.txt
+
+> Sample-first data catalog by Matchbook Labs. Free CSV/JSON samples for every dataset; full packs sold via Getly.
+
+Index (llms.txt): https://jayjex.github.io/data-vault/llms.txt
+Catalog (start here): https://jayjex.github.io/data-vault/catalog.json
+Base URL: https://jayjex.github.io/data-vault/
+Generated: 2026-09-11
+Scope: README + 10 most-referenced dataset pages + 3 newest guides + 12-DOI catalog block, converted to markdown. Tables and numbers are verbatim from the live pages; each section lists its canonical source URL. Full guide set: https://jayjex.github.io/data-vault/guides/ · Full dataset set: https://jayjex.github.io/data-vault/datasets/
+
+## Contents
+- [README](#readme)
+- [HUD Fair Market Rents FY2026 (hud-fmr-2026)](#hud-fair-market-rents-fy2026-hud-fmr-2026)
+- [NFL Games & Betting Lines 1999-2026 (nfl-games)](#nfl-games-betting-lines-1999-2026-nfl-games)
+- [Airbnb Listings, 6 US Cities (airbnb-six-cities)](#airbnb-listings-6-us-cities-airbnb-six-cities)
+- [HUD Fair Market Rents FY2027 (hud-fmr-2027)](#hud-fair-market-rents-fy2027-hud-fmr-2027)
+- [HUD Fair Market Rents FY2027 by ZIP Code (hud-fmr-by-zip-2027)](#hud-fair-market-rents-fy2027-by-zip-code-hud-fmr-by-zip-2027)
+- [Superteam Earn Live Listings (earn-bounties)](#superteam-earn-live-listings-earn-bounties)
+- [HUD FMR FY2026 by County: Completeness & Spread (hud-fmr-county-2026)](#hud-fmr-fy2026-by-county-completeness-spread-hud-fmr-county-2026)
+- [Web Scraping Script Pack (scraper-pack)](#web-scraping-script-pack-scraper-pack)
+- [HUD Fair Market Rents FY2027, Top-50 Metro Areas (hud-fmr-metro-2027)](#hud-fair-market-rents-fy2027-top-50-metro-areas-hud-fmr-metro-2027)
+- [World Bank Population, G20 Countries + EU27 (worldbank-g20-population)](#world-bank-population-g20-countries-eu27-worldbank-g20-population)
+- [Guide: ZIP prefix geography: what the first two digits of a ZIP code say about rent](#guide-zip-prefix-geography-what-the-first-two-digits-of-a-zip-code-say-about-rent)
+- [Guide: Public bookcase, drinking water fountain, and bike repair station maps: 19 cities worldwide](#guide-public-bookcase-drinking-water-fountain-and-bike-repair-station-maps-19-cities-worldwide)
+- [Guide: Drinking water points in Tokyo, Jakarta and Seoul, counted from OpenStreetMap](#guide-drinking-water-points-in-tokyo-jakarta-and-seoul-counted-from-openstreetmap)
+- [Dataset DOIs — Zenodo DOI catalog (12 DOIs)](#dataset-dois-zenodo-doi-catalog-12-dois)
+
+---
+
+## README
+
+Source: https://github.com/jayjex/data-vault
+
+# data-vault
+
+Sample-first data catalog. Free samples for every dataset, machine-readable for agents and scripts, live at **https://jayjex.github.io/data-vault/**
+
+Every pack previews on the page: real rows, documented schema, no email wall. Scripts and agents can skip the browser and read `catalog.json` instead. Full packs ship through [Getly](https://www.getly.store/store/matchbook-labs-mtrfh66f).
+
+## Datasets
+
+| slug | name | rows | niche | sample | full data |
+|---|---|---|---|---|---|
+| `nfl-games` | NFL Games & Betting Lines 1999–2026 | 7,548 rows | sports | [CSV](https://jayjex.github.io/data-vault/data/nfl-games/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/nfl-games/sample.json) | [Getly](https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtrfvdt7) |
+| `hud-fmr-2026` | HUD Fair Market Rents FY2026 | 51,895 rows | gov-data | [CSV](https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.json) | [coming](https://www.getly.store/store/matchbook-labs-mtrfh66f) |
+| `airbnb-six-cities` | Airbnb Listings, 6 US Cities | 90,169 rows | real-estate | [CSV](https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.json) | [Getly](https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtrfuvf3) |
+| `earn-bounties` | Superteam Earn Live Listings | 28 listings | ai-agents | [CSV](https://jayjex.github.io/data-vault/data/earn-bounties/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/earn-bounties/sample.json) | [Getly](https://www.getly.store/product/superteam-earn-28-live-listings-dataset-186-reverse-engineered-api-routes-mtrfumk0) |
+| `scraper-pack` | Web Scraping Script Pack | 10 scripts | dev-tools | [JSON](https://jayjex.github.io/data-vault/data/scraper-pack/sample.json) | [Getly](https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtrfwfcd) |
+| `printable-engineering-bundle` | Printable Engineering Bundle | 120 pages + 5 sheets | printables | [index](https://jayjex.github.io/data-vault/free-printables-index.html) | [Getly](https://www.getly.store/store/matchbook-labs-mtrfh66f) |
+
+Full datasets are **not** in this repo. The repo carries samples only (first 10–25 rows per table, plus small complete aggregate tables). Total data volume: under 100 KB.
+
+## Agent access
+
+Start from the catalog, then fetch samples:
+
+```bash
+# machine-readable index of every dataset
+curl -s https://jayjex.github.io/data-vault/catalog.json | jq '.datasets[] | {slug, niche, rows: .stats.rows}'
+
+# schema + first records of one pack
+curl -s https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.json | jq '.columns, .records[0]'
+```
+
+Endpoints:
+
+- `/catalog.json`: index of slugs, niches, stats, sample URLs, full-data links
+- `/data/<slug>/sample.json`: `{slug, name, columns[], row_count, records[]}`
+- `/data/<slug>/sample.csv`: same rows as CSV
+- `/llms.txt`: plain-text catalog for LLM crawlers
+- `/agents/`: docs for agent developers
+- `/sitemap.xml`, `/robots.txt`
+
+The repo is MCP-ready by convention: `catalog.json` is the discovery document and every `sample.json` maps to a read-only resource. A dedicated MCP server is planned as phase 2.
+
+## Pages
+
+- `index.html`: catalog with niche filters (sports, real-estate, gov-data, ai-agents, dev-tools)
+- `datasets/<slug>.html`: per-dataset page, description + stats + preview table + sample download + full-data link
+- `agents/index.html`: endpoint docs + worked examples
+
+Static site, vanilla HTML/CSS/JS, no build step. To preview locally: `python3 -m http.server` and open `http://localhost:8000`.
+
+## License
+
+License: CC BY 4.0 for samples, full data licensed per purchase. Upstream sources credited per dataset page: nflverse (CC BY 4.0), HUD (public domain), Inside Airbnb (CC BY 4.0), superteam.fun (harvested API data). If you republish samples, credit "Data Vault (jayjex.github.io/data-vault), CC BY 4.0" plus the upstream source.
+
+---
+
+Data Vault is a Matchbook Labs project · [github.com/jayjex](https://github.com/jayjex)
+
+## HUD Fair Market Rents FY2026 (hud-fmr-2026)
+
+Source: https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html
+
+**51,895** rows · **3** tables · FY2026 · **free** full data
+
+HUD's official FY2026 Fair Market Rent data, parsed into clean CSV. 51,895 ZIP-level rows with rents for studios through 4-bedroom units, plus metro status, area name, and state. Every table covers five bedroom sizes, 0BR through 4BR.
+
+Three tables. fmr-by-zip-2026.csv has one row per ZIP. fmr-by-county-2026.csv has 3,229 county rows with medians and maxes per bedroom size. state-summary.csv has 52 rows with the highest- and lowest-rent county per state.
+
+Use it to screen rental markets, check voucher rent ceilings by ZIP, benchmark asking rents against HUD standards, or join against your own portfolio. New to FMRs? Read [HUD fair market rent data, explained](https://jayjex.github.io/data-vault/guides/hud-rent-data-explained.html) for the column-by-column breakdown, or [FMR lookup: one at a time or in bulk](https://jayjex.github.io/data-vault/guides/fmr-lookup-alternatives.html) for when a bulk file beats per-area lookups, or [SAFMR vs FMR](https://jayjex.github.io/data-vault/guides/safmr-vs-fmr.html) for how ZIP-level rents differ from metro-wide ones, or [HUD FMR by ZIP code](https://jayjex.github.io/data-vault/guides/hud-fmr-by-zip.html) for the ZIP-by-ZIP lookup workflow, or [HUD FMR by county](https://jayjex.github.io/data-vault/guides/hud-fmr-by-county.html) for the county-level rollup, or [HUD metro area list](https://jayjex.github.io/data-vault/guides/hud-metro-list.html) for the full FY2026 lineup of 649 metro FMR areas ranked by ZIP count, or [FMR vs actual rent](https://jayjex.github.io/data-vault/guides/fmr-vs-rent-actuals.html) for why HUD's benchmark and real asking rents sit apart, or [HUD FMR for Texas](https://jayjex.github.io/data-vault/guides/hud-fmr-texas.html) for one state pulled end to end, 3,247 ZIP rows and all.
+
+Source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release. US government data, public domain.
+
+Freshness check September 8, 2026: HUD has published no revised FY2026 or FY2027 files since the FY2027 release (the FY2027 revision link on huduser.gov still 404s), FY2027 rates take effect October 1, 2026, and no FY2028 release date has been announced.
+
+Public domain, US government data.
+
+Cite this dataset: Matchbook Labs (2026). *USA Rent Benchmark FY2026: Fair Market Rent by ZIP Code and County (HUD FMR)*. Zenodo. [DOI 10.5281/zenodo.22643149](https://doi.org/10.5281/zenodo.22643149).
+
+### Sample preview
+
+First 22 rows of 51,895. All 11 columns shown.
+
+| zip | hud_area_code | metro | area_name | state | fmr_0br | fmr_1br | fmr_2br | fmr_3br | fmr_4br |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 76437 | METRO10180M10180 | metro | Abilene, TX MSA | TX | 850 | 880 | 1090 | 1420 | 1710 |
+| 76443 | METRO10180M10180 | metro | Abilene, TX MSA | TX | 850 | 860 | 1090 | 1420 | 1710 |
+| 76464 | METRO10180M10180 | metro | Abilene, TX MSA | TX | 850 | 860 | 1090 | 1420 | 1710 |
+| 76469 | METRO10180M10180 | metro | Abilene, TX MSA | TX | 850 | 870 | 1090 | 1420 | 1710 |
+| 79501 | METRO10180M10180 | metro | Abilene, TX MSA | TX | 900 | 910 | 1140 | 1480 | 1780 |
+| 79503 | METRO10180M10180 | metro | Abilene, TX MSA | TX | 860 | 870 | 1090 | 1440 | 1710 |
+| 79504 | METRO10180M10180 | metro | Abilene, TX MSA | TX | 860 | 860 | 1090 | 1420 | 1710 |
+| 79508 | METRO10180M10180 | metro | Abilene, TX MSA | TX | 980 | 990 | 1240 | 1610 | 1930 |
+| 79510 | METRO10180M10180 | metro | Abilene, TX MSA | TX | 910 | 920 | 1150 | 1490 | 1790 |
+| 79519 | METRO10180M10180 | metro | Abilene, TX MSA | TX | 850 | 860 | 1090 | 1420 | 1710 |
+| 79520 | METRO10180M10180 | metro | Abilene, TX MSA | TX | 850 | 860 | 1090 | 1420 | 1710 |
+| 79521 | METRO10180M10180 | metro | Abilene, TX MSA | TX | 850 | 860 | 1090 | 1420 | 1710 |
+| 79525 | METRO10180M10180 | metro | Abilene, TX MSA | TX | 960 | 970 | 1210 | 1580 | 1890 |
+| 79530 | METRO10180M10180 | metro | Abilene, TX MSA | TX | 850 | 860 | 1090 | 1420 | 1710 |
+| 79533 | METRO10180M10180 | metro | Abilene, TX MSA | TX | 850 | 860 | 1090 | 1420 | 1710 |
+| 79536 | METRO10180M10180 | metro | Abilene, TX MSA | TX | 1160 | 1170 | 1460 | 1890 | 2270 |
+| 79541 | METRO10180M10180 | metro | Abilene, TX MSA | TX | 1020 | 1030 | 1300 | 1670 | 2010 |
+| 79553 | METRO10180M10180 | metro | Abilene, TX MSA | TX | 900 | 910 | 1140 | 1480 | 1770 |
+| 79560 | METRO10180M10180 | metro | Abilene, TX MSA | TX | 880 | 890 | 1120 | 1440 | 1740 |
+| 79561 | METRO10180M10180 | metro | Abilene, TX MSA | TX | 850 | 860 | 1090 | 1420 | 1710 |
+| 79562 | METRO10180M10180 | metro | Abilene, TX MSA | TX | 1500 | 1520 | 1900 | 2460 | 2960 |
+| 79563 | METRO10180M10180 | metro | Abilene, TX MSA | TX | 910 | 920 | 1150 | 1490 | 1790 |
+
+### Sample files
+
+- [sample.csv](https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.csv) · 22 rows · 1.7 KB
+- [sample.json](https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.json) · 22 records · 5.6 KB
+- [state-summary.csv](https://jayjex.github.io/data-vault/data/hud-fmr-2026/state-summary.csv) · 52 rows, complete aggregate table · 3.9 KB
+- [Download sample (CSV)](https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.csv) [All files on Zenodo (free)](https://doi.org/10.5281/zenodo.22643149)
+
+The full files download free from Zenodo: fmr-by-zip-2026.csv with all 51,895 rows, fmr-by-county-2026.csv with 3,229 county rows, state-summary.csv, the data dictionary, and the build script (CC BY 4.0 repackaging of public-domain HUD data, no attribution required to republish the rows). Republishing the rows? The [dataset license guide](https://jayjex.github.io/data-vault/guides/dataset-license-guide.html) covers the public domain terms and the DOI cite format.
+
+## NFL Games & Betting Lines 1999-2026 (nfl-games)
+
+Source: https://jayjex.github.io/data-vault/datasets/nfl-games.html
+
+**7,548** rows · **3** tables · 2026-09-06 · **free** full data
+
+One row per game, 46 columns, 7,548 games from the 1999 season through the full 2026 schedule. Scores, closing spreads and totals, moneylines with odds, rest days, starting QBs, coaches, referees, stadium, roof, surface, and weather. Loads straight into pandas, Excel, or R.
+
+Three tables ship in the pack. games.csv has the game rows. team-records-by-season.csv has 861 rows of W/L/T, points for and against, ATS record, and over/under record per team per season. season-summaries.csv has 27 rows of scoring averages, home win rate, and favorite cover rate per season. The [games.csv column guide](https://jayjex.github.io/data-vault/guides/nfl-games-data-guide.html) walks through every column group, season coverage, and free MCP query examples. Deciding between raw nflverse downloads and this pack? The [nflverse vs preprocessed pack comparison](https://jayjex.github.io/data-vault/guides/nfl-data-alternative.html) lays out both routes. Opening the sample in a spreadsheet? The [Excel and Google Sheets import guide](https://jayjex.github.io/data-vault/guides/nfl-dataset-excel.html) walks the 22-row CSV step by step. Loading it in Python? The [pandas quickstart](https://jayjex.github.io/data-vault/guides/nfl-dataset-python.html) pulls the same sample straight from its URL and runs three small analyses. Calling live endpoints instead? The [requests examples for NFL APIs](https://jayjex.github.io/data-vault/guides/nfl-data-api-python.html) cover ESPN's scoreboard JSON and the nflverse release file, with the snapshot trade-off spelled out.
+
+Backtest a staking plan against 27 seasons of closing lines, prototype spread or total models with a clean train/test split across eras, or run historical queries like home-field advantage by decade. Spreads go back to 1999 (7,388 games), moneylines and odds to 2006 (5,407 games).
+
+Source: nflverse, CC BY 4.0. Snapshot taken 2026-09-06. The 2026 season appears as 272 scheduled games with no scores yet, so results run through the 2025 season. Team names are factual data; no logos or league marks included.
+
+Samples CC BY 4.0. Full pack: game data from nflverse, CC BY 4.0.
+
+Cite this dataset: Matchbook Labs (2026). *NFL Modern-Era Betting and Game Data 1999-2026: Scores, Spreads, Totals, Moneylines*. Zenodo. [DOI 10.5281/zenodo.22643177](https://doi.org/10.5281/zenodo.22643177).
+
+### Sample preview
+
+First 22 rows, 14 of 46 columns. Full schema in the sample download.
+
+| season | week | gameday | away_team | away_score | home_team | home_score | spread_line | total_line | away_moneyline | home_moneyline | roof | temp | stadium |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1999 | 1 | 1999-09-12 | MIN | 17 | ATL | 14 | -4 | 49 |  |  | dome |  | Georgia Dome |
+| 1999 | 1 | 1999-09-12 | KC | 17 | CHI | 20 | -3 | 38 |  |  | outdoors | 80 | Soldier Field |
+| 1999 | 1 | 1999-09-12 | PIT | 43 | CLE | 0 | -6 | 37 |  |  | outdoors | 78 | Cleveland Browns Stadium |
+| 1999 | 1 | 1999-09-12 | OAK | 24 | GB | 28 | 9 | 43 |  |  | outdoors | 67 | Lambeau Field |
+| 1999 | 1 | 1999-09-12 | BUF | 14 | IND | 31 | -3 | 45.5 |  |  | dome |  | RCA Dome |
+| 1999 | 1 | 1999-09-12 | SF | 3 | JAX | 41 | 5.5 | 49 |  |  | outdoors | 76 | Alltel Stadium |
+| 1999 | 1 | 1999-09-12 | CAR | 10 | NO | 19 | 3.5 | 38 |  |  | dome |  | Louisiana Superdome |
+| 1999 | 1 | 1999-09-12 | NE | 30 | NYJ | 28 | 7 | 44.5 |  |  | outdoors | 73 | Giants Stadium |
+| 1999 | 1 | 1999-09-12 | ARI | 25 | PHI | 24 | -3 | 37 |  |  | outdoors | 75 | Veterans Stadium |
+| 1999 | 1 | 1999-09-12 | DET | 28 | SEA | 20 | 9.5 | 42 |  |  | dome |  | Seattle Kingdome |
+| 1999 | 1 | 1999-09-12 | BAL | 10 | STL | 27 | 0 | 39 |  |  | dome |  | TWA Dome |
+| 1999 | 1 | 1999-09-12 | NYG | 17 | TB | 13 | 5.5 | 37.5 |  |  | outdoors | 88 | Raymond James Stadium |
+| 1999 | 1 | 1999-09-12 | CIN | 35 | TEN | 36 | 9 | 42 |  |  | outdoors | 84 | Adelphia Coliseum |
+| 1999 | 1 | 1999-09-12 | DAL | 41 | WAS | 35 | 2.5 | 42 |  |  | outdoors | 71 | Jack Kent Cooke Stadium |
+| 1999 | 1 | 1999-09-13 | MIA | 38 | DEN | 21 | 6 | 43 |  |  | outdoors | 60 | Mile High Stadium |
+| 1999 | 2 | 1999-09-19 | PIT | 23 | BAL | 20 | -2.5 | 38 |  |  | outdoors | 74 | PSINet Stadium |
+| 1999 | 2 | 1999-09-19 | NYJ | 3 | BUF | 17 | 4 | 42 |  |  | outdoors | 68 | Ralph Wilson Stadium |
+| 1999 | 2 | 1999-09-19 | JAX | 22 | CAR | 20 | -9.5 | 44 |  |  | outdoors | 74 | Ericsson Stadium |
+| 1999 | 2 | 1999-09-19 | SEA | 14 | CHI | 13 | -3.5 | 39 |  |  | outdoors | 76 | Soldier Field |
+| 1999 | 2 | 1999-09-19 | SD | 34 | CIN | 7 | 1 | 40.5 |  |  | outdoors | 79 | Cinergy Field |
+| 1999 | 2 | 1999-09-19 | GB | 15 | DET | 23 | -6.5 | 43 |  |  | dome |  | Pontiac Silverdome |
+| 1999 | 2 | 1999-09-19 | DEN | 10 | KC | 26 | -3.5 | 40.5 |  |  | outdoors | 69 | Arrowhead Stadium |
+
+### Sample files
+
+- [sample.csv](https://jayjex.github.io/data-vault/data/nfl-games/sample.csv) · 22 rows · 6.1 KB
+- [sample.json](https://jayjex.github.io/data-vault/data/nfl-games/sample.json) · 22 records · 24.8 KB
+- [season-summaries.csv](https://jayjex.github.io/data-vault/data/nfl-games/season-summaries.csv) · 27 rows, complete aggregate table · 2.1 KB
+- [Download sample (CSV)](https://jayjex.github.io/data-vault/data/nfl-games/sample.csv) [All files on Zenodo (free)](https://doi.org/10.5281/zenodo.22643177)
+
+The full pack downloads free from Zenodo (CC BY 4.0, data from nflverse): games.csv with all 7,548 rows, team-records-by-season.csv, season-summaries.csv, the data dictionary, and the build script. Building on the data and need the license picture? The [dataset license guide](https://jayjex.github.io/data-vault/guides/dataset-license-guide.html) explains the CC BY 4.0 line this pack carries.
+
+## Airbnb Listings, 6 US Cities (airbnb-six-cities)
+
+Source: https://jayjex.github.io/data-vault/datasets/airbnb-six-cities.html
+
+**90,169** rows · **8** tables · 2026-08-10 · **free** full data
+
+Six US short-term-rental markets in one normalized schema, 12 columns per listing: price, room type, neighborhood, location (blurred to about 11 meters), minimum nights, availability for the next 365 days, review count and rate, and last review date. Austin, Nashville, Denver, New York City, Las Vegas (Clark County), and San Diego, snapshot dates June through August 2026.
+
+cities-index.csv gives one row per city with row counts, median nightly price, and room-type mix, so you can compare markets before opening the big files. New York City alone contributes 30,234 rows; Austin's median sits at USD 217 a night.
+
+Built from Inside Airbnb summary data. Host names and exact coordinates stripped, prices cleaned from the source text, one row per listing per city.
+
+Source: Inside Airbnb, CC BY 4.0. Snapshots: Austin 2026-06-22, Nashville 2026-06-26, Denver 2026-06-30, Las Vegas 2026-06-27, San Diego 2026-06-27, New York City 2026-08-10.
+
+Samples and full pack: data from Inside Airbnb, CC BY 4.0.
+
+Cite this dataset: Matchbook Labs (2026). *Six US Short-Term Rental Markets: Inside Airbnb Summary Listings, 90,169 Rows*. Zenodo. [DOI 10.5281/zenodo.22643189](https://doi.org/10.5281/zenodo.22643189).
+
+### Sample preview
+
+First 20 rows (Austin). All 12 columns shown.
+
+| id | name | neighbourhood | latitude | longitude | room_type | price | minimum_nights | availability_365 | number_of_reviews | reviews_per_month | last_review |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 934859141300145599 | An Exquisite Rooftop Studio | 78757 | 30.3636 | -97.7262 | Entire home/apt | 61.00 | 3 | 364 | 0 |  |  |
+| 944156894640610027 | Tarrytown bungalow | 78703 | 30.2988 | -97.7803 | Private room | 149.00 | 1 | 360 | 4 | 0.12 | 2025-10-18 |
+| 1634902892490996951 | Central East Gem near running trail | 78702 | 30.2518 | -97.7284 | Entire home/apt | 505.00 | 2 | 365 | 0 |  |  |
+| 1308737991593278409 | Empire | 78704 | 30.2321 | -97.7904 | Entire home/apt | 593.00 | 1 | 339 | 41 | 2.39 | 2026-06-20 |
+| 574582741829434703 | Galaxy by AvantStay \| Luxury Amenities in Austin | 78701 | 30.2554 | -97.7383 | Entire home/apt | 278.67 | 2 | 357 | 31 | 0.60 | 2026-05-15 |
+| 1228303755231142321 | East Side Green Home | 78702 | 30.2713 | -97.7005 | Entire home/apt | 571.00 | 2 | 270 | 1 | 0.05 | 2024-10-13 |
+| 1629102399632790498 | Sweet suite in Westgate - garden views | 78745 | 30.2251 | -97.7921 | Entire home/apt | 51.01 | 30 | 348 | 0 |  |  |
+| 745531245085063603 | Book Now for Graduation/Memorial Day! \|15 minSoCo | 78744 | 30.1913 | -97.7370 | Entire home/apt | 300.70 | 1 | 10 | 75 | 1.71 | 2026-06-14 |
+| 889831767371295908 | ATX Historic Gem \| Near DT \| 3 Suites for 10 | 78701 | 30.2776 | -97.7470 | Entire home/apt | 330.50 | 2 | 300 | 4 | 0.13 | 2026-03-18 |
+| 1159629773941508075 | Travis heights 3/2 condo! 1 King, 1 full, 1 full | 78704 | 30.2508 | -97.7443 | Entire home/apt | 227.50 | 2 | 17 | 10 | 0.41 | 2025-10-19 |
+| 48867583 | Close to UT Austin + Rooftop Pool. Bar. Dining. | 78701 | 30.2687 | -97.7376 | Private room | 208.00 | 1 | 157 | 1382 | 21.75 | 2026-06-20 |
+| 642763279007300879 | Private East Austin guest suite w pool access | 78724 | 30.2775 | -97.6332 | Entire home/apt | 114.50 | 2 | 355 | 88 | 1.80 | 2026-05-17 |
+| 700669261299122407 | Luxury condo w/Balcony, Rooftop Pool, Rainey St | 78701 | 30.2565 | -97.7388 | Entire home/apt | 212.50 | 2 | 61 | 149 | 3.23 | 2026-06-21 |
+| 1690760048869752293 | Skyline in Hyde ~Two Rooftop Terraces~ Pool+Spa | 78751 | 30.3051 | -97.7198 | Entire home/apt | 1036.29 | 1 | 354 | 1 | 1.00 | 2026-05-24 |
+| 1585158603372219595 | Modern Private Room & Bath \| 10 Min to Airport | 78724 | 30.2779 | -97.6342 | Private room | 74.18 | 1 | 168 | 8 | 1.88 | 2026-06-19 |
+| 874172056663233580 | Heated Rooftop Pool \| Free Parking! \| Skyline View | 78701 | 30.2565 | -97.7388 | Entire home/apt | 264.92 | 1 | 362 | 197 | 5.13 | 2026-05-25 |
+| 1561640752414299136 | Steps From Campus & Red River Spots | 78705 | 30.2929 | -97.7252 | Private room | 36.03 | 30 | 89 | 0 |  |  |
+| 52444720 | EZ Camp7 at CampEZ in SxSouth Austin TX | 78745 | 30.2103 | -97.7716 | Entire home/apt | 27.50 | 2 | 90 | 33 | 0.58 | 2025-05-05 |
+| 711100790609865421 | Stylish Scandinavian house, 10min from downtown! | 78704 | 30.2311 | -97.7730 | Entire home/apt | 1230.67 | 3 | 263 | 1 | 0.02 | 2022-10-23 |
+| 1455784153994389864 | Casita Cactus \| Near Q2 & Domain \| WiFi + Pool | 78727 | 30.4327 | -97.7482 | Entire home/apt | 149.00 | 2 | 117 | 3 | 0.31 | 2026-05-18 |
+
+### Sample files
+
+- [sample.csv](https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.csv) · 20 rows, Austin · 2.6 KB
+- [sample.json](https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.json) · 20 records · 7.7 KB
+- [cities-index.csv](https://jayjex.github.io/data-vault/data/airbnb-six-cities/cities-index.csv) · 6 rows, complete per-city index · 1.1 KB
+- [Download sample (CSV)](https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.csv) [All files on Zenodo (free)](https://doi.org/10.5281/zenodo.22643189)
+
+The full pack downloads free from Zenodo (CC BY 4.0, data from Inside Airbnb): one listings CSV per city with all 90,169 rows, cities-index.csv, the data dictionary, and the normalize script. New here? Read the [Airbnb data download guide](https://jayjex.github.io/data-vault/guides/airbnb-data-guide.html) for column meanings, snapshot dates, and MCP queries, or open the [Airbnb data by city](https://jayjex.github.io/data-vault/guides/airbnb-data-by-city.html) view for per-city counts and medians. For the CC BY 4.0 terms and attribution format behind this pack, the [dataset license guide](https://jayjex.github.io/data-vault/guides/dataset-license-guide.html) has the details, and the [Airbnb price data exploration](https://jayjex.github.io/data-vault/guides/airbnb-price-data-exploration.html) guide shows the Austin file explored end to end: room-type medians, top ZIPs, percentiles, and outliers. For what those nightly prices mean against monthly rents, [Airbnb vs long-term rent](https://jayjex.github.io/data-vault/guides/airbnb-vs-long-term-rent.html) runs the same six-city medians through the nightly × 30 test against FMR and ACS benchmarks. Eight more markets ship as free per-city CSVs on the [Airbnb 8 more US cities](https://jayjex.github.io/data-vault/datasets/airbnb-eight-cities.html) page, same schema, June 2026 snapshots; [Airbnb nightly rates by US city](https://jayjex.github.io/data-vault/guides/airbnb-nightly-rates-by-city.html) reads those 8 files rate by rate, Portland 160 to Seattle 281.
+
+## HUD Fair Market Rents FY2027 (hud-fmr-2027)
+
+Source: https://jayjex.github.io/data-vault/datasets/hud-fmr-2027.html
+
+**51,871** ZIP rows · **3,229** counties · **52** states · **5** bedroom sizes
+
+The catalog's FY2027 entry for HUD fair market rents, effective October 1, 2026. The source workbooks are FY27_FMRs.xlsx for county-level values and fy2027_safmrs.xlsx for ZIP-level ones; parsed, they give 51,871 ZIP-level rows across 38,601 ZIP codes, 3,229 county rows, and 52 states and territories, ten columns with dollar rents for studios through 4 bedrooms. The national 2BR median across all rows is 1,190 dollars, and the 25th-to-75th percentile band runs 1,020 to 1,590.
+
+This page serves the free files directly: a 22-row ZIP sample (one HUD area block, Abilene, TX MSA) and the complete 52-row state summary. The summary shows the spread in one table: California tops the 2BR median at 2,600 dollars with a 5,260 ceiling in Santa Cruz-Watsonville ZIPs, Massachusetts follows at 2,550 and Hawaii at 2,535, while Arkansas and Mississippi tie for the cheapest mainland states at 960. Puerto Rico prices lower at 610. Texas carries the most ZIP rows of any state, 3,244.
+
+The full FY2027 CSVs (ZIP, county, state, plus the data dictionary and build script) download free from Zenodo under [DOI 10.5281/zenodo.22649503](https://doi.org/10.5281/zenodo.22649503), citable and without signup. For the files themselves, the [FY2027 ZIP dataset](https://jayjex.github.io/data-vault/datasets/hud-fmr-by-zip-2027.html) serves the whole 51,871-row file and the [FY2027 metro dataset](https://jayjex.github.io/data-vault/datasets/hud-fmr-metro-2027.html) rolls the ZIPs up to the 50 largest metro areas. What changed year over year is the subject of the [HUD FMR 2027 guide](https://jayjex.github.io/data-vault/guides/hud-fmr-2027.html): the median 2BR moved +3.30%, and the steepest jumps and cuts are ZIP-level.
+
+Source: US Department of Housing and Urban Development, FY2027 Fair Market Rent release, effective October 1, 2026. US government data, public domain; the Zenodo repackaging is CC BY 4.0. Data Vault is not affiliated with HUD.
+
+Cite this dataset: Matchbook Labs (2026). *US Fair Market Rents by ZIP Code — FY2027 (HUD)*. Zenodo. [DOI 10.5281/zenodo.22649503](https://doi.org/10.5281/zenodo.22649503).
+
+### The 52-row state summary, top and bottom
+
+First six and last six rows of state-summary.csv sorted by 2BR median, all columns straight from the file. The complete 52 rows download free below.
+
+| state | state_name | zip_count | fmr_2br_median | fmr_2br_min_zip | fmr_2br_max_zip |
+| --- | --- | --- | --- | --- | --- |
+| CA | California | 2605 | 2600 | 1040 | 5260 |
+| MA | Massachusetts | 767 | 2550 | 1440 | 4510 |
+| HI | Hawaii | 128 | 2535 | 1870 | 3810 |
+| DC | District of Columbia | 488 | 2400 | 1140 | 3660 |
+| NJ | New Jersey | 641 | 2390 | 1200 | 4190 |
+| RI | Rhode Island | 117 | 1940 | 1560 | 2820 |
+| WV | West Virginia | 1156 | 980 | 940 | 1610 |
+| KY | Kentucky | 1320 | 980 | 910 | 1980 |
+| OK | Oklahoma | 1086 | 970 | 920 | 1900 |
+| MS | Mississippi | 844 | 960 | 910 | 1930 |
+| AR | Arkansas | 989 | 960 | 910 | 1880 |
+| PR | Puerto Rico | 216 | 610 | 520 | 1060 |
+
+### Files
+
+- [sample.csv](https://jayjex.github.io/data-vault/data/hud-fmr-2027/sample.csv) · 22 rows, one HUD area block · 1.7 KB
+- [sample.json](https://jayjex.github.io/data-vault/data/hud-fmr-2027/sample.json) · 22 records, row_count 51,871 · 5.7 KB
+- [state-summary.csv](https://jayjex.github.io/data-vault/data/hud-fmr-2027/state-summary.csv) · 52 rows, complete aggregate · 4.0 KB
+- [All FY2027 CSVs on Zenodo (free)](https://doi.org/10.5281/zenodo.22649503) [Sample CSV first](https://jayjex.github.io/data-vault/data/hud-fmr-2027/sample.csv)
+
+The full files download free from Zenodo (CC BY 4.0 repackaging of public-domain HUD data, no attribution required to republish the rows). The [FY2027 ZIP dataset](https://jayjex.github.io/data-vault/datasets/hud-fmr-by-zip-2027.html) keeps the whole 51,871-row file and its integrity checks, the [FY2027 metro dataset](https://jayjex.github.io/data-vault/datasets/hud-fmr-metro-2027.html) covers the top-50 metro medians, the [county FY2026 dataset](https://jayjex.github.io/data-vault/datasets/hud-fmr-county-2026.html) and the [ZIP-level FY2026 dataset](https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html) cover the prior year. To read the data, the [most-affordable-ZIPs guide](https://jayjex.github.io/data-vault/guides/most-affordable-zips-rent-2027.html) ranks the cheapest mainland ZIPs, the [SQL guide](https://jayjex.github.io/data-vault/guides/hud-fmr-by-zip-sql.html) queries this exact file in DuckDB and SQLite, the [bedroom-size deltas guide](https://jayjex.github.io/data-vault/guides/hud-fmr-bedroom-deltas-2027.html) diffs the FY2026 and FY2027 medians, and the [FY2027 guide](https://jayjex.github.io/data-vault/guides/hud-fmr-2027.html) walks the year-over-year change. The rest of the catalog lives on the [portfolio page](https://jayjex.github.io/data-vault/portfolio.html).
+
+## HUD Fair Market Rents FY2027 by ZIP Code (hud-fmr-by-zip-2027)
+
+Source: https://jayjex.github.io/data-vault/datasets/hud-fmr-by-zip-2027.html
+
+**51,871** rows · **38,601** ZIPs · **10** columns · **4.3 MB** free
+
+FY2027 fair market rent for 51,871 ZIP rows across 38,601 ZIP codes, the way HUD publishes it: one row per ZIP per HUD area, ten columns with the area code, the metro or nonmetro flag, the area name, the state code, and dollar rents for studios through 4 bedrooms. Rates are effective October 1, 2026. The 27,288 metro rows and 24,583 nonmetro rows together span 2,600 HUD area codes (649 metro, 1,951 nonmetro) and 52 states and territories.
+
+The rent split worth knowing: with 2BR, the 25th percentile sits at 1,020 dollars, the median at 1,190 and the 75th at 1,590. The cheapest row is ZIP 00669 in Aguadilla, PR at 520 and the most expensive is ZIP 95060 in Santa Cruz-Watsonville, CA at 5,260. Texas carries more rows than any other state at 3,244, and the ten biggest states (Texas, California, Pennsylvania, New York, Illinois, Missouri, Ohio, Iowa, Michigan, Florida) together hold 21,379 of the 51,871 rows. State-level 2BR medians run from California at 2,600 down to Puerto Rico at 610.
+
+Integrity checks run at build time, all passing: zero malformed ZIP fields, zero empty or zero-valued rent cells, zero duplicate (zip, hud_area_code) keys, and zero rows where the 4BR rent is below the 2BR. The copy served here is byte-identical to the parsed source, confirmed by sha256, and 3,000 ZIP codes starting with 0 keep their leading zero. Full details live in [schema.md](https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/schema.md).
+
+Source: US Department of Housing and Urban Development, FY2027 Fair Market Rent release (FY27_FMRs.xlsx plus the FY2027 small-area FMR file), effective October 1, 2026. US government data, public domain.
+
+### Eight rows from the file
+
+Sample rows picked to show the range, one per ZIP across five states plus Puerto Rico. The 22-row sample starts in sample.csv.
+
+| zip | hud_area_code | metro | area_name | state | fmr_0br | fmr_1br | fmr_2br | fmr_3br | fmr_4br |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 76437 | METRO10180M10180 | metro | Abilene, TX MSA | TX | 910 | 920 | 1150 | 1490 | 1790 |
+| 10001 | METRO35620MM5600 | metro | New York, NY HUD Metro FMR Area | NY | 3890 | 4100 | 4460 | 5640 | 6190 |
+| 60601 | METRO16980M16980 | metro | Chicago-Joliet-Naperville, IL HUD Metro FMR Area | IL | 2520 | 2670 | 3020 | 3880 | 4440 |
+| 90001 | METRO31080MM4480 | metro | Los Angeles-Long Beach-Glendale, CA HUD Metro FMR Area | CA | 1690 | 1890 | 2330 | 2960 | 3310 |
+| 20001 | METRO47900M47900 | metro | Washington-Arlington-Alexandria, DC-VA-MD HUD Metro FMR Area | DC | 2970 | 3100 | 3430 | 4370 | 5150 |
+| 95060 | METRO42100M42100 | metro | Santa Cruz-Watsonville, CA MSA | CA | 3990 | 4190 | 5260 | 6840 | 7110 |
+| 00669 | NCNTY72923N72923 | nonmetro | Puerto Rico HUD Nonmetro Area | PR | 460 | 480 | 520 | 700 | 750 |
+| 76437 | NCNTY48133N48133 | nonmetro | Eastland County, TX | TX | 910 | 920 | 1150 | 1490 | 1790 |
+
+The last two rows make the multi-area point: ZIP 76437 carries a metro row and a nonmetro row with different area codes, which is why the file holds 51,871 rows for 38,601 ZIPs. 10,093 ZIPs split this way, capped at six rows for a single ZIP. Every row of one area carries the same rent values, so you can dedup on the zip and hud_area_code pair before per-ZIP lookups.
+
+### FMR by ZIP: questions
+
+Is the full FY2027 ZIP-level file free to download?
+      Yes. The CSV downloads straight from this page with no signup, and no cut-down version exists here: all 51,871 rows ship, zero empty cells and zero duplicate keys included. HUD publishes federal fair market rents as US government data, so the file is public domain and you can republish it or sell derived work without asking anyone.
+      Why does one ZIP code show up more than once in the file?
+      HUD's design, not a bug. 10,093 of the 38,601 ZIPs carry more than one row because metro and nonmetro coverage split the same ZIP between areas, and small-area county groups can add their own rows. ZIP 76437 in Texas, for example, holds a metro row for Abilene plus nonmetro rows for Eastland and Stephens counties, six rows total at most. Deduplicate on the zip and hud_area_code pair, or filter the metro flag, before per-ZIP lookups.
+      How do I query the file with SQL?
+      The file loads straight into DuckDB or SQLite. Texas carries the most rows at 3,244, the national 2BR median across all rows is 1,190 dollars, and a JOIN to the metro medians table attaches area rollups to ZIP rows. The SQL guide walks the percentile window function, the state ranking GROUP BY and the metro JOIN with copy-paste queries against this exact CSV.
+
+### Files
+
+- [fmr-by-zip-2027.csv](https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/fmr-by-zip-2027.csv) · 51,871 rows, the complete file · 4.3 MB
+- [sample.csv](https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/sample.csv) · 22 rows · 1.7 KB
+- [sample.json](https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/sample.json) · 22 records, row_count 51,871 · 5.6 KB
+- [schema.md](https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/schema.md) · column dictionary, coverage, integrity checks, caveats
+- [etl-stats.json](https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/etl-stats.json) · build statistics and reference numbers
+- [Download full CSV (free, 4.3 MB)](https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/fmr-by-zip-2027.csv) [Sample CSV first](https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/sample.csv)
+
+The full file downloads free: the source is HUD's FY2027 Fair Market Rent release, US government data in the public domain, so republished rows carry no attribution requirement. To work with it, the [SQL guide](https://jayjex.github.io/data-vault/guides/hud-fmr-by-zip-sql.html) queries this exact file in DuckDB and SQLite, and the [most-affordable-ZIPs guide](https://jayjex.github.io/data-vault/guides/most-affordable-zips-rent-2027.html) ranks the cheapest mainland ZIPs with Puerto Rico excluded; for the aggregates already rolled up, the [FY2027 metro dataset](https://jayjex.github.io/data-vault/datasets/hud-fmr-metro-2027.html) keeps 50 metro tables and the [county FY2026 dataset](https://jayjex.github.io/data-vault/datasets/hud-fmr-county-2026.html) covers counties from the prior year, and the [ZIP-level FY2026 dataset](https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html) holds the same ten-column layout one year back. The rest of the catalog lives on the [portfolio page](https://jayjex.github.io/data-vault/portfolio.html).
+
+## Superteam Earn Live Listings (earn-bounties)
+
+Source: https://jayjex.github.io/data-vault/datasets/earn-bounties.html
+
+**28** rows · **3** tables · 2026-09-04 · **one-time** full pack
+
+Superteam Earn is where the Solana ecosystem posts paid bounties and projects. This pack is a harvest of the live API from 2026-09-04: 28 open listings with full description HTML, including scopes and judging criteria that never appear in the public cards API.
+
+Alongside the listings: the raw paginated cards dump (51 rows, 17 unique listings after dedupe) and earn-api-endpoints.txt, a map of 186+ reverse-engineered routes covering listings, comments, submissions, and sponsor dashboard operations. The pack includes the undocumented /api/search/{title} endpoint that returns full description text, plus notes on the Privy passwordless auth flow.
+
+Built for bounty aggregators, notification bots, and agent tooling. Rewards in the sample run up to 8,000 USDG.
+
+Personal and commercial use. No resale of the files as-is.
+
+### Sample preview
+
+First 10 of 51 cards. The full pack carries complete card JSON and description text.
+
+| Title | Type | Reward | Token | Deadline | Status | Agent access | Sponsor | Submissions |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Create Content for Breakpoint 2026 | bounty | 8,000 | USDG | 2026-09-07 | OPEN | HUMAN_ONLY | Superteam Germany | 76 |
+| Solana Summit Serbia Content Bounty | bounty | 10,000 | USDG | 2026-09-10 | OPEN | HUMAN_ONLY | Superteam Balkan | 51 |
+| Manual QA Tester - Sana.run Trading Terminal | project | 50-250 | USDC | 2026-09-04 | OPEN | HUMAN_ONLY | Sanafi Onchain | 58 |
+| Create The Best X Thread About My Crypto Casino | bounty | 1,500 | USDC | 2026-09-04 | OPEN | HUMAN_ONLY | My Crypto Casino | 89 |
+| Post: Why Flint Beats Building Your Own Prop AMM | bounty | 1,500 | USDC | 2026-09-07 | OPEN | HUMAN_ONLY | Flint | 214 |
+| CastleDAO Content Challenge | bounty | 1,000 | USDG | 2026-09-08 | OPEN | HUMAN_ONLY | Superteam Ireland | 97 |
+| Manic Bug Bounty | bounty | 1,000 | USDC | 2026-09-09 | OPEN | HUMAN_ONLY | Manic Trade | 54 |
+| Write an X Thread Explaining Aeonian Trade & Introdu | bounty | 500 | USDC | 2026-09-09 | OPEN | HUMAN_ONLY | Aeonian | 82 |
+| 🟢 ZNS Solana Creator Challenge | bounty | 500 | USDC | 2026-09-09 | OPEN | AGENT_ALLOWED | ZNS Connect | 17 |
+| Create a Video About Swap.io | bounty | 500 | USDC | 2026-09-13 | OPEN | HUMAN_ONLY | swap.io | 0 |
+
+### Sample files
+
+- [sample.csv](https://jayjex.github.io/data-vault/data/earn-bounties/sample.csv) · 10 cards, flattened · 1.9 KB
+- [sample.json](https://jayjex.github.io/data-vault/data/earn-bounties/sample.json) · 10 records · 4.7 KB
+- [Download sample (CSV)](https://jayjex.github.io/data-vault/data/earn-bounties/sample.csv) [Get full data](https://www.getly.store/product/superteam-earn-28-live-listings-dataset-186-reverse-engineered-api-routes-mtrfumk0)
+
+Full pack: 28 listings with full description HTML, the complete cards dump, and 186+ mapped API endpoints. Checkout and download run through Getly. New here? Read the [Superteam Earn data guide](https://jayjex.github.io/data-vault/guides/solana-bounties-data-guide.html) for the full file inventory, column meanings, and free MCP query examples.
+
+## HUD FMR FY2026 by County: Completeness & Spread (hud-fmr-county-2026)
+
+Source: https://jayjex.github.io/data-vault/datasets/hud-fmr-county-2026.html
+
+**3,229** counties · **56** states & territories · **0** empty cells · **8** range counties · **free** full CSV
+
+Every county-level row from HUD's FY2026 Fair Market Rent release: 3,229 county-equivalents across 56 states and territories, each with median and max FMR for studios through 4-bedroom units, plus metro status and an area_rows count of how many FMR areas the county covers in HUD's raw file. Zero empty cells anywhere. California contributes 58 counties, Texas 254, and Puerto Rico, Guam, the Virgin Islands, American Samoa and the Northern Marianas are all in the file.
+
+The completeness check is the useful part. In 3,221 of the 3,229 counties, the 2BR max equals the 2BR median exactly, because HUD publishes a single rent per bedroom size whenever a county sits in one FMR area. Only 8 counties carry a real range, and all 8 are metro counties in Maine, New Hampshire, Massachusetts and Rhode Island, where HUD splits the county into multiple FMR areas. The widest is Bristol County, MA: 2BR median $1,729, max $2,550, a 47.5% gap. Neighboring Plymouth County runs $2,311 to $2,941.
+
+What the file shows elsewhere: the national county median for a 2BR is $1,018. Santa Cruz County, CA tops the table at $4,214, and the cheapest 2BRs are Puerto Rico municipios at $475. The typical county's 4BR median runs 1.95 times its studio median, with the ladder flattest at 1.52x and steepest at 2.43x.
+
+The medians and maxes are HUD's own county aggregates, straight from the release file; the gaps, the completeness counts and the ladder ratios are computed from those rows. When you compare a county here with a ZIP-level rent in the [FY2026 ZIP dataset](https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html), expect small differences: ZIP rents roll up to the county median, they don't reproduce it.
+
+Use it to screen county rent ceilings for voucher work, spot multi-FMR-area counties before you join ZIP data, or sanity-check any county against the 3,229-row distribution. For the ZIP-level version with 51,895 rows, see the [HUD FMR FY2026 dataset](https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html); the [HUD FMR by county guide](https://jayjex.github.io/data-vault/guides/hud-fmr-by-county.html) walks the county rollup column by column, and [small-area FMRs](https://jayjex.github.io/data-vault/guides/hud-fmr-small-areas.html) explains when HUD rents by ZIP instead. The full data dictionary lives in [schema.md](https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/schema.md).
+
+Source: US Department of Housing and Urban Development, FY2026 Fair Market Rent release (FY26_FMRs.xlsx on huduser.gov). US government data, public domain.
+
+Public domain, US government data.
+
+### Sample preview
+
+The 8 counties with a real 2BR range, sorted by gap. Full column list is in the CSV; first 22 raw rows are in sample.csv.
+
+| county | state | fmr_2br_median | fmr_2br_max | gap | area_rows |
+| --- | --- | --- | --- | --- | --- |
+| Bristol County | MA | 1729 | 2550 | +821 (+47.5%) | 20 |
+| Rockingham County | NH | 2220 | 2941 | +721 (+32.5%) | 37 |
+| Plymouth County | MA | 2311 | 2941 | +630 (+27.3%) | 27 |
+| York County | ME | 1716 | 2202 | +486 (+28.3%) | 29 |
+| Newport County | RI | 2021 | 2314 | +293 (+14.5%) | 6 |
+| Penobscot County | ME | 1392 | 1659 | +267 (+19.2%) | 67 |
+| Worcester County | MA | 2056 | 2166 | +110 (+5.4%) | 60 |
+| Hillsborough County | NH | 2037 | 2127 | +90 (+4.4%) | 31 |
+
+### Files
+
+- [fmr-county-2026.csv](https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/fmr-county-2026.csv) · 3,229 rows, complete · 266 KB
+- [spread-counties.csv](https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/spread-counties.csv) · 8 rows, derived gaps · 565 B
+- [sample.csv](https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/sample.csv) · 22 rows · 2.2 KB
+- [sample.json](https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/sample.json) · 22 records · 9.2 KB
+- [schema.md](https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/schema.md) · column definitions, coverage, caveats
+- [Download full CSV (free)](https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/fmr-county-2026.csv) [ZIP-level FY2026 dataset →](https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html)
+
+The full county table is the free CSV above; nothing paywalled here. The [HUD FMR FY2026 pack](https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html) adds the ZIP-level file, state summary and data dictionary, the [FY2027 dataset](https://jayjex.github.io/data-vault/guides/hud-fmr-2027.html) carries next year's rates, and the [metro FY2027 dataset](https://jayjex.github.io/data-vault/datasets/hud-fmr-metro-2027.html) aggregates those ZIP rows to the 50 largest metro areas, and the [FY2027 ZIP dataset](https://jayjex.github.io/data-vault/datasets/hud-fmr-by-zip-2027.html) serves that same 51,871-row file as a free download. To query ZIP-level rows with SQL, the [DuckDB and SQLite guide](https://jayjex.github.io/data-vault/guides/hud-fmr-by-zip-sql.html) works on the FY2027 ZIP file. For other formats, see the [FMR dataset download guide](https://jayjex.github.io/data-vault/guides/fmr-dataset-download.html) or browse the rest of the catalog on the [portfolio page](https://jayjex.github.io/data-vault/portfolio.html). Republishing the rows? The [dataset license guide](https://jayjex.github.io/data-vault/guides/dataset-license-guide.html) covers the public domain terms.
+
+## Web Scraping Script Pack (scraper-pack)
+
+Source: https://jayjex.github.io/data-vault/datasets/scraper-pack.html
+
+**10** scripts · 2026-09-07 · **one-time** full pack
+
+Ten self-contained Node.js scripts built on Playwright, each one a pattern you end up rewriting anyway: paginated tables to CSV, infinite-scroll collectors, login with saved storageState, price and stock monitors that ping a Slack or Discord webhook on change, bulk form submission from CSV, job board scraping with cross-run dedupe, a sitemap crawler that honors robots.txt and crawl-delay, screenshot diffing with sha256 change detection, JSONL API polling, and a retry wrapper with backoff, jitter, and Retry-After handling.
+
+Each file runs on its own, opens with a how-to-run comment, and marks the selectors you need to edit. Node 18+ with built-in fetch, one npm install, one chromium download. Nothing uploads anywhere; no accounts or API keys.
+
+Permission note from the pack: the login script (03) and the form submitter (05) are for sites you own or have written permission to use.
+
+Personal and commercial use.
+
+### Sample preview
+
+All 10 scripts. Full pack carries the runnable files plus a smoke test.
+
+| File | What it does |
+| --- | --- |
+| 01-paginated-table-to-csv.js | Walks ?page=N or Next-button pagination, saves table rows to CSV |
+| 02-infinite-scroll-collector.js | Scrolls a feed to the end, dedupes, saves JSON |
+| 03-login-scrape-storagestate.js | Logs in once, saves the session, reuses it on later runs |
+| 04-price-stock-monitor.js | Diff-based product monitor, POSTs a Slack/Discord webhook on change |
+| 05-bulk-form-submitter.js | CSV rows in, one form submission per row, results report |
+| 06-job-board-scraper.js | Board/listing pages to JSON with cross-run dedupe |
+| 07-sitemap-crawler.js | Expands sitemap indexes, honors robots.txt and crawl-delay, writes JSONL |
+| 08-screenshot-diff-bot.js | sha256 change detection with archived previous shots |
+| 09-api-poller-jsonl.js | Polls a JSON endpoint, appends new records to JSONL |
+| 10-retry-fetch-wrapper.js | Exponential backoff, jitter, UA rotation, Retry-After aware |
+
+Deciding between a hosted platform and running scripts yourself? The [web scraping tools comparison](https://jayjex.github.io/data-vault/tools/scraping-tools-alternative.html) covers cloud pricing models (Apify and similar) against this one-time pack.
+
+### Sample files
+
+- [sample.json](https://jayjex.github.io/data-vault/data/scraper-pack/sample.json) · 10 scripts, agent-readable · 1.3 KB
+- [sample.csv](https://jayjex.github.io/data-vault/data/scraper-pack/sample.csv) · 10 scripts · 888 B
+- [scripts-manifest.json](https://jayjex.github.io/data-vault/data/scraper-pack/scripts-manifest.json) · full manifest with runtime notes · 1.6 KB
+- [Download sample (CSV)](https://jayjex.github.io/data-vault/data/scraper-pack/sample.csv) [Get full pack](https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtrfwfcd)
+
+Full pack: all 10 runnable scripts, package.json, smoke test, README with quick start. Checkout and download run through Getly.
+
+## HUD Fair Market Rents FY2027, Top-50 Metro Areas (hud-fmr-metro-2027)
+
+Source: https://jayjex.github.io/data-vault/datasets/hud-fmr-metro-2027.html
+
+**50** metros × 2 tables · **10,143** ZIPs covered · **5** bedroom sizes · **free** full data
+
+FY2027 fair market rents for the 50 metro FMR areas with the most ZIP codes, one row per area: the HUD area code and name, ZIP count, and a median across the area's ZIPs for each bedroom size, studios through 4BR. Rates are effective October 1, 2026. HUD publishes rents per ZIP; this table rolls them up to the metro, which is the level most rent comparisons actually happen at. Together the 50 areas cover 10,143 of the 27,288 metro-assigned ZIPs in the FY2027 file.
+
+Two cuts, two different leaders. Rank by ZIP coverage and Washington DC leads with 488 ZIPs at a $2,400 2BR median, ahead of Los Angeles (474, $2,960) and Philadelphia (473, $1,900). Rank all 649 metro areas by 2BR price and Santa Cruz-Watsonville tops the list at $4,250 with 23 ZIPs, ahead of San Francisco ($3,590) and New York ($3,295). Only 12 areas appear in both top-50s, which is why the pack ships both tables. The price table is its own angle: 16 of the 50 priciest metros are in California, New Jersey puts up 7, and the 50th spot, Nashua NH at $2,160, still beats every Texas metro in the coverage table.
+
+The aggregate is a plain median: every ZIP in the area weighs the same. That makes it easy to recompute and easy to check against the ZIP file, but it is not HUD's official 40th-percentile area FMR, and it is not a ZIP-count-weighted average. Where you want the official number, HUD publishes it at [huduser.gov](https://www.huduser.gov/portal/datasets/fmr.html).
+
+Everything here is recomputed from the ZIP-level FY2027 file behind the [HUD FMR FY2027 dataset](https://jayjex.github.io/data-vault/guides/hud-fmr-2027.html), not copied from any HUD summary, and the build asserts each metro code carries exactly one name and one state. The full column dictionary and caveats are in [schema.md](https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/schema.md). For county-level FY2026 rates, see the [HUD FMR by county dataset](https://jayjex.github.io/data-vault/datasets/hud-fmr-county-2026.html).
+
+Source: US Department of Housing and Urban Development, FY2027 Fair Market Rent release, effective October 1, 2026. US government data, public domain.
+
+### Most expensive 2BR metros
+
+The top 12 rows of most-expensive-2br.csv, sorted by 2BR median. The 50-row coverage table starts in sample.csv.
+
+| metro_name | state | zip_count | fmr_2br_median |
+| --- | --- | --- | --- |
+| Santa Cruz-Watsonville, CA MSA | CA | 23 | 4250 |
+| San Francisco, CA HUD Metro FMR Area | CA | 113 | 3590 |
+| New York, NY HUD Metro FMR Area | NY | 410 | 3295 |
+| San Jose-Sunnyvale-Santa Clara, CA HUD Metro FMR Area | CA | 106 | 3270 |
+| Napa, CA MSA | CA | 16 | 3200 |
+| Santa Maria-Santa Barbara, CA MSA | CA | 41 | 3110 |
+| Santa Ana-Anaheim-Irvine, CA HUD Metro FMR Area | CA | 147 | 3060 |
+| San Benito County, CA HUD Metro FMR Area | CA | 9 | 3000 |
+| Los Angeles-Long Beach-Glendale, CA HUD Metro FMR Area | CA | 474 | 2960 |
+| Boston-Cambridge-Quincy, MA-NH HUD Metro FMR Area | MA | 259 | 2820 |
+| San Diego-Chula Vista-Carlsbad, CA MSA | CA | 178 | 2820 |
+| Santa Rosa-Petaluma, CA MSA | CA | 53 | 2820 |
+
+### Files
+
+- [fmr-metro-2027.csv](https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/fmr-metro-2027.csv) · 50 rows, top metros by ZIP coverage · 4.7 KB
+- [most-expensive-2br.csv](https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/most-expensive-2br.csv) · 50 rows, priciest 2BR metros · 4.6 KB
+- [sample.csv](https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/sample.csv) · 12 rows, coverage top 12 · 1.3 KB
+- [sample.json](https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/sample.json) · 12 records, row_count 50 · 3.7 KB
+- [schema.md](https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/schema.md) · column dictionary, aggregation rules, caveats
+- [Download coverage CSV (free)](https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/fmr-metro-2027.csv) [Download price CSV (free)](https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/most-expensive-2br.csv)
+
+Both tables download free: the source is HUD's FY2027 FMR release, US government data in the public domain, so republished rows carry no attribution requirement. The [FY2027 guide](https://jayjex.github.io/data-vault/guides/hud-fmr-2027.html) reads the ZIP-level file these medians roll up from, the [most expensive metros for rent 2027 guide](https://jayjex.github.io/data-vault/guides/most-expensive-metros-rent-2027.html) walks the price ranking with the top-12 table, the [county FY2026 dataset](https://jayjex.github.io/data-vault/datasets/hud-fmr-county-2026.html) and the [ZIP-level FY2026 dataset](https://jayjex.github.io/data-vault/datasets/hud-fmr-2026.html) cover the prior year, the [FY2027 ZIP dataset](https://jayjex.github.io/data-vault/datasets/hud-fmr-by-zip-2027.html) serves the whole ZIP-level file these medians roll up from, the [FY2027 dataset page](https://jayjex.github.io/data-vault/datasets/hud-fmr-2027.html) carries the free state summary, and the [metro area guide](https://jayjex.github.io/data-vault/guides/hud-fmr-by-metro-area.html) explains how HUD defines a metro FMR area. To query ZIP-level rows with SQL, the [DuckDB and SQLite guide](https://jayjex.github.io/data-vault/guides/hud-fmr-by-zip-sql.html) works on the 51,871-row ZIP file. The rest of the catalog lives on the [portfolio page](https://jayjex.github.io/data-vault/portfolio.html).
+
+## World Bank Population, G20 Countries + EU27 (worldbank-g20-population)
+
+Source: https://jayjex.github.io/data-vault/datasets/worldbank-g20-population.html
+
+**1,320** rows · **20** entities · **66** years · **free** full data
+
+Total population for the 19 national G20 members plus the European Union aggregate, from the World Bank's WDI indicator SP.POP.TOTL. One row per entity-year, 1960 through 2025, four columns: entity name, ISO3 code, year, and population. Every entity carries a complete 66-year run, so the file joins cleanly against any year-sliced series.
+
+2025 ranking: India 1,463,865,525 leads China 1,406,585,000, and the crossover is visible in the data itself (India passed China in 2021). The EU27 aggregate (451,127,411) sits third and is marked EUU in the ISO3 column, so exclude it when summing national members; the 19 countries together count 4,744,611,663 people. Australia is the smallest member at 27,614,411.
+
+Six of the twenty entities already peaked. Japan topped out in 2010 (128,070,000, now 123,366,734), Russia in 1992 (148,538,197, now 143,513,328), Italy in 2014, Korea in 2020, China in 2021 (1,412,360,000, now 1,406,585,000), Germany in 2024. On the other end, Saudi Arabia has multiplied 15.2x since 1960, the fastest growth in the set ahead of South Africa (3.9x) and Mexico (3.6x).
+
+The source is one keyless call to the World Bank API v2, and the pack keeps the API's values verbatim: no rounding, no imputation, entity names as the Bank spells them ("Korea, Rep.", "Turkiye", "Russian Federation"). Years where the Bank reports no value are dropped, and there are none in this window. The full column dictionary and caveats are in [schema.md](https://jayjex.github.io/data-vault/data/worldbank-g20-population/schema.md).
+
+Source: World Bank World Development Indicators via api.worldbank.org, indicator SP.POP.TOTL, retrieved 2026-09-10, WDI last updated 2026-07-13. License CC BY 4.0.
+
+Cite this dataset: Matchbook Labs (2026). *World Bank SP.POP.TOTL, G20 Members, 1960-2025*. Zenodo. [DOI 10.5281/zenodo.22667477](https://doi.org/10.5281/zenodo.22667477).
+
+### Latest year per entity
+
+All 20 rows from g20-population-2025.csv, sorted by population. The full 1,320-row series starts in sample.csv.
+
+| entity | iso3 | population |
+| --- | --- | --- |
+| India | IND | 1,463,865,525 |
+| China | CHN | 1,406,585,000 |
+| European Union | EUU | 451,127,411 |
+| United States | USA | 341,784,857 |
+| Indonesia | IDN | 285,721,236 |
+| Brazil | BRA | 212,812,405 |
+| Russian Federation | RUS | 143,513,328 |
+| Mexico | MEX | 131,946,900 |
+| Japan | JPN | 123,366,734 |
+| Turkiye | TUR | 85,878,556 |
+| Germany | DEU | 83,491,249 |
+| United Kingdom | GBR | 69,487,000 |
+| France | FRA | 68,720,337 |
+| South Africa | ZAF | 64,747,319 |
+| Italy | ITA | 58,915,656 |
+| Korea, Rep. | KOR | 51,684,564 |
+| Argentina | ARG | 45,851,378 |
+| Canada | CAN | 41,651,653 |
+| Saudi Arabia | SAU | 36,973,555 |
+| Australia | AUS | 27,614,411 |
+
+### Files
+
+- [g20-population.csv](https://jayjex.github.io/data-vault/data/worldbank-g20-population/g20-population.csv) · 1,320 rows, long format · 38 KB
+- [g20-population-2025.csv](https://jayjex.github.io/data-vault/data/worldbank-g20-population/g20-population-2025.csv) · 20 rows, latest year per entity · 621 B
+- [sample.csv](https://jayjex.github.io/data-vault/data/worldbank-g20-population/sample.csv) · 20 rows, Argentina 1960-1979 · 609 B
+- [sample.json](https://jayjex.github.io/data-vault/data/worldbank-g20-population/sample.json) · 20 records · 2.1 KB
+- [schema.md](https://jayjex.github.io/data-vault/data/worldbank-g20-population/schema.md) · column dictionary, normalization, caveats
+- [Download full CSV (free)](https://jayjex.github.io/data-vault/data/worldbank-g20-population/g20-population.csv) [Eurostat unemployment →](https://jayjex.github.io/data-vault/datasets/eurostat-unemployment.html)
+
+Everything downloads free under CC BY 4.0; the World Bank open data terms carry the same license, so republished rows keep their attribution. The [life expectancy pack](https://jayjex.github.io/data-vault/datasets/worldbank-g20-life-expectancy.html) completes a trio on these same 20 entities with the matching SP.DYN.LE00.IN series, so the two files join on entity-year, and the [rural population share by country guide](https://jayjex.github.io/data-vault/guides/rural-population-share-g20-countries.html) multiplies the two together for rural headcounts, India's 941 million first. The [world population milestones guide](https://jayjex.github.io/data-vault/guides/world-population-milestones-g20.html) reads this file milestone by milestone, from the 2021 India-China crossover to the six members already past peak. The [life expectancy by country guide](https://jayjex.github.io/data-vault/guides/life-expectancy-g20-countries.html) joins the matching SP.DYN.LE00.IN series on the same entity-year key and reads the 53-year Japan streak and the COVID round trips out of it. The [dataset license guide](https://jayjex.github.io/data-vault/guides/dataset-license-guide.html) explains what CC BY 4.0 attribution requires when you build on these files, and the rest of the catalog lives on the [portfolio page](https://jayjex.github.io/data-vault/portfolio.html).
+
+## Guide: ZIP prefix geography: what the first two digits of a ZIP code say about rent
+
+Source: https://jayjex.github.io/data-vault/guides/zip-prefix-geography.html
+
+Published 2026-09-10. Data source: the FY2027 fair market rent file by ZIP code, 51,871 rows, every number on this page computed from that file on 2026-09-10. Two-bedroom rents throughout, medians in dollars per month, no product prices involved. This page documents the data.
+
+**51,871** ZIP rows, 99 prefixes, 52 state pools · **8** states live entirely inside one prefix · **3,330** top prefix median, 10x Manhattan · **610** floor prefix median, 00x Puerto Rico · **4,110** widest within-prefix span, 95xxx
+
+### The short answer
+
+Take the 51,871 ZIP rows in the FY2027 file and cut the ZIP code down to its first two characters, 76437 becomes 76. Ninety-nine of the hundred possible prefixes appear (09x is empty), and each collects the ZIPs that mail sorts through one sectional center facility. Across the file those 99 prefixes lean hard toward state lines: 42 contain exactly one state, 57 spill across at least one border, and 8 of the 52 state pools, Puerto Rico 00x, Vermont 05x, Massachusetts in 01x, New Hampshire 03x, Rhode Island 02x, Connecticut 06x, South Carolina 29x and Hawaii 96x, keep every one of their ZIPs inside a single prefix. Texas runs the other way, eight prefixes, and California spans nine, the most of any state.
+
+Rent sorts along the same seams. The whole file medians 1,190 for a two-bedroom; the ten priciest prefixes run 2,210 to 3,330, and the cheapest, 00x, sits at 610. From Manhattan's 3,330 down to Puerto Rico's 610 is a 5.46-to-1 gap, and the widest spread inside a single prefix is 4,110, ZIP 95527 in Trinity County at 1,150 against ZIP 95060 in Santa Cruz at 5,260, both under 95x. Every board below recomputes from the [one-row-per-prefix CSV](https://jayjex.github.io/data-vault/data/zip-prefix-2027/zip-prefix-geography-2027.csv), and the two SQL blocks at the end of this page return them verbatim.
+
+### The ten largest state pools
+
+| # | State | ZIP rows | Share of file | Median 2BR | Biggest prefix |
+| --- | --- | --- | --- | --- | --- |
+| 1 | TX | 3,244 | 6.3% | 1,220 | 76x (695) |
+| 2 | CA | 2,605 | 5.0% | 2,600 | 95x (677) |
+| 3 | PA | 2,576 | 5.0% | 1,270 | 15x (611) |
+| 4 | NY | 2,397 | 4.6% | 1,500 | 12x (645) |
+| 5 | IL | 1,939 | 3.7% | 1,050 | 62x (751) |
+| 6 | MO | 1,908 | 3.7% | 1,020 | 65x (643) |
+| 7 | OH | 1,884 | 3.6% | 1,100 | 45x (674) |
+| 8 | IA | 1,718 | 3.3% | 990 | 50x (798) |
+| 9 | MI | 1,556 | 3.0% | 1,180 | 49x (824) |
+| 10 | FL | 1,552 | 3.0% | 1,820 | 32x (646) |
+
+Texas leads with 3,244 rows, 6.3 percent of the file, spread across eight prefixes with 76x the biggest at 695. Its median of 1,220 sits 30 above the file-wide 1,190, while California carries 639 fewer rows and a median of 2,600, more than double Texas. Pennsylvania is the third pool at 2,576 rows and medians 1,270, and New York's 2,397 rows hold a 1,500 median that lives entirely off its two coastal prefixes: 12x upstate carries 645 ZIPs at prices the 10x board never sees.
+
+The middle of the board is the Midwest at Midwest prices: Illinois 1,939 rows at 1,050, Missouri 1,908 at 1,020, Ohio 1,884 at 1,100, Iowa 1,718 at 990, Michigan 1,556 at 1,180. Florida closes the top ten with the fewest rows of the group, 1,552, and the second-highest median, 1,820; its 32x prefix around Tampa Bay holds 646 ZIPs. Two size facts frame the rest of the file: Delaware is the smallest pool at 46 rows, and Hawaii runs 128 rows at a 2,535 median, the priciest state in the file.
+
+### The ten most expensive prefixes
+
+| # | Prefix | States | ZIP rows | Median 2BR | Floor | Ceiling |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | 10x | NY | 323 | 3,330 | 1,790 | 4,460 |
+| 2 | 94x | CA | 296 | 3,270 | 1,620 | 5,050 |
+| 3 | 90x | CA | 257 | 2,960 | 1,870 | 4,450 |
+| 4 | 91x | CA | 279 | 2,960 | 2,040 | 4,450 |
+| 5 | 11x | NY | 311 | 2,910 | 2,480 | 4,460 |
+| 6 | 92x | CA | 488 | 2,820 | 1,230 | 4,590 |
+| 7 | 02x | MA, RI | 415 | 2,650 | 1,560 | 4,510 |
+| 8 | 07x | NJ | 390 | 2,460 | 1,200 | 4,190 |
+| 9 | 20x | DC, MD, VA, WV | 396 | 2,400 | 1,200 | 3,660 |
+| 10 | 33x | FL | 617 | 2,210 | 1,020 | 3,850 |
+
+New York 10x, Manhattan, the Bronx and the Hudson Valley counties, holds 323 ZIPs and the top median, and New York 11x, Long Island, follows at rank 5, so New York City owns two of the top five prefixes. California supplies four of the ten, 94x around the Bay, 90x Los Angeles, 91x Riverside and San Bernardino, and 92x from Sacramento down to Fresno. Ranks 3 and 4 tie on the median at 2,960 and separate on the floor, 90x reaching down to 1,870 where 91x stops at 2,040; the SQL below breaks that tie the same way, by the rounded median then the prefix string.
+
+The floor of the file is as lopsided as the top. Prefix 00x, all 216 Puerto Rico ZIPs, medians 610 and no row rises above 1,060; the cheapest mainland prefixes are 71x (Arkansas, Louisiana, Oklahoma, Texas) at 940, 74x (Arkansas, Oklahoma) at 950, and 42x, 50x and 72x tied at 970. One caution on the mapping: prefix 30x medians 1,220 across Alabama, Georgia and Tennessee ZIPs mixed together, and shared prefixes like it make the state column, not the prefix, the number to trust when a row's jurisdiction matters.
+
+### The ten widest within-prefix spreads
+
+| # | Prefix | ZIP rows | Median 2BR | Floor ZIP | Ceiling ZIP | Span |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | 95x | 677 | 1,930 | 95527 · 1,150 | 95060 · 5,260 | 4,110 |
+| 2 | 94x | 296 | 3,270 | 94571 · 1,620 | 94404 · 5,050 | 3,430 |
+| 3 | 92x | 488 | 2,820 | 92222 · 1,230 | 92660 · 4,590 | 3,360 |
+| 4 | 01x | 441 | 2,090 | 01092 · 1,440 | 01731 · 4,510 | 3,070 |
+| 5 | 93x | 459 | 1,780 | 93643 · 1,320 | 93109 · 4,360 | 3,040 |
+| 6 | 07x | 390 | 2,460 | 07738 · 1,200 | 07030 · 4,190 | 2,990 |
+| 7 | 02x | 415 | 2,650 | 02721 · 1,560 | 02110 · 4,510 | 2,950 |
+| 8 | 33x | 617 | 2,210 | 33597 · 1,020 | 33131 · 3,850 | 2,830 |
+| 9 | 98x | 586 | 1,880 | 98819 · 1,010 | 98004 · 3,820 | 2,810 |
+| 10 | 96x | 271 | 1,930 | 96054 · 1,080 | 96825 · 3,810 | 2,730 |
+
+Prefix 95x is the file's starkest geography lesson. Its 677 ZIPs sort through one Northern California sectional center but describe two economies: Trinity County at 1,150, forest and mountain roads two hours north of wine country, and ZIP 95060 in Santa Cruz at 5,260, the highest two-bedroom rent anywhere in the file. Between them the prefix medians 1,930, a number that describes neither endpoint. The next two spreads are also California: 94x spans 94571 in the Sacramento metro at 1,620 to 94404 in the San Francisco HUD metro at 5,050, and 92x runs from El Centro's 92222 at 1,230 to Santa Ana's 92660 at 4,590.
+
+The rest of the board mixes coasts and one mountain-west surprise: 01x from Western Worcester County's 01092 at 1,440 to 01731 in the Boston metro at 4,510, 93x from Madera County at 1,320 to Santa Barbara's 93109 at 4,360, 07x from Monmouth County's 07738 at 1,200 to Jersey City's 07030 at 4,190, 02x from Fall River's 02721 at 1,560 to 02110 in the Boston metro at 4,510, 33x from Tampa's 33597 at 1,020 to Miami's 33131 at 3,850, 98x from Okanogan County at 1,010 to Bellevue's 98004 at 3,820, and 96x from Modoc County at 1,080 to Honolulu's 96825 at 3,810, a prefix that carries both California's far north and all of Hawaii. For contrast, the flattest big prefixes sit near 580: 26x in Virginia and West Virginia and 65x in Arkansas and Missouri both hold ZIPs within 580 of each other top to bottom. This is the measurement problem SAFMR exists to fix; the [SAFMR guide](https://jayjex.github.io/data-vault/guides/safmr-small-area-fmr.html) covers the ZIP-level answer.
+
+### Methodology: the file and what each number is
+
+The source is the FY2027 fair market rent file by ZIP code: 51,871 rows, one per ZIP, with fields zip, hud_area_code, metro, area_name, state and five FMR columns for 0BR through 4BR, parsed from HUD's FY27 workbooks and shipped as [a documented CSV](https://jayjex.github.io/data-vault/datasets/hud-fmr-by-zip-2027.html) (md5 c075a69de6c60ffd99ac6dba3a9b7899). Every number on this page uses the fmr_2br column. A prefix is the first two characters of the zip field, zero-padded; a state pool is all rows sharing a state column value, which gives 52 pools including DC and Puerto Rico; the file median is the middle value across all 51,871 rows, the average of the two middle rows for even counts, and the same convention applies to every prefix and state median here.
+
+Grouping by prefix is an approximation of grouping by state, and the page measures that approximation rather than assuming it: 42 of 99 prefixes are single-state, 57 cross at least one state line, 8 state pools sit entirely inside one prefix, and prefix 09x holds no rows. Where a prefix spans states, its median mixes those states' markets by construction; the tables keep the state column visible wherever a row depends on it. The [prefix CSV](https://jayjex.github.io/data-vault/data/zip-prefix-2027/zip-prefix-geography-2027.csv) carries the 99-row aggregate: prefix, member states, ZIP count, median, min and max 2BR. Every board, median and spread on this page was computed three ways over the source file, a python pass, an independent SQLite pass, and the verbatim page SQL below, with zero mismatches.
+
+### Recompute the boards yourself
+
+Load the source CSV into SQLite as `zip2027`, ten columns per row. The state board needs one ordering by row count:
+
+```
+-- SQLite: the ten largest state pools by ZIP rows
+CREATE TABLE zip2027 (zip TEXT, hud_area_code TEXT, metro TEXT, area_name TEXT,
+  state TEXT, fmr_0br INT, fmr_1br INT, fmr_2br INT, fmr_3br INT, fmr_4br INT);
+.import --skip 1 fmr-by-zip-2027.csv zip2027
+
+WITH c AS (SELECT state, COUNT(*) AS zips,
+                  ROW_NUMBER() OVER (ORDER BY COUNT(*) DESC, state) AS rn
+           FROM zip2027 GROUP BY state),
+m AS (SELECT state, fmr_2br,
+             ROW_NUMBER() OVER (PARTITION BY state ORDER BY fmr_2br, zip) AS r2,
+             COUNT(*) OVER (PARTITION BY state) AS n
+      FROM zip2027)
+SELECT c.rn, c.state, c.zips, ROUND(c.zips * 100.0 / 51871.0, 1) AS share_pct,
+  (SELECT ROUND(AVG(fmr_2br)) FROM m WHERE m.state = c.state
+     AND r2 IN ((n+1)/2, (n+2)/2)) AS median_2br,
+  (SELECT p FROM (SELECT state, SUBSTR(zip,1,2) AS p, COUNT(*) AS cz
+                  FROM zip2027 GROUP BY state, p)
+     WHERE state = c.state ORDER BY cz DESC, p LIMIT 1) AS top_prefix,
+  (SELECT cz FROM (SELECT state, SUBSTR(zip,1,2) AS p, COUNT(*) AS cz
+                   FROM zip2027 GROUP BY state, p)
+     WHERE state = c.state ORDER BY cz DESC, p LIMIT 1) AS top_prefix_zips
+FROM c ORDER BY rn LIMIT 10;
+-- Rows: 1 TX 3244 6.3 1220.0 76 695,
+-- 2 CA 2605 5.0 2600.0 95 677,
+-- 3 PA 2576 5.0 1270.0 15 611,
+-- 4 NY 2397 4.6 1500.0 12 645,
+-- 5 IL 1939 3.7 1050.0 62 751,
+-- 6 MO 1908 3.7 1020.0 65 643,
+-- 7 OH 1884 3.6 1100.0 45 674,
+-- 8 IA 1718 3.3 990.0 50 798,
+-- 9 MI 1556 3.0 1180.0 49 824,
+-- 10 FL 1552 3.0 1820.0 32 646.
+```
+
+The prefix boards come out of the same table, one ordering by median and one by span:
+
+```
+-- SQLite: the ten most expensive prefixes by median 2BR, with floor and ceiling
+WITH c AS (SELECT SUBSTR(zip,1,2) AS prefix, COUNT(*) AS zips,
+                  MIN(fmr_2br) AS min_2br, MAX(fmr_2br) AS max_2br
+           FROM zip2027 GROUP BY prefix),
+m AS (SELECT SUBSTR(zip,1,2) AS prefix, fmr_2br,
+             ROW_NUMBER() OVER (PARTITION BY SUBSTR(zip,1,2) ORDER BY fmr_2br, zip) AS r2,
+             COUNT(*) OVER (PARTITION BY SUBSTR(zip,1,2)) AS n
+      FROM zip2027),
+med AS (SELECT prefix, ROUND(AVG(fmr_2br)) AS median_2br FROM m
+        WHERE r2 IN ((n+1)/2, (n+2)/2) GROUP BY prefix)
+SELECT ROW_NUMBER() OVER (ORDER BY med.median_2br DESC, c.prefix) AS rn,
+  c.prefix, c.zips, med.median_2br, c.min_2br, c.max_2br
+FROM c JOIN med ON med.prefix = c.prefix
+ORDER BY rn LIMIT 10;
+-- Rows: 1 10 323 3330.0 1790 4460,
+-- 2 94 296 3270.0 1620 5050,
+-- 3 90 257 2960.0 1870 4450,
+-- 4 91 279 2960.0 2040 4450,
+-- 5 11 311 2910.0 2480 4460,
+-- 6 92 488 2820.0 1230 4590,
+-- 7 02 415 2650.0 1560 4510,
+-- 8 07 390 2460.0 1200 4190,
+-- 9 20 396 2400.0 1200 3660,
+-- 10 33 617 2210.0 1020 3850.
+
+-- the ten widest within-prefix spans, floor and ceiling ZIP identified
+WITH c AS (SELECT SUBSTR(zip,1,2) AS prefix, COUNT(*) AS zips,
+                  MIN(fmr_2br) AS min_2br, MAX(fmr_2br) AS max_2br,
+                  ROW_NUMBER() OVER (ORDER BY MAX(fmr_2br) - MIN(fmr_2br) DESC) AS rn
+           FROM zip2027 GROUP BY prefix),
+h AS (SELECT SUBSTR(zip,1,2) AS prefix, zip, area_name, fmr_2br,
+             ROW_NUMBER() OVER (PARTITION BY SUBSTR(zip,1,2) ORDER BY fmr_2br DESC, zip) AS r3
+      FROM zip2027),
+l AS (SELECT SUBSTR(zip,1,2) AS prefix, zip, area_name, fmr_2br,
+             ROW_NUMBER() OVER (PARTITION BY SUBSTR(zip,1,2) ORDER BY fmr_2br, zip) AS r4
+      FROM zip2027),
+m AS (SELECT SUBSTR(zip,1,2) AS prefix, fmr_2br,
+             ROW_NUMBER() OVER (PARTITION BY SUBSTR(zip,1,2) ORDER BY fmr_2br, zip) AS r2,
+             COUNT(*) OVER (PARTITION BY SUBSTR(zip,1,2)) AS n
+      FROM zip2027)
+SELECT c.rn, c.prefix, c.zips,
+  (SELECT ROUND(AVG(fmr_2br)) FROM m WHERE m.prefix = c.prefix
+     AND r2 IN ((n+1)/2, (n+2)/2)) AS median_2br,
+  c.min_2br, c.max_2br, c.max_2br - c.min_2br AS span,
+  (SELECT zip || ' ' || area_name FROM h WHERE h.prefix = c.prefix AND r3 = 1) AS hi_zip,
+  (SELECT zip || ' ' || area_name FROM l WHERE l.prefix = c.prefix AND r4 = 1) AS lo_zip
+FROM c ORDER BY rn LIMIT 10;
+-- Rows: 1 95 677 1930.0 1150 5260 4110 95060 Santa Cruz-Watsonville, CA MSA 95527 Trinity County, CA,
+-- 2 94 296 3270.0 1620 5050 3430 94404 San Francisco, CA HUD Metro FMR Area 94571 Sacramento--Roseville--Arden-Arcade, CA HUD Metro FMR Area,
+-- 3 92 488 2820.0 1230 4590 3360 92660 Santa Ana-Anaheim-Irvine, CA HUD Metro FMR Area 92222 El Centro, CA MSA,
+-- 4 01 441 2090.0 1440 4510 3070 01731 Boston-Cambridge-Quincy, MA-NH HUD Metro FMR Area 01092 Western Worcester County, MA HUD Metro FMR Area,
+-- 5 93 459 1780.0 1320 4360 3040 93109 Santa Maria-Santa Barbara, CA MSA 93643 Madera County, CA HUD Metro FMR Area,
+-- 6 07 390 2460.0 1200 4190 2990 07030 Jersey City, NJ HUD Metro FMR Area 07738 Monmouth-Ocean, NJ HUD Metro FMR Area,
+-- 7 02 415 2650.0 1560 4510 2950 02110 Boston-Cambridge-Quincy, MA-NH HUD Metro FMR Area 02721 Providence-Fall River, RI-MA HUD Metro FMR Area,
+-- 8 33 617 2210.0 1020 3850 2830 33131 Miami-Miami Beach-Kendall, FL HUD Metro FMR Area 33597 Tampa-St. Petersburg-Clearwater, FL MSA,
+-- 9 98 586 1880.0 1010 3820 2810 98004 Seattle-Bellevue, WA HUD Metro FMR Area 98819 Okanogan County, WA,
+-- 10 96 271 1930.0 1080 3810 2730 96825 Urban Honolulu, HI MSA 96054 Modoc County, CA.
+
+-- shape of the file, one row
+SELECT (SELECT COUNT(*) FROM zip2027) AS zips,
+  (SELECT COUNT(DISTINCT state) FROM zip2027) AS states,
+  (SELECT COUNT(DISTINCT SUBSTR(zip,1,2)) FROM zip2027) AS prefixes,
+  (SELECT ROUND(AVG(fmr_2br)) FROM (SELECT fmr_2br,
+           ROW_NUMBER() OVER (ORDER BY fmr_2br, zip) AS r2,
+           COUNT(*) OVER () AS n FROM zip2027)
+     WHERE r2 IN ((n+1)/2, (n+2)/2)) AS median_2br,
+  (SELECT COUNT(*) FROM (SELECT state FROM zip2027
+     GROUP BY state HAVING COUNT(DISTINCT SUBSTR(zip,1,2)) = 1)) AS single_prefix_states,
+  (SELECT COUNT(*) FROM (SELECT SUBSTR(zip,1,2) AS p FROM zip2027
+     GROUP BY p HAVING COUNT(DISTINCT state) > 1)) AS multi_state_prefixes;
+-- 51871 / 52 / 99 / 1190.0 / 8 / 57.
+```
+
+Run in one session, every block returns exactly the rows quoted in the comments, including the tie order 90x before 91x on the shared 2,960 median. Swap the board key to `MAX(fmr_2br) - MIN(fmr_2br)` on the 0BR column to see Puerto Rico's 00x hold the narrowest spread in the file instead, or point the medians at fmr_4br to watch Honolulu's 968xx climb toward the top.
+
+### ZIP prefix geography: questions
+
+What do the first two digits of a ZIP code tell you?
+      They group ZIP codes into about a hundred routing zones, and in the FY2027 rent file each zone leans hard toward one state: 8 of the 52 state pools live entirely inside a single prefix, and 42 of the 99 prefixes used contain exactly one state. The mapping is not exact, 57 prefixes cross at least one state line, so the state column in any dataset stays the authority and the prefix works as a fast approximation.
+      Which ZIP prefix has the highest rents in FY2027?
+      Prefix 10x, Manhattan and the Hudson Valley counties, medians 3,330 for a two-bedroom, and prefix 11x, Long Island, follows at 2,910, so New York City owns the top of the board with two prefixes. California takes four of the ten most expensive prefixes: 94x at 3,270, 90x and 91x tied at 2,960, and 92x at 2,820. The cheapest is prefix 00x, Puerto Rico, at 610, a 5.46-to-1 gap between the two ends of the file.
+      How are the prefix medians computed?
+      Each ZIP code row contributes its two-bedroom fair market rent, the rows in a prefix are sorted, and the median is the middle value, the average of the two middle rows when a prefix holds an even count. The 95xxx prefix shows why a median matters there: it holds 677 ZIPs from Trinity County at 1,150 to Santa Cruz ZIP 95060 at 5,260, a 4,110 span, and its median of 1,930 describes neither endpoint.
+
+### Get the data
+
+- [Download the ZIP-prefix geography CSV (free, 99 rows)](https://jayjex.github.io/data-vault/data/zip-prefix-2027/zip-prefix-geography-2027.csv) [Browse the full FY2027 ZIP file](https://jayjex.github.io/data-vault/datasets/hud-fmr-by-zip-2027.html)
+
+The CSV carries one row per two-digit prefix: prefix, member states, ZIP count, median, min and max two-bedroom rent. For the rent level behind each ZIP, the [FY2027 ZIP-level file](https://jayjex.github.io/data-vault/datasets/hud-fmr-by-zip-2027.html) documents every column, the [FY2027 changes guide](https://jayjex.github.io/data-vault/guides/hud-fmr-2027.html) covers what moved year over year, the [affordability guide](https://jayjex.github.io/data-vault/guides/rent-vs-income-affordability.html) tests the 30 percent rule on this same file, and [the CSV sample guide](https://jayjex.github.io/data-vault/guides/what-is-a-csv-sample.html) explains how to judge a file before you commit to it.
+
+This 99-row prefix file also ships verbatim in the [US Housing Affordability Pack](https://jayjex-shop.fourthwall.com/products/us-housing-affordability-pack), which pairs it with the full FY2027 ZIP file (51,871 rows), the FY2026 county table, and Eurostat unemployment and rent series: 14 tables, 68,209 rows, all CSV.
+
+## Guide: Public bookcase, drinking water fountain, and bike repair station maps: 19 cities worldwide
+
+Source: https://jayjex.github.io/data-vault/guides/worldwide-civic-amenities-map.html
+
+Most map apps treat street-level civic infrastructure as an afterthought. OpenStreetMap does not: contributors tag drinking fountains (amenity=drinking_water), public bookcases (amenity=public_bookcase), and bike repair stations (amenity=bicycle_repair_station) point by point. This guide counts those three tags across 19 cities in six regions — 13,783 nodes in total — and publishes the numbers as free CSV, so a public bookcase map worldwide, a drinking water fountain map, or a bike repair station map app can start from real coverage numbers instead of guesswork. The query-level walkthrough lives in the [OSM civic data guide](https://jayjex.github.io/data-vault/guides/osm-civic-data-guide.html); this page stays at the worldwide view.
+
+### 19 cities, six regions, 13,783 nodes
+
+The set covers five US cities, five EU cities, three Asian cities, three Latin American cities, and three African cities. Every number is the count of OSM elements carrying that amenity tag inside the city on the snapshot date; the last column sums the three:
+
+| City | Region | Water fountains | Public bookcases | Bike repair stations | All three |
+| --- | --- | --- | --- | --- | --- |
+| New York City | US | 1,599 | 221 | 31 | 1,851 |
+| Los Angeles | US | 450 | 148 | 44 | 642 |
+| Chicago | US | 298 | 103 | 40 | 441 |
+| Austin | US | 265 | 35 | 28 | 328 |
+| Seattle | US | 213 | 497 | 28 | 738 |
+| Berlin | EU | 265 | 114 | 71 | 450 |
+| Amsterdam | EU | 540 | 0 | 4 | 544 |
+| Paris | EU | 1,045 | 165 | 52 | 1,262 |
+| Madrid | EU | 2,058 | 9 | 3 | 2,070 |
+| Warsaw | EU | 122 | 33 | 188 | 343 |
+| Tokyo | Asia | 2,163 | 3 | 25 | 2,191 |
+| Jakarta | Asia | 38 | 0 | 1 | 39 |
+| Seoul | Asia | 253 | 1 | 5 | 259 |
+| Sao Paulo | LatAm | 105 | 4 | 7 | 116 |
+| Buenos Aires | LatAm | 182 | 1 | 2 | 185 |
+| Mexico City | LatAm | 61 | 0 | 23 | 84 |
+| Lagos | Africa | 60 | 0 | 0 | 60 |
+| Nairobi | Africa | 2,174 | 0 | 1 | 2,175 |
+| Addis Ababa | Africa | 5 | 0 | 0 | 5 |
+
+Regional totals: US 4,000 nodes, EU 4,669, Asia 2,489, LatAm 385, Africa 2,240. Theme totals: 11,896 fountains, 1,334 bookcases, 553 bike repair stations, 13,783 overall.
+
+The full tables ship as CSV on the dataset pages: the [US five-city counts](https://jayjex.github.io/data-vault/datasets/osm-us-civic-amenities.html), the [EU five-city counts](https://jayjex.github.io/data-vault/datasets/osm-eu-civic-amenities.html), the [Tokyo-Jakarta-Seoul counts](https://jayjex.github.io/data-vault/datasets/osm-asia-civic-amenities.html), the [Sao Paulo-Buenos Aires-Mexico City counts](https://jayjex.github.io/data-vault/datasets/osm-latam-civic-amenities.html), and the [Lagos-Nairobi-Addis Ababa counts](https://jayjex.github.io/data-vault/datasets/osm-africa-civic-amenities.html). Each download is free; ODbL covers the source data.
+
+### Where the counts cluster
+
+Seattle owns the bookcase count: 497 of the 1,334 counted in this set, more than double second-place New York City's 221. That tracks with the Little Free Library movement running strongest in the US Pacific Northwest. Paris leads the EU at 165, while Amsterdam's 0, Jakarta's 1, and all nine Africa bookcase cells at 0 are mapping-culture gaps rather than empty streets; the public_bookcase tag never caught on there.
+
+Fountains now concentrate in three capitals. Nairobi maps 2,174 drinking-water points, mostly unnamed taps with a dense Kibera cluster, the largest count in this table and the second-largest in the catalog's civic series; Sydney's 2,479 in the Oceania file (not part of this table) holds the catalog top spot. Tokyo follows at 2,163 and Madrid at 2,058; together they hold 54% of this table's 11,896 fountains, consistent with the public-fountain networks both cities maintain. Paris adds 1,045. Bike repair stations flip the pattern: Warsaw's 188 stands top every other city, and no second city crosses 100 (Berlin, 71).
+
+LatAm counts run small across every theme — Buenos Aires 185 nodes, Sao Paulo 116, Mexico City 84 — and fountains carry 90% of the region's 385 nodes. Whether that reflects fewer amenities or thinner tagging is what a second snapshot would settle. Africa's 2,240 features ride almost entirely on Nairobi's water points; outside that column the region counts one repair stand and zero bookcases.
+
+### From counts to a worldwide map or an app
+
+A per-city count answers the first question any map project should ask: is there enough content to map? Seattle's 497 bookcases give a public bookcase map real material; Amsterdam's 0 means the layer would start empty, and the fix is fieldwork, not code. The same check applies to a bike repair station map app, where Warsaw's 188 stands and Madrid's 3 sit at opposite ends, and to a drinking water fountain map, where even the smallest city in the set (Addis Ababa, 5 nodes across all three tags) has enough fountains to plot a walking route.
+
+Counts also give a data pipeline or an LLM a stable table instead of rendered tiles: one row per city, fixed columns, no JavaScript to run. To go from counts to coordinates, query the Overpass API with the same three amenity tags inside one city area; the [Asia counts file ships one example location per amenity](https://jayjex.github.io/data-vault/datasets/osm-asia-civic-amenities.html) with name, latitude, and longitude, which shows what a single row of that output looks like.
+
+### Method and snapshot date
+
+All counts ran on 2026-09-10 against the Overpass API, so they are snapshots of a database that changes daily. The EU, Asia, and LatAm counts filter by administrative boundary, with Nominatim relation lookups (Madrid R5326784, Tokyo R1543125, Buenos Aires R3082668, and the rest) converted to Overpass area IDs, so the numbers follow exact city limits. The US counts filter by city bounding box, close enough for the five cities chosen because their boxes stay inside the city proper. The Africa counts resolve Lagos State (R3718182), Nairobi County (R3492709), and the Addis Ababa city administration (R1707699) to Overpass area IDs the same way. The Oceania set is not in this table: it counts a different trio (toilets and benches instead of bookcases and repair stands), 27,231 features covered in the [OSM civic data guide](https://jayjex.github.io/data-vault/guides/osm-civic-data-guide.html). The latest region added to this table is covered in the [Istanbul-Cairo-Mumbai guide](https://jayjex.github.io/data-vault/guides/mena-city-amenities-guide.html), with 359 more features counted inside exact admin boundaries. The query syntax, relation IDs, and retry logic are documented in the [OSM civic data guide](https://jayjex.github.io/data-vault/guides/osm-civic-data-guide.html).
+
+### Files and license
+
+- [us-civic-amenities.csv](https://jayjex.github.io/data-vault/data/osm-civic/us-civic-amenities.csv) · 15 rows, NYC/LA/Chicago/Austin/Seattle · free
+- [eu-civic-amenities.csv](https://jayjex.github.io/data-vault/data/osm-eu-civic/eu-civic-amenities.csv) · 15 rows, Berlin/Amsterdam/Paris/Madrid/Warsaw · free
+- [counts-2026-09.csv](https://jayjex.github.io/data-vault/data/osm-asia-civic/counts-2026-09.csv) · 9 rows, Tokyo/Jakarta/Seoul · free
+- [latam-civic-amenities.csv](https://jayjex.github.io/data-vault/data/osm-latam-civic/latam-civic-amenities.csv) · 9 rows, Sao Paulo/Buenos Aires/Mexico City · free
+- [africa-civic-amenities.csv](https://jayjex.github.io/data-vault/data/osm-africa-civic/africa-civic-amenities.csv) · 9 rows, Lagos/Nairobi/Addis Ababa · free
+
+The counts behind the Oceania trio and the Istanbul-Cairo-Mumbai additions live on their dataset pages too: the [New York-Chicago-Seattle exact-boundary counts](https://jayjex.github.io/data-vault/datasets/osm-us2-civic-amenities.html), the [Sydney-Melbourne-Auckland counts](https://jayjex.github.io/data-vault/datasets/osm-oceania-civic-amenities.html), and the [Istanbul-Cairo-Mumbai counts](https://jayjex.github.io/data-vault/datasets/osm-mena-civic-amenities.html). The [OSM civic data guide](https://jayjex.github.io/data-vault/guides/osm-civic-data-guide.html) explains how the boundary-resolved sets differ from the bounding-box US file.
+
+All eight regional tables ship as the [World Civic Amenities Pack](https://jayjex-shop.fourthwall.com/products/world-civic-amenities-pack): this page's 19 cities plus the Oceania counts and the boundary-resolved New York-Chicago-Seattle file, 84 count rows, 68,997 mapped elements, one schema, plus the schema notes for six of the eight tables.
+
+The data included in this document is from www.openstreetmap.org. The data is made available under ODbL. © OpenStreetMap contributors. Republishing a derivative? The [license guide](https://jayjex.github.io/data-vault/guides/dataset-license-guide.html) covers ODbL attribution format.
+
+## Guide: Drinking water points in Tokyo, Jakarta and Seoul, counted from OpenStreetMap
+
+Source: https://jayjex.github.io/data-vault/guides/tokyo-jakarta-seoul-amenities.html
+
+Published 2026-09-10. Data source: [OpenStreetMap Civic Amenities, Tokyo-Jakarta-Seoul, 2026-09](https://jayjex.github.io/data-vault/datasets/osm-asia-civic-amenities.html), nine node counts from Overpass API `out count` queries on 2026-09-10, kumi mirror base timestamp 2026-07-24. Boundary details come from the [dataset schema](https://jayjex.github.io/data-vault/data/osm-asia-civic/schema.md). This page documents the data.
+
+**2,489** features in 9 city-amenity cells · **2,163** Tokyo drinking-water points, largest count in the file · **98.6** percent of the file is drinking water · **1** zero cell, Jakarta's public bookcases · **2,163x** span across nonzero cells, 1 to 2,163
+
+### The short answer
+
+Three capitals, three amenity types, nine counts, and one capital holding nearly everything. OpenStreetMap contributors have mapped 2,489 public features inside the boundaries of Tokyo, Jakarta, and Seoul: 2,454 drinking water points, 4 public bookcases, and 31 bike repair stations, a node snapshot taken 2026-09-10 on a database whose documented base timestamp is 2026-07-24. Tokyo holds 2,191 of the features, 88.0 percent of the file, and its drinking-water count alone (2,163) covers 88.1 percent of the fountains in all three cities combined.
+
+The file's one zero cell and its unnamed rows say as much about mapping culture as the thousands do. Jakarta has no mapped public bookcase, and two of its three rows carry no name tag at all. Both tables below recompute from the [free nine-row CSV](https://jayjex.github.io/data-vault/data/osm-asia-civic/counts-2026-09.csv), and the two SQL blocks at the end of this page return them verbatim.
+
+### All nine counts, ranked by raw count
+
+| # | City | Amenity | Count | Share of city |
+| --- | --- | --- | --- | --- |
+| 1 | Tokyo | Drinking water | 2,163 | 98.7% |
+| 2 | Seoul | Drinking water | 253 | 97.7% |
+| 3 | Jakarta | Drinking water | 38 | 97.4% |
+| 4 | Tokyo | Bike repair stations | 25 | 1.1% |
+| 5 | Seoul | Bike repair stations | 5 | 1.9% |
+| 6 | Tokyo | Public bookcases | 3 | 0.1% |
+| 7 | Jakarta | Bike repair stations | 1 | 2.6% |
+| 8 | Seoul | Public bookcases | 1 | 0.4% |
+| 9 | Jakarta | Public bookcases | 0 | 0.0% |
+
+Drinking water takes the top three rows in all three cities at once, which the Africa file's table could not do (its repair column held one stand and its bookcase column none). Per city, the totals run Tokyo 2,191 (88.0 percent of the file), Seoul 259 (10.4), and Jakarta 39 (1.6). The theme totals are 2,454 fountains (98.6 percent of the file), 31 repair stations (1.2), and 4 bookcases (0.2). The median count across the nine cells is 5, only one cell holds zero, and the largest-to-smallest span across nonzero cells is 2,163 to 1.
+
+### Three capitals, three writing scripts
+
+Unlike the count-only US, EU, and Africa files, each Asia row carries an example node: its name tag verbatim, with latitude and longitude. The names come back in three scripts. Tokyo's bookcase example is named 音楽ライブラリー (a music library shelf) at 35.68241, 139.71942, and its repair-station example is 自転車修理いむら商会 (Imura Shokai, a bike shop) at 35.72883, 139.68391. Seoul's drinking-water example is named 아리수 (Arisu) at 37.55575, 126.89504, and its repair-station example is 서울자전거 at 37.51372, 127.10091. Jakarta's drinking-water example reads galon c2 at -6.09890, 106.96190.
+
+Two of Jakarta's three rows carry an empty name tag, and Tokyo's drinking-water example carries the generic tag name fountain at 35.56829, 139.45574. The file records what the tags say, nothing more; what Arisu stands for, or who fills the galon c2 bottles, is context the CSV does not carry. For an agent or a pipeline, that column is a free sample of the map's texture; pull one row and you get a name and a coordinate you can plot.
+
+### One real zero and a placeholder coordinate
+
+Zeros in a count table can mean two things: nobody mapped the thing, or nobody mapped the tag. The schema answers for Jakarta's bookcase cell: no `public_bookcase` is mapped yet inside the Jakarta relation boundary. Because the count is 0, no example node exists, and the row's coordinates (-6.20000, 106.81667) are a city-center placeholder, which the schema states outright. Every other cell in the file has a real node behind it.
+
+The rest of the series puts the small bookcase base in context. Seattle holds the catalog peak at 497 in the 16-city US file, Paris 165, Berlin 114, and Warsaw 33 in the EU file; in Asia, Tokyo's 3 is the high mark and Seoul adds 1. The EU file's Amsterdam also reads 0 while Berlin in the same file reads 114, so a zero next to a busy column is a mapping-culture gap that shows up inside one region too. Whether Jakarta's 0 will stay 0 is a question the file cannot answer.
+
+### Where Tokyo stands across the series
+
+Cross-file, Tokyo's 2,163 drinking-water points rank third among single-city counts in the catalog's eight-file civic series. Sydney holds the top count at 2,479 in the Oceania file, Nairobi follows at 2,174, and Tokyo leads Madrid (2,058) and New York (1,599 in the 16-city US file). Seoul's 253 lands one fountain above Chicago's 252 in the exact-boundary US2 file, and Jakarta's 38 sits second-lowest in the series, ahead of only Addis Ababa's 5.
+
+The repair column earns an honest downgrade. Tokyo's 25 bike repair stations lead the Asia file and outnumber the entire MENA file's repair total (Istanbul 16, Cairo 0, Mumbai 3, together 19), but across the series 25 ranks ninth: Warsaw's 188 stands top the catalog, with Berlin (71), Paris (52), Los Angeles (44), Chicago (40), New York (31), Austin (28), and Seattle (28) all ahead. The comparison stays within a theme on purpose: the Oceania and US2 files count fountains, toilets, and benches, so a bench-to-fountain ratio does not transfer across files. What does transfer is the drinking-water column, which every file measures with the same `amenity=drinking_water` tag.
+
+One counting rule differs from the Africa lane and matters for close comparisons: this file counts nodes only, and the schema notes that some amenities are mapped as ways, rare for these three tags. The Africa file counted nodes and ways together. A way mapped as a drinking fountain would appear in the Africa numbers and not here, which is one more reason to treat single-digit differences between regions as snapshot noise rather than rankings.
+
+### Methodology: nodes only, one documented base timestamp
+
+The source file is the nine-row [counts-2026-09.csv](https://jayjex.github.io/data-vault/data/osm-asia-civic/counts-2026-09.csv) (ODbL, © OpenStreetMap contributors). Each cell is an Overpass API `out count` query for one amenity type inside one city area, counting nodes only; ways and relations are ignored, and the schema flags ways as rare for these three tags. City areas were resolved through Nominatim relations and passed to Overpass as 3600000000-offset area IDs: Tokyo Metropolis (R3601543125), Daerah Khusus Ibukota Jakarta (R6362934), and Seoul Special City (R2297418).
+
+The counts ran on 2026-09-10 against the kumi.systems and maps.mail.ru Overpass mirrors, and the schema documents the kumi base timestamp as 2026-07-24, 48 days before the count date. Unlike the Africa file, this schema publishes no second-mirror drift table, so this page makes no mirror-agreement claim. Counts are a snapshot, OSM moves daily, and all three boundaries are metro-scale admin areas that reach past the downtown cores, so read the numbers as OpenStreetMap coverage inside these boundaries: exact for what was mapped, estimates for what stands on the ground.
+
+### Recompute the tables yourself
+
+Load the CSV into SQLite as `civic`, seven columns per row. The first block returns the raw board:
+
+```
+-- SQLite: all nine city-amenity counts, ranked by raw count
+CREATE TABLE civic (city TEXT, amenity TEXT, total INT, tags TEXT, lat TEXT, lon TEXT, source TEXT);
+.import --skip 1 counts-2026-09.csv civic
+
+SELECT rn, city, amenity, total, share_of_city
+FROM (SELECT city, amenity, total,
+             ROUND(total * 100.0 / SUM(total) OVER (PARTITION BY city), 1) AS share_of_city,
+             ROW_NUMBER() OVER (ORDER BY total DESC, city, amenity) AS rn
+      FROM civic)
+ORDER BY rn;
+-- Rows: 1 Tokyo drinking_water 2163 98.7,
+-- 2 Seoul drinking_water 253 97.7,
+-- 3 Jakarta drinking_water 38 97.4,
+-- 4 Tokyo bicycle_repair_station 25 1.1,
+-- 5 Seoul bicycle_repair_station 5 1.9,
+-- 6 Tokyo public_bookcase 3 0.1,
+-- 7 Jakarta bicycle_repair_station 1 2.6,
+-- 8 Seoul public_bookcase 1 0.4,
+-- 9 Jakarta public_bookcase 0 0.0.
+```
+
+The second block returns the file's shape: theme totals, Tokyo's share, the median, the zero-cell count, and the span across nonzero cells, then per-city totals:
+
+```
+-- SQLite: shape of the file
+WITH r AS (SELECT total AS v, ROW_NUMBER() OVER (ORDER BY total) AS rn,
+                  COUNT(*) OVER () AS n FROM civic),
+     t AS (SELECT amenity, SUM(total) AS n FROM civic GROUP BY amenity),
+     c2 AS (SELECT city, SUM(total) AS n FROM civic GROUP BY city)
+SELECT
+  (SELECT SUM(v) FROM r) AS features,
+  (SELECT n FROM t WHERE amenity = 'drinking_water') AS drinking_water,
+  (SELECT n FROM t WHERE amenity = 'public_bookcase') AS bookcases,
+  (SELECT n FROM t WHERE amenity = 'bicycle_repair_station') AS repair_stations,
+  (SELECT n FROM c2 WHERE city = 'Tokyo') AS tokyo_total,
+  (SELECT ROUND(n * 100.0 / (SELECT SUM(n) FROM c2), 1) FROM c2
+   WHERE city = 'Tokyo') AS tokyo_share,
+  (SELECT v FROM r WHERE rn = (n+1)/2) AS median_count,
+  (SELECT SUM(CASE WHEN v = 0 THEN 1 ELSE 0 END) FROM r) AS zero_cells,
+  (SELECT MAX(v) FROM r) AS largest_count,
+  (SELECT ROUND(MAX(v) * 1.0 / MIN(v), 1) FROM r WHERE v > 0) AS largest_over_floor;
+-- 2489 / 2454 / 4 / 31 / 2191 / 88.0 / 5 / 1 / 2163 / 2163.0.
+
+-- per-city totals and the drinking-water share
+SELECT city, SUM(total) AS city_total,
+       ROUND((SELECT total FROM civic WHERE city = c.city AND amenity = 'drinking_water')
+             * 100.0 / SUM(total), 1) AS drinking_share
+FROM civic c
+GROUP BY city
+ORDER BY city_total DESC;
+-- Rows: Tokyo 2191 98.7,
+-- Seoul 259 97.7,
+-- Jakarta 39 97.4.
+```
+
+Run in one session, both blocks return exactly the rows quoted in the comments. The drinking-water share stays above 97 percent in every city because each city's file is, to one decimal, nearly all fountains.
+
+### Tokyo, Jakarta and Seoul counts: questions
+
+Which of the three cities has the most drinking water points?
+      Tokyo on raw counts: 2,163 of the file's 2,454 drinking-water features, 88.1 percent of the theme, against Seoul's 253 and Jakarta's 38. Cross-file, Tokyo's 2,163 ranks third among single-city drinking-water counts in the catalog's eight-file civic series, behind Sydney (2,479) and Nairobi (2,174) and ahead of Madrid (2,058). All three Asian counts run inside admin-boundary relations, so the numbers cover the whole metropolis rather than the downtown core.
+      Why does Jakarta show zero public bookcases?
+      The schema states it as a real result: nobody has mapped a public_bookcase yet inside the Jakarta relation boundary, so the count is 0 and the row's coordinates are a city-center placeholder rather than a node location. The rest of the file backs the small base: Tokyo counts 3 public bookcases and Seoul 1, and no Asian city passes single digits. Across the catalog's civic series, Seattle holds the bookcase peak at 497, Paris 165, and Berlin 114, so the Asian numbers sit at the low end of a tag that never caught on in the region.
+      How were the counts taken and verified?
+      Each cell is an Overpass API out count query for one amenity type inside one verified boundary relation, run on 2026-09-10 against the kumi.systems and maps.mail.ru mirrors; the schema documents the kumi base timestamp as 2026-07-24, 48 days before the count date. Counts cover nodes only, and the schema notes some amenities are mapped as ways, which is rare for these three tags. On this page every number was recomputed with python and independently in SQLite, and the two SQL blocks return their quoted outputs verbatim.
+
+### Get the data
+
+- [Download the nine-row CSV (free, ODbL)](https://jayjex.github.io/data-vault/data/osm-asia-civic/counts-2026-09.csv) [Open the dataset page](https://jayjex.github.io/data-vault/datasets/osm-asia-civic-amenities.html)
+
+The CSV carries one row per city-amenity pair with the example node's name tag and coordinates, and the [schema page](https://jayjex.github.io/data-vault/data/osm-asia-civic/schema.md) documents the boundary relations and the nodes-only counting rule. Related guides on this site: the [Sydney, Melbourne and Auckland counts](https://jayjex.github.io/data-vault/guides/sydney-melbourne-auckland-amenities.html), the [Lagos, Nairobi and Addis Ababa counts](https://jayjex.github.io/data-vault/guides/lagos-nairobi-addis-ababa-amenities.html), and the [Istanbul, Cairo and Mumbai counts](https://jayjex.github.io/data-vault/guides/mena-city-amenities-guide.html). Off the data lane, the [free printables index](https://jayjex.github.io/data-vault/free-printables-index.html) holds 223 printable trackers, planners, and worksheets.
+
+## Dataset DOIs — Zenodo DOI catalog (12 DOIs)
+
+Source: https://doi.org/
+
+Dataset DOIs (12 packs with permanent citable DOIs on Zenodo):
+
+Dataset DOIs: twelve packs have permanent citable DOIs on Zenodo: https://doi.org/10.5281/zenodo.22643177 , https://doi.org/10.5281/zenodo.22643149 , https://doi.org/10.5281/zenodo.22643189 , https://doi.org/10.5281/zenodo.22649503 , https://doi.org/10.5281/zenodo.22665145 , https://doi.org/10.5281/zenodo.22665925 , https://doi.org/10.5281/zenodo.22666640 , https://doi.org/10.5281/zenodo.22667164 , https://doi.org/10.5281/zenodo.22667477 , https://doi.org/10.5281/zenodo.22667657 , https://doi.org/10.5281/zenodo.22676080 , https://doi.org/10.5281/zenodo.22697115
+
+FY2027 HUD FMR DOI (rates effective October 1, 2026): https://doi.org/10.5281/zenodo.22649503
+
+DOI to pack mapping (pack names from the dataset index above):
+- https://doi.org/10.5281/zenodo.22643177 — NFL Games & Betting Lines 1999-2026 (nfl-games)
+- https://doi.org/10.5281/zenodo.22643149 — HUD Fair Market Rents FY2026 (hud-fmr-2026)
+- https://doi.org/10.5281/zenodo.22643189 — Airbnb Listings, 6 US Cities (airbnb-six-cities)
+- https://doi.org/10.5281/zenodo.22649503 — HUD Fair Market Rents FY2027 (hud-fmr-2027)
+- https://doi.org/10.5281/zenodo.22665145 — OpenStreetMap Civic Amenities, Tokyo-Jakarta-Seoul, 2026-09 (osm-asia-civic-amenities)
+- https://doi.org/10.5281/zenodo.22665925 — OpenStreetMap Civic Amenities, Lagos-Nairobi-Addis Ababa, 2026-09 (osm-africa-civic-amenities)
+- https://doi.org/10.5281/zenodo.22666640 — OpenStreetMap Civic Amenities, Sydney-Melbourne-Auckland, 2026-09 (osm-oceania-civic-amenities)
+- https://doi.org/10.5281/zenodo.22667164 — OpenStreetMap Civic Amenities, New York-Chicago-Seattle, 2026-09 (osm-us2-civic-amenities)
+- https://doi.org/10.5281/zenodo.22667477 — World Bank Population, G20 Countries + EU27, 1960-2025 (worldbank-g20-population)
+- https://doi.org/10.5281/zenodo.22667657 — World Bank Rural Population Share, G20 Countries + EU27, 1960-2025 (worldbank-g20-rural)
+- https://doi.org/10.5281/zenodo.22676080 — Eurostat Monthly Unemployment Rate by Sex, EU27 + 8 Countries, 2003-2026 (eurostat-unemployment-monthly)
+- https://doi.org/10.5281/zenodo.22697115 — World Bank Life Expectancy, G20 Countries + EU27, 1960-2024 (worldbank-g20-life-expectancy)

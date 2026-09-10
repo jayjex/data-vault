@@ -26,6 +26,7 @@ What is llms.txt (plain-English definition of the format, how agents read the fi
 Dataset DOIs: twelve packs have permanent citable DOIs on Zenodo: https://doi.org/10.5281/zenodo.22643177 , https://doi.org/10.5281/zenodo.22643149 , https://doi.org/10.5281/zenodo.22643189 , https://doi.org/10.5281/zenodo.22649503 , https://doi.org/10.5281/zenodo.22665145 , https://doi.org/10.5281/zenodo.22665925 , https://doi.org/10.5281/zenodo.22666640 , https://doi.org/10.5281/zenodo.22667164 , https://doi.org/10.5281/zenodo.22667477 , https://doi.org/10.5281/zenodo.22667657 , https://doi.org/10.5281/zenodo.22676080 , https://doi.org/10.5281/zenodo.22697115
 FY2027 HUD FMR DOI (rates effective October 1, 2026): https://doi.org/10.5281/zenodo.22649503
 Paid per-call API (x402 protocol, USDC on Base): the NFL scores and HUD FMR datasets are also queryable as paid x402 endpoints, $0.01/call NFL and $0.001/call HUD FMR, curl challenge replay + SDK snippet: https://gist.github.com/jayjex/9cb7cd0612b3192e06915f784e6d6e4a
+Full content for LLM ingestion (this index expanded into one markdown file: README + 10 most-referenced dataset pages + 3 newest guides + 12-DOI catalog, tables and numbers verbatim): https://jayjex.github.io/data-vault/llms-full.txt
 
 ## Datasets
 

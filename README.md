@@ -4,6 +4,20 @@ Sample-first data catalog. Free samples for every dataset, machine-readable for 
 
 Every pack previews on the page: real rows, documented schema, no email wall. Scripts and agents can skip the browser and read `catalog.json` instead. Full packs ship through [Getly](https://www.getly.store/store/matchbook-labs-mtrfh66f).
 
+## Ready-made packs
+
+Instant downloads on the [Fourthwall store](https://jayjex-shop.fourthwall.com/):
+
+| Pack | Price | What's inside |
+|---|---|---|
+| [World Civic Amenities Pack](https://jayjex-shop.fourthwall.com/products/world-civic-amenities-pack) | $12 | 84 amenity count rows for 25 cities on six continents, counted from OpenStreetMap on 2026-09-10: drinking water points, water fountains, public toilets, benches, public bookcases and bike repair stations. |
+| [Agent Prompt Pack Vol.1](https://jayjex-shop.fourthwall.com/products/agent-prompt-pack-vol1) | $9 | 23 AI prompts that already ran in production. |
+| [US Housing Affordability Pack](https://jayjex-shop.fourthwall.com/products/us-housing-affordability-pack) | $12 | Fair market rents for 51,871 ZIP codes and 3,229 counties, paired with Eurostat unemployment, house price and rent indices, in one 14-table CSV pack. |
+| [Dark Wallpaper Best-Of Pack](https://jayjex-shop.fourthwall.com/products/dark-wallpaper-best-of-pack) | $7 | Twelve hand-picked dark wallpapers from the Dark Wallpaper Pack volumes: retro-futurist synthwave horizons, glowing bioluminescent caves, deep space nebulae, brutalist concrete, and retro CRT scanline textures. |
+| [60 Line Icons Essentials](https://jayjex-shop.fourthwall.com/products/line-icons-60) | $5 | 60 hand-built line icons for UI work: dashboards, landing pages, docs sites, side projects. |
+
+All five also come as one download, the [Data Vault Desk Mega Bundle](https://jayjex-shop.fourthwall.com/products/data-vault-desk-mega-bundle) for $29 ($45 bought separately).
+
 ## Datasets
 
 | slug | name | rows | niche | sample | full data |

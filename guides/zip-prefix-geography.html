@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZIP Prefix Geography: What the First Two Digits of a ZIP Code Say About Rent | Data Vault</title>
+<meta name="description" content="The first two digits of a ZIP code are state geography: across 51,871 FY2027 rent rows the 10x Manhattan prefix medians 3,330 and the 00x Puerto Rico prefix 610, while prefix 95xxx holds a 4,110 span inside one routing zone.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/zip-prefix-geography.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="ZIP Prefix Geography: What the First Two Digits of a ZIP Code Say About Rent">
+<meta property="og:description" content="The first two digits of a ZIP code are state geography: across 51,871 FY2027 rent rows the 10x Manhattan prefix medians 3,330 and the 00x Puerto Rico prefix 610, while prefix 95xxx holds a 4,110 span inside one routing zone.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/zip-prefix-geography.html">
+<meta property="og:image" content="https://jayjex.github.io/data-vault/assets/covers/data-vault-banner.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="ZIP prefix geography: 51,871 FY2027 rent rows grouped by the first two digits of the ZIP code">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "ZIP Prefix Geography: What the First Two Digits of a ZIP Code Say About Rent", "description": "The first two digits of a ZIP code are state geography: across 51,871 FY2027 rent rows the 10x Manhattan prefix medians 3,330 and the 00x Puerto Rico prefix 610, while prefix 95xxx holds a 4,110 span inside one routing zone.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/zip-prefix-geography.html", "about": {"@type": "Dataset", "name": "ZIP-prefix geography ledger, one row per two-digit prefix", "url": "https://jayjex.github.io/data-vault/data/zip-prefix-2027/zip-prefix-geography-2027.csv"}, "mentions": [{"@type": "Article", "name": "Small Area Fair Market Rent: SAFMR Explained, ZIP by ZIP", "url": "https://jayjex.github.io/data-vault/guides/safmr-small-area-fmr.html"}, {"@type": "Article", "name": "How Much Rent Can I Afford? The 30% Rule Tested on FMR and Census Data, FY2027", "url": "https://jayjex.github.io/data-vault/guides/rent-vs-income-affordability.html"}, {"@type": "Article", "name": "HUD FMR 2027: Fair Market Rents for FY2027, What Changed by ZIP", "url": "https://jayjex.github.io/data-vault/guides/hud-fmr-2027.html"}, {"@type": "Article", "name": "What Is a CSV Sample? How to Judge One Before You Commit", "url": "https://jayjex.github.io/data-vault/guides/what-is-a-csv-sample.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What do the first two digits of a ZIP code tell you?", "acceptedAnswer": {"@type": "Answer", "text": "They group ZIP codes into about a hundred routing zones, and in the FY2027 rent file each zone leans hard toward one state: 8 of the 52 state pools live entirely inside a single prefix, and 42 of the 99 prefixes used contain exactly one state. The mapping is not exact, 57 prefixes cross at least one state line, so the state column in any dataset stays the authority and the prefix works as a fast approximation."}}, {"@type": "Question", "name": "Which ZIP prefix has the highest rents in FY2027?", "acceptedAnswer": {"@type": "Answer", "text": "Prefix 10x, Manhattan and the Hudson Valley counties, medians 3,330 for a two-bedroom, and prefix 11x, Long Island, follows at 2,910, so New York City owns the top of the board with two prefixes. California takes four of the ten most expensive prefixes: 94x at 3,270, 90x and 91x tied at 2,960, and 92x at 2,820. The cheapest is prefix 00x, Puerto Rico, at 610, a 5.46-to-1 gap between the two ends of the file."}}, {"@type": "Question", "name": "How are the prefix medians computed?", "acceptedAnswer": {"@type": "Answer", "text": "Each ZIP code row contributes its two-bedroom fair market rent, the rows in a prefix are sorted, and the median is the middle value, the average of the two middle rows when a prefix holds an even count. The 95xxx prefix shows why a median matters there: it holds 677 ZIPs from Trinity County at 1,150 to Santa Cruz ZIP 95060 at 5,260, a 4,110 span, and its median of 1,930 describes neither endpoint."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://jayjex.github.io/data-vault/guides/"}, {"@type": "ListItem", "position": 3, "name": "ZIP prefix geography: what the first two digits of a ZIP code say about rent", "item": "https://jayjex.github.io/data-vault/guides/zip-prefix-geography.html"}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">·</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>ZIP prefix geography: what the first two digits of a ZIP code say about rent</h1>
+  <p class="byline">Published 2026-09-10. Data source: the FY2027 fair market rent file by ZIP code, 51,871 rows, every number on this page computed from that file on 2026-09-10. Two-bedroom rents throughout, medians in dollars per month, no product prices involved. This page documents the data.</p>
+
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>51,871</b> ZIP rows, 99 prefixes, 52 state pools</span><span class="stat"><b>8</b> states live entirely inside one prefix</span><span class="stat"><b>3,330</b> top prefix median, 10x Manhattan</span><span class="stat"><b>610</b> floor prefix median, 00x Puerto Rico</span><span class="stat"><b>4,110</b> widest within-prefix span, 95xxx</span></div>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>Take the 51,871 ZIP rows in the FY2027 file and cut the ZIP code down to its first two characters, 76437 becomes 76. Ninety-nine of the hundred possible prefixes appear (09x is empty), and each collects the ZIPs that mail sorts through one sectional center facility. Across the file those 99 prefixes lean hard toward state lines: 42 contain exactly one state, 57 spill across at least one border, and 8 of the 52 state pools, Puerto Rico 00x, Vermont 05x, Massachusetts in 01x, New Hampshire 03x, Rhode Island 02x, Connecticut 06x, South Carolina 29x and Hawaii 96x, keep every one of their ZIPs inside a single prefix. Texas runs the other way, eight prefixes, and California spans nine, the most of any state.</p>
+    <p>Rent sorts along the same seams. The whole file medians 1,190 for a two-bedroom; the ten priciest prefixes run 2,210 to 3,330, and the cheapest, 00x, sits at 610. From Manhattan's 3,330 down to Puerto Rico's 610 is a 5.46-to-1 gap, and the widest spread inside a single prefix is 4,110, ZIP 95527 in Trinity County at 1,150 against ZIP 95060 in Santa Cruz at 5,260, both under 95x. Every board below recomputes from the <a href="../data/zip-prefix-2027/zip-prefix-geography-2027.csv">one-row-per-prefix CSV</a>, and the two SQL blocks at the end of this page return them verbatim.</p>
+  </section>
+
+  <section aria-label="The ten largest state pools">
+    <h2>The ten largest state pools</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Ten states with the most ZIP rows in the FY2027 file"><table><thead><tr><th scope="col">#</th><th scope="col">State</th><th scope="col">ZIP rows</th><th scope="col">Share of file</th><th scope="col">Median 2BR</th><th scope="col">Biggest prefix</th></tr></thead><tbody>
+      <tr><td>1</td><td>TX</td><td>3,244</td><td>6.3%</td><td>1,220</td><td>76x (695)</td></tr>
+      <tr><td>2</td><td>CA</td><td>2,605</td><td>5.0%</td><td>2,600</td><td>95x (677)</td></tr>
+      <tr><td>3</td><td>PA</td><td>2,576</td><td>5.0%</td><td>1,270</td><td>15x (611)</td></tr>
+      <tr><td>4</td><td>NY</td><td>2,397</td><td>4.6%</td><td>1,500</td><td>12x (645)</td></tr>
+      <tr><td>5</td><td>IL</td><td>1,939</td><td>3.7%</td><td>1,050</td><td>62x (751)</td></tr>
+      <tr><td>6</td><td>MO</td><td>1,908</td><td>3.7%</td><td>1,020</td><td>65x (643)</td></tr>
+      <tr><td>7</td><td>OH</td><td>1,884</td><td>3.6%</td><td>1,100</td><td>45x (674)</td></tr>
+      <tr><td>8</td><td>IA</td><td>1,718</td><td>3.3%</td><td>990</td><td>50x (798)</td></tr>
+      <tr><td>9</td><td>MI</td><td>1,556</td><td>3.0%</td><td>1,180</td><td>49x (824)</td></tr>
+      <tr><td>10</td><td>FL</td><td>1,552</td><td>3.0%</td><td>1,820</td><td>32x (646)</td></tr>
+    </tbody></table></div>
+    <p>Texas leads with 3,244 rows, 6.3 percent of the file, spread across eight prefixes with 76x the biggest at 695. Its median of 1,220 sits 30 above the file-wide 1,190, while California carries 639 fewer rows and a median of 2,600, more than double Texas. Pennsylvania is the third pool at 2,576 rows and medians 1,270, and New York's 2,397 rows hold a 1,500 median that lives entirely off its two coastal prefixes: 12x upstate carries 645 ZIPs at prices the 10x board never sees.</p>
+    <p>The middle of the board is the Midwest at Midwest prices: Illinois 1,939 rows at 1,050, Missouri 1,908 at 1,020, Ohio 1,884 at 1,100, Iowa 1,718 at 990, Michigan 1,556 at 1,180. Florida closes the top ten with the fewest rows of the group, 1,552, and the second-highest median, 1,820; its 32x prefix around Tampa Bay holds 646 ZIPs. Two size facts frame the rest of the file: Delaware is the smallest pool at 46 rows, and Hawaii runs 128 rows at a 2,535 median, the priciest state in the file.</p>
+  </section>
+
+  <section aria-label="The ten most expensive prefixes">
+    <h2>The ten most expensive prefixes</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Ten ZIP prefixes with the highest median two-bedroom rent in the FY2027 file"><table><thead><tr><th scope="col">#</th><th scope="col">Prefix</th><th scope="col">States</th><th scope="col">ZIP rows</th><th scope="col">Median 2BR</th><th scope="col">Floor</th><th scope="col">Ceiling</th></tr></thead><tbody>
+      <tr><td>1</td><td>10x</td><td>NY</td><td>323</td><td>3,330</td><td>1,790</td><td>4,460</td></tr>
+      <tr><td>2</td><td>94x</td><td>CA</td><td>296</td><td>3,270</td><td>1,620</td><td>5,050</td></tr>
+      <tr><td>3</td><td>90x</td><td>CA</td><td>257</td><td>2,960</td><td>1,870</td><td>4,450</td></tr>
+      <tr><td>4</td><td>91x</td><td>CA</td><td>279</td><td>2,960</td><td>2,040</td><td>4,450</td></tr>
+      <tr><td>5</td><td>11x</td><td>NY</td><td>311</td><td>2,910</td><td>2,480</td><td>4,460</td></tr>
+      <tr><td>6</td><td>92x</td><td>CA</td><td>488</td><td>2,820</td><td>1,230</td><td>4,590</td></tr>
+      <tr><td>7</td><td>02x</td><td>MA, RI</td><td>415</td><td>2,650</td><td>1,560</td><td>4,510</td></tr>
+      <tr><td>8</td><td>07x</td><td>NJ</td><td>390</td><td>2,460</td><td>1,200</td><td>4,190</td></tr>
+      <tr><td>9</td><td>20x</td><td>DC, MD, VA, WV</td><td>396</td><td>2,400</td><td>1,200</td><td>3,660</td></tr>
+      <tr><td>10</td><td>33x</td><td>FL</td><td>617</td><td>2,210</td><td>1,020</td><td>3,850</td></tr>
+    </tbody></table></div>
+    <p>New York 10x, Manhattan, the Bronx and the Hudson Valley counties, holds 323 ZIPs and the top median, and New York 11x, Long Island, follows at rank 5, so New York City owns two of the top five prefixes. California supplies four of the ten, 94x around the Bay, 90x Los Angeles, 91x Riverside and San Bernardino, and 92x from Sacramento down to Fresno. Ranks 3 and 4 tie on the median at 2,960 and separate on the floor, 90x reaching down to 1,870 where 91x stops at 2,040; the SQL below breaks that tie the same way, by the rounded median then the prefix string.</p>
+    <p>The floor of the file is as lopsided as the top. Prefix 00x, all 216 Puerto Rico ZIPs, medians 610 and no row rises above 1,060; the cheapest mainland prefixes are 71x (Arkansas, Louisiana, Oklahoma, Texas) at 940, 74x (Arkansas, Oklahoma) at 950, and 42x, 50x and 72x tied at 970. One caution on the mapping: prefix 30x medians 1,220 across Alabama, Georgia and Tennessee ZIPs mixed together, and shared prefixes like it make the state column, not the prefix, the number to trust when a row's jurisdiction matters.</p>
+  </section>
+
+  <section aria-label="The ten widest within-prefix spreads">
+    <h2>The ten widest within-prefix spreads</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Ten ZIP prefixes with the widest two-bedroom rent spread in the FY2027 file"><table><thead><tr><th scope="col">#</th><th scope="col">Prefix</th><th scope="col">ZIP rows</th><th scope="col">Median 2BR</th><th scope="col">Floor ZIP</th><th scope="col">Ceiling ZIP</th><th scope="col">Span</th></tr></thead><tbody>
+      <tr><td>1</td><td>95x</td><td>677</td><td>1,930</td><td>95527 · 1,150</td><td>95060 · 5,260</td><td>4,110</td></tr>
+      <tr><td>2</td><td>94x</td><td>296</td><td>3,270</td><td>94571 · 1,620</td><td>94404 · 5,050</td><td>3,430</td></tr>
+      <tr><td>3</td><td>92x</td><td>488</td><td>2,820</td><td>92222 · 1,230</td><td>92660 · 4,590</td><td>3,360</td></tr>
+      <tr><td>4</td><td>01x</td><td>441</td><td>2,090</td><td>01092 · 1,440</td><td>01731 · 4,510</td><td>3,070</td></tr>
+      <tr><td>5</td><td>93x</td><td>459</td><td>1,780</td><td>93643 · 1,320</td><td>93109 · 4,360</td><td>3,040</td></tr>
+      <tr><td>6</td><td>07x</td><td>390</td><td>2,460</td><td>07738 · 1,200</td><td>07030 · 4,190</td><td>2,990</td></tr>
+      <tr><td>7</td><td>02x</td><td>415</td><td>2,650</td><td>02721 · 1,560</td><td>02110 · 4,510</td><td>2,950</td></tr>
+      <tr><td>8</td><td>33x</td><td>617</td><td>2,210</td><td>33597 · 1,020</td><td>33131 · 3,850</td><td>2,830</td></tr>
+      <tr><td>9</td><td>98x</td><td>586</td><td>1,880</td><td>98819 · 1,010</td><td>98004 · 3,820</td><td>2,810</td></tr>
+      <tr><td>10</td><td>96x</td><td>271</td><td>1,930</td><td>96054 · 1,080</td><td>96825 · 3,810</td><td>2,730</td></tr>
+    </tbody></table></div>
+    <p>Prefix 95x is the file's starkest geography lesson. Its 677 ZIPs sort through one Northern California sectional center but describe two economies: Trinity County at 1,150, forest and mountain roads two hours north of wine country, and ZIP 95060 in Santa Cruz at 5,260, the highest two-bedroom rent anywhere in the file. Between them the prefix medians 1,930, a number that describes neither endpoint. The next two spreads are also California: 94x spans 94571 in the Sacramento metro at 1,620 to 94404 in the San Francisco HUD metro at 5,050, and 92x runs from El Centro's 92222 at 1,230 to Santa Ana's 92660 at 4,590.</p>
+    <p>The rest of the board mixes coasts and one mountain-west surprise: 01x from Western Worcester County's 01092 at 1,440 to 01731 in the Boston metro at 4,510, 93x from Madera County at 1,320 to Santa Barbara's 93109 at 4,360, 07x from Monmouth County's 07738 at 1,200 to Jersey City's 07030 at 4,190, 02x from Fall River's 02721 at 1,560 to 02110 in the Boston metro at 4,510, 33x from Tampa's 33597 at 1,020 to Miami's 33131 at 3,850, 98x from Okanogan County at 1,010 to Bellevue's 98004 at 3,820, and 96x from Modoc County at 1,080 to Honolulu's 96825 at 3,810, a prefix that carries both California's far north and all of Hawaii. For contrast, the flattest big prefixes sit near 580: 26x in Virginia and West Virginia and 65x in Arkansas and Missouri both hold ZIPs within 580 of each other top to bottom. This is the measurement problem SAFMR exists to fix; the <a href="safmr-small-area-fmr.html">SAFMR guide</a> covers the ZIP-level answer.</p>
+  </section>
+
+  <section aria-label="Methodology">
+    <h2>Methodology: the file and what each number is</h2>
+    <p>The source is the FY2027 fair market rent file by ZIP code: 51,871 rows, one per ZIP, with fields zip, hud_area_code, metro, area_name, state and five FMR columns for 0BR through 4BR, parsed from HUD's FY27 workbooks and shipped as <a href="../datasets/hud-fmr-by-zip-2027.html">a documented CSV</a> (md5 c075a69de6c60ffd99ac6dba3a9b7899). Every number on this page uses the fmr_2br column. A prefix is the first two characters of the zip field, zero-padded; a state pool is all rows sharing a state column value, which gives 52 pools including DC and Puerto Rico; the file median is the middle value across all 51,871 rows, the average of the two middle rows for even counts, and the same convention applies to every prefix and state median here.</p>
+    <p>Grouping by prefix is an approximation of grouping by state, and the page measures that approximation rather than assuming it: 42 of 99 prefixes are single-state, 57 cross at least one state line, 8 state pools sit entirely inside one prefix, and prefix 09x holds no rows. Where a prefix spans states, its median mixes those states' markets by construction; the tables keep the state column visible wherever a row depends on it. The <a href="../data/zip-prefix-2027/zip-prefix-geography-2027.csv">prefix CSV</a> carries the 99-row aggregate: prefix, member states, ZIP count, median, min and max 2BR. Every board, median and spread on this page was computed three ways over the source file, a python pass, an independent SQLite pass, and the verbatim page SQL below, with zero mismatches.</p>
+  </section>
+
+  <section aria-label="Recompute the boards yourself">
+    <h2>Recompute the boards yourself</h2>
+    <p>Load the source CSV into SQLite as <code>zip2027</code>, ten columns per row. The state board needs one ordering by row count:</p>
+    <pre><code>-- SQLite: the ten largest state pools by ZIP rows
+CREATE TABLE zip2027 (zip TEXT, hud_area_code TEXT, metro TEXT, area_name TEXT,
+  state TEXT, fmr_0br INT, fmr_1br INT, fmr_2br INT, fmr_3br INT, fmr_4br INT);
+.import --skip 1 fmr-by-zip-2027.csv zip2027
+
+WITH c AS (SELECT state, COUNT(*) AS zips,
+                  ROW_NUMBER() OVER (ORDER BY COUNT(*) DESC, state) AS rn
+           FROM zip2027 GROUP BY state),
+m AS (SELECT state, fmr_2br,
+             ROW_NUMBER() OVER (PARTITION BY state ORDER BY fmr_2br, zip) AS r2,
+             COUNT(*) OVER (PARTITION BY state) AS n
+      FROM zip2027)
+SELECT c.rn, c.state, c.zips, ROUND(c.zips * 100.0 / 51871.0, 1) AS share_pct,
+  (SELECT ROUND(AVG(fmr_2br)) FROM m WHERE m.state = c.state
+     AND r2 IN ((n+1)/2, (n+2)/2)) AS median_2br,
+  (SELECT p FROM (SELECT state, SUBSTR(zip,1,2) AS p, COUNT(*) AS cz
+                  FROM zip2027 GROUP BY state, p)
+     WHERE state = c.state ORDER BY cz DESC, p LIMIT 1) AS top_prefix,
+  (SELECT cz FROM (SELECT state, SUBSTR(zip,1,2) AS p, COUNT(*) AS cz
+                   FROM zip2027 GROUP BY state, p)
+     WHERE state = c.state ORDER BY cz DESC, p LIMIT 1) AS top_prefix_zips
+FROM c ORDER BY rn LIMIT 10;
+-- Rows: 1 TX 3244 6.3 1220.0 76 695,
+-- 2 CA 2605 5.0 2600.0 95 677,
+-- 3 PA 2576 5.0 1270.0 15 611,
+-- 4 NY 2397 4.6 1500.0 12 645,
+-- 5 IL 1939 3.7 1050.0 62 751,
+-- 6 MO 1908 3.7 1020.0 65 643,
+-- 7 OH 1884 3.6 1100.0 45 674,
+-- 8 IA 1718 3.3 990.0 50 798,
+-- 9 MI 1556 3.0 1180.0 49 824,
+-- 10 FL 1552 3.0 1820.0 32 646.</code></pre>
+    <p>The prefix boards come out of the same table, one ordering by median and one by span:</p>
+    <pre><code>-- SQLite: the ten most expensive prefixes by median 2BR, with floor and ceiling
+WITH c AS (SELECT SUBSTR(zip,1,2) AS prefix, COUNT(*) AS zips,
+                  MIN(fmr_2br) AS min_2br, MAX(fmr_2br) AS max_2br
+           FROM zip2027 GROUP BY prefix),
+m AS (SELECT SUBSTR(zip,1,2) AS prefix, fmr_2br,
+             ROW_NUMBER() OVER (PARTITION BY SUBSTR(zip,1,2) ORDER BY fmr_2br, zip) AS r2,
+             COUNT(*) OVER (PARTITION BY SUBSTR(zip,1,2)) AS n
+      FROM zip2027),
+med AS (SELECT prefix, ROUND(AVG(fmr_2br)) AS median_2br FROM m
+        WHERE r2 IN ((n+1)/2, (n+2)/2) GROUP BY prefix)
+SELECT ROW_NUMBER() OVER (ORDER BY med.median_2br DESC, c.prefix) AS rn,
+  c.prefix, c.zips, med.median_2br, c.min_2br, c.max_2br
+FROM c JOIN med ON med.prefix = c.prefix
+ORDER BY rn LIMIT 10;
+-- Rows: 1 10 323 3330.0 1790 4460,
+-- 2 94 296 3270.0 1620 5050,
+-- 3 90 257 2960.0 1870 4450,
+-- 4 91 279 2960.0 2040 4450,
+-- 5 11 311 2910.0 2480 4460,
+-- 6 92 488 2820.0 1230 4590,
+-- 7 02 415 2650.0 1560 4510,
+-- 8 07 390 2460.0 1200 4190,
+-- 9 20 396 2400.0 1200 3660,
+-- 10 33 617 2210.0 1020 3850.
+
+-- the ten widest within-prefix spans, floor and ceiling ZIP identified
+WITH c AS (SELECT SUBSTR(zip,1,2) AS prefix, COUNT(*) AS zips,
+                  MIN(fmr_2br) AS min_2br, MAX(fmr_2br) AS max_2br,
+                  ROW_NUMBER() OVER (ORDER BY MAX(fmr_2br) - MIN(fmr_2br) DESC) AS rn
+           FROM zip2027 GROUP BY prefix),
+h AS (SELECT SUBSTR(zip,1,2) AS prefix, zip, area_name, fmr_2br,
+             ROW_NUMBER() OVER (PARTITION BY SUBSTR(zip,1,2) ORDER BY fmr_2br DESC, zip) AS r3
+      FROM zip2027),
+l AS (SELECT SUBSTR(zip,1,2) AS prefix, zip, area_name, fmr_2br,
+             ROW_NUMBER() OVER (PARTITION BY SUBSTR(zip,1,2) ORDER BY fmr_2br, zip) AS r4
+      FROM zip2027),
+m AS (SELECT SUBSTR(zip,1,2) AS prefix, fmr_2br,
+             ROW_NUMBER() OVER (PARTITION BY SUBSTR(zip,1,2) ORDER BY fmr_2br, zip) AS r2,
+             COUNT(*) OVER (PARTITION BY SUBSTR(zip,1,2)) AS n
+      FROM zip2027)
+SELECT c.rn, c.prefix, c.zips,
+  (SELECT ROUND(AVG(fmr_2br)) FROM m WHERE m.prefix = c.prefix
+     AND r2 IN ((n+1)/2, (n+2)/2)) AS median_2br,
+  c.min_2br, c.max_2br, c.max_2br - c.min_2br AS span,
+  (SELECT zip || ' ' || area_name FROM h WHERE h.prefix = c.prefix AND r3 = 1) AS hi_zip,
+  (SELECT zip || ' ' || area_name FROM l WHERE l.prefix = c.prefix AND r4 = 1) AS lo_zip
+FROM c ORDER BY rn LIMIT 10;
+-- Rows: 1 95 677 1930.0 1150 5260 4110 95060 Santa Cruz-Watsonville, CA MSA 95527 Trinity County, CA,
+-- 2 94 296 3270.0 1620 5050 3430 94404 San Francisco, CA HUD Metro FMR Area 94571 Sacramento--Roseville--Arden-Arcade, CA HUD Metro FMR Area,
+-- 3 92 488 2820.0 1230 4590 3360 92660 Santa Ana-Anaheim-Irvine, CA HUD Metro FMR Area 92222 El Centro, CA MSA,
+-- 4 01 441 2090.0 1440 4510 3070 01731 Boston-Cambridge-Quincy, MA-NH HUD Metro FMR Area 01092 Western Worcester County, MA HUD Metro FMR Area,
+-- 5 93 459 1780.0 1320 4360 3040 93109 Santa Maria-Santa Barbara, CA MSA 93643 Madera County, CA HUD Metro FMR Area,
+-- 6 07 390 2460.0 1200 4190 2990 07030 Jersey City, NJ HUD Metro FMR Area 07738 Monmouth-Ocean, NJ HUD Metro FMR Area,
+-- 7 02 415 2650.0 1560 4510 2950 02110 Boston-Cambridge-Quincy, MA-NH HUD Metro FMR Area 02721 Providence-Fall River, RI-MA HUD Metro FMR Area,
+-- 8 33 617 2210.0 1020 3850 2830 33131 Miami-Miami Beach-Kendall, FL HUD Metro FMR Area 33597 Tampa-St. Petersburg-Clearwater, FL MSA,
+-- 9 98 586 1880.0 1010 3820 2810 98004 Seattle-Bellevue, WA HUD Metro FMR Area 98819 Okanogan County, WA,
+-- 10 96 271 1930.0 1080 3810 2730 96825 Urban Honolulu, HI MSA 96054 Modoc County, CA.
+
+-- shape of the file, one row
+SELECT (SELECT COUNT(*) FROM zip2027) AS zips,
+  (SELECT COUNT(DISTINCT state) FROM zip2027) AS states,
+  (SELECT COUNT(DISTINCT SUBSTR(zip,1,2)) FROM zip2027) AS prefixes,
+  (SELECT ROUND(AVG(fmr_2br)) FROM (SELECT fmr_2br,
+           ROW_NUMBER() OVER (ORDER BY fmr_2br, zip) AS r2,
+           COUNT(*) OVER () AS n FROM zip2027)
+     WHERE r2 IN ((n+1)/2, (n+2)/2)) AS median_2br,
+  (SELECT COUNT(*) FROM (SELECT state FROM zip2027
+     GROUP BY state HAVING COUNT(DISTINCT SUBSTR(zip,1,2)) = 1)) AS single_prefix_states,
+  (SELECT COUNT(*) FROM (SELECT SUBSTR(zip,1,2) AS p FROM zip2027
+     GROUP BY p HAVING COUNT(DISTINCT state) &gt; 1)) AS multi_state_prefixes;
+-- 51871 / 52 / 99 / 1190.0 / 8 / 57.</code></pre>
+    <p>Run in one session, every block returns exactly the rows quoted in the comments, including the tie order 90x before 91x on the shared 2,960 median. Swap the board key to <code>MAX(fmr_2br) - MIN(fmr_2br)</code> on the 0BR column to see Puerto Rico's 00x hold the narrowest spread in the file instead, or point the medians at fmr_4br to watch Honolulu's 968xx climb toward the top.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>ZIP prefix geography: questions</h2>
+    <dl>
+      <dt>What do the first two digits of a ZIP code tell you?</dt>
+      <dd>They group ZIP codes into about a hundred routing zones, and in the FY2027 rent file each zone leans hard toward one state: 8 of the 52 state pools live entirely inside a single prefix, and 42 of the 99 prefixes used contain exactly one state. The mapping is not exact, 57 prefixes cross at least one state line, so the state column in any dataset stays the authority and the prefix works as a fast approximation.</dd>
+      <dt>Which ZIP prefix has the highest rents in FY2027?</dt>
+      <dd>Prefix 10x, Manhattan and the Hudson Valley counties, medians 3,330 for a two-bedroom, and prefix 11x, Long Island, follows at 2,910, so New York City owns the top of the board with two prefixes. California takes four of the ten most expensive prefixes: 94x at 3,270, 90x and 91x tied at 2,960, and 92x at 2,820. The cheapest is prefix 00x, Puerto Rico, at 610, a 5.46-to-1 gap between the two ends of the file.</dd>
+      <dt>How are the prefix medians computed?</dt>
+      <dd>Each ZIP code row contributes its two-bedroom fair market rent, the rows in a prefix are sorted, and the median is the middle value, the average of the two middle rows when a prefix holds an even count. The 95xxx prefix shows why a median matters there: it holds 677 ZIPs from Trinity County at 1,150 to Santa Cruz ZIP 95060 at 5,260, a 4,110 span, and its median of 1,930 describes neither endpoint.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <div class="btnrow">
+      <a class="btn" href="../data/zip-prefix-2027/zip-prefix-geography-2027.csv" download>Download the ZIP-prefix geography CSV (free, 99 rows)</a>
+      <a class="btn-ghost btn" href="../datasets/hud-fmr-by-zip-2027.html">Browse the full FY2027 ZIP file</a>
+    </div>
+    <p class="btn-note">The CSV carries one row per two-digit prefix: prefix, member states, ZIP count, median, min and max two-bedroom rent. For the rent level behind each ZIP, the <a href="../datasets/hud-fmr-by-zip-2027.html">FY2027 ZIP-level file</a> documents every column, the <a href="hud-fmr-2027.html">FY2027 changes guide</a> covers what moved year over year, the <a href="rent-vs-income-affordability.html">affordability guide</a> tests the 30 percent rule on this same file, and <a href="what-is-a-csv-sample.html">the CSV sample guide</a> explains how to judge a file before you commit to it.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

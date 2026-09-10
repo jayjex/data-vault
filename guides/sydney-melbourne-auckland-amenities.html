@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Public Toilets and Drinking Fountains in Sydney, Melbourne, Auckland: OpenStreetMap Counts (CSV) | Data Vault</title>
+<meta name="description" content="Sydney, Melbourne and Auckland counted from OpenStreetMap: 27,231 features, Sydney holds 68.1 percent, and three different boundary kinds explain the 95.6x spread.">
+<link rel="canonical" href="https://jayjex.github.io/data-vault/guides/sydney-melbourne-auckland-amenities.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Vault">
+<meta property="og:title" content="Public Toilets and Drinking Fountains in Sydney, Melbourne, Auckland: OpenStreetMap Counts (CSV)">
+<meta property="og:description" content="Sydney, Melbourne and Auckland counted from OpenStreetMap: 27,231 features, Sydney holds 68.1 percent, and three different boundary kinds explain the 95.6x spread.">
+<meta property="og:url" content="https://jayjex.github.io/data-vault/guides/sydney-melbourne-auckland-amenities.html">
+<meta property="og:image" content="https://jayjex.github.io/data-vault/assets/covers/data-vault-banner.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Public toilets, drinking fountains and benches in Sydney, Melbourne and Auckland, counted from OpenStreetMap">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Public Toilets and Drinking Fountains in Sydney, Melbourne, Auckland: OpenStreetMap Counts (CSV)", "description": "Sydney, Melbourne and Auckland counted from OpenStreetMap: 27,231 features, Sydney holds 68.1 percent, and three different boundary kinds explain the 95.6x spread.", "datePublished": "2026-09-10", "dateModified": "2026-09-10", "author": {"@type": "Organization", "name": "Matchbook Labs"}, "publisher": {"@type": "Organization", "name": "Matchbook Labs"}, "mainEntityOfPage": "https://jayjex.github.io/data-vault/guides/sydney-melbourne-auckland-amenities.html", "about": {"@type": "Dataset", "name": "OpenStreetMap Civic Amenities, Sydney-Melbourne-Auckland, 2026-09", "url": "https://jayjex.github.io/data-vault/datasets/osm-oceania-civic-amenities.html"}, "mentions": [{"@type": "Article", "name": "Public Amenities per Capita in NYC, Chicago and Seattle: OpenStreetMap Counts (CSV)", "url": "https://jayjex.github.io/data-vault/guides/civic-amenities-per-capita.html"}, {"@type": "Article", "name": "Open Street Map Civic Data: Fountains, Bookcases, Bike Repair Stations in 16 Cities", "url": "https://jayjex.github.io/data-vault/guides/osm-civic-data-guide.html"}, {"@type": "Article", "name": "Public Bookcase Map Worldwide: Fountains and Bike Repair Stations Counted in 19 Cities", "url": "https://jayjex.github.io/data-vault/guides/worldwide-civic-amenities-map.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which of the three cities has the most public toilets?", "acceptedAnswer": {"@type": "Answer", "text": "Sydney on raw counts: 2,501 toilets mapped inside the metropolitan boundary, against Auckland's 992 and Melbourne's 142. The comparison carries a boundary caveat, because the three areas differ in kind: a metro place boundary for Sydney, a 37 square kilometre local government area for Melbourne, and a unitary authority that includes rural land for Auckland. The file carries no population columns, so the counts stay raw; the New York-Chicago-Seattle file carries population tags on all three boundaries and supports the per-capita treatment."}}, {"@type": "Question", "name": "Why are Melbourne's counts so much lower?", "acceptedAnswer": {"@type": "Answer", "text": "The boundary is the main reason. Melbourne's counts cover R2404870, the City of Melbourne local government area, admin_level 6, about 37 square kilometres of core municipality that does not reach the outer suburbs, while Sydney's counts cover the whole metropolitan place boundary and Auckland's cover the entire unitary authority. Melbourne's bench count still carries 78.8 percent of its file, the highest bench share of the three cities, and its mapped drinking fountains include heritage pieces such as the Temperance Fountain (node 2975190811)."}}, {"@type": "Question", "name": "How were the counts taken and verified?", "acceptedAnswer": {"@type": "Answer", "text": "Each cell is an Overpass API out count query for one amenity type inside one verified boundary relation, run on 2026-09-10 against the maps.mail.ru mirror with base timestamp 2026-09-08T20:07:04Z. A parallel run on the overpass-api.de mirror matched all nine numbers exactly. A third mirror was abandoned after heavy throttling and a stale area store, and one suggested Sydney relation (R7003490) was discarded after verification showed it is a suburb of Rzeszow, Poland. Nodes and ways are counted; relations are ignored, and none exist for these tags in the three areas."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://jayjex.github.io/data-vault/guides/"}, {"@type": "ListItem", "position": 3, "name": "Public toilets, drinking fountains and benches in Sydney, Melbourne and Auckland", "item": "https://jayjex.github.io/data-vault/guides/sydney-melbourne-auckland-amenities.html"}]}</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="..">data<span class="u">&middot;</span>vault<span class="cursor">_</span></a>
+<nav aria-label="Site">
+  <a href="..">Catalog</a>
+  <a href="../agents/">For agents</a>
+  <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">Store</a>
+</nav>
+</div></header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="..">&larr; Catalog</a>
+  <h1>Public toilets, drinking fountains and benches in Sydney, Melbourne and Auckland, counted from OpenStreetMap</h1>
+  <p class="byline">Published 2026-09-10. Data source: <a href="../datasets/osm-oceania-civic-amenities.html">OpenStreetMap Civic Amenities, Sydney-Melbourne-Auckland, 2026-09</a>, nine counts from Overpass API <code>out count</code> queries on 2026-09-10, cross-checked on a second mirror with all nine numbers matching. Boundary details come from the <a href="../data/osm-oceania-civic/schema.md">dataset schema</a>. This page documents the data.</p>
+
+  <div class="stats" style="margin-bottom:26px"><span class="stat"><b>27,231</b> features in 9 city-amenity cells</span><span class="stat"><b>18,553</b> Sydney features, 68.1 percent of the file</span><span class="stat"><b>13,573</b> Sydney benches, largest count in the file</span><span class="stat"><b>2.32</b> Auckland toilets per fountain</span><span class="stat"><b>95.6x</b> span, 142 to 13,573</span></div>
+
+  <section aria-label="The short answer">
+    <h2>The short answer</h2>
+    <p>Three cities, three amenity types, nine counts, and three different ideas of where a city ends. OpenStreetMap contributors have mapped 27,231 public features inside the boundaries of Sydney, Melbourne, and Auckland: 20,334 benches, 3,635 public toilets, and 3,262 drinking water points, a snapshot taken 2026-09-10 with a base timestamp of 2026-09-08T20:07:04Z. Sydney holds 18,553 of the features, 68.1 percent of the file, and its bench count alone (13,573) nearly matches the other eight cells combined (13,658).</p>
+    <p>The nine counts span 142 to 13,573, a 95.6x spread, and the spread is written into the query design. The three boundaries are three different kinds of area: a metropolitan place boundary for Sydney, a 37 km&sup2; core municipality for Melbourne, and a unitary authority that reaches into rural land for Auckland. Both tables below recompute from the <a href="../data/osm-oceania-civic/oceania-civic-amenities.csv">free nine-row CSV</a>, and the two SQL blocks at the end of this page return them verbatim.</p>
+  </section>
+
+  <section aria-label="All nine counts ranked by raw total">
+    <h2>All nine counts, ranked by raw total</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Nine city-amenity counts ranked by raw count"><table><thead><tr><th scope="col">#</th><th scope="col">City</th><th scope="col">Amenity</th><th scope="col">Count</th><th scope="col">Share of city</th></tr></thead><tbody>
+      <tr><td>1</td><td>Sydney</td><td>Benches</td><td>13,573</td><td>73.2%</td></tr>
+      <tr><td>2</td><td>Auckland</td><td>Benches</td><td>4,916</td><td>77.6%</td></tr>
+      <tr><td>3</td><td>Sydney</td><td>Public toilets</td><td>2,501</td><td>13.5%</td></tr>
+      <tr><td>4</td><td>Sydney</td><td>Drinking water</td><td>2,479</td><td>13.4%</td></tr>
+      <tr><td>5</td><td>Melbourne</td><td>Benches</td><td>1,845</td><td>78.8%</td></tr>
+      <tr><td>6</td><td>Auckland</td><td>Public toilets</td><td>992</td><td>15.7%</td></tr>
+      <tr><td>7</td><td>Auckland</td><td>Drinking water</td><td>428</td><td>6.8%</td></tr>
+      <tr><td>8</td><td>Melbourne</td><td>Drinking water</td><td>355</td><td>15.2%</td></tr>
+      <tr><td>9</td><td>Melbourne</td><td>Public toilets</td><td>142</td><td>6.1%</td></tr>
+    </tbody></table></div>
+    <p>Benches lead every city, and the bench shares sit in a tight band: 78.8 percent of Melbourne's file, 77.6 of Auckland's, 73.2 of Sydney's. The theme totals run 20,334 benches (74.7 percent of the file), 3,635 toilets (13.3), and 3,262 fountains (12.0). The median count across the nine cells is 1,845, Melbourne's bench figure, and the floor is Melbourne's 142 public toilets, which also anchors the 95.6x span.</p>
+    <p>The top two rows sit on different scales of city. Sydney's 13,573 benches cover a metropolitan boundary whose relation carries a population tag of 5,219,674; Auckland's 4,916 cover a unitary authority that includes rural north and south. An exact-boundary file for New York, Chicago, and Seattle counted 18,991 benches in New York, more than Sydney's total, so cross-file bench comparisons stack side by side rather than merge.</p>
+  </section>
+
+  <section aria-label="Three cities, three boundary kinds">
+    <h2>Three cities, three boundary kinds</h2>
+    <p>The schema documents what each count covers, and the three answers differ in kind, not only in size. Sydney counts run inside R5750005, the OSM <code>place=city</code> boundary for the metropolitan area (population tag 5,219,674); the much smaller Council of the City of Sydney local government area (R1251066) sits inside it and was not what Nominatim's top Sydney hit resolves to. Melbourne counts run inside R2404870, the City of Melbourne local government area, admin_level 6, about 37 km&sup2; of core municipality that stops short of the outer suburbs. Auckland counts run inside R2094141, the unitary authority (admin_level 4), which covers the whole Auckland region including rural north and south.</p>
+    <p>Melbourne's low totals follow from that choice of boundary. Its 2,342 features cover a CBD and inner-city area a fraction of Sydney's metropolitan footprint, and the schema says outright that the low per-city counts are a boundary artifact as much as a mapping gap. What Melbourne does map, it maps densely around its specialities. The file's heritage fountains (the Temperance Fountain, node 2975190811) sit in Melbourne, and its 1,845 benches still carry the highest bench share of the three cities.</p>
+    <p>One suggested Sydney relation, R7003490, was discarded before counting after verification showed it is a suburb of Rzesz&oacute;w, Poland. The oceania file carries no population columns (only Sydney's boundary relation carries a population tag), so this page stays on raw counts. The per-capita treatment lives on the <a href="civic-amenities-per-capita.html">New York, Chicago and Seattle counts</a>, where all three boundaries carry population tags.</p>
+  </section>
+
+  <section aria-label="City totals and ratios">
+    <h2>City totals and the toilet-to-fountain ratio</h2>
+    <p>Per city, the totals are Sydney 18,553, Auckland 6,336, and Melbourne 2,342. The toilet-to-fountain ratio splits the three cities: Auckland sits at 2.32, the highest of any city in the catalog's toilet-bearing OSM files (New York 0.51, Chicago 1.19, Seattle 1.20 in the exact-boundary file), Melbourne sits at 0.40, the lowest, and Sydney splits almost even at 1.01, 2,501 toilets against 2,479 fountains.</p>
+    <p>Auckland's toilet mapping includes ways as well as nodes, for example the Kohimarama Beach changing rooms (way 128209733), and its fountain nodes carry te reo M&#257;ori names such as Waiariki (node 7998091383). Sydney's toilet nodes link to the national toilet map (toiletmap.gov.au) and carry operator and wheelchair attributes, including the Cook Park facility (node 15179265). Read all of it as OpenStreetMap coverage. The numbers are exact for what was mapped on the snapshot date, and they are estimates for what stands on the ground.</p>
+  </section>
+
+  <section aria-label="Methodology">
+    <h2>Methodology: two mirrors, one abandoned, three verified boundaries</h2>
+    <p>The source file is the nine-row <a href="../data/osm-oceania-civic/oceania-civic-amenities.csv">oceania-civic-amenities.csv</a> (ODbL 1.0, &copy; OpenStreetMap contributors). Each cell is an Overpass API <code>out count</code> query for one amenity type inside one city area, counting nodes and ways together; relations are ignored, and none exist for these tags in the three areas. City areas were resolved through Nominatim and passed to Overpass as 3600000000-offset area IDs.</p>
+    <p>The primary run used the maps.mail.ru mirror (keyless, base timestamp 2026-09-08T20:07:04Z) on 2026-09-10. A parallel count run on the overpass-api.de mirror (base timestamp 2026-09-08T20:19:04Z) matched all 9 of 9 numbers exactly, in drinking water / toilets / benches order per city: Sydney 2,479 / 2,501 / 13,573, Melbourne 355 / 142 / 1,845, Auckland 428 / 992 / 4,916. A third mirror, overpass.kumi.systems, was abandoned because it throttled heavily and its area store was months stale, a naive Sydney bench query there returned 0, and the other two mirrors refuted that immediately.</p>
+    <p>Counts are a snapshot, OSM moves daily, and the three boundary kinds differ on purpose, each city's area chosen for what &ldquo;the city&rdquo; means locally, so cross-city comparisons should keep the asymmetry in mind. Bench counts also sit on a different scale than the bookcase and repair-station themes of the earlier civic batches, which is why this page compares within a theme.</p>
+  </section>
+
+  <section aria-label="Recompute the boards yourself">
+    <h2>Recompute the tables yourself</h2>
+    <p>Load the CSV into SQLite as <code>civic</code>, three columns per row. The first block returns the raw board:</p>
+    <pre><code>-- SQLite: all nine city-amenity counts, ranked by raw count
+CREATE TABLE civic (city TEXT, theme TEXT, count INT);
+.import --skip 1 oceania-civic-amenities.csv civic
+
+SELECT rn, city, theme, count, share_of_city
+FROM (SELECT city, theme, count,
+             ROUND(count * 100.0 / SUM(count) OVER (PARTITION BY city), 1) AS share_of_city,
+             ROW_NUMBER() OVER (ORDER BY count DESC, city) AS rn
+      FROM civic)
+ORDER BY rn;
+-- Rows: 1 Sydney benches 13573 73.2,
+-- 2 Auckland benches 4916 77.6,
+-- 3 Sydney public toilets 2501 13.5,
+-- 4 Sydney drinking water 2479 13.4,
+-- 5 Melbourne benches 1845 78.8,
+-- 6 Auckland public toilets 992 15.7,
+-- 7 Auckland drinking water 428 6.8,
+-- 8 Melbourne drinking water 355 15.2,
+-- 9 Melbourne public toilets 142 6.1.</code></pre>
+    <p>The second block returns the file's shape: theme totals, city totals, the median and span, and the per-city ratio column quoted above:</p>
+    <pre><code>-- SQLite: shape of the file
+WITH r AS (SELECT count AS v, ROW_NUMBER() OVER (ORDER BY count) AS rn,
+                  COUNT(*) OVER () AS n FROM civic),
+     t AS (SELECT theme, SUM(count) AS n FROM civic GROUP BY theme),
+     c2 AS (SELECT city, SUM(count) AS n FROM civic GROUP BY city)
+SELECT
+  (SELECT SUM(v) FROM r) AS features,
+  (SELECT n FROM t WHERE theme = 'benches') AS benches,
+  (SELECT n FROM t WHERE theme = 'public toilets') AS toilets,
+  (SELECT n FROM t WHERE theme = 'drinking water') AS fountains,
+  (SELECT n FROM c2 WHERE city = 'Sydney') AS sydney_total,
+  (SELECT ROUND(n * 100.0 / (SELECT SUM(n) FROM c2), 1) FROM c2
+   WHERE city = 'Sydney') AS sydney_share,
+  (SELECT v FROM r WHERE rn = (n+1)/2) AS median_count,
+  (SELECT MIN(v) FROM r) AS floor_count,
+  (SELECT MAX(v) FROM r) AS ceiling_count,
+  (SELECT ROUND(MAX(v) * 1.0 / MIN(v), 1) FROM r) AS top_to_bottom;
+-- 27231 / 20334 / 3635 / 3262 / 18553 / 68.1 / 1845 / 142 / 13573 / 95.6.
+
+-- per-city totals, bench share, and the toilet-to-fountain ratio
+SELECT city, SUM(count) AS city_total,
+       ROUND((SELECT count FROM civic WHERE city = c.city AND theme = 'benches')
+             * 100.0 / SUM(count), 1) AS bench_share,
+       ROUND((SELECT count FROM civic WHERE city = c.city AND theme = 'public toilets') * 1.0 /
+             (SELECT count FROM civic WHERE city = c.city AND theme = 'drinking water'), 2)
+             AS toilets_per_fountain
+FROM civic c
+GROUP BY city
+ORDER BY city_total DESC;
+-- Rows: Sydney 18553 73.2 1.01,
+-- Auckland 6336 77.6 2.32,
+-- Melbourne 2342 78.8 0.4.</code></pre>
+    <p>Run in one session, both blocks return exactly the rows quoted in the comments. One formatting note: SQLite prints the Melbourne ratio as 0.4 rather than 0.40, same number, and this page's table shows two decimals for the column.</p>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>Sydney, Melbourne and Auckland counts: questions</h2>
+    <dl>
+      <dt>Which of the three cities has the most public toilets?</dt>
+      <dd>Sydney on raw counts: 2,501 toilets mapped inside the metropolitan boundary, against Auckland's 992 and Melbourne's 142. The comparison carries a boundary caveat, because the three areas differ in kind: a metro place boundary for Sydney, a 37 square kilometre local government area for Melbourne, and a unitary authority that includes rural land for Auckland. The file carries no population columns, so the counts stay raw; the New York-Chicago-Seattle file carries population tags on all three boundaries and supports the per-capita treatment.</dd>
+      <dt>Why are Melbourne's counts so much lower?</dt>
+      <dd>The boundary is the main reason. Melbourne's counts cover R2404870, the City of Melbourne local government area, admin_level 6, about 37 square kilometres of core municipality that does not reach the outer suburbs, while Sydney's counts cover the whole metropolitan place boundary and Auckland's cover the entire unitary authority. Melbourne's bench count still carries 78.8 percent of its file, the highest bench share of the three cities, and its mapped drinking fountains include heritage pieces such as the Temperance Fountain (node 2975190811).</dd>
+      <dt>How were the counts taken and verified?</dt>
+      <dd>Each cell is an Overpass API out count query for one amenity type inside one verified boundary relation, run on 2026-09-10 against the maps.mail.ru mirror with base timestamp 2026-09-08T20:07:04Z. A parallel run on the overpass-api.de mirror matched all nine numbers exactly. A third mirror was abandoned after heavy throttling and a stale area store, and one suggested Sydney relation (R7003490) was discarded after verification showed it is a suburb of Rzeszow, Poland. Nodes and ways are counted; relations are ignored, and none exist for these tags in the three areas.</dd>
+    </dl>
+  </section>
+
+  <section aria-label="Get the data">
+    <h2>Get the data</h2>
+    <div class="btnrow">
+      <a class="btn" href="../data/osm-oceania-civic/oceania-civic-amenities.csv" download>Download the nine-row CSV (free, ODbL)</a>
+      <a class="btn-ghost btn" href="../datasets/osm-oceania-civic-amenities.html">Open the dataset page</a>
+    </div>
+    <p class="btn-note">The CSV carries one row per city-amenity pair with the ODbL license line verbatim, and the <a href="../data/osm-oceania-civic/schema.md">schema page</a> documents the boundary relations, the mirror cross-check, and the example nodes. Related guides on this site: the <a href="civic-amenities-per-capita.html">per-capita counts for New York, Chicago and Seattle</a>, the <a href="osm-civic-data-guide.html">16-city civic data guide</a>, and the <a href="worldwide-civic-amenities-map.html">19-city worldwide counts</a>.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+<div class="mono fnav"><a href="../index.html">Home</a> &middot; <a href="../guides/index.html">Guides</a> &middot; <a href="../datasets/index.html">Datasets</a> &middot; <a href="../agents/index.html">Agents</a></div>
+<div>Data Vault is a Matchbook Labs project. <a class="mono" href="https://github.com/jayjex" rel="noopener">github.com/jayjex</a></div>
+<div class="mono"><a href="../guides/how-we-sell-public-data.html">How we sell public datasets</a></div>
+<div class="mono">Samples CC BY 4.0 &middot; full packs licensed per purchase &middot; <a href="../catalog.json">catalog.json</a></div>
+</div></footer>
+</body>
+</html>

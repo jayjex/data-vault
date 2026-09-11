@@ -1,0 +1,20 @@
+# CHANGELOG — data-vault
+
+Log update site. 1 baris per push yang berisi perubahan konten. Terbaru di atas.
+
+## 2026-09-11
+
+- `agents/` + `llms*.txt`: MCP section refresh — install `npx @jayjex/dataset-mcp`, tambah pdfcheck-mcp (commit d3fe0c6)
+- `guides/index.html`: hub 142 guides + kartu blog landlord-bookkeeping (2233434)
+- `guides/landlord-bookkeeping.html`: blog5 LIVE (5c9...) + sitemap + llms.txt + IndexNow
+- `products.html`: "New this week" 8 kartu LIVE (10d5634)
+- `printables-index.html`: m38 + jadwal m41-46 (6106703)
+
+## 2026-09-10
+
+- guides hub lead 141 guides
+- agents page live (MCP servers, glama links)
+
+## 2026-09-09
+
+- awesome-public-datasets sync (apd-core), DOI catalog 12 Zenodo

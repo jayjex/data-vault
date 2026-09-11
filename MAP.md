@@ -57,6 +57,7 @@ Update terakhir: 2026-09-11. Doc ini WAJIB diupdate setiap ada halaman baru / pr
 | GitHub backlink | PR ke awesome-lists (punkpeye #14168/#14169 open) | 2 PR open | Saat ada server/repo baru |
 | npm | README package → data-vault | 2 package live | Pas rilis |
 | Getly marketplace | Store internal traffic + auto-newest | 126 real views total | Pasif |
+| Zenodo DOI (credential + backlink) | DOI cite-byline di kartu/halaman dataset + `identifier` JSON-LD; zenodo.org records link balik ke vault | **13/13 DOI synced** (housing 10.5281/zenodo.22706557 card byline 09-11, commit kartu terpisah) | Pasif (citability) |
 | Fourthwall/SellApp | Sama, pasif | — | Pasif |
 | Free samples funnel | datasets/printables gratis → CTA store | Halaman live | Pasif |
 

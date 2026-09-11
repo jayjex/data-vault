@@ -4,6 +4,8 @@ Log update site. 1 baris per push yang berisi perubahan konten. Terbaru di atas.
 
 ## 2026-09-11
 
+- `christmas-gift-planning-hub.html`: hub musiman baru — plan-early (deadline November/mail), Santa letter freebie 3 hal (GUMROAD_XMAS_URL), tracker $9 live-math (GETLY_XMAS_URL, live 09-17), grid sample 4 baris, 5 tips, FAQ; sitemap 217→218, llms.txt +1, IndexNow 1x
+
 - `catalog.html` + `datasets/earn-bounties.html` + `llms.txt`/`llms-full.txt`: earn-dataset DOI 10.5281/zenodo.22707493 cite-byline + `identifier` JSON-LD di kartu (pos 4) dan hub page; DOI list 13→14 + mapping earn
 
 - `catalog.html`: kartu housing-pack dapat DOI cite-byline 10.5281/zenodo.22706557 + `identifier` JSON-LD (generator doi-aware via portfolio `doi` field) — Zenodo DOI site sync 13/13

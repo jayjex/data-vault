@@ -15,6 +15,7 @@ Crosslink count: 5 related-pack lines live di guides (09-11 run — housing pack
 | `free-datasets-for-ai-agents.html` | Landing dataset gratis (funnel dataset-mcp) | Sample download | Dataset baru masuk |
 | `free-printables-index.html` | Index printable gratis (funnel planner) | — | Printable baru |
 | `printable-index-roundup.html` | Roundup artikel printables | — | Jarang |
+| `christmas-gift-planning-hub.html` | Seasonal hub: Santa letter freebie, gift budget tracker $9, planner grid sample | Ya (2 link placeholder GUMROAD_XMAS_URL / GETLY_XMAS_URL — swap saat produk live) | Swap placeholder saat freebie/tracker live |
 | `guides/index.html` | Hub 142 guides (SEO internal links) | — | Tiap guide/baru blog live → tambah kartu |
 | `guides/*.html` | 142 guide SEO | CTA store di footer | — |
 | `agents/index.html` | Halaman "For agents": MCP servers + install npm | npm | MCP server baru / versi baru |
@@ -24,7 +25,7 @@ Crosslink count: 5 related-pack lines live di guides (09-11 run — housing pack
 
 | File | Isi | Trigger edit |
 |---|---|---|
-| `sitemap.xml` | 217 URL | +1 entry per halaman/guide baru |
+| `sitemap.xml` | 218 URL | +1 entry per halaman/guide baru |
 | `llms.txt` / `llms-full.txt` | Index buat AI agents | +1 line per halaman baru |
 | `catalog.json` | Data katalog terstruktur | Ikut catalog-gen.py |
 | `MAP.md` (ini) | Peta struktur | Setiap perubahan struktur |

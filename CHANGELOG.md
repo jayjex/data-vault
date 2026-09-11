@@ -4,6 +4,8 @@ Log update site. 1 baris per push yang berisi perubahan konten. Terbaru di atas.
 
 ## 2026-09-11
 
+- counts consistency (dvcc): klaim publik sync ke sumber — llms.txt/llms-full.txt 223→224 printables (5 spot) + 90→98 public SKUs (2 spot); 11 halaman "223 free printables"→224 (root index 2 stat, 7 guides, printables-vs-paid, printable-templates, printables/index, engineering-bundle); free-printable-templates JSON-LD numberOfItems 223→16 (ItemList isinya 16 kategori); sitemap lastmod 9 URL → 0911; MAP counts line ditambah catalog 102 / sitemap 218 / portfolio 140 rows. Sumber tetap: 102 catalog, 142 guides (143 file incl. hub), 224 printables, 98 products, 26 datasets, 218 sitemap. IndexNow skip (task 0 HTTP)
+
 - disclaimer audit guides: 6 WAJIB-topic guides (fmr-lookup-alternatives, hud-rent-data-explained, free-real-estate-data, dataset-license-guide, public-domain-datasets, labor-market-data-guide) kini bawa byline disclaimer hedged (not financial/legal/career advice); 143 guides = 74 penuh disclaimer, 69 technical-data optional tanpa
 
 - counts honesty sweep: christmas-gift-planning-hub 223->224 printable pages, products.html body 90->98 products (meta/artikel sudah 98); angka lain cocok sumber (26 datasets, 12 packs, 224 printables, 98 articles); sitemap lastmod sudah 09-11, IndexNow 1x (2 URL)

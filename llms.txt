@@ -10,10 +10,10 @@ PDF checker MCP: npm install @jayjex/pdfcheck-mcp (v0.1.1; validates PDF page-tr
 MCP repo: https://github.com/jayjex/dataset-mcp
 MCP registry name: io.github.jayjex/dataset-mcp
 Portfolio (all live work in one page: MCP server, DOIs, x402 API, 3D print, print-on-demand, writing): https://jayjex.github.io/data-vault/portfolio.html
-Free printables index (223 free printable pages from the Matchbook Labs funnel, one link per live page): https://jayjex.github.io/data-vault/free-printables-index.html
-Free printables by use case (same 223 pages regrouped into budget, moving, study and worksheet use cases): https://jayjex.github.io/data-vault/printable-index-roundup.html
+Free printables index (224 free printable pages from the Matchbook Labs funnel, one link per live page): https://jayjex.github.io/data-vault/free-printables-index.html
+Free printables by use case (same 224 pages regrouped into budget, moving, study and worksheet use cases): https://jayjex.github.io/data-vault/printable-index-roundup.html
 Christmas gift planning hub (free letter to Santa printable PDF in A4 + Letter, a $9 budget tracker spreadsheet with 206 live formulas planned for September 17, and the gift planner grid as a 14-row sample; two product links are placeholders until the freebie and tracker go live): https://jayjex.github.io/data-vault/christmas-gift-planning-hub.html
-Product catalog (all 90 public SKUs in one page: datasets, prompt packs, wallpapers and icons, bundles, spreadsheets, Notion templates, printable planners, books, dev tools, 2 free samples; prices and item counts as listed on each storefront; Fourthwall/SellApp/Getly links): https://jayjex.github.io/data-vault/products.html
+Product catalog (all 98 public SKUs in one page: datasets, prompt packs, wallpapers and icons, bundles, spreadsheets, Notion templates, printable planners, books, dev tools, 2 free samples; prices and item counts as listed on each storefront; Fourthwall/SellApp/Getly links): https://jayjex.github.io/data-vault/products.html
 Full catalog (all live products regrouped by category — Data & AI, Spreadsheets, Print kits, Wallpapers, Guides — one buy link per product, plus the queued Getly uploads with no links until live; JSON-LD ItemList): https://jayjex.github.io/data-vault/catalog.html
 MCP full query: query_dataset(slug, {where, columns, limit, offset}) filters and paginates the FULL released files, 100 rows/call. Example: query_dataset("hud-fmr-2026", {where: [{column: "state", op: "=", value: "TX"}], limit: 5}) returns 3,247 matched Texas rent rows. Full data release: https://github.com/jayjex/dataset-mcp/releases/tag/data-v1
 Guides hub (all 142 data guides grouped by topic, one card per guide with the title and description tag from the page itself: HUD rent data, Airbnb listings, NFL and sports, crypto and bounties, public APIs, OSM amenities, CSV and scraping tools, MCP setup, printables; plus the Matchbook Labs housing affordability article): https://jayjex.github.io/data-vault/guides/
@@ -402,7 +402,7 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 
 ## Printables
 
-- [Free Printables Index: 223 printable trackers, planners and worksheets](https://jayjex.github.io/data-vault/free-printables-index.html)
+- [Free Printables Index: 224 printable trackers, planners and worksheets](https://jayjex.github.io/data-vault/free-printables-index.html)
 - [Free Printable Packs by Use Case: budget, moving, study and worksheets](https://jayjex.github.io/data-vault/printable-index-roundup.html)
 - [Free Printables vs Paid Packs: When Free Is Enough and When a Bundle Wins](https://jayjex.github.io/data-vault/printables/free-printables-vs-paid.html): one-print rule for choosing
 - [Cable Clip Set STL: 4 Screw-Down Sizes for 4 to 9 mm Cables](https://jayjex.github.io/data-vault/printables/cable-clip-set-stl.html): measured spec sheet, 25 min print
@@ -428,7 +428,7 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - [Plant Marker Stake STL: 3 Blank Label Bars, 120 x 22 x 3 mm](https://jayjex.github.io/data-vault/printables/plant-marker-stl.html): measured spec sheet, flat garden stake with 3 recessed blank label bars 30 x 4 x 0.8 mm at x 12/45/78, no engraving so one print labels the whole row, the ground end tapers 25 mm to a 3 mm tip, flat no-support print
 - [Wide Plant Marker Stake STL: 4 Blank Label Bars, 140 x 28 x 3 mm](https://jayjex.github.io/data-vault/printables/plant-marker-wide-stl.html): measured spec sheet, wide flat garden stake with 4 recessed blank label bars 24 x 5 x 0.8 mm at x 10/37/64/91, a centimeter of blank face between trays, the ground end tapers 22 mm to a 10 mm chisel land instead of a stabbing point, flat no-support print
 - [Step-Top Seed Ruler Plant Marker STL: 5 Spacing Ticks, 150 x 24 x 3 mm](https://jayjex.github.io/data-vault/printables/plant-marker-step-stl.html): measured spec sheet, flat garden stake with 5 recessed spacing ticks 2 x 8 x 0.6 mm at x 10/35/60/85/110 on a 25 mm pitch, the top edge steps down 8 mm at x 100, the ground end bevels 25 mm to an 8 mm land instead of a stabbing point, flat no-support print
-- [Free Printable PDF Templates: 223 Tracker Sheets, Planners and Worksheets by Category](https://jayjex.github.io/data-vault/printables/free-printable-templates.html)
+- [Free Printable PDF Templates: 224 Tracker Sheets, Planners and Worksheets by Category](https://jayjex.github.io/data-vault/printables/free-printable-templates.html)
 - [3D Printed Desk Organizers and Printable Tools: 10 Parametric MakerWorld Models](https://jayjex.github.io/data-vault/guides/print-in-use-organizers.html): cable clips, phone stand, bit holder, rulers, hex gauge; flat no-support prints, CC BY 4.0; 1 live, 9 in MakerWorld review, renders only
 - [Parametric 3D Printed Tools: 10 MakerWorld Models You Can Rebuild at Your Own Dimensions](https://jayjex.github.io/data-vault/guides/printable-tools-parametric.html): generator scripts ship in the files, edit dims and rerun, no CAD skills; parameter table per model, renders only
 - [3D Printed Gift Tags: 70 and 50 mm TO/FROM Engraved Set](https://jayjex.github.io/data-vault/guides/printable-gift-tags.html): two tag sizes in one file, 0.8 mm engraving, 4.5 mm string hole, flat no-support print, parametric; renders only
@@ -446,7 +446,7 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - [Ko-fi (JayHex)](https://ko-fi.com/jayjex): the printable galleries live here, plus a tip jar
 - [Fourthwall shop, JayHex](https://jayjex-shop.fourthwall.com): digital downloads like data packs, directories, planners, and the Web3 events calendar
 - [JayHex Prints on Printify](https://jayhex-prints.printify.me): print-on-demand sweatshirts and hoodies carrying the Matchbook Labs designs, including the Winter Robin and Halloween series
-- [Product catalog](https://jayjex.github.io/data-vault/products.html): all 90 public SKUs on one page, grouped into Datasets / Prompt Packs / Wallpapers & Icons / Bundles / Spreadsheets & Business / Notion & Obsidian / Planners & Printables / Books & Workbooks / Design & Social / Dev Tools & Templates / Free Samples, with price, item count, format and store link per product. Four Gumroad drafts are deliberately absent until live.
+- [Product catalog](https://jayjex.github.io/data-vault/products.html): all 98 public SKUs on one page, grouped into Datasets / Prompt Packs / Wallpapers & Icons / Bundles / Spreadsheets & Business / Notion & Obsidian / Planners & Printables / Books & Workbooks / Design & Social / Dev Tools & Templates / Free Samples, with price, item count, format and store link per product. Four Gumroad drafts are deliberately absent until live.
 
 ## Access rules
 - Fetch catalog.json and every sample endpoint freely. No API keys, no auth.

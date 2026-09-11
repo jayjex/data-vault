@@ -8,11 +8,6 @@ Base URL: https://jayjex.github.io/data-vault/
 Generated: 2026-09-11
 Scope: README + 10 most-referenced dataset pages + 3 newest guides + 12-DOI catalog block, converted to markdown. Tables and numbers are verbatim from the live pages; each section lists its canonical source URL. Full guide set: https://jayjex.github.io/data-vault/guides/ · Full dataset set: https://jayjex.github.io/data-vault/datasets/
 
-## MCP servers
-
-- dataset-mcp: `npm install @jayjex/dataset-mcp` (v1.1.3, 294 downloads in its first week) or run `npx -y @jayjex/dataset-mcp`. Tools: list_datasets, get_dataset_info, get_sample, query_dataset (filters and paginates the FULL released files, 100 rows/call), get_stats. Covers all 26 catalog datasets; full files in the release data-v1. Repo: https://github.com/jayjex/dataset-mcp — official registry name io.github.jayjex/dataset-mcp, listed on https://glama.ai/mcp/servers/jayjex/dataset-mcp
-- pdfcheck-mcp: `npm install @jayjex/pdfcheck-mcp` (v0.1.1). Validates PDF page-tree graphs: /Kids to /Type /Page reachability, /Contents streams, orphan pages, /Count mismatches. stdio transport, zero native dependencies. Listed on https://glama.ai/mcp/servers/jayjex/pdfcheck-mcp
-
 ## Contents
 - [README](#readme)
 - [HUD Fair Market Rents FY2026 (hud-fmr-2026)](#hud-fair-market-rents-fy2026-hud-fmr-2026)
@@ -28,7 +23,7 @@ Scope: README + 10 most-referenced dataset pages + 3 newest guides + 12-DOI cata
 - [Guide: ZIP prefix geography: what the first two digits of a ZIP code say about rent](#guide-zip-prefix-geography-what-the-first-two-digits-of-a-zip-code-say-about-rent)
 - [Guide: Public bookcase, drinking water fountain, and bike repair station maps: 19 cities worldwide](#guide-public-bookcase-drinking-water-fountain-and-bike-repair-station-maps-19-cities-worldwide)
 - [Guide: Drinking water points in Tokyo, Jakarta and Seoul, counted from OpenStreetMap](#guide-drinking-water-points-in-tokyo-jakarta-and-seoul-counted-from-openstreetmap)
-- [Dataset DOIs — Zenodo DOI catalog (12 DOIs)](#dataset-dois-zenodo-doi-catalog-12-dois)
+- [Dataset DOIs — Zenodo DOI catalog (13 DOIs)](#dataset-dois-zenodo-doi-catalog-13-dois)
 
 ---
 
@@ -44,7 +39,7 @@ Every pack previews on the page: real rows, documented schema, no email wall. Sc
 
 ## Ready-made packs
 
-Instant downloads on the [Fourthwall store](https://jayjex-shop.fourthwall.com/):
+Instant downloads on the [Fourthwall store](https://jayjex-shop.fourthwall.com/), with the same packs also on [SellApp](https://datavaultdesk.sell.app/):
 
 | Pack | Price | What's inside |
 |---|---|---|
@@ -60,14 +55,34 @@ All five also come as one download, the [Data Vault Desk Mega Bundle](https://ja
 
 | slug | name | rows | niche | sample | full data |
 |---|---|---|---|---|---|
-| `nfl-games` | NFL Games & Betting Lines 1999–2026 | 7,548 rows | sports | [CSV](https://jayjex.github.io/data-vault/data/nfl-games/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/nfl-games/sample.json) | [Getly](https://www.getly.store/product/nfl-betting-game-data-pack-1999-2026-7-548-games-spreads-totals-moneylines-mtrfvdt7) |
-| `hud-fmr-2026` | HUD Fair Market Rents FY2026 | 51,895 rows | gov-data | [CSV](https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.json) | [coming](https://www.getly.store/store/matchbook-labs-mtrfh66f) |
-| `airbnb-six-cities` | Airbnb Listings, 6 US Cities | 90,169 rows | real-estate | [CSV](https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.json) | [Getly](https://www.getly.store/product/airbnb-multi-city-investor-pack-6-cities-60k-listings-90-169-rows-2026-snapshots-mtrfuvf3) |
-| `earn-bounties` | Superteam Earn Live Listings | 28 listings | ai-agents | [CSV](https://jayjex.github.io/data-vault/data/earn-bounties/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/earn-bounties/sample.json) | [Getly](https://www.getly.store/product/superteam-earn-28-live-listings-dataset-186-reverse-engineered-api-routes-mtrfumk0) |
-| `scraper-pack` | Web Scraping Script Pack | 10 scripts | dev-tools | [JSON](https://jayjex.github.io/data-vault/data/scraper-pack/sample.json) | [Getly](https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtrfwfcd) |
+| `nfl-games` | NFL Games & Betting Lines 1999-2026 | 7,548 | sports | [CSV](https://jayjex.github.io/data-vault/data/nfl-games/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/nfl-games/sample.json) | [free (Zenodo)](https://zenodo.org/records/22643177/latest) |
+| `hud-fmr-2026` | HUD Fair Market Rents FY2026 | 51,895 | gov-data | [CSV](https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/hud-fmr-2026/sample.json) | [free (Zenodo)](https://zenodo.org/records/22643149/latest) |
+| `hud-fmr-2027` | HUD Fair Market Rents FY2027 | 51,871 | gov-data | [CSV](https://jayjex.github.io/data-vault/data/hud-fmr-2027/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/hud-fmr-2027/sample.json) | [free (Zenodo)](https://zenodo.org/records/22649503/latest) |
+| `airbnb-six-cities` | Airbnb Listings, 6 US Cities | 90,169 | real-estate | [CSV](https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/airbnb-six-cities/sample.json) | [free (Zenodo)](https://zenodo.org/records/22643189/latest) |
+| `airbnb-eight-cities` | Airbnb Listings, 8 More US Cities (free) | 90,746 | real-estate | [CSV](https://jayjex.github.io/data-vault/data/airbnb-eight-cities/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/airbnb-eight-cities/sample.json) | [free](https://jayjex.github.io/data-vault/datasets/airbnb-eight-cities.html) |
+| `earn-bounties` | Superteam Earn Live Listings | 28 | ai-agents | [CSV](https://jayjex.github.io/data-vault/data/earn-bounties/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/earn-bounties/sample.json) | [Getly](https://www.getly.store/product/superteam-earn-28-live-listings-dataset-186-reverse-engineered-api-routes-mtrfumk0) |
+| `scraper-pack` | Web Scraping Script Pack | 10 | dev-tools | [CSV](https://jayjex.github.io/data-vault/data/scraper-pack/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/scraper-pack/sample.json) | [Getly](https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtrfwfcd) |
+| `eurostat-house-prices` | Eurostat House Price Index, NL & EU27, 2005-2025 | 342 | econ-data | [CSV](https://jayjex.github.io/data-vault/data/eurostat/house-prices/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/eurostat/house-prices/sample.json) | [free](https://jayjex.github.io/data-vault/data/eurostat/house-prices/house-price-index.csv) |
+| `eurostat-rents` | Eurostat HICP Actual Rents, NL & EU27, CP0411 | 580 | econ-data | [CSV](https://jayjex.github.io/data-vault/data/eurostat/rents/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/eurostat/rents/sample.json) | [free](https://jayjex.github.io/data-vault/data/eurostat/rents/rent-index-monthly.csv) |
+| `eurostat-unemployment` | Eurostat Unemployment Rate by Sex and Age, EU27 + 9 Countries, 2003-2025 | 3,768 | econ-data | [CSV](https://jayjex.github.io/data-vault/data/eurostat/unemployment/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/eurostat/unemployment/sample.json) | [free](https://jayjex.github.io/data-vault/data/eurostat/unemployment/unemployment-rate.csv) |
+| `eurostat-unemployment-monthly` | Eurostat Monthly Unemployment Rate by Sex, EU27 + 8 Countries, 2003-2026 | 7,641 | econ-data | [CSV](https://jayjex.github.io/data-vault/data/eurostat/unemployment-monthly/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/eurostat/unemployment-monthly/sample.json) | [free](https://jayjex.github.io/data-vault/data/eurostat/unemployment-monthly/unemployment-rate-monthly.csv) |
+| `worldbank-g20-population` | World Bank Population, G20 Countries + EU27, 1960-2025 (free) | 1,320 | econ-data | [CSV](https://jayjex.github.io/data-vault/data/worldbank-g20-population/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/worldbank-g20-population/sample.json) | [free](https://jayjex.github.io/data-vault/datasets/worldbank-g20-population.html) |
+| `worldbank-g20-rural` | World Bank Rural Population Share, G20 Countries + EU27, 1960-2025 (free) | 1,320 | econ-data | [CSV](https://jayjex.github.io/data-vault/data/worldbank-g20-rural/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/worldbank-g20-rural/sample.json) | [free](https://jayjex.github.io/data-vault/datasets/worldbank-g20-rural.html) |
+| `worldbank-g20-life-expectancy` | World Bank Life Expectancy, G20 Countries + EU27, 1960-2024 (free) | 1,300 | econ-data | [CSV](https://jayjex.github.io/data-vault/data/worldbank-g20-life-expectancy/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/worldbank-g20-life-expectancy/sample.json) | [free](https://jayjex.github.io/data-vault/datasets/worldbank-g20-life-expectancy.html) |
+| `osm-asia-civic-amenities` | OpenStreetMap Civic Amenities, Tokyo-Jakarta-Seoul, 2026-09 | 9 | open-data | [CSV](https://jayjex.github.io/data-vault/data/osm-asia-civic/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/osm-asia-civic/sample.json) | [free](https://jayjex.github.io/data-vault/data/osm-asia-civic/counts-2026-09.csv) |
+| `osm-us-civic-amenities` | OpenStreetMap Civic Amenities, New York-Los Angeles-Chicago-Austin-Seattle, 2026-09 | 15 | open-data | [CSV](https://jayjex.github.io/data-vault/data/osm-civic/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/osm-civic/sample.json) | [free](https://jayjex.github.io/data-vault/data/osm-civic/us-civic-amenities.csv) |
+| `osm-eu-civic-amenities` | OpenStreetMap Civic Amenities, Berlin-Amsterdam-Paris-Madrid-Warsaw, 2026-09 | 15 | open-data | [CSV](https://jayjex.github.io/data-vault/data/osm-eu-civic/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/osm-eu-civic/sample.json) | [free](https://jayjex.github.io/data-vault/data/osm-eu-civic/eu-civic-amenities.csv) |
 | `printable-engineering-bundle` | Printable Engineering Bundle | 120 pages + 5 sheets | printables | [index](https://jayjex.github.io/data-vault/free-printables-index.html) | [Getly](https://www.getly.store/store/matchbook-labs-mtrfh66f) |
+| `osm-latam-civic-amenities` | OpenStreetMap Civic Amenities, Sao Paulo-Buenos Aires-Mexico City, 2026-09 | 9 | open-data | [CSV](https://jayjex.github.io/data-vault/data/osm-latam-civic/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/osm-latam-civic/sample.json) | [free](https://jayjex.github.io/data-vault/data/osm-latam-civic/latam-civic-amenities.csv) |
+| `osm-mena-civic-amenities` | OpenStreetMap Civic Amenities, Istanbul-Cairo-Mumbai, 2026-09 | 9 | open-data | [CSV](https://jayjex.github.io/data-vault/data/osm-mena-civic/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/osm-mena-civic/sample.json) | [free](https://jayjex.github.io/data-vault/data/osm-mena-civic/mena-civic-amenities.csv) |
+| `osm-africa-civic-amenities` | OpenStreetMap Civic Amenities, Lagos-Nairobi-Addis Ababa, 2026-09 | 9 | open-data | [CSV](https://jayjex.github.io/data-vault/data/osm-africa-civic/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/osm-africa-civic/sample.json) | [free](https://jayjex.github.io/data-vault/data/osm-africa-civic/africa-civic-amenities.csv) |
+| `osm-oceania-civic-amenities` | OpenStreetMap Civic Amenities, Sydney-Melbourne-Auckland, 2026-09 | 9 | open-data | [CSV](https://jayjex.github.io/data-vault/data/osm-oceania-civic/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/osm-oceania-civic/sample.json) | [free](https://jayjex.github.io/data-vault/data/osm-oceania-civic/oceania-civic-amenities.csv) |
+| `osm-us2-civic-amenities` | OpenStreetMap Civic Amenities, New York-Chicago-Seattle, 2026-09 | 9 | open-data | [CSV](https://jayjex.github.io/data-vault/data/osm-us2-civic/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/osm-us2-civic/sample.json) | [free](https://jayjex.github.io/data-vault/data/osm-us2-civic/us2-civic-amenities.csv) |
+| `hud-fmr-county-2026` | HUD Fair Market Rents FY2026 by County: completeness & spread | 3,229 | gov-data | [CSV](https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/sample.json) | [free](https://jayjex.github.io/data-vault/data/hud-fmr-county-2026/fmr-county-2026.csv) |
+| `hud-fmr-metro-2027` | HUD Fair Market Rents FY2027, Top-50 Metro Areas | 50 | gov-data | [CSV](https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/sample.json) | [free](https://jayjex.github.io/data-vault/data/hud-fmr-metro-2027/fmr-metro-2027.csv) |
+| `hud-fmr-by-zip-2027` | HUD Fair Market Rents FY2027 by ZIP Code | 51,871 | gov-data | [CSV](https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/sample.csv) / [JSON](https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/sample.json) | [free](https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/fmr-by-zip-2027.csv) |
 
-Full datasets are **not** in this repo. The repo carries samples only (first 10–25 rows per table, plus small complete aggregate tables). Total data volume: under 100 KB.
+Every dataset ships with a sample in this repo (first 9-22 rows per table, small sets complete). Free datasets also carry their complete files in-repo, and four big packs (NFL games, HUD FMR FY2026, HUD FMR FY2027, Airbnb 6-cities) download free from Zenodo. Total data volume: about 18 MB.
 
 ## Agent access
 
@@ -90,11 +105,11 @@ Endpoints:
 - `/agents/`: docs for agent developers
 - `/sitemap.xml`, `/robots.txt`
 
-The repo is MCP-ready by convention: `catalog.json` is the discovery document and every `sample.json` maps to a read-only resource. A dedicated MCP server is planned as phase 2.
+A dedicated MCP server wraps this catalog: [github.com/jayjex/dataset-mcp](https://github.com/jayjex/dataset-mcp), listed in the official registry as `io.github.jayjex/dataset-mcp`. `query_dataset` filters and paginates any released table (100 rows per call), `get_stats` returns row counts and numeric min/max/mean, and `list_datasets`, `get_dataset_info`, and `get_sample` cover discovery and previews. Setup, Claude Desktop config, and worked examples: [/agents/](https://jayjex.github.io/data-vault/agents/).
 
 ## Pages
 
-- `index.html`: catalog with niche filters (sports, real-estate, gov-data, ai-agents, dev-tools)
+- `index.html`: catalog with niche filters (sports, real-estate, gov-data, ai-agents, dev-tools, open-data)
 - `datasets/<slug>.html`: per-dataset page, description + stats + preview table + sample download + full-data link
 - `agents/index.html`: endpoint docs + worked examples
 - `products.html`: buyer catalog of every public product, generated by `tools/gen-products.py` from `../state/portfolio.json`. Rerun `python3 tools/gen-products.py` after every product push or status flip, commit the output, then IndexNow the URL. A live product missing from the script's GROUPS/COPY tables aborts the run: add its entry first.
@@ -103,7 +118,7 @@ Static site, vanilla HTML/CSS/JS, no build step. To preview locally: `python3 -m
 
 ## License
 
-License: CC BY 4.0 for samples, full data licensed per purchase. Upstream sources credited per dataset page: nflverse (CC BY 4.0), HUD (public domain), Inside Airbnb (CC BY 4.0), superteam.fun (harvested API data). If you republish samples, credit "Data Vault (jayjex.github.io/data-vault), CC BY 4.0" plus the upstream source.
+License: CC BY 4.0 for samples, except OpenStreetMap-derived samples (ODbL 1.0, © OpenStreetMap contributors). Full data licensed per purchase. Upstream sources credited per dataset page: nflverse (CC BY 4.0), HUD (public domain), Inside Airbnb (CC BY 4.0), Eurostat (CC BY 4.0), World Bank Open Data (CC BY 4.0), OpenStreetMap contributors (ODbL 1.0), superteam.fun (harvested API data). If you republish samples, credit "Data Vault (jayjex.github.io/data-vault)" plus the upstream source and its license (CC BY 4.0, or ODbL 1.0 for OpenStreetMap data).
 
 ---
 
@@ -334,6 +349,8 @@ The rent split worth knowing: with 2BR, the 25th percentile sits at 1,020 dollar
 Integrity checks run at build time, all passing: zero malformed ZIP fields, zero empty or zero-valued rent cells, zero duplicate (zip, hud_area_code) keys, and zero rows where the 4BR rent is below the 2BR. The copy served here is byte-identical to the parsed source, confirmed by sha256, and 3,000 ZIP codes starting with 0 keep their leading zero. Full details live in [schema.md](https://jayjex.github.io/data-vault/data/hud-fmr-by-zip-2027/schema.md).
 
 Source: US Department of Housing and Urban Development, FY2027 Fair Market Rent release (FY27_FMRs.xlsx plus the FY2027 small-area FMR file), effective October 1, 2026. US government data, public domain.
+
+Cite this dataset: Matchbook Labs (2026). *US Housing Affordability Pack: HUD Fair Market Rents by ZIP, County and Metro plus Eurostat Unemployment and Price Indices, 68,209 Rows*. Zenodo. [DOI 10.5281/zenodo.22706557](https://doi.org/10.5281/zenodo.22706557).
 
 ### Eight rows from the file
 
@@ -1011,15 +1028,17 @@ Which of the three cities has the most drinking water points?
 
 - [Download the nine-row CSV (free, ODbL)](https://jayjex.github.io/data-vault/data/osm-asia-civic/counts-2026-09.csv) [Open the dataset page](https://jayjex.github.io/data-vault/datasets/osm-asia-civic-amenities.html)
 
+The Tokyo, Jakarta and Seoul counts make up the asia table in the [World Civic Amenities Pack](https://jayjex.github.io/data-vault/products.html#h-datasets) ($12), one 84-row master table covering 25 cities across 6 continents.
+
 The CSV carries one row per city-amenity pair with the example node's name tag and coordinates, and the [schema page](https://jayjex.github.io/data-vault/data/osm-asia-civic/schema.md) documents the boundary relations and the nodes-only counting rule. Related guides on this site: the [Sydney, Melbourne and Auckland counts](https://jayjex.github.io/data-vault/guides/sydney-melbourne-auckland-amenities.html), the [Lagos, Nairobi and Addis Ababa counts](https://jayjex.github.io/data-vault/guides/lagos-nairobi-addis-ababa-amenities.html), and the [Istanbul, Cairo and Mumbai counts](https://jayjex.github.io/data-vault/guides/mena-city-amenities-guide.html). Off the data lane, the [free printables index](https://jayjex.github.io/data-vault/free-printables-index.html) holds 223 printable trackers, planners, and worksheets.
 
-## Dataset DOIs — Zenodo DOI catalog (12 DOIs)
+## Dataset DOIs — Zenodo DOI catalog (13 DOIs)
 
 Source: https://doi.org/
 
-Dataset DOIs (12 packs with permanent citable DOIs on Zenodo):
+Dataset DOIs (13 packs with permanent citable DOIs on Zenodo):
 
-Dataset DOIs: twelve packs have permanent citable DOIs on Zenodo: https://doi.org/10.5281/zenodo.22643177 , https://doi.org/10.5281/zenodo.22643149 , https://doi.org/10.5281/zenodo.22643189 , https://doi.org/10.5281/zenodo.22649503 , https://doi.org/10.5281/zenodo.22665145 , https://doi.org/10.5281/zenodo.22665925 , https://doi.org/10.5281/zenodo.22666640 , https://doi.org/10.5281/zenodo.22667164 , https://doi.org/10.5281/zenodo.22667477 , https://doi.org/10.5281/zenodo.22667657 , https://doi.org/10.5281/zenodo.22676080 , https://doi.org/10.5281/zenodo.22697115
+Dataset DOIs: thirteen packs have permanent citable DOIs on Zenodo: https://doi.org/10.5281/zenodo.22643177 , https://doi.org/10.5281/zenodo.22643149 , https://doi.org/10.5281/zenodo.22643189 , https://doi.org/10.5281/zenodo.22649503 , https://doi.org/10.5281/zenodo.22665145 , https://doi.org/10.5281/zenodo.22665925 , https://doi.org/10.5281/zenodo.22666640 , https://doi.org/10.5281/zenodo.22667164 , https://doi.org/10.5281/zenodo.22667477 , https://doi.org/10.5281/zenodo.22667657 , https://doi.org/10.5281/zenodo.22676080 , https://doi.org/10.5281/zenodo.22697115 , https://doi.org/10.5281/zenodo.22706557
 
 FY2027 HUD FMR DOI (rates effective October 1, 2026): https://doi.org/10.5281/zenodo.22649503
 
@@ -1036,3 +1055,4 @@ DOI to pack mapping (pack names from the dataset index above):
 - https://doi.org/10.5281/zenodo.22667657 — World Bank Rural Population Share, G20 Countries + EU27, 1960-2025 (worldbank-g20-rural)
 - https://doi.org/10.5281/zenodo.22676080 — Eurostat Monthly Unemployment Rate by Sex, EU27 + 8 Countries, 2003-2026 (eurostat-unemployment-monthly)
 - https://doi.org/10.5281/zenodo.22697115 — World Bank Life Expectancy, G20 Countries + EU27, 1960-2024 (worldbank-g20-life-expectancy)
+- https://doi.org/10.5281/zenodo.22706557 — US Housing Affordability Pack: HUD Fair Market Rents by ZIP, County and Metro plus Eurostat Unemployment and Price Indices, 68,209 Rows (Getly pack; the FY2027 ZIP file serves free from the hud-fmr-by-zip-2027 dataset page)

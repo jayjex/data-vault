@@ -37,7 +37,8 @@ GUIDES = [
 ]
 
 DOI_IDS = ["22643177", "22643149", "22643189", "22649503", "22665145", "22665925",
-           "22666640", "22667164", "22667477", "22667657", "22676080", "22697115"]
+           "22666640", "22667164", "22667477", "22667657", "22676080", "22697115",
+           "22706557"]
 
 
 def slugify(t):
@@ -453,8 +454,11 @@ def doi_section(llms_txt):
                 break
         if block:
             parts.append(f"- https://doi.org/10.5281/zenodo.{rec} — {block}")
+        elif rec == "22706557":
+            # housing pack has no llms.txt dataset section (Getly product, no sample dir)
+            parts.append("- https://doi.org/10.5281/zenodo.22706557 — US Housing Affordability Pack: HUD Fair Market Rents by ZIP, County and Metro plus Eurostat Unemployment and Price Indices, 68,209 Rows (Getly pack; the FY2027 ZIP file serves free from the hud-fmr-by-zip-2027 dataset page)")
     body = "\n".join(parts).strip()
-    return f"Dataset DOIs (12 packs with permanent citable DOIs on Zenodo):\n\n{body}"
+    return f"Dataset DOIs (13 packs with permanent citable DOIs on Zenodo):\n\n{body}"
 
 
 def build():
@@ -480,7 +484,7 @@ def build():
         title = h1 or g
         sections.append((f"Guide: {title}", url, md))
 
-    sections.append(("Dataset DOIs — Zenodo DOI catalog (12 DOIs)", "https://doi.org/",
+    sections.append(("Dataset DOIs — Zenodo DOI catalog (13 DOIs)", "https://doi.org/",
                      doi_section(llms_txt)))
 
     out = []

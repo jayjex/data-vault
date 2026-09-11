@@ -8,6 +8,11 @@ Base URL: https://jayjex.github.io/data-vault/
 Generated: 2026-09-11
 Scope: README + 10 most-referenced dataset pages + 3 newest guides + 12-DOI catalog block, converted to markdown. Tables and numbers are verbatim from the live pages; each section lists its canonical source URL. Full guide set: https://jayjex.github.io/data-vault/guides/ · Full dataset set: https://jayjex.github.io/data-vault/datasets/
 
+## MCP servers
+
+- dataset-mcp: `npm install @jayjex/dataset-mcp` (v1.1.3, 294 downloads in its first week) or run `npx -y @jayjex/dataset-mcp`. Tools: list_datasets, get_dataset_info, get_sample, query_dataset (filters and paginates the FULL released files, 100 rows/call), get_stats. Covers all 26 catalog datasets; full files in the release data-v1. Repo: https://github.com/jayjex/dataset-mcp — official registry name io.github.jayjex/dataset-mcp, listed on https://glama.ai/mcp/servers/jayjex/dataset-mcp
+- pdfcheck-mcp: `npm install @jayjex/pdfcheck-mcp` (v0.1.1). Validates PDF page-tree graphs: /Kids to /Type /Page reachability, /Contents streams, orphan pages, /Count mismatches. stdio transport, zero native dependencies. Listed on https://glama.ai/mcp/servers/jayjex/pdfcheck-mcp
+
 ## Contents
 - [README](#readme)
 - [HUD Fair Market Rents FY2026 (hud-fmr-2026)](#hud-fair-market-rents-fy2026-hud-fmr-2026)

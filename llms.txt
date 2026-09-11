@@ -5,7 +5,8 @@
 Base URL: https://jayjex.github.io/data-vault
 Catalog (start here): https://jayjex.github.io/data-vault/catalog.json
 Agent docs: https://jayjex.github.io/data-vault/agents/
-MCP server: npx --allow-git=all -y github:jayjex/dataset-mcp (v1.1.3; tools: list_datasets, get_dataset_info, get_sample, query_dataset, get_stats; --allow-git=all needed on npm 12+, plain form on npm 10/11)
+MCP server: npx -y @jayjex/dataset-mcp (v1.1.3 npm package, 294 downloads in its first week; tools: list_datasets, get_dataset_info, get_sample, query_dataset, get_stats; install: npm install @jayjex/dataset-mcp; git form npx --allow-git=all -y github:jayjex/dataset-mcp still works; listed on https://glama.ai/mcp/servers/jayjex/dataset-mcp)
+PDF checker MCP: npm install @jayjex/pdfcheck-mcp (v0.1.1; validates PDF page-tree graphs: /Kids to /Type /Page reachability, /Contents streams, orphan pages, /Count mismatches; stdio, zero native dependencies; listed on https://glama.ai/mcp/servers/jayjex/pdfcheck-mcp)
 MCP repo: https://github.com/jayjex/dataset-mcp
 MCP registry name: io.github.jayjex/dataset-mcp
 Portfolio (all live work in one page: MCP server, DOIs, x402 API, 3D print, print-on-demand, writing): https://jayjex.github.io/data-vault/portfolio.html

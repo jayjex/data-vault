@@ -7,8 +7,8 @@ Update terakhir: 2026-09-11. Doc ini WAJIB diupdate setiap ada halaman baru / pr
 | File | Fungsi | Link beli? | Kapan diedit |
 |---|---|---|---|
 | `index.html` | Homepage: hero + nav + section ringkas | Link ke store | Nav baru / hero copy |
-| `portfolio.html` | Katalog 112 produk (arsip) | **BELUM — cuma 1 link store** | → DIREPLACE `catalog.html` (2026-09-12) |
-| `catalog.html` | Katalog penuh + link beli per produk (Getly/FW) | YA, per produk | Tiap produk baru live → regenerate `python3 tools/catalog-gen.py` |
+| `portfolio.html` | Redirect 301-style ke catalog.html (legacy URL) | — | Jangan edit; single source = catalog.html |
+| `catalog.html` | Katalog penuh 93 kartu + link beli per produk (47 Getly + 46 FW) | YA, per produk | Tiap produk baru live → `python3 tools/catalog-gen.py` → commit+push |
 | `products.html` | "New this week" — 8 kartu produk baru | Ya (Getly) | Tiap produk baru live → tambah/rotasi kartu |
 | `free-datasets-for-ai-agents.html` | Landing dataset gratis (funnel dataset-mcp) | Sample download | Dataset baru masuk |
 | `free-printables-index.html` | Index printable gratis (funnel planner) | — | Printable baru |
@@ -30,7 +30,8 @@ Update terakhir: 2026-09-11. Doc ini WAJIB diupdate setiap ada halaman baru / pr
 
 ## Checklist nambah 1 produk baru ke site
 
-1. `products.html` → tambah/rotasi kartu (judul, harga, desc 1 kalimat, link Getly `/product/<slug>`)
+1. `catalog.html` → regenerate: `python3 tools/catalog-gen.py` (source of truth)
+2. `products.html` → rotasi kartu baru (judul, harga, desc 1 kalimat, link Getly `/product/<slug>`)
 2. `catalog.html` → regenerate: `python3 tools/catalog-gen.py` (sumber: portfolio.json + Getly API)
 3. `guides/index.html` → kalau ada blog/guide pendampingnya, tambah kartu
 4. `sitemap.xml` → +1 URL (kalau halaman baru; produk tidak)

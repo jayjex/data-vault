@@ -8,7 +8,7 @@ Crosslink count: 5 related-pack lines live di guides (09-11 run — housing pack
 
 | File | Fungsi | Link beli? | Kapan diedit |
 |---|---|---|---|
-| `index.html` | Homepage: hero + nav + section ringkas | Link ke store | Nav baru / hero copy |
+| `index.html` | Homepage: hero + nav + section ringkas; baris "Browse everything" bawah main = 8 link hub (catalog, guides, datasets, free-datasets, printables, roundup, xmas hub, agents) | Link ke store | Nav baru / hero copy; hub baru masuk daftar itu |
 | `portfolio.html` | Redirect 301-style ke catalog.html (legacy URL) | — | Jangan edit; single source = catalog.html |
 | `catalog.html` | Katalog penuh 102 kartu + link beli per produk (52 Getly + 50 FW; Wall Art prints 12) | YA, per produk | Tiap produk baru live → `python3 tools/catalog-gen.py` → commit+push |
 | `products.html` | "New this week" — 8 kartu produk baru | Ya (Getly) | Tiap produk baru live → tambah/rotasi kartu |

@@ -25,7 +25,7 @@ Crosslink count: 5 related-pack lines live di guides (09-11 run — housing pack
 
 | File | Isi | Trigger edit |
 |---|---|---|
-| `sitemap.xml` | 218 URL | +1 entry per halaman/guide baru |
+| `sitemap.xml` | 218 URL; lastmod sweep 09-11: 9 URL konten hari itu (index, roundup, 2 index page, xmas hub, 5 guide crosslink) = 2026-09-11 | +1 entry per halaman/guide baru |
 | `llms.txt` / `llms-full.txt` | Index buat AI agents | +1 line per halaman baru |
 | `catalog.json` | Data katalog terstruktur | Ikut catalog-gen.py |
 | `MAP.md` (ini) | Peta struktur | Setiap perubahan struktur |

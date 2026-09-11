@@ -2,6 +2,8 @@
 
 Update terakhir: 2026-09-11. Doc ini WAJIB diupdate setiap ada halaman baru / produk baru masuk site.
 
+Crosslink count: 5 related-pack lines live di guides (09-11 run — housing pack ×3: rent-affordability-calculator, hud-fmr-by-state, section-8-voucher-rent; icon pack ×1: mcp-claude-desktop; poster collection ×1: print-in-use-organizers; mcp-server-build-tutorial sudah link icon pack dari build 09-10; vendor pack = 0, no procurement guide).
+
 ## Halaman (root)
 
 | File | Fungsi | Link beli? | Kapan diedit |

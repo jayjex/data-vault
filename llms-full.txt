@@ -6,7 +6,7 @@ Index (llms.txt): https://jayjex.github.io/data-vault/llms.txt
 Catalog (start here): https://jayjex.github.io/data-vault/catalog.json
 Base URL: https://jayjex.github.io/data-vault/
 Generated: 2026-09-11
-Scope: README + 10 most-referenced dataset pages + 3 newest guides + 12-DOI catalog block, converted to markdown. Tables and numbers are verbatim from the live pages; each section lists its canonical source URL. Full guide set: https://jayjex.github.io/data-vault/guides/ · Full dataset set: https://jayjex.github.io/data-vault/datasets/
+Scope: README + 10 most-referenced dataset pages + 3 newest guides + 14-DOI catalog block, converted to markdown. Tables and numbers are verbatim from the live pages; each section lists its canonical source URL. Full guide set: https://jayjex.github.io/data-vault/guides/ · Full dataset set: https://jayjex.github.io/data-vault/datasets/
 
 ## Contents
 - [README](#readme)
@@ -23,7 +23,7 @@ Scope: README + 10 most-referenced dataset pages + 3 newest guides + 12-DOI cata
 - [Guide: ZIP prefix geography: what the first two digits of a ZIP code say about rent](#guide-zip-prefix-geography-what-the-first-two-digits-of-a-zip-code-say-about-rent)
 - [Guide: Public bookcase, drinking water fountain, and bike repair station maps: 19 cities worldwide](#guide-public-bookcase-drinking-water-fountain-and-bike-repair-station-maps-19-cities-worldwide)
 - [Guide: Drinking water points in Tokyo, Jakarta and Seoul, counted from OpenStreetMap](#guide-drinking-water-points-in-tokyo-jakarta-and-seoul-counted-from-openstreetmap)
-- [Dataset DOIs — Zenodo DOI catalog (13 DOIs)](#dataset-dois-zenodo-doi-catalog-13-dois)
+- [Dataset DOIs — Zenodo DOI catalog (14 DOIs)](#dataset-dois-zenodo-doi-catalog-14-dois)
 
 ---
 
@@ -402,6 +402,8 @@ Alongside the listings: the raw paginated cards dump (51 rows, 17 unique listing
 Built for bounty aggregators, notification bots, and agent tooling. Rewards in the sample run up to 8,000 USDG.
 
 Personal and commercial use. No resale of the files as-is.
+
+Cite this dataset: Matchbook Labs (2026). *Superteam Earn Dataset: 1,757 Completed Solana Bounties, 28 Live Listings with Full Descriptions, and 186 Reverse-Engineered API Routes*. Zenodo. [DOI 10.5281/zenodo.22707493](https://doi.org/10.5281/zenodo.22707493).
 
 ### Sample preview
 
@@ -1032,13 +1034,13 @@ The Tokyo, Jakarta and Seoul counts make up the asia table in the [World Civic A
 
 The CSV carries one row per city-amenity pair with the example node's name tag and coordinates, and the [schema page](https://jayjex.github.io/data-vault/data/osm-asia-civic/schema.md) documents the boundary relations and the nodes-only counting rule. Related guides on this site: the [Sydney, Melbourne and Auckland counts](https://jayjex.github.io/data-vault/guides/sydney-melbourne-auckland-amenities.html), the [Lagos, Nairobi and Addis Ababa counts](https://jayjex.github.io/data-vault/guides/lagos-nairobi-addis-ababa-amenities.html), and the [Istanbul, Cairo and Mumbai counts](https://jayjex.github.io/data-vault/guides/mena-city-amenities-guide.html). Off the data lane, the [free printables index](https://jayjex.github.io/data-vault/free-printables-index.html) holds 223 printable trackers, planners, and worksheets.
 
-## Dataset DOIs — Zenodo DOI catalog (13 DOIs)
+## Dataset DOIs — Zenodo DOI catalog (14 DOIs)
 
 Source: https://doi.org/
 
-Dataset DOIs (13 packs with permanent citable DOIs on Zenodo):
+Dataset DOIs (14 packs with permanent citable DOIs on Zenodo):
 
-Dataset DOIs: thirteen packs have permanent citable DOIs on Zenodo: https://doi.org/10.5281/zenodo.22643177 , https://doi.org/10.5281/zenodo.22643149 , https://doi.org/10.5281/zenodo.22643189 , https://doi.org/10.5281/zenodo.22649503 , https://doi.org/10.5281/zenodo.22665145 , https://doi.org/10.5281/zenodo.22665925 , https://doi.org/10.5281/zenodo.22666640 , https://doi.org/10.5281/zenodo.22667164 , https://doi.org/10.5281/zenodo.22667477 , https://doi.org/10.5281/zenodo.22667657 , https://doi.org/10.5281/zenodo.22676080 , https://doi.org/10.5281/zenodo.22697115 , https://doi.org/10.5281/zenodo.22706557
+Dataset DOIs: fourteen packs have permanent citable DOIs on Zenodo: https://doi.org/10.5281/zenodo.22643177 , https://doi.org/10.5281/zenodo.22643149 , https://doi.org/10.5281/zenodo.22643189 , https://doi.org/10.5281/zenodo.22649503 , https://doi.org/10.5281/zenodo.22665145 , https://doi.org/10.5281/zenodo.22665925 , https://doi.org/10.5281/zenodo.22666640 , https://doi.org/10.5281/zenodo.22667164 , https://doi.org/10.5281/zenodo.22667477 , https://doi.org/10.5281/zenodo.22667657 , https://doi.org/10.5281/zenodo.22676080 , https://doi.org/10.5281/zenodo.22697115 , https://doi.org/10.5281/zenodo.22706557 , https://doi.org/10.5281/zenodo.22707493
 
 FY2027 HUD FMR DOI (rates effective October 1, 2026): https://doi.org/10.5281/zenodo.22649503
 
@@ -1056,3 +1058,4 @@ DOI to pack mapping (pack names from the dataset index above):
 - https://doi.org/10.5281/zenodo.22676080 — Eurostat Monthly Unemployment Rate by Sex, EU27 + 8 Countries, 2003-2026 (eurostat-unemployment-monthly)
 - https://doi.org/10.5281/zenodo.22697115 — World Bank Life Expectancy, G20 Countries + EU27, 1960-2024 (worldbank-g20-life-expectancy)
 - https://doi.org/10.5281/zenodo.22706557 — US Housing Affordability Pack: HUD Fair Market Rents by ZIP, County and Metro plus Eurostat Unemployment and Price Indices, 68,209 Rows (Getly pack; the FY2027 ZIP file serves free from the hud-fmr-by-zip-2027 dataset page)
+- https://doi.org/10.5281/zenodo.22707493 — Superteam Earn Live Listings (earn-bounties)

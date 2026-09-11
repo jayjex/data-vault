@@ -4,6 +4,8 @@ Log update site. 1 baris per push yang berisi perubahan konten. Terbaru di atas.
 
 ## 2026-09-11
 
+- `catalog.html` + `datasets/earn-bounties.html` + `llms.txt`/`llms-full.txt`: earn-dataset DOI 10.5281/zenodo.22707493 cite-byline + `identifier` JSON-LD di kartu (pos 4) dan hub page; DOI list 13→14 + mapping earn
+
 - `catalog.html`: kartu housing-pack dapat DOI cite-byline 10.5281/zenodo.22706557 + `identifier` JSON-LD (generator doi-aware via portfolio `doi` field) — Zenodo DOI site sync 13/13
 
 - `catalog.html`: wave3/4 poster desc verbatim — `poster_copy()` match fix (slug `-dusk-dither` strip), 6 kartu fallback generik → copy listing FW; tetap 102 kartu, Wall Art prints 12 (f0ff543)

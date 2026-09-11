@@ -59,7 +59,7 @@ Crosslink count: 5 related-pack lines live di guides (09-11 run — housing pack
 | GitHub backlink | PR ke awesome-lists (punkpeye #14168/#14169 open) | 2 PR open | Saat ada server/repo baru |
 | npm | README package → data-vault | 2 package live | Pas rilis |
 | Getly marketplace | Store internal traffic + auto-newest | 126 real views total | Pasif |
-| Zenodo DOI (credential + backlink) | DOI cite-byline di kartu/halaman dataset + `identifier` JSON-LD; zenodo.org records link balik ke vault | **13/13 DOI synced** (housing 10.5281/zenodo.22706557 card byline 09-11, commit kartu terpisah) | Pasif (citability) |
+| Zenodo DOI (credential + backlink) | DOI cite-byline di kartu/halaman dataset + `identifier` JSON-LD; zenodo.org records link balik ke vault | **14/14 DOI synced** (earn 10.5281/zenodo.22707493 kartu pos 4 + hub earn-bounties 09-11) | Pasif (citability) |
 | Fourthwall/SellApp | Sama, pasif | — | Pasif |
 | Free samples funnel | datasets/printables gratis → CTA store | Halaman live | Pasif |
 

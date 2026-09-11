@@ -4,6 +4,8 @@ Log update site. 1 baris per push yang berisi perubahan konten. Terbaru di atas.
 
 ## 2026-09-11
 
+- `catalog.html`: wave3/4 poster desc verbatim — `poster_copy()` match fix (slug `-dusk-dither` strip), 6 kartu fallback generik → copy listing FW; tetap 102 kartu, Wall Art prints 12 (f0ff543)
+
 - `catalog.html`: LIVE — 93 produk, link beli per kartu (Getly fresh-slug + FW), JSON-LD, regen tools/catalog-gen.py (a9b7e88)
 - `portfolio.html`: jadi redirect ke catalog.html; nav swap "Full catalog"; sitemap -portfolio +catalog (47736f2)
 - `products.html`: 2 kartu baru staged (interview-prep $12, starter-bundle $19) — slug swap saat live (e743bf3)

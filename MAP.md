@@ -8,7 +8,7 @@ Update terakhir: 2026-09-11. Doc ini WAJIB diupdate setiap ada halaman baru / pr
 |---|---|---|---|
 | `index.html` | Homepage: hero + nav + section ringkas | Link ke store | Nav baru / hero copy |
 | `portfolio.html` | Redirect 301-style ke catalog.html (legacy URL) | — | Jangan edit; single source = catalog.html |
-| `catalog.html` | Katalog penuh 93 kartu + link beli per produk (47 Getly + 46 FW) | YA, per produk | Tiap produk baru live → `python3 tools/catalog-gen.py` → commit+push |
+| `catalog.html` | Katalog penuh 102 kartu + link beli per produk (52 Getly + 50 FW; Wall Art prints 12) | YA, per produk | Tiap produk baru live → `python3 tools/catalog-gen.py` → commit+push |
 | `products.html` | "New this week" — 8 kartu produk baru | Ya (Getly) | Tiap produk baru live → tambah/rotasi kartu |
 | `free-datasets-for-ai-agents.html` | Landing dataset gratis (funnel dataset-mcp) | Sample download | Dataset baru masuk |
 | `free-printables-index.html` | Index printable gratis (funnel planner) | — | Printable baru |

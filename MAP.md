@@ -2,7 +2,7 @@
 
 Update terakhir: 2026-09-11. Doc ini WAJIB diupdate setiap ada halaman baru / produk baru masuk site.
 
-Crosslink count: 5 related-pack lines live di guides (09-11 run — housing pack ×3: rent-affordability-calculator, hud-fmr-by-state, section-8-voucher-rent; icon pack ×1: mcp-claude-desktop; poster collection ×1: print-in-use-organizers; mcp-server-build-tutorial sudah link icon pack dari build 09-10; vendor pack = 0, no procurement guide).
+Crosslink count: 5 related-pack lines live di guides (09-11 run — housing pack ×3: rent-affordability-calculator, hud-fmr-by-state, section-8-voucher-rent; icon pack ×1: mcp-claude-desktop; poster collection ×1: print-in-use-organizers; mcp-server-build-tutorial sudah link icon pack dari build 09-10; vendor pack = 0, no procurement guide). Counts source of truth (09-11 sweep): catalog.json datasets = 26, guides/ = 143, printables ItemList = 224, products.html <article> = 98.
 
 ## Halaman (root)
 

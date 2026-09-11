@@ -4,6 +4,8 @@ Log update site. 1 baris per push yang berisi perubahan konten. Terbaru di atas.
 
 ## 2026-09-11
 
+- disclaimer audit guides: 6 WAJIB-topic guides (fmr-lookup-alternatives, hud-rent-data-explained, free-real-estate-data, dataset-license-guide, public-domain-datasets, labor-market-data-guide) kini bawa byline disclaimer hedged (not financial/legal/career advice); 143 guides = 74 penuh disclaimer, 69 technical-data optional tanpa
+
 - counts honesty sweep: christmas-gift-planning-hub 223->224 printable pages, products.html body 90->98 products (meta/artikel sudah 98); angka lain cocok sumber (26 datasets, 12 packs, 224 printables, 98 articles); sitemap lastmod sudah 09-11, IndexNow 1x (2 URL)
 - `sitemap.xml`: lastmod sweep 2026-09-11 — 7 URL bump (root index, printable-index-roundup, guides rent-affordability-calculator + hud-fmr-by-state + section-8-voucher-rent + mcp-claude-desktop + print-in-use-organizers), 2 lainnya sudah 09-11 (christmas-gift-planning-hub, free-printables-index); count tetap 218, QA valid, IndexNow 1x (10 URL)
 

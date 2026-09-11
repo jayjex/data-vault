@@ -23,7 +23,7 @@
 {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Data Vault", "item": "https://jayjex.github.io/data-vault/"}, {"@type": "ListItem", "position": 2, "name": "x402 API: How HTTP 402 Pay-Per-Call Works", "item": "https://jayjex.github.io/data-vault/guides/x402-data-api.html"}]}
 </script>
 <script type="application/ld+json" id="faq-ld">
-{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the x402 protocol?", "acceptedAnswer": {"@type": "Answer", "text": "An open spec for pay-per-call APIs. A server that wants money for a request answers with HTTP 402 and a machine-readable challenge in the PAYMENT-REQUIRED header; the client signs a USDC transfer on Base (an EIP-3009 authorization), resends the request with a PAYMENT-SIGNATURE header, and a facilitator service verifies and settles the payment so the server can return data. No account or API key is involved. The two-endpoint demo behind this page runs it live; the 402 response quoted below is verbatim from 2026-09-10."}}, {"@type": "Question", "name": "How does an HTTP 402 payment work in practice?", "acceptedAnswer": {"@type": "Answer", "text": "Three steps. First the challenge: an unpaid GET returns 402 with a base64 PaymentRequired object that lists scheme exact, network eip155:8453 (Base mainnet), an amount in atomic units (10000 equals 0.01 USDC), the asset contract, and the payTo wallet. Second the payment: the client signs that USDC transfer and resends with PAYMENT-SIGNATURE. Third verify and settle: the server checks the payload through a facilitator, returns the data with a PAYMENT-RESPONSE header, and the facilitator settles the transfer on-chain."}}, {"@type": "Question", "name": "When is pay-per-call cheaper than a subscription?", "acceptedAnswer": {"@type": "Answer", "text": "When usage is bursty or small. At the demo rate of $0.01 per call, 100 calls a month cost one dollar and 1,000 calls cost ten dollars, well under most flat data tiers; around 2,500 calls a month you reach the door of a 25-dollar tier, and steady volume above that favors a flat subscription with predictable billing. Agents, CI jobs, and MVPs with spiky traffic fit per-call; high steady volume with a fixed budget fits a subscription."}}]}
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the x402 protocol?", "acceptedAnswer": {"@type": "Answer", "text": "An open spec for pay-per-call APIs. A server that wants money for a request answers with HTTP 402 and a machine-readable challenge in the PAYMENT-REQUIRED header; the client signs a USDC transfer on Base (an EIP-3009 authorization), resends the request with a PAYMENT-SIGNATURE header, and a facilitator service verifies and settles the payment so the server can return data. No account or API key is involved. The two-endpoint demo behind this page ran live on 2026-09-10; the 402 response quoted below is verbatim from that day, with the tunnel hostname swapped for a placeholder."}}, {"@type": "Question", "name": "How does an HTTP 402 payment work in practice?", "acceptedAnswer": {"@type": "Answer", "text": "Three steps. First the challenge: an unpaid GET returns 402 with a base64 PaymentRequired object that lists scheme exact, network eip155:8453 (Base mainnet), an amount in atomic units (10000 equals 0.01 USDC), the asset contract, and the payTo wallet. Second the payment: the client signs that USDC transfer and resends with PAYMENT-SIGNATURE. Third verify and settle: the server checks the payload through a facilitator, returns the data with a PAYMENT-RESPONSE header, and the facilitator settles the transfer on-chain."}}, {"@type": "Question", "name": "When is pay-per-call cheaper than a subscription?", "acceptedAnswer": {"@type": "Answer", "text": "When usage is bursty or small. At the demo rate of $0.01 per call, 100 calls a month cost one dollar and 1,000 calls cost ten dollars, well under most flat data tiers; around 2,500 calls a month you reach the door of a 25-dollar tier, and steady volume above that favors a flat subscription with predictable billing. Agents, CI jobs, and MVPs with spiky traffic fit per-call; high steady volume with a fixed budget fits a subscription."}}]}
 </script>
 <link rel="stylesheet" href="../assets/style.css">
 </head>
@@ -66,14 +66,14 @@
   <section aria-label="Step 1 verbatim">
     <h2>Step 1, verbatim: the unpaid call</h2>
     <p>One curl, no headers, against the HUD route of the demo API:</p>
-<pre>curl -i "https://bookstore-buys-sees-journey.trycloudflare.com/hud/fmr?zip=76437"
+<pre>curl -i "https://&lt;PUBLIC_URL&gt;/hud/fmr?zip=76437"
 # HTTP/2 402
 # content-type: application/json; charset=utf-8
 # payment-required: eyJ4NDAyVmVyc2lvbiI6MiwiZXJyb3IiOiJQQVlNRU5ULVNJR05BVFVSRSBoZWFkZXIgaXMg...
 # (base64 truncated; it decodes to the same object as the body below)
 #
 # {"x402Version":2,"error":"PAYMENT-SIGNATURE header is required",
-#  "resource":{"url":"https://bookstore-buys-sees-journey.trycloudflare.com/hud/fmr",
+#  "resource":{"url":"https://&lt;PUBLIC_URL&gt;/hud/fmr",
 #   "description":"HUD Fair Market Rent 2026 by ZIP code (51,895 ZIP-level rows). Query: zip=XXXXX required. Returns FMR for 0-4 bedrooms.",
 #   "mimeType":"application/json","serviceName":"Matchbook Sports &amp; Rent Data",
 #   "tags":["hud","rent","fmr","housing","real-estate","data"]},
@@ -96,7 +96,7 @@
         <tr><td><code>extra</code></td><td><code>{"name":"USDC","version":"2"}</code></td><td>EIP-712 domain hint for the signature</td></tr>
       </tbody>
     </table>
-    <p>One caveat about the hostname: the demo runs behind a Cloudflare quick tunnel, which rotates its URL when the service restarts. Treat the hostname as ephemeral and the response shape as the durable part. Two replay notes as of 2026-09-10: a fresh hostname may 404, and the two routes are now priced separately (NFL scores 10,000 atomic units, HUD FMR 1,000 atomic units per call), so a fresh challenge for <code>/hud/fmr</code> will show <code>amount</code> 1000 where the quote above shows 10000.</p>
+    <p>One caveat about the hostname: the demo ran behind a Cloudflare quick tunnel, and that tunnel is closed for good as of 2026-09-11, so both spots above show <code>&lt;PUBLIC_URL&gt;</code> where the live host stood on 2026-09-10. Treat the hostname as whatever host you deploy to and the response shape as the durable part. Replay note as of 2026-09-10: the two routes are priced separately (NFL scores 10,000 atomic units, HUD FMR 1,000 atomic units per call), so a fresh challenge for <code>/hud/fmr</code> will show <code>amount</code> 1000 where the quote above shows 10000.</p>
     <p>The same server also answers two free routes, <code>GET /health</code> and <code>GET /catalog</code>, with no payment header at all. The catalog doubles as machine-readable documentation of both paid routes.</p>
   </section>
 
@@ -126,7 +126,7 @@ const res = await paid("https://&lt;PUBLIC_URL&gt;/nfl/scores?season=2025"); // 
       <li>A verify roundtrip with a schema-valid payload carrying a fake signature reached the facilitator and returned its structured rejection (<code>payment verification failed: invalid_payload</code>), which proves the challenge shape is accepted end-to-end.</li>
       <li>Settlement with a real signature is code-complete and tested up to the facilitator's response; no funded wallet sits on the box, so the final on-chain leg stays untested until the first payer arrives.</li>
     </ul>
-    <p>That last bullet is the honest state of the demo: everything a buyer touches is live, and the seller-side money leg is one funded signature away from proven.</p>
+    <p>That last bullet is the honest state of the demo as of 2026-09-10: everything a buyer touched was live, and the seller-side money leg is one funded signature away from proven. The tunnel has since been closed; the server code and both paid routes run unchanged behind any host you point them at.</p>
     <p>Want the no-money version of this? Our <a href="open-data-api-alternative.html">open data API endpoints</a> serve dataset samples free on GitHub Pages.</p>
   </section>
 
@@ -150,7 +150,7 @@ const res = await paid("https://&lt;PUBLIC_URL&gt;/nfl/scores?season=2025"); // 
     <h2>FAQ</h2>
     <dl>
       <dt>What is the x402 protocol?</dt>
-      <dd>An open spec for pay-per-call APIs. A server that wants money for a request answers with HTTP 402 and a machine-readable challenge in the PAYMENT-REQUIRED header; the client signs a USDC transfer on Base (an EIP-3009 authorization), resends the request with a PAYMENT-SIGNATURE header, and a facilitator service verifies and settles the payment so the server can return data. No account or API key is involved. The two-endpoint demo behind this page runs it live; the 402 response quoted below is verbatim from 2026-09-10.</dd>
+      <dd>An open spec for pay-per-call APIs. A server that wants money for a request answers with HTTP 402 and a machine-readable challenge in the PAYMENT-REQUIRED header; the client signs a USDC transfer on Base (an EIP-3009 authorization), resends the request with a PAYMENT-SIGNATURE header, and a facilitator service verifies and settles the payment so the server can return data. No account or API key is involved. The two-endpoint demo behind this page ran live on 2026-09-10; the 402 response quoted below is verbatim from that day, with the tunnel hostname swapped for a placeholder.</dd>
       <dt>How does an HTTP 402 payment work in practice?</dt>
       <dd>Three steps. First the challenge: an unpaid GET returns 402 with a base64 PaymentRequired object that lists scheme exact, network eip155:8453 (Base mainnet), an amount in atomic units (10000 equals 0.01 USDC), the asset contract, and the payTo wallet. Second the payment: the client signs that USDC transfer and resends with PAYMENT-SIGNATURE. Third verify and settle: the server checks the payload through a facilitator, returns the data with a PAYMENT-RESPONSE header, and the facilitator settles the transfer on-chain.</dd>
       <dt>When is pay-per-call cheaper than a subscription?</dt>
@@ -160,7 +160,7 @@ const res = await paid("https://&lt;PUBLIC_URL&gt;/nfl/scores?season=2025"); // 
 
   <section aria-label="Attribution">
     <h2>Sources and status</h2>
-    <p>The x402 spec lives at docs.x402.org (v2 quickstart for buyers and sellers); USDC on Base is contract <code>0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913</code>; the demo settles through <code>facilitator.payai.network</code>. All outputs on this page are quoted verbatim from live calls made on 2026-09-10 and may rotate (the tunnel hostname) or evolve (the spec) after that date. NFL game rows come from the nflverse releases under CC BY 4.0; HUD FMR rows are US-government public domain. This page is an explainer, and the demo API exists to have something real to quote; Data Vault is not affiliated with the x402 project, Coinbase, or the facilitator operator. Nothing here is financial advice.</p>
+    <p>The x402 spec lives at docs.x402.org (v2 quickstart for buyers and sellers); USDC on Base is contract <code>0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913</code>; the demo settles through <code>facilitator.payai.network</code>. All outputs on this page are quoted verbatim from live calls made on 2026-09-10, except the hostname, shown as <code>&lt;PUBLIC_URL&gt;</code>: the quick tunnel that served the demo is retired, and the API runs locally until it gets a stable host. The spec may evolve after that date. NFL game rows come from the nflverse releases under CC BY 4.0; HUD FMR rows are US-government public domain. This page is an explainer, and the demo API exists to have something real to quote; Data Vault is not affiliated with the x402 project, Coinbase, or the facilitator operator. Nothing here is financial advice.</p>
   </section>
 </main>
 

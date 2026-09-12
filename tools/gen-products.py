@@ -19,12 +19,15 @@ with every number verbatim.
 """
 import html
 import json
+import os
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
-SITE = Path(__file__).resolve().parents[1]
-PORTFOLIO = ROOT / 'state' / 'portfolio.json'
+ROOT = Path(os.environ.get('DV_ROOT') or Path(__file__).resolve().parents[2])
+# SITE = the Pages checkout to write. The pushed checkout on the workstation is
+# /home/uwuki/data-vault, so run it as `DV_SITE=$PWD` from inside that clone.
+SITE = Path(os.environ.get('DV_SITE') or Path(__file__).resolve().parents[1])
+PORTFOLIO = Path(os.environ.get('DV_PORTFOLIO') or ROOT / 'state' / 'portfolio.json')
 OUT = SITE / 'products.html'
 
 GROUPS = [
@@ -46,6 +49,7 @@ GROUPS = [
         'prompt-pack',
         'prompts-etsy',
         'agent-prompt-pack-vol1',
+        'agent-prompt-pack-vol2',
     ]),
     ('Wallpapers & Icons', [
         'wallpaper-v1',
@@ -164,6 +168,7 @@ COPY = {
     'wallpaper-pack-v1': dict(niche='JPG · 2560x1440', num='12', label='walls', desc='Twelve dark desktop wallpapers picked by hand from the 40 walls across the Vol.1 and Vol.2 packs, shipped at 2560x1440.', alt=None),
     'icon-pack': dict(niche='PNG · 1024x1024', num='50', label='icons', desc='50 flat minimal line icons in single colors for crypto, DeFi and dev tools, one stroke weight across the set, five groups of ten.', alt=None),
     'icon-pack-60svg': dict(niche='SVG · 24px grid', num='60', label='icons', desc='60 stroke-based SVG icons on a 24px grid: 1.5px stroke, round caps and joins, six folders, every file under 2 KB.', alt=None),
+    'agent-prompt-pack-vol2': dict(niche='MD + CSV · 3 QA lanes', num='10', label='prompts', desc='Ten QA prompts that gate work before it ships: dataset validation, dedup and schema drift, PDF page-tree and zip integrity checks, output-format grading, cover QA and an honest-claims audit. Eight of the ten ran against real files in a live product pipeline; every test plan feeds the prompt a broken input on purpose and fails if the verdict does not flip.', alt=None),
     'logo-pack': dict(niche='PNG · 1024x1024', num='40', label='logos', desc='40 ready-to-use Web3 logos in three styles (flat minimal marks, gradient app-icon badges, neon cyber) covering DeFi, NFT projects, wallets, exchanges, L2 networks and DAOs.', alt=None),
     'solana-social-banner-pack': dict(niche='JPG · 1536x1024', num='40', label='banners', desc="40 dark header images built on Solana's green and purple, 1536x1024 JPG in four style groups, with crop coordinates for X, LinkedIn, YouTube and Discord.", alt=None),
     'dv-mega-bundle': dict(niche='ZIP · SHA256 + licenses', num='5', label='packs', desc='Five complete packs in one download: 25-city amenity counts, 23 production prompts, 51,871-ZIP housing data, 12 hand-picked wallpapers and 60 line icons. $45 of packs for $29.', alt=('also on SellApp →', 'https://datavaultdesk.sell.app/product/data-vault-desk-mega-bundle')),

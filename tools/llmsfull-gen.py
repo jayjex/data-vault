@@ -31,9 +31,9 @@ DATASETS = [
 ]
 # 3 newest guides by last commit
 GUIDES = [
+    "hsa-vs-fsa-2026-limits-run-out",  # 2026-09-12 21:20
     "zip-prefix-geography",            # 2026-09-11 03:49
     "worldwide-civic-amenities-map",   # 2026-09-11 03:49
-    "tokyo-jakarta-seoul-amenities",   # 2026-09-11 03:15
 ]
 
 DOI_IDS = ["22643177", "22643149", "22643189", "22649503", "22665145", "22665925",

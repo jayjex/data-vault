@@ -20,9 +20,9 @@ Scope: README + 10 most-referenced dataset pages + 3 newest guides + 14-DOI cata
 - [Web Scraping Script Pack (scraper-pack)](#web-scraping-script-pack-scraper-pack)
 - [HUD Fair Market Rents FY2027, Top-50 Metro Areas (hud-fmr-metro-2027)](#hud-fair-market-rents-fy2027-top-50-metro-areas-hud-fmr-metro-2027)
 - [World Bank Population, G20 Countries + EU27 (worldbank-g20-population)](#world-bank-population-g20-countries-eu27-worldbank-g20-population)
+- [Guide: HSA vs FSA 2026-2027: limits, run-out rules and how to spend the balance](#guide-hsa-vs-fsa-2026-2027-limits-run-out-rules-and-how-to-spend-the-balance)
 - [Guide: ZIP prefix geography: what the first two digits of a ZIP code say about rent](#guide-zip-prefix-geography-what-the-first-two-digits-of-a-zip-code-say-about-rent)
 - [Guide: Public bookcase, drinking water fountain, and bike repair station maps: 19 cities worldwide](#guide-public-bookcase-drinking-water-fountain-and-bike-repair-station-maps-19-cities-worldwide)
-- [Guide: Drinking water points in Tokyo, Jakarta and Seoul, counted from OpenStreetMap](#guide-drinking-water-points-in-tokyo-jakarta-and-seoul-counted-from-openstreetmap)
 - [Dataset DOIs — Zenodo DOI catalog (14 DOIs)](#dataset-dois-zenodo-doi-catalog-14-dois)
 
 ---
@@ -622,6 +622,66 @@ All 20 rows from g20-population-2025.csv, sorted by population. The full 1,320-r
 
 Everything downloads free under CC BY 4.0; the World Bank open data terms carry the same license, so republished rows keep their attribution. The [life expectancy pack](https://jayjex.github.io/data-vault/datasets/worldbank-g20-life-expectancy.html) completes a trio on these same 20 entities with the matching SP.DYN.LE00.IN series, so the two files join on entity-year, and the [rural population share by country guide](https://jayjex.github.io/data-vault/guides/rural-population-share-g20-countries.html) multiplies the two together for rural headcounts, India's 941 million first. The [world population milestones guide](https://jayjex.github.io/data-vault/guides/world-population-milestones-g20.html) reads this file milestone by milestone, from the 2021 India-China crossover to the six members already past peak. The [life expectancy by country guide](https://jayjex.github.io/data-vault/guides/life-expectancy-g20-countries.html) joins the matching SP.DYN.LE00.IN series on the same entity-year key and reads the 53-year Japan streak and the COVID round trips out of it. The [dataset license guide](https://jayjex.github.io/data-vault/guides/dataset-license-guide.html) explains what CC BY 4.0 attribution requires when you build on these files, and the rest of the catalog lives on the [portfolio page](https://jayjex.github.io/data-vault/portfolio.html).
 
+## Guide: HSA vs FSA 2026-2027: limits, run-out rules and how to spend the balance
+
+Source: https://jayjex.github.io/data-vault/guides/hsa-vs-fsa-2026-limits-run-out.html
+
+By Matchbook Labs · 2026-09-12 · limits from Pub 969
+
+An HSA beats an FSA whenever you qualify: contributions, growth and withdrawals all go untaxed when the spending qualifies, and the balance survives every year end. A health FSA is the account that can take money back on January 1. The 2026 HSA limits are final, so this is arithmetic, not preference.
+
+### The 2026 numbers
+
+| Item | 2026 | 2025 |
+| --- | --- | --- |
+| HSA limit, self-only coverage | $4,400 | $4,300 |
+| HSA limit, family coverage | $8,750 | $8,550 |
+| HSA catch-up, age 55 and older | $1,000 | $1,000 |
+| Minimum HDHP deductible, self-only / family | $1,700 / $3,400 | $1,650 / $3,300 |
+| Maximum out-of-pocket, self-only / family | $8,500 / $17,000 | $8,500 / $17,000 |
+| Health FSA salary reduction cap | not listed | $3,300 |
+
+Publication 969 lists 2026 as its latest year, and those are its figures. The flexible spending cap prints at $3,300 for 2025 with carryover capped at $660, and no 2026 figure in the publication. The IRS sets each plan year's ceiling in inflation guidance the November before, and employers may go lower.
+
+### Which account you can hold
+
+The HSA gate is the health plan: a high deductible plan meeting both thresholds above, no other coverage that pays before the deductible, no Medicare. Fail in a single month and that month's contribution is an excess taxed at 6 percent a year until it leaves.
+
+The FSA gate is your employer. You elect at open enrollment and the amount leaves every paycheck in equal slices, whatever your year looks like. Lose the job and the election stands: COBRA keeps an FSA alive at the remaining election plus 102 percent of the premium. One bridge runs between them: leave FSA coverage, become HSA-eligible, and a one-time tax-free distribution can move what is left.
+
+### Run-out season is now
+
+September is when FSA balances get spent, because the forfeit deadline is close. A plan gives one relief option, or none:
+
+- **Grace period.** Up to 2 and a half months past the plan year, so a calendar-year plan pays last year's balance for care through March 15. The date of service must land inside the window.
+- **Carryover.** A capped amount moves into next year. Publication 969 puts the 2025 cap at $660.
+
+A plan can run both, and that is where the arithmetic bites: carried money counts against the 2027 limit, so January's room comes in under the election. Work backward from your plan's deadline, or from the [rent affordability calculator](https://jayjex.github.io/data-vault/guides/rent-affordability-calculator.html). Eligible spending runs wider than most assume: prescriptions, dental work, vision correction, first-aid supplies, and over-the-counter medicine bought after 2019.
+
+### Worked example
+
+Family coverage, 4,000 dollars in the HSA through payroll, a 2,200 dollar crowns quote in November. Add 4,750 dollars before December 31 and pay the dentist from it. Now a calendar-year FSA with 1,800 elected and 900 unspent on October 1: the rest of the year to find 900 dollars of care, and anything above the carryover cap stops being yours. Fund an FSA only to what you are certain to spend; max the HSA if you can carry the deductible.
+
+### Keeping the calendar straight
+
+Three deadlines run at once when you hold both accounts: plan year end, the run-out claim cutoff, and the HSA contribution deadline, your filing date, not December 31. The [HSA & FSA tracker](https://www.getly.store/store/matchbook-labs-mtrfh66f) is an 8-page, $7 PDF with a contribution log, a run-out calendar, and an eligible-expense worksheet, with the limits printed on the page you fill in. Free budget trackers sit on the [printables index](https://jayjex.github.io/data-vault/free-printables-index.html).
+
+### Frequently asked questions
+
+Can I have an HSA and an FSA at the same time?
+      Not a general-purpose health FSA; it makes you ineligible for every month it covers you. A limited-purpose FSA, dental, vision and preventive only, can sit beside an HSA.
+      Does unused FSA money expire on December 31?
+      Not necessarily, and not always. A grace period can run 2 and a half months past the plan year, or a capped carryover moves money into next year. Your plan document says which, and a fiscal-year plan ends when the plan says.
+      What happens to money left in an HSA at year end?
+      Nothing. The balance rolls forward without a limit, stays yours if you change jobs, and can be invested past the plan's cash threshold. A non-qualified withdrawal costs income tax plus 20 percent under 65.
+      Have the 2027 limits been announced?
+      Not in the current edition of Publication 969, which ends at 2026. Plan on 4,400 dollars self-only and 8,750 dollars family, then check the IRS inflation guidance when 2027 figures land.
+
+### Sources and how to verify
+
+- [IRS Publication 969, retrieved 2026-09-12](https://www.irs.gov/publications/p969) · [archived](https://web.archive.org/web/2026/https://www.irs.gov/publications/p969)
+- Figures come from that publication. Run-out windows and eligible expenses are plan-specific: check your plan document. Not tax advice.
+
 ## Guide: ZIP prefix geography: what the first two digits of a ZIP code say about rent
 
 Source: https://jayjex.github.io/data-vault/guides/zip-prefix-geography.html
@@ -900,141 +960,6 @@ The counts behind the Oceania trio and the Istanbul-Cairo-Mumbai additions live 
 All eight regional tables ship as the [World Civic Amenities Pack](https://jayjex-shop.fourthwall.com/products/world-civic-amenities-pack): this page's 19 cities plus the Oceania counts and the boundary-resolved New York-Chicago-Seattle file, 84 count rows, 68,997 mapped elements, one schema, plus the schema notes for six of the eight tables.
 
 The data included in this document is from www.openstreetmap.org. The data is made available under ODbL. © OpenStreetMap contributors. Republishing a derivative? The [license guide](https://jayjex.github.io/data-vault/guides/dataset-license-guide.html) covers ODbL attribution format.
-
-## Guide: Drinking water points in Tokyo, Jakarta and Seoul, counted from OpenStreetMap
-
-Source: https://jayjex.github.io/data-vault/guides/tokyo-jakarta-seoul-amenities.html
-
-Published 2026-09-10. Data source: [OpenStreetMap Civic Amenities, Tokyo-Jakarta-Seoul, 2026-09](https://jayjex.github.io/data-vault/datasets/osm-asia-civic-amenities.html), nine node counts from Overpass API `out count` queries on 2026-09-10, kumi mirror base timestamp 2026-07-24. Boundary details come from the [dataset schema](https://jayjex.github.io/data-vault/data/osm-asia-civic/schema.md). This page documents the data.
-
-**2,489** features in 9 city-amenity cells · **2,163** Tokyo drinking-water points, largest count in the file · **98.6** percent of the file is drinking water · **1** zero cell, Jakarta's public bookcases · **2,163x** span across nonzero cells, 1 to 2,163
-
-### The short answer
-
-Three capitals, three amenity types, nine counts, and one capital holding nearly everything. OpenStreetMap contributors have mapped 2,489 public features inside the boundaries of Tokyo, Jakarta, and Seoul: 2,454 drinking water points, 4 public bookcases, and 31 bike repair stations, a node snapshot taken 2026-09-10 on a database whose documented base timestamp is 2026-07-24. Tokyo holds 2,191 of the features, 88.0 percent of the file, and its drinking-water count alone (2,163) covers 88.1 percent of the fountains in all three cities combined.
-
-The file's one zero cell and its unnamed rows say as much about mapping culture as the thousands do. Jakarta has no mapped public bookcase, and two of its three rows carry no name tag at all. Both tables below recompute from the [free nine-row CSV](https://jayjex.github.io/data-vault/data/osm-asia-civic/counts-2026-09.csv), and the two SQL blocks at the end of this page return them verbatim.
-
-### All nine counts, ranked by raw count
-
-| # | City | Amenity | Count | Share of city |
-| --- | --- | --- | --- | --- |
-| 1 | Tokyo | Drinking water | 2,163 | 98.7% |
-| 2 | Seoul | Drinking water | 253 | 97.7% |
-| 3 | Jakarta | Drinking water | 38 | 97.4% |
-| 4 | Tokyo | Bike repair stations | 25 | 1.1% |
-| 5 | Seoul | Bike repair stations | 5 | 1.9% |
-| 6 | Tokyo | Public bookcases | 3 | 0.1% |
-| 7 | Jakarta | Bike repair stations | 1 | 2.6% |
-| 8 | Seoul | Public bookcases | 1 | 0.4% |
-| 9 | Jakarta | Public bookcases | 0 | 0.0% |
-
-Drinking water takes the top three rows in all three cities at once, which the Africa file's table could not do (its repair column held one stand and its bookcase column none). Per city, the totals run Tokyo 2,191 (88.0 percent of the file), Seoul 259 (10.4), and Jakarta 39 (1.6). The theme totals are 2,454 fountains (98.6 percent of the file), 31 repair stations (1.2), and 4 bookcases (0.2). The median count across the nine cells is 5, only one cell holds zero, and the largest-to-smallest span across nonzero cells is 2,163 to 1.
-
-### Three capitals, three writing scripts
-
-Unlike the count-only US, EU, and Africa files, each Asia row carries an example node: its name tag verbatim, with latitude and longitude. The names come back in three scripts. Tokyo's bookcase example is named 音楽ライブラリー (a music library shelf) at 35.68241, 139.71942, and its repair-station example is 自転車修理いむら商会 (Imura Shokai, a bike shop) at 35.72883, 139.68391. Seoul's drinking-water example is named 아리수 (Arisu) at 37.55575, 126.89504, and its repair-station example is 서울자전거 at 37.51372, 127.10091. Jakarta's drinking-water example reads galon c2 at -6.09890, 106.96190.
-
-Two of Jakarta's three rows carry an empty name tag, and Tokyo's drinking-water example carries the generic tag name fountain at 35.56829, 139.45574. The file records what the tags say, nothing more; what Arisu stands for, or who fills the galon c2 bottles, is context the CSV does not carry. For an agent or a pipeline, that column is a free sample of the map's texture; pull one row and you get a name and a coordinate you can plot.
-
-### One real zero and a placeholder coordinate
-
-Zeros in a count table can mean two things: nobody mapped the thing, or nobody mapped the tag. The schema answers for Jakarta's bookcase cell: no `public_bookcase` is mapped yet inside the Jakarta relation boundary. Because the count is 0, no example node exists, and the row's coordinates (-6.20000, 106.81667) are a city-center placeholder, which the schema states outright. Every other cell in the file has a real node behind it.
-
-The rest of the series puts the small bookcase base in context. Seattle holds the catalog peak at 497 in the 16-city US file, Paris 165, Berlin 114, and Warsaw 33 in the EU file; in Asia, Tokyo's 3 is the high mark and Seoul adds 1. The EU file's Amsterdam also reads 0 while Berlin in the same file reads 114, so a zero next to a busy column is a mapping-culture gap that shows up inside one region too. Whether Jakarta's 0 will stay 0 is a question the file cannot answer.
-
-### Where Tokyo stands across the series
-
-Cross-file, Tokyo's 2,163 drinking-water points rank third among single-city counts in the catalog's eight-file civic series. Sydney holds the top count at 2,479 in the Oceania file, Nairobi follows at 2,174, and Tokyo leads Madrid (2,058) and New York (1,599 in the 16-city US file). Seoul's 253 lands one fountain above Chicago's 252 in the exact-boundary US2 file, and Jakarta's 38 sits second-lowest in the series, ahead of only Addis Ababa's 5.
-
-The repair column earns an honest downgrade. Tokyo's 25 bike repair stations lead the Asia file and outnumber the entire MENA file's repair total (Istanbul 16, Cairo 0, Mumbai 3, together 19), but across the series 25 ranks ninth: Warsaw's 188 stands top the catalog, with Berlin (71), Paris (52), Los Angeles (44), Chicago (40), New York (31), Austin (28), and Seattle (28) all ahead. The comparison stays within a theme on purpose: the Oceania and US2 files count fountains, toilets, and benches, so a bench-to-fountain ratio does not transfer across files. What does transfer is the drinking-water column, which every file measures with the same `amenity=drinking_water` tag.
-
-One counting rule differs from the Africa lane and matters for close comparisons: this file counts nodes only, and the schema notes that some amenities are mapped as ways, rare for these three tags. The Africa file counted nodes and ways together. A way mapped as a drinking fountain would appear in the Africa numbers and not here, which is one more reason to treat single-digit differences between regions as snapshot noise rather than rankings.
-
-### Methodology: nodes only, one documented base timestamp
-
-The source file is the nine-row [counts-2026-09.csv](https://jayjex.github.io/data-vault/data/osm-asia-civic/counts-2026-09.csv) (ODbL, © OpenStreetMap contributors). Each cell is an Overpass API `out count` query for one amenity type inside one city area, counting nodes only; ways and relations are ignored, and the schema flags ways as rare for these three tags. City areas were resolved through Nominatim relations and passed to Overpass as 3600000000-offset area IDs: Tokyo Metropolis (R3601543125), Daerah Khusus Ibukota Jakarta (R6362934), and Seoul Special City (R2297418).
-
-The counts ran on 2026-09-10 against the kumi.systems and maps.mail.ru Overpass mirrors, and the schema documents the kumi base timestamp as 2026-07-24, 48 days before the count date. Unlike the Africa file, this schema publishes no second-mirror drift table, so this page makes no mirror-agreement claim. Counts are a snapshot, OSM moves daily, and all three boundaries are metro-scale admin areas that reach past the downtown cores, so read the numbers as OpenStreetMap coverage inside these boundaries: exact for what was mapped, estimates for what stands on the ground.
-
-### Recompute the tables yourself
-
-Load the CSV into SQLite as `civic`, seven columns per row. The first block returns the raw board:
-
-```
--- SQLite: all nine city-amenity counts, ranked by raw count
-CREATE TABLE civic (city TEXT, amenity TEXT, total INT, tags TEXT, lat TEXT, lon TEXT, source TEXT);
-.import --skip 1 counts-2026-09.csv civic
-
-SELECT rn, city, amenity, total, share_of_city
-FROM (SELECT city, amenity, total,
-             ROUND(total * 100.0 / SUM(total) OVER (PARTITION BY city), 1) AS share_of_city,
-             ROW_NUMBER() OVER (ORDER BY total DESC, city, amenity) AS rn
-      FROM civic)
-ORDER BY rn;
--- Rows: 1 Tokyo drinking_water 2163 98.7,
--- 2 Seoul drinking_water 253 97.7,
--- 3 Jakarta drinking_water 38 97.4,
--- 4 Tokyo bicycle_repair_station 25 1.1,
--- 5 Seoul bicycle_repair_station 5 1.9,
--- 6 Tokyo public_bookcase 3 0.1,
--- 7 Jakarta bicycle_repair_station 1 2.6,
--- 8 Seoul public_bookcase 1 0.4,
--- 9 Jakarta public_bookcase 0 0.0.
-```
-
-The second block returns the file's shape: theme totals, Tokyo's share, the median, the zero-cell count, and the span across nonzero cells, then per-city totals:
-
-```
--- SQLite: shape of the file
-WITH r AS (SELECT total AS v, ROW_NUMBER() OVER (ORDER BY total) AS rn,
-                  COUNT(*) OVER () AS n FROM civic),
-     t AS (SELECT amenity, SUM(total) AS n FROM civic GROUP BY amenity),
-     c2 AS (SELECT city, SUM(total) AS n FROM civic GROUP BY city)
-SELECT
-  (SELECT SUM(v) FROM r) AS features,
-  (SELECT n FROM t WHERE amenity = 'drinking_water') AS drinking_water,
-  (SELECT n FROM t WHERE amenity = 'public_bookcase') AS bookcases,
-  (SELECT n FROM t WHERE amenity = 'bicycle_repair_station') AS repair_stations,
-  (SELECT n FROM c2 WHERE city = 'Tokyo') AS tokyo_total,
-  (SELECT ROUND(n * 100.0 / (SELECT SUM(n) FROM c2), 1) FROM c2
-   WHERE city = 'Tokyo') AS tokyo_share,
-  (SELECT v FROM r WHERE rn = (n+1)/2) AS median_count,
-  (SELECT SUM(CASE WHEN v = 0 THEN 1 ELSE 0 END) FROM r) AS zero_cells,
-  (SELECT MAX(v) FROM r) AS largest_count,
-  (SELECT ROUND(MAX(v) * 1.0 / MIN(v), 1) FROM r WHERE v > 0) AS largest_over_floor;
--- 2489 / 2454 / 4 / 31 / 2191 / 88.0 / 5 / 1 / 2163 / 2163.0.
-
--- per-city totals and the drinking-water share
-SELECT city, SUM(total) AS city_total,
-       ROUND((SELECT total FROM civic WHERE city = c.city AND amenity = 'drinking_water')
-             * 100.0 / SUM(total), 1) AS drinking_share
-FROM civic c
-GROUP BY city
-ORDER BY city_total DESC;
--- Rows: Tokyo 2191 98.7,
--- Seoul 259 97.7,
--- Jakarta 39 97.4.
-```
-
-Run in one session, both blocks return exactly the rows quoted in the comments. The drinking-water share stays above 97 percent in every city because each city's file is, to one decimal, nearly all fountains.
-
-### Tokyo, Jakarta and Seoul counts: questions
-
-Which of the three cities has the most drinking water points?
-      Tokyo on raw counts: 2,163 of the file's 2,454 drinking-water features, 88.1 percent of the theme, against Seoul's 253 and Jakarta's 38. Cross-file, Tokyo's 2,163 ranks third among single-city drinking-water counts in the catalog's eight-file civic series, behind Sydney (2,479) and Nairobi (2,174) and ahead of Madrid (2,058). All three Asian counts run inside admin-boundary relations, so the numbers cover the whole metropolis rather than the downtown core.
-      Why does Jakarta show zero public bookcases?
-      The schema states it as a real result: nobody has mapped a public_bookcase yet inside the Jakarta relation boundary, so the count is 0 and the row's coordinates are a city-center placeholder rather than a node location. The rest of the file backs the small base: Tokyo counts 3 public bookcases and Seoul 1, and no Asian city passes single digits. Across the catalog's civic series, Seattle holds the bookcase peak at 497, Paris 165, and Berlin 114, so the Asian numbers sit at the low end of a tag that never caught on in the region.
-      How were the counts taken and verified?
-      Each cell is an Overpass API out count query for one amenity type inside one verified boundary relation, run on 2026-09-10 against the kumi.systems and maps.mail.ru mirrors; the schema documents the kumi base timestamp as 2026-07-24, 48 days before the count date. Counts cover nodes only, and the schema notes some amenities are mapped as ways, which is rare for these three tags. On this page every number was recomputed with python and independently in SQLite, and the two SQL blocks return their quoted outputs verbatim.
-
-### Get the data
-
-- [Download the nine-row CSV (free, ODbL)](https://jayjex.github.io/data-vault/data/osm-asia-civic/counts-2026-09.csv) [Open the dataset page](https://jayjex.github.io/data-vault/datasets/osm-asia-civic-amenities.html)
-
-The Tokyo, Jakarta and Seoul counts make up the asia table in the [World Civic Amenities Pack](https://jayjex.github.io/data-vault/products.html#h-datasets) ($12), one 84-row master table covering 25 cities across 6 continents.
-
-The CSV carries one row per city-amenity pair with the example node's name tag and coordinates, and the [schema page](https://jayjex.github.io/data-vault/data/osm-asia-civic/schema.md) documents the boundary relations and the nodes-only counting rule. Related guides on this site: the [Sydney, Melbourne and Auckland counts](https://jayjex.github.io/data-vault/guides/sydney-melbourne-auckland-amenities.html), the [Lagos, Nairobi and Addis Ababa counts](https://jayjex.github.io/data-vault/guides/lagos-nairobi-addis-ababa-amenities.html), and the [Istanbul, Cairo and Mumbai counts](https://jayjex.github.io/data-vault/guides/mena-city-amenities-guide.html). Off the data lane, the [free printables index](https://jayjex.github.io/data-vault/free-printables-index.html) holds 224 printable trackers, planners, and worksheets.
 
 ## Dataset DOIs — Zenodo DOI catalog (14 DOIs)
 

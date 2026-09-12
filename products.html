@@ -52,17 +52,17 @@
     <h2 id="h-new-this-week">New this week <span class="mono" style="color:var(--muted);font-size:.85em">(8)</span></h2>
     <p class="byline">Eight packs fresh out of the build queue. Getly listings publish one at a time, so cards link to the store until their product pages go live.</p>
     <div class="grid">
-      <!-- STAGED CARD interview-prep #24 — PLACEHOLDER LINK, swap before push.
-           Real Getly slug lands when the listing goes active (queue: state/getly/queue-interviewprep.json, slot 2026-09-12T15:30+07:00).
-           Swap = replace SLUGPENDING in BOTH the href and the link text below, then delete this comment.
-           Desc canon: artifacts/products/interview-prep/DESC.md (1001 chars). Price: queue json price_cents 1200.
-           ISR rule 2026-09-07: jangan probe /product/<slug> publik selama pending_review — verifikasi via API only. -->
+      <!-- STAGED CARD interview-prep #24 — no product link while the row is BUILD-READY-GETLY.
+           Queue: state/getly/queue-interviewprep.json. ISR rule 2026-09-07: never probe /product/<slug>
+           while pending_review, so the card carries the store link (same shape as the other queued
+           cards in this section) and swaps to the product URL only after an API-verified active status.
+           Desc canon: artifacts/products/interview-prep/DESC.md (1001 chars). Price: queue json price_cents 1200. -->
       <article class="card">
         <span class="niche">PDF + CSV · 150 questions</span>
         <h3>Interview-Prep Vault — 150 Questions with STAR Answer Frameworks (PDF)</h3>
         <p>150 interview questions with a STAR answer framework and a delivery tip for each, across six sections (Behavioral, System Design, Python &amp; Coding, Product Sense, Data &amp; SQL, Culture Fit). Ships as a 31-page A4 PDF plus a CSV that imports into Anki or any spreadsheet.</p>
         <div class="stats" aria-label="Price and contents"><span class="stat"><b>$12</b> price</span><span class="stat"><b>150</b> questions</span></div>
-        <p class="btn-note">Get it on Getly: <a href="https://www.getly.store/product/interview-prep-vault-150-questions-with-star-answer-frameworks-pdf-SLUGPENDING" rel="noopener">getly.store/product/interview-prep-vault-150-questions-with-star-answer-frameworks-pdf-SLUGPENDING</a></p>
+        <p class="btn-note">Getly store: <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">getly.store/store/matchbook-labs-mtrfh66f</a></p>
       </article>
       <article class="card">
         <span class="niche">XLSX + PDF · 6 calculators</span>
@@ -106,16 +106,17 @@
         <div class="stats" aria-label="Price and contents"><span class="stat"><b>$9</b> price</span><span class="stat"><b>5</b> databases · 7 views</span></div>
         <p class="btn-note">Getly store: <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">getly.store/store/matchbook-labs-mtrfh66f</a></p>
       </article>
-      <!-- STAGED CARD freelancer-starter-bundle #30 — PLACEHOLDER LINK, swap before push.
-           LANE NOTE: state files (state/gumroad/queue-bundle-flstarter.json, STATUS.md) list #30 as GUMROAD mega-zip, permalink flstarter, gate >=2 komponen live + payout connect. Slot "09-12 09:30" di task = slot Getly queue-bundle.json (dv-mega-bundle, produk lain).
-           Swap options: (a) lane tetap Gumroad -> href+text ke https://jayjex.gumroad.com/l/flstarter dan label "Get it on Getly" ganti jadi "Get it on Gumroad"; (b) lane pindah Getly -> replace SLUGPENDING.
-           Desc canon: artifacts/products/freelancer-starter-bundle/DESC.md (1294 chars). Price: queue json price_cents 1900. Delete this comment after swap. -->
+      <!-- STAGED CARD freelancer-starter-bundle #30 — no product link while the row is QUEUED-GUMROAD-PARENT.
+           LANE NOTE: state/gumroad/queue-bundle-flstarter.json + STATUS.md gate #30 on >=2 components live + payout connect;
+           slot "09-12 09:30" in the task file belongs to dv-mega-bundle's Getly queue, not this product.
+           Card carries the store link until the Gumroad listing goes live (then swap label to "Get it on Gumroad"
+           and href to the real permalink). Desc canon: artifacts/products/freelancer-starter-bundle/DESC.md (1294 chars). Price: queue json price_cents 1900. -->
       <article class="card">
         <span class="niche">Bundle · 3 packs</span>
         <h3>Freelancer Starter Bundle: Interview Prep, Invoices, Video Prompts (3 Packs)</h3>
         <p>Three packs for the first weeks of freelancing: Interview-Prep Vault (150 questions, $12), Invoice Pack Vol. 2 (12 templates, $9) and AI Video Prompt Pack Vol. 4 (20 shot-ready prompts, $9). $30 of packs bought separately, $19 in the bundle, each zip byte-identical to the standalone file with checksums included.</p>
         <div class="stats" aria-label="Price and contents"><span class="stat"><b>$19</b> price</span><span class="stat"><b>3</b> packs</span></div>
-        <p class="btn-note">Get it on Getly: <a href="https://www.getly.store/product/freelancer-starter-bundle-interview-prep-invoices-video-prompts-3-packs-SLUGPENDING" rel="noopener">getly.store/product/freelancer-starter-bundle-interview-prep-invoices-video-prompts-3-packs-SLUGPENDING</a></p>
+        <p class="btn-note">Getly store: <a href="https://www.getly.store/store/matchbook-labs-mtrfh66f" rel="noopener">getly.store/store/matchbook-labs-mtrfh66f</a></p>
       </article>
     </div>
   </section>

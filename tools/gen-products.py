@@ -125,6 +125,7 @@ GROUPS = [
         'dosage-workbook',
         'lmsw-exam',
         'frontend-book',
+        'interview-prep',
     ]),
     ('Design & Social', [
         'sticker-pack',
@@ -224,6 +225,10 @@ COPY = {
     'desk-kit': dict(niche='PDF · A4 + Letter', num='12', label='sheets ×2 sizes', desc='Twelve one-page crypto reference sheets, print-ready in both A4 and US Letter, 24 PDFs in one download.', alt=None),
     'dosage-workbook': dict(niche='PDF · A4 + Letter', num='150', label='problems', desc='150 dosage calculation practice problems for nursing students with step-by-step solutions across six sections.', alt=None),
     'lmsw-exam': dict(niche='PDF · A4 + Letter', num='170', label='questions', desc='A full-length 170-question LMSW practice exam in the state social work licensing style, with an explanation for every answer.', alt=None),
+    'interview-prep': dict(
+        niche='PDF + CSV · 150 questions', num='150', label='questions',
+        desc='150 interview questions with a STAR answer framework and a delivery tip for each, across six sections (Behavioral, System Design, Python & Coding, Product Sense, Data & SQL, Culture Fit). Ships as a 31-page A4 PDF plus a CSV that imports into Anki or any spreadsheet.',
+        alt=None),
     'frontend-book': dict(niche='PDF + MD · 7 sections', num='60', label='questions', desc='Sixty frontend interview questions across seven sections, each with a direct answer, a code example and the follow-up traps that come after.', alt=None),
     'sticker-pack': dict(niche='PNG · 1024 + 2400px', num='12', label='stickers ×2 sizes', desc='12 dark tech-humor stickers for people who talk to terminals more than to humans: circle-cropped 1024px PNGs for chat apps plus 2400px originals for print.', alt=None),
     'stickers-v2': dict(niche='PNG · 1024 + 2400px', num='12', label='stickers ×2 sizes', desc='12 more dark tech-humor stickers in the same die-cut format, new jokes included.', alt=None),

@@ -11,6 +11,8 @@ Log update site. 1 baris per push yang berisi perubahan konten. Terbaru di atas.
 - link luar dicek 200 hari ini: onetcenter.org/database.html, license_db.html, creativecommons.org/licenses/by/4.0/, jayjex-shop.fourthwall.com/products/planner-2026; bls.gov/oes/ balas 403 ke curl (bot-block BLS, normal di browser) — link sitasi tetap
 - `.nojekyll` (file kosong) ditambah: GitHub Pages build lama pakai Jekyll, jadi 2 file sample ber-frontmatter YAML (`data/agent-skills-vol1/listing-writer.md`, `pdf-graph-qa.md`) ke-render jadi HTML dan URL `.md` balas 404. Tidak ada satu pun `.html` di repo yang pakai Liquid (`{{` / `{%` = 0 file), dan 15 file `data/**/*.md` lain tanpa frontmatter memang sudah dilayani verbatim → `.nojekyll` bikin sample markdown sampai apa adanya, halaman lain tidak berubah
 - `README.md` +1 baris tabel dataset (occupation-wages, marked staged) +1 bullet halaman preview + kredit O*NET di blok lisensi → `llms-full.txt` di-regen bersih (`python3 tools/llmsfull-gen.py`, 112.7 KB, 15 sections); `.gitignore` +`__pycache__/`
+- deploy check 09-12: 3 halaman baru + 3 halaman index + 6 file sample/OG balas HTTP 200; md5 `index.html`, `datasets/hud-fmr-metro-2027.html`, `printables/cable-clip-set-stl.html`, `guides/hud-fmr-2027.html` live = local → `.nojekyll` tidak mengubah satu halaman pun; slug Getly `agent-skills-vol1`, `occupation-wages`, `planner-2027` di-recheck hari ini = 404 bertiga, jadi tetap tanpa link beli. IndexNow 1x POST, 10 URL (payload `state/indexnow-payload-dv-0912-prev3.json`) → HTTP 200
+
 - `catalog.json` / `catalog.html` / `products.html` TIDAK disentuh: generatornya cuma buat produk live, produk PREP bakal jadi link palsu. `MAP.md` + section "Halaman preview produk staged"
 
 ## 2026-09-11

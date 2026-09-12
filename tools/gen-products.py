@@ -143,6 +143,8 @@ GROUPS = [
     ('Free Samples', [
         'lead-earn-sample',
         'lead-walls-sample',
+        'lead-hud-sample',
+        'lead-nfl-sample',
     ]),
 ]
 
@@ -238,6 +240,8 @@ COPY = {
     'halloween-bundle': dict(niche='PDF · A4 + Letter', num='19', label='pages ×2 sizes', desc='Nineteen printable pages for October: ten Halloween party games (word scramble, a 12x12 word search, bingo with a 48-item caller list, 14-question trivia, pictionary, charades, a scavenger hunt, this or that, a fill-in story and a candy-count jar station), eight autumn planner pages and a title page, delivered as two PDFs with identical content, one A4 and one US Letter. Answer keys sit at the bottom of each game page.', alt=None),
     'lead-earn-sample': dict(niche='CSV · free', num='5', label='listings', desc='Five real listings pulled from the live superteam.fun API, a cut-down slice of the full dataset so you can inspect the data shape before buying.', alt=None),
     'lead-walls-sample': dict(niche='JPG · 1920x1080', num='2', label='walls', desc='Two full wallpapers from Vol.3, downscaled from 4K to 1920x1080. Try them on your actual desktop before buying the pack.', alt=None),
+    'lead-hud-sample': dict(niche='CSV · free', num='500', label='ZIP rows', desc='Five hundred ZIP-level FY2026 Fair Market Rent rows across ten states (TX, CA, IA, IL, MO, NY, PA, OH, KY, MN), same ten columns as the master file. Check whether a ZIP carries its own SAFMR or only the metro-wide number before buying the 51,895-ZIP pack.', alt=None),
+    'lead-nfl-sample': dict(niche='CSV · free', num='100', label='games', desc='A free 100-game cut of the NFL betting file, same 46 columns as the full pack: 50 rows from the 1999 season openers with scores and spreads, 50 from the 2025 season with closing moneylines. Moneylines read empty before 2006, that is the source data.', alt=None),
 }
 
 WORDS = {1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six', 7: 'seven',

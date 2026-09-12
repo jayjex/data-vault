@@ -264,6 +264,23 @@ def main():
     portfolio = json.loads(PORTFOLIO.read_text())
     rows = portfolio['products']
 
+    # Which Getly listings are purchasable right now, keyed on the product id.
+    # Same dump catalog-gen.py and tmp/deadlink-check.py read; no dump found =
+    # fall back to Fourthwall-first, which is what this script emitted pre-09-12.
+    dump = Path(os.environ['DV_GETLY_DUMP']) if os.environ.get('DV_GETLY_DUMP') else next(
+        (p for p in (ROOT / 'tmp' / 'getly-list-0912-fresh-dvsample.json',
+                      ROOT / 'tmp' / 'catalogfull-getly.json',
+                      ROOT / 'money-mission' / 'tmp' / 'catalogfull-getly.json',
+                      SITE / 'tmp' / 'catalogfull-getly.json') if p.exists()), None)
+    if dump:
+        ACTIVE_GETLY = {i['id'] for i in json.loads(dump.read_text())['data']['items']
+                        if i['status'] == 'active'}
+        print(f'getly dump: {dump.name} | {len(ACTIVE_GETLY)} active')
+    else:
+        ACTIVE_GETLY = set()
+        print('note: no Getly dump found, dual-rail rows stay Fourthwall-first',
+              file=sys.stderr)
+
     def pending(r):
         return 'pending_review' in r.get('reason', '').lower()
 
@@ -288,9 +305,34 @@ def main():
     for f in off_page:
         print(f'note: {f} in GROUPS/COPY but not live (status flip?) - skipped', file=sys.stderr)
 
+    # Public Getly product pages that still serve a cached 404 even though the
+    # listing reads active in the dump: Next.js held the pending_review render
+    # with s-maxage=604800 (state/REFRESH-ISR.md, rule 09-07). Probing again
+    # re-caches the 404, so these are listed by product id until a dashboard
+    # re-save clears them, and Fourthwall stays the buyable rail meanwhile.
+    ISR_404 = {'384d850c-a730-41a5-aa86-52d06cfdcc45'}  # vendor-pack, probed 09-12 12:55Z
+
     def link_for(r):
         fw = r.get('fourthwall_url')
-        return (fw, 'Fourthwall') if fw else (r['url'], 'Getly')
+        url = r.get('url') or ''
+        # Dual-rail precedence, same rule catalog-gen.py uses: the Getly product
+        # page leads whenever the row's listing is active in the fresh dump,
+        # Fourthwall stays as the secondary link on the card, pending or missing
+        # listings keep Fourthwall as the only rail. Matched on getly_id because
+        # rows like icon-pack-60svg carry a Fourthwall url in `url`. A listing
+        # still in review is not in the dump's active set, so pending rows keep
+        # Fourthwall first; the `reason` text is not trusted here (vendor-pack's
+        # note mentions its old pending_review state in past tense).
+        slug = r.get('getly_slug') or ''
+        gid = r.get('getly_id') or ''
+        getly = f'https://www.getly.store/product/{slug}' if slug else url
+        if slug and gid and gid in ACTIVE_GETLY:
+            if gid in ISR_404 and fw:
+                # Linking the /product/ URL here would send buyers to a 404, and
+                # the /embed/ checkout fallback is not a catalog-shaped link.
+                return (fw, 'Fourthwall', None, '')
+            return (getly, 'Getly', fw, 'also on Fourthwall \u2192')
+        return (fw, 'Fourthwall', None, '') if fw else (url, 'Getly', None, '')
 
     total = len(by_folder)
     n_free = sum(1 for r in by_folder.values() if r['price_cents'] == 0)
@@ -372,8 +414,10 @@ def main():
         out.append('    <div class="grid">\n')
         for r in items:
             c = COPY[r['folder']]
-            link, chan = link_for(r)
+            link, chan, sec_url, sec_label = link_for(r)
             alt = f' <a href="{esc(c["alt"][1])}" rel="noopener">{c["alt"][0]}</a>' if c['alt'] else ''
+            if sec_url and not c['alt']:
+                alt = f' <a href="{esc(sec_url)}" rel="noopener">{sec_label}</a>'
             out.append(f'''      <article class="card">
         <span class="niche">{esc(c['niche'])}</span>
         <h3>{esc(r['name'])}</h3>

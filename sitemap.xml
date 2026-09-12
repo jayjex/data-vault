@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://jayjex.github.io/data-vault/</loc><lastmod>2026-09-11</lastmod></url>
     <url><loc>https://jayjex.github.io/data-vault/free-printables-index.html</loc><lastmod>2026-09-11</lastmod></url>
-  <url><loc>https://jayjex.github.io/data-vault/printables/</loc><lastmod>2026-09-10</lastmod></url>
+  <url><loc>https://jayjex.github.io/data-vault/printables/</loc><lastmod>2026-09-12</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/printable-index-roundup.html</loc><lastmod>2026-09-11</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/christmas-gift-planning-hub.html</loc><lastmod>2026-09-11</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/printables/free-printable-templates.html</loc><lastmod>2026-09-11</lastmod></url>
@@ -14,7 +14,7 @@
   <url><loc>https://jayjex.github.io/data-vault/agents/mcp-dataset-server.html</loc><lastmod>2026-09-09</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/agents/claude-desktop-mcp-setup.html</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/agents/llms-txt-guide.html</loc><lastmod>2026-09-09</lastmod></url>
-  <url><loc>https://jayjex.github.io/data-vault/agents/free-agent-tools.html</loc><lastmod>2026-09-09</lastmod></url>
+  <url><loc>https://jayjex.github.io/data-vault/agents/free-agent-tools.html</loc><lastmod>2026-09-12</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/agents/mcp-tools-for-claude.html</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/agents/mcp-vs-api.html</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/datasets/nfl-games.html</loc><lastmod>2026-09-10</lastmod></url>
@@ -159,7 +159,7 @@
 <url><loc>https://jayjex.github.io/data-vault/datasets/hud-fmr-county-2026.html</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/datasets/hud-fmr-metro-2027.html</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/guides/</loc><lastmod>2026-09-11</lastmod></url>
-  <url><loc>https://jayjex.github.io/data-vault/datasets/</loc><lastmod>2026-09-10</lastmod></url>
+  <url><loc>https://jayjex.github.io/data-vault/datasets/</loc><lastmod>2026-09-12</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/guides/most-affordable-counties.html</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/datasets/osm-oceania-civic-amenities.html</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/datasets/osm-us2-civic-amenities.html</loc><lastmod>2026-09-10</lastmod></url>
@@ -218,4 +218,7 @@
   <url><loc>https://jayjex.github.io/data-vault/guides/pdf-page-tree-qa-python.html</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/products.html</loc><lastmod>2026-09-11</lastmod></url>
   <url><loc>https://jayjex.github.io/data-vault/catalog.html</loc><lastmod>2026-09-11</lastmod></url>
+  <url><loc>https://jayjex.github.io/data-vault/datasets/occupation-wages.html</loc><lastmod>2026-09-12</lastmod></url>
+  <url><loc>https://jayjex.github.io/data-vault/agents/agent-skills-vol1.html</loc><lastmod>2026-09-12</lastmod></url>
+  <url><loc>https://jayjex.github.io/data-vault/printables/planner-2027.html</loc><lastmod>2026-09-12</lastmod></url>
 </urlset>

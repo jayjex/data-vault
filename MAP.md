@@ -1,9 +1,8 @@
 # DATA-VAULT MAP — struktur site, siapa ngedit apa
 
-Update terakhir: 2026-09-11. Doc ini WAJIB diupdate setiap ada halaman baru / produk baru masuk site.
+Update terakhir: 2026-09-12. Doc ini WAJIB diupdate setiap ada halaman baru / produk baru masuk site.
 
-Crosslink count: 5 related-pack lines live di guides (09-11 run — housing pack ×3: rent-affordability-calculator, hud-fmr-by-state, section-8-voucher-rent; icon pack ×1: mcp-claude-desktop; poster collection ×1: print-in-use-organizers; mcp-server-build-tutorial sudah link icon pack dari build 09-10; vendor pack = 0, no procurement guide). Counts source of truth (09-11 sweep, dvcc audit): catalog.json datasets = 26 (datasets/ 27 file incl. index), guides = 142 (guides/ 143 file incl. hub index), printables ItemList = 224, products.html <article> = 98, catalog.html ItemList = 102 (100 paid + 2 free, $1,489), sitemap.xml = 218 URL, state/portfolio.json = 140 rows (live 100+2). Disclaimer QA (09-11 audit): seluruh 143 guides dicek — 74 punya disclaimer (byline atau section), 69 technical-data optional tanpa; WAJIB-topic (keuangan/pajak/hukum/aset) kosong = 0; pattern = klausa hedged di `<p class="byline">` (blog5).
-
+Crosslink count: 5 related-pack lines live di guides (09-11 run — housing pack ×3: rent-affordability-calculator, hud-fmr-by-state, section-8-voucher-rent; icon pack ×1: mcp-claude-desktop; poster collection ×1: print-in-use-organizers; mcp-server-build-tutorial sudah link icon pack dari build 09-10; vendor pack = 0, no procurement guide). Counts source of truth (09-11 dvcc audit + 09-12 sweep): catalog.json datasets = 26 live-only (produk PREP tidak masuk), guides = 142 (guides/ 143 file incl. hub index), halaman `datasets/` = 26 produk + index, `printables/` = 23 lembar STL + halaman template + 1 preview planner 2027, free-printables-index ItemList = 224, products.html <article> = 98, catalog.html ItemList = 102 (100 paid + 2 free, $1,489), sitemap.xml = 221 URL, state/portfolio.json = 140 rows (live 100+2). 3 halaman preview produk staged (09-12, tabel di bawah) = 0 link beli. Disclaimer QA (09-11 audit): seluruh 143 guides dicek — 74 punya disclaimer (byline atau section), 69 technical-data optional tanpa; WAJIB-topic (keuangan/pajak/hukum/aset) kosong = 0; pattern = klausa hedged di `<p class="byline">` (blog5).
 ## Halaman (root)
 
 | File | Fungsi | Link beli? | Kapan diedit |
@@ -25,11 +24,25 @@ Crosslink count: 5 related-pack lines live di guides (09-11 run — housing pack
 
 | File | Isi | Trigger edit |
 |---|---|---|
-| `sitemap.xml` | 218 URL; lastmod sweep 09-11: 9 URL konten hari itu (index, roundup, 2 index page, xmas hub, 5 guide crosslink) = 2026-09-11 | +1 entry per halaman/guide baru |
-| `llms.txt` / `llms-full.txt` | Index buat AI agents | +1 line per halaman baru |
+| `sitemap.xml` | 221 URL; +3 halaman preview staged 09-12 (occupation-wages, agent-skills-vol1, planner-2027), lastmod 3 index yang diedit juga di-bump 09-12 | +1 entry per halaman/guide baru |
+| `llms.txt` / `llms-full.txt` | Index buat AI agents. `llms-full.txt` = hasil `python3 tools/llmsfull-gen.py` (dibaca dari README.md + 10 dataset page + 3 guide terakhir + blok DOI) — jangan edit manual, edit README.md lalu regen | +1 line per halaman baru |
 | `catalog.json` | Data katalog terstruktur | Ikut catalog-gen.py |
 | `MAP.md` (ini) | Peta struktur | Setiap perubahan struktur |
 | `CHANGELOG.md` | Log update dated | Setiap push yang berisi konten |
+
+## Halaman preview produk staged (belum ada link beli)
+
+Produk PREP (artifact jadi, belum ada slug live di Getly) punya halaman preview sendiri: sample gratis + data dictionary/spec + tombol `<span class="btn" aria-disabled="true">Coming soon</span>` tanpa `href`. Aturan: 0 link beli palsu, nama O*NET/BLS cuma jadi adjective (bukan nama produk/slug), atribusi verbatim + daftar perubahan nempel di halaman, disclaimer hedged di `<p class="byline">`.
+
+| Halaman | Produk | Sample gratis | Status Getly |
+|---|---|---|---|
+| `datasets/occupation-wages.html` | Occupation Skills and Wages Map, $24 planned | `data/occupation-wages/sample.csv` + `sample.json` (25 baris dari 1.016, 19 kolom) | PREP, belum di-list |
+| `agents/agent-skills-vol1.html` | Matchbook Ops Skill Pack Vol.1, $8 planned | `data/agent-skills-vol1/` 2 file skill utuh + `sample.csv` + `sample.json` + `LICENSE.txt` | PREP, belum di-list |
+| `printables/planner-2027.html` | 2027 Dated Planner + Wall Calendar, $9 planned | tidak ada PDF gratis; page map + grid Oktober 2027 + tabel bulan 2027 dirender di HTML | PREP, belum di-list |
+
+Crosslink: `datasets/index.html` (7 core packs), `printables/index.html`, `agents/free-agent-tools.html` (section "Paid and staged items", ItemList 7→8). `catalog.json` / `catalog.html` / `products.html` TIDAK disentuh — generatornya cuma untuk produk live; swap link beli + entri `full_data` saat slug Getly muncul.
+
+OG image: `assets/og/{occupation-wages,agent-skills-vol1,planner-2027}.png`, dirender `tools/gen-og.py` (3 entri PAGES baru).
 
 ## Checklist nambah 1 produk baru ke site
 

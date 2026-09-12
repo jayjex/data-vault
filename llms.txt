@@ -251,6 +251,14 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - Free printables index: https://jayjex.github.io/data-vault/free-printables-index.html
 - Full bundle: [Get the bundle](https://www.getly.store/store/matchbook-labs-mtrfh66f)
 
+### Occupation Skills and Wages Map (occupation-wages)
+1,016 detailed occupations, one row each, carrying the eight highest-importance skill statements from the O*NET 31.0 Database plus the median wage, hourly wage and employment BLS publishes for the SOC code the occupation rolls up to (OEWS national, May 2025). Niche: labor. Stats: {"rows": 1016, "columns": 19, "wages_filled": 956, "soc_codes": 867, "skill_pair_rows": 7280, "updated": "2026-09-12"}. Staged build, not listed for sale yet.
+- Sample JSON: https://jayjex.github.io/data-vault/data/occupation-wages/sample.json
+- Sample CSV: https://jayjex.github.io/data-vault/data/occupation-wages/sample.csv
+- Page: https://jayjex.github.io/data-vault/datasets/occupation-wages.html (25-row preview, 19-column dictionary, fill rates, wage-repeat flags, O*NET attribution)
+- Sources: O*NET 31.0 Database, USDOL/ETA, CC BY 4.0, https://www.onetcenter.org/database.html; BLS OEWS national May 2025, US public domain, https://www.bls.gov/oes/
+- Full data: not listed yet, no buy endpoint. Keep the O*NET attribution paragraph attached to any reuse of the sample.
+
 ## Guides
 
 - [EU Unemployment Statistics CSV: Eurostat Labour Market Data for 10 Geos](https://jayjex.github.io/data-vault/guides/labor-market-data-guide.html): 3,768 rows, 2003-2025, Greece youth 64.6% 2013 peak, EU-27 6.0% in 2025, free CSV
@@ -399,12 +407,14 @@ Aggregated bundle of two existing packs: 120 printable kindergarten worksheets (
 - [Free Tools for AI Agents: catalog, MCP server, sample endpoints](https://jayjex.github.io/data-vault/agents/free-agent-tools.html): full free toolkit
 - [MCP Tools for Claude: 3 Free Servers, Config JSON, Registry](https://jayjex.github.io/data-vault/agents/mcp-tools-for-claude.html): server comparison with configs
 - [MCP vs API: What the Difference Actually Is, With a Dataset Example](https://jayjex.github.io/data-vault/agents/mcp-vs-api.html): layer difference, curl vs query_dataset on real NFL rows, when each wins, config snippets
+- [Matchbook Ops Skill Pack Vol.1: 10 SKILL.md Files for Product Ops](https://jayjex.github.io/data-vault/agents/agent-skills-vol1.html): 10 agent skill files, two printed in full, MIT, Claude Code and Cursor install paths, 32,066 bytes; not listed for sale yet
 
 ## Printables
 
 - [Free Printables Index: 224 printable trackers, planners and worksheets](https://jayjex.github.io/data-vault/free-printables-index.html)
 - [Free Printable Packs by Use Case: budget, moving, study and worksheets](https://jayjex.github.io/data-vault/printable-index-roundup.html)
 - [Free Printables vs Paid Packs: When Free Is Enough and When a Bundle Wins](https://jayjex.github.io/data-vault/printables/free-printables-vs-paid.html): one-print rule for choosing
+- [2027 Dated Planner and Wall Calendar: 92 Pages, A4 and US Letter](https://jayjex.github.io/data-vault/printables/planner-2027.html): page map for all 92 pages, the ISO week math behind 53 spreads, month-start table, October 2027 grid, print settings, PDF build checks; not listed for sale yet
 - [Cable Clip Set STL: 4 Screw-Down Sizes for 4 to 9 mm Cables](https://jayjex.github.io/data-vault/printables/cable-clip-set-stl.html): measured spec sheet, 25 min print
 - [Phone Stand STL: Fold-Flat with a Print-in-Place Pin Hinge](https://jayjex.github.io/data-vault/printables/phone-stand-fold-flat-stl.html): measured spec sheet, 4 mm pin hinge, 2.3 h print
 - [Opisometer STL: Screw-Type Map Distance Tool, 3 Printed Parts](https://jayjex.github.io/data-vault/printables/opisometer-stl.html): measured spec sheet, 16 mm wheel, 20.1x thread ratio

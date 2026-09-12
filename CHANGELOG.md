@@ -2,6 +2,16 @@
 
 Log update site. 1 baris per push yang berisi perubahan konten. Terbaru di atas.
 
+## 2026-09-12
+
+- 3 halaman preview produk staged (dari `money-mission/artifacts/products/`): `datasets/occupation-wages.html` (crosswalk 1.016 pekerjaan O*NET-SOC × skill top-8 × wage median BLS OEWS May 2025 — tabel 25 baris, data dictionary 19 kolom, fill rate, flag `wage_repeated`, atribusi verbatim O*NET 31.0 + 9 perubahan + sitasi BLS), `agents/agent-skills-vol1.html` (10 file SKILL.md, 2 file dicetak utuh, MIT), `printables/planner-2027.html` (92 halaman, 53 weekly spread, page map + tabel 12 bulan 2027 + grid Oktober + WEEK 43 spread dirender di HTML). Ketiganya PREP: tombol `Coming soon` tanpa `href`, 0 link beli palsu, harga planned $24 / $8 / $9 hanya disebut sebagai rencana
+- sample files baru: `data/occupation-wages/{sample.csv,sample.json}` (25 baris = tiap baris ke-41 dari master, semua 19 kolom; row 11 tanpa skill, row 24 tanpa wage), `data/agent-skills-vol1/{sample.csv,sample.json,listing-writer.md,pdf-graph-qa.md,LICENSE.txt}`
+- kalender 2027 diverifikasi sendiri (`calendar`/ISO 8601): 1 Jan 2027 hari Jumat dan jatuh di 2026-W53, ISO W01 mulai Senin 4 Jan, 53 spread Senin 28 Des 2026 s/d Minggu 2 Jan 2028 = 371 sel tanggal, 2027 tahun basar (Feb 28). PDF planner A4+Letter 92 halaman diverifikasi ulang: /Kids 92, page objects 92, /Contents 92, /Count 92, md5 A4 `69b1a7ad…` dan Letter `95ab458e…` stabil di dua kali rebuild `gen.py`
+- index + mesin: `datasets/index.html` (6→7 core packs), `printables/index.html` (+1 entri, lead + 3 deskripsi JSON-LD/og), `agents/free-agent-tools.html` (section jadi "Paid and staged items", +1 kartu, ItemList 7→8), `sitemap.xml` 218→221 + lastmod 3 URL yang diedit, `llms.txt` (+1 blok Dataset, +1 baris Agents, +1 baris Printables), `tools/gen-og.py` (+3 entri PAGES) → `assets/og/{occupation-wages,agent-skills-vol1,planner-2027}.png`
+- link luar dicek 200 hari ini: onetcenter.org/database.html, license_db.html, creativecommons.org/licenses/by/4.0/, jayjex-shop.fourthwall.com/products/planner-2026; bls.gov/oes/ balas 403 ke curl (bot-block BLS, normal di browser) — link sitasi tetap
+- `README.md` +1 baris tabel dataset (occupation-wages, marked staged) +1 bullet halaman preview + kredit O*NET di blok lisensi → `llms-full.txt` di-regen bersih (`python3 tools/llmsfull-gen.py`, 112.7 KB, 15 sections); `.gitignore` +`__pycache__/`
+- `catalog.json` / `catalog.html` / `products.html` TIDAK disentuh: generatornya cuma buat produk live, produk PREP bakal jadi link palsu. `MAP.md` + section "Halaman preview produk staged"
+
 ## 2026-09-11
 
 - counts consistency (dvcc): klaim publik sync ke sumber — llms.txt/llms-full.txt 223→224 printables (5 spot) + 90→98 public SKUs (2 spot); 11 halaman "223 free printables"→224 (root index 2 stat, 7 guides, printables-vs-paid, printable-templates, printables/index, engineering-bundle); free-printable-templates JSON-LD numberOfItems 223→16 (ItemList isinya 16 kategori); sitemap lastmod 9 URL → 0911; MAP counts line ditambah catalog 102 / sitemap 218 / portfolio 140 rows. Sumber tetap: 102 catalog, 142 guides (143 file incl. hub), 224 printables, 98 products, 26 datasets, 218 sitemap. IndexNow skip (task 0 HTTP)

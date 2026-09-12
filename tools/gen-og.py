@@ -33,6 +33,9 @@ PAGES = [
     ("datasets/hud-fmr-by-zip-2027.html", "dataset-hud-fmr-by-zip-2027",  "DATASET",   (57, 197, 207)),
     ("datasets/hud-fmr-2026.html",        "dataset-hud-fmr-2026",         "DATASET",   (57, 197, 207)),
     ("datasets/hud-fmr-metro-2027.html",  "dataset-hud-fmr-metro-2027",   "DATASET",   (57, 197, 207)),
+    ("agents/agent-skills-vol1.html",              "agent-skills-vol1",              "SKILLS",    (188, 140, 255)),
+    ("datasets/occupation-wages.html",              "occupation-wages",               "DATASET",   (57, 197, 207)),
+    ("printables/planner-2027.html",                "planner-2027",                   "PRINTABLE", (63, 185, 80)),
 ]
 
 TITLE_RE = re.compile(r"<title>(.*?)</title>", re.S)

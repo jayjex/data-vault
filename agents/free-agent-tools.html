@@ -16,7 +16,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Free Tools for AI Agents: catalog, MCP server, sample endpoints">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Free tools for AI agents","url":"https://jayjex.github.io/data-vault/agents/free-agent-tools.html","itemListElement":[{"@type":"ListItem","position":1,"name":"dataset-mcp MCP server","url":"https://jayjex.github.io/data-vault/agents/mcp-dataset-server.html"},{"@type":"ListItem","position":2,"name":"catalog.json machine-readable dataset index","url":"https://jayjex.github.io/data-vault/catalog.json"},{"@type":"ListItem","position":3,"name":"sample.json endpoints for 24 datasets","url":"https://jayjex.github.io/data-vault/agents/"},{"@type":"ListItem","position":4,"name":"llms.txt catalog for LLM crawlers","url":"https://jayjex.github.io/data-vault/llms.txt"},{"@type":"ListItem","position":5,"name":"Official MCP registry","url":"https://registry.modelcontextprotocol.io/"},{"@type":"ListItem","position":6,"name":"Model Context Protocol documentation","url":"https://modelcontextprotocol.io/docs/getting-started/intro"},{"@type":"ListItem","position":7,"name":"Web Scraping Script Pack","url":"https://jayjex.github.io/data-vault/datasets/scraper-pack.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Free tools for AI agents","url":"https://jayjex.github.io/data-vault/agents/free-agent-tools.html","itemListElement":[{"@type":"ListItem","position":1,"name":"dataset-mcp MCP server","url":"https://jayjex.github.io/data-vault/agents/mcp-dataset-server.html"},{"@type":"ListItem","position":2,"name":"catalog.json machine-readable dataset index","url":"https://jayjex.github.io/data-vault/catalog.json"},{"@type":"ListItem","position":3,"name":"sample.json endpoints for 24 datasets","url":"https://jayjex.github.io/data-vault/agents/"},{"@type":"ListItem","position":4,"name":"llms.txt catalog for LLM crawlers","url":"https://jayjex.github.io/data-vault/llms.txt"},{"@type":"ListItem","position":5,"name":"Official MCP registry","url":"https://registry.modelcontextprotocol.io/"},{"@type":"ListItem","position":6,"name":"Model Context Protocol documentation","url":"https://modelcontextprotocol.io/docs/getting-started/intro"},{"@type":"ListItem","position":7,"name":"Web Scraping Script Pack","url":"https://jayjex.github.io/data-vault/datasets/scraper-pack.html"},{"@type":"ListItem","position":8,"name":"Matchbook Ops Skill Pack Vol.1 (not listed yet)","url":"https://jayjex.github.io/data-vault/agents/agent-skills-vol1.html"}],"numberOfItems":8}</script>
 <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
@@ -33,7 +33,7 @@
   <a class="crumb" href="..">&larr; Catalog</a>
   <p class="kicker">agent resources</p>
   <h1>Free tools for AI agents</h1>
-  <p class="lead">A roundup of free tools an AI agent or its developer can use today, no signup on any of them. Most sit in this catalog: an MCP server, JSON endpoints, a machine-readable index. Two are outside resources we use ourselves and link after checking they answer. One item is a paid script pack, marked as such. Every link on this page returned HTTP 200 on 2026-09-09.</p>
+  <p class="lead">A roundup of free tools an AI agent or its developer can use today, no signup on any of them. Most sit in this catalog: an MCP server, JSON endpoints, a machine-readable index. Two are outside resources we use ourselves and link after checking they answer. Two entries at the bottom are products rather than free tools, one listed and one not yet listed, both marked as such. Every external link here returned HTTP 200 on 2026-09-09; the links added on 2026-09-12 were checked the same day.</p>
 
   <section aria-label="Our own tools">
     <h2>Tools in this catalog, free</h2>
@@ -92,13 +92,20 @@
   </section>
 
   <section aria-label="Paid tool">
-    <h2>One paid item, marked as such</h2>
+    <h2>Paid and staged items, marked as such</h2>
 
     <article class="card">
       <span class="niche">dev-tools</span>
       <h3>Web Scraping Script Pack</h3>
       <p>Ten self-contained Playwright scripts for pagination, infinite scroll, login sessions, price monitors, sitemap crawling, and retries. Node 18+. The <code>sample.json</code> endpoint lists every script with its purpose, so you can check the inventory before buying. If you would rather build the scraper yourself from free parts, the <a href="../tools/scraping-tools-alternative.html">web scraping tools comparison</a> covers the free and self-hosted options.</p>
       <p class="btn-note">Price: <a href="https://www.getly.store/product/web-scraping-script-pack-10-production-ready-playwright-templates-mtrfwfcd" rel="noopener">on Getly</a>. Free sample: <a href="../data/scraper-pack/sample.json">data/scraper-pack/sample.json</a>.</p>
+    </article>
+
+    <article class="card">
+      <span class="niche">agent-skills</span>
+      <h3><a href="agent-skills-vol1.html">Matchbook Ops Skill Pack Vol.1</a></h3>
+      <p>Ten markdown <code>SKILL.md</code> files that hand an agent the operating steps of a small product shop: write the listing, package the data, pace the upload queue, set the opening price, audit the copy, check the generated PDF. Two of the ten are printed in full on the page, with install paths for Claude Code and Cursor.</p>
+      <p class="btn-note">Not listed for sale yet, no price at checkout. Free samples: <a href="../data/agent-skills-vol1/listing-writer.md">listing-writer.md</a> and <a href="../data/agent-skills-vol1/pdf-graph-qa.md">pdf-graph-qa.md</a>.</p>
     </article>
   </section>
 

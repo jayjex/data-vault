@@ -1,0 +1,11 @@
+file,name,bytes,sections,lines,sample,job
+dataset-catalog.md,dataset-catalog,3131,5,60,False,"Turn compiled public data into a sellable pack: provenance columns, live-link checks, snapshot date, catalog entry."
+isr-cache-doctor.md,isr-cache-doctor,3384,5,42,False,"Diagnose an incremental-scratch-ratio cache miss on a 3D print: settings, re-slice, verify."
+listing-writer.md,listing-writer,3262,7,69,True,"Write the storefront copy from the artifact folder: title, 900-1200 character description, tags, cover alt text."
+payout-rail-scout.md,payout-rail-scout,3204,4,41,False,Compare payout rails for one market and report the tradeoffs; connecting an account stays a human call.
+pdf-graph-qa.md,pdf-graph-qa,2762,4,47,True,"Check a generated PDF by walking its page-tree graph: /Kids reachability, /Contents streams, orphans, /Count."
+price-scout.md,price-scout,3057,6,45,False,"Set an opening price from comparable listings, then plan the first change instead of guessing."
+prompt-pack-builder.md,prompt-pack-builder,3079,6,64,False,"Turn a working prompt into a themed pack with per-prompt fields, variants and a QA pass."
+publish-queue-pace.md,publish-queue-pace,2844,5,39,False,Pace an upload queue so a storefront sees a steady release cadence instead of a dump.
+reddit-comment-funnel.md,reddit-comment-funnel,3275,6,43,False,"Write a reply that answers the actual question and leaves one honest link, without farming."
+slop-scan.md,slop-scan,4068,4,68,False,"Scan outbound copy for machine-written tells: banned words, decorative dashes, filler phrasing, summary endings."

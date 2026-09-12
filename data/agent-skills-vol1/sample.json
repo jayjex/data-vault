@@ -1,0 +1,111 @@
+{
+ "slug": "agent-skills-vol1",
+ "name": "Matchbook Ops Skill Pack Vol.1",
+ "columns": 7,
+ "column_names": [
+  "file",
+  "name",
+  "bytes",
+  "sections",
+  "lines",
+  "sample",
+  "job"
+ ],
+ "row_count": 10,
+ "records": [
+  {
+   "file": "dataset-catalog.md",
+   "name": "dataset-catalog",
+   "bytes": 3131,
+   "sections": 5,
+   "lines": 60,
+   "sample": false,
+   "job": "Turn compiled public data into a sellable pack: provenance columns, live-link checks, snapshot date, catalog entry."
+  },
+  {
+   "file": "isr-cache-doctor.md",
+   "name": "isr-cache-doctor",
+   "bytes": 3384,
+   "sections": 5,
+   "lines": 42,
+   "sample": false,
+   "job": "Diagnose an incremental-scratch-ratio cache miss on a 3D print: settings, re-slice, verify."
+  },
+  {
+   "file": "listing-writer.md",
+   "name": "listing-writer",
+   "bytes": 3262,
+   "sections": 7,
+   "lines": 69,
+   "sample": true,
+   "job": "Write the storefront copy from the artifact folder: title, 900-1200 character description, tags, cover alt text."
+  },
+  {
+   "file": "payout-rail-scout.md",
+   "name": "payout-rail-scout",
+   "bytes": 3204,
+   "sections": 4,
+   "lines": 41,
+   "sample": false,
+   "job": "Compare payout rails for one market and report the tradeoffs; connecting an account stays a human call."
+  },
+  {
+   "file": "pdf-graph-qa.md",
+   "name": "pdf-graph-qa",
+   "bytes": 2762,
+   "sections": 4,
+   "lines": 47,
+   "sample": true,
+   "job": "Check a generated PDF by walking its page-tree graph: /Kids reachability, /Contents streams, orphans, /Count."
+  },
+  {
+   "file": "price-scout.md",
+   "name": "price-scout",
+   "bytes": 3057,
+   "sections": 6,
+   "lines": 45,
+   "sample": false,
+   "job": "Set an opening price from comparable listings, then plan the first change instead of guessing."
+  },
+  {
+   "file": "prompt-pack-builder.md",
+   "name": "prompt-pack-builder",
+   "bytes": 3079,
+   "sections": 6,
+   "lines": 64,
+   "sample": false,
+   "job": "Turn a working prompt into a themed pack with per-prompt fields, variants and a QA pass."
+  },
+  {
+   "file": "publish-queue-pace.md",
+   "name": "publish-queue-pace",
+   "bytes": 2844,
+   "sections": 5,
+   "lines": 39,
+   "sample": false,
+   "job": "Pace an upload queue so a storefront sees a steady release cadence instead of a dump."
+  },
+  {
+   "file": "reddit-comment-funnel.md",
+   "name": "reddit-comment-funnel",
+   "bytes": 3275,
+   "sections": 6,
+   "lines": 43,
+   "sample": false,
+   "job": "Write a reply that answers the actual question and leaves one honest link, without farming."
+  },
+  {
+   "file": "slop-scan.md",
+   "name": "slop-scan",
+   "bytes": 4068,
+   "sections": 4,
+   "lines": 68,
+   "sample": false,
+   "job": "Scan outbound copy for machine-written tells: banned words, decorative dashes, filler phrasing, summary endings."
+  }
+ ],
+ "total_bytes": 32066,
+ "license": "MIT",
+ "pack_status": "built and QA-passed, not listed for sale yet",
+ "planned_price_usd": "8"
+}

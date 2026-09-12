@@ -2,19 +2,19 @@
 
 Update terakhir: 2026-09-12. Doc ini WAJIB diupdate setiap ada halaman baru / produk baru masuk site.
 
-Crosslink count: 5 related-pack lines live di guides (09-11 run — housing pack ×3: rent-affordability-calculator, hud-fmr-by-state, section-8-voucher-rent; icon pack ×1: mcp-claude-desktop; poster collection ×1: print-in-use-organizers; mcp-server-build-tutorial sudah link icon pack dari build 09-10; vendor pack = 0, no procurement guide). Counts source of truth (09-11 dvcc audit + 09-12 sweep): catalog.json datasets = 26 live-only (produk PREP tidak masuk), guides = 142 (guides/ 143 file incl. hub index), halaman `datasets/` = 26 produk + index, `printables/` = 23 lembar STL + halaman template + 1 preview planner 2027, free-printables-index ItemList = 224, products.html <article> = 98, catalog.html ItemList = 102 (100 paid + 2 free, $1,489), sitemap.xml = 221 URL, state/portfolio.json = 140 rows (live 100+2). 3 halaman preview produk staged (09-12, tabel di bawah) = 0 link beli. Disclaimer QA (09-11 audit): seluruh 143 guides dicek — 74 punya disclaimer (byline atau section), 69 technical-data optional tanpa; WAJIB-topic (keuangan/pajak/hukum/aset) kosong = 0; pattern = klausa hedged di `<p class="byline">` (blog5).
+Crosslink count: 5 related-pack lines live di guides (09-11 run — housing pack ×3: rent-affordability-calculator, hud-fmr-by-state, section-8-voucher-rent; icon pack ×1: mcp-claude-desktop; poster collection ×1: print-in-use-organizers; mcp-server-build-tutorial sudah link icon pack dari build 09-10; vendor pack = 0, no procurement guide). Counts source of truth (09-11 dvcc audit + 09-12 sweep): catalog.json datasets = 26 live-only (produk PREP tidak masuk), guides = 142 (guides/ 143 file incl. hub index), halaman `datasets/` = 26 produk + index, `printables/` = 23 lembar STL + halaman template + 1 preview planner 2027, free-printables-index ItemList = 224, products.html <article> = 98, catalog.html ItemList = 102 (100 paid + 2 free, $1,489), sitemap.xml = 221 URL, state/portfolio.json = 146 rows (live 100 ber-link + 2 free; 44 baris PREP/queued/pending tidak di-link). 3 kartu catalog punya byline cite + DOI Zenodo (superteam-earn, nfl-dataset, housing-affordability — 09-12). 3 halaman preview produk staged (09-12, tabel di bawah) = 0 link beli. Disclaimer QA (09-11 audit): seluruh 143 guides dicek — 74 punya disclaimer (byline atau section), 69 technical-data optional tanpa; WAJIB-topic (keuangan/pajak/hukum/aset) kosong = 0; pattern = klausa hedged di `<p class="byline">` (blog5).
 ## Halaman (root)
 
 | File | Fungsi | Link beli? | Kapan diedit |
 |---|---|---|---|
 | `index.html` | Homepage: hero + nav + section ringkas; baris "Browse everything" bawah main = 8 link hub (catalog, guides, datasets, free-datasets, printables, roundup, xmas hub, agents) | Link ke store | Nav baru / hero copy; hub baru masuk daftar itu |
 | `portfolio.html` | Redirect 301-style ke catalog.html (legacy URL) | — | Jangan edit; single source = catalog.html |
-| `catalog.html` | Katalog penuh 102 kartu + link beli per produk (52 Getly + 50 FW; Wall Art prints 12) | YA, per produk | Tiap produk baru live → `python3 tools/catalog-gen.py` → commit+push |
-| `products.html` | "New this week" — 8 kartu produk baru | Ya (Getly) | Tiap produk baru live → tambah/rotasi kartu |
+| `catalog.html` | Katalog penuh 102 kartu + link beli per produk (52 Getly + 50 FW; Wall Art prints 12) | YA, per produk (halaman produk yang benar-benar live saja) | Tiap produk baru live → regen `DV_SITE=$PWD python3 /home/uwuki/money-mission/tools/data-vault/catalog-gen.py` → commit+push |
+| `products.html` | "New this week" — 8 kartu produk baru | Ya (6 kartu Getly live, 2 kartu staged `interview-prep` + `freelancer-starter-bundle` link ke halaman store, bukan slug produk palsu) | Tiap produk baru live → tambah/rotasi kartu; generator `tools/gen-products.py` masih abort di 12 baris poster (`GROUPS` belum kenal `artifacts/products/fw-posters`), jadi halaman ini hand-edit |
 | `free-datasets-for-ai-agents.html` | Landing dataset gratis (funnel dataset-mcp) | Sample download | Dataset baru masuk |
 | `free-printables-index.html` | Index printable gratis (funnel planner) | — | Printable baru |
 | `printable-index-roundup.html` | Roundup artikel printables | — | Jarang |
-| `christmas-gift-planning-hub.html` | Seasonal hub: Santa letter freebie, gift budget tracker $9, planner grid sample | Ya (2 link placeholder GUMROAD_XMAS_URL / GETLY_XMAS_URL — swap saat produk live) | Swap placeholder saat freebie/tracker live; sudah dikard di free-printables-index + li di printable-index-roundup (224 total, xnav 0911) |
+| `christmas-gift-planning-hub.html` | Seasonal hub: Santa letter freebie, gift budget tracker $9, planner grid sample | Tidak — dua tombol `Coming soon` `aria-disabled` tanpa `href` (09-12; sebelumnya 2 placeholder mentah `GUMROAD_XMAS_URL` / `GETLY_XMAS_URL` yang balas 404) | Swap ke URL asli saat freebie/tracker beneran live (cek `state/portfolio.json`: Santa letter = Gumroad draft, `xmas-gift-tracker` = PREP-GRLY-0918); sudah dikard di free-printables-index + li di printable-index-roundup (224 total, xnav 0911) |
 | `guides/index.html` | Hub 142 guides (SEO internal links) | — | Tiap guide/baru blog live → tambah kartu |
 | `guides/*.html` | 142 guide SEO | CTA store di footer | — |
 | `agents/index.html` | Halaman "For agents": MCP servers + install npm | npm | MCP server baru / versi baru |
@@ -29,6 +29,7 @@ Crosslink count: 5 related-pack lines live di guides (09-11 run — housing pack
 | `catalog.json` | Data katalog terstruktur | Ikut catalog-gen.py |
 | `MAP.md` (ini) | Peta struktur | Setiap perubahan struktur |
 | `CHANGELOG.md` | Log update dated | Setiap push yang berisi konten |
+| `tmp/deadlink-check.py` | QA link mati offline (0 HTTP): semua `href` di 11 halaman inti + 3 halaman preview vs baris live `money-mission/state/portfolio.json`, dump Getly `money-mission/tmp/catalogfull-getly.json`, slug SellApp di `money-mission/state/sellapp/store-status.md`, DOI vs `state/zenodo-dois.json`; plus audit count kartu == link beli, `.come` list bebas link, pola Coming-soon di halaman preview, dan token placeholder (`SLUGPENDING`, `_XMAS_URL`) | Setiap habis regen / tambah produk; jalan `python3 tmp/deadlink-check.py`, harus `OK: 0 dead link` |
 
 ## Halaman preview produk staged (belum ada link beli)
 
@@ -46,9 +47,9 @@ OG image: `assets/og/{occupation-wages,agent-skills-vol1,planner-2027}.png`, dir
 
 ## Checklist nambah 1 produk baru ke site
 
-1. `catalog.html` → regenerate: `python3 tools/catalog-gen.py` (source of truth)
+1. `catalog.html` → regenerate: `DV_SITE=$PWD python3 /home/uwuki/money-mission/tools/data-vault/catalog-gen.py` (source of truth)
 2. `products.html` → rotasi kartu baru (judul, harga, desc 1 kalimat, link Getly `/product/<slug>`)
-2. `catalog.html` → regenerate: `python3 tools/catalog-gen.py` (sumber: portfolio.json + Getly API)
+2. `catalog.html` → regenerate: `DV_SITE=$PWD python3 /home/uwuki/money-mission/tools/data-vault/catalog-gen.py` (sumber: portfolio.json + dump Getly / API Getly kalau ada token)
 3. `guides/index.html` → kalau ada blog/guide pendampingnya, tambah kartu
 4. `sitemap.xml` → +1 URL (kalau halaman baru; produk tidak)
 5. `llms.txt` → +1 line (halaman baru saja)
